@@ -1,5 +1,3 @@
-there was an error with the host website that resulted in empty files being downloaded and overwritten to the files in this repo, i've reverted the commit to a normal version from two days ago so the files can be downloaded, when the issue is fixed i'll push a new version and remove this text
-
 ## Collection of m3u Radio Playlists, Updated daily (manually)
 this repo now includes 4 extra streams made by me
 
