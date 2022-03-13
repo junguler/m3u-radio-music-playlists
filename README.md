@@ -1,5 +1,5 @@
 ## Collection of m3u Radio Playlists, Updated daily (manually)
-this repo now has a [github page](https://junguler.github.io/m3u-radio-music-playlists/), it's a simple indexed directory view of all the raw files in the repo, it saves you the hassle of clicking the raw files or downloading them manually if you are only interested in a few of the streams, if you want all of the files, cloning the repo or downloading the zip file is still the better option which i explained about further down in this markdown file
+this repo now has a [github page](https://junguler.github.io/m3u-radio-music-playlists/), it's a simple table view of all the raw files in the repo, it saves you the hassle of clicking the raw files or downloading them manually if you are only interested in a few of the streams, if you want all of the files, cloning the repo is still the better option which i explained about further down in this markdown file
 
 ### Extra Streams
 this repo now includes 4 extra streams made by me
