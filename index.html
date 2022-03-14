@@ -6,6 +6,34 @@
 
 </head>
 
+<style>
+
+.grid {
+display: grid;
+grid-template-columns: repeat(6, 200px);
+grid-auto-rows: 32px;
+}
+
+span {
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+}
+
+body {background: #222;}
+
+a::before {
+content: "./";
+}
+
+a {color: #ccc;
+border: 1px solid #666;
+padding-left: 15px;
+}
+
+</style>
+
 <body>
 
 <span>
@@ -120,33 +148,5 @@
 </span>
 
 </body>
-
-<style>
-
-.grid {
-display: grid;
-grid-template-columns: repeat(6, 200px);
-grid-auto-rows: 32px;
-}
-
-span {
-position: absolute;
-left: 50%;
-top: 50%;
-transform: translate(-50%, -50%);
-}
-
-body {background: #222;}
-
-a::before {
-content: "./";
-}
-
-a {color: #ccc;
-border: 1px solid #666;
-padding-left: 15px;
-}
-
-</style>
 
 </html>
