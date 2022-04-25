@@ -100,11 +100,11 @@ from [this page](https://www.radio.pervii.com/en/online-playlists-m3u.htm)
 ### Git Stats
 since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them weekly so you can have feel for how this repo is doing
 
-[](stats_1.jpg)
+![](stats_1.jpg)
 
-[](stats_2.jpg)
+![](stats_2.jpg)
 
-[](stats_3.jpg)
+![](stats_3.jpg)
 
 ### How do i push updates?
 if you just want to listen to music you won't need to keep reading but if you are interested to know how i do this then click below
