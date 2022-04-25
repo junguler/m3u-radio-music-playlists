@@ -70,7 +70,7 @@ vf-add=drawbox=x=6:y=6:w=iw-12:h=ih-12:color=FFFF00@0.5
 vf-add=hue=H=0.1*PI*t
 ```
 
-### normilize audio
+### Normilize Audio
 depending on the stream some music might be too load and others too quiet, thankfully we can use an ffmpeg filter inside mpv to fix the issue and force all music to be played at the same level, put this line inside your `mpv.conf` and it will automatically normalize all audio
 ```
 af=lavfi=[dynaudnorm=f=75:g=25:p=0.55]
@@ -96,6 +96,15 @@ for further updates cd into the folder and do ``git pull``
 
 ### Where did you find these?
 from [this page](https://www.radio.pervii.com/en/online-playlists-m3u.htm)
+
+### Git Stats
+since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them weekly so you can have feel for how this repo is doing
+
+[](stats_1.jpg)
+
+[](stats_2.jpg)
+
+[](stats_3.jpg)
 
 ### How do i push updates?
 if you just want to listen to music you won't need to keep reading but if you are interested to know how i do this then click below
