@@ -4,7 +4,7 @@ this repo now has a [github page](https://junguler.github.io/m3u-radio-music-pla
 ### Shortcuts
  * [How to listen](https://github.com/junguler/m3u-radio-music-playlists#how-to-listen-to-these)
  * [How to download a stream](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-a-live-stream-to-my-computer)
- * [Audi visualization](https://github.com/junguler/m3u-radio-music-playlists#mpv-only-shows-a-black-window-when-listening-to-music-how-to-make-it-pretty)
+ * [Audio visualization](https://github.com/junguler/m3u-radio-music-playlists#mpv-only-shows-a-black-window-when-listening-to-music-how-to-make-it-pretty)
  * [Normilizing audio](https://github.com/junguler/m3u-radio-music-playlists#normilize-audio)
  * [Customize keybinds](https://github.com/junguler/m3u-radio-music-playlists#i-really-like-mpv-how-do-i-customize-keybinds)
  * [Easier m3u consumption](https://github.com/junguler/m3u-radio-music-playlists#isnt-there-an-easier-way-to-use-and-control-these-using-mpv)
@@ -205,7 +205,7 @@ cat ~/Music/bare_m3u/---everything-lite.m3u | shuf > ~/Music/bare_m3u/---randomi
 cat ~/Music/bare_m3u/---everything-lite.m3u | sort | awk 'length>10' > ~/Music/bare_m3u/---sorted.m3u
 mv ~/Music/bare_m3u/*.m3u ~/Music/m3u-radio-music-playlists
 git -C ~/Music/m3u-radio-music-playlists add .
-git -C ~/Music/m3u-radio-music-playlists commit -m "updating"
+git -C ~/Music/m3u-radio-music-playlists commit -m "`date +'%Y/%b/%d - %I:%M:%S %p'`"
 git -C ~/Music/m3u-radio-music-playlists push
 ```
 
