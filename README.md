@@ -33,6 +33,8 @@ mpv https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/tr
 ```
 or add/change `m3u` file association in your os to mpv and double click on any of `.m3u` files in your file manager
 
+<br>
+
 ### how to download a live-stream to my computer?
 <details>
   <summary>click me to read</summary>
@@ -82,11 +84,15 @@ vf-add=drawbox=x=6:y=6:w=iw-12:h=ih-12:color=FFFF00@0.5
 vf-add=hue=H=0.1*PI*t
 ```
 
+<br>
+
 ### Normilize Audio
 depending on the stream some music might be too load and others too quiet, thankfully we can use an ffmpeg filter inside mpv to fix the issue and force all music to be played at the same level, put this line inside your `mpv.conf` and it will automatically normalize all audio
 ```
 af=lavfi=[dynaudnorm=f=75:g=25:p=0.55]
 ```
+
+<br>
 
 ### I really like mpv, how do i customize keybinds?
 make a file called input.conf either at the folder your mpv.exe is on windows or on ~/.config/mpv/ if you are *nix systems, put these inside it for using page-up and page-down for changing radio stations
@@ -94,8 +100,11 @@ make a file called input.conf either at the folder your mpv.exe is on windows or
 PGUP playlist-prev ; show-text "${playlist-pos-1}/${playlist-count}"
 PGDWN playlist-next ; show-text "${playlist-pos-1}/${playlist-count}"
 ```
+
 ### Isn't there an easier way to use and control these using mpv?
 yes there is, use the [IPTV script](https://github.com/gthreepw00d/mpv-iptv) which comes with fuzzy finding stations, better keybinds and ...
+
+<br>
 
 ### How to download all of the files?
 use the [auto-generated zip](https://github.com/junguler/m3u-radio-music-playlists/archive/refs/heads/main.zip) 
@@ -106,8 +115,12 @@ git clone https://github.com/junguler/m3u-radio-music-playlists.git
 ```
 for further updates cd into the folder and do ``git pull``
 
+<br>
+
 ### Where did you find these?
 from [this page](https://www.radio.pervii.com/en/online-playlists-m3u.htm)
+
+<br>
 
 ### Git Stats
 since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them weekly so you can have feel for how this repo is doing
@@ -117,6 +130,8 @@ since the traffic section of the insight tab is hidden to other viewers of this 
 ![](stats_2.jpg)
 
 ![](stats_3.jpg)
+
+<br>
 
 ### How do i push updates?
 if you just want to listen to music you won't need to keep reading but if you are interested to know how i do this then click below
