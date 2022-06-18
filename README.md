@@ -1,6 +1,8 @@
 ## Collection of m3u Radio Playlists, Updated daily (manually)
 this repo now has a [github page](https://junguler.github.io/m3u-radio-music-playlists/), it's a simple tree view of all the raw files in the repo, it saves you the hassle of clicking the raw files or downloading them manually if you are only interested in a few of the streams, if you want all of the files, cloning the repo is still the better option which i explained about further down in this markdown file
 
+<br>
+
 ### Shortcuts
  * [How to listen](https://github.com/junguler/m3u-radio-music-playlists#how-to-listen-to-these)
  * [How to download a stream](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-a-live-stream-to-my-computer)
@@ -12,6 +14,8 @@ this repo now has a [github page](https://junguler.github.io/m3u-radio-music-pla
  * [Source](https://github.com/junguler/m3u-radio-music-playlists#where-did-you-find-these)
  * [Git stats](https://github.com/junguler/m3u-radio-music-playlists#git-stats)
  * [How i push updates](https://github.com/junguler/m3u-radio-music-playlists#how-do-i-push-updates)
+
+<br>
 
 ### Extra Streams
 this repo now includes 4 extra streams made by me
@@ -25,6 +29,8 @@ this repo now includes 4 extra streams made by me
 `---sorted.m3u` is exactly like the everything-lite stream but the links themselves are sorted alphabetically/numerically, it's good for when you have found a good radio station with many different genres of music to listen to all of them in order
 
 every time i push an update these 4 files will also get updated and the randomized stream will also get shuffled again
+
+<br>
 
 ### How to listen to these?
 in the terminal, do this:
@@ -66,7 +72,9 @@ this will save a new mp3 file every minute, if you want to make this longer chan
 this command can also be stopped using `ctrl + c` shortcut or the timeout command showcased above so adding `timeout 1h` in front of the above command stops the whole process after an hour
 
 </details>
-  
+
+<br>
+
 ### Mpv only shows a black window when listening to music, how to make it pretty?
 download the [visualizer](https://raw.githubusercontent.com/mfcc64/mpv-scripts/master/visualizer.lua) script for mpv and put it in your scripts folder either on `~/.config/mpv/scripts` on *nix systems 
 
@@ -100,6 +108,8 @@ make a file called input.conf either at the folder your mpv.exe is on windows or
 PGUP playlist-prev ; show-text "${playlist-pos-1}/${playlist-count}"
 PGDWN playlist-next ; show-text "${playlist-pos-1}/${playlist-count}"
 ```
+
+<br>
 
 ### Isn't there an easier way to use and control these using mpv?
 yes there is, use the [IPTV script](https://github.com/gthreepw00d/mpv-iptv) which comes with fuzzy finding stations, better keybinds and ...
