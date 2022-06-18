@@ -1,6 +1,18 @@
 ## Collection of m3u Radio Playlists, Updated daily (manually)
 this repo now has a [github page](https://junguler.github.io/m3u-radio-music-playlists/), it's a simple tree view of all the raw files in the repo, it saves you the hassle of clicking the raw files or downloading them manually if you are only interested in a few of the streams, if you want all of the files, cloning the repo is still the better option which i explained about further down in this markdown file
 
+### Shortcuts
+ * [How to listen](https://github.com/junguler/m3u-radio-music-playlists#how-to-listen-to-these)
+ * [How to download a stream](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-a-live-stream-to-my-computer)
+ * [Audi visualization](https://github.com/junguler/m3u-radio-music-playlists#mpv-only-shows-a-black-window-when-listening-to-music-how-to-make-it-pretty)
+ * [Normilizing audio](https://github.com/junguler/m3u-radio-music-playlists#normilize-audio)
+ * [Customize keybinds](https://github.com/junguler/m3u-radio-music-playlists#i-really-like-mpv-how-do-i-customize-keybinds)
+ * [Easier m3u consumption](https://github.com/junguler/m3u-radio-music-playlists#isnt-there-an-easier-way-to-use-and-control-these-using-mpv)
+ * [How to download](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-all-of-the-files)
+ * [Source](https://github.com/junguler/m3u-radio-music-playlists#where-did-you-find-these)
+ * [Git stats](https://github.com/junguler/m3u-radio-music-playlists#git-stats)
+ * [How i push updates](https://github.com/junguler/m3u-radio-music-playlists#how-do-i-push-updates)
+
 ### Extra Streams
 this repo now includes 4 extra streams made by me
 
