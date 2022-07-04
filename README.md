@@ -75,6 +75,31 @@ this command can also be stopped using `ctrl + c` shortcut or the timeout comman
 
 <br>
 
+### How to save songs indivudally by title from a live stream?
+
+<details>
+  <summary>click me to read</summary>
+
+<br>
+
+i have been looking for a way to do this for a while, i found this program [streamwriter](https://streamwriter.org/en/downloads/) that does this but unfortunently it's only available on windows, i'm going to explain how to use the program while i'm still loking for a more corss-platform solution 
+
+download the portable version of the program and extract it somewhere in your hard drive, the first time you open the program it's going to ask a few questions, things like language and where it's going to save downloaded songs, now that you are greeted with the program go to a m3u file of your favorite music genre and copy a stream link to start download, here is mine from the trance.m3u
+```
+http://51.89.148.171:8022/stream/1/
+```
+now put it inside the area i've shown and click to button next to it to start recording, after each song is completed it's going to create a new file and put a name on it from the title the stream is broadcasting
+
+![streamwriter](https://user-images.githubusercontent.com/59083599/177179837-33dcd1b2-c7a3-48ca-a179-0160c728ac21.jpg)
+
+once you are happy with the amount of songs downloaded, right click on the stream and click on `stop recording after current title`
+
+note that in some rare cases a stream does not broadcasts song titles and if you happen to come accross of these there is really nothing else you can and the program is going to continuously record the stream until you manually stop it
+
+</details>
+
+<br>
+
 ### Mpv only shows a black window when listening to music, how to make it pretty?
 download the [visualizer](https://raw.githubusercontent.com/mfcc64/mpv-scripts/master/visualizer.lua) script for mpv and put it in your scripts folder either on `~/.config/mpv/scripts` on *nix systems 
 
