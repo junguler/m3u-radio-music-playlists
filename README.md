@@ -6,6 +6,7 @@ this repo now has a [github page](https://junguler.github.io/m3u-radio-music-pla
 ### Shortcuts
  * [How to listen](https://github.com/junguler/m3u-radio-music-playlists#how-to-listen-to-these)
  * [How to download a stream](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-a-live-stream-to-my-computer)
+ * [How to save songs indivudally](https://github.com/junguler/m3u-radio-music-playlists#how-to-save-songs-indivudally-by-title-from-a-live-stream)
  * [Audio visualization](https://github.com/junguler/m3u-radio-music-playlists#mpv-only-shows-a-black-window-when-listening-to-music-how-to-make-it-pretty)
  * [Normilizing audio](https://github.com/junguler/m3u-radio-music-playlists#normilize-audio)
  * [Customize keybinds](https://github.com/junguler/m3u-radio-music-playlists#i-really-like-mpv-how-do-i-customize-keybinds)
