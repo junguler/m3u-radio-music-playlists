@@ -1,7 +1,8 @@
 ## Collection of m3u Radio Playlists, Updated daily (manually)
 this repo now has a [github page](https://junguler.github.io/m3u-radio-music-playlists/), it's a simple tree view of all the raw files in the repo
 
-in addition to that page, all of the streams can be listen to using their own page, just click on the one you want and hit the play button, use the left and right arrows to change stations, this was made possible by using javascript code from [this page](https://www.draketo.de/software/m3u-player.html), thank you
+### Listen to music online using this repo's github page
+all of the streams can be listen to using their own page, just click on the one you want and hit the play button, use the left and right arrows to change stations, this was made possible by using javascript code from [this page](https://www.draketo.de/software/m3u-player.html), thank you
 
 | [60s](https://junguler.github.io/m3u-radio-music-playlists/stuff/60s.html) | [70s](https://junguler.github.io/m3u-radio-music-playlists/stuff/70s.html) | [80s](https://junguler.github.io/m3u-radio-music-playlists/stuff/80s.html) | [90s](https://junguler.github.io/m3u-radio-music-playlists/stuff/90s.html) | [acid_jazz](https://junguler.github.io/m3u-radio-music-playlists/stuff/acid_jazz.html) | [african](https://junguler.github.io/m3u-radio-music-playlists/stuff/african.html) | [alternative](https://junguler.github.io/m3u-radio-music-playlists/stuff/alternative.html) | [ambient](https://junguler.github.io/m3u-radio-music-playlists/stuff/ambient.html) |
 |---|---|---|---|---|---|---|---|
