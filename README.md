@@ -111,7 +111,7 @@ http://51.89.148.171:8022/stream/1/
 ```
 now put it inside the area i've shown and click to button next to it to start recording, after each song is completed it's going to create a new file and put a name on it from the title the stream is broadcasting
 
-![streamwriter](https://user-images.githubusercontent.com/59083599/177179837-33dcd1b2-c7a3-48ca-a179-0160c728ac21.jpg)
+![streamwriter](stuff/streamwriter.jpg)
 
 once you are happy with the amount of songs downloaded, right click on the stream and click on `stop recording after current title`
 
