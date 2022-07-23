@@ -4,530 +4,118 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Directory listing for /</title>
 </head>
-
-<script>
-    
-// [[file:m3u-player.org::*The script][The script:1]]
-// @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&dn=gpl-2.0.txt GPL-v2-or-Later
-const nodes = document.querySelectorAll("audio,video");
-const playlists = {};
-const prefetchedTracks = new Map(); // use a map for insertion order, so we can just blow away old entries.
-// maximum prefetched blobs that are kept.
-const MAX_PREFETCH_KEEP = 10;
-// maximum allowed number of entries in a playlist to prevent OOM attacks against the browser with self-referencing playlists
-const MAX_PLAYLIST_LENGTH = 1000;
-const PLAYLIST_MIME_TYPES = ["audio/x-mpegurl", "audio/mpegurl", "application/vnd.apple.mpegurl","application/mpegurl","application/x-mpegurl"];
-function stripUrlParameters(link) {
-  const url = new URL(link, window.location);
-  url.search = "";
-  url.hash = "";
-  return url.href;
-}
-function isPlaylist(link) {
-  const linkHref = stripUrlParameters(link);
-  return linkHref.endsWith(".m3u") || linkHref.endsWith(".m3u8");
-}
-function isBlob(link) {
-  return new URL(link, window.location).protocol == 'blob';
-}
-function parsePlaylist(textContent) {
-  return textContent.match(/^(?!#)(?!\s).*$/mg)
-    .filter(s => s); // filter removes empty strings
-}
-/**
- * Download the given playlist, parse it, and store the tracks in the
- * global playlists object using the url as key.
- *
- * Runs callback once the playlist downloaded successfully.
- */
-function fetchPlaylist(url, onload, onerror) {
-  const playlistFetcher = new XMLHttpRequest();
-  playlistFetcher.open("GET", url, true);
-  playlistFetcher.responseType = "blob"; // to get a mime type
-  playlistFetcher.onload = () => {
-    if (PLAYLIST_MIME_TYPES.includes(playlistFetcher.response.type)) { // security check to ensure that filters have run
-      const reader = new FileReader();
-      const load = onload; // propagate to inner scope
-      reader.addEventListener("loadend", e => {
-        playlists[url] = parsePlaylist(reader.result);
-        onload();
-      });
-      reader.readAsText(playlistFetcher.response);
-    } else {
-      console.error("playlist must have one of the playlist MIME type '" + PLAYLIST_MIME_TYPES + "' but it had MIME type '" + playlistFetcher.response.type + "'.");
-      onerror();
-    }
-  };
-  playlistFetcher.onerror = onerror;
-  playlistFetcher.abort = onerror;
-  playlistFetcher.send();
-}
-function servedPartialDataAndCanRequestAll (xhr) {
-  if (xhr.status === 206) {
-    if (xhr.getResponseHeader("content-range").includes("/")) {
-      if (!xhr.getResponseHeader("content-range").includes("/*")) {
-        return true;
-      }
-    }
-  }
-  return false;
-}
-function prefetchTrack(url, onload) {
-  if (prefetchedTracks.has(url)) {
-    return;
-  }
-  // first cleanup: kill the oldest entries until we're back at the allowed size
-  while (prefetchedTracks.size > MAX_PREFETCH_KEEP) {
-    const key = prefetchedTracks.keys().next().value;
-    const track = prefetchedTracks.get(key);
-    prefetchedTracks.delete(key);
-  }
-  // first set the prefetched to the url so we will never request twice
-  prefetchedTracks.set(url, url);
-  // now start replacing it with a blob
-  const xhr = new XMLHttpRequest();
-  xhr.open("GET", url, true);
-  xhr.responseType = "blob";
-  xhr.onload = () => {
-    if (servedPartialDataAndCanRequestAll(xhr)) {
-      const endRange = Number(xhr.getResponseHeader("content-range").split("/")[1]) - 1;
-      const rangeXhr = new XMLHttpRequest();
-      rangeXhr.open("GET", url, true);
-      rangeXhr.responseType = "blob";
-      rangeXhr.setRequestHeader("range", "bytes=0-" + endRange);
-      rangeXhr.onload = () => {
-        prefetchedTracks.set(url, rangeXhr.response);
-        if (onload) {
-          onload();
-        }
-      };
-      rangeXhr.send();      
-    } else {
-      prefetchedTracks.set(url, xhr.response);
-      if (onload) {
-        onload();
-      }
-    }
-  };
-  xhr.send();
-}
-
-function showStaticOverlay(mediaTag, canvas) {
-  if (mediaTag instanceof Audio) {
-    return;
-  }
-  // take screenshot of video and overlay it to mask short-term flicker.
-  const realWidth = mediaTag.getBoundingClientRect().width;
-  const realHeight = mediaTag.getBoundingClientRect().height;
-  canvas.width = realWidth;
-  canvas.height = realHeight;
-  // need the actual video size
-  const videoAspectRatio = mediaTag.videoHeight / mediaTag.videoWidth;
-  const tagAspectRatio = realHeight / realWidth;
-  const videoIsPartialHeight = tagAspectRatio > (videoAspectRatio * 1.01); // avoid rounding errors
-  const videoIsPartialWidth = videoAspectRatio > (tagAspectRatio * 1.01); // avoid rounding errors
-  if (videoIsPartialHeight) {
-    canvas.height = realWidth * videoAspectRatio;
-  } else if (videoIsPartialWidth) {
-    canvas.width = realHeight / videoAspectRatio;
-  }
-  const context = canvas.getContext("2d");
-  context.scale(canvas.width / mediaTag.videoWidth, canvas.height / mediaTag.videoHeight);
-  context.drawImage(mediaTag, 0, 0);
-  canvas.hidden = true;
-  mediaTag.parentNode.insertBefore(canvas, mediaTag.nextSibling);
-  canvas.style.position = "absolute";
-  // shift canvas to cover only the space where the video actually is
-  if (videoIsPartialWidth) {
-    canvas.style.marginLeft = "-" + ((realWidth + canvas.width) / 2.) + "px";
-  } else {
-    canvas.style.marginLeft = "-" + realWidth + "px";
-  }
-  if (videoIsPartialHeight) {
-    canvas.style.marginTop = ((realHeight - canvas.height) / 2.) + "px";
-  }
-  canvas.hidden = false;
-}
-
-function updateSrc(mediaTag, callback) {
-  const playlistUrl = mediaTag.getAttribute("playlist");
-  const trackIndex =  mediaTag.getAttribute("track-index");
-  // deepcopy playlists to avoid shared mutation
-  let playlist = [...playlists[playlistUrl]];
-  let trackUrl = playlist[trackIndex];
-  // download and splice in playlists as needed
-  if (isPlaylist(trackUrl)) {
-    if (playlist.length >= MAX_PLAYLIST_LENGTH) {
-      // skip playlist if we already have too many tracks
-      changeTrack(mediaTag, +1);
-    } else {
-      // do not use the cached playlist here, though it is tempting: it might genuinely change to allow for updates
-      fetchPlaylist(
-        trackUrl,
-        () => {
-          playlist.splice(trackIndex, 1, ...playlists[trackUrl]);
-          playlists[playlistUrl] = playlist;
-          updateSrc(mediaTag, callback);
-        },
-        () => callback());
-    }
-  } else {
-    let url = prefetchedTracks.has(trackUrl)
-        ? prefetchedTracks.get(trackUrl) instanceof Blob
-        ? URL.createObjectURL(prefetchedTracks.get(trackUrl))
-        : trackUrl : trackUrl;
-    const oldUrl = mediaTag.getAttribute("src");
-    // prevent size flickering by setting height before src change
-    const canvas = document.createElement("canvas");
-    if (!isNaN(mediaTag.duration) // already loaded a valid file
-       && document.fullscreen !== true) { // overlay does not work for fullscreen
-      // mask flickering with a static overlay
-      try {
-        showStaticOverlay(mediaTag, canvas);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    // force sizes to stay constant during loading of the next segment
-    mediaTag.style.height = mediaTag.getBoundingClientRect().height.toString() + 'px';
-    mediaTag.style.width = mediaTag.getBoundingClientRect().width.toString() + 'px';
-    // swich to the next segment
-    mediaTag.setAttribute("src", url);
-    mediaTag.oncanplaythrough = () => {
-      if (!isNaN(mediaTag.duration)) { // already loaded a valid file
-        // unset element styles to allow recomputation if sizes changed
-        mediaTag.style.height = null;
-        mediaTag.style.width = null;
-      }
-      // remove overlay
-      canvas.hidden = true;
-      canvas.remove(); // to allow garbage collection
-    };
-    setTimeout(() => canvas.remove(), 300); // fallback
-    // replace the url when done, because a blob from an xhr request
-    // is more reliable in the media tag;
-    // the normal URL caused jumping prematurely to the next track.
-    if (url == trackUrl) {
-      prefetchTrack(trackUrl, () => {
-        if (mediaTag.paused) {
-          if (url == mediaTag.getAttribute("src")) {
-            if (mediaTag.currentTime === 0) {
-              mediaTag.setAttribute("src", URL.createObjectURL(
-                prefetchedTracks.get(url)));
-            }
-          }
-        }
-      });
-    }
-    // allow releasing memory
-    if (isBlob(oldUrl)) {
-      URL.revokeObjectURL(oldUrl);
-    }
-    // update title
-    mediaTag.parentElement.querySelector(".m3u-player--title").title = trackUrl;
-    mediaTag.parentElement.querySelector(".m3u-player--title").textContent = trackUrl;
-    // start prefetching the next three tracks.
-    for (const i of [1, 2, 3]) {
-      if (playlist.length > Number(trackIndex) + i) {
-        prefetchTrack(playlist[Number(trackIndex) + i]);
-      }
-    }
-    callback();
-  }
-}
-function changeTrack(mediaTag, diff) {
-  const currentTrackIndex = Number(mediaTag.getAttribute("track-index"));
-  const nextTrackIndex = currentTrackIndex + diff;
-  const tracks = playlists[mediaTag.getAttribute("playlist")];
-  if (nextTrackIndex >= 0) { // do not collapse the if clauses with double-and, that does not survive inlining
-    if (tracks.length > nextTrackIndex) {
-    mediaTag.setAttribute("track-index", nextTrackIndex);
-      updateSrc(mediaTag, () => mediaTag.play());
-    }
-  }
-}
-
-/**
- * Turn a media tag into playlist player.
- */
-function initPlayer(mediaTag) {
-  mediaTag.setAttribute("playlist", mediaTag.getAttribute("src"));
-  mediaTag.setAttribute("track-index", 0);
-  const url = mediaTag.getAttribute("playlist");
-  const wrapper = mediaTag.parentElement.insertBefore(document.createElement("div"), mediaTag);
-  const controls = document.createElement("div");
-  const left = document.createElement("span");
-  const title = document.createElement("span");
-  const right = document.createElement("span");
-  controls.appendChild(left);
-  controls.appendChild(title);
-  controls.appendChild(right);
-  left.classList.add("m3u-player--left");
-  right.classList.add("m3u-player--right");
-  title.classList.add("m3u-player--title");
-  title.style.overflow = "hidden";
-  title.style.textOverflow = "ellipsis";
-  title.style.whiteSpace = "nowrap";
-  title.style.opacity = "0.3";
-  title.style.direction = "rtl"; // for truncation on the left
-  title.style.paddingLeft = "0.5em";
-  title.style.paddingRight = "0.5em";
-  controls.style.display = "flex";
-  controls.style.justifyContent = "space-between";
-  const styleTag = document.createElement("style");
-  styleTag.innerHTML = ".m3u-player--left:hover, .m3u-player--right:hover {color: wheat; background-color: DarkSlateGray}";
-  wrapper.appendChild(styleTag);
-  wrapper.appendChild(controls);
-  controls.style.width = mediaTag.getBoundingClientRect().width.toString() + "px";
-  // appending the media tag to the wrapper removes it from the outer scope but keeps the event listeners
-  wrapper.appendChild(mediaTag);
-  left.innerHTML = "&lt;"; // not textContent, because we MUST escape
-                           // the tag here and textContent shows the
-                           // escaped version
-  left.onclick = () => changeTrack(mediaTag, -1);
-  right.innerHTML = "&gt;";
-  right.onclick = () => changeTrack(mediaTag, +1);
-  fetchPlaylist(
-    url,
-    () => {
-      updateSrc(mediaTag, () => null);
-      mediaTag.addEventListener("ended", event => {
-        if (mediaTag.currentTime >= mediaTag.duration) {
-          changeTrack(mediaTag, +1);
-        }
-      });
-    },
-    () => null);
-  // keep the controls aligned to the media tag
-  mediaTag.resizeObserver = new ResizeObserver(entries => {
-    controls.style.width = entries[0].contentRect.width.toString() + "px";
-  });
-  mediaTag.resizeObserver.observe(mediaTag);
-}
-function processTag(mediaTag) {
-  const canPlayClaim = mediaTag.canPlayType('audio/x-mpegurl');
-  let supportsPlaylists = !!canPlayClaim;
-  if (canPlayClaim == 'maybe') { // yes, seriously: specced as you only know when you try
-    supportsPlaylists = false;
-  }
-  if (!supportsPlaylists) {
-    if (isPlaylist(mediaTag.getAttribute("src"))) {
-      initPlayer(mediaTag);
-    }
-  }
-}
-document.addEventListener('DOMContentLoaded', () => {
-  const nodes = document.querySelectorAll("audio,video");
-  nodes.forEach(processTag);
-});
-// @license-end
-// The script:1 ends here
-
-    
-</script>
-
 <style>
-body {background: #222; padding: 2% 10%; margin: auto;color: #ccc;}
-.grid { display: grid; grid-template-columns: repeat(4, 360px);}
-audio {padding: 6px 0%;}
+body {background: #222;}
+a {color: #ccc;}
+h1 {color: rgb(133, 227, 255);}
+li {color: rgb(246, 166, 255);}
+a:link {color: rgb(238, 238, 238);}
+a:visited {color: rgb(144, 238, 144);}
 </style>
-
 <body>
-
-<div class="grid">
-
-~everything.m3u      <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/---everything-full.m3u" controls="controls"></audio>
-
-60s.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/60s.m3u" controls="controls"></audio>
-
-70s.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/70s.m3u" controls="controls"></audio>
-
-80s.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/80s.m3u" controls="controls"></audio>
-
-90s.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/90s.m3u" controls="controls"></audio>
-
-acid_jazz.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/acid_jazz.m3u" controls="controls"></audio>
-
-african.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/african.m3u" controls="controls"></audio>
-
-alternative.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/alternative.m3u" controls="controls"></audio>
-
-ambient.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/ambient.m3u" controls="controls"></audio>
-
-americana.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/americana.m3u" controls="controls"></audio>
-
-anime.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/anime.m3u" controls="controls"></audio>
-
-arabic.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/arabic.m3u" controls="controls"></audio>
-
-asian.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/asian.m3u" controls="controls"></audio>
-
-big_band.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/big_band.m3u" controls="controls"></audio>
-
-bluegrass.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/bluegrass.m3u" controls="controls"></audio>
-
-blues.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/blues.m3u" controls="controls"></audio>
-
-breakbeat.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/breakbeat.m3u" controls="controls"></audio>
-
-chillout.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/chillout.m3u" controls="controls"></audio>
-
-christian.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/christian.m3u" controls="controls"></audio>
-
-classical.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/classical.m3u" controls="controls"></audio>
-
-club.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/club.m3u" controls="controls"></audio>
-
-college.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/college.m3u" controls="controls"></audio>
-
-comedy.m3u       <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/comedy.m3u" controls="controls"></audio>
-
-country.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/country.m3u" controls="controls"></audio>
-
-dance.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/dance.m3u" controls="controls"></audio>
-
-deutsch.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/deutsch.m3u" controls="controls"></audio>
-
-disco.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/disco.m3u" controls="controls"></audio>
-
-discofox.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/discofox.m3u" controls="controls"></audio>
-
-downtempo.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/downtempo.m3u" controls="controls"></audio>
-
-drum_and_bass.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/drum_and_bass.m3u" controls="controls"></audio>
-
-easy_listening.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/easy_listening.m3u" controls="controls"></audio>
-
-ebm.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/ebm.m3u" controls="controls"></audio>
-
-electronic.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/electronic.m3u" controls="controls"></audio>
-
-eurodance.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/eurodance.m3u" controls="controls"></audio>
-
-film.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/film.m3u" controls="controls"></audio>
-
-folk.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/folk.m3u" controls="controls"></audio>
-
-france.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/france.m3u" controls="controls"></audio>
-
-funk.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/funk.m3u" controls="controls"></audio>
-
-goa.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/goa.m3u" controls="controls"></audio>
-
-gospel.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/gospel.m3u" controls="controls"></audio>
-
-gothic.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/gothic.m3u" controls="controls"></audio>
-
-greek.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/greek.m3u" controls="controls"></audio>
-
-hardcore.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/hardcore.m3u" controls="controls"></audio>
-
-hardrock.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/hardrock.m3u" controls="controls"></audio>
-
-hip_hop.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/hip_hop.m3u" controls="controls"></audio>
-
-house.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/house.m3u" controls="controls"></audio>
-
-india.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/india.m3u" controls="controls"></audio>
-
-indie.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/indie.m3u" controls="controls"></audio>
-
-industrial.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/industrial.m3u" controls="controls"></audio>
-
-instrumental.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/instrumental.m3u" controls="controls"></audio>
-
-italian.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/italian.m3u" controls="controls"></audio>
-
-jazz.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/jazz.m3u" controls="controls"></audio>
-
-jpop.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/jpop.m3u" controls="controls"></audio>
-
-jungle.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/jungle.m3u" controls="controls"></audio>
-
-latin.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/latin.m3u" controls="controls"></audio>
-
-lounge.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/lounge.m3u" controls="controls"></audio>
-
-metal.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/metal.m3u" controls="controls"></audio>
-
-mixed.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/mixed.m3u" controls="controls"></audio>
-
-musical.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/musical.m3u" controls="controls"></audio>
-
-oldies.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/oldies.m3u" controls="controls"></audio>
-
-opera.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/opera.m3u" controls="controls"></audio>
-
-polish.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/polish.m3u" controls="controls"></audio>
-
-polka.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/polka.m3u" controls="controls"></audio>
-
-pop.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/pop.m3u" controls="controls"></audio>
-
-portugal.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/portugal.m3u" controls="controls"></audio>
-
-progressive.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/progressive.m3u" controls="controls"></audio>
-
-punk.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/punk.m3u" controls="controls"></audio>
-
-quran.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/quran.m3u" controls="controls"></audio>
-
-rap.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/rap.m3u" controls="controls"></audio>
-
-reggae.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/reggae.m3u" controls="controls"></audio>
-
-retro.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/retro.m3u" controls="controls"></audio>
-
-rnb.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/rnb.m3u" controls="controls"></audio>
-
-rock.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/rock.m3u" controls="controls"></audio>
-
-romanian.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/romanian.m3u" controls="controls"></audio>
-
-russian.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/russian.m3u" controls="controls"></audio>
-
-salsa.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/salsa.m3u" controls="controls"></audio>
-
-schlager.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/schlager.m3u" controls="controls"></audio>
-
-ska.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/ska.m3u" controls="controls"></audio>
-
-smooth_jazz.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/smooth_jazz.m3u" controls="controls"></audio>
-
-soul.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/soul.m3u" controls="controls"></audio>
-
-soundtrack.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/soundtrack.m3u" controls="controls"></audio>
-
-spain.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/spain.m3u" controls="controls"></audio>
-
-spiritual.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/spiritual.m3u" controls="controls"></audio>
-
-sport.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/sport.m3u" controls="controls"></audio>
-
-swing.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/swing.m3u" controls="controls"></audio>
-
-symphonic.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/symphonic.m3u" controls="controls"></audio>
-
-talk.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/talk.m3u" controls="controls"></audio>
-
-techno.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/techno.m3u" controls="controls"></audio>
-
-top_40.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/top_40.m3u" controls="controls"></audio>
-
-trance.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/trance.m3u" controls="controls"></audio>
-
-turk.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/turk.m3u" controls="controls"></audio>
-
-urban.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/urban.m3u" controls="controls"></audio>
-
-usa.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/usa.m3u" controls="controls"></audio>
-
-various.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/various.m3u" controls="controls"></audio>
-
-wave.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/wave.m3u" controls="controls"></audio>
-
-world.m3u          <audio src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/world.m3u" controls="controls"></audio>
-    
-    
-    </body>
-    </html>
+<h1>Directory listing for /</h1>
+<hr>
+<ul>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/---everything-full.m3u">---everything-full.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/---everything-lite.m3u">---everything-lite.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/---randomized.m3u">---randomized.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/---sorted.m3u">---sorted.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/60s.m3u">60s.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/70s.m3u">70s.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/80s.m3u">80s.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/90s.m3u">90s.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/acid_jazz.m3u">acid_jazz.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/african.m3u">african.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/alternative.m3u">alternative.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/ambient.m3u">ambient.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/americana.m3u">americana.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/anime.m3u">anime.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/arabic.m3u">arabic.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/asian.m3u">asian.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/big_band.m3u">big_band.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/bluegrass.m3u">bluegrass.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/blues.m3u">blues.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/breakbeat.m3u">breakbeat.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/chillout.m3u">chillout.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/christian.m3u">christian.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/classical.m3u">classical.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/club.m3u">club.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/college.m3u">college.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/comedy.m3u">comedy.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/country.m3u">country.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/dance.m3u">dance.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/deutsch.m3u">deutsch.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/disco.m3u">disco.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/discofox.m3u">discofox.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/downtempo.m3u">downtempo.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/drum_and_bass.m3u">drum_and_bass.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/easy_listening.m3u">easy_listening.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/ebm.m3u">ebm.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/electronic.m3u">electronic.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/eurodance.m3u">eurodance.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/film.m3u">film.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/folk.m3u">folk.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/france.m3u">france.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/funk.m3u">funk.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/goa.m3u">goa.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/gospel.m3u">gospel.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/gothic.m3u">gothic.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/greek.m3u">greek.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/hardcore.m3u">hardcore.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/hardrock.m3u">hardrock.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/hip_hop.m3u">hip_hop.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/house.m3u">house.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/india.m3u">india.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/indie.m3u">indie.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/industrial.m3u">industrial.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/instrumental.m3u">instrumental.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/italian.m3u">italian.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/jazz.m3u">jazz.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/jpop.m3u">jpop.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/jungle.m3u">jungle.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/latin.m3u">latin.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/lounge.m3u">lounge.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/metal.m3u">metal.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/mixed.m3u">mixed.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/musical.m3u">musical.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/oldies.m3u">oldies.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/opera.m3u">opera.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/polish.m3u">polish.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/polka.m3u">polka.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/pop.m3u">pop.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/portugal.m3u">portugal.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/progressive.m3u">progressive.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/punk.m3u">punk.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/quran.m3u">quran.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/rap.m3u">rap.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/reggae.m3u">reggae.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/retro.m3u">retro.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/rnb.m3u">rnb.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/rock.m3u">rock.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/romanian.m3u">romanian.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/russian.m3u">russian.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/salsa.m3u">salsa.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/schlager.m3u">schlager.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/ska.m3u">ska.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/smooth_jazz.m3u">smooth_jazz.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/soul.m3u">soul.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/soundtrack.m3u">soundtrack.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/spain.m3u">spain.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/spiritual.m3u">spiritual.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/sport.m3u">sport.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/swing.m3u">swing.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/symphonic.m3u">symphonic.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/talk.m3u">talk.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/techno.m3u">techno.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/top_40.m3u">top_40.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/trance.m3u">trance.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/turk.m3u">turk.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/urban.m3u">urban.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/usa.m3u">usa.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/various.m3u">various.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/wave.m3u">wave.m3u</a></li>
+<li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/world.m3u">world.m3u</a></li>
+</ul>
+<hr>
+</body>
+</html>
