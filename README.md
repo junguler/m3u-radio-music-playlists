@@ -1,5 +1,5 @@
 ## Collection of m3u Radio Playlists, Updated daily (manually)
-this repo now has a [github page](https://junguler.github.io/m3u-radio-music-playlists/), it's a simple tree view of all the raw files in the repo
+this repo now has a [github page](https://junguler.github.io/m3u-radio-music-playlists/), it's a simple tree view of all the raw files in the repo, clicking on any of the streams takes you to the raw stream file in the repo
 
 ### Listen to music online using this repo's github page
 all of the streams can be listen to using their own page, just click on the one you want and hit the play button, click on the left and right arrow keys to change stations, this was made possible by using javascript code from [this page](https://www.draketo.de/software/m3u-player.html), thank you
