@@ -2,18 +2,18 @@ body {
 background:#222;
 color:#ccc;
 }
-
-div {
-height:30px;
-position:relative;
-margin-left:auto;
-margin-right:auto;
-left:0;
-right:0;
-text-align:center;
-margin-top:18%;
+    
+.container{
+display: flex;
+justify-content: center;
+align-items: center;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
 }
 
 audio {
-width:50%;
+width:640px;
+height: 48px;
 }
