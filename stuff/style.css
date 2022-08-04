@@ -2,7 +2,7 @@ body {
 background:#222;
 color:#ccc;
 }
-    
+
 .container{
 display: flex;
 justify-content: center;
@@ -14,10 +14,34 @@ transform: translate(-50%, -50%);
 }
 
 audio {
-width:1000px;
-height: 52px;
+width: 1000px;
 }
 
 .m3u-player--left, .m3u-player--right, .m3u-player--title {
 font-size: 200%;
+appearance: none;
+}
+
+.m3u-player--left, .m3u-player--right {
+cursor: pointer;
+position: absolute;
+top: 35px;
+}
+
+.m3u-player--left {
+margin-left: auto;
+left: -44px;
+}
+
+.m3u-player--right {
+margin-right: auto;
+right: -44px;
+}
+
+.m3u-player--title {
+margin: auto;
+}
+
+button {
+width: 40px;
 }
