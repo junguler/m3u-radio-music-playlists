@@ -272,11 +272,11 @@ wrapper.appendChild(controls);
 controls.style.width = mediaTag.getBoundingClientRect().width.toString() + "px";
 // appending the media tag to the wrapper removes it from the outer scope but keeps the event listeners
 wrapper.appendChild(mediaTag);
-left.innerHTML = "&lt;"; // not textContent, because we MUST escape
+left.innerHTML = "&#x25c1;"; // not textContent, because we MUST escape
 // the tag here and textContent shows the
 // escaped version
 left.onclick = () => changeTrack(mediaTag, -1);
-right.innerHTML = "&gt;";
+right.innerHTML = "&#x25b7;";
 right.onclick = () => changeTrack(mediaTag, +1);
 fetchPlaylist(
 url,
