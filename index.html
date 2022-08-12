@@ -6,9 +6,15 @@
 * {
 box-sizing: border-box;
 }
+div {
+overflow: auto;
+height: 88vh;
+border: #ccc 2px solid;
+padding: 10px;
+}
 body {
 background: #222;
-padding: 2% 25%;
+padding: 2vh 25%;
 }
 #myInput {
 background-position: 10px 12px;
@@ -40,6 +46,7 @@ font-size: 24px;
 </style>
 </head>
 <body>
+<div>
 <input autofocus type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for streams..." title="Type in a name">
 <ul id="myUL">
 <li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/---everything-full.m3u">everything-full.m3u</a></li>
@@ -142,6 +149,7 @@ font-size: 24px;
 <li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/wave.m3u">wave.m3u</a></li>
 <li><a href="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/world.m3u">world.m3u</a></li>
 </ul>
+</div>
 <script>
 function myFunction() {
 var input, filter, ul, li, a, i, txtValue;
