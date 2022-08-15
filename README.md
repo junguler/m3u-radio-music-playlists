@@ -19,7 +19,17 @@ all of the streams can be listen to using their own page, just click on the one 
 | [romanian](https://junguler.github.io/m3u-radio-music-playlists/stuff/romanian.html) | [russian](https://junguler.github.io/m3u-radio-music-playlists/stuff/russian.html) | [salsa](https://junguler.github.io/m3u-radio-music-playlists/stuff/salsa.html) | [schlager](https://junguler.github.io/m3u-radio-music-playlists/stuff/schlager.html) | [ska](https://junguler.github.io/m3u-radio-music-playlists/stuff/ska.html) | [smooth jazz](https://junguler.github.io/m3u-radio-music-playlists/stuff/smooth_jazz.html) | [soul](https://junguler.github.io/m3u-radio-music-playlists/stuff/soul.html) | [soundtrack](https://junguler.github.io/m3u-radio-music-playlists/stuff/soundtrack.html) | [spain](https://junguler.github.io/m3u-radio-music-playlists/stuff/spain.html) | [spiritual](https://junguler.github.io/m3u-radio-music-playlists/stuff/spiritual.html) | [sport](https://junguler.github.io/m3u-radio-music-playlists/stuff/sport.html) | [swing](https://junguler.github.io/m3u-radio-music-playlists/stuff/swing.html) | [symphonic](https://junguler.github.io/m3u-radio-music-playlists/stuff/symphonic.html) | [talk](https://junguler.github.io/m3u-radio-music-playlists/stuff/talk.html) | [techno](https://junguler.github.io/m3u-radio-music-playlists/stuff/techno.html) | [top 40](https://junguler.github.io/m3u-radio-music-playlists/stuff/top_40.html) |
 | [trance](https://junguler.github.io/m3u-radio-music-playlists/stuff/trance.html) | [turk](https://junguler.github.io/m3u-radio-music-playlists/stuff/turk.html) | [urban](https://junguler.github.io/m3u-radio-music-playlists/stuff/urban.html) | [usa](https://junguler.github.io/m3u-radio-music-playlists/stuff/usa.html) | [various](https://junguler.github.io/m3u-radio-music-playlists/stuff/various.html) | [wave](https://junguler.github.io/m3u-radio-music-playlists/stuff/wave.html) | [world](https://junguler.github.io/m3u-radio-music-playlists/stuff/world.html) | |
 
-note that chrome based browsers can't properly play these, this is a well known issue and there are a lot of solutions online but i've tried all of them to no success, i recommend using firefox or a browser based on firefox if you want to listen to these online, otherwise download the playlist and play it locally on your computer or other devices
+<br>
+
+if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc ...) you are not able to listen to the most of the streams, here is an explanation from [chrome support](https://support.google.com/chrome/thread/29505473?hl=en&msgid=29673696) which tells you why this happens and how to fix it
+
+> Usually this error occurs because the radio station you are trying to listen to is running on an unencrypted port (not 443). This is quite common and it's not technically necessary for radio stations to be encrypted but nowadays web browsers like Chrome have started disallowing unencrypted content to be shown in an otherwise encrypted websites. There is a few solutions for you right now:
+
+- Use a different browser like Firefox. For the moment they haven't blocked unencrypted content on an otherwise encrypted page web page.
+
+- Open the Chrome web browser and enter our website URL and then click on the padlock icon to the left of the URL box and then from the drop down menu select the 'Site Settings' option, you can then scroll down to the 'Insecure content' option at the bottom of the page and select 'Allow', this will create an exception for the website and allow you to continue using the player as before.
+
+- download the stream files and play them locally on your pc or other devices which i've talked about further down in this markdown file
 
 <div>
 
