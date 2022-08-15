@@ -27,7 +27,7 @@ if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc ...
 
 - Use a different browser like Firefox. For the moment they haven't blocked unencrypted content on an otherwise encrypted page web page.
 
-- Open the Chrome web browser and enter our website URL and then click on the padlock icon to the left of the URL box and then from the drop down menu select the 'Site Settings' option, you can then scroll down to the 'Insecure content' option at the bottom of the page and select 'Allow', this will create an exception for the website and allow you to continue using the player as before.
+- Open Chrome (or other chromium web browsers), go to the website and then click on the padlock icon to the left of the URL box and then from the drop down menu select the 'Site Settings' option, you can then scroll down to the 'Insecure content' option at the bottom of the page and select 'Allow', this will create an exception for the website and allow you to continue using the player as before.
 
 - download the stream files and play them locally on your pc or other devices which i've talked about further down in this markdown file
 
