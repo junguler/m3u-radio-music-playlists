@@ -17,7 +17,7 @@ audio {
 width: 600px;
 }
 
-.m3u-player--left, .m3u-player--right, .m3u-player--title {
+.m3u-player--left, .m3u-player--right {
 font-size: 200%;
 appearance: none;
 }
@@ -40,6 +40,7 @@ right: -44px;
 
 .m3u-player--title {
 margin: auto;
+appearance: none;
 }
 
 button {
