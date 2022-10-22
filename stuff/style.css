@@ -1,5 +1,6 @@
 * {
-border-radius: 0px
+padding-top: 2px;
+padding-bottom: 2px;
 }
 
 body {
@@ -23,9 +24,6 @@ width: 600px;
 
 .m3u-player--left, .m3u-player--right {
 appearance: none;
-}
-
-.m3u-player--left, .m3u-player--right {
 cursor: pointer;
 margin-left: auto;
 /* filter: invert(1); */
