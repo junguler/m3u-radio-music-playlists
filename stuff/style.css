@@ -4,13 +4,13 @@ color:#ccc;
 }
 
 .container{
-display: flex;
-justify-content: center;
-align-items: center;
 position: absolute;
 top: 50%;
 left: 50%;
-transform: translate(-50%, -50%);
+-ms-transform: translateX(-50%) translateY(-50%);
+-webkit-transform: translate(-50%,-50%);
+transform: translate(-50%,-50%);
+/* border: 2px solid white; */
 }
 
 audio {
@@ -18,33 +18,18 @@ width: 600px;
 }
 
 .m3u-player--left, .m3u-player--right {
-font-size: 200%;
 appearance: none;
 }
 
 .m3u-player--left, .m3u-player--right {
 cursor: pointer;
-position: absolute;
-top: 19px;
-filter: invert(1);
-}
-
-.m3u-player--left {
 margin-left: auto;
-left: -44px;
-}
-
-.m3u-player--right {
-margin-right: auto;
-right: -44px;
+/* filter: invert(1); */
 }
 
 .m3u-player--title {
 margin: auto;
 appearance: none;
-padding-bottom: 6px;
-}
-
-button {
-width: 40px;
+width: 500px;
+text-align: center;
 }
