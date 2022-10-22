@@ -1,11 +1,10 @@
-* {
-padding-top: 2px;
-padding-bottom: 2px;
-}
-
 body {
 background:#222;
 color:#ccc;
+}
+
+canvas {
+padding-bottom: 2px;
 }
 
 .container{
@@ -20,6 +19,7 @@ transform: translate(-50%,-50%);
 
 audio {
 width: 600px;
+padding-bottom: 2px;
 }
 
 .m3u-player--left, .m3u-player--right {
