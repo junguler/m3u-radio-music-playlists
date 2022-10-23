@@ -18,19 +18,17 @@ transform: translate(-50%,-50%);
 }
 
 audio {
-width: 600px;
+width: 610px;
 }
 
 .m3u-player--left, .m3u-player--right {
 appearance: none;
 cursor: pointer;
-margin-left: auto;
 /* filter: invert(1); */
 }
 
 .m3u-player--title {
 margin: auto;
 appearance: none;
-width: 500px;
 text-align: center;
 }
