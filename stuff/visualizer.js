@@ -40,7 +40,7 @@ var start = function() {
         meterNum = 800 / (10 + 2), //count of the meters
         capYPositionArray = []; ////store the vertical position of hte caps for the preivous frame
     ctx = canvas.getContext('2d'),
-    gradient = ctx.createLinearGradient(0, 0, 600, 0);
+    gradient = ctx.createLinearGradient(0, 0, 572, 0);
     gradient.addColorStop(1, '#ff0');
     gradient.addColorStop(0.66, '#0ff');
     gradient.addColorStop(0.33, '#ff0');
