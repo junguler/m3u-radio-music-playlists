@@ -37,3 +37,14 @@ text-align: center;
 border-radius: 0px;
 border: none;
 }
+
+@keyframes animate {
+0% {
+filter: hue-rotate(0deg);}
+100% {
+filter: hue-rotate(360deg);}
+}
+
+canvas {
+animation: animate linear 30s infinite ;
+}

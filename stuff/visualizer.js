@@ -41,9 +41,10 @@ var start = function() {
         capYPositionArray = []; ////store the vertical position of hte caps for the preivous frame
     ctx = canvas.getContext('2d'),
     gradient = ctx.createLinearGradient(0, 0, 600, 0);
-    gradient.addColorStop(1, '#0ff');
-    gradient.addColorStop(0.5, '#f0f');
-    gradient.addColorStop(0, '#ff0');
+    gradient.addColorStop(1, '#ff0');
+    gradient.addColorStop(0.66, '#0ff');
+    gradient.addColorStop(0.33, '#ff0');
+    gradient.addColorStop(0, '#0ff');
     // loop
     function renderFrame() {
         var array = new Uint8Array(analyser.frequencyBinCount);
