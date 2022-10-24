@@ -32,3 +32,8 @@ margin: auto;
 appearance: none;
 text-align: center;
 }
+
+::-webkit-media-controls-enclosure {
+border-radius: 0px;
+border: none;
+}
