@@ -42,8 +42,9 @@ var start = function() {
     ctx = canvas.getContext('2d'),
     gradient = ctx.createLinearGradient(0, 0, 0, 300);
     gradient.addColorStop(1, '#0ff');
-    gradient.addColorStop(0.5, '#f0f');
-    gradient.addColorStop(0, '#f00');
+    gradient.addColorStop(0.66, '#f0f');
+    gradient.addColorStop(0.33, '#ff0');
+    gradient.addColorStop(0, '#fff');
     // loop
     function renderFrame() {
         var array = new Uint8Array(analyser.frequencyBinCount);
