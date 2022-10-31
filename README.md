@@ -1,3 +1,7 @@
+you might have noticed this repo hasn't been updated for the past two days, it's because the [source page](http://radio.pervii.com/en/online-playlists-m3u.htm) that i scrape links from hasn't been updated, the links contain the same numbers of files with the same filesizes
+
+i've contacted the website via the cantacts form they have and let them know about this issue but there is no word from them yet, i'll monitor the situation and keep you posted, the streams in this repo and source page are going to work for the foreseeable future regardless so the things might not change at all, just wanted to let you know why there hasn't been much updates here
+
 ## Halloween Special
 for a limited time (2 weeks) i'm including a `halloween` folder, these are not live stream links but a collection of easy to use `m3u` files of a few halloween related audiobooks from `archive.org`
 
