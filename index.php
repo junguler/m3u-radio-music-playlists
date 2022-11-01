@@ -61,12 +61,17 @@ foreach($playlists as $playlist){
                 $title = rtrim($title);
                 
                 // Can't find out sources, leaving out
-                $title = str_ireplace('no name','',$title);
+                $title = str_ireplace('no name', '', $title);
 
-                //continue;
-                if(strlen($title)<2){
+                if(strlen($title) < 2){
                     continue;
                 }
+
+                // genres
+                $genre = $playlist_title;
+                $genre = preg_replace('/ MUSIC$/i', '', $genre);
+                $genre = strtolower($genre);
+                $genre = ucfirst($genre);
 
                 if($download_logos){
                     if($logo = file_get_contents($regs['logo'])){
@@ -130,7 +135,7 @@ foreach($playlists as $playlist){
                     "name" => $title,
                     "type" => "r",
                     "logo" => "local",
-                    "genre" => $playlist_title,
+                    "genre" => $genre,
                     "broadcaster" => "",
                     "language" => "",
                     "country" => "",
