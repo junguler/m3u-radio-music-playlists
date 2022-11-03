@@ -1,6 +1,22 @@
-you might have noticed this repo hasn't been updated for the past two days, it's because the [source page](http://radio.pervii.com/en/online-playlists-m3u.htm) that i scrape links from hasn't been updated, the links contain the same numbers of files with the same filesizes
+## Testing manual scraping
+as you might know this repo hasn't been updated for a few days now, the reason is i rely on [this page](http://radio.pervii.com/en/online-playlists-m3u.htm) to scrape the links from and the page seems to have stopped updating the streams for whatever reason, i've contacted them and have let them know about the issue but nothing seems to have come of it
 
-i've contacted the website via the cantacts form they have and let them know about this issue but there is no word from them yet, i'll monitor the situation and keep you posted, the streams in this repo and source page are going to work for the foreseeable future regardless so the things might not change at all, just wanted to let you know why there hasn't been much updates here
+so i've decided to take the matters in my own hand and try a bit of manual scraping using a few gnu core utils and a bit of searching online, these stream will be housed in their own folder and won't replace the normal streams, this is just a test, i'll explain what are the pros and cons of manual scraping here so you know what you are getting if you try to use these
+
+#### Pros
+
+- i don't have to rely on a third party to update this repo
+- we are not limited to only 100 streams per m3u file, i'll include all the links
+
+#### Cons
+
+- daily updates are not viable for me, i'll do weekly updates
+- dead links are not removed, they are at the bottom of the m3u files tho as the pages are still sorted by popularity and usage
+- stream info, website and picture is also going to be removed, it's too much data for me to scrape and honestly i don't really know how to do it
+
+i'm going to open a new issue in this repo about this, feel free to let me know what you think
+
+<br>
 
 ## Halloween Special
 for a limited time (2 weeks) i'm including a `halloween` folder, these are not live stream links but a collection of easy to use `m3u` files of a few halloween related audiobooks from `archive.org`
