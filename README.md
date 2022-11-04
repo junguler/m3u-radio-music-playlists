@@ -18,14 +18,6 @@ i'm going to open a new issue in this repo about this, feel free to let me know 
 
 <br>
 
-## Halloween Special
-for a limited time (2 weeks) i'm including a `halloween` folder, these are not live stream links but a collection of easy to use `m3u` files of a few halloween related audiobooks from `archive.org`
-
-after this 2 weeks has passed i'm going to create a dedicated repo to house these audiobook files and remove them from this repo
-
-## Collection of m3u Radio Playlists, Updated daily (manually)
-this repo now has a [github page](https://junguler.github.io/m3u-radio-music-playlists/), it's a simple list of all the raw files in the repo, clicking on any of the names takes you to the raw stream file in the repo
-
 ### Listen to music online using this repo's github page
 all of the streams can be listen to using their own page, just click on the one you want and hit the play button, click on the left and right arrow keys to change stations, this was made possible by using javascript code from [this page](https://www.draketo.de/software/m3u-player.html), thank you
 
