@@ -1,3 +1,10 @@
+## Update
+i was getting ready to push another update to my manually scraped streams but after overwriting the files to the local folder git tells me there is nothing to update, this means not only the self-updating streams are not updating but the whole "http://radio.pervii.com/" site has stopped getting updates for about a week now 
+
+not really sure what's going on but unless they somehow fix the issue on their end i can't update any of the files in this repo anymore, this won't effect you in any way tho as radio pervii was not a host for any of these streams, just an aggregate that gathered their information and links
+
+i'll continue to check for updates and will include them as soon as possible, as always feel free to open an issue or start a discussion and let me know what you think
+
 ## Testing manual scraping
 as you might know this repo hasn't been updated for a few days now, the reason is i rely on [this page](http://radio.pervii.com/en/online-playlists-m3u.htm) to scrape the links from and the page seems to have stopped updating the streams for whatever reason, i've contacted them and have let them know about the issue but nothing seems to have come of it
 
@@ -13,8 +20,6 @@ so i've decided to take the matters in my own hand and try a bit of manual scrap
 - daily updates are not viable for me, i'll do weekly updates
 - dead links are not removed, they are at the bottom of the m3u files tho as the pages are still sorted by popularity and usage
 - stream info, website and picture is also going to be removed, it's too much data for me to scrape and honestly i don't really know how to do it
-
-i'm going to open a new issue in this repo about this, feel free to let me know what you think
 
 <br>
 
