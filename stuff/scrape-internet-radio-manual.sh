@@ -16,8 +16,8 @@ for i in "" page{2..16} ; do for j in $(cat links2.txt) ; do curl -s https://www
 # convert links to m3u stream files
 for i in $(cat links2.txt) ; do sed "s/^/#EXTINF:-1\n/" $i.txt | sed '1s/^/#EXTM3U\n/' > $i.m3u ; done
 
-# replace %20 in filenames with space
-for i in *.m3u ; do mv -- "$i" "$(printf '%s\n' "$i" | sed 's/%20/ /')" ; done
+# replace %20 in filenames with underline
+for i in *.m3u ; do mv -- "$i" "$(printf '%s\n' "$i" | sed 's/%20/_/')" ; done
 
 # move stream to git folder
 mv *.m3u c:/git/m3u-radio-music-playlists/internet-radio/
