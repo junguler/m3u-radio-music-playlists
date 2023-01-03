@@ -7,7 +7,7 @@ lynx --dump --listonly --nonumbers https://onlineradiobox.com/genres/ | grep "ht
 cat links.txt | rev | cut -c2- | rev | cut -c34- > pages.txt
 
 # scrape links of the streams
-for i in $(cat pages.txt) ; do for j in "" \?p={1..200} ; do curl https://onlineradiobox.com/genre/$i/$j | grep -oP 'stream="\K[^"]+' | grep -v "playerservices\|.m3u\|onlineradiobox" | sed 's/\;//g' | awk '!seen[$0]++' | sed '/^$/d' | awk 'length>10' >> $i.txt ; echo "$i - $j scraped" ; done ; done
+for i in $(cat pages.txt) ; do for j in "" \?p={1..200} ; do curl https://onlineradiobox.com/genre/$i/$j | grep -oP 'stream="\K[^"]+' | grep -v "playerservices\|.m3u\|onlineradiobox\|ais-sa1.streamon.fm" | sed 's/\;//g' | awk '!seen[$0]++' | sed '/^$/d' | awk 'length>10' >> $i.txt ; echo "$i - $j scraped" ; done ; done
 
 # convert links to m3u stream files
 for i in $(cat pages.txt) ; do sed "s/^/#EXTINF:-1\n/" $i.txt | sed '1s/^/#EXTM3U\n/' > $i.m3u ; done
