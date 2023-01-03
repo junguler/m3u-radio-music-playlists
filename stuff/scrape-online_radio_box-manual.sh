@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # scrape the links from internet radio
-lynx --dump --listonly --nonumbers https://onlineradiobox.com/genres/ | grep "https://onlineradiobox.com/genre" | grep -v "genres" | grep -v "lgbt" | sort | uniq > links.txt
+lynx --dump --listonly --nonumbers https://onlineradiobox.com/genres/ | grep "https://onlineradiobox.com/genre" | grep -v "genres" | sort | uniq > links.txt
 
 # strip unnessery part of links (we'll add them later in the for loop) 
 cat links.txt | rev | cut -c2- | rev | cut -c34- > pages.txt
