@@ -7,7 +7,7 @@ lynx --dump --listonly --nonumbers https://www.internet-radio.com/stations/ | gr
 cat links.txt | sed 's!https://www.internet-radio.com/stations/!!' | sed 's/\///g' | sed '/^$/d' | sed -e 's/ /%20/g' | sort | uniq > links2.txt
 
 # scrape links of the streams
-for i in "" page{2..16} ; do for j in $(cat links2.txt) ; do curl -s https://www.internet-radio.com/stations/$j/$i.html | htmlq --attribute href a | grep '.m3u' | cut -b 37- | awk -F '\\listen' '{print $1""}' | awk -F '\\.m3u' '{print $1""}' | awk -F '\\&t=' '{print $1""}' | awk '!seen[$0]++' | sed '/^$/d' | awk 'length>10' >> $j.txt ; echo "$j - $i scraped" ; done ; done
+for i in "" page{2..16} ; do for j in $(cat links2.txt) ; do curl -s https://www.internet-radio.com/stations/$j/$i | htmlq --attribute href a | grep '.m3u' | cut -b 37- | awk -F '\\listen' '{print $1""}' | awk -F '\\.m3u' '{print $1""}' | awk -F '\\&t=' '{print $1""}' | awk '!seen[$0]++' | sed '/^$/d' | awk 'length>10' >> $j.txt ; echo "$j - $i scraped" ; done ; done
 
 # a few links have more than 16 pages, the longest page is pop with 50 pages, so if you need all of them you have to run another for loop for them
 # these streams need to be scraped for 34 pages or less furthur totaling of 50 pages = "Glam Rock" "Rock" "Classic" "Rock" "Pop"
