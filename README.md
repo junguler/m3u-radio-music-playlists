@@ -190,7 +190,7 @@ from [this page](https://www.radio.pervii.com/en/online-playlists-m3u.htm)
 <br>
 
 ### Git Stats
-since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them weekly so you can have feel for how this repo is doing
+since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them every two weeks so you can have feel for how this repo is doing
 
 ![](stuff/stats_1.jpg)
 
