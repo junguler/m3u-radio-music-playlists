@@ -43,9 +43,7 @@ if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc ...
  * [Customize keybinds](https://github.com/junguler/m3u-radio-music-playlists#i-really-like-mpv-how-do-i-customize-keybinds)
  * [Easier m3u consumption](https://github.com/junguler/m3u-radio-music-playlists#isnt-there-an-easier-way-to-use-and-control-these-using-mpv)
  * [How to download](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-all-of-the-files)
- * [Source](https://github.com/junguler/m3u-radio-music-playlists#where-did-you-find-these)
  * [Git stats](https://github.com/junguler/m3u-radio-music-playlists#git-stats)
- * [How i push updates](https://github.com/junguler/m3u-radio-music-playlists#how-do-i-push-updates)
 
 <br>
 
@@ -184,11 +182,6 @@ for further updates cd into the folder and do ``git pull``
 
 <br>
 
-### Where did you find these?
-from [this page](https://www.radio.pervii.com/en/online-playlists-m3u.htm)
-
-<br>
-
 ### Git Stats
 since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them every two weeks so you can have feel for how this repo is doing
 
@@ -200,95 +193,28 @@ since the traffic section of the insight tab is hidden to other viewers of this 
 
 <br>
 
-### How do i push updates?
-if you just want to listen to music you won't need to keep reading but if you are interested to know how i do this then click below
+### Current and potential sources
 
-<details>
-  <summary>click me to read</summary>
-  
-<br>
-  
-at first this process was manual but i finally got around to write a simple bash script to make this process fast and easy, i'll go over each step here one by one
+here is a list of websites i've scraped from already and included m3u streams for in this repo
 
-1st step: we need to get the links from the website [here](https://www.radio.pervii.com/en/online-playlists-m3u.htm) these files are automatically updated and sorted by popularity but the links themselves never change so after this one line command we don't need to repeat this first step ever again and we can save these links to a text file for future downloads
-```
-lynx --dump --listonly --nonumbers https://www.radio.pervii.com/en/online-playlists-m3u.htm | grep ".m3u" | grep "top_radio" > list.txt
-```
-now for the explanation of what we did: 
+| website | info |
+|--|--|
+| http://radio.pervii.com/en/online-playlists-m3u.htm | this one started out this repo, it automatically sorted the 100 most listened to streams and added them to a m3u playlist for each genre, unfortunently the site seems to be abandoned and had not recived updates for almost 6 months now |
+| http://www.radio.pervii.com/ | same website but this time i've scraped the streams manually |
+| https://www.internet-radio.com/ | this website was relatively easy to scrape as it packaged each stream link into a m3u file already, i just copied those and added them to their own genre |
+| https://liveonlineradio.net/ | this website was easy to scrape too, the difference here is music was sorted by country of origin and not by genre |
+| https://onlineradiobox.com/ | this website had main-genres and many sub-genres within them, the streams were easy to scrape and there were many stations included |
+| https://www.radio.net/ | this was a sneaky site, not only did it have sub pages for each station, it hid the actual link inside a script tag, i had my fair share of frustration but i was finally able to scrape these |
+| https://www.radioguide.fm/ | this one included genres and countries, somewhat easy to scrape since i had experience with prior websites |
+| https://streema.com/ | this website had a pop-up player which held the actual stream link, after a few hours of confusion and overcomplicating things i was able to understand how things worked and scrape the website |
 
-lynx is a terminal web browser that doesn't load any kind of media and only shows links, text and stylings, we use it's `--dump` flag to save all the text and links from the website
+i've included scripts for all of these websites and they will work as long as the website doesn't change drastically
 
-grep is a powerful program that takes strings of characters and grep them to assist us in finding the stuff we need we used a pipe `|` to take the information lynx gave us and send it to grep, we first look for every `.m3u` file in the page and then further filter these links by `top_radio` in the next grep command to only get the file links we need, finlay use `>` to write all of these information to the `list.txt` in the current directory we are in
+my future plans for this repo is to keep scraping online radio websites and here are a few i'm looking at in the moment, this is not by any means a promise, just want to mention the names of these as a way of motivating myself to try them
 
-2nd step: we use aria2 to download these files to our preferred directory in our case `~/Music/bare_m3u/`
-```
-/usr/bin/aria2c -x 16 -j 4 -i ~/Music/list.txt -d ~/Music/bare_m3u/
-```
-note that every time we use a program in a script we want to avoid using `cd` (change directory) and always want to use the full path of every program we use, for finding where a program is just do which and then the name of the program like this: ``which aria2c`` which gives us this ``/usr/bin/aria2c``
-
-the flags we used with aria2 is as follows: `-x 16` tells aria2 to use 16 connections to download every file (this makes the download faster), `-j 4` makes it that aria2 download 4 files at a time, `-i` takes our input txt file we made in the first step and `-d` tells aria2 to download to that specific directory
-
-3rd step: remove the top_radio_ prefix from every file since it's not needed for our use case
-```
-for f in ~/Music/bare_m3u/*.m3u ; do mv "$f" "$(echo "$f" | sed -e 's/top_radio_//g')"; done
-```
-
-4rd step: make the `---everything-full.m3u` out of our downloaded m3u files
-```
-cat $( ls ~/Music/bare_m3u/*.m3u -v ) | awk '!seen[$0]++' > ~/Music/bare_m3u/---everything-full.m3u
-```
-because `cat` doesn't list alphabetically we use `ls` in tandem with it, use `awk` to remove duplicate lines
-
-4.5 step: make the lite version of everything-full
-```
-cat ~/Music/bare_m3u/---everything-full.m3u | sed -n '/^#/!p' > ~/Music/bare_m3u/---everything-lite.m3u
-```
-use `sed` to remove every line that starts with `#` to make the final file smaller and write everything to the final m3u stream
-  
-5rd step: make the ---randomized.m3u and ---sorted.m3u stream by shuffling the contents of ---everything.m3u
-```
-cat ~/Music/bare_m3u/---everything-lite.m3u | shuf > ~/Music/bare_m3u/---randomized.m3u
-```
-`shuf` does the shuffling for us
-
-```
-cat ~/Music/bare_m3u/---everything-lite.m3u | sort | awk 'length>10' > ~/Music/bare_m3u/---sorted.m3u
-```
-`sort` sorts the links for us and we use `awk` to remove the few broken links that are less than 10 characters 
-  
-6rd step: move everything to our repos git directory, all the git stuff happens here, the move command overwrites everything that was there before
-```
-mv ~/Music/bare_m3u/*.m3u ~/Music/m3u-radio-music-playlists
-```
-
-last step: add, commit and push to your repo
-```
-git -C ~/Music/m3u-radio-music-playlists add .
-git -C ~/Music/m3u-radio-music-playlists commit -m "updating"
-git -C ~/Music/m3u-radio-music-playlists push
-```
-you will need a personal access token for repeat pushes to your repo from the terminal, look [here](https://docs.github.com/en/get-started/getting-started-with-git/why-is-git-always-asking-for-my-password) for more information about it 
-
-if you are the only person who uses your computer you can set git to always remember your username & password using this command on your repos local folder:
-```
-git config credential.helper store
-```
-the next time you put your username and password git is going to remember it and never ask for it again
-
-now for the complete script, save it to a file and give it `.sh` extension and run ``chmod +x script.sh`` on it and it's ready to use, next time you want to push an update just do ``script.sh`` in your terminal
-```
-#!/bin/bash
-
-/usr/bin/aria2c -x 16 -j 4 -i ~/Music/list.txt -d ~/Music/bare_m3u/
-for f in ~/Music/bare_m3u/*.m3u ; do mv "$f" "$(echo "$f" | sed -e 's/top_radio_//g')"; done
-cat $( ls ~/Music/bare_m3u/*.m3u -v ) | awk '!seen[$0]++' > ~/Music/bare_m3u/---everything-full.m3u
-cat ~/Music/bare_m3u/---everything-full.m3u | sed -n '/^#/!p' > ~/Music/bare_m3u/---everything-lite.m3u
-cat ~/Music/bare_m3u/---everything-lite.m3u | shuf > ~/Music/bare_m3u/---randomized.m3u
-cat ~/Music/bare_m3u/---everything-lite.m3u | sort | awk 'length>10' > ~/Music/bare_m3u/---sorted.m3u
-mv ~/Music/bare_m3u/*.m3u ~/Music/m3u-radio-music-playlists
-git -C ~/Music/m3u-radio-music-playlists add .
-git -C ~/Music/m3u-radio-music-playlists commit -m "`date +'%Y/%b/%d - %I:%M:%S %p'`"
-git -C ~/Music/m3u-radio-music-playlists push
-```
-
-</details>
+| https://internetradiouk.com/ | https://tunein.com/radio/music/ |
+|--|--|
+| https://www.languagecourse.net/ | https://www.fmradiofree.com/ |
+| https://mytuner-radio.com/ | https://online-radio.eu/ |
+| https://www.accuradio.com/ | https://www.radio-uk.co.uk/ |
+| http://www.hit-tuner.net/ | http://radio.garden/ |
