@@ -207,14 +207,14 @@ here is a list of websites i've scraped from already and included m3u streams fo
 | https://www.radio.net/ | this was a sneaky site, not only did it have sub pages for each station, it hid the actual link inside a script tag, i had my fair share of frustration but i was finally able to scrape these |
 | https://www.radioguide.fm/ | this one included genres and countries, somewhat easy to scrape since i had experience with prior websites |
 | https://streema.com/ | this website had a pop-up player which held the actual stream link, after a few hours of confusion and overcomplicating things i was able to understand how things worked and scrape the website |
+| http://www.hit-tuner.net/ | easy to scrape and includes many different genres, languages and countires |
 
 i've included scripts for all of these websites and they will work as long as the website doesn't change drastically
 
 my future plans for this repo is to keep scraping online radio websites and here are a few i'm looking at in the moment, this is not by any means a promise, just want to mention the names of these as a way of motivating myself to try them
 
-| https://internetradiouk.com/ | https://tunein.com/radio/music/ |
-|--|--|
-| https://www.languagecourse.net/ | https://www.fmradiofree.com/ |
-| https://mytuner-radio.com/ | https://online-radio.eu/ |
-| https://www.accuradio.com/ | https://www.radio-uk.co.uk/ |
-| http://www.hit-tuner.net/ | http://radio.garden/ |
+| https://internetradiouk.com/ | https://tunein.com/radio/music/ | https://www.languagecourse.net/ |
+|--|--|--|
+| https://www.languagecourse.net/ | https://www.fmradiofree.com/ | https://mytuner-radio.com/ |
+| https://online-radio.eu/ | https://www.accuradio.com/ | https://www.radio-uk.co.uk/ |
+| http://radio.garden/ | n/a | n/a |
