@@ -197,24 +197,21 @@ since the traffic section of the insight tab is hidden to other viewers of this 
 
 here is a list of websites i've scraped from already and included m3u streams for in this repo
 
-| website | info |
-|--|--|
-| http://radio.pervii.com/en/online-playlists-m3u.htm | this one started out this repo, it automatically sorted the 100 most listened to streams and added them to a m3u playlist for each genre, unfortunently the site seems to be abandoned and had not recived updates for almost 6 months now |
-| http://www.radio.pervii.com/ | same website but this time i've scraped the streams manually |
-| https://www.internet-radio.com/ | this website was relatively easy to scrape as it packaged each stream link into a m3u file already, i just copied those and added them to their own genre |
-| https://liveonlineradio.net/ | this website was easy to scrape too, the difference here is music was sorted by country of origin and not by genre |
-| https://onlineradiobox.com/ | this website had main-genres and many sub-genres within them, the streams were easy to scrape and there were many stations included |
-| https://www.radio.net/ | this was a sneaky site, not only did it have sub pages for each station, it hid the actual link inside a script tag, i had my fair share of frustration but i was finally able to scrape these |
-| https://www.radioguide.fm/ | this one included genres and countries, somewhat easy to scrape since i had experience with prior websites |
-| https://streema.com/ | this website had a pop-up player which held the actual stream link, after a few hours of confusion and overcomplicating things i was able to understand how things worked and scrape the website |
-| http://www.hit-tuner.net/ | easy to scrape and includes many different genres, languages and countires |
-
-i've included scripts for all of these websites and they will work as long as the website doesn't change drastically
+| website | folder | script |
+|--|--|--|
+| http://radio.pervii.com/en/online-playlists-m3u.htm | [root](https://github.com/junguler/m3u-radio-music-playlists) | [scrape-radio.pervii-auto.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-radio.pervii-auto.sh) |
+| http://www.radio.pervii.com/ | [/radio.pervii](https://github.com/junguler/m3u-radio-music-playlists/tree/main/radio.pervii) | [scrape-radio.pervii-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-radio.pervii-manual.sh) |
+| https://www.internet-radio.com/ | [/internet-radio](https://github.com/junguler/m3u-radio-music-playlists/tree/main/internet-radio) | [scrape-internet-radio-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-internet-radio-manual.sh) |
+| https://liveonlineradio.net/ | [/live_online_radio](https://github.com/junguler/m3u-radio-music-playlists/tree/main/live_online_radio) | [scrape-live_online_radio-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-live_online_radio-manual.sh) |
+| https://onlineradiobox.com/ | [/online_radio_box](https://github.com/junguler/m3u-radio-music-playlists/tree/main/online_radio_box) | [scrape-online_radio_box-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-online_radio_box-manual.sh) |
+| https://www.radio.net/ | [/radio.net](https://github.com/junguler/m3u-radio-music-playlists/tree/main/radio.net) | [scrape-radio.net-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-radio.net-manual.sh) |
+| https://www.radioguide.fm/ | [/radio_guide.fm](https://github.com/junguler/m3u-radio-music-playlists/tree/main/radio_guide.fm) | [scrape-radio_guide.fm-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-radio_guide.fm-manual.sh) |
+| https://streema.com/ | [/streema](https://github.com/junguler/m3u-radio-music-playlists/tree/main/streema) | [scrape-streema-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-streema-manual.sh) |
+| http://www.hit-tuner.net/ | [/hit_tuner.net](https://github.com/junguler/m3u-radio-music-playlists/tree/main/hit_tuner.net) | [scrape-hit_tuner.net-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-hit_tuner.net-manual.sh) |
 
 my future plans for this repo is to keep scraping online radio websites and here are a few i'm looking at in the moment, this is not by any means a promise, just want to mention the names of these as a way of motivating myself to try them
 
 | https://internetradiouk.com/ | https://tunein.com/radio/music/ | https://www.languagecourse.net/ |
 |--|--|--|
-| https://www.languagecourse.net/ | https://www.fmradiofree.com/ | https://mytuner-radio.com/ |
+| http://radio.garden/ | https://www.fmradiofree.com/ | https://mytuner-radio.com/ |
 | https://online-radio.eu/ | https://www.accuradio.com/ | https://www.radio-uk.co.uk/ |
-| http://radio.garden/ | n/a | n/a |
