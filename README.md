@@ -211,7 +211,7 @@ here is a list of websites i've scraped from already and included m3u streams fo
 
 my future plans for this repo is to keep scraping online radio websites and here are a few i'm looking at in the moment, this is not by any means a promise, just want to mention the names of these as a way of motivating myself to try them
 
-| https://internetradiouk.com/ | https://tunein.com/radio/music/ | https://www.languagecourse.net/ |
+| https://internetradiouk.com/ | https://tunein.com/radio/music/ | http://radio.garden/  |
 |--|--|--|
-| http://radio.garden/ | https://www.fmradiofree.com/ | https://mytuner-radio.com/ |
-| https://online-radio.eu/ | https://www.accuradio.com/ | https://www.radio-uk.co.uk/ |
+| https://www.fmradiofree.com/ | https://mytuner-radio.com/ | https://www.radio-uk.co.uk/ |
+| https://online-radio.eu/ | https://www.accuradio.com/ | n/a |
