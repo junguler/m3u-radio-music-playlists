@@ -213,4 +213,4 @@ my future plans for this repo is to keep scraping online radio websites and here
 
 | https://internetradiouk.com/ | https://tunein.com/radio/music/ | http://radio.garden/  |
 |--|--|--|
-| https://online-radio.eu/ | https://www.accuradio.com/ | https://www.radio-uk.co.uk/ |
+| https://online-radio.eu/ | https://www.accuradio.com/ | n/a |
