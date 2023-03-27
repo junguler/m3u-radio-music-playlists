@@ -208,9 +208,10 @@ here is a list of websites i've scraped from already and included m3u streams fo
 | https://www.radioguide.fm/ | [/radio_guide.fm](https://github.com/junguler/m3u-radio-music-playlists/tree/main/radio_guide.fm) | [scrape-radio_guide.fm-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-radio_guide.fm-manual.sh) |
 | https://streema.com/ | [/streema](https://github.com/junguler/m3u-radio-music-playlists/tree/main/streema) | [scrape-streema-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-streema-manual.sh) |
 | http://www.hit-tuner.net/ | [/hit_tuner.net](https://github.com/junguler/m3u-radio-music-playlists/tree/main/hit_tuner.net) | [scrape-hit_tuner.net-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-hit_tuner.net-manual.sh) |
+| https://online-radio.eu/ | [/online_radio.eu](https://github.com/junguler/m3u-radio-music-playlists/tree/main/online_radio.eu) | [scrape-online_radio.eu-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-online_radio.eu-manual.sh) |
 
 my future plans for this repo is to keep scraping online radio websites and here are a few i'm looking at in the moment, this is not by any means a promise, just want to mention the names of these as a way of motivating myself to try them
 
 | https://internetradiouk.com/ | https://tunein.com/radio/music/ | http://radio.garden/  |
 |--|--|--|
-| https://online-radio.eu/ | https://www.accuradio.com/ | n/a |
+| https://www.accuradio.com/ | n/a | n/a |
