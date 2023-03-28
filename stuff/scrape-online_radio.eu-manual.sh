@@ -16,7 +16,7 @@ for i in A-*.txt ; do cat $i | awk '!seen[$0]++' > A$i ; echo -e $i ; done
 
 # scrape the streams
 #for i in AA-*.txt ; do for j in $(cat $i) ; do curl -s https://online-radio.eu/radio/$j | grep "url\":" | head -n 1 | awk -F '"' '{print $4}' | grep -v "object" | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
-for i in AA-*.txt ; do for j in $(cat $i) ; do curl -s https://online-radio.eu/export/winamp/$j | grep "Title\|File" | sed 's/File1\=//g' | sed 's/Title1\=/#EXTINF:-1 , /g' | sed 's/\;//g' >> A$i ; done ; done
+for i in AA-*.txt ; do for j in $(cat $i) ; do curl -s https://online-radio.eu/export/winamp/$j | grep "Title\|File" | sed 's/File1\=//g' | sed 's/Title1\=/#EXTINF:-1 , /g' | sed 's/\;//g' >> A$i ; echo -e "$j - $i" ; done ; done
 
 # convert links to m3u streams
 for i in AAA-*.txt ; do sed "s/^/#EXTINF:-1\n/" $i | sed '1s/^/#EXTM3U\n/' > $i.m3u ; done
