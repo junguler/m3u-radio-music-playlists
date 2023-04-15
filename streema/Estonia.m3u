@@ -1,81 +1,87 @@
 #EXTM3U
-#EXTINF:-1
-http://sat.radio-betelgeuse.com:8000/live
-#EXTINF:-1
-https://icecast.err.ee/klassikaraadio.mp3
-#EXTINF:-1
-http://icecast.pereraadio.ee:8000/Kuressaare
-#EXTINF:-1
-https://skymedia-live.bitflip.ee/SKYPLUS
-#EXTINF:-1
-https://router.euddn.net/8103046e16b71d15d692b57c187875c7/elmar.aac
-#EXTINF:-1
-https://router.euddn.net/8103046e16b71d15d692b57c187875c7/narodnoe.mp3
-#EXTINF:-1
-https://ice.leviracloud.eu/star96-aac
-#EXTINF:-1
-https://router.euddn.net/8103046e16b71d15d692b57c187875c7/myhits.aac
-#EXTINF:-1
-https://stream.relaxfm.ee:8443/relax
-#EXTINF:-1
-http://striiming.trio.ee:8008/kuku_high.mp3
-#EXTINF:-1
-https://streaming.radio.co/s6e6541328/listen
-#EXTINF:-1
-https://skymedia-live.bitflip.ee/RR
-#EXTINF:-1
-https://icecast.err.ee/vikerraadio.mp3
-#EXTINF:-1
-https://skymedia-live.bitflip.ee/rck
-#EXTINF:-1
-http://149.210.138.12:8000/nommeraadio
-#EXTINF:-1
-https://sb.err.ee/live/raadio4.m3u8
-#EXTINF:-1
-https://ice.leviracloud.eu/phr96-aac
-#EXTINF:-1
-https://skymedia-live.bitflip.ee/RETRO
-#EXTINF:-1
-https://cdn.treraadio.ee/ruutfm
-#EXTINF:-1
-https://stream.radiojar.com/exrd1tp5mceuv
-#EXTINF:-1
-https://s5.radio.co/s69e02764f/listen
-#EXTINF:-1
-http://icecast.pereraadio.ee/Tartu
-#EXTINF:-1
-https://router.euddn.net/8103046e16b71d15d692b57c187875c7/dfm.aac
-#EXTINF:-1
-http://sc2.treraadio.ee/ringfm
-#EXTINF:-1
-https://le09.euddn.net/90984c14ab4ad396eea81986dad9f638b6336a79b0a22d6a3179d95135e65e47b96a81e7ac224ce60de8f170f07b05f5bc82fdad5abfb964f3d3c36e9d08f7fe406459c5450db22261fc1e8372420a1bd7282d8e9a038bf9a5982d7b34449082c913b0ce82ecdf80688775717f7c8ee9c6c7a4738899ba24da99c2de2578900818a36f9761a94e966276f2b298b13394804171e2194f3f7fbe087a2860ffc525def671d0cd047ac280fcb75c1217f4c1/narodnoe.mp3
-#EXTINF:-1
-https://lifetv.bitflip.ee/live/stream1.m3u8
-#EXTINF:-1
-https://skymedia-live.bitflip.ee/SKY
-#EXTINF:-1
-https://icecast.err.ee/raadiotallinn.mp3
-#EXTINF:-1
-https://s3.radio.co/scfd7273b2/listen
-#EXTINF:-1
+#EXTINF:-1 , Русское Радио
+http://edge02.cdn.bitflip.ee:8888/RR
+#EXTINF:-1 , Music From All Around
+http://stream.zeno.fm/dghp9excl67vv
+#EXTINF:-1 , Klassika Raadio
 http://icecast.err.ee/klassikaraadio.mp3
-#EXTINF:-1
+#EXTINF:-1 , Raadio Sky Plus
+http://skymedia-live.bitflip.ee/SKYPLUS
+#EXTINF:-1 , Raadio Elmar
+https://router.euddn.net/8103046e16b71d15d692b57c187875c7/elmar.aac
+#EXTINF:-1 , Relax FM 
+http://stream.relaxfm.ee:8000/relax
+#EXTINF:-1 , Raadio Kuku
+http://striiming.trio.ee:8008/kuku_high.mp3
+#EXTINF:-1 , Power Hit Radio 
+http://ice.leviracloud.eu:8000/phr96-aac
+#EXTINF:-1 , Radio Ruut
+https://cdn.treraadio.ee/ruutfm
+#EXTINF:-1 , Hard FM
+http://s5.radio.co/s69e02764f/listen
+#EXTINF:-1 , Raadio Kadi
 http://edge06.cdn.bitflip.ee:8888/kadi
-#EXTINF:-1
+#EXTINF:-1 , Vikerraadio - ER1 Vikerraadio
+http://icecast.err.ee/vikerraadiomadal.mp3
+--
+#EXTINF:-1 , Kuressaare Pereraadio
+http://icecast.pereraadio.ee:8000/Kuressaare
+#EXTINF:-1 , Narodnoe Radio 100.0
+http://router.euddn.net/8103046e16b71d15d692b57c187875c7/narodnoe.mp3
+#EXTINF:-1 , Raadio Sky Plus
+http://skymedia-live.bitflip.ee/SKYPLUS
+#EXTINF:-1 , Star FM
+http://ice.leviracloud.eu:8000/star96-aac
+#EXTINF:-1 , MyHits
+http://router.euddn.net/8103046e16b71d15d692b57c187875c7/myhits.aac
+#EXTINF:-1 , Радио Бетельгейзе
+http://sat.radio-betelgeuse.com:8000/live
+#EXTINF:-1 , Radio Latin Passion
+http://streaming.radio.co/s6e6541328/listen
+#EXTINF:-1 , Vikerraadio
+https://icecast.err.ee/vikerraadio.mp3
+#EXTINF:-1 , Rock FM
+https://skymedia-live.bitflip.ee/rck
+#EXTINF:-1 , Nömme Raadio
+http://149.210.138.12:8000/nommeraadio
+#EXTINF:-1 , Raadio 4 - ERR
+https://sb.err.ee/live/raadio4.m3u8
+#EXTINF:-1 , Retro FM
+http://skymedia-live.bitflip.ee/RETRO
+#EXTINF:-1 , Crypto24Radio
+https://stream.radiojar.com/exrd1tp5mceuv
+#EXTINF:-1 , Raadio Sky Plus
+http://skymedia-live.bitflip.ee/SKYPLUS
+#EXTINF:-1 , Tartu Pereraadio
+http://icecast.pereraadio.ee/Tartu
+#EXTINF:-1 , D-FM 90.2
+https://router.euddn.net/8103046e16b71d15d692b57c187875c7/dfm.aac
+#EXTINF:-1 , Ring FM
+http://sc2.treraadio.ee/ringfm
+--
+#EXTINF:-1 , Народноe Радио
+http://le09.euddn.net/9f33c2b5e2e37ae5f3dfe74e5026c8a69161e6025650b7f960760734c2a26264be3dcd07c31969c5091c051f1c9b7aa265ab17cb398a14595558e7dba8b0d484d797046b3c613b8b3d5817e7c4fa165a613546c58abace414df06da748ea4a5e430c1edd768e05d47743e230b6ab69dddf527d58f4576e8228321b41f99c51f019cc98bddb0aaded4fbe13a7c19b84ffc4a477dc838962c0339fb7977ab135522e4b760ec86f2cdf2a607432bb7350f0/narodnoe.aac
+#EXTINF:-1 , Life TV
+https://lifetv.bitflip.ee/live/stream1.m3u8
+#EXTINF:-1 , SKY Радио
+https://skymedia-live.bitflip.ee/SKY
+#EXTINF:-1 , Raadio Tallinn
+http://icecast.err.ee/raadiotallinn.mp3
+#EXTINF:-1 , Doubleclap FM
+https://s3.radio.co/scfd7273b2/listen
+#EXTINF:-1 , Klassika Raadio
+http://icecast.err.ee/klassikaraadio.mp3
+#EXTINF:-1 , Jumor FM
 http://178.21.244.45:8005/source
-#EXTINF:-1
-https://stream.skymedia.ee/live/RETRO
-#EXTINF:-1
-http://80.235.35.203:8008/
-#EXTINF:-1
-https://icecast.err.ee/vikerraadiomadal.mp3
-#EXTINF:-1
+#EXTINF:-1 , Retro FM
+http://stream.skymedia.ee/live/RETRO
+#EXTINF:-1 , Relax FM
 http://37.0.31.67:8000/relax
-#EXTINF:-1
+#EXTINF:-1 , Tre Raadio Pärnu
 http://sc2.treraadio.ee:80/parnu-tre
-#EXTINF:-1
+#EXTINF:-1 , Raadio 7
 http://icecast.mmm.elion.ee:8080/Raadio7
-#EXTINF:-1
+#EXTINF:-1 , HappyU Radio
 https://radio.streemlion.com:2525/stream
-#EXTINF:-1
-https://icecast.err.ee/raadio2.mp3
+#EXTINF:-1 , ERR Raadio 2 - ER2
+http://icecast.err.ee/raadio2.mp3

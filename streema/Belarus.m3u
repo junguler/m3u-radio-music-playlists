@@ -1,61 +1,91 @@
 #EXTM3U
-#EXTINF:-1
-https://stream2.datacenter.by/kultura
-#EXTINF:-1
-http://live.humorfm.by:8000/veseloeradio
-#EXTINF:-1
-https://stream.radiogrodno.by:8005/live
-#EXTINF:-1
-https://streams.radiomast.io/ce42a7f0-b3a7-47ee-9eb2-97009bba3c2a
-#EXTINF:-1
-https://a1.radioheart.ru:8001/radiogomelfm
-#EXTINF:-1
-https://stream2.datacenter.by/trkbrest
-#EXTINF:-1
-https://stream2.datacenter.by/belarusfm
-#EXTINF:-1
+#EXTINF:-1 , Радио Беларусь
+http://stream2.datacenter.by:8009/belarusfm
+#EXTINF:-1 , Пилот FM
 https://stream.hoster.by/pilotfm/pilot/icecast.audio
-#EXTINF:-1
-http://shoutcast.aplus.by:9000/aplus_128
-#EXTINF:-1
+#EXTINF:-1 , Радио Мелодии Века 96.2 FM
 https://air.melodiiveka.by:8443/mv
-#EXTINF:-1
-https://stream2.datacenter.by/radiusfm_main
-#EXTINF:-1
-http://server.radiorm.by:8000/aac
-#EXTINF:-1
-https://stream2.datacenter.by/tvrmogilev
-#EXTINF:-1
-http://178.124.131.35:8012/trkbrest
-#EXTINF:-1
-https://azura.radioplato.by/radio/8000/radio.mp3
-#EXTINF:-1
-http://usa1.fastcast4u.com:2126/stream
-#EXTINF:-1
-http://live.alpha.by:7000/alpha
-#EXTINF:-1
+#EXTINF:-1 , Radio "123"
 http://139.162.156.56:8173/stream
-#EXTINF:-1
-https://stream.hoster.by/pilotfm/audio_hd/icecast.audio
-#EXTINF:-1
-https://stream.hoster.by/pilotfm/audio/icecast.audio
-#EXTINF:-1
-http://stream2.datacenter.by:8005/1kanal
-#EXTINF:-1
-http://217.23.126.106:8002/radio2.mir
-#EXTINF:-1
-http://mir.by:8000/radioba_48aac
-#EXTINF:-1
-http://lyvstream.com:1935/KryKeyRadios/MNSK/126.stream_aac/playlist.m3u8
-#EXTINF:-1
+#EXTINF:-1 , BR R Kultura
+http://stream2.datacenter.by:8000/kultura
+#EXTINF:-1 , Барановичи FM
 http://radio.100fm.by:8000/100fm128
-#EXTINF:-1
-http://video.tvr.by:1935/radio/culture/playlist.m3u8
-#EXTINF:-1
+#EXTINF:-1 , Радио Unistar
+https://hls-01-unistar.hostingradio.ru/unistar-main/playlist.m3u8?radiostatistica=sra
+#EXTINF:-1 , Радио s13.ru
 https://c28.radioboss.fm:18099/autodj
-#EXTINF:-1
+#EXTINF:-1 , Love Is Radio Belarus
+https://listen1.myradio24.com/3355
+#EXTINF:-1 , Aplus Relax
 http://shoutcast.aplus.by:9000/aplus_relax_24.aac?type=.flv
-#EXTINF:-1
+#EXTINF:-1 , Novoe radio 98.4 FM
+http://live.novoeradio.by:8000/novoeradio-128k
+#EXTINF:-1 , Аплюс - Beat
+http://s.aplus.fm:9000/aplus_beat_128
+#EXTINF:-1 , Минская волна
+https://stream2.datacenter.by/mvradio
+--
+#EXTINF:-1 , Юмор FM
+http://live.humorfm.by:8000/veseloeradio
+#EXTINF:-1 , Радио Гродно
+https://stream.radiogrodno.by:8005/live
+#EXTINF:-1 , Guira FM
+https://streams.radiomast.io/ce42a7f0-b3a7-47ee-9eb2-97009bba3c2a
+#EXTINF:-1 , Radio Gomel FM 101.3
+https://a1.radioheart.ru:8001/radiogomelfm
+#EXTINF:-1 , Радио Брест
+http://178.124.131.35:8012/trkbrest
+#EXTINF:-1 , APlus - Radio First
+http://shoutcast.aplus.by:9000/aplus_128
+#EXTINF:-1 , Радиус FM
+http://stream2.datacenter.by:8006/radiusfm_main
+#EXTINF:-1 , Пилот-FM
+https://stream.hoster.by/pilotfm/pilot/icecast.audio
+#EXTINF:-1 , Радыё Марыя Беларусь
+http://server.radiorm.by:8000/aac
+#EXTINF:-1 , Radio Mogilev
+http://stream2.datacenter.by:8011/tvrmogilev
+#EXTINF:-1 , Радио Брест
+http://178.124.131.35:8012/trkbrest
+#EXTINF:-1 , Radio Plato
+https://azura.radioplato.by/radio/8000/radio.mp3
+#EXTINF:-1 , Пилот-FM
+https://stream.hoster.by/pilotfm/pilot/icecast.audio
+#EXTINF:-1 , Hard Salsa Bogotá
+http://usa1.fastcast4u.com:2126/stream
+--
+#EXTINF:-1 , Radio Plato
+https://azura.radioplato.by/radio/8000/radio.mp3
+#EXTINF:-1 , Dzed Bardaitis Radio
+http://playerservices.streamtheworld.com/api/livestream-redirect/SAM03AAC337.aac
+#EXTINF:-1 , Radio 4YOU
+http://a1.radioheart.ru:8003/RH17982
+#EXTINF:-1 , Guira FM
+https://streams.radiomast.io/ce42a7f0-b3a7-47ee-9eb2-97009bba3c2a
+#EXTINF:-1 , Юмор FM
+http://live.humorfm.by:8000/veseloeradio
+#EXTINF:-1 , Радыё Марыя Беларусь
+http://server.radiorm.by:8000/aac
+#EXTINF:-1 , Душевное радио
+https://stream.hoster.by/pilotfm/audio/icecast.audio
+#EXTINF:-1 , Радио Брест
+http://178.124.131.35:8012/trkbrest
+#EXTINF:-1 , BR 2 Kanal Kultura
+http://video.tvr.by:1935/radio/culture/playlist.m3u8
+#EXTINF:-1 , Радио Брест
+http://178.124.131.35:8012/trkbrest
+#EXTINF:-1 , Радио Гродно
+https://stream.radiogrodno.by:8005/live
+#EXTINF:-1 , Радио Uvaga.by
 http://up.uvaga.by:8100/uvaga320/
-#EXTINF:-1
+#EXTINF:-1 , APlus - Rock
 http://live.bn.by:8000/aplus_rock_128
+#EXTINF:-1 , APlus - Radio First
+http://shoutcast.aplus.by:9000/aplus_128
+#EXTINF:-1 , Radio Gomel FM 101.3
+https://a1.radioheart.ru:8001/radiogomelfm
+#EXTINF:-1 , Душевное радио
+https://stream.hoster.by/pilotfm/audio_hd/icecast.audio
+#EXTINF:-1 , Radio Mogilev
+http://stream2.datacenter.by:8011/tvrmogilev

@@ -1,45 +1,48 @@
 #EXTM3U
-#EXTINF:-1
-https://s3.radio.co/s1769ca1ac/listen
-#EXTINF:-1
-https://radio.mbconline.xyz/hls/radiomaurice.m3u8
-#EXTINF:-1
-http://azc.radiomoris.com:8010/radio.mp3
-#EXTINF:-1
-https://streamer.radio.co/sed5c5a375/listen
-#EXTINF:-1
-https://playerservices.streamtheworld.com/api/livestream-redirect/SP_R4228214.mp3
-#EXTINF:-1
-https://stream.radiojar.com/2v1ydmukb
-#EXTINF:-1
-https://radio.mbconline.xyz/hls/musicfm.m3u8
-#EXTINF:-1
-https://radio.mbconline.xyz/hls/rodrigusfm.m3u8
-#EXTINF:-1
-http://mu1stream.mushost.com:8080/stream2
-#EXTINF:-1
-http://mu1stream.mushost.com:8080/stream
-#EXTINF:-1
-https://streamer.radio.co/s3fe39a4a4/listen
-#EXTINF:-1
-https://samcloud.spacial.com/api/listen?sid=5692&amprid=118715&ampf=heaacv2,any&ampbr=64000,any&ampm=sc
-#EXTINF:-1
-https://radio.mbconline.xyz/hls/tallfm.m3u8
-#EXTINF:-1
+#EXTINF:-1 , Top FM
 http://s3.voscast.com:10152/
-#EXTINF:-1
-https://s3.radio.co/s135e9edde/listen
-#EXTINF:-1
+#EXTINF:-1 , Radio Plus
 https://stream.radio.co/s8cc7a5da4/listen
-#EXTINF:-1
-https://radio.mbconline.xyz/hls/koolfm.m3u8
-#EXTINF:-1
-https://stream.zeno.fm/0w57nzzzveruv
-#EXTINF:-1
-https://wazaafm.ice.infomaniak.ch/wazaafm-192.mp3
-#EXTINF:-1
-http://webstream.r1.mu:8000/stream
-#EXTINF:-1
-http://cdn.nrjaudio.fm/adwz1/mu/55802/aac_64.mp3
-#EXTINF:-1
+#EXTINF:-1 , MBC - Best FM
 https://radio.mbconline.xyz/hls/bestfm.m3u8
+#EXTINF:-1 , Radio One
+http://webstream.r1.mu:8000/stream
+#EXTINF:-1 , Radio Moris
+http://azc.radiomoris.com:8010/radio.mp3
+#EXTINF:-1 , NRJ Maurice
+http://cdn.nrjaudio.fm/adwz1/mu/55802/aac_64.mp3
+#EXTINF:-1 , Radio Plus - Hits
+http://s3.radio.co/s1769ca1ac/listen
+#EXTINF:-1 , MBC - Radio Maurice
+https://radio.mbconline.xyz/hls/radiomaurice.m3u8
+#EXTINF:-1 , MBC Radio Mauritius
+https://radio.mbconline.xyz/hls/radiomauritus.m3u8
+#EXTINF:-1 , Radio Plus - Indiz
+http://streamer.radio.co/sed5c5a375/listen
+#EXTINF:-1 , Radio230
+http://playerservices.streamtheworld.com/api/livestream-redirect/SP_R4228214.mp3
+#EXTINF:-1 , Rock Mauritius Radio
+http://n05.radiojar.com:80/2v1ydmukb
+#EXTINF:-1 , MBC - Music FM
+https://radio.mbconline.xyz/hls/musicfm.m3u8
+#EXTINF:-1 , Radio Plus - Fever
+http://streamer.radio.co/s3fe39a4a4/listen
+#EXTINF:-1 , MBC - Taal FM
+https://radio.mbconline.xyz/hls/tallfm.m3u8
+#EXTINF:-1 , Biltong.mu Radio
+http://s3.radio.co/s135e9edde/listen
+#EXTINF:-1 , MBC - Kool FM
+https://radio.mbconline.xyz/hls/koolfm.m3u8
+#EXTINF:-1 , HitFM Mauritius
+http://stream.zeno.fm/0w57nzzzveruv
+#EXTINF:-1 , Wazaa FM
+http://wazaafm.ice.infomaniak.ch/wazaafm-192.mp3
+--
+#EXTINF:-1 , MBC Rodrigues FM
+https://radio.mbconline.xyz/hls/rodrigusfm.m3u8
+#EXTINF:-1 , OUI Radio
+http://mu1stream.mushost.com:8080/stream2
+#EXTINF:-1 , OUi Radio
+http://mu1stream.mushost.com:8080/stream
+#EXTINF:-1 , Zero Alpha Radio
+https://samcloud.spacial.com/api/listen?sid=5692&amprid=118715&ampf=heaacv2,any&ampbr=64000,any&ampm=sc
