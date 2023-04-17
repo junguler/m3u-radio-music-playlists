@@ -200,7 +200,6 @@ here is a list of websites i've scraped from already and included m3u streams fo
 | website | folder | script |
 |--|--|--|
 | http://radio.pervii.com/en/online-playlists-m3u.htm | [root](https://github.com/junguler/m3u-radio-music-playlists) | [scrape-radio.pervii-auto.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-radio.pervii-auto.sh) |
-| http://www.radio.pervii.com/ | [/radio.pervii](https://github.com/junguler/m3u-radio-music-playlists/tree/main/radio.pervii) | [scrape-radio.pervii-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-radio.pervii-manual.sh) |
 | https://www.internet-radio.com/ | [/internet-radio](https://github.com/junguler/m3u-radio-music-playlists/tree/main/internet-radio) | [scrape-internet-radio-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-internet-radio-manual.sh) |
 | https://liveonlineradio.net/ | [/live_online_radio](https://github.com/junguler/m3u-radio-music-playlists/tree/main/live_online_radio) | [scrape-live_online_radio-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-live_online_radio-manual.sh) |
 | https://onlineradiobox.com/ | [/online_radio_box](https://github.com/junguler/m3u-radio-music-playlists/tree/main/online_radio_box) | [scrape-online_radio_box-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-online_radio_box-manual.sh) |
@@ -214,4 +213,4 @@ my future plans for this repo is to keep scraping online radio websites and here
 
 | https://internetradiouk.com/ | https://tunein.com/radio/music/ | http://radio.garden/  |
 |--|--|--|
-| https://www.accuradio.com/ | n/a | n/a |
+| https://www.accuradio.com/ | your suggestions | n/a |
