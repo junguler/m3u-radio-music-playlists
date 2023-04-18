@@ -5,8 +5,11 @@
 # remove old cruddy everything files
 rm everything-full.m3u everything-lite.m3u randomized.m3u sorted.m3u
 
-# create everything-full file by copying everything except duplicates
-cat $( ls -v ) | awk '!seen[$0]++' > everything-full.m3u
+# insert filenames as playlist title and put them in a big file with duplicates
+for i in $(ls -v) ; do echo '#PLAYLIST: '$i | cat - $i | sed 's/#EXTM3U//g' | awk NF >> everything-full.txt ; done
+
+# add #EXTM3U to the first line and change the text file to a m3u file format
+cat everything-full.txt | awk '!seen[$0]++' | sed '1s/^/#EXTM3U\n/' > everything-full.m3u
 
 # read the full file and remove all extra stuff, we just need the links
 cat everything-full.m3u | sed -n '/^#/!p' > everything-lite.m3u
