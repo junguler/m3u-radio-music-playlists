@@ -209,8 +209,4 @@ here is a list of websites i've scraped from already and included m3u streams fo
 | http://www.hit-tuner.net/ | [/hit_tuner.net](https://github.com/junguler/m3u-radio-music-playlists/tree/main/hit_tuner.net) | [scrape-hit_tuner.net-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-hit_tuner.net-manual.sh) |
 | https://online-radio.eu/ | [/online_radio.eu](https://github.com/junguler/m3u-radio-music-playlists/tree/main/online_radio.eu) | [scrape-online_radio.eu-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-online_radio.eu-manual.sh) |
 
-my future plans for this repo is to keep scraping online radio websites and here are a few i'm looking at in the moment, this is not by any means a promise, just want to mention the names of these as a way of motivating myself to try them
-
-| https://internetradiouk.com/ | https://tunein.com/radio/music/ | http://radio.garden/  |
-|--|--|--|
-| https://www.accuradio.com/ | your suggestions | n/a |
+my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloadflare to avoid being easily scraped)
