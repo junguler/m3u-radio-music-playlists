@@ -30,11 +30,3 @@ for i in *.m3u ; do mv -- "$i" "$(printf '%s\n' "$i" | sed 's/%20/_/')" ; done
 # remove temp and empty files 
 rm A-top_100.txt genres.txt countries.txt languages.txt
 find . -type f -empty -delete
-
-# move stream to git folder
-mv *.m3u c:/git/m3u-radio-music-playlists/online_radio.eu/
-
-# add, commit and push
-git -C c:/git/m3u-radio-music-playlists/ add .
-git -C c:/git/m3u-radio-music-playlists/ commit -m "`date +'%b/%d - %I:%M %p'`"
-git -C c:/git/m3u-radio-music-playlists/ push

@@ -11,11 +11,3 @@ for i in "" "/2" "/3" "/4" "/5" "/6" "/7" ; do for j in $(cat links2.txt) ; do c
 
 # convert links to m3u stream files
 for i in $(cat links2.txt) ; do sed "s/^/#EXTINF:-1\n/" $i.txt | sed '1s/^/#EXTM3U\n/' > $i.m3u ; done
-
-# move stream to git folder
-mv *.m3u c:/git/m3u-radio-music-playlists/radio.pervii/
-
-# add, commit and push
-git -C c:/git/m3u-radio-music-playlists/ add .
-git -C c:/git/m3u-radio-music-playlists/ commit -m "`date +'%b/%d - %I:%M %p'`"
-git -C c:/git/m3u-radio-music-playlists/ push

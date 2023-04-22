@@ -31,13 +31,3 @@ for i in AAAAA-*.txt ; do sed '1s/^/#EXTM3U\n/' $i > $i.m3u ; done
 
 # remove AAAAA- and double extensions in streams
 for i in *.m3u ; do mv "$i" "`echo $i | sed -e 's/AAAAA-//' -e 's/.txt//'`" ; done
-
-# move stream to git folder
-mv *.m3u c:/git/m3u-radio-music-playlists/live_online_radio/
-
-# add, commit and push
-git -C c:/git/m3u-radio-music-playlists/ add .
-git -C c:/git/m3u-radio-music-playlists/ commit -m "`date +'%b/%d - %I:%M %p'`"
-git -C c:/git/m3u-radio-music-playlists/ push
-
-# 
