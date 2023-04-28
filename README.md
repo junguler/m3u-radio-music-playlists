@@ -208,5 +208,6 @@ here is a list of websites i've scraped from already and included m3u streams fo
 | https://streema.com/ | [/streema](https://github.com/junguler/m3u-radio-music-playlists/tree/main/streema) | [scrape-streema-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-streema-manual.sh) |
 | http://www.hit-tuner.net/ | [/hit_tuner.net](https://github.com/junguler/m3u-radio-music-playlists/tree/main/hit_tuner.net) | [scrape-hit_tuner.net-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-hit_tuner.net-manual.sh) |
 | https://online-radio.eu/ | [/online_radio.eu](https://github.com/junguler/m3u-radio-music-playlists/tree/main/online_radio.eu) | [scrape-online_radio.eu-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-online_radio.eu-manual.sh) |
+| https://pea.fm | [/pea.fm](https://github.com/junguler/m3u-radio-music-playlists/tree/main/pea.fm) | [scrape-pea.fm-manual.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/scrape-pea.fm-manual.sh) |
 
 my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloadflare to avoid being easily scraped)
