@@ -48,7 +48,7 @@ if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc ...
 <br>
 
 ### Extra Streams
-this repo now includes 4 extra streams made by me
+this repo now includes a few streams made by me
 
 `---everything-full.m3u` combines all of the streams sorted by names that are shown in this repo
 
@@ -58,7 +58,9 @@ this repo now includes 4 extra streams made by me
 
 `---sorted.m3u` is exactly like the everything-lite stream but the links themselves are sorted alphabetically/numerically, it's good for when you have found a good radio station with many different genres of music to listen to all of them in order
 
-every time i push an update these 4 files will also get updated and the randomized stream will also get shuffled again
+every folder in this repo excluding the `stuff` folder has these stream files unique to the content of that specific folder
+
+there is also two newly added files that combine everything including all the folders which have a `-repo` suffix to them
 
 <br>
 
