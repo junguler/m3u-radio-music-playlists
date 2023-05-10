@@ -19,3 +19,13 @@ cat everything-lite.m3u | shuf > randomized.m3u
 
 # sort the lite file
 cat everything-lite.m3u | sort > sorted.m3u
+
+# for everything-repo streams
+# copy all of the everything-full files to a folder and change their names to avoid substitution
+for i in *.m3u ; do cat $i >> every.txt ; done
+
+# remove duplicates
+cat every.txt | awk '!seen[$0]++' > every.m3u
+
+# remove stream info
+cat every.m3u | sed -n '/^#/!p' | sort > lite.m3u
