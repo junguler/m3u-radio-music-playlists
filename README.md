@@ -44,6 +44,7 @@ if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc ...
  * [Easier m3u consumption](https://github.com/junguler/m3u-radio-music-playlists#isnt-there-an-easier-way-to-use-and-control-these-using-mpv)
  * [How to download](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-all-of-the-files)
  * [Git stats](https://github.com/junguler/m3u-radio-music-playlists#git-stats)
+ * [sources](https://github.com/junguler/m3u-radio-music-playlists#current-and-potential-sources)
 
 <br>
 
@@ -216,3 +217,23 @@ here is a list of websites i've scraped from already and included m3u streams fo
 | https://zeno.fm/ | [/zeno.fm](https://github.com/junguler/m3u-radio-music-playlists/tree/main/zeno.fm) | [zeno.fm.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/zeno.fm.sh) |
 
 my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloadflare to avoid being easily scraped)
+  
+<br>
+  
+### websites i can't scrape
+  
+here is a list of websites i considered scraping but was unable to, this list will be kept updated
+  
+| website | reason |
+|--|--|
+| https://tunein.com/radio/home/ | cloudflare protected |
+| https://www.accuradio.com/ | cloudflare protected |
+| https://internetradiouk.com | cloudflare protected |
+| https://www.moreradio.online/ | cloudflare protected |
+| http://radio.garden/ | i don't understand this website |
+| https://www.radio-uk.co.uk/ | uses a cipher system to hide stream link |
+| https://mytuner-radio.com/ | uses a cipher system to hide stream link |
+| https://www.fmradiofree.com/ | uses a cipher system to hide stream link |
+| https://tuneyou.com/radio/music/ | could not extract stream link |
+  
+see a website you like in this list and know how to overcome the issues to scrape them? open an issue or discussion and share you knowledge with me
