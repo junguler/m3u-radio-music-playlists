@@ -235,5 +235,6 @@ here is a list of websites i considered scraping but was unable to, this list wi
 | https://mytuner-radio.com/ | uses a cipher system to hide stream link |
 | https://www.fmradiofree.com/ | uses a cipher system to hide stream link |
 | https://tuneyou.com/radio/music/ | could not extract stream link |
+| https://live365.com/ | could not get passed the first page of each genres due to js generated pages |
   
 see a website you like in this list and know how to overcome the issues to scrape them? open an issue or discussion and share you knowledge with me
