@@ -215,6 +215,7 @@ here is a list of websites i've scraped from already and included m3u streams fo
 | https://radioonlinelive.com/ | [/radio_online_live](https://github.com/junguler/m3u-radio-music-playlists/tree/main/radio_online_live) | [radio_online_live.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/radio_online_live.sh) |
 | https://radiostationusa.fm/ | [/radio_station_usa.fm](https://github.com/junguler/m3u-radio-music-playlists/tree/main/radio_station_usa.fm) | [radio_station_usa.fm.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/radio_station_usa.fm.sh) |
 | https://zeno.fm/ | [/zeno.fm](https://github.com/junguler/m3u-radio-music-playlists/tree/main/zeno.fm) | [zeno.fm.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/zeno.fm.sh) |
+| https://openradio.app | [/openradio.app](https://github.com/junguler/m3u-radio-music-playlists/tree/main/openradio.app) | [openradio.app.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/openradio.app.sh) |
 
 my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloadflare to avoid being easily scraped)
   
