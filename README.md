@@ -1,5 +1,5 @@
 ### Listen to music online using this repo's github page
-all of the stream files in the root folder of this repo can be listened to using their own page on this repo and the amazing (webamp player)[https://github.com/captbaritone/webamp], use the playlist buttons or click on the entries and hit play
+all of the stream files in the root folder of this repo can be listened to using their own page on this repo and the amazing [webamp player](https://github.com/captbaritone/webamp), use the playlist buttons or click on the entries and hit play
 
 <div align="left">
 
