@@ -1,7 +1,5 @@
 ### Listen to music online using this repo's github page
-all of the streams can be listen to using their own page, just click on the one you want and hit the play button, click on the left and right arrow keys to change stations, this was made possible by using javascript code from [this page](https://www.draketo.de/software/m3u-player.html), thank you
-
-i've also added a simple audio visualizer to the stream pages, code was taken from [this repo](https://github.com/wayou/audio-visualizer-with-controls), thank you
+all of the stream files in the root folder of this repo can be listened to using their own page on this repo and the amazing (webamp player)[https://github.com/captbaritone/webamp], use the playlist buttons or click on the entries and hit play
 
 <div align="left">
 
