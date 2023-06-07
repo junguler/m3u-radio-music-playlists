@@ -18,6 +18,15 @@ all of the stream files in the root folder of this repo can be listened to using
 
 <br>
 
+to listen to other m3u playlists in this repo click on the specific repo for each folder and listen to them from there
+
+| [vtuner](https://github.com/junguler/listen_to_vtuner) | [openradio.app](https://github.com/junguler/listen_to_openradio.app) | [zeno.fm](https://github.com/junguler/listen_to_zeno.fm) | [radiostationusa.fm](https://github.com/junguler/listen_to_radiostationusa.fm) | [radioonlinelive](https://github.com/junguler/listen_to_radioonlinelive) |
+|--|--|--|--|--|
+| [pea.fm](https://github.com/junguler/listen_to_pea.fm) | [onlineradio.eu](https://github.com/junguler/listen_to_onlineradio.eu) | [hit-tuner.net](https://github.com/junguler/listen_to_hit-tuner.net) | [streema](https://github.com/junguler/listen_to_streema) | [radioguide.fm](https://github.com/junguler/listen_to_radioguide.fm) |
+| [radio.net](https://github.com/junguler/listen_to_radio.net) | [onlineradiobox](https://github.com/junguler/listen_to_onlineradiobox) | [liveonlineradio](https://github.com/junguler/listen_to_liveonlineradio) | [internetradio.com](https://github.com/junguler/listen_to_internetradio.com) | |
+
+<br>
+
 if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc ...) you are not able to listen to the most of the streams, here is an explanation from [chrome support](https://support.google.com/chrome/thread/29505473?hl=en&msgid=29673696) which tells you why this happens and how to fix it
 
 > Usually this error occurs because the radio station you are trying to listen to is running on an unencrypted port (not 443). This is quite common and it's not technically necessary for radio stations to be encrypted but nowadays web browsers like Chrome have started disallowing unencrypted content to be shown in an otherwise encrypted websites. There is a few solutions for you right now:
