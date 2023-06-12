@@ -11,7 +11,7 @@ jobs:
       - name: run commands
         run: |
           sudo apt install unzip -y
-          unzip ./things.zip
+          unzip ./thing.zip
 
       - name: add & commit
         uses: EndBug/add-and-commit@main
