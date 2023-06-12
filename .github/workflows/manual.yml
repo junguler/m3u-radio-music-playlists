@@ -1,0 +1,19 @@
+name: extract
+on:
+  push
+jobs:
+  extract-it:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@main
+
+      - name: run commands
+        run: |
+          sudo apt install unzip -y
+          unzip ./things.zip
+
+      - name: add & commit
+        uses: EndBug/add-and-commit@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
