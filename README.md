@@ -68,7 +68,7 @@ this repo now includes a few streams made by me
 
 every folder in this repo excluding the `stuff` folder has these stream files unique to the content of that specific folder
 
-there is also two newly added files that combine everything including all the folders which have a `-repo` suffix to them
+there is also two newly added files that combine everything including all the folders which have a `-repo` suffix to them, you can find them in `---everything-repo` file
 
 <br>
 
