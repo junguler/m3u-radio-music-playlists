@@ -23,7 +23,7 @@ to listen to other m3u playlists in this repo click on the specific repo for eac
 | [vtuner](https://github.com/junguler/listen_to_vtuner) | [openradio.app](https://github.com/junguler/listen_to_openradio.app) | [zeno.fm](https://github.com/junguler/listen_to_zeno.fm) | [radiostationusa.fm](https://github.com/junguler/listen_to_radiostationusa.fm) | [radioonlinelive](https://github.com/junguler/listen_to_radioonlinelive) |
 |--|--|--|--|--|
 | [pea.fm](https://github.com/junguler/listen_to_pea.fm) | [onlineradio.eu](https://github.com/junguler/listen_to_onlineradio.eu) | [hit-tuner.net](https://github.com/junguler/listen_to_hit-tuner.net) | [streema](https://github.com/junguler/listen_to_streema) | [radioguide.fm](https://github.com/junguler/listen_to_radioguide.fm) |
-| [radio.net](https://github.com/junguler/listen_to_radio.net) | [onlineradiobox](https://github.com/junguler/listen_to_onlineradiobox) | [liveonlineradio](https://github.com/junguler/listen_to_liveonlineradio) | [internetradio.com](https://github.com/junguler/listen_to_internetradio.com) | |
+| [radio.net](https://github.com/junguler/listen_to_radio.net) | [onlineradiobox](https://github.com/junguler/listen_to_onlineradiobox) | [liveonlineradio](https://github.com/junguler/listen_to_liveonlineradio) | [internetradio.com](https://github.com/junguler/listen_to_internetradio.com) | [laut.fm](https://github.com/junguler/listen_to_laut.fm) |
 
 <br>
 
