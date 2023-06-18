@@ -226,7 +226,7 @@ here is a list of websites i've scraped from already and included m3u streams fo
 | https://vtuner.com/setupapp/guide/asp/BrowseStations/startpage.asp | [/vtuner](https://github.com/junguler/m3u-radio-music-playlists/tree/main/vtuner) | [vtuner.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/vtuner.sh) |
 | https://laut.fm/ | [/laut.fm](https://github.com/junguler/m3u-radio-music-playlists/tree/main/laut.fm) | [laut.fm.sh](https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/laut.fm.sh) |
 
-my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloadflare to avoid being easily scraped)
+my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)
   
 <br>
   
