@@ -160,7 +160,6 @@
 <li><p>Open Chrome (or other chromium web browsers), go to the website and then click on the padlock icon to the left of the URL box and then from the drop down menu select the 'Site Settings' option, you can then scroll down to the 'Insecure content' option at the bottom of the page and select 'Allow', this will create an exception for the website and allow you to continue using the player as before.</p></li>
 <li><p>download the stream files and play them locally on your pc or other devices which i've talked about further down in this markdown file</p></li>
 </ul>
-<p><div></p>
 <p><br></p>
 <h3 id="shortcuts">Shortcuts</h3>
 <ul>
@@ -203,7 +202,7 @@
 <pre><code><span >timeout</span> 1h ffmpeg -y -i http://stream.dancewave.online:8080/dance.mp3 -c copy dancewave.mp3
 </code></pre>
 <p>another more elegant way to do this is to use ffmpeg to segment these files with your desired time and add a timestamp at the end as filenames, code was copied from <a href="https://write.corbpie.com/ffmpeg-saving-stream-in-intervals-with-date-time-as-filename/">here</a></p>
-<pre><code>ffmpeg -i http://stream.dancewave.online:<span >8080</span>/dance.mp<span >3</span> -<span class="hljs-keyword">c</span> copy -f segment -strftime <span >1</span> -segment_time <span >60</span> <span class="hljs-variable">%Y-</span><span class="hljs-variable">%m-</span><span class="hljs-variable">%d-</span><span class="hljs-variable">%H-</span><span class="hljs-variable">%M-</span><span class="hljs-variable">%S.mp3</span>
+<pre><code>ffmpeg -i http://stream.dancewave.online:<span >8080</span>/dance.mp<span >3</span> -<span >c</span> copy -f segment -strftime <span >1</span> -segment_time <span >60</span> <span >%Y-</span><span >%m-</span><span >%d-</span><span >%H-</span><span >%M-</span><span >%S.mp3</span>
 </code></pre>
 <p>this will save a new mp3 file every minute, if you want to make this longer change <code>-segment_time 60</code> and multiply the number of minutes you want for each file by 60, so if i want my mp3 files to each be 5 minutes i do <code>-segment_time 300</code>  this process goes on forever unless you run out of disk space or if you are not connected to the internet for some reason </p>
 <p>this command can also be stopped using <code>ctrl + c</code> shortcut or the timeout command showcased above so adding <code>timeout 1h</code> in front of the above command stops the whole process after an hour</p>
@@ -223,24 +222,24 @@
 <p>or <code>C:\users\USERNAME\AppData\Roaming\mpv\scripts\</code> on windows</p>
 <p>put these in your mpv.conf, this is a auto-profile for all audio files</p>
 <pre><code>[audio-only]
-profile-<span class="hljs-keyword">cond</span>=<span class="hljs-keyword">not</span> vid
+profile-<span >cond</span>=<span >not</span> vid
 profile-restore=copy
-vf-add=rgbashift=rh=<span >-4</span><span class="hljs-symbol">:bv=+</span><span >4</span>
-vf-add=drawbox=w=<span class="hljs-symbol">iw:</span>h=<span class="hljs-symbol">ih:</span>color=<span >00</span>FFFF<span class="hljs-variable">@0</span>.<span >5</span>
-vf-add=drawbox=x=<span >3</span><span class="hljs-symbol">:y=</span><span >3</span><span class="hljs-symbol">:w=iw-</span><span >6</span><span class="hljs-symbol">:h=ih-</span><span >6</span><span class="hljs-symbol">:color=</span><span >00</span>FF00<span class="hljs-variable">@0</span>.<span >5</span>
-vf-add=drawbox=x=<span >6</span><span class="hljs-symbol">:y=</span><span >6</span><span class="hljs-symbol">:w=iw-</span><span >12</span><span class="hljs-symbol">:h=ih-</span><span >12</span><span class="hljs-symbol">:color=FFFF00</span><span class="hljs-variable">@0</span>.<span >5</span>
-vf-add=hue=H=<span >0.1</span>*<span class="hljs-title class_">PI</span>*t
+vf-add=rgbashift=rh=<span >-4</span><span >:bv=+</span><span >4</span>
+vf-add=drawbox=w=<span >iw:</span>h=<span >ih:</span>color=<span >00</span>FFFF<span >@0</span>.<span >5</span>
+vf-add=drawbox=x=<span >3</span><span >:y=</span><span >3</span><span >:w=iw-</span><span >6</span><span >:h=ih-</span><span >6</span><span >:color=</span><span >00</span>FF00<span >@0</span>.<span >5</span>
+vf-add=drawbox=x=<span >6</span><span >:y=</span><span >6</span><span >:w=iw-</span><span >12</span><span >:h=ih-</span><span >12</span><span >:color=FFFF00</span><span >@0</span>.<span >5</span>
+vf-add=hue=H=<span >0.1</span>*<span >PI</span>*t
 </code></pre>
 <p><br></p>
 <h3 id="normilize-audio">Normilize Audio</h3>
 <p>depending on the stream some music might be too load and others too quiet, thankfully we can use an ffmpeg filter inside mpv to fix the issue and force all music to be played at the same level, put this line inside your <code>mpv.conf</code> and it will automatically normalize all audio</p>
-<pre><code><span class="hljs-attribute">af</span>=lavfi=[dynaudnorm=f=<span >75</span>:g=<span >25</span>:p=<span >0</span>.<span >55</span>]
+<pre><code><span >af</span>=lavfi=[dynaudnorm=f=<span >75</span>:g=<span >25</span>:p=<span >0</span>.<span >55</span>]
 </code></pre>
 <p><br></p>
 <h3 id="i-really-like-mpv-how-do-i-customize-keybinds">I really like mpv, how do i customize keybinds?</h3>
 <p>make a file called input.conf either at the folder your mpv.exe is on windows or on ~/.config/mpv/ if you are *nix systems, put these inside it for using page-up and page-down for changing radio stations</p>
-<pre><code>PGUP playlist-prev ; show-text <span class="hljs-string">&quot;<span class="hljs-subst">${playlist-<span class="hljs-keyword">pos</span>-<span >1</span>}</span>/<span class="hljs-subst">${playlist-count}</span>&quot;</span>
-PGDWN playlist-<span class="hljs-keyword">next</span> ; show-text <span class="hljs-string">&quot;<span class="hljs-subst">${playlist-<span class="hljs-keyword">pos</span>-<span >1</span>}</span>/<span class="hljs-subst">${playlist-count}</span>&quot;</span>
+<pre><code>PGUP playlist-prev ; show-text <span >&quot;<span >${playlist-<span >pos</span>-<span >1</span>}</span>/<span >${playlist-count}</span>&quot;</span>
+PGDWN playlist-<span >next</span> ; show-text <span >&quot;<span >${playlist-<span >pos</span>-<span >1</span>}</span>/<span >${playlist-count}</span>&quot;</span>
 </code></pre>
 <p><br></p>
 <h3 id="isnt-there-an-easier-way-to-use-and-control-these-using-mpv">Isn't there an easier way to use and control these using mpv?</h3>
