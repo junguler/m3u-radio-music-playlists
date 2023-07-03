@@ -187,68 +187,60 @@
 <p><br></p>
 <h3 id="how-to-listen-to-these">How to listen to these?</h3>
 <p>in the terminal, do this:</p>
-<pre><code>hljs mpv https:<span class="hljs-regexp">//</span>raw.githubusercontent.com<span class="hljs-regexp">/junguler/m</span>3u-radio-music-playlists<span class="hljs-regexp">/main/</span>trance.m3u
+<pre><code>mpv https:<span >//</span>raw.githubusercontent.com<span >/junguler/m</span>3u-radio-music-playlists<span >/main/</span>trance.m3u
 </code></pre>
 <p>or add/change <code>m3u</code> file association in your os to mpv and double click on any of <code>.m3u</code> files in your file manager</p>
 <p><br></p>
 <h3 id="how-to-download-a-live-stream-to-my-computer">how to download a live-stream to my computer?</h3>
-<p><details><br />
-  <summary>click me to read</summary></p>
-<p><br></p>
 <p>downloading from these m3u files is not possible as far as i know since they contain multiple streams, but if you want to download from a particular stream you can achieve this by using ffmpeg, i use the most popular (first stream) in the <code>trance.m3u</code> to showcase this, in your terminal change directory to where you want this file to be at (note that lines starting with # are not actual streams and are there for embedding extra info to your media player)</p>
-<pre><code>hljs ffmpeg -y -i http:<span class="hljs-regexp">//</span>stream.dancewave.online:<span class="hljs-number">8080</span>/dance.mp3 -c copy dancewave.mp3
+<pre><code>ffmpeg -y -i http:<span >//</span>stream.dancewave.online:<span >8080</span>/dance.mp3 -c copy dancewave.mp3
 </code></pre>
 <p>change the filename at the end to what you like, as ffmpeg suggests when you feel happy with the length/size of this file press <code>q</code> in your terminal emulator to finish the process and save the file</p>
 <p>because these are online streams there is no way to download the whole thing as they are constantly changing, but you can set a hard limit to when recording stops using the timeout command on bash/zsh shells</p>
-<pre><code>hljs <span class="hljs-built_in">timeout</span> 60 ffmpeg -y -i http://stream.dancewave.online:8080/dance.mp3 -c copy dancewave.mp3
+<pre><code><span >timeout</span> 60 ffmpeg -y -i http://stream.dancewave.online:8080/dance.mp3 -c copy dancewave.mp3
 </code></pre>
 <p>the above command saves about one minute of the audio live-stream, you can specify longer times using <code>-m</code> for minutes <code>-h</code> for hours and <code>-d</code> for days, these can also be used with decimals for more control, so one and half minute can be set with 1.5m or 3 hour and 45 minutes can be set with 3.75h</p>
-<pre><code>hljs <span class="hljs-built_in">timeout</span> 1h ffmpeg -y -i http://stream.dancewave.online:8080/dance.mp3 -c copy dancewave.mp3
+<pre><code><span >timeout</span> 1h ffmpeg -y -i http://stream.dancewave.online:8080/dance.mp3 -c copy dancewave.mp3
 </code></pre>
 <p>another more elegant way to do this is to use ffmpeg to segment these files with your desired time and add a timestamp at the end as filenames, code was copied from <a href="https://write.corbpie.com/ffmpeg-saving-stream-in-intervals-with-date-time-as-filename/">here</a></p>
-<pre><code>hljs ffmpeg -i http://stream.dancewave.online:<span class="hljs-number">8080</span>/dance.mp<span class="hljs-number">3</span> -<span class="hljs-keyword">c</span> copy -f segment -strftime <span class="hljs-number">1</span> -segment_time <span class="hljs-number">60</span> <span class="hljs-variable">%Y-</span><span class="hljs-variable">%m-</span><span class="hljs-variable">%d-</span><span class="hljs-variable">%H-</span><span class="hljs-variable">%M-</span><span class="hljs-variable">%S.mp3</span>
+<pre><code>ffmpeg -i http://stream.dancewave.online:<span >8080</span>/dance.mp<span >3</span> -<span class="hljs-keyword">c</span> copy -f segment -strftime <span >1</span> -segment_time <span >60</span> <span class="hljs-variable">%Y-</span><span class="hljs-variable">%m-</span><span class="hljs-variable">%d-</span><span class="hljs-variable">%H-</span><span class="hljs-variable">%M-</span><span class="hljs-variable">%S.mp3</span>
 </code></pre>
 <p>this will save a new mp3 file every minute, if you want to make this longer change <code>-segment_time 60</code> and multiply the number of minutes you want for each file by 60, so if i want my mp3 files to each be 5 minutes i do <code>-segment_time 300</code>  this process goes on forever unless you run out of disk space or if you are not connected to the internet for some reason </p>
 <p>this command can also be stopped using <code>ctrl + c</code> shortcut or the timeout command showcased above so adding <code>timeout 1h</code> in front of the above command stops the whole process after an hour</p>
-<p></details></p>
 <p><br></p>
 <h3 id="how-to-save-songs-indivudally-by-title-from-a-live-stream">How to save songs indivudally by title from a live stream?</h3>
-<p><details><br />
-  <summary>click me to read</summary></p>
-<p><br></p>
 <p>i have been looking for a way to do this for a while, i found this program <a href="https://streamwriter.org/en/downloads/">streamwriter</a> that does this but unfortunently it's only available on windows, this <a href="https://appdb.winehq.org/objectManager.php?sClass=application&iId=19745">winehq page</a> lists the program as platinum and it should work with wine without any issues but i have not tested it myself as i'm not on linux at the moment and don't have a virtual machine ready either</p>
 <p>download the portable version of the program and extract it somewhere in your hard drive, the first time you open the program it's going to ask a few questions, things like language and where it's going to save downloaded songs, now that you are greeted with the program go to a m3u file of your favorite music genre and copy a stream link to start download, here is mine from the trance.m3u</p>
-<pre><code>hljs http:<span class="hljs-regexp">//</span><span class="hljs-number">51.89</span>.<span class="hljs-number">148.171</span>:<span class="hljs-number">8022</span><span class="hljs-regexp">/stream/</span><span class="hljs-number">1</span>/
+<pre><code>http:<span >//</span><span >51.89</span>.<span >148.171</span>:<span >8022</span><span >/stream/</span><span >1</span>/
 </code></pre>
 <p>now put it inside the area i've shown and click to button next to it to start recording, after each song is completed it's going to create a new file and put a name on it from the title the stream is broadcasting</p>
-<p><img src="stuff/streamwriter.jpg" alt="streamwriter" /></p>
+<p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/streamwriter.jpg" alt="streamwriter" /></p>
 <p>once you are happy with the amount of songs downloaded, right click on the stream and click on <code>stop recording after current title</code></p>
 <p>note that in some rare cases a stream does not broadcasts song titles and if you happen to come accross of these there is really nothing else you can and the program is going to continuously record the stream until you manually stop it</p>
-<p></details></p>
 <p><br></p>
 <h3 id="mpv-only-shows-a-black-window-when-listening-to-music-how-to-make-it-pretty">Mpv only shows a black window when listening to music, how to make it pretty?</h3>
 <p>download the <a href="https://raw.githubusercontent.com/mfcc64/mpv-scripts/master/visualizer.lua">visualizer</a> script for mpv and put it in your scripts folder either on <code>~/.config/mpv/scripts</code> on *nix systems </p>
 <p>or <code>C:\users\USERNAME\AppData\Roaming\mpv\scripts\</code> on windows</p>
 <p>put these in your mpv.conf, this is a auto-profile for all audio files</p>
-<pre><code>hljs [audio-only]
+<pre><code>[audio-only]
 profile-<span class="hljs-keyword">cond</span>=<span class="hljs-keyword">not</span> vid
 profile-restore=copy
-vf-add=rgbashift=rh=<span class="hljs-number">-4</span><span class="hljs-symbol">:bv=+</span><span class="hljs-number">4</span>
-vf-add=drawbox=w=<span class="hljs-symbol">iw:</span>h=<span class="hljs-symbol">ih:</span>color=<span class="hljs-number">00</span>FFFF<span class="hljs-variable">@0</span>.<span class="hljs-number">5</span>
-vf-add=drawbox=x=<span class="hljs-number">3</span><span class="hljs-symbol">:y=</span><span class="hljs-number">3</span><span class="hljs-symbol">:w=iw-</span><span class="hljs-number">6</span><span class="hljs-symbol">:h=ih-</span><span class="hljs-number">6</span><span class="hljs-symbol">:color=</span><span class="hljs-number">00</span>FF00<span class="hljs-variable">@0</span>.<span class="hljs-number">5</span>
-vf-add=drawbox=x=<span class="hljs-number">6</span><span class="hljs-symbol">:y=</span><span class="hljs-number">6</span><span class="hljs-symbol">:w=iw-</span><span class="hljs-number">12</span><span class="hljs-symbol">:h=ih-</span><span class="hljs-number">12</span><span class="hljs-symbol">:color=FFFF00</span><span class="hljs-variable">@0</span>.<span class="hljs-number">5</span>
-vf-add=hue=H=<span class="hljs-number">0.1</span>*<span class="hljs-title class_">PI</span>*t
+vf-add=rgbashift=rh=<span >-4</span><span class="hljs-symbol">:bv=+</span><span >4</span>
+vf-add=drawbox=w=<span class="hljs-symbol">iw:</span>h=<span class="hljs-symbol">ih:</span>color=<span >00</span>FFFF<span class="hljs-variable">@0</span>.<span >5</span>
+vf-add=drawbox=x=<span >3</span><span class="hljs-symbol">:y=</span><span >3</span><span class="hljs-symbol">:w=iw-</span><span >6</span><span class="hljs-symbol">:h=ih-</span><span >6</span><span class="hljs-symbol">:color=</span><span >00</span>FF00<span class="hljs-variable">@0</span>.<span >5</span>
+vf-add=drawbox=x=<span >6</span><span class="hljs-symbol">:y=</span><span >6</span><span class="hljs-symbol">:w=iw-</span><span >12</span><span class="hljs-symbol">:h=ih-</span><span >12</span><span class="hljs-symbol">:color=FFFF00</span><span class="hljs-variable">@0</span>.<span >5</span>
+vf-add=hue=H=<span >0.1</span>*<span class="hljs-title class_">PI</span>*t
 </code></pre>
 <p><br></p>
 <h3 id="normilize-audio">Normilize Audio</h3>
 <p>depending on the stream some music might be too load and others too quiet, thankfully we can use an ffmpeg filter inside mpv to fix the issue and force all music to be played at the same level, put this line inside your <code>mpv.conf</code> and it will automatically normalize all audio</p>
-<pre><code>hljs <span class="hljs-attribute">af</span>=lavfi=[dynaudnorm=f=<span class="hljs-number">75</span>:g=<span class="hljs-number">25</span>:p=<span class="hljs-number">0</span>.<span class="hljs-number">55</span>]
+<pre><code><span class="hljs-attribute">af</span>=lavfi=[dynaudnorm=f=<span >75</span>:g=<span >25</span>:p=<span >0</span>.<span >55</span>]
 </code></pre>
 <p><br></p>
 <h3 id="i-really-like-mpv-how-do-i-customize-keybinds">I really like mpv, how do i customize keybinds?</h3>
 <p>make a file called input.conf either at the folder your mpv.exe is on windows or on ~/.config/mpv/ if you are *nix systems, put these inside it for using page-up and page-down for changing radio stations</p>
-<pre><code>hljs PGUP playlist-prev ; show-text <span class="hljs-string">&quot;<span class="hljs-subst">${playlist-<span class="hljs-keyword">pos</span>-<span class="hljs-number">1</span>}</span>/<span class="hljs-subst">${playlist-count}</span>&quot;</span>
-PGDWN playlist-<span class="hljs-keyword">next</span> ; show-text <span class="hljs-string">&quot;<span class="hljs-subst">${playlist-<span class="hljs-keyword">pos</span>-<span class="hljs-number">1</span>}</span>/<span class="hljs-subst">${playlist-count}</span>&quot;</span>
+<pre><code>PGUP playlist-prev ; show-text <span class="hljs-string">&quot;<span class="hljs-subst">${playlist-<span class="hljs-keyword">pos</span>-<span >1</span>}</span>/<span class="hljs-subst">${playlist-count}</span>&quot;</span>
+PGDWN playlist-<span class="hljs-keyword">next</span> ; show-text <span class="hljs-string">&quot;<span class="hljs-subst">${playlist-<span class="hljs-keyword">pos</span>-<span >1</span>}</span>/<span class="hljs-subst">${playlist-count}</span>&quot;</span>
 </code></pre>
 <p><br></p>
 <h3 id="isnt-there-an-easier-way-to-use-and-control-these-using-mpv">Isn't there an easier way to use and control these using mpv?</h3>
@@ -257,7 +249,7 @@ PGDWN playlist-<span class="hljs-keyword">next</span> ; show-text <span class="h
 <h3 id="how-to-download-all-of-the-files">How to download all of the files?</h3>
 <p>use the <a href="https://github.com/junguler/m3u-radio-music-playlists/archive/refs/heads/main.zip">auto-generated zip</a> </p>
 <p>you can also run a git clone on this repo</p>
-<pre><code>hljs git clone https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/junguler/m</span>3u-radio-music-playlists.git
+<pre><code>git clone https:<span >//gi</span>thub.com<span >/junguler/m</span>3u-radio-music-playlists.git
 </code></pre>
 <p>for further updates cd into the folder and do <code>git pull</code></p>
 <p><br></p>
