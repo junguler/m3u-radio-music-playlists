@@ -416,4 +416,3 @@ PGDWN playlist-<span >next</span> ; show-text <span >&quot;<span >${playlist-<sp
 </tr>
 </tbody></table>
 <p>see a website you like in this list and know how to overcome the issues to scrape them? open an issue or discussion and share you knowledge with me</p>
-</div>
