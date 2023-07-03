@@ -172,16 +172,18 @@ if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc ...
 <br>
 
 ### Shortcuts
- * [How to listen](https://github.com/junguler/m3u-radio-music-playlists#how-to-listen-to-these)
- * [How to download a stream](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-a-live-stream-to-my-computer)
- * [How to save songs indivudally](https://github.com/junguler/m3u-radio-music-playlists#how-to-save-songs-indivudally-by-title-from-a-live-stream)
- * [Audio visualization](https://github.com/junguler/m3u-radio-music-playlists#mpv-only-shows-a-black-window-when-listening-to-music-how-to-make-it-pretty)
- * [Normilizing audio](https://github.com/junguler/m3u-radio-music-playlists#normilize-audio)
- * [Customize keybinds](https://github.com/junguler/m3u-radio-music-playlists#i-really-like-mpv-how-do-i-customize-keybinds)
- * [Easier m3u consumption](https://github.com/junguler/m3u-radio-music-playlists#isnt-there-an-easier-way-to-use-and-control-these-using-mpv)
- * [How to download](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-all-of-the-files)
- * [Git stats](https://github.com/junguler/m3u-radio-music-playlists#git-stats)
- * [sources](https://github.com/junguler/m3u-radio-music-playlists#current-and-potential-sources)
+<ul>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-listen-to-these">How to listen</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-download-a-live-stream-to-my-computer">How to download a stream</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-save-songs-indivudally-by-title-from-a-live-stream">How to save songs indivudally</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#mpv-only-shows-a-black-window-when-listening-to-music-how-to-make-it-pretty">Audio visualization</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#normilize-audio">Normilizing audio</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#i-really-like-mpv-how-do-i-customize-keybinds">Customize keybinds</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#isnt-there-an-easier-way-to-use-and-control-these-using-mpv">Easier m3u consumption</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-download-all-of-the-files">How to download</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#git-stats">Git stats</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#current-and-potential-sources">sources</a></li>
+</ul>
 
 <br>
 
@@ -325,11 +327,11 @@ for further updates cd into the folder and do ``git pull``
 ### Git Stats
 since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them every two weeks so you can have feel for how this repo is doing
 
-![](stuff/stats_1.jpg)
+![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_1.jpg)
 
-![](stuff/stats_2.jpg)
+![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_2.jpg)
 
-![](stuff/stats_3.jpg)
+![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_3.jpg)
 
 <br>
 
