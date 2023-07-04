@@ -3,7 +3,7 @@
 <table>
 <thead>
 <tr>
-<th colspan="8">genres / locations / languages</th>
+<th colspan="6">decades</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -11,68 +11,66 @@
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/70s.html">70s</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/80s.html">80s</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/90s.html">90s</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/acid_jazz.html">acid_jazz</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/african.html">african</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/alternative.html">alternative</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/ambient.html">ambient</a></td>
+<td colspan="2"></td>
 </tr>
+<thead>
+<tr>
+<th colspan="6">genres</th>
+</tr>
+</thead>
 <tr>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/americana.html">americana</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/acid_jazz.html">acid_jazz</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/alternative.html">alternative</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/ambient.html">ambient</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/anime.html">anime</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/arabic.html">arabic</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/asian.html">asian</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/big_band.html">big band</a></td>
+</tr>
+<tr>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/bluegrass.html">bluegrass</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/blues.html">blues</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/breakbeat.html">breakbeat</a></td>
-</tr>
-<tr>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/chillout.html">chillout</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/christian.html">christian</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/classical.html">classical</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/club.html">club</a></td>
+</tr>
+<tr>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/college.html">college</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/comedy.html">comedy</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/country.html">country</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/dance.html">dance</a></td>
-</tr>
-<tr>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/deutsch.html">deutsch</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/disco.html">disco</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/discofox.html">discofox</a></td>
+</tr>
+<tr>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/downtempo.html">downtempo</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/drum_and_bass.html">drum &amp; bass</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/easy_listening.html">easy listening</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/ebm.html">ebm</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/electronic.html">electronic</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/eurodance.html">eurodance</a></td>
 </tr>
 <tr>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/eurodance.html">eurodance</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/film.html">film</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/folk.html">folk</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/france.html">france</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/funk.html">funk</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/goa.html">goa</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/gospel.html">gospel</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/gothic.html">gothic</a></td>
 </tr>
 <tr>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/greek.html">greek</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/hardcore.html">hardcore</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/hardrock.html">hardrock</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/hip_hop.html">hip hop</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/house.html">house</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/india.html">india</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/indie.html">indie</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/industrial.html">industrial</a></td>
 </tr>
 <tr>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/instrumental.html">instrumental</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/italian.html">italian</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/jazz.html">jazz</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/jpop.html">jpop</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/jungle.html">jungle</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/latin.html">latin</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/lounge.html">lounge</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/metal.html">metal</a></td>
 </tr>
@@ -81,15 +79,11 @@
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/musical.html">musical</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/oldies.html">oldies</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/opera.html">opera</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/polish.html">polish</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/polka.html">polka</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/pop.html">pop</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/portugal.html">portugal</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/progressive.html">progressive</a></td>
 </tr>
 <tr>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/progressive.html">progressive</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/punk.html">punk</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/quran.html">quran</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/rap.html">rap</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/reggae.html">reggae</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/retro.html">retro</a></td>
@@ -97,8 +91,6 @@
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/rock.html">rock</a></td>
 </tr>
 <tr>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/romanian.html">romanian</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/russian.html">russian</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/salsa.html">salsa</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/schlager.html">schlager</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/ska.html">ska</a></td>
@@ -108,13 +100,54 @@
 </tr>
 <tr>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/trance.html">trance</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/turk.html">turk</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/urban.html">urban</a></td>
-<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/usa.html">usa</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/various.html">various</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/wave.html">wave</a></td>
+<td colspan="2"></td>
+</tr>
+<thead>
+<tr>
+<th colspan="6">location</th>
+</tr>
+</thead>
+<tr>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/france.html">france</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/world.html">world</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/asian.html">asian</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/india.html">india</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/portugal.html">portugal</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/usa.html">usa</a></td>
+</tr>
+<thead>
+<tr>
+<th colspan="6">language</th>
+</tr>
+</thead>
+<tr>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/african.html">african</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/arabic.html">arabic</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/deutsch.html">deutsch</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/italian.html">italian</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/greek.html">greek</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/latin.html">latin</a></td>
+</tr>
+<tr>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/polish.html">polish</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/polka.html">polka</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/romanian.html">romanian</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/russian.html">russian</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/turk.html">turk</a></td>
 <td></td>
+</tr>
+<thead>
+<tr>
+<th colspan="6">miscellaneous</th>
+</tr>
+</thead>
+<tr>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/christian.html">christian</a></td>
+<td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/quran.html">quran</a></td>
+<td colspan="4"></td>
 </tr>
 </tbody></table>
 <p><br></p>
