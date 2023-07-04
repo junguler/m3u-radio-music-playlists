@@ -1,7 +1,6 @@
 <h3 id="listen-to-music-online-using-this-repos-github-page">Listen to music online using this repo's github page</h3>
 <p>all of the stream files in the root folder of this repo can be listened to using their own page on this repo and the amazing <a href="https://github.com/captbaritone/webamp">webamp player</a>, use the playlist buttons or click on the entries and hit play</p>
-<table>
-<thead>
+<table><thead>
 <tr>
 <th colspan="6">decades</th>
 </tr>
@@ -11,10 +10,11 @@
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/70s.html">70s</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/80s.html">80s</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/90s.html">90s</a></td>
-<td colspan="2"></td>
 </tr>
 <thead>
 <tr>
+</tbody></table>
+<table><thead>
 <th colspan="6">genres</th>
 </tr>
 </thead>
@@ -107,6 +107,8 @@
 </tr>
 <thead>
 <tr>
+</tbody></table>
+<table><thead>
 <th colspan="6">location</th>
 </tr>
 </thead>
@@ -120,6 +122,8 @@
 </tr>
 <thead>
 <tr>
+</tbody></table>
+<table><thead>
 <th colspan="6">language</th>
 </tr>
 </thead>
@@ -141,46 +145,14 @@
 </tr>
 <thead>
 <tr>
+</tbody></table>
+<table><thead>
 <th colspan="6">miscellaneous</th>
 </tr>
 </thead>
 <tr>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/christian.html">christian</a></td>
 <td><a href="https://junguler.github.io/m3u-radio-music-playlists/stuff/quran.html">quran</a></td>
-<td colspan="4"></td>
-</tr>
-</tbody></table>
-<p><br></p>
-<p>to listen to other m3u playlists in this repo click on the specific repo for each folder and listen to them from there</p>
-<table>
-<thead>
-<tr>
-<th colspan="6">repo</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://github.com/junguler/listen_to_vtuner">vtuner</a></td>
-<td><a href="https://github.com/junguler/listen_to_openradio.app">openradio.app</a></td>
-<td><a href="https://github.com/junguler/listen_to_zeno.fm">zeno.fm</a></td>
-<td><a href="https://github.com/junguler/listen_to_radiostationusa.fm">radiostationusa.fm</a></td>
-<td><a href="https://github.com/junguler/listen_to_radioonlinelive">radioonlinelive</a></td>
-<td><a href="https://github.com/junguler/listen_to_pea.fm">pea.fm</a></td>
-</tr>
-<tr>
-<td><a href="https://github.com/junguler/listen_to_onlineradio.eu">onlineradio.eu</a></td>
-<td><a href="https://github.com/junguler/listen_to_hit-tuner.net">hit-tuner.net</a></td>
-<td><a href="https://github.com/junguler/listen_to_streema">streema</a></td>
-<td><a href="https://github.com/junguler/listen_to_radioguide.fm">radioguide.fm</a></td>
-<td><a href="https://github.com/junguler/listen_to_internetradio.com">internetradio.com</a></td>
-<td><a href="https://github.com/junguler/listen_to_laut.fm">laut.fm</a></td>
-</tr>
-<tr>
-<td><a href="https://github.com/junguler/listen_to_radio.net">radio.net</a></td>
-<td><a href="https://github.com/junguler/listen_to_onlineradiobox">onlineradiobox</a></td>
-<td><a href="https://github.com/junguler/listen_to_liveonlineradio">liveonlineradio</a></td>
-<td><a href="https://github.com/junguler/listen_to_allradio.net">allradio.net</a></td>
-<td><a href="https://github.com/junguler/listen_to_get-me_radio">get-me_radio</a></td>
-<td></td>
 </tr>
 </tbody></table>
 <p><br></p>
