@@ -12,25 +12,25 @@ m3u radio music playlists
 <h3>index of content</h3>
 
 <ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README.md#how-to-listen">How to listen</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-listen">How to listen</a></li>
 <ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README.md#on-the-web">on the web</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README.md#on-your-devices">on your devices</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#on-the-web">on the web</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#on-your-devices">on your devices</a></li>
 </ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README.md#how-to-download-from-an-station">How to download from an station</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-download-from-an-station">How to download from an station</a></li>
 <ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README.md#as-a-long-audio-file">as a long audio file</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README.md#as-individual-songs">as individual songs</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#as-a-long-audio-file">as a long audio file</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#as-individual-songs">as individual songs</a></li>
 </ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README.md#how-to-download-this-repo">How to download this repo</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-download-this-repo">How to download this repo</a></li>
 <ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README.md#using-git">using git</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README.md#as-a-zip-file">as a zip file</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#using-git">using git</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#as-a-zip-file">as a zip file</a></li>
 </ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README.md#git-stats">git stats</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README.md#sources">sources</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README.md#you">you</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README.md#me">me</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#git-stats">git stats</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#sources">sources</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#you">you</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#me">me</a></li>
 </ul>
 
 <p><br></p>
