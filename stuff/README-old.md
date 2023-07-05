@@ -1,43 +1,4 @@
-<h1>
-m3u radio music playlists 
-</h1>
-
-<table align="right">
-<tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/music.gif"></td>
-</tr>
-</table>
-
-</ul>
-<h3>index of content</h3>
-
-<ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README-new.md#how-to-listen">How to listen</a></li>
-<ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README-new.md#on-the-web">on the web</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README-new.md#on-your-devices">on your devices</a></li>
-</ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README-new.md#how-to-download-from-an-station">How to download from an station</a></li>
-<ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README-new.md#as-a-long-audio-file">as a long audio file</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README-new.md#as-individual-songs">as individual songs</a></li>
-</ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README-new.md#how-to-download-this-repo">How to download this repo</a></li>
-<ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README-new.md#using-git">using git</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README-new.md#as-a-zip-file">as a zip file</a></li>
-</ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README-new.md#git-stats">git stats</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README-new.md#sources">sources</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README-new.md#you">you</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/README-new.md#me">me</a></li>
-</ul>
-
-<p><br></p>
-
-<h3>how to listen</h3>
-
-<h4>on the web</h4>
+<h3 id="listen-to-music-online-using-this-repos-github-page">Listen to music online using this repo's github page</h3>
 <p>all of the stream files in the root folder of this repo can be listened to using their own page on this repo and the amazing <a href="https://github.com/captbaritone/webamp">webamp player</a>, use the playlist buttons or click on the entries and hit play</p>
 <table>
 <thead>
@@ -189,7 +150,7 @@ m3u radio music playlists
 <td colspan="4"></td>
 </tr>
 </tbody></table>
-
+<p><br></p>
 <p>to listen to other m3u playlists in this repo click on the specific repo for each folder and listen to them from there</p>
 <table>
 <thead>
@@ -222,34 +183,47 @@ m3u radio music playlists
 <td></td>
 </tr>
 </tbody></table>
-
+<p><br></p>
 <p>if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc …) you are not able to listen to the most of the streams, here is an explanation from <a href="https://support.google.com/chrome/thread/29505473?hl=en&msgid=29673696">chrome support</a> which tells you why this happens and how to fix it</p>
 <blockquote>
-<p>Usually this error occurs because the radio station you are trying to listen to is running on an unencrypted port (not 443). This is quite common and it's not technically necessary for radio stations to be encrypted but nowadays web browsers like Chrome have started disallowing unencrypted content to be shown in an otherwise encrypted websites. There is a few solutions for you right now:</p>
+  <p>Usually this error occurs because the radio station you are trying to listen to is running on an unencrypted port (not 443). This is quite common and it's not technically necessary for radio stations to be encrypted but nowadays web browsers like Chrome have started disallowing unencrypted content to be shown in an otherwise encrypted websites. There is a few solutions for you right now:</p>
 </blockquote>
 <ul>
 <li><p>Use a different browser like Firefox. For the moment they haven't blocked unencrypted content on an otherwise encrypted page web page.</p></li>
 <li><p>Open Chrome (or other chromium web browsers), go to the website and then click on the padlock icon to the left of the URL box and then from the drop down menu select the 'Site Settings' option, you can then scroll down to the 'Insecure content' option at the bottom of the page and select 'Allow', this will create an exception for the website and allow you to continue using the player as before.</p></li>
 <li><p>download the stream files and play them locally on your pc or other devices which i've talked about further down in this markdown file</p></li>
 </ul>
-
 <p><br></p>
-
-<h4>on your devices</h4>
-<h6>on windows, mac and linux</h6>
+<h3 id="shortcuts">Shortcuts</h3>
 <ul>
-<li>mpv: for the tinkerer types, see my config file for an example</li>
-<li>vlc: if you want an out of the box experience that just works</li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-listen-to-these">How to listen</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-download-a-live-stream-to-my-computer">How to download a stream</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-save-songs-indivudally-by-title-from-a-live-stream">How to save songs indivudally</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#mpv-only-shows-a-black-window-when-listening-to-music-how-to-make-it-pretty">Audio visualization</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#normilize-audio">Normilizing audio</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#i-really-like-mpv-how-do-i-customize-keybinds">Customize keybinds</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#isnt-there-an-easier-way-to-use-and-control-these-using-mpv">Easier m3u consumption</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-download-all-of-the-files">How to download</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#git-stats">Git stats</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#current-and-potential-sources">sources</a></li>
 </ul>
-
-<p>note: i need to investigate players for other devices, i will update this section later</p>
-
 <p><br></p>
-
-<h3>How to download from an station</h3>
-
-<h4>as a long audio file</h4>
-
+<h3 id="extra-streams">Extra Streams</h3>
+<p>this repo now includes a few streams made by me</p>
+<p><code>---everything-full.m3u</code> combines all of the streams sorted by names that are shown in this repo</p>
+<p><code>---everything-lite.m3u</code> is exactly like the everything-full stream but cover images and extra info was removed</p>
+<p><code>---randomized.m3u</code> is exactly like the everything-lite stream but every line was shuffled and randomized</p>
+<p><code>---sorted.m3u</code> is exactly like the everything-lite stream but the links themselves are sorted alphabetically/numerically, it's good for when you have found a good radio station with many different genres of music to listen to all of them in order</p>
+<p>every folder in this repo excluding the <code>stuff</code> folder has these stream files unique to the content of that specific folder</p>
+<p>there is also two newly added files that combine everything including all the folders which have a <code>-repo</code> suffix to them</p>
+<p><br></p>
+<h3 id="how-to-listen-to-these">How to listen to these?</h3>
+<p>in the terminal, do this:</p>
+<pre><code>mpv https:<span >//</span>raw.githubusercontent.com<span >/junguler/m</span>3u-radio-music-playlists<span >/main/</span>trance.m3u
+</code></pre>
+<p>or add/change <code>m3u</code> file association in your os to mpv and double click on any of <code>.m3u</code> files in your file manager</p>
+<p><br></p>
+<h3 id="how-to-download-a-live-stream-to-my-computer">how to download a live-stream to my computer?</h3>
 <p>downloading from these m3u files is not possible as far as i know since they contain multiple streams, but if you want to download from a particular stream you can achieve this by using ffmpeg, i use the most popular (first stream) in the <code>trance.m3u</code> to showcase this, in your terminal change directory to where you want this file to be at (note that lines starting with # are not actual streams and are there for embedding extra info to your media player)</p>
 <pre><code>ffmpeg -y -i http:<span >//</span>stream.dancewave.online:<span >8080</span>/dance.mp3 -c copy dancewave.mp3
 </code></pre>
@@ -265,11 +239,8 @@ m3u radio music playlists
 </code></pre>
 <p>this will save a new mp3 file every minute, if you want to make this longer change <code>-segment_time 60</code> and multiply the number of minutes you want for each file by 60, so if i want my mp3 files to each be 5 minutes i do <code>-segment_time 300</code>  this process goes on forever unless you run out of disk space or if you are not connected to the internet for some reason </p>
 <p>this command can also be stopped using <code>ctrl + c</code> shortcut or the timeout command showcased above so adding <code>timeout 1h</code> in front of the above command stops the whole process after an hour</p>
-
 <p><br></p>
-
-<h4>as individual songs</h4>
-
+<h3 id="how-to-save-songs-indivudally-by-title-from-a-live-stream">How to save songs indivudally by title from a live stream?</h3>
 <p>i have been looking for a way to do this for a while, i found this program <a href="https://streamwriter.org/en/downloads/">streamwriter</a> that does this but unfortunently it's only available on windows, this <a href="https://appdb.winehq.org/objectManager.php?sClass=application&iId=19745">winehq page</a> lists the program as platinum and it should work with wine without any issues but i have not tested it myself as i'm not on linux at the moment and don't have a virtual machine ready either</p>
 <p>download the portable version of the program and extract it somewhere in your hard drive, the first time you open the program it's going to ask a few questions, things like language and where it's going to save downloaded songs, now that you are greeted with the program go to a m3u file of your favorite music genre and copy a stream link to start download, here is mine from the trance.m3u</p>
 <pre><code>http:<span >//</span><span >51.89</span>.<span >148.171</span>:<span >8022</span><span >/stream/</span><span >1</span>/
@@ -278,33 +249,49 @@ m3u radio music playlists
 <p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/streamwriter.jpg" alt="streamwriter" /></p>
 <p>once you are happy with the amount of songs downloaded, right click on the stream and click on <code>stop recording after current title</code></p>
 <p>note that in some rare cases a stream does not broadcasts song titles and if you happen to come accross of these there is really nothing else you can and the program is going to continuously record the stream until you manually stop it</p>
-
 <p><br></p>
-
-<h3>how to download this repo</h3>
-
-<h4>using git</h4>
-
-<p>run a git clone on this repo</p>
+<h3 id="mpv-only-shows-a-black-window-when-listening-to-music-how-to-make-it-pretty">Mpv only shows a black window when listening to music, how to make it pretty?</h3>
+<p>download the <a href="https://raw.githubusercontent.com/mfcc64/mpv-scripts/master/visualizer.lua">visualizer</a> script for mpv and put it in your scripts folder either on <code>~/.config/mpv/scripts</code> on *nix systems </p>
+<p>or <code>C:\users\USERNAME\AppData\Roaming\mpv\scripts\</code> on windows</p>
+<p>put these in your mpv.conf, this is a auto-profile for all audio files</p>
+<pre><code>[audio-only]
+profile-<span >cond</span>=<span >not</span> vid
+profile-restore=copy
+vf-add=rgbashift=rh=<span >-4</span><span >:bv=+</span><span >4</span>
+vf-add=drawbox=w=<span >iw:</span>h=<span >ih:</span>color=<span >00</span>FFFF<span >@0</span>.<span >5</span>
+vf-add=drawbox=x=<span >3</span><span >:y=</span><span >3</span><span >:w=iw-</span><span >6</span><span >:h=ih-</span><span >6</span><span >:color=</span><span >00</span>FF00<span >@0</span>.<span >5</span>
+vf-add=drawbox=x=<span >6</span><span >:y=</span><span >6</span><span >:w=iw-</span><span >12</span><span >:h=ih-</span><span >12</span><span >:color=FFFF00</span><span >@0</span>.<span >5</span>
+vf-add=hue=H=<span >0.1</span>*<span >PI</span>*t
+</code></pre>
+<p><br></p>
+<h3 id="normilize-audio">Normilize Audio</h3>
+<p>depending on the stream some music might be too load and others too quiet, thankfully we can use an ffmpeg filter inside mpv to fix the issue and force all music to be played at the same level, put this line inside your <code>mpv.conf</code> and it will automatically normalize all audio</p>
+<pre><code><span >af</span>=lavfi=[dynaudnorm=f=<span >75</span>:g=<span >25</span>:p=<span >0</span>.<span >55</span>]
+</code></pre>
+<p><br></p>
+<h3 id="i-really-like-mpv-how-do-i-customize-keybinds">I really like mpv, how do i customize keybinds?</h3>
+<p>make a file called input.conf either at the folder your mpv.exe is on windows or on ~/.config/mpv/ if you are *nix systems, put these inside it for using page-up and page-down for changing radio stations</p>
+<pre><code>PGUP playlist-prev ; show-text <span >&quot;<span >${playlist-<span >pos</span>-<span >1</span>}</span>/<span >${playlist-count}</span>&quot;</span>
+PGDWN playlist-<span >next</span> ; show-text <span >&quot;<span >${playlist-<span >pos</span>-<span >1</span>}</span>/<span >${playlist-count}</span>&quot;</span>
+</code></pre>
+<p><br></p>
+<h3 id="isnt-there-an-easier-way-to-use-and-control-these-using-mpv">Isn't there an easier way to use and control these using mpv?</h3>
+<p>yes there is, use the <a href="https://github.com/gthreepw00d/mpv-iptv">IPTV script</a> which comes with fuzzy finding stations, better keybinds and …</p>
+<p><br></p>
+<h3 id="how-to-download-all-of-the-files">How to download all of the files?</h3>
+<p>use the <a href="https://github.com/junguler/m3u-radio-music-playlists/archive/refs/heads/main.zip">auto-generated zip</a> </p>
+<p>you can also run a git clone on this repo</p>
 <pre><code>git clone https:<span >//gi</span>thub.com<span >/junguler/m</span>3u-radio-music-playlists.git
 </code></pre>
 <p>for further updates cd into the folder and do <code>git pull</code></p>
-
-<h4>as a zip file</h4>
-
-<p>download the <a href="https://github.com/junguler/m3u-radio-music-playlists/archive/refs/heads/main.zip">auto-generated zip file</a> </p>
-
 <p><br></p>
-
-<h3>git Stats</h3>
+<h3 id="git-stats">Git Stats</h3>
 <p>since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them every two weeks so you can have feel for how this repo is doing</p>
 <p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_1.jpg" alt="" /></p>
 <p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_2.jpg" alt="" /></p>
 <p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_3.jpg" alt="" /></p>
-
 <p><br></p>
-
-<h3>sources</h3>
+<h3 id="current-and-potential-sources">Current and potential sources</h3>
 <p>here is a list of websites i've scraped from already and included m3u streams for in this repo</p>
 <table>
 <thead>
@@ -405,26 +392,60 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/get-me_radio.sh">get-me_radio.sh</a></td>
 </tr>
 </tbody></table>
-<p>my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)</p>
-
+<p>my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloadflare to avoid being easily scraped)</p>
 <p><br></p>
-
-<table align="right">
+<h3 id="websites-i-cant-scrape">websites i can't scrape</h3>
+<p>here is a list of websites i considered scraping but was unable to, this list will be kept updated</p>
+<table>
+<thead>
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/headphone.gif"></td>
+<th>website</th>
+<th>reason</th>
 </tr>
-</table>
-
-<h3>you</h3>
-<ul>
-<li>found a bug or issue? open an issue or discussion</li>
-<li>know a radio website you like to be scraped? suggest it to me</li>
-<li>have knowledge on how to improve something? don't hesitate to share it with me</li>
-</ul>
-
-<h3>me</h3>
-<ul>
-<li>i'm planning to extend this repo as much as possible</li>
-<li>trying to improve the quality of everything regarding this repo</li>
-<li>looking for more websites to scrape</li>
-</ul>
+</thead>
+<tbody><tr>
+<td><a href="https://tunein.com/radio/home/">https://tunein.com/radio/home/</a></td>
+<td>cloudflare protected</td>
+</tr>
+<tr>
+<td><a href="https://www.accuradio.com/">https://www.accuradio.com/</a></td>
+<td>cloudflare protected</td>
+</tr>
+<tr>
+<td><a href="https://internetradiouk.com">https://internetradiouk.com</a></td>
+<td>cloudflare protected</td>
+</tr>
+<tr>
+<td><a href="https://www.moreradio.online/">https://www.moreradio.online/</a></td>
+<td>cloudflare protected</td>
+</tr>
+<tr>
+<td><a href="http://radio.garden/">http://radio.garden/</a></td>
+<td>i don&#39;t understand this website</td>
+</tr>
+<tr>
+<td><a href="https://www.radio-uk.co.uk/">https://www.radio-uk.co.uk/</a></td>
+<td>uses a cipher system to hide stream link</td>
+</tr>
+<tr>
+<td><a href="https://mytuner-radio.com/">https://mytuner-radio.com/</a></td>
+<td>uses a cipher system to hide stream link</td>
+</tr>
+<tr>
+<td><a href="https://www.fmradiofree.com/">https://www.fmradiofree.com/</a></td>
+<td>uses a cipher system to hide stream link</td>
+</tr>
+<tr>
+<td><a href="https://tuneyou.com/radio/music/">https://tuneyou.com/radio/music/</a></td>
+<td>could not extract stream link</td>
+</tr>
+<tr>
+<td><a href="https://live365.com/">https://live365.com/</a></td>
+<td>could not get passed the first page of each genres due to js generated pages</td>
+</tr>
+<tr>
+<td><a href="https://lixty.com/en/genres">https://lixty.com/en/genres</a></td>
+<td>website was either too slow or too fast to put rate limiting restrictions on me</td>
+</tr>
+</tbody></table>
+<p>see a website you like in this list and know how to overcome the issues to scrape them? open an issue or discussion and share you knowledge with me</p>
