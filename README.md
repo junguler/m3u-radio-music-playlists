@@ -8,7 +8,6 @@ m3u radio music playlists
 </tr>
 </table>
 
-</ul>
 <h3>index of content</h3>
 
 <ul>
@@ -238,7 +237,7 @@ m3u radio music playlists
 <h4>on your devices</h4>
 <h6>on windows, mac and linux</h6>
 <ul>
-<li>mpv: for the tinkerer types, see my config file for an example</li>
+<li>mpv: for the tinkerer types, see my <a href="https://github.com/junguler/win_confs/tree/main/mpv/portable_config">config files</a> for an example</li>
 <li>vlc: if you want an out of the box experience that just works</li>
 </ul>
 
