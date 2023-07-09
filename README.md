@@ -218,7 +218,7 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/listen_to_liveonlineradio">liveonlineradio</a></td>
 <td><a href="https://github.com/junguler/listen_to_allradio.net">allradio.net</a></td>
 <td><a href="https://github.com/junguler/listen_to_get-me_radio">get-me_radio</a></td>
-<td></td>
+<td><a href="https://github.com/junguler/listen_to_vo-radio">vo-radio</a></td>
 </tr>
 </tbody></table>
 
