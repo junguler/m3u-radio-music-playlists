@@ -432,3 +432,12 @@ m3u radio music playlists
 <li>trying to improve the quality of everything regarding this repo</li>
 <li>looking for more websites to scrape</li>
 </ul>
+
+<p><br></p>
+
+<h3>related projects</h3>
+<ul>
+<li><a href="https://github.com/gabrielproencaalves/focus">focus</a> by <a href="https://github.com/gabrielproencaalves">gabriel proenca alves</a> : a fork of this repo that includes a script to easily listen to m3u streams using the <a href="https://www.mpg123.de/">mpg123</a> linux audio player</li>
+<li><a href="https://github.com/konzumpro/m3u-radio-music-playlists-moode">*-moode</a> by <a href="https://github.com/konzumpro">konzumpro</a> : a fork of this repo that converts m3u files in the root of this repo to <a href="https://github.com/moode-player/moode">MoOde</a> compatible stream files</li>
+<li><a href="https://github.com/LionyxML/pyradio-m3u-to-playlist">pyradio-m3u-to-playlist</a> by <a href="https://github.com/LionyxML">Rahul M. Juliato (LionyxML)</a> : converts any m3u file to <a href="https://github.com/coderholic/pyradio">pyradio</a> compatible csv playlist file, includes the everything-full.m3u file in this repo as a quick way to generate a playlist</li>
+</ul>
