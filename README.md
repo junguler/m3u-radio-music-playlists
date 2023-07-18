@@ -409,6 +409,11 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/vo-radio">/vo-radio</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/vo-radio.sh">vo-radio.sh</a></td>
 </tr>
+<tr>
+<td><a href="https://radiovolna.net/en/">https://radiovolna.net/en/</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/radio-volna">/radio-volna</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/radio-volna.sh">radio-volna.sh</a></td>
+</tr>
 </tbody></table>
 <p>my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)</p>
 
