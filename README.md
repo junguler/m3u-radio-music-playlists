@@ -451,3 +451,14 @@ m3u radio music playlists
 <li><a href="https://github.com/konzumpro/m3u-radio-music-playlists-moode">*-moode</a> by <a href="https://github.com/konzumpro">konzumpro</a> : a fork of this repo that converts m3u files in the root of this repo to <a href="https://github.com/moode-player/moode">MoOde</a> compatible stream files</li>
 <li><a href="https://github.com/LionyxML/pyradio-m3u-to-playlist">pyradio-m3u-to-playlist</a> by <a href="https://github.com/LionyxML">Rahul M. Juliato (LionyxML)</a> : converts any m3u file to <a href="https://github.com/coderholic/pyradio">pyradio</a> compatible csv playlist file, includes the everything-full.m3u file in this repo as a quick way to generate a playlist</li>
 </ul>
+
+<p><br></p>
+
+<h3>acknowledgement, thanks</h3>
+<ul>
+<li>to github for hosting this repo and the free access to it's pages and actions</li>
+<li>to all of the website owners and admins for making those awesome radio websites</li>
+<li>to <a href="https://github.com/captbaritone">jordan eldredge (captbaritone)</a> for making the amazing <a href="https://github.com/captbaritone/webamp">webamp</a> player which i've used for playing these radio streams in the online section of these repos</li>
+<li>to all those websites i stole code snippets from to scrape these websites</li>
+<li>to you</li>
+</ul>
