@@ -31,6 +31,7 @@ m3u radio music playlists
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#you">you</a></li>
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#me">me</a></li>
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#related-projects">related projects</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#acknowledgement-thanks">acknowledgement</a></li>
 </ul>
 
 <p><br></p>
