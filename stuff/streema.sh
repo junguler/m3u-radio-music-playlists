@@ -13,7 +13,7 @@ for i in "" \?page={2..10} ; do for j in $(cat sub-genres.txt) ; do curl -s http
 for i in "" \?page={2..10} ; do for j in $(cat countries.txt) ; do curl -s https://streema.com/radios/country/$j$i | htmlq -a href a | grep "/radios/" | grep -v "/social/\|page=\|country/" | cut -c9- | grep -v "region/" >> A-$j.txt ; echo -e "$j - $i" ; done ; done
 
 # scarpe the streams from each page
-for i in A-*.txt ; do for j in $(cat $i) ; do curl -s http://streema.com/radios/play/$j > mep1 ; cat mep1 | htmlq -t h3 | awk NF | sed -e 's/[ \t]*//' | awk '{print "#EXTINF:-1 , "$0}' >> A$i ; cat mep1 | grep "data-src=" | awk -F "'" '{print $2}' | sed 's/https:\/\/stream.streema.com\/?url=//g' | sed 's/\;//g' | grep -v "<div id" | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
+for i in A-*.txt ; do for j in $(cat $i) ; do curl -s http://streema.com/radios/play/$j > mep1 ; cat mep1 | htmlq -t h3 | awk NF | sed -e 's/[ \t]*//' | awk '{print "#EXTINF:-1,"$0}' >> A$i ; cat mep1 | grep "data-src=" | awk -F "'" '{print $2}' | sed 's/https:\/\/stream.streema.com\/?url=//g' | sed 's/\;//g' | grep -v "<div id" | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
 
 # remove possible duplicates in streams
 for i in AA-*.txt ; do cat $i | awk '!seen[$0]++' | grep -B1 "http" > A$i ; echo -e $i ; done

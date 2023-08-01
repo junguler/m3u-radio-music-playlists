@@ -13,7 +13,7 @@ for i in $(cat genres.txt) ; do curl -s https://onlineradiobox.com/genre/$i/ | h
 for i in $(cat genres.txt) ; do for j in \?p={1..200} ; do curl -s https://onlineradiobox.com/genre/$i/$j | htmlq .stations-list button '.station_play, .b-play' | grep -oP 'radioname="\K[^"]+|stream="\K[^"]+' | sed 's/\;//g' >> A-$i.txt ; echo -e "$i - $j" ; done ; done
 
 # convert temp files to proper format
-for i in A-*.txt ; do cat $i | awk '!seen[$0]++' | awk '{print "#EXTINF:-1 , "$0}' | sed 's/\;//g' | sed 's/#EXTINF:-1 , http/http/g' > A$i ; done
+for i in A-*.txt ; do cat $i | awk '!seen[$0]++' | awk '{print "#EXTINF:-1,"$0}' | sed 's/\;//g' | sed 's/#EXTINF:-1 , http/http/g' > A$i ; done
 
 # convert files to m3u extension
 for i in AA-*.txt ; do sed '1s/^/#EXTM3U\n/' $i > $i.m3u ; done

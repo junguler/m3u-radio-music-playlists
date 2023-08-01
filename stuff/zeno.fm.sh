@@ -11,7 +11,7 @@ for i in {1..100} ; do for j in $(cat countries.txt) ; do curl -s "https://zeno.
 for i in {1..100} ; do for j in $(cat languages.txt) ; do curl -s "https://zeno.fm/api/stations/?query=&limit=100&genre=&country=&language=$j&page=$i" | jq -r '.[].url' | awk -F '/' '{print $5}' >> A-$j.txt ; echo -e "$j - $i" ; done ; done
 
 # scarpe the streams from each page
-for i in A-*.txt ; do for j in $(cat $i) ; do curl -s https://zeno.fm/radio/$j/ > mep1 ; cat mep1 | htmlq -t h1 | awk '{print "#EXTINF:-1 , "$0}' >> A$i ; cat mep1 | grep -Po '"streamURL": *\K"[^"]*"' | sed 's/"//g' | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
+for i in A-*.txt ; do for j in $(cat $i) ; do curl -s https://zeno.fm/radio/$j/ > mep1 ; cat mep1 | htmlq -t h1 | awk '{print "#EXTINF:-1,"$0}' >> A$i ; cat mep1 | grep -Po '"streamURL": *\K"[^"]*"' | sed 's/"//g' | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
 
 # convert links to m3u streams
 for i in AA-*.txt ; do sed '1s/^/#EXTM3U\n/' $i > $i.m3u ; done

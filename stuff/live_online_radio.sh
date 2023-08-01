@@ -16,7 +16,7 @@ for i in *.txt ; do cat $i | awk '!seen[$0]++' > A-$i ; done
 
 # scrape the links from each text file to a m3u output
 #for i in A-*.txt ; do for j in $(cat $i) ; do curl -s $j | htmlq audio | grep -oP 'src="\K[^"]+' | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "\n$i - $j - done\n" ; done ; done
-for i in A-*.txt ; do for j in $(cat $i) ; do curl -s https://liveonlineradio.net/$j > mep1 ; cat mep1 | htmlq --text h1 | sed '/^$/d' | ( echo "#EXTINF:-1 , " && cat) | paste -d "" -s | awk 'length>15' >> A$i ; cat mep1 | htmlq audio | grep -oP 'src="\K[^"]+' | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
+for i in A-*.txt ; do for j in $(cat $i) ; do curl -s https://liveonlineradio.net/$j > mep1 ; cat mep1 | htmlq --text h1 | sed '/^$/d' | ( echo "#EXTINF:-1," && cat) | paste -d "" -s | awk 'length>15' >> A$i ; cat mep1 | htmlq audio | grep -oP 'src="\K[^"]+' | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
 #for i in A-*.txt ; do for j in $(cat $i) ; do curl -s https://liveonlineradio.net/$j > mep1 ; { echo "#EXTINF:-1 , " & cat mep1 | htmlq --text h1 | sed '/^$/d' ; } | paste -d "" -s | awk 'length>15' >> A$i ; cat mep1 | htmlq audio | grep -oP 'src="\K[^"]+' | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
 
 # remove streams that don't have a title

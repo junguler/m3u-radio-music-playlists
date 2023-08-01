@@ -24,7 +24,7 @@ for j in $(cat germany.txt) ; do curl -s http://www.hit-tuner.net/en/germany/sta
 
 # scrape links 
 #for i in A-*.txt ; do for j in $(cat $i) ; do curl -s http://www.hit-tuner.net/en/worldwide/radio/$j | grep "\"name\":\"" | awk -F '"' '{print $4}' | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done 
-for i in A-*.txt ; do for j in $(cat $i) ; do curl -s http://www.hit-tuner.net/en/worldwide/radio/$j > mep1 ; cat mep1 | grep "<b title=" | awk -F '"' '{print $4}' | awk '{print "#EXTINF:-1 , "$0}' >> A$i ; cat mep1 | grep "var radio_stream" | awk -F '"' '{print $2}' | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
+for i in A-*.txt ; do for j in $(cat $i) ; do curl -s http://www.hit-tuner.net/en/worldwide/radio/$j > mep1 ; cat mep1 | grep "<b title=" | awk -F '"' '{print $4}' | awk '{print "#EXTINF:-1,"$0}' >> A$i ; cat mep1 | grep "var radio_stream" | awk -F '"' '{print $2}' | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
 
 # scrape germany links since the website strcuture is a bit different
 for i in A-*.txt ; do for j in $(cat $i) ; do curl -s http://www.hit-tuner.net/en/germany/radio/$j > mep1 ; cat mep1 | grep "<b title=" | awk -F '"' '{print $4}' | awk '{print "#EXTINF:-1 , "$0}' >> A$i ; cat mep1 | grep "var radio_stream" | awk -F '"' '{print $2}' | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done

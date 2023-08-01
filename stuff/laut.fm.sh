@@ -10,7 +10,7 @@ for i in $(cat genres.txt) ; do curl -s https://laut.fm/fm-api/stations/genre/$i
 for i in A-*.txt ; do sed -i 's/\r$//' $i ; done
 
 # convert page titles to streams, no need to put any further load on the website
-for i in A-*.txt ; do for j in $(cat $i) ; do echo "#EXTINF:-1 , $(echo $j | sed -e 's/-/ /g' -e 's/_/ /g')\nhttp://$j.stream.laut.fm/$j" >> A$i ; done ; done
+for i in A-*.txt ; do for j in $(cat $i) ; do echo "#EXTINF:-1,$(echo $j | sed -e 's/-/ /g' -e 's/_/ /g')\nhttp://$j.stream.laut.fm/$j" >> A$i ; done ; done
 
 # convert links to m3u streams
 for i in AA-*.txt ; do sed '1s/^/#EXTM3U\n/' $i > $i.m3u ; done

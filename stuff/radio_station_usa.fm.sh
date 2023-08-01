@@ -13,7 +13,7 @@ for i in "" \?page={2..10} ; do for j in $(cat states.txt) ; do curl -s https://
 for i in "" \?page={2..140} ; do for j in $(cat misc.txt) ; do curl -s https://radiostationusa.fm/$j$i | htmlq -a href a | grep "online" | awk -F '/' '{print $2}' | awk NF >> A-$j.txt ; echo -e "$j - $i" ; done ; done
 
 # scarpe the streams from each page
-for i in A-*.txt ; do for j in $(cat $i) ; do curl -s https://radiostationusa.fm/online/$j > mep1 ; cat mep1 | htmlq -t h1 | awk '{print "#EXTINF:-1 , "$0}' >> A$i ; cat mep1 | grep "class=\"play\"" | grep -Po 'url=*\K"[^"]*"' | sed 's/"//g' | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
+for i in A-*.txt ; do for j in $(cat $i) ; do curl -s https://radiostationusa.fm/online/$j > mep1 ; cat mep1 | htmlq -t h1 | awk '{print "#EXTINF:-1,"$0}' >> A$i ; cat mep1 | grep "class=\"play\"" | grep -Po 'url=*\K"[^"]*"' | sed 's/"//g' | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
 
 
 # convert links to m3u streams
