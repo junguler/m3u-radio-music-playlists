@@ -8,3 +8,9 @@ for F in * ; do NEWNAME=$(echo "$F" | tr '[:upper:]' '[:lower:]') ; mv "$F" "$NE
 
 # put all files into folders starting with the first character in their names 
 for i in *.m3u ; do dir=$(echo $i | cut -c 1 -) ; mkdir -p $dir ; mv $i $dir ; done
+
+# add back "#EXTM3U" to files
+for i in $(find . -type f -name "*.m3u") ; do sed -i '1s/^/#EXTM3U\n/' $i ; done
+
+# remove empty lines
+for i in $(find . -type f -name "*.m3u") ; do sed -i '/^$/d' $i ; done
