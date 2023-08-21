@@ -155,8 +155,6 @@ http://mr-stream.mediaconnect.hu/4742/mr3hq.mp3
 http://streams.br.de/bayern2sued_2.m3u
 #EXTINF:-1,Bayern 3
 http://br-br3-live.cast.addradio.de/br/br3/live/mp3/128/stream.mp3
-#EXTINF:-1,Bayern 3
-https://dispatcher.rndfnk.com/br/br3/live/mp3/mid?aggregator=web
 #EXTINF:-1,Bayern 3 (56 kbit/s)
 http://br-br3-live.cast.addradio.de/br/br3/live/mp3/56/stream.mp3
 #EXTINF:-1,Biblia Husema Fm
@@ -221,8 +219,6 @@ http://46.4.48.7:9494/stream
 http://tunein.streamguys1.com/cnn-new?ads.cust_params=partnerId%253dydvgH5BP%2526ads_partner_alias%253dydvgH5BP%2526premium%253dfalse%2526abtest%253d%2526language%253den-US%2526stationId%253ds20407%2526is_ondemand%253dfalse%2526genre_id%253dg3124%2526class%253dtalk%25252cspoken%25252cnews%2526is_family%253dfalse%2526is_mature%253dfalse%2526country_region_id%253d227%2526station_language%253denglish%2526programId%253dp1379611%2526is_event%253dfalse\u0026url=https%3a%2f%2ftunein.com%2fradio%2fs20407\u0026description_url=https%3a%2f%2ftunein.com%2fradio%2fs20407\u0026ads.npa=1\u0026ads.gdfp_req=1\u0026aw_0_1st.playerid=ydvgH5BP\u0026aw_0_1st.skey=1604496619\u0026aw_0_1st.platform=tunein
 #EXTINF:-1,CNR-1 中国之声
 https://jwplay.hebyun.com.cn/live/cctvzgbc/1500k/tzwj_video.m3u8
-#EXTINF:-1,CNR-1 中国之声
-http://zbbf2.ahbztv.com/live/4f3.m3u8
 #EXTINF:-1,CNR-13 维语广播
 http://satellitepull.cnr.cn/live/wxwygb/playlist.m3u8
 #EXTINF:-1,CNR-15 中国交通广播（山西版）
@@ -239,20 +235,12 @@ http://icecast2.play.cz/crobrno128.mp3
 http://icecast2.play.cz/crocb128.mp3
 #EXTINF:-1,ČRo D-dur
 http://icecast5.play.cz/croddur-128.mp3
-#EXTINF:-1,ČRo D-dur
-http://icecast1.play.cz:8000/croddur32aac
 #EXTINF:-1,ČRo Dvojka
 http://icecast1.play.cz:8000/cro2-32aac
-#EXTINF:-1,ČRo Dvojka
-http://icecast6.play.cz/cro2-128.mp3
 #EXTINF:-1,ČRo Hradec Králové
 http://icecast2.play.cz/crohk128.mp3
 #EXTINF:-1,ČRo Jazz
 http://icecast1.play.cz/crojazz128.mp3
-#EXTINF:-1,ČRo Jazz
-http://icecast1.play.cz:8000/crojazz32aac
-#EXTINF:-1,ČRo Jazz
-http://amp.cesnet.cz:8000/cro-jazz.flac
 #EXTINF:-1,ČRo Karlovy Vary
 http://icecast2.play.cz/crokv128.mp3
 #EXTINF:-1,ČRo Liberec
@@ -273,12 +261,8 @@ http://icecast3.play.cz:8000/crojuniormaxi32aac
 http://icecast7.play.cz:8000/crojuniormini32.mp3
 #EXTINF:-1,ČRo Radio Wave
 http://icecast1.play.cz:8000/crowave32aac
-#EXTINF:-1,ČRo Radio Wave
-http://amp.cesnet.cz:8000/cro-radio-wave-256.ogg
 #EXTINF:-1,ČRo Radiožurnál
 http://icecast8.play.cz/cro1-128.mp3
-#EXTINF:-1,ČRo Radiožurnál
-http://icecast1.play.cz:8000/cro132aac
 #EXTINF:-1,ČRO Radiožurnál Sport
 https://rozhlas2.stream/sport_mp3_256.mp3
 #EXTINF:-1,ČRo Regina DAB Praha
@@ -289,10 +273,6 @@ http://icecast2.play.cz/croregion128.mp3
 http://icecast2.play.cz/crosever128.mp3
 #EXTINF:-1,ČRo Vltava
 http://icecast5.play.cz/cro3-128.mp3
-#EXTINF:-1,ČRo Vltava
-http://icecast2.play.cz:8000/cro3-32aac
-#EXTINF:-1,ČRo Vltava
-https://ice3.abradio.cz/cro3-128.aac
 #EXTINF:-1,ČRo Vysočina
 http://icecast2.play.cz/crovysocina128.mp3
 #EXTINF:-1,ČRo Wave
@@ -391,24 +371,16 @@ http://icecast.radiofrance.fr/fiprock-hifi.aac
 http://makrodigital.com:8014/radioforevermusic.m3u
 #EXTINF:-1,France Bleu Alsace
 https://stream.radiofrance.fr/fbalsace/fbalsace.m3u8?id=radiofrance
-#EXTINF:-1,France Bleu Alsace
-https://icecast.radiofrance.fr/fbalsace-midfi.mp3
 #EXTINF:-1,France Bleu Paris
 http://direct.francebleu.fr/live/fb1071-midfi.mp3
 #EXTINF:-1,France Culture
 http://icecast.radiofrance.fr/franceculture-midfi.mp3
-#EXTINF:-1,France Culture
-http://icecast.radiofrance.fr/franceculture-hifi.aac
 #EXTINF:-1,France Info
 http://icecast.radiofrance.fr/franceinfo-hifi.aac
 #EXTINF:-1,France Inter
 https://icecast.radiofrance.fr/franceinter-hifi.aac
 #EXTINF:-1,France Musique
 http://direct.francemusique.fr/live/francemusique-hifi.aac?ID=radiofrance
-#EXTINF:-1,France Musique
-http://icecast.radiofrance.fr/francemusique-hifi.aac
-#EXTINF:-1,France Musique
-http://direct.francemusique.fr/live/francemusique-midfi.mp3
 #EXTINF:-1,France Musique Classique Easy
 http://icecast.radiofrance.fr/francemusiqueeasyclassique-hifi.aac
 #EXTINF:-1,France Musique Classique Plus
@@ -487,8 +459,6 @@ http://colima.radio.wnsol.com:8230/stream.mp3
 http://radio.wnsol.com:8240/stream.mp3
 #EXTINF:-1,Impact FM
 http://109.166.241.233:8500/
-#EXTINF:-1,Impact FM
-http://109.166.241.233:8500/
 #EXTINF:-1,Indie 102.3
 https://stream1.cprnetwork.org/cpr3_lo
 #EXTINF:-1,Inforadio
@@ -501,8 +471,6 @@ https://sp2.servidorrprivado.com/8354/stream
 https://sp2.servidorrprivado.com/8354/puertovallarta
 #EXTINF:-1,Jalisco Radio (FM) (Ciudad Guzmán) - 107.1 FM - XHCGJ-FM - Gobierno del Estado de Jalisco - Ciudad Guzmán, JC
 https://sp2.servidorrprivado.com/8136/cdadguzman
-#EXTINF:-1,Jalisco Radio (FM) (Ciudad Guzmán) - 107.1 FM - XHCGJ-FM - Gobierno del Estado de Jalisco - Ciudad Guzmán, JC
-https://sp2.servidorrprivado.com/8136/ciudadguzman
 #EXTINF:-1,Jalisco Radio (FM) (Guadalajara) - 96.3 FM - XEJB-FM - Gobierno del Estado de Jalisco - Guadalajara, JC
 https://sp2.servidorrprivado.com/8136/guadalajarafm
 #EXTINF:-1,KACU 89.5 "Abilene Public Radio", TX
@@ -619,10 +587,6 @@ http://kera-ice.streamguys.us/keralive
 http://playerservices.streamtheworld.com/m3u/KETRFM.m3u
 #EXTINF:-1,KEXP 90.3 Seattle, WA
 http://live-mp3-128.kexp.org/kexp128.mp3
-#EXTINF:-1,KEXP 90.3 Seattle, WA
-http://live-mp3-128.kexp.org:8000/
-#EXTINF:-1,KEXP 90.3 Seattle, WA
-http://live-aacplus-64.kexp.org/kexp64.aac
 #EXTINF:-1,KFSK 100.9 Petersburg, AK
 http://amber.streamguys.com:4620/kfsk
 #EXTINF:-1,KGOU
@@ -801,8 +765,6 @@ http://75.102.43.196/kwmu3
 http://streams.nwpr.org:8000/NWPRNEWS
 #EXTINF:-1,KXCV 90.5 "Northwest Missouri Public Radio" Maryville, MO
 http://198.209.246.63:8000/
-#EXTINF:-1,KXCV-HD2 "Northwest Missouri Public Radio" Maryville, MO
-http://198.209.246.63:8000/
 #EXTINF:-1,KXLL 100.7 "Excellent Radio" Juneau, AK
 http://provisioning.streamtheworld.com/pls/KXLLFM.pls
 #EXTINF:-1,KXWT 91.3 "West Texas Public Radio" Odessa, TX
@@ -847,8 +809,6 @@ http://streamingcwsradio30.com:8262/stream
 https://playerservices.streamtheworld.com/api/livestream-redirect/KUFMFM.mp3
 #EXTINF:-1,Mouv'
 http://icecast.radiofrance.fr/mouv-hifi.aac
-#EXTINF:-1,Mouv'
-http://aechai9hib.lb.vip.cdn.dvmr.fr/mouv-midfi.mp3
 #EXTINF:-1,Mouv' - 100% Mix
 https://icecast.radiofrance.fr/mouv100p100mix-hifi.aac
 #EXTINF:-1,Mouv' (LQ)
@@ -875,10 +835,6 @@ http://radyomaximum.kesintisizyayin.com:9970/
 http://mp3.rtvslo.si/mmr
 #EXTINF:-1,NB-Radiotreff 88,0
 http://mmv-mediathek.de:8000/live160
-#EXTINF:-1,NB-Radiotreff 88,0
-http://mmv-mediathek.de:8000/live64
-#EXTINF:-1,NB-Radiotreff 88,0
-http://mmv-mediathek.de:8000/stream.ogg
 #EXTINF:-1,NCPR - North Country Public Radio
 https://ncpr-ice.streamguys1.com/ncpr-96k.mp3
 #EXTINF:-1,Nemzetiségi adások
@@ -955,8 +911,6 @@ http://shoutcast.controlpanel.si:2199/tunein/primorskival-stream.pls
 https://purplecurrent.stream.publicradio.org/purplecurrent.mp3
 #EXTINF:-1,Radio 5 Galicia - RNE
 https://crtve-rne5-lcg.cast.addradio.de/crtve/rne5/lcg/mp3/high
-#EXTINF:-1,Radio 5 Galicia - RNE
-https://crtve-ice-edge-2001-fra-eco-cdn.cast.addradio.de/crtve/rne5/lcg/mp3/high?_art=dj0yJmlwPTgzLjM1Ljc5LjE1MiZpZD1pY3NjeGwtM2c0M3hzNG9iJnQ9MTYxNTA2MTc4MCZzPTc4NjZmMjljI2Q0MjhmMTgyYzcxZWRmNmI2ZWE5ZDZjZTgwYTQ2OTVm
 #EXTINF:-1,Radio 710 (Ciudad de México) - 710 AM - XEMP-AM - IMER - Ciudad de México
 https://s2.mexside.net/8028/stream
 #EXTINF:-1,Radio 90.vier
@@ -1135,26 +1089,16 @@ http://stream.srg-ssr.ch/m/rsc_de/mp3_128
 http://www.radioswissclassic.ch/it/live/aacp.m3u
 #EXTINF:-1,Radio Swiss Jazz
 http://www.radioswissjazz.ch/live/aacp32.m3u
-#EXTINF:-1,Radio Swiss Jazz
-http://stream.srg-ssr.ch/m/rsj/aacp_96
-#EXTINF:-1,Radio Swiss Jazz
-http://stream.srg-ssr.ch/m/rsj/mp3_128
 #EXTINF:-1,Radio Swiss Pop
 http://www.radioswisspop.ch/live/aacp32.m3u
-#EXTINF:-1,Radio Swiss Pop
-http://stream.srg-ssr.ch/m/rsp/mp3_128
 #EXTINF:-1,Radio Timișoara
 http://89.238.227.6:8354/
 #EXTINF:-1,Radio Tlaxcala - 1430 AM - XETT-AM - CORACYT - Tlaxcala, Tlaxcala
-https://radio11.mega00.com/8022/stream
-#EXTINF:-1,Radio Tlaxcala (Tlaxcala) - 1430 AM - XETT-AM - CORACYT - Tlaxcala, Tlaxcala
 https://radio11.mega00.com/8022/stream
 #EXTINF:-1,Radio Tonga 101.7 Nuku'alofa
 http://tbcletio.serverroom.us:8142/stream.mp3
 #EXTINF:-1,Radio Tranquila Manele
 https://radio.ascultatare.ro:8032/stream
-#EXTINF:-1,Radio Tranquila Manele
-http://145.239.131.24:8032/stream
 #EXTINF:-1,Radio UAdeO (Los Mochis) - 89.3 FM - XHUDO-FM - Universidad Autónoma de Occidente - Los Mochis, Sinaloa
 https://xhudo-megacaster.radioca.st/stream
 #EXTINF:-1,Radio UNAM (Ciudad de México) - 860 AM - XEUN-AM - UNAM (Universidad Nacional Autónoma de México) - Ciudad de México
@@ -1179,8 +1123,6 @@ https://58fe359775f31.streamlock.net/radioice/radioice.stream/chunklist_w8036287
 https://streamingecuador.net:9070/radiovigia.m3u
 #EXTINF:-1,Radio Wave
 https://rozhlas.stream/wave_aac_32.aac
-#EXTINF:-1,Radio Wave
-http://rozhlas.stream/wave_mp3_256.mp3
 #EXTINF:-1,Radio West
 https://liveradio.omroepwest.nl/
 #EXTINF:-1,Radio Wrzesnia
@@ -1193,8 +1135,6 @@ https://cp1.sednastream.com/proxy/radioone94?mp=/stream
 https://live.radio-selection.de/onair
 #EXTINF:-1,Radyo Atasehir
 http://162.254.207.45:9300/listen.pls?sid=1
-#EXTINF:-1,Radyo Maximum
-http://radyomaximum.kesintisizyayin.com:9970/
 #EXTINF:-1,Rai 1 Friuli Venezia Giulia
 https://icestreaming.rai.it/1.mp3
 #EXTINF:-1,Rai Alto Adige
@@ -1209,12 +1149,8 @@ http://icestreaming.rai.it/7.mp3
 http://icestreaming.rai.it/6.mp3
 #EXTINF:-1,Rai Radio 1
 http://icestreaming.rai.it/1.mp3
-#EXTINF:-1,Rai Radio 1
-http://icestreaming.rai.it/1.mp3
 #EXTINF:-1,Rai Radio 1 Sport
 http://icestreaming.rai.it/13.mp3
-#EXTINF:-1,Rai Radio 2
-http://icestreaming.rai.it/2.mp3
 #EXTINF:-1,Rai Radio 2
 http://icestreaming.rai.it/2.mp3
 #EXTINF:-1,Rai Radio 3
@@ -1227,8 +1163,6 @@ http://icestreaming.rai.it/11.mp3
 http://icestreaming.rai.it/10.mp3
 #EXTINF:-1,Rai Radio Techetè
 http://icestreaming.rai.it/9.mp3
-#EXTINF:-1,Rai Radio Tutta italiana
-http://icestreaming.rai.it/1.mp3
 #EXTINF:-1,Rai Radio Tutta italiana
 http://icestreaming.rai.it/4.mp3
 #EXTINF:-1,Rai Südtirol
@@ -1267,8 +1201,6 @@ https://rthkaudio5-lh.akamaihd.net/i/radio5_1@355868/index_56_a-p.m3u8
 http://stream.srg-ssr.ch/m/couleur3/mp3_128
 #EXTINF:-1,RTS Espace 2
 http://stream.srg-ssr.ch/espace-2/mp3_128.m3u
-#EXTINF:-1,RTS Espace 2
-http://stream.srg-ssr.ch/m/espace-2/aacp_96
 #EXTINF:-1,RTS La Première
 http://stream.srg-ssr.ch/m/la-1ere/mp3_128
 #EXTINF:-1,RTS Option Musique
@@ -1735,8 +1667,6 @@ https://wvpublic.streamguys1.com/wvpb256k.aac
 http://playerservices.streamtheworld.com/m3u/WVPEFMAAC.m3u
 #EXTINF:-1,WVPE Blues3 Elkhardt, IN
 http://live.str3am.com:2240/live
-#EXTINF:-1,WVPE HD3 - Blues
-http://live.str3am.com:2240/live
 #EXTINF:-1,WVPE News2 Elkhardt, IN
 http://playerservices.streamtheworld.com/m3u/WVPEHD2AAC.m3u
 #EXTINF:-1,WVPS 107.9 "Vermont Public Radio" Burlington, VT
@@ -1823,8 +1753,6 @@ http://stream3.jlntv.cn/dfgb/playlist.m3u8
 http://lhttp.qingting.fm/live/20903/64k.mp3
 #EXTINF:-1,东港电台新农村广播
 http://lhttp.qingting.fm/live/20965/64k.mp3
-#EXTINF:-1,东港电台新农村广播
-http://live.xmcdn.com/live/346/64.m3u8
 #EXTINF:-1,东港电台综合广播
 http://lhttp.qingting.fm/live/5022186/64k.mp3
 #EXTINF:-1,临武幸福之声
@@ -1835,8 +1763,6 @@ http://stream9.jlntv.cn/aac_linjianggb/sd/live.m3u8
 http://live.xmcdn.com/live/343/64.m3u8
 #EXTINF:-1,丹东综合广播
 http://live.xmcdn.com/live/342/64.m3u8
-#EXTINF:-1,丹东综合广播
-https://lhttp.qtfm.cn/live/1090/64k.mp3
 #EXTINF:-1,丽水龙泉广播
 http://l.cztvcloud.com/channels/lantian/SXlongquanaud/128k.m3u8
 #EXTINF:-1,义安电台
@@ -1849,8 +1775,6 @@ http://stream7.jlntv.cn/qagb/playlist.m3u8
 http://gbw.ynradio.com/radio/gjgb.stream/playlist.m3u8
 #EXTINF:-1,云南民族广播
 https://lhttp.qtfm.cn/live/1933/64k.mp3
-#EXTINF:-1,云南民族广播
-http://gbw.ynradio.com/radio/mzgb.stream/playlist.m3u8
 #EXTINF:-1,五台县广播
 https://568slnjf.live.sxmty.com/live/hls/edceca8184484725b9e23048d33a93df/128f603096d54e9fa6cfefb25b773ec9.m3u8
 #EXTINF:-1,五莲人民广播电台
@@ -1911,8 +1835,6 @@ http://mmitv.top/test/ytradio.php?id=582\u0026type=neimenggu
 http://mmitv.top/test/ytradio.php?id=583\u0026type=neimenggu
 #EXTINF:-1,呼和浩特蒙语广播
 https://lhttp.qtfm.cn/live/20500043/64k.mp3
-#EXTINF:-1,呼和浩特蒙语广播
-https://lhttp.qingting.fm/live/20500043/64k.mp3
 #EXTINF:-1,咸阳综合广播
 http://player2.juyun.tv/tv/29379189.m3u8
 #EXTINF:-1,哈密维语广播
@@ -1923,8 +1845,6 @@ http://stream.hmgbtv.com/aac_hmzs1/playlist.m3u8
 https://jsylivealone302.iqilu.com/live/shanghe_audio/index.m3u8
 #EXTINF:-1,喀什市综合广播
 https://live.xmcdn.com/live/2595/64.m3u8
-#EXTINF:-1,喀什市综合广播
-http://live.xmcdn.com/live/2595/64.m3u8
 #EXTINF:-1,喀什文旅交通广播
 http://live.xmcdn.com/live/2782/64.m3u8
 #EXTINF:-1,喀什综合广播
@@ -1933,8 +1853,6 @@ http://live.xmcdn.com/live/2773/64.m3u8
 https://pili-live-hls.wdit.com.cn/wditlive/2f416966bd8e4d74b95b271095a5fb8095c7.m3u8
 #EXTINF:-1,四川民族广播
 http://scgctvshow.sctv.com/SRTRADIO/live/minzupl/1.m3u8
-#EXTINF:-1,四川民族广播
-https://lhttp.qtfm.cn/live/1115/64k.mp3
 #EXTINF:-1,围场综合广播
 https://jwcdnqx.hebyun.com.cn/live/wcdt/1500k/tzwj_video.m3u8
 #EXTINF:-1,固镇广播
@@ -1973,8 +1891,6 @@ http://liveplay.rednet.cn/live/anxiang_dt_kdj43d.m3u8
 http://lhttp.qingting.fm/live/5021861/64k.mp3
 #EXTINF:-1,安徽农村广播
 http://satellitepull.cnr.cn/live/wxahncgb/playlist.m3u8
-#EXTINF:-1,安徽农村广播
-http://live.xmcdn.com/live/139/64.m3u8
 #EXTINF:-1,安徽广德之声
 http://pili-live-hls.guangde.ahxmgk.com/guangde-live/guangde20191031095431.m3u8
 #EXTINF:-1,安阳新闻综合广播
@@ -2029,10 +1945,6 @@ http://222.180.119.78:10346/a1.m3u8?
 https://lhttp.qtfm.cn/live/5037/64k.mp3
 #EXTINF:-1,张家口综合广播
 https://lhttp.qtfm.cn/live/15318285/64k.mp3
-#EXTINF:-1,张家口综合广播
-https://lhttp.qtfm.cn/live/15318285/64k.mp3
-#EXTINF:-1,张家口综合广播
-http://nlive.zjkgdcs.com:8091/live/xwgb.m3u8
 #EXTINF:-1,张家港综合广播
 https://lhttp.qtfm.cn/live/5021877/64k.mp3
 #EXTINF:-1,张掖新闻综合广播
@@ -2041,8 +1953,6 @@ http://lhttp.qingting.fm/live/5022096/64k.mp3
 https://lhttp.qingting.fm/live/5021850/64k.mp3
 #EXTINF:-1,德州综合广播
 http://video.dztv.tv:1935/live/dzxwzh/playlist.m3u8
-#EXTINF:-1,德州综合广播
-https://jsyaudiolive302.iqilu.com/dezhou/dezhou_audio01/index.m3u8
 #EXTINF:-1,德惠综合广播
 http://stream11.jlntv.cn/dehuigb/playlist.m3u8
 #EXTINF:-1,怀仁广播
@@ -2127,16 +2037,12 @@ https://lhttp.qtfm.cn/live/20971/64k.mp3
 http://stream9.jlntv.cn/jiangyuangb/playlist.m3u8
 #EXTINF:-1,江西农村广播
 http://cnlive.cnr.cn/hls/jxncgb.m3u8
-#EXTINF:-1,江西农村广播
-https://lhttp.qtfm.cn/live/4606/64k.mp3
 #EXTINF:-1,江西广播电视台科教农村广播
 http://lhttp.qingting.fm/live/4606/64k.mp3
 #EXTINF:-1,江西民生广播
 https://lhttp.qtfm.cn/live/1813/64k.mp3
 #EXTINF:-1,江西财经广播
 https://live02.jxtvcn.com.cn/live-jxtvcn/jxtv_cg992.m3u8
-#EXTINF:-1,江西财经广播
-https://lhttp.qtfm.cn/live/5021665/64k.mp3
 #EXTINF:-1,汪清综合广播
 http://stream7.jlntv.cn/wqgb/playlist.m3u8
 #EXTINF:-1,沂南人民广播电台
@@ -2151,8 +2057,6 @@ http://hebcx.chinashadt.com:2036/live/10008.stream/playlist.m3u8
 http://live.fm.hebrbtv.com:1935/live/nm/64K/tzwj_video.m3u8
 #EXTINF:-1,河北综合广播
 http://live.fm.hebrbtv.com:1935/live/zh/64K/tzwj_video.m3u8
-#EXTINF:-1,河北综合广播
-http://satellitepull.cnr.cn/live/wxhebzhgb/playlist.m3u8
 #EXTINF:-1,河南交通广播
 http://lhttp.qingting.fm/live/1209/64k.mp3
 #EXTINF:-1,河南农村广播
@@ -2167,16 +2071,12 @@ http://tmpstream.hyrtv.cn/zhgb/sd/live.m3u8
 https://lhttp.qtfm.cn/live/15318503/64k.mp3
 #EXTINF:-1,法库之声
 http://live.xmcdn.com/live/2783/64.m3u8
-#EXTINF:-1,法库之声
-http://live.xmcdn.com/live/2783/64.m3u8
 #EXTINF:-1,泗洪广播
 http://sihong-hls-tv-yf.cm.jstv.com/live/sihongguangbo/online.m3u8
 #EXTINF:-1,泗阳电台
 https://lhttp.qtfm.cn/live/20500082/64k.mp3
 #EXTINF:-1,泰安综合广播
 http://124.130.146.172:8666/live/r20.m3u8
-#EXTINF:-1,泰安综合广播
-http://223.99.8.99:8666/live/r20.m3u8
 #EXTINF:-1,泽库综合广播
 https://lived.dmqhyadmin.com/aac_gbzk1/playlist.m3u8
 #EXTINF:-1,津南之声
@@ -2363,12 +2263,8 @@ http://satellitepull.cnr.cn/live/wx32nmgalshygb/playlist.m3u8
 http://satellitepull.cnr.cn/live/wx32nmgalsmygb/playlist.m3u8
 #EXTINF:-1,陇南综合广播
 https://live.xmcdn.com/live/2656/64.m3u8
-#EXTINF:-1,陇南综合广播
-http://live.xmcdn.com/live/2656/64.m3u8
 #EXTINF:-1,陕西农村广播
 http://satellitepull.cnr.cn/live/wxsxxncgb/playlist.m3u8
-#EXTINF:-1,陕西农村广播
-https://lhttp.qtfm.cn/live/1602/64k.mp3
 #EXTINF:-1,隆化综合广播
 http://hblh.chinashadt.com:2036/live/stream:dt.stream/playlist.m3u8
 #EXTINF:-1,雄安新区容城广播
@@ -2389,8 +2285,6 @@ http://l.cztvcloud.com/channels/lantian/SXqingtianaud/128k.m3u8
 http://stream9.jlntv.cn/jygb/playlist.m3u8
 #EXTINF:-1,香港普通话台
 https://rthkaudio6-lh.akamaihd.net/i/radiopth_1@355869/index_56_a-p.m3u8
-#EXTINF:-1,香港普通话台
-https://rthkradiopth-live.akamaized.net/hls/live/2040082/radiopth/master.m3u8
 #EXTINF:-1,高唐综合广播
 https://jsyaudiolive302.iqilu.com/gaotang/gaotang_audio/index.m3u8
 #EXTINF:-1,高平综合广播

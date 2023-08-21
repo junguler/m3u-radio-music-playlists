@@ -6,6 +6,12 @@ for i in $(find . -type f -name "*.m3u") ; do (cat "${i}"; echo) | grep -v "#EXT
 # convert all file names to lower case
 for F in * ; do NEWNAME=$(echo "$F" | tr '[:upper:]' '[:lower:]') ; mv "$F" "$NEWNAME" ; done
 
+# remove duplicates
+for i in $(find . -type f -name "*.m3u") ; do cat $i | awk '!seen[$0]++' | grep -B1 "http" | grep -A1 "EXTINF" | awk 'length>4' > $(basename $i) ; echo -e $i ; done
+
+# make all files linux compatible (still works on other os(es))
+for i in $(find . -type f -name "*.m3u") ; do sed -i 's/\r$//' $i ; done
+
 # put all files into folders starting with the first character in their names 
 for i in *.m3u ; do dir=$(echo $i | cut -c 1 -) ; mkdir -p $dir ; mv $i $dir ; done
 
@@ -14,6 +20,3 @@ for i in $(find . -type f -name "*.m3u") ; do sed -i '1s/^/#EXTM3U\n/' $i ; done
 
 # remove empty lines
 for i in $(find . -type f -name "*.m3u") ; do sed -i '/^$/d' $i ; done
-
-# make all files linux compatible (still works on other os(es))
-for i in $(find . -type f -name "*.m3u") ; do sed -i 's/\r$//' $i ; done

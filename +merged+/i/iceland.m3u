@@ -35,10 +35,6 @@ http://netradio.ruv.is/ras2.aac
 http://www.radio.is:443/retromobile
 #EXTINF:-1,Rondó
 https://ruv-radio-live.akamaized.net/streymi/rondo/rondo.m3u8
-#EXTINF:-1,RUV 1
-http://netradio.ruv.is/ras1.aac.m3u
-#EXTINF:-1,Rúv rás1
-http://netradio.ruv.is/ras1.aac.m3u
 #EXTINF:-1,Saga 99.4 Reykjavik
 http://www.radio.is:443/saga
 #EXTINF:-1,Trolli FM 103.7 Siglufjordu
@@ -59,11 +55,8 @@ http://stream.radio.is:443/flashback
 http://stream.radio.is:443/fmxtra
 #EXTINF:-1,Kaninn FM 100.5
 http://radio.is:443/kaninnmobile
-#EXTINF:-1,KissFM 104.5
-http://stream.radio.is:443/kiss
 #EXTINF:-1,Lindin 102.9 FM
 http://62.145.147.50:8001/stream.aac
-http://radio.is:443/saga
 #EXTINF:-1,Beatles, Rock'n'Roll, Italian Best Music
 http://streaming.radionomy.com/JamendoLounge
 #EXTINF:-1,Flass X-Tra FM 101.5
@@ -76,28 +69,14 @@ http://icecast.365net.is:8000/orbGullBylgjan.aac
 http://icecast.365net.is:8000/orbLettBylgjan.aac
 #EXTINF:-1,3ABN
 https://war.str3am.com:7180/live
-#EXTINF:-1,Apparatid Radio
-http://icecast.365net.is:8000/orbApparatid.aac
 #EXTINF:-1,Bylgjan 80s
 http://icecast.365net.is:8000/orb80s.aac
-#EXTINF:-1,Bylgjan FM
-http://icecast.365net.is:8000/orbbylgjan.aac
-#EXTINF:-1,FlashBack FM
-http://stream.radio.is:443/flashback
-#EXTINF:-1,FM Xtra
-http://www.radio.is:443/fmxtra
 #EXTINF:-1,FMX
 http://icecast.365net.is:8000/orbFMX.aac
 #EXTINF:-1,ICE FM Iceland
 http://37.59.28.208:8188/
-#EXTINF:-1,K100
-http://radio.is:443/kaninnmobile
 #EXTINF:-1,KissFM
 http://www.radio.is:443/kiss
-#EXTINF:-1,Lindin
-http://62.145.147.50:8001/stream.aac
-#EXTINF:-1,Radio Flashback
-http://www.radio.is:443/flashback
 #EXTINF:-1,Retro 895
 http://radio.is:443/retromobile
 #EXTINF:-1,RV Nll
@@ -148,8 +127,6 @@ https://ice-11.spilarinn.is/kiss
 https://ruv-radio-live.akamaized.net/streymi/ras1/ras1.m3u8
 #EXTINF:-1,Retro 89.5
 https://ice-11.spilarinn.is/retromobile
-#EXTINF:-1,RÚV Rondó
-https://ruv-radio-live.akamaized.net/streymi/rondo/rondo.m3u8
 #EXTINF:-1,RÚV Rás 2
 https://ruv-radio-live.akamaized.net/streymi/ras2/ras2/ras2.m3u8
 #EXTINF:-1,Útvarp 101
@@ -162,46 +139,18 @@ https://ice-11.spilarinn.is/80flashback
 https://corus.leanstream.co/CFPLFM
 #EXTINF:-1,98 FM
 https://stream.audioxi.com/98
-#EXTINF:-1,Bylgjan FM
-https://icecast.visir.is/orbbylgjan.aac
 #EXTINF:-1,RÚV - Rás 1
 http://netradio.ruv.is/ras1.mp3
-#EXTINF:-1,Utvarp Saga
-http://stream.utvarpsaga.is:80/Hljodver
-#EXTINF:-1,Gull Bylgjan
-http://icecast.365net.is:8000/orbGullBylgjan.aac
-#EXTINF:-1,K100
-https://k100straumar.mbl.is/kaninnmobile
-#EXTINF:-1,Létt Bylgjan
-https://live.visir.is/hls-radio/bylgjan/chunklist_DVR.m3u8
 #EXTINF:-1,Ice FM
 http://falcon.shoutca.st:8516/stream
-#EXTINF:-1,Lindin
-http://62.145.147.50:8001/lindin
-#EXTINF:-1,3ABN
-http://war.str3am.com:7180/live
 #EXTINF:-1,KissFM Iceland
 http://ice-11.spilarinn.is/kissfm
-#EXTINF:-1,Suðurland FM
-http://178.19.58.119:1818/
-#EXTINF:-1,X-id 97.7 FM
-http://icecast.365net.is:8000/orbXid.aac
 #EXTINF:-1,RÚV - Rás 2
 http://netradio.ruv.is/ras2.mp3
 #EXTINF:-1,Utvarp Bodun
 http://bodun.is:8000/stream
 #EXTINF:-1,FlashBack
-http://stream.radio.is:443/flashback
-#EXTINF:-1,Létt Bylgjan
 http://live.visir.is/hls-radio/lettbylgjan/playlist.m3u8
-#EXTINF:-1,FM 957
-http://live.visir.is/hls-radio/fm957/playlist.m3u8?DVR
-#EXTINF:-1,80s Bylgjan
-http://icecast.365net.is:8000/orb80s.aac
-#EXTINF:-1,Apparatid
-http://icecast.365net.is:8000/orbApparatid.aac
-#EXTINF:-1,Bylgjan 989
-http://icecast.365net.is:8000/orbbylgjan.aac
 #EXTINF:-1,FlashBack 60s
 http://stream3.radio.is:443/60flashback
 #EXTINF:-1,FlashBack 70s
@@ -210,30 +159,10 @@ http://stream3.radio.is:443/70flashback
 http://stream3.radio.is:443/80flashback
 #EXTINF:-1,FlashBack 90s
 http://stream3.radio.is:443/90flashback
-#EXTINF:-1,FlashBack 91.9 FM
-http://stream3.radio.is:443/flashback
-#EXTINF:-1,FM 957
-http://icecast.365net.is:8000/orbFm957.aac
 #EXTINF:-1,FM Extra
-http://icecast.365net.is:8000/orbFmExtra.aac
-#EXTINF:-1,FM Xtra 101.5 FM
 http://radio.is:443/fmxtra
-#EXTINF:-1,FMX Klassik
-http://icecast.365net.is:8000/orbFMX.aac
 #EXTINF:-1,Gull Bylgjan 909
-http://icecast.365net.is:8000/orbGullBylgjan.aac
-#EXTINF:-1,Ice FM
 http://37.59.28.208:8217/
-#EXTINF:-1,Íslenska Bylgjan
-http://stream3.radio.is:443/tfmx
-#EXTINF:-1,Kaninn FM 100.5
-http://radio.is:443/kaninnmobile
-#EXTINF:-1,KissFM 104.5
-http://stream3.radio.is:443/kissfm
-#EXTINF:-1,Létt Bylgjan
-http://icecast.365net.is:8000/orbLettBylgjan.aac
-#EXTINF:-1,Lindin 102.9 FM
-http://62.145.147.50:8001/lindin
 #EXTINF:-1,Rás 1 RÚV 93.5 FM
 http://netradio.ruv.is:80/ras1.mp3
 #EXTINF:-1,Rás 2 RÚV 90.1 FM
@@ -242,14 +171,8 @@ http://netradio.ruv.is:80/ras2.mp3
 http://netradio.ruv.is:80/rondo.mp3
 #EXTINF:-1,RÚV Núll Pop
 http://netradio.ruv.is:80/ruvnull.mp3
-#EXTINF:-1,Sudurland FM 96.3
-http://178.19.58.119:1818/
-#EXTINF:-1,Trolli
-http://live.trolli.is:8200/
 #EXTINF:-1,Útvarp Saga 99.4 FM
 http://stream.utvarpsaga.is/Hljodver
-#EXTINF:-1,X 97.7
-http://icecast.365net.is:8000/orbXid.aac
 #EXTINF:-1,001Manimaa hd
 https://stream.zeno.fm/n655rxm0238uv
 #EXTINF:-1,JamRock
@@ -258,8 +181,6 @@ https://stream.zeno.fm/rcmergybtpmtv
 https://stream.zeno.fm/p9bpmbketc9uv
 #EXTINF:-1,Jamrock
 https://stream.zeno.fm/yxcit5uvslvvv
-#EXTINF:-1,JamRock
-https://stream.zeno.fm/quud03qs9mcvv
 #EXTINF:-1,The Howling Tomb
 https://stream.zeno.fm/hyw46x53z98uv
 #EXTINF:-1,Gingery Radio
@@ -310,17 +231,5 @@ https://stream.zeno.fm/zzfjff5jch0vv
 https://stream.zeno.fm/aa61r7cdfc9uv
 #EXTINF:-1,ABBYY FineReader 11 64
 https://stream.zeno.fm/odxzhzufoimuv
-#EXTINF:-1,Effaþa
-https://stream.zeno.fm/7y3q99hdfc9uv
 #EXTINF:-1,ÁttanFM
 http://www.radio.is:443/attan
-#EXTINF:-1,FM957
-http://icecast.365net.is:8000/orbFm957.aac
-#EXTINF:-1,K100
-http://radio.is:443/kaninnmobile
-#EXTINF:-1,RÁS 1
-http://netradio.ruv.is:80/ras1.mp3
-#EXTINF:-1,RÁS 2
-http://netradio.ruv.is:80/ras2.mp3
-#EXTINF:-1,Trölli FM
-http://live.trolli.is:8200/
