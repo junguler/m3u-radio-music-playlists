@@ -15,4 +15,5 @@ for i in $(find . -type f -name "*.m3u") ; do sed -i '1s/^/#EXTM3U\n/' $i ; done
 # remove empty lines
 for i in $(find . -type f -name "*.m3u") ; do sed -i '/^$/d' $i ; done
 
-# for i in *.m3u ; do sed -i 's/\r$//' $i ; done
+# make all files linux compatible (still works on other os(es))
+for i in $(find . -type f -name "*.m3u") ; do sed -i 's/\r$//' $i ; done
