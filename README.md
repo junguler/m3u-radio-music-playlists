@@ -253,7 +253,7 @@ m3u radio music playlists
 
 <p><br></p>
 
-<h3>How to download from an station</h3>
+<h3>How to download from a station</h3>
 
 <h4>as a long audio file</h4>
 
