@@ -16,7 +16,7 @@ m3u radio music playlists
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#on-the-web">on the web</a></li>
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#on-your-devices">on your devices</a></li>
 </ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-download-from-an-station">How to download from an station</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-download-from-a-station">How to download from a station</a></li>
 <ul>
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#as-a-long-audio-file">as a long audio file</a></li>
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#as-individual-songs">as individual songs</a></li>
@@ -249,15 +249,15 @@ m3u radio music playlists
 <li>vlc: if you want an out of the box experience that just works</li>
 </ul>
 
-<p>note: i need to investigate players for other devices, i will update this section later</p>
+<p>note: i need to investigate players for other devices, i will update this section later, if you know of a good program to use please let me know</p>
 
 <p><br></p>
 
-<h3>How to download from an station</h3>
+<h3>How to download from a station</h3>
 
 <h4>as a long audio file</h4>
 
-<p>downloading from these m3u files is not possible as far as i know since they contain multiple streams, but if you want to download from a particular stream you can achieve this by using ffmpeg, i use the most popular (first stream) in the <code>trance.m3u</code> to showcase this, in your terminal change directory to where you want this file to be at (note that lines starting with # are not actual streams and are there for embedding extra info to your media player)</p>
+<p>downloading from these m3u files is not possible as far as i know since they contain multiple streams, but if you want to download from a particular stream you can achieve this by using ffmpeg, i use the most popular (first stream) in the <code>trance.m3u</code> to showcase this, in your terminal change directory to where you want this file to be downloaded (note that lines starting with # are not actual streams and are there for embedding extra info to your media player)</p>
 <pre><code>ffmpeg -y -i http:<span >//</span>stream.dancewave.online:<span >8080</span>/dance.mp3 -c copy dancewave.mp3
 </code></pre>
 <p>change the filename at the end to what you like, as ffmpeg suggests when you feel happy with the length/size of this file press <code>q</code> in your terminal emulator to finish the process and save the file</p>
@@ -284,7 +284,7 @@ m3u radio music playlists
 <p>now put it inside the area i've shown and click to button next to it to start recording, after each song is completed it's going to create a new file and put a name on it from the title the stream is broadcasting</p>
 <p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/streamwriter.jpg" alt="streamwriter" /></p>
 <p>once you are happy with the amount of songs downloaded, right click on the stream and click on <code>stop recording after current title</code></p>
-<p>note that in some rare cases a stream does not broadcasts song titles and if you happen to come accross of these there is really nothing else you can and the program is going to continuously record the stream until you manually stop it</p>
+<p>note that in some rare cases a stream does not broadcast song titles and if you happen to come accross of these there is really nothing else you can do and the program is going to continuously record the stream until you manually stop it</p>
 
 <p><br></p>
 
