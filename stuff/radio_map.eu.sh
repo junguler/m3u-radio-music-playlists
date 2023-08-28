@@ -3,6 +3,9 @@
 # get a list of all the cities
 curl -s https://worldradiomap.com/list/ | htmlq -a href a | sort | uniq | grep -v "about\|twitter\|links\|list" | awk 'length>2' > list.txt
 
+# get the list.txt ready to further operations
+sed -i -e 's|\.\.|https\://worldradiomap.com|g' -e 's/\.htm//g' -e 's/\r$//' list.txt
+
 # find all cities in radiomap.eu
 for i in $(cat list.txt | grep "radiomap.eu") ; do curl -s $i | htmlq -a href a | grep "\../" | awk 'length>10' | grep -v "about" | sed -e 's/\.htm//g' -e 's|\.\.||g' > A-$(echo $i | awk -F '/' '{print $4"-"$5}').txt ; echo $i ; done
 
