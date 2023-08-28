@@ -226,7 +226,8 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/listen_to_radio-volna">radio-volna</a></td>
 <td><a href="https://github.com/junguler/listen_to_escuchar.radio">escuchar.radio</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio-trucker">radio-trucker</a></td>
-<td colspan="3"></td>
+<td><a href="https://github.com/junguler/listen_to_radio_map.eu">radio_map.eu</a></td>
+<td colspan="2"></td>
 </tr>
 </tbody></table>
 
