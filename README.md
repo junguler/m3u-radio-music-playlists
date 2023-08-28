@@ -436,6 +436,11 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/radio_map.eu">/radio_map.eu</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/radio_map.eu.sh">radio_map.eu.sh</a></td>
 </tr>
+<tr>
+<td><a href="https://worldradiomap.com/">https://worldradiomap.com/</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/world-radio_map">/world-radio_map</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/world-radio_map.sh">world-radio_map.sh</a></td>
+</tr>
 </tbody></table>
 <p>my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)</p>
 
