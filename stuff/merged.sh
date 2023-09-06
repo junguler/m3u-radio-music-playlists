@@ -20,3 +20,6 @@ for i in $(find . -type f -name "*.m3u") ; do sed -i '1s/^/#EXTM3U\n/' $i ; done
 
 # remove empty lines
 for i in $(find . -type f -name "*.m3u") ; do sed -i '/^$/d' $i ; done
+
+# change all dashes in file names to underline
+for i in *-*.m3u ; do mv $i $(echo $i | sed 's/-/_/') ; done

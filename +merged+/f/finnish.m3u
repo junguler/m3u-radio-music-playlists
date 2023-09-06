@@ -91,16 +91,12 @@ http://87.98.216.129:4976/
 http://radio2.6net.fi:8000/jarviradio2
 #EXTINF:-1,Aito Iskelmä
 https://supla.digitacdn.net/live/_definst_/supla/aitoiskelma/playlist.m3u8
-#EXTINF:-1,Bassoradio
-https://stream.radioplay.fi/basso/bassoradio_64.aac
 #EXTINF:-1,bitcoin radio suomenkieli | btcrad.io
 https://btcrad.io/fi
 #EXTINF:-1,Doubleclap Radio
 https://s3.radio.co/scfd7273b2/listen
 #EXTINF:-1,FUN Tampere
 http://st.downtime.fi/fun.mp3
-#EXTINF:-1,Groove FM
-http://digitacdn.akamaized.net/hls/live/629243/groove/master-128000.m3u8
 #EXTINF:-1,Groove FM Business
 https://digitacdn.akamaized.net/hls/live/629243/groove/master-128000.m3u8
 #EXTINF:-1,Hakkeriradio
@@ -135,8 +131,6 @@ http://stream.bauermedia.fi/iskelma/mli_64.aac
 http://stream.bauermedia.fi/iskelma/tre_64.aac
 #EXTINF:-1,Iskelmä Oulu
 http://stream.bauermedia.fi/iskelma/oul_64.aac
-#EXTINF:-1,Järviradio
-http://radio2.6net.fi:8000/jarviradio2
 #EXTINF:-1,Jazzjoulu
 https://c8.toivon.net/toivon/toivon_8?mp=/stream
 #EXTINF:-1,Kaaosradio - 24h
@@ -151,8 +145,6 @@ http://stream.bauermedia.fi/kiss/kiss_64.aac
 https://c6.toivon.net/toivon/toivon_6?mp=/stream
 #EXTINF:-1,Lasten jouluradio
 https://c3.toivon.net/toivon/toivon_3?mp=/stream
-#EXTINF:-1,Loop
-https://digitacdn.akamaized.net/hls/live/629243/loop/master-128000.m3u8
 #EXTINF:-1,NRJ Suomi
 http://stream.bauermedia.fi/nrj/nrj_128.mp3
 #EXTINF:-1,Pasiradio
@@ -163,8 +155,6 @@ http://releet.pasiradio.com:8002/main.mp3.m3u
 https://c4.toivon.net/toivon/toivon_4?mp=/stream
 #EXTINF:-1,Radio 957
 http://stream.bauermedia.fi/radio957/radio957_64.aac
-#EXTINF:-1,Radio Aalto
-https://digitacdn.akamaized.net/hls/live/629243/radioaalto/master-128000.m3u8
 #EXTINF:-1,Radio Basso
 https://stream.bauermedia.fi/basso/bassoradio_64.aac
 #EXTINF:-1,Radio City - Kouvola
@@ -177,22 +167,14 @@ http://stream.bauermedia.fi/radiocity/tre_64.aac
 http://stream.bauermedia.fi/radiocity/tku_64.aac
 #EXTINF:-1,Radio Classic 128kbps
 https://stream.bauermedia.fi/classic/classic_128.mp3
-#EXTINF:-1,Radio Dei
-http://isojako.radiodei.fi:8000/yleisohjelma
 #EXTINF:-1,Radio Dei Helsinki
 http://isojako.radiodei.fi:8000/helsinki
 #EXTINF:-1,Radio Dei Kemi
 http://isojako.radiodei.fi:8000/tornio
 #EXTINF:-1,Radio Dei Kokkola
 http://isojako.radiodei.fi:8000/kruunupyy
-#EXTINF:-1,Radio Dei Kristiinankaupunki
-http://isojako.radiodei.fi:8000/kristiinankaupunki
-#EXTINF:-1,Radio Dei Oulu
-http://isojako.radiodei.fi:8000/oulu
 #EXTINF:-1,Radio Dei Pohjanmaa
 http://isojako.radiodei.fi:8000/lapua
-#EXTINF:-1,Radio Dei Rovaniemi
-http://isojako.radiodei.fi:8000/rovaniemi
 #EXTINF:-1,Radio Dei Turku ja Eurajoki
 http://isojako.radiodei.fi:8000/turkueurajoki
 #EXTINF:-1,Radio Gramofoni
@@ -209,8 +191,6 @@ http://radioinari.radioman.fi:8000/radioinari
 http://wr2.downtime.fi/kaakko.aac
 #EXTINF:-1,Radio Majava
 https://s3.radio.co/sd2b911168/listen
-#EXTINF:-1,Radio Moreeni
-http://153.1.15.29:8080/moreeni.mp3
 #EXTINF:-1,Radio Musa
 http://n09.radiojar.com/n6yg5q0z8vzuv.m4a
 #EXTINF:-1,Radio Nostalgia
@@ -229,12 +209,8 @@ http://c0.toivon.net:8100/stream
 http://stream.radiorex.fi:8000/radiorex
 #EXTINF:-1,Radio Rock
 https://digitacdn.akamaized.net/hls/live/629243/radiorock/master-128000.m3u8
-#EXTINF:-1,Radio Sandels
-http://suomiradio.pro:8080/listen.pls
 #EXTINF:-1,Radio SUN
 http://st.downtime.fi/sun.mp3
-#EXTINF:-1,Radio Suomipop
-https://digitacdn.akamaized.net/hls/live/629243/radiosuomipop/master-128000.m3u8
 #EXTINF:-1,Radio SuomiRock
 https://stream.bauermedia.fi/suomirock/suomirock_128.mp3
 #EXTINF:-1,Radio Tuottaja1
@@ -285,18 +261,12 @@ http://yleuni-f.akamaihd.net/i/yleliveradiohd_16@113893/master.m3u8
 https://yleuni-f.akamaihd.net/i/yleliveradiohd_26@113903/index_128_a-p.m3u8?sd=10\u0026rebase=on
 #EXTINF:-1,YLE Radio Suomi - Turku
 https://yleuni-f.akamaihd.net/i/yleliveradiohd_27@113904/index_128_a-p.m3u8?sd=10\u0026rebase=on
-#EXTINF:-1,Yle Radio Suomi Lappeenranta
-https://yleuni-f.akamaihd.net/i/yleliveradiohd_19@113896/index_128_a-p.m3u8
-#EXTINF:-1,Yle Radio Suomi Rovaniemi
-https://yleuni-f.akamaihd.net/i/yleliveradiohd_22@113899/index_128_a-p.m3u8
 #EXTINF:-1,Yle Radio Suomi, Lappeenranta
 https://yleradiolive.akamaized.net/hls/live/2027711/in-YleLPR/master.m3u8
 #EXTINF:-1,YLE Radio Vega
 http://yleuni-f.akamaihd.net/i/yleliveradiohd_7@113884/master.m3u8
 #EXTINF:-1,YleRadioSuomiTampere
 https://icecast.live.yle.fi/radio/YleTampere/icecast.audio
-#EXTINF:-1,YleX
-http://yleuni-f.akamaihd.net/i/yleliveradiohd_2@113879/master.m3u8
 #EXTINF:-1,Ylex
 https://yleradiolive.akamaized.net/hls/live/2027674/in-YleX/master.m3u8
 #EXTINF:-1,Ysäri
@@ -363,8 +333,6 @@ http://185.52.127.131/fi/35061/mp3_128.mp3
 https://stream.bauermedia.fi/auranaallot/auranaallot_64.aac
 #EXTINF:-1,Radio City
 https://stream.bauermedia.fi/radiocity/hki_64.aac
-#EXTINF:-1,Radio Classic
-https://stream.dei.fi:8443/yleisohjelma
 #EXTINF:-1,Radio Fun
 https://st.downtime.fi/fun.mp3
 #EXTINF:-1,Radio Gramox
@@ -377,21 +345,13 @@ https://stream.bauermedia.fi/iskelma/jns_128.mp3
 https://c5.radioboss.fm:18218/stream
 #EXTINF:-1,Radio MFDM 90s Dance
 https://listen.radionomy.com/radiomfdm90-sdance
-#EXTINF:-1,Radio Patmos
-https://stream.bauermedia.fi/radiopooki/radiopooki_128.mp3
 #EXTINF:-1,Radio Pori
 http://hel2-77-86-247-184.ext.nebulacloud.fi:8000/radiopori
-#EXTINF:-1,Radio Sun
-https://app1.downtime.fi/sun.mp3
-#EXTINF:-1,Radio Vaasa
-http://stream.radiovaasa.fi:8000/radiovaasa.ogg
 #EXTINF:-1,Riemu Viesti
 https://listen.radionomy.com/riemuviesti
 #EXTINF:-1,Roll FM
 http://95.216.138.152:8888/livestream
 #EXTINF:-1,Sea FM 888
-http://87.98.216.129:4976/
-#EXTINF:-1,Sea FM Radio
 http://s3.myradiostream.com:4976/listen.mp3
 #EXTINF:-1,SuomiRock
 https://stream.bauermedia.fi/suomirock/suomirock_64.aac
