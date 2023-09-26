@@ -195,7 +195,7 @@ m3u radio music playlists
 <table>
 <thead>
 <tr>
-<th colspan="6">repo</th>
+<th colspan="5">repo</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -232,6 +232,10 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/listen_to_world-radio_map">world-radio_map</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio-to_live">radio-to_live</a></td>
 <td><a href="https://github.com/junguler/listen_to_web-radio_directory">web-radio_directory</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/junguler/listen_to_icecast">icecast</a></td>
+<td colspan="4"></td>
 </tr>
 </tbody></table>
 
