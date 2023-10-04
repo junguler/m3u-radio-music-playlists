@@ -297,6 +297,14 @@ m3u radio music playlists
 
 <p><br></p>
 
+<p>if you prefer to stay on the commandline, use the <a href="https://streamripper.sourceforge.net/">streamripper</a> program, change directory to the folder you want to save songs in and do:</p>
+
+<pre><code>streamripper http://51.89.148.171:8022/stream/1/ -u Mozilla/5.0 -l 3600</code></pre>
+
+<p>this command will download this stream <code>http://51.89.148.171:8022/stream/1/</code> for 1 hour, splitting all the songs and uses mozilla as the user agent, for more examples visit the man page for the program</p>
+
+<p><br></p>
+
 <h3>how to download this repo</h3>
 
 <h4>using git</h4>
