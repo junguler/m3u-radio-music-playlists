@@ -1,18 +1,13 @@
 #!/bin/bash
 
-# get a list of genres,and countries
-curl -s https://webradiodirectory.com/ | htmlq .wp-radio-search option | sed -e 's|<option value="||g' -e 's|">|-|g' -e 's|</option>||g' -e 's| |_|g' -e 's|/|+|g' | grep -v "\-Select" > list.txt
-cat list.txt | grep -v '^[0-9]' > countires.txt
-cat list.txt | grep '^[0-9]' > genres.txt
+# get a list of genres
+curl -s http://radio.alltrack.org/ | htmlq -a href a | grep -v "genre" | grep "listen-online" | awk -F '/' '{print $4}' | sed 's|-listen-online||g' > genres.txt
 
 # get the links to genres
-for i in $(cat genres.txt) ; do curl -s https://webradiodirectory.com/\?keyword\&country\&genre\=$(echo $i | awk -F '-' '{print $1}')\&perpage\=20000\&sort\=asc | htmlq -a href .wp-radio-listings a | grep "station" | uniq | awk -F '/' '{print $5}' > A-$(echo $i | awk -F '-' '{print $2}').txt ; echo $i ; done
-
-# get the links to countires
-for i in $(cat countires.txt) ; do curl -s https://webradiodirectory.com/\?keyword\&country\=$(echo $i | awk -F '-' '{print $1}')\&genre\&perpage\=20000\&sort\=asc | htmlq -a href .wp-radio-listings a | grep "station" | uniq | awk -F '/' '{print $5}' > A-$(echo $i | awk -F '-' '{print $2}').txt ; echo $i ; done
+for i in $(cat genres.txt) ; do curl -s https://radio.alltrack.org/$i-listen-online | htmlq -a href a | grep "//radio" | awk -F '/' '{print $4}' | awk NF | uniq > A-$i.txt ; echo $i ; done
 
 # scarpe the streams from each page
-for i in A-*.txt ; do for j in $(cat $i) ; do curl -s https://webradiodirectory.com/station/$j/ > mep1 ; cat mep1 | htmlq -t h1 | awk NF | awk '{print "#EXTINF:-1,"$0}' >> A$i ; cat mep1 | grep "onclick=" | head -n 1 | sed 's|\\||g' | awk -F '"' '{print $(NF-1)}' | sed 's/\;//g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
+for i in A-*.txt ; do for j in $(cat $i) ; do curl -s https://radio.alltrack.org/$j > mep1 ; cat mep1 | htmlq -t h1 | head -n 1 | sed -e 's|Listen ||g' -e 's| Online||g' | awk '{print "#EXTINF:-1,"$0}' >> A$i ; cat mep1 | grep "source" | awk -F '"' '{print $2}' | sed 's|;||g' | sed '/^$/d' >> A$i ; echo -e "$i - $j" ; done ; done
 
 # remove streams that didn't have links
 for i in AA-*.txt ; do cat $i | awk '!seen[$0]++' | grep -B1 "http" | grep -A1 "EXTINF" | awk 'length>4' > A$i ; echo -e $i ; done
