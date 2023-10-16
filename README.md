@@ -14,7 +14,7 @@ m3u radio music playlists
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-listen">How to listen</a></li>
 <ul>
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#on-the-web">on the web</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#on-your-devices">on your devices</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#on-windows-mac-and-linux">on your devices</a></li>
 </ul>
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-download-from-a-station">How to download from a station</a></li>
 <ul>
