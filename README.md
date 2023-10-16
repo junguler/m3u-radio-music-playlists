@@ -252,11 +252,11 @@ m3u radio music playlists
 
 <p><br></p>
 
-<h4>on your devices</h4>
 <h6>on windows, mac and linux</h6>
 <ul>
 <li>mpv: for the tinkerer types, see my <a href="https://github.com/junguler/win_confs/tree/main/mpv/portable_config">config files</a> for an example</li>
 <li>vlc: if you want an out of the box experience that just works</li>
+<li>AIMP: suggested by <a href="https://github.com/lux5am">@lux5am</a> in <a href="https://github.com/junguler/m3u-radio-music-playlists/discussions/23">#23</a>, a winamp clone with everything you might need to listen and record radio</li>
 </ul>
 
 <p>note: i need to investigate players for other devices, i will update this section later, if you know of a good program to use please let me know</p>
