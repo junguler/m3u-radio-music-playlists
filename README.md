@@ -236,7 +236,8 @@ m3u radio music playlists
 <tr>
 <td><a href="https://github.com/junguler/listen_to_icecast">icecast</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio-alltrack">radio-alltrack</a></td>
-<td colspan="3"></td>
+<td><a href="https://github.com/junguler/listen_to_liveradio.ie">liveradio.ie</a></td>
+<td colspan="2"></td>
 </tr>
 </tbody></table>
 
