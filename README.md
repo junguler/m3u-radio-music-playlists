@@ -485,6 +485,11 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/liveradio.ie">/liveradio.ie</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/liveradio.ie.sh">liveradio.ie.sh</a></td>
 </tr>
+<tr>
+<td><a href="http://keepone.net/">http://keepone.net/</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/keep_one">/keep_one</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/Keep_one.sh">Keep_one.sh</a></td>
+</tr>
 </tbody></table>
 <p>my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)</p>
 
