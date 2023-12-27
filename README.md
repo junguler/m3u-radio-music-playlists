@@ -240,6 +240,10 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/listen_to_keep_one">keep_one</a></td>
 <td><a href="https://github.com/junguler/listen_to_all-online_radio">all-online_radio</a></td>
 </tr>
+<tr>
+<td><a href="https://github.com/junguler/listen_to_raddio.net">raddio.net</a></td>
+<td colspan="4"></td>
+</tr>
 </tbody></table>
 
 <p>if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc …) you are not able to listen to the most of the streams, here is an explanation from <a href="https://support.google.com/chrome/thread/29505473?hl=en&msgid=29673696">chrome support</a> which tells you why this happens and how to fix it</p>
