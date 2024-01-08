@@ -4,7 +4,7 @@ m3u radio music playlists
 
 <table align="right">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/vinyl.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cassette.gif"></td>
 </tr>
 </table>
 
@@ -518,7 +518,7 @@ m3u radio music playlists
 
 <table align="right">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cassette.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/vinyl.gif"></td>
 </tr>
 </table>
 
