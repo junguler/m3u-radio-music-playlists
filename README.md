@@ -32,6 +32,7 @@ m3u radio music playlists
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#me">me</a></li>
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#related-projects">related projects</a></li>
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#acknowledgement-thanks">acknowledgement</a></li>
+<li><a href="https://github.com/junguler/m3u-radio-music-playlists#behind-the-scenes">behind the scenes</a></li>
 </ul>
 
 <p><br></p>
@@ -555,3 +556,7 @@ m3u radio music playlists
 <li>to all those websites i stole code snippets from to scrape these websites</li>
 <li>to you</li>
 </ul>
+
+<h3>behind the scenes/h3>
+<p>if you are interested on how i actually scrape websites i've made a markdown that goes thru the nitty gritty of it all, you can find it <a href="https://github.com/junguler/how_to_m3u">here</a>
+</p>
