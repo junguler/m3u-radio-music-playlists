@@ -557,6 +557,6 @@ m3u radio music playlists
 <li>to you</li>
 </ul>
 
-<h3>behind the scenes/h3>
+<h3>behind the scenes</h3>
 <p>if you are interested on how i actually scrape websites i've made a markdown that goes thru the nitty gritty of it all, you can find it <a href="https://github.com/junguler/how_to_m3u">here</a>
 </p>
