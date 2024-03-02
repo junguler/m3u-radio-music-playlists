@@ -245,7 +245,8 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/listen_to_raddio.net">raddio.net</a></td>
 <td><a href="https://github.com/junguler/listen_to_deso.fm">deso.fm</a></td>
 <td><a href="https://github.com/junguler/listen_to_non-stop-radio">non-stop-radio</a></td>
-<td colspan="2"></td>
+<td><a href="https://github.com/junguler/listen_to_radio.menu">radio.menu</a></td>
+<td colspan="1"></td>
 </tr>
 </tbody></table>
 
