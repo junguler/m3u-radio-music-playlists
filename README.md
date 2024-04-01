@@ -248,6 +248,10 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/listen_to_radio.menu">radio.menu</a></td>
 <td><a href="https://github.com/junguler/listen_to_top-radio">top-radio</a></td>
 </tr>
+<td><a href="https://github.com/junguler/listen_to_stream_finder">stream_finder</a></td>
+<td colspan="4"></td>
+<tr>
+</tr>
 </tbody></table>
 
 <p>if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc …) you are not able to listen to the most of the streams, here is an explanation from <a href="https://support.google.com/chrome/thread/29505473?hl=en&msgid=29673696">chrome support</a> which tells you why this happens and how to fix it</p>
