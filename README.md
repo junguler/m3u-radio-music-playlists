@@ -529,6 +529,11 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/top-radio">/top-radio</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/top-radio.sh">top-radio.sh</a></td>
 </tr>
+<tr>
+<td><a href="https://www.streamfinder.com/">https://www.streamfinder.com/</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/stream_finder">/stream_finder</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/stream_finder.sh">stream_finder.sh</a></td>
+</tr>
 </tbody></table>
 <p>my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)</p>
 
