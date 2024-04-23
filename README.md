@@ -336,7 +336,7 @@ m3u radio music playlists
 <p><br></p>
 
 <h3>git Stats</h3>
-<p>since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them every two weeks so you can have feel for how this repo is doing</p>
+<p>since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them every two weeks so you can have a feel for how this repo is doing</p>
 <p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_1.jpg" alt="" /></p>
 <p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_2.jpg" alt="" /></p>
 <p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_3.jpg" alt="" /></p>
@@ -537,6 +537,11 @@ m3u radio music playlists
 <td><a href="https://www.streamfinder.com/">https://www.streamfinder.com/</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/stream_finder">/stream_finder</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/stream_finder.sh">stream_finder.sh</a></td>
+</tr>
+<tr>
+<td><a href="https://liveradio24.com/">https://liveradio24.com/</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/live-radio-24">/live-radio-24</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/live-radio-24.sh">live-radio-24.sh</a></td>
 </tr>
 </tbody></table>
 <p>my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)</p>
