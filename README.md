@@ -594,3 +594,6 @@ m3u radio music playlists
 <h3>behind the scenes</h3>
 <p>if you are interested on how i actually scrape websites, i've made a markdown that goes thru the nitty gritty of it all, you can find it <a href="https://github.com/junguler/how_to_m3u">here</a>
 </p>
+
+<p>this repo was made possible by using github actions, you can see my temp repo for more details and access to raw un-edited files <a href="https://github.com/junguler/m3u-temp">here</a>
+</p>
