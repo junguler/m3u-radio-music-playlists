@@ -49,6 +49,8 @@ http://icecast.live.yle.fi/radio/YleKokkola/icecast.audio
 http://icecast.live.yle.fi/radio/YleKuopio/icecast.audio
 #EXTINF:-1,Yle Radio Suomi Mikkeli
 http://icecast.live.yle.fi/radio/YleMikkeli/icecast.audio
+#EXTINF:-1,Yle Radio Suomi Pohjanmaa
+http://icecast.live.yle.fi/radio/YlePohjanmaa/icecast.audio
 #EXTINF:-1,Radio Sandels
 http://suomiradio.pro:8080/stream/1/
 #EXTINF:-1,Radio Sun
@@ -133,6 +135,8 @@ https://stream.bauermedia.fi/basso/bassoradio_128.mp3
 https://stream.bauermedia.fi/radiocity/radiocity_64.aac
 #EXTINF:-1,Radio Classic
 https://stream.bauermedia.fi/classic/classic_64.aac
+#EXTINF:-1,Iskelma Rex
+https://stream.radiorex.fi:8000/radiorex
 #EXTINF:-1,Auran Aallot
 https://stream.bauermedia.fi/auranaallot/auranaallot_64.aac
 #EXTINF:-1,NRJ fi Suomihitit
@@ -149,6 +153,8 @@ https://stream.bauermedia.fi/iskelma/iskelma_64.aac
 https://stream.studio247.io/boostfm
 #EXTINF:-1,Radio Pori
 https://stream.bauermedia.fi/radiopori/radiopori_128.mp3
+#EXTINF:-1,Radio Pro
+https://streamer.radio.co/se4f0e40ca/listen
 #EXTINF:-1,SteelFM
 http://ice6.securenetsystems.net/STEELFM?type=.mp3
 #EXTINF:-1,Radio Helsinki 98.5
@@ -167,8 +173,6 @@ https://rs102-krk-cyfronet.rmfstream.pl/CLASSICROCKVT
 https://stream.bauermedia.fi/nostalgia/nostalgia_128.mp3?aw_0_1st.bauer_loggedin=false&ampaw_0_1st.playerid=BMUK_partner&ampaw_0_1st.skey=1597814197
 #EXTINF:-1,Radio Pooki Listen live
 https://stream.bauermedia.fi/radiopooki/radiopooki_64.aac
-#EXTINF:-1,Radio Monte Carlo 102.1 FM Listen live
-https://montecarlo.hostingradio.ru/montecarlo96.aacp
 #EXTINF:-1,Nostalgia
 https://stream.bauermedia.fi/nostalgia/nostalgia_128.mp3
 #EXTINF:-1,NRJ (Suomi)
@@ -183,8 +187,6 @@ https://yleradiolive.akamaized.net/hls/live/2027675/in-YleRS/master.m3u8
 https://stream.bauermedia.fi/kasari/kasari_128.mp3
 #EXTINF:-1,Kiss
 https://stream.bauermedia.fi/kiss/kiss_64.aac
-#EXTINF:-1,Radio Kaleva
-https://kalevamedia.digitacdn.net/live/_definst_/kaleva/radio/playlist.m3u8
 #EXTINF:-1,SuomiRäp
 https://stream.bauermedia.fi/suomirap/suomirap_128.mp3?context=fHA6LTE
 #EXTINF:-1,Steel FM
@@ -203,12 +205,12 @@ https://shoutcast.finestfm.fi/stream/1/:80/stream
 https://stream.bauermedia.fi/top51/top51_128.mp3?context=fHA6LTE
 #EXTINF:-1,Yle Radio Vega - Huvudstadsregionen
 https://icecast.live.yle.fi/radio/YleVega/icecast.audio
-#EXTINF:-1,Yle Vega (Österbotten)
-https://yleradiolive.akamaized.net/hls/live/2027672/in-YleRadio1/abr.smil/chunklist_b256000_ao.m3u8
 #EXTINF:-1,Kaupunkiradio
 https://yleradiolive.akamaized.net/hls/live/2027683/in-YleJKL/master.m3u8
 #EXTINF:-1,Yle Tampere
 https://yleradiolive.akamaized.net/hls/live/2027718/in-YleTampere/master.m3u8
+#EXTINF:-1,Hamsi FM
+http://berlin.hamsi.fm:8050/radyo.mp3
 #EXTINF:-1,Yle Kuopio
 https://yleradiolive.akamaized.net/hls/live/2027709/in-YleKuopio/master.m3u8
 #EXTINF:-1,Yle Satakunnan Radio
@@ -229,8 +231,6 @@ https://yleradiolive.akamaized.net/hls/live/2027714/in-YleOulu/master.m3u8
 https://wr2.downtime.fi/kaakko.mp3
 #EXTINF:-1,Yle Vega
 https://yleradiolive.akamaized.net/hls/live/2027679/in-YleVega/master.m3u8
-#EXTINF:-1,IDA Radio Helsinki
-http://stream.radio.co/s435d71fd8/listen
 #EXTINF:-1,Iskelma
 http://primary4.vtuner.com/setupapp/audio/err.mp3
 #EXTINF:-1,Radio Mikkeli 104.2
@@ -259,27 +259,3 @@ http://stream.bauermedia.fi:80/kiss/kiss_128.mp3
 http://77.86.233.1:8000/
 #EXTINF:-1,Radio Iskelma Tampere
 http://wr2.downtime.fi:8000/kaakko.mp3
-#EXTINF:-1,Steel FM 95.9
-http://ice6.securenetsystems.net:80/STEELFM
-#EXTINF:-1,YLE Keski-Pohjanmaa
-https://yleradiolive.akamaized.net/hls/live/2027721/yleradiolive-hls-28/master.m3u8
-#EXTINF:-1,NRK P1 Finnmark
-http://lyd.nrk.no/nrk_radio_p1_finnmark_mp3_m
-#EXTINF:-1,P1
-http://http-live.sr.se/p1-mp3-128
-#EXTINF:-1,P3
-http://http-live.sr.se/p3-mp3-64
-#EXTINF:-1,P4 Stockholm
-http://http-live.sr.se/p4stockholm-mp3-64
-#EXTINF:-1,Radio Helsinki
-http://77.86.233.1:8004/
-#EXTINF:-1,RQL 106 FM
-http://104.167.4.67:8173/
-#EXTINF:-1,Sea FM Rovaniemi
-http://s3.myradiostream.com:4976/listen.mp3
-#EXTINF:-1,Radio Romona
-http://suomiradio.pro:8080/
-#EXTINF:-1,Radio Nostalgia fi
-http://212.47.220.188:8000/
-#EXTINF:-1,NRJ Suomihitit
-http://stream.bauermedia.fi/nostalgia/nostalgia_64.aac

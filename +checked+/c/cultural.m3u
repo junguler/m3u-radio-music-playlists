@@ -9,20 +9,22 @@ https://lyd.nrk.no/nrk_radio_p2_mp3_h
 https://hlshr2.akamaized.net/hls/live/2016534/hr2/master.m3u8
 #EXTINF:-1,Radio Azawan
 http://az-maroc.ice.infomaniak.ch/az-maroc-128.mp3
-#EXTINF:-1,Radio 24syv
-https://stream.radioloud.dk/loud128
 #EXTINF:-1,DivRadio
 https://icecast.divradio.be:8000/radio.mp3
 #EXTINF:-1,CMS Radio
 https://c13.radioboss.fm:18190/stream
 #EXTINF:-1,SR P2
 https://live-cdn.sr.se/pool2/p2musik/p2musik.isml/index.m3u8
+#EXTINF:-1,Radiowa Dwójka
+https://stream12.polskieradio.pl/pr2/pr2.sdp/chunklist.m3u8
 #EXTINF:-1,Polskie Radio Chopin
 https://stream85.polskieradio.pl/live/rytm.sdp/chunklist.m3u8
 #EXTINF:-1,RTS Radio Beograd 2
 https://rtsradio-live.morescreens.com/RTS_2_002/audio/chunklist.m3u8
 #EXTINF:-1,Antena 2
 https://streaming-live.rtp.pt/liveradio/antena280a/chunklist_DVR.m3u8
+#EXTINF:-1,Radio Mawoua
+https://mawoua.ice.infomaniak.ch/mawoua-32.aac
 #EXTINF:-1,Vanakkam Réunion Radio
 https://stunnel2.cyber-streaming.com:9100/stream?type=mp3
 #EXTINF:-1,R.I.L FM
@@ -57,12 +59,10 @@ https://streaming.rtvc.gov.co/Radio_Radionica/Radionica.stream/playlist.m3u8
 https://mcdn.hf.br.de/br/hf/brheimat/master.m3u8
 #EXTINF:-1,France Culture
 https://stream.radiofrance.fr/franceculture/franceculture.m3u8?id=radiofrance
-#EXTINF:-1,Radio Culture
-https://webradio.tda.dz/Culture_64K.mp3
+#EXTINF:-1,Traditional FM Music 95.0
+http://185.105.4.106:1935/live/radio-95-0/playlist.m3u8
 #EXTINF:-1,Traditional Station 94.9
 https://hiplayer.hibridcdn.net/t/kwmedia-kwshaabiya.m3u8
-#EXTINF:-1,À Punt FM
-https://bcovlive-a.akamaihd.net/13b49103a31b48dfa5edf508440cb6f9/eu-central-1/6057955885001/playlist-audio_dvr.m3u8
 #EXTINF:-1,Pilihan FM
 https://d2kziuzkf9oizb.cloudfront.net/rd003/chunklist.m3u8
 #EXTINF:-1,Radio Pulsar
@@ -77,10 +77,6 @@ https://eastfm-atunwadigital.streamguys1.com/eastfm
 http://listen.radioking.com/radio/8919/stream/19094
 #EXTINF:-1,Tropiques Tradition
 http://listen.radioking.com/radio/8922/stream/19100
-#EXTINF:-1,Midayi FM
-http://91.121.162.224:9015/stream2
-#EXTINF:-1,KHDX
-https://streaming.radio.co/s662abb673/listen
 #EXTINF:-1,ERT Trito
 https://radiostreaming.ert.gr/ert-trito
 #EXTINF:-1,ERT 958 FM
@@ -91,8 +87,6 @@ http://ice7.securenetsystems.net/CHINAM
 http://mr-stream.mediaconnect.hu/4744/mr4.mp3
 #EXTINF:-1,IRIB Radio Farhang
 http://s0.cdn1.iranseda.ir:1935/liveedge/radio-farhang/chunklist.m3u8
-#EXTINF:-1,IRIB Radio Maaref
-http://s3.cdn1.iranseda.ir:1935/liveedge/radio-maaref/chunklist.m3u8
 #EXTINF:-1,Kan Tarbut
 https://kanlivep2event-i.akamaihd.net/hls/live/749634/749634/master.m3u8
 #EXTINF:-1,WRTU
@@ -101,8 +95,6 @@ http://streaming.radiouniversidad.pr:8062/
 https://edge.iono.fm/xice/fmr_live_medium.aac?p=embed
 #EXTINF:-1,DR P2
 http://live-icy.gslb01.dr.dk/A/A04H.mp3
-#EXTINF:-1,Radio Amazigh
-http://cdnamd-hls-globecast.akamaized.net/live/ramdisk/radio_amazigh/hls_snrt_radio/index.m3u8
 #EXTINF:-1,Periszkóp Rádió
 http://sztrim.periszkopradio.hu:8088/
 #EXTINF:-1,Al Oula Radio

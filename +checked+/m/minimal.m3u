@@ -1,8 +1,6 @@
 #EXTM3U
 #EXTINF:-1,House Industry Radio
 https://listen.radionomy.com/houseindustry.m3u
-#EXTINF:-1,Traxx.FM Tech-Minimal
-https://traxx020.ice.infomaniak.ch/traxx020-low.mp3
 #EXTINF:-1,XWAVE RADIO
 https://xwaveradio.org/wp-content/plugins/shoutcast/listen.pls
 #EXTINF:-1,eRadio One - Stage Blue
@@ -11,10 +9,18 @@ https://eradio-one.de/stage-blue-high.m3u
 https://esperance.streamakaci.com/louange.mp3
 #EXTINF:-1,1A Neuheiten Listen live
 https://saw-de-hz-fal-stream05.radiohost.de/saw-neuheiten_mp3-192
+#EXTINF:-1,Mainstream - 101.ru Listen live
+https://pub0201.101.ru/stream/pro/aac/64/87
 #EXTINF:-1,RauteMusik - TechHouse Listen live
 https://rautemusik-de-hz-fal-stream11.radiohost.de/techhouse
+#EXTINF:-1,Хиты 90х Зарубежка Радио - RadioSpinner Listen live
+https://live.radiospinner.com/90hs-64
 #EXTINF:-1,FFH Weihnachtsradio Listen live
 https://mp3.ffh.de/ffhchannels/hqxmas.mp3
+#EXTINF:-1,Минимал Техно Радио - RadioSpinner Listen live
+https://live.radiospinner.com/minimal-techno-64
+#EXTINF:-1,Радио Ваня - Свежий бит Listen live
+https://icecast-radiovanya.cdnvideo.ru/rv_hit
 #EXTINF:-1,De'Awan FM Listen live
 https://azuracast.shoutcastsolutions.com/radio/8120/radio.mp3
 #EXTINF:-1,Radio Niesen Listen live
@@ -29,14 +35,14 @@ https://s44.maxcast.com.br:8014/live
 https://servidor36-3.brlogic.com:8124/live
 #EXTINF:-1,Bikini FM Alicante Listen live
 https://stream.mediasector.es/radio/8030/bikinifm-alicante.mp3
+#EXTINF:-1,Cats & Dogs - 101.ru Listen live
+https://pub0201.101.ru/stream/pro/aac/64/281
 #EXTINF:-1,Minimalmix radio
 https://minimalmix.radioca.st/media
 #EXTINF:-1,Sound-of-FFM
 https://sound-of-ffm.stream.laut.fm/sound-of-ffm?t302=2020-04-23_06-40-37&uuid=5270a529-b9e4-4f3d-9aa6-4e519fd98fa7
 #EXTINF:-1,lounge
 https://lounge.stream.laut.fm/lounge?t302=2020-04-23_08-08-39&uuid=0cfda117-d650-49d1-a74b-a98f4aa90b75
-#EXTINF:-1,Boom Room 
-https://a5.radioheart.ru:8037/studio?_ga=2.64488047.1724080751.1537417053-1424790351.1529079995
 #EXTINF:-1,Hirschmilch Progressive Channel
 https://hirschmilch.de:7001/progressive.mp3
 #EXTINF:-1,minimalmix radio
@@ -61,8 +67,8 @@ https://intergalactic.tv/live/smil:tv.smil/playlist.m3u8
 https://power-partybunker.stream.laut.fm/power-partybunker
 #EXTINF:-1,sonus.fm
 http://138.201.226.83:8000/stream/2/
-#EXTINF:-1,ToXoRs minimalRADIO
-http://toxor.de:8000/stream/2/
+#EXTINF:-1,GrooveX Radio
+http://sr11.inmystream.it:8164/stream
 #EXTINF:-1,Technolovers DEEP HOUSE
 https://stream.technolovers.fm/deep-house?ref=radiode
 #EXTINF:-1,Technolovers MINIMAL
@@ -73,16 +79,12 @@ http://u22961583.onlinehome-server.com:1180/stream
 http://radio.deepmix.ru:7620/
 #EXTINF:-1,Fnoob Techno
 http://audio-edge-qse4n.yyz.g.radiomast.io/8846a94e-9874-4692-a1a0-ec7aadbe2771
-#EXTINF:-1,S4-Radio - Six - House & Electro
-http://144.76.156.119:10024/stream
 #EXTINF:-1,France Musique - Webradio La Contemporaine
 http://icecast.radiofrance.fr/francemusiquelacontemporaine-midfi.mp3
 #EXTINF:-1,Random.FM
 http://radio.random.fm:8000/radio256.mp3
 #EXTINF:-1,PsyBrazil Radio
 https://radio.psybrazil.com.br/
-#EXTINF:-1,Radio Record - Minimal/Tech
-http://radiorecord.hostingradio.ru/mini96.aacp
 #EXTINF:-1,Traxx FM - Tech-Minimal
 http://traxx020.ice.infomaniak.ch/traxx020-low.mp3
 #EXTINF:-1,MRG.fm - Ambient Radio
@@ -95,8 +97,6 @@ http://radio.stereoscenic.com:443/ama-h/
 http://listen.radioking.com/radio/260965/stream/305884
 #EXTINF:-1,Underground Kollektiv Radio
 https://s2.radio.co/s12ef3f65a/listen
-#EXTINF:-1,InClub Radio
-http://conectperu.com:8018/stream/
 #EXTINF:-1,Galaxie Radio
 http://listen.radioking.com/radio/15684/stream/63517
 #EXTINF:-1,In2Mixx Radio
@@ -111,12 +111,12 @@ https://s4.radio.co/s11235745b/listen
 http://2.58.194.54:8858/stream/
 #EXTINF:-1,MixLive.ie - Deep Planet
 http://2.58.194.54:8852/stream/
+#EXTINF:-1,RadioSpinner - Minimal Techno
+http://live.radiospinner.com/minimal-techno-96
 #EXTINF:-1,OEM Radio
 http://oemradio-bofaradio.radioca.st:8454/stream
 #EXTINF:-1,France Musique – Webradio La Contemporaine
 https://stream.radiofrance.fr/francemusiquelacontemporaine/francemusiquelacontemporaine_hifi.m3u8
-#EXTINF:-1,Hardgroup Radio
-http://server.ohradio.com.ar:8086/stream
 #EXTINF:-1,MRG.fm – Ambient Radio
 http://62.149.196.16:8888/stream/
 #EXTINF:-1,Esounds

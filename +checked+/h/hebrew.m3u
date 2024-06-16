@@ -39,8 +39,6 @@ http://194.213.4.197:8000/listen.pls?sid=1
 https://s3.radio.co/s43b65d791/listen
 #EXTINF:-1,Reshet Bet
 https://kanlivep2event-i.akamaihd.net/hls/live/749624/749624/playlist.m3u8
-#EXTINF:-1,הקול שלנו
-http://sweb.co.il:8042//stream?type=http\u0026nocache=4379
 #EXTINF:-1,הקצה - Hakatze
 http://kzradio.mediacast.co.il/kzradio_live/kzradio/icecast.audio
 #EXTINF:-1,קבלה לעם עברית - Kabbalah heb
@@ -55,6 +53,8 @@ https://102.livecdn.biz/102fm_aac
 https://streams.radio.co/s33f5cd9f1/listen
 #EXTINF:-1,Radio Hamesh
 http://ads10.livecdn.biz:8000/995fm
+#EXTINF:-1,Radio KOL GALIM
+http://switch2-streaming-212-83-eu.ilcast.com:8055/
 #EXTINF:-1,101 FM
 https://radio.streamgates.net/stream/101fm
 #EXTINF:-1,JewishMusic Stream
@@ -65,8 +65,6 @@ http://dc3.serverse.com:1120/
 http://listen.radioking.com/radio/133180/stream/173110
 #EXTINF:-1,מזרחית אורגינל
 http://178.33.135.244:22672/
-#EXTINF:-1,כאן מורשת
-http://22653.live.streamtheworld.com:80/KAN_MORESHET_SC
 #EXTINF:-1,Stremaz
 http://s0.radioheart.ru:8000/RH20730
 #EXTINF:-1,Radio-J.com
@@ -95,12 +93,8 @@ https://cdn.cybercdn.live/Lev_Hamedina/Audio/icecast.audio
 https://cdn.cybercdn.live/Galei_Israel/Live/icecast.audio
 #EXTINF:-1,Nostalgia Radio
 http://194.213.4.197:8000/
-#EXTINF:-1,Israla  Radio
-http://myradio.doscast.com:8329/
 #EXTINF:-1,100% Israeli - Radios 100FM
 http://gb25.streamgates.net/radios-audio/100Israeli/icecast.audio
-#EXTINF:-1,Kabbalah TV Hebrew
-http://icecast.kab.tv/heb.mp3
 #EXTINF:-1,Toker FM
 http://live.toker.fm:6060/stream.nsv
 #EXTINF:-1,Toker Radio
@@ -109,8 +103,6 @@ http://live.toker.fm:6060/
 http://gb25.streamgates.net/radios-audio/100Chillout/icecast.audio
 #EXTINF:-1,100% Dance - Radios 100FM
 http://gb25.streamgates.net/radios-audio/100Dance/icecast.audio
-#EXTINF:-1,Radio BRESLEV Karmiel
-https://securestreams6.autopo.st:2294/mp3
 #EXTINF:-1,100% No.1 - Radios 100FM
 http://gb25.streamgates.net/radios-audio/100Number1/icecast.audio
 #EXTINF:-1,100% Hiphop - Radios 100FM
@@ -129,10 +121,14 @@ http://gb25.streamgates.net/radios-audio/100Club/icecast.audio
 https://radio.streamgates.net/stream/netanya
 #EXTINF:-1,100% Special - Radios 100FM
 http://gb25.streamgates.net/radios-audio/100Special/icecast.audio
+#EXTINF:-1,Radio Breslav - Kol HaNachal
+http://www.breslav.co.il:5555/
 #EXTINF:-1,100% KU - Radios 100FM
 http://gb25.streamgates.net/radios-audio/100Gamer/icecast.audio
 #EXTINF:-1,Kol chai torani
 http://media.93fm.co.il/livetorani
+#EXTINF:-1,Ivri 6
+https://streaming.radio.co/sa06221901/listen
 #EXTINF:-1,RADIO 5 ISRAEL
 https://liveradio.co.il/radio5
 #EXTINF:-1,Radio Forum readers of the Koran

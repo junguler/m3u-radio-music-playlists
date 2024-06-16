@@ -7,8 +7,12 @@ https://belrtl.ice.infomaniak.ch/belrtl-mp3-192.mp3
 http://ntvrdwmp.radyotvonline.com/
 #EXTINF:-1,Radio Luzes
 https://shout25.crossradio.com.br:18462/1
+#EXTINF:-1,ABC NewsRadio
+https://mediaserviceslive.akamaized.net/hls/live/2038311/newsradio/index.m3u8
 #EXTINF:-1,ABC Radio Melbourne
 https://mediaserviceslive.akamaized.net/hls/live/2038300/localmelbourne/index.m3u8
+#EXTINF:-1,ABC Radio Sydney
+https://mediaserviceslive.akamaized.net/hls/live/2038302/localsydney/index.m3u8
 #EXTINF:-1,90.5 WESA
 https://ais-sa3.cdnstream1.com/2556_128.aac
 #EXTINF:-1,ABC Radio ADELAIDE
@@ -21,6 +25,8 @@ https://mediaserviceslive.akamaized.net/hls/live/2038243/localcentralwest/index.
 https://mediaserviceslive.akamaized.net/hls/live/2038269/localgoldcoast/index.m3u8
 #EXTINF:-1,ABC Radio NEWCASTLE
 https://mediaserviceslive.akamaized.net/hls/live/2038306/localnewcastle/index.m3u8
+#EXTINF:-1,ABC Radio Perth
+https://mediaserviceslive.akamaized.net/hls/live/2038301/localperth/master.m3u8
 #EXTINF:-1,AM 980
 http://live.leanstream.co/CFPLAM-MP3?tunein
 #EXTINF:-1,Antena 1
@@ -39,16 +45,6 @@ http://live.leanstream.co/CHMLAM-MP3
 https://rogers-hls.leanstream.co/rogers/van1130.stream/playlist.m3u8
 #EXTINF:-1,CKNW AM 980
 http://live.leanstream.co/CKNWAM-MP3?tunein
-#EXTINF:-1,Colmundo Radio - Bogotá
-http://142.4.2.72:9992/stream.mp3
-#EXTINF:-1,Colmundo Radio - Cali
-http://142.4.2.72:8001/stream.mp3
-#EXTINF:-1,Colmundo Radio - Cartagena
-http://142.4.2.72:8039/stream.mp3
-#EXTINF:-1,Colmundo Radio - Medellín
-http://142.4.2.72:8099/stream.mp3
-#EXTINF:-1,Colmundo Radio - Pasto
-http://142.4.2.72:8047/stream.mp3
 #EXTINF:-1,Concepto FM 95.5
 http://radios.solumedia.com:6002/stream
 #EXTINF:-1,DR P4 Nordjylland
@@ -57,8 +53,6 @@ http://live-icy.gss.dr.dk/A/A10L.mp3
 http://live-icy.gss.dr.dk:8000/A/A11L.mp3
 #EXTINF:-1,DR P4 Østjylland
 http://live-icy.gss.dr.dk/A/A14L.mp3
-#EXTINF:-1,Europe 1
-https://ais-live.cloud-services.paris/europe1.mp3
 #EXTINF:-1,Feature Story News
 http://www.fsnradionews.com/FSNNews/FSNWorldNews.mp3
 #EXTINF:-1,GPB Radio
@@ -103,16 +97,14 @@ http://war.str3am.com:8430
 http://ksmu.streamguys1.com/ksmu3
 #EXTINF:-1,KUAF
 http://war.str3am.com:7030/kuaf1
-#EXTINF:-1,KUT
-https://kut.streamguys1.com/kut-web
 #EXTINF:-1,Metropolis Radio
 https://metromedia.live24.gr/metropolis955thess
-#EXTINF:-1,Moskva FM
-http://icecast.vgtrk.cdnvideo.ru/moscowfm128
 #EXTINF:-1,MPR News
 http://nis.stream.publicradio.org/nis.mp3
 #EXTINF:-1,NDTV 24X7 Radio
 https://ndtv24x7elemarchana.akamaized.net/hls/live/2003678/ndtv24x7/ndtv24x7master.m3u8
+#EXTINF:-1,NDTV India
+https://ndtvindiaelemarchana.akamaized.net/hls/live/2003679/ndtvindia/ndtvindiamaster.m3u8
 #EXTINF:-1,NHPR
 http://nhpr-sc.streamguys.us/nhpr
 #EXTINF:-1,NRK Alltid Nyheter
@@ -121,34 +113,12 @@ http://lyd.nrk.no/nrk_radio_alltid_nyheter_mp3_m
 http://lyd.nrk.no/nrk_radio_p1_hordaland_mp3_m
 #EXTINF:-1,NRK P1 Rogaland
 http://lyd.nrk.no/nrk_radio_p1_rogaland_mp3_m
-#EXTINF:-1,Onda Cero - Badajoz
-https://livefastly-webs.ondacero.es/badajoz-pull/audio/master.m3u8
-#EXTINF:-1,Onda Cero - Barcelona
-https://livefastly-webs.ondacero.es/barcelona-pull/audio/master.m3u8
-#EXTINF:-1,Onda Cero - Canarias
-https://livefastly-webs.ondacero.es/canarias-pull/audio/master.m3u8
-#EXTINF:-1,Onda Cero - Castellón
-https://livefastly-webs.ondacero.es/castellon-pull/audio/master.m3u8
-#EXTINF:-1,Onda Cero - Jaen
-https://livefastly-webs.ondacero.es/jaen-pull/audio/master.m3u8
-#EXTINF:-1,Onda Cero - La Rioja
-https://livefastly-webs.ondacero.es/logrono-pull/audio/master.m3u8
-#EXTINF:-1,Onda Cero - Málaga
-https://livefastly-webs.ondacero.es/malaga-pull/audio/master.m3u8
-#EXTINF:-1,Onda Cero - Murcia
-https://livefastly-webs.ondacero.es/murcia-pull/audio/master.m3u8
-#EXTINF:-1,Onda Cero - Sevilla
-https://livefastly-webs.ondacero.es/sevilla-pull/audio/master.m3u8
-#EXTINF:-1,Onda Cero - Zaragoza
-https://livefastly-webs.ondacero.es/zaragoza-pull/audio/master.m3u8
 #EXTINF:-1,Onda Cero Tierras de Medina
 http://server10.emitironline.com:8100/
 #EXTINF:-1,OPB
 http://stream1.opb.org/radio_player.mp3
 #EXTINF:-1,P1
 https://live-cdn.sr.se/pool2/p1/p1.isml/p1.m3u8
-#EXTINF:-1,R Mayak Barnaul
-https://icecast-vgtrk.cdnvideo.ru/mayakfm
 #EXTINF:-1,R Mayak Tomsk
 https://icecast-vgtrk.cdnvideo.ru/mayakfm_mp3_128kbps
 #EXTINF:-1,Radio 24 - Il Sole 24 ORE
@@ -157,18 +127,22 @@ https://ilsole24ore-radio.akamaized.net/hls/live/2035301/radio24/playlist.m3u8
 https://sonicpanel.oficialserver.com/8234/stream
 #EXTINF:-1,Rádio CBN João Pessoa
 http://audio.cabobranco.tv.br:8000/cbn
+#EXTINF:-1,Radio Cien
+http://radios-online.info:3290/
 #EXTINF:-1,Rádio Clube do Pará
 http://ice01.kshost.com.br:8000/live
+#EXTINF:-1,Rádio Clube Paços de Ferreira
+https://player.srvaudio.com.br/player-ssl/11420
+#EXTINF:-1,Radio FmBolivia
+https://ssl.xcast.com.br:11300/stream.nsv
 #EXTINF:-1,Rádio Globo (Barbacena)
 http://servidor37.brlogic.com:8044/live
 #EXTINF:-1,Rádio Jovem Pan News (Pompéia)
 http://hts03.kshost.com.br:8466
+#EXTINF:-1,Radio Mayak
+http://icecast.vgtrk.cdnvideo.ru/mayakfm_mp3_128kbps
 #EXTINF:-1,Radio Stubica
 http://radiostubica.hc.hr:7010/&type=mp3
-#EXTINF:-1,Real FM
-https://realfm.live24.gr/realfm
-#EXTINF:-1,RFI Monde
-https://rfimonde64k.ice.infomaniak.ch/rfimonde-64.mp3
 #EXTINF:-1,RNE Radio 5 TN
 https://rtvelivestream.akamaized.net/rtvesec/rne/rne_r5_madrid_main.m3u8
 #EXTINF:-1,SBS Radio 1
@@ -179,6 +153,8 @@ https://sbs-ice.streamguys1.com/sbs2-sbs-web
 https://sbs-ice.streamguys1.com/sbs3-sbs-web
 #EXTINF:-1,Skai 100.3 - ΣΚΑΪ 100,3
 https://skai.live24.gr/skai1003
+#EXTINF:-1,Sputnik Arabic
+https://icecast-rian.cdnvideo.ru/voicearb
 #EXTINF:-1,Sputnik English
 https://icecast-rian.cdnvideo.ru/voiceeng
 #EXTINF:-1,Sputnik English USA
@@ -199,6 +175,8 @@ http://stream.srg-ssr.ch/m/regi_zh_sh/mp3_128
 https://kwmu1-ice.streamguys1.com/kwmu1?uuid=t6z0ikcdt
 #EXTINF:-1,Tok FM
 https://pl-play.adtonos.com/tok-fm
+#EXTINF:-1,Troy Public Radio
+http://live.str3am.com:2380/troy1
 #EXTINF:-1,Vesti FM - Вести ФМ
 http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_128kbps
 #EXTINF:-1,VPR
@@ -239,8 +217,6 @@ http://whyy.streamguys1.com/whyy-mp3
 http://live2.rcast.net:8968/stream
 #EXTINF:-1,WKSU News Channel
 http://66.225.205.8:8020/
-#EXTINF:-1,WMFE-FM
-http://wmfe.iad.streamguys1.com/wmfe
 #EXTINF:-1,WMUM FM 89.7
 https://gpb.streamguys1.com/gpb-macon-mp3-tunein
 #EXTINF:-1,WNYC-AM
@@ -271,8 +247,6 @@ https://wyoming-public-ice.streamguys1.com/WPR128MP3
 http://ypr-sc.streamguys.net/live
 #EXTINF:-1,Yle Radio Suomi
 https://yleradiolive.akamaized.net/hls/live/2027675/in-YleRS/master.m3u8
-#EXTINF:-1,Angel 96.1 FM
-http://angelfm.atunwadigital.streamguys1.com/angelfm
 #EXTINF:-1,Radio Nacional de Venezuela
 http://rnv.lorini.net:29100/RNVINFORMATIVO
 #EXTINF:-1,DR P4 ostjylland
@@ -295,38 +269,16 @@ https://hlshrinfo.akamaized.net/hls/live/2016539/hrinfo/96/seg.m3u8
 http://f141.rndfnk.com/ard/ndr/ndr1wellenord/luebeck/aac/64/stream.aac?aggregator=mytuner-mobi&sid=2109SgAiiq1VDN6B5h8AAwmQ4ir&token=-y6E7BIgPN8E4KnRND4fYeaDhEffLRKJs2HYm8BvY24&tvf=R9H7oIgbuBZmMTQxLnJuZGZuay5jb20
 #EXTINF:-1,NDR 1 R MV Greifswald 101.0 FM
 https://ndrvisualradiohls.akamaized.net/hls/live/2018951/ndrvr_mv_ndr1/master.m3u8
-#EXTINF:-1,Europe 1 - 104.7 FM
-https://stream.europe1.fr/europe1.aac?aw_0_1st.playerid=lgrdrnwsTuneIn
 #EXTINF:-1,Комсомольская правда-Петербург
 http://kpradio.hostingradio.ru:8000/spb.radiokp128.mp3
+#EXTINF:-1,Vesti FM - 97.6 FM
+https://icecast-vgtrk.cdnvideo.ru/vestifm
 #EXTINF:-1,Radio Galicia (Cadena SER) - 95.2 FM
 http://21633.live.streamtheworld.com/SER_GALICIA_SC
-#EXTINF:-1,Onda Cero Network - Onda Melodia - Gijon 93.5 FM
-https://livefastly-webs.ondacero.es/barcelona-pull/audio/master.m3u8?random=0.19290295152698955
-#EXTINF:-1,Onda Melodia - Castellón
-https://livefastly-webs.ondacero.es/castellon-pull/audio/master.m3u8?random=0.2678904436759362
-#EXTINF:-1,Onda Cero - Badajoz 104.8 FM
-https://livefastly-webs.ondacero.es/badajoz-pull/audio/master.m3u8?random=0.7964310838281217
-#EXTINF:-1,Onda Cero - Noroeste 91.5 FM
-https://livefastly-webs.ondacero.es/jaen-pull/audio/master.m3u8?random=0.5330943943446971
-#EXTINF:-1,Onda Cero - La Rioja 89.1 FM
-https://livefastly-webs.ondacero.es/logrono-pull/audio/master.m3u8?random=0.4969819748382589
-#EXTINF:-1,Onda Cero - Lugo - 94.9 FM
-https://livefastly-webs.ondacero.es/lugo-pull/audio/master.m3u8?random=0.7708671437924559
-#EXTINF:-1,Onda Cero - Guadalajara
-https://livefastly-webs.ondacero.es/guadalajara-pull/audio/master.m3u8?random=0.10607201566204183
 #EXTINF:-1,Onda Cero - Tierras de Medina
 http://server6.20comunicacion.com:8100/
-#EXTINF:-1,Onda Cero Cartagena
-https://livefastly-webs.ondacero.es/cartagena-pull/audio/master.m3u8?random=0.7060397914284502
-#EXTINF:-1,Onda Cero Santiago
-https://agregadores-live.atresmedia.com/tunein/santiago-pull/audio/master.m3u8
-#EXTINF:-1,Onda Cero Merida
-https://livefastly-webs.ondacero.es/merida-pull/audio/master.m3u8?random=0.6860843129045704
 #EXTINF:-1,Radio 24 L'Aquila - 89.2 FM
 http://shoutcast.radio24.ilsole24ore.com:8000
-#EXTINF:-1,BNR Nieuws Radio - 99.9 FM
-https://22533.live.streamtheworld.com/BNR_NIEUWSRADIO.mp3?dist=BNRWEB
 #EXTINF:-1,Radio Japan 1
 http://jenny.torontocast.com:8056/stream.nsv
 #EXTINF:-1,Radio S - 94.9 FM

@@ -9,8 +9,6 @@ http://stream.srg-ssr.ch/m/rsp/mp3_128
 http://stream.srg-ssr.ch/m/rsj/mp3_128
 #EXTINF:-1,SRF 3
 http://streaming.swisstxt.ch/m/drs3/mp3_128
-#EXTINF:-1,Hit Radio FFH
-http://mp3.ffh.de/radioffh/hqlivestream.aac
 #EXTINF:-1,1.FM - Deep House
 http://strm112.1.fm/deephouse_mobile_mp3
 #EXTINF:-1,RTS La Première
@@ -43,6 +41,8 @@ http://rs8.stream24.net/radio-soundportal.mp3
 http://138.201.251.233/kissfm_128
 #EXTINF:-1,SRF 1 ohne RegionalJournal
 http://stream.srg-ssr.ch/m/drs1/mp3_128
+#EXTINF:-1,1.FM - Adore Jazz
+http://sc-ajazz.1.fm:5084/
 #EXTINF:-1,Rouge Latino
 https://rouge-latino.ice.infomaniak.ch/rouge-latino-128.mp3
 #EXTINF:-1,Radio Zürisee
@@ -71,6 +71,8 @@ http://stream.electroradio.fm/stream.mp3
 http://stream.srg-ssr.ch/m/regi_be_fr_vs/aacp_96
 #EXTINF:-1,1.FM - Absolute 90s Party Zone
 http://strm112.1.fm/partyzone90s_mobile_mp3
+#EXTINF:-1,1.FM- Deep Techno & Tech House
+http://strm112.1.fm/deeptech_mobile_mp3
 #EXTINF:-1,NRJ Energy Basel
 https://energybasel.ice.infomaniak.ch/energybasel-high.mp3
 #EXTINF:-1,1.FM - Absolute 70s Pop
@@ -79,56 +81,54 @@ http://strm112.1.fm/70s_mobile_mp3
 http://stream.srg-ssr.ch/m/regi_ost/mp3_128
 #EXTINF:-1,RTS Option Musique
 http://stream.srg-ssr.ch/m/option-musique/aacp_96
+#EXTINF:-1,1.FM - Otto's Baroque Music
+http://sc-baroque.1.fm:8045/
 #EXTINF:-1,FFH Lounge
 http://mp3.ffh.de/ffhchannels/hqlounge.mp3
 #EXTINF:-1,RSI Rete Tre
 http://stream.srg-ssr.ch/m/retetre/mp3_128
 #EXTINF:-1,SRF 1 Zentralschweiz
 http://stream.srg-ssr.ch/m/regi_zentr/mp3_128
+#EXTINF:-1,1.FM - Love Classics
+http://strm112.1.fm/loveclassics_mobile_mp3
 #EXTINF:-1,1.FM - Bay Smooth Jazz
 http://185.33.22.15:9010/
 #EXTINF:-1,1.FM - Movie Soundtracks Hits
 http://strm112.1.fm/moviesoundtracks_mobile_mp3
 #EXTINF:-1,ffn Bollerwagen
 https://ffn-de-hz-fal-stream10-cluster01.radiohost.de/radiobollerwagen_mp3-192
-#EXTINF:-1,1.FM - Absolute Trance
-http://strm112.1.fm/trance_mobile_mp3
 #EXTINF:-1,1.FM - America's Best Ballads
 http://strm112.1.fm/onelive_mobile_mp3
 #EXTINF:-1,Sunshine - Chillout
 http://sunsl.streamabc.net/sunsl-chillout-mp3-192-3900120
 #EXTINF:-1,SRF 1 Aargau Solothurn
 http://stream.srg-ssr.ch/m/regi_ag_so/aacp_96
-#EXTINF:-1,Klassik Radio - Piano
-http://klassikr.streamabc.net/klr-piano-mp3-128-7465124
-#EXTINF:-1,1.FM - Alternative Rock X Hits
-http://sc-xrock.1.fm:7024/
 #EXTINF:-1,Sunshine - Tech House
 http://sunsl.streamabc.net/sunsl-techhouse-mp3-192-9113798
 #EXTINF:-1,1.FM - Rock Classics
 http://strm112.1.fm/rockclassics_mobile_mp3
+#EXTINF:-1,Radio BeO
+http://stream11.radiobeo.ch:8000/radiobeo.mp3
 #EXTINF:-1,Radio Deep
 https://s2.radio.co/s098f4886e/listen
 #EXTINF:-1,80s Forever Radio
 https://azuracast.ssl-stream.com/radio/8050/256.mp3
 #EXTINF:-1,Radio Südostschweiz
 http://streaming.swisstxt.ch/m/grischa/mp3_128
+#EXTINF:-1,1.FM - Top Fiesta
+http://strm112.1.fm/spanishparty_mobile_mp3
 #EXTINF:-1,RSI Rete Due
 http://stream.srg-ssr.ch/m/retedue/mp3_128
 #EXTINF:-1,Radio Yacht
 https://radioyachtcapri.newradio.it/1
 #EXTINF:-1,1.FM - Classic Rock Replay
 http://strm112.1.fm/crock_mobile_mp3
-#EXTINF:-1,1.FM - Bom Psytrance
-http://strm112.1.fm/psytrance_mobile_mp3
 #EXTINF:-1,Vibration - Zen Relax
 http://vibration.stream2net.eu:8220/vibrationzenrelax-128.mp3
 #EXTINF:-1,radio SAW
 https://saw-de-hz-fal-stream03-cluster01.radiohost.de/saw_128
 #EXTINF:-1,SRF Virus
 http://stream.srg-ssr.ch/m/drsvirus/mp3_128
-#EXTINF:-1,1.FM - Funky Express
-http://strm112.1.fm/funkyexpress_mobile_mp3
 #EXTINF:-1,GOAT Greatest Hits Radio
 http://20min.dmd2streaming.com/20minuten_radio_128.mp3
 #EXTINF:-1,1.FM - Back to the 50s and 60s
@@ -137,8 +137,6 @@ http://strm112.1.fm/60s_70s_mobile_mp3
 http://sc3c-sjc.1.fm:7044/
 #EXTINF:-1,antenne 1
 https://stream.antenne1.de/a1stg/livestream2.mp3
-#EXTINF:-1,1.FM - Costa Del Mar
-http://strm112.1.fm/costadelmarchillout_mobile_mp3
 #EXTINF:-1,Spoon Radio
 https://spoonradio.ice.infomaniak.ch/spoonradio-high.aac
 #EXTINF:-1,Radio Top Two
@@ -147,22 +145,28 @@ http://icecast.radiotop.ch/toptwo_128
 http://strm112.1.fm/opera_mobile_mp3
 #EXTINF:-1,1.FM - All Euro 80s
 http://strm112.1.fm/80s_90s_mobile_mp3
+#EXTINF:-1,1.FM - Absolute 90s
+http://strm112.1.fm/90s_mobile_mp3
 #EXTINF:-1,Sunshine - Party
 http://sunsl.streamabc.net/sunsl-party-mp3-192-3345881
+#EXTINF:-1,1.FM - High Voltage
+http://sc-hv.1.fm:8035/
+#EXTINF:-1,Radio Harmonie
+http://stream.radioharmonie.at:9630/
 #EXTINF:-1,1.FM - Disco Ball 70s & 80s
 http://strm112.1.fm/disco_mobile_mp3
 #EXTINF:-1,Radio Osttirol
 http://85.195.88.149:28768/
 #EXTINF:-1,Vibration - Chanson Française
 http://vibration.stream2net.eu:8510/vibra-chfrancaise.mp3
+#EXTINF:-1,1.FM - Otto's Classical
+http://strm112.1.fm/classical_mobile_mp3
 #EXTINF:-1,1.FM - Dance One
 http://strm112.1.fm/dance_mobile_mp3
 #EXTINF:-1,SRF 1 Basel Baselland
 http://stream.srg-ssr.ch/m/regi_bs_bl/mp3_128
 #EXTINF:-1,1.FM - Magic 80
 http://strm112.1.fm/magic80_mobile_mp3
-#EXTINF:-1,1.FM - Slow Jamz
-http://strm112.1.fm/slowjamz_mobile_mp3?type=.flv
 #EXTINF:-1,94.3 rs2
 http://138.201.251.239/rs2_128
 #EXTINF:-1,Radio Lac
@@ -197,975 +201,15 @@ https://radio-hot100.stream.laut.fm/radio-hot100
 https://timedance-fm.stream.laut.fm/timedance-fm?pl=m3u&t302=2020-08-07_22-13-36&uuid=b592f5cd-c0d6-4fcf-af65-0ed754d543b0
 #EXTINF:-1,1.FM - A List 80s
 http://strm112.1.fm/back280s_mobile_mp3
+#EXTINF:-1,NJOY Radio Steiermark
+http://live.njoyradio.at/njoy
 #EXTINF:-1,Electro Swing Radio
 https://streamer.radio.co/s2c3cc784b/listen
 #EXTINF:-1,KroneHit UHD
 https://secureonair.krone.at/kronehit-ultra-hd.aac
-#EXTINF:-1,Technikum Rock
-http://fc.macjingle.net:8202/
 #EXTINF:-1,1.FM - Destination Spa
 http://strm112.1.fm/spa_mobile_mp3
-#EXTINF:-1,Energy Swiss
-https://energyswiss.ice.infomaniak.ch/energyswiss-high.mp3
 #EXTINF:-1,Bayerwaldradio Alles Blasmusik
 http://stream.bayerwaldradio.com/allesblasmusik
 #EXTINF:-1,Vibration - Gay Radio!
 http://vibration.stream2net.eu:8480/vibration-gayradio.mp3
-#EXTINF:-1,Radio Niesen
-http://server31677.streamplus.de/stream.mp3
-#EXTINF:-1,Radio Technikum
-http://fc.macjingle.net:8200/
-#EXTINF:-1,Hirschmilch Electronic
-http://hirschmilch.de:7000/electronic.mp3
-#EXTINF:-1,Radio RTN
-https://rtn.ice.infomaniak.ch/rtn-high.mp3
-#EXTINF:-1,Radio OP
-http://server4.streamserver24.com:26250/stream
-#EXTINF:-1,Sunshine - Ibiza
-http://sunsl.streamabc.net/sunsl-ibiza-mp3-192-7872628
-#EXTINF:-1,Energy Soundtrack
-https://energysoundtrack.ice.infomaniak.ch/energysoundtrack-high.mp3
-#EXTINF:-1,FFH Eurodance
-http://mp3.ffh.de/ffhchannels/hqeurodance.mp3
-#EXTINF:-1,1.FM - Sax4ever
-http://strm112.1.fm/sax4ever_mobile_mp3
-#EXTINF:-1,SRF 1 Graubünden
-http://streaming.swisstxt.ch/m/regi_gr/mp3_128
-#EXTINF:-1,Kölsche Theke
-https://radio-koelsche-theke.stream.laut.fm/radio-koelsche-theke
-#EXTINF:-1,Vertical Radio
-http://verticalradio.ice.infomaniak.ch/verticalradio-128.aac
-#EXTINF:-1,1.FM - Absolute Pop Latino
-http://strm112.1.fm/latino_mobile_mp3
-#EXTINF:-1,1.FM - Total Hits en Español
-http://strm112.1.fm/spanishtophits_mobile_mp3
-#EXTINF:-1,Radio Radischen
-https://www.radio-radieschen.at/livestream/
-#EXTINF:-1,1000 70er
-https://100070er.stream.laut.fm/100070er?pl=m3u&t302=2020-08-07_22-13-27&uuid=93446ba5-d766-4594-8966-fcc1008787e0
-#EXTINF:-1,Vibration - Soft Hits
-http://vibration.stream2net.eu:8350/vibration-softhits.mp3
-#EXTINF:-1,Radio Munot FM
-http://streaming.swisstxt.ch/m/radiomunot/aac_96
-#EXTINF:-1,Peters Plattenthek
-http://streamplus7.leonex.de:22688/
-#EXTINF:-1,Hirschmilch Chillout
-https://hirschmilch.de:7001/chillout.mp3
-#EXTINF:-1,1.FM - Dubstep Forward
-http://strm112.1.fm/dubstep_mobile_mp3
-#EXTINF:-1,JazzRadio
-http://streaming.radio.co/s774887f7b/listen
-#EXTINF:-1,Swiss Art Radio
-http://sirius.shoutca.st:9101/
-#EXTINF:-1,Macjingle Christmas
-http://fc.macjingle.at:8020/
-#EXTINF:-1,ACW Absolut Charts Wow
-https://acw.stream.laut.fm/acw?pl=m3u&t302=2020-08-07_22-20-50&uuid=a8f3b0e9-a154-4852-9a81-f1954f1989b9
-#EXTINF:-1,Radio ECHOPLUS
-http://radio2.stream24.net:9120/live.mp3
-#EXTINF:-1,neo1
-http://stream-02.neo1.ch/neo1
-#EXTINF:-1,FFH Workout
-https://mp3.ffh.de/ffhchannels/hqworkout.aac
-#EXTINF:-1,AA Fresh Hits
-https://fresh-hits.stream.laut.fm/fresh-hits?pl=m3u&t302=2020-08-07_22-20-54&uuid=ea6876b9-0c6f-4275-bb63-e54848d60341
-#EXTINF:-1,Radio Canal 3D
-http://radio.upstream-cloud.ch/canal3allemand-192.aac
-#EXTINF:-1,GDS.FM
-http://gdsfm.out.airtime.pro:8000/gdsfm_a
-#EXTINF:-1,macjingle Todays Best
-http://fc.macjingle.at:8000/
-#EXTINF:-1,Radio Seefunk RSF
-http://webradio.radio-seefunk.de:8000/
-#EXTINF:-1,Toxic FM
-https://toxicfm.ice.infomaniak.ch/toxicfm-128
-#EXTINF:-1,Sunshine live - Relax
-http://sunsl.streamabc.net/sunsl-relax-mp3-192-4997432
-#EXTINF:-1,Sunshine - Psytrance
-http://sunsl.streamabc.net/sunsl-christmas-mp3-192-7547837
-#EXTINF:-1,Radio B138
-http://radiob138.out.airtime.pro:8000/radiob138_a
-#EXTINF:-1,FFH Party
-https://mp3.ffh.de/ffhchannels/hqparty.mp3
-#EXTINF:-1,Ö3 Nachrichten
-https://oe3meta.orf.at/oe3mdata/StaticAudio/Nachrichten.mp3
-#EXTINF:-1,1.FM - Brazilian Birds
-http://strm112.1.fm/brazilianbirds_mobile_mp3
-#EXTINF:-1,Hirschmilch Prog-House
-http://hirschmilch.de:7000/prog-house.mp3
-#EXTINF:-1,Radio RTR
-http://stream.srg-ssr.ch/m/rr/mp3_128
-#EXTINF:-1,Oldie Welle Niederbayern
-http://rs4.stream24.net/oldie-welle.aac
-#EXTINF:-1,1.FM - Radio Gaia
-http://strm112.1.fm/radiogaia_mobile_mp3
-#EXTINF:-1,1.FM - Absolute Samba Brazil
-http://strm112.1.fm/samba_mobile_mp3
-#EXTINF:-1,RFJ - Radio Frequence Jura
-https://rfj.ice.infomaniak.ch/rfj-high.aac
-#EXTINF:-1,1.FM - Samba Rock
-http://strm112.1.fm/sambarock_mobile_mp3
-#EXTINF:-1,1.FM - Éxitos del Ayer
-http://strm112.1.fm/spanisholdies_mobile_mp3
-#EXTINF:-1,1.FM - MPB Hits
-http://strm112.1.fm/mpb_mobile_mp3
-#EXTINF:-1,Rouge Disco Funk
-https://rouge-disco.ice.infomaniak.ch/rouge-disco-128.mp3
-#EXTINF:-1,Hirschmilch Psytrance
-http://hirschmilch.de:7000/psytrance.mp3
-#EXTINF:-1,1.FM - Eternal Praise and worship
-http://strm112.1.fm/praise_mobile_mp3
-#EXTINF:-1,RJB - Radio Jura Bernois
-https://rjb.ice.infomaniak.ch/rjb-high.mp3
-#EXTINF:-1,Rouge Best Hits
-https://rouge-besthits.ice.infomaniak.ch/rouge-besthits-128.mp3
-#EXTINF:-1,Roca FM Clasicos Genève
-https://xxdelgado.radioca.st/
-#EXTINF:-1,1.FM - Adult Urban Hits Choice
-http://strm112.1.fm/oldschool_mobile_mp3
-#EXTINF:-1,Vintage Music Radio - Switzerland
-https://listen.mixfeever.com/feevermix12
-#EXTINF:-1,FFH Rock
-http://mp3.ffh.de/ffhchannels/hqrock.mp3
-#EXTINF:-1,Radio Top 40
-http://antenne-th.divicon-stream.net/antth_top40live_SeJx-mp3-192
-#EXTINF:-1,FFH Summer Feeling
-https://mp3.ffh.de/ffhchannels/hqsummerfeeling.aac
-#EXTINF:-1,Rouge France
-https://rouge-madeinfrance.ice.infomaniak.ch/rouge-madeinfrance-128.mp3
-#EXTINF:-1,Hirschmilch Progressive
-http://hirschmilch.de:7000/progressive.mp3
-#EXTINF:-1,FFH Soundtrack
-http://mp3.ffh.de/ffhchannels/hqsoundtrack.mp3
-#EXTINF:-1,Rouge Rock
-https://rouge-rockpop.ice.infomaniak.ch/rouge-rockpop-high.mp3
-#EXTINF:-1,1.FM - Gorilla FM
-http://strm112.1.fm/gorillafm_mobile_mp3
-#EXTINF:-1,Klassik Radio - Klassik Dreams
-http://klassikr.streamabc.net/klr-klassikdreams-mp3-192-5363069
-#EXTINF:-1,Radio Morcote International
-http://streaming.radiomorcoteinternational.com:8000/?nocache=33&type=http
-#EXTINF:-1,Goa Base
-https://goa-base.stream.laut.fm/goa-base
-#EXTINF:-1,1.FM - Afterbeat Electronica
-http://sc-electronica.1.fm:8250/
-#EXTINF:-1,Radio Vaanam
-http://hyades.shoutca.st:8717/stream
-#EXTINF:-1,1.FM - Italia On Air
-http://strm112.1.fm/italiaonair_mobile_mp3
-#EXTINF:-1,1.FM - Always-Christmas
-http://strm112.1.fm/christmas_mobile_mp3
-#EXTINF:-1,laut.fm Deutsch Rap
-https://deutschrap.stream.laut.fm/deutschrap?pl=m3u&t302=2020-08-07_22-20-15&uuid=2af623c8-13ef-4571-ac59-70f30e5af54c
-#EXTINF:-1,1.FM - Acappella
-http://strm112.1.fm/acpl_mobile_mp3
-#EXTINF:-1,Sunshine - Techno Queens
-http://sunsl.streamabc.net/sunsl-technoqueens-mp3-192-5480812
-#EXTINF:-1,Radio Freiburg
-http://radiofreiburg.ice.infomaniak.ch/radiofreiburg-high.mp3
-#EXTINF:-1,Sunshine - Remix
-http://sunsl.streamabc.net/sunsl-remix-mp3-192-5723167
-#EXTINF:-1,Rouge Suisse
-https://rouge-suisse.ice.infomaniak.ch/rouge-suisse-128.mp3
-#EXTINF:-1,Vibration - Rádio Vibraçao
-http://vibration.stream2net.eu:8400/vibration-vibracao.mp3
-#EXTINF:-1,1A Deutsche Hits
-http://88.99.238.147/saw-deutsch_48
-#EXTINF:-1,Radio Arremesso
-http://94.23.1.151:8001/
-#EXTINF:-1,LA OTRA LATINA SUIZA
-http://streaming.hdserver.biz:9354/
-#EXTINF:-1,Energy Girl
-https://energygirl.ice.infomaniak.ch/energygirl-high.mp3
-#EXTINF:-1,FFH Leider Geil
-http://mp3.ffh.de/ffhchannels/hqvoting.mp3
-#EXTINF:-1,FFH Schlagerkult
-http://mp3.ffh.de/ffhchannels/hqschlager.mp3
-#EXTINF:-1,Radio Kuschelsound
-https://kuschelrock.stream.laut.fm/kuschelrock
-#EXTINF:-1,Radio Hellvetia
-http://radio1.stream24.net:8730/live.mp3
-#EXTINF:-1,FFH iTunes Top 40
-http://mp3.ffh.de/ffhchannels/hqtop40.mp3
-#EXTINF:-1,Berliner Rundfunk 100% Deutsch
-https://topradio-de-hz-fal-stream10-cluster01.radiohost.de/brf-100prozent-deutsch_mp3-128
-#EXTINF:-1,1.FM - Jamz
-http://strm112.1.fm/jamz_mobile_mp3?type=.flv
-#EXTINF:-1,Planet Radio Black Beats
-https://mp3.planetradio.de/plrchannels/hqblackbeats.aac
-#EXTINF:-1,Rouge 90's
-https://rouge-90.ice.infomaniak.ch/rouge-90-128.mp3
-#EXTINF:-1,Bayerwaldradio Alles Oberkrain
-http://stream.bayerwaldradio.com/allesoberkrain
-#EXTINF:-1,Radio SAW - Party
-http://88.99.238.147/saw-party_48
-#EXTINF:-1,FFH Just 90s
-http://mp3.ffh.de/ffhchannels/hq90er.mp3
-#EXTINF:-1,1.FM - All Times & Urban Gospel
-http://strm112.1.fm/gospel_mobile_mp3
-#EXTINF:-1,1.FM - Polska FM
-http://strm112.1.fm/polskafm_mobile_mp3
-#EXTINF:-1,Radio Studio Star
-http://nr5.newradio.it:8520/
-#EXTINF:-1,Radio Doctor Web
-http://sphera.fluidstream.eu/rpd_country.mp3
-#EXTINF:-1,Klassik Radio - Lounge
-http://klassikr.streamabc.net/klr-lounge-mp3-192-2214671
-#EXTINF:-1,1.FM - Kids FM
-http://strm112.1.fm/kidsfm_mobile_mp3
-#EXTINF:-1,Sunshine - Summer Beats
-http://sunsl.streamabc.net/sunsl-playlist2-mp3-192-4542868
-#EXTINF:-1,7 Radio
-http://91.121.38.100:8190/
-#EXTINF:-1,PowerUp Radio
-http://stream.powerup.ch/powerupradio-192.mp3
-#EXTINF:-1,Sunshine - Clubsound Berlin
-http://sunsl.streamabc.net/sunsl-playlist1-mp3-192-2595213
-#EXTINF:-1,VIBRACION LATINA
-http://91.121.38.100:8420/
-#EXTINF:-1,KTFM
-http://ktfm.ice.infomaniak.ch/ktfm-high.mp3
-#EXTINF:-1,Klassik Radio - New Classics
-http://klassikr.streamabc.net/klr-newclassics-mp3-128-6197085
-#EXTINF:-1,Radio SAW - 70er
-http://88.99.46.90/saw-70er_48
-#EXTINF:-1,Radio Gugelhopf
-http://uk3.internet-radio.com:8113/
-#EXTINF:-1,Radio Summernight
-https://radiosummernight.stream.laut.fm/radiosummernight
-#EXTINF:-1,Radiologisch
-http://82.220.3.107:8000/stream/2/
-#EXTINF:-1,Klassik Radio - Nature
-https://klassikr.streamabc.net/klr-nature-mp3-128-2199748
-#EXTINF:-1,ToXoRs minimalRADIO
-http://toxor.de:8000/listen.pls?sid=1
-#EXTINF:-1,radio hbw
-https://www.radio-hbw.de/livestream/radio_hbw.m3u
-#EXTINF:-1,BN-Radio
-http://stream.bn-radio.de:8000/bn-radio.mp3
-#EXTINF:-1,Evil-Radio Pop & Rap
-http://stream.laut.fm/evil-radio-popundrap.m3u
-#EXTINF:-1,Evil-Radio
-http://stream.laut.fm/evil-radio.m3u
-#EXTINF:-1,Evil-Radio Schlager
-http://stream.laut.fm/er-schlager.m3u
-#EXTINF:-1,54 Funk Soul Dance
-https://54-funk-soul-dance.stream.laut.fm/54-funk-soul-dance
-#EXTINF:-1,ffn nur 90er
-https://ffn-de-hz-fal-stream04-cluster01.radiohost.de/neunziger_mp3-192
-#EXTINF:-1,Maretimo Lounge Radio
-https://s35.derstream.net/lounge.mp3
-#EXTINF:-1,Klassik Radio - Klassik Rock
-http://klassikr.streamabc.net/klr-klassikrock-mp3-192-6623778
-#EXTINF:-1,Sunshine - Workout
-http://sunsl.streamabc.net/sunsl-workout-mp3-192-3330865
-#EXTINF:-1,Rouge Urban
-https://rouge-urban.ice.infomaniak.ch/rouge-urban-128.mp3
-#EXTINF:-1,Rouge Platine
-https://rougeplatine.ice.infomaniak.ch/rougeplatine-high.mp3
-#EXTINF:-1,1.FM - Sertaneja Hits
-http://strm112.1.fm/sertanejo_mobile_mp3
-#EXTINF:-1,Magic radio
-http://magicradio.ice.infomaniak.ch/magicradio-mobile.aac
-#EXTINF:-1,Ostseewelle Sommer
-https://irmedia.streamabc.net/irm-oswsommer-mp3-128-6375323
-#EXTINF:-1,Radio SAW - 90er
-http://88.99.46.91/saw-90er_48
-#EXTINF:-1,Radio Glarissimo
-http://fridolin.ice.infomaniak.ch/fridolin-192.mp3
-#EXTINF:-1,Planet Radio The Club
-https://mp3.planetradio.de/plrchannels/hqtheclub.aac
-#EXTINF:-1,Bayerwald Radio
-http://stream.bayerwaldradio.com/bayerwaldradio
-#EXTINF:-1,Arc Musique
-https://arcmusique.ice.infomaniak.ch/arcmusique-128.mp3
-#EXTINF:-1,R102
-http://94.23.66.155:9334/stream.mp3?ver=156072
-#EXTINF:-1,SRF 1 - Regional Diagonal
-https://podcasts.srf.ch/world/audio/Regional-Diagonal_17-08-2020-1630.1597675441241.mp3?assetId=8224fd39-b6dd-416e-b47d-967b9573a712
-#EXTINF:-1,SRF 4 - HeuteMorgen
-https://podcasts.srf.ch/world/audio/HeuteMorgen_17-08-2020-0600.1597642089667.mp3?assetId=79abb99d-bcac-4b65-b05d-1e7730a9334d
-#EXTINF:-1,Radio38 Braunschweig
-http://rs27.stream24.net/radio38.mp3
-#EXTINF:-1,Alpenpower
-https://alpenpower.stream.laut.fm/alpenpower
-#EXTINF:-1,FFH Deutsch Pur
-http://mp3.ffh.de/ffhchannels/hqdeutsch.mp3
-#EXTINF:-1,Radio Brocken - Osthits
-https://fhhalle.streamabc.net/fhhal-rbosthits-mp3-128-4026567
-#EXTINF:-1,Planet Radio Oldschool
-http://mp3.planetradio.de/plrchannels/hqoldschool.aac
-#EXTINF:-1,Vogtland Radio
-http://vogtlandradio.mp3.green.ch/vogtland_128k_mp3
-#EXTINF:-1,Berliner Rundfunk 60er 70er
-https://topradio-de-hz-fal-stream03-cluster01.radiohost.de/brf-60er-70er_mp3-128
-#EXTINF:-1,Sunshine - Charts
-http://sunsl.streamabc.net/sunsl-charts-mp3-192-1193432
-#EXTINF:-1,Berliner Rundfunk Musik non-stop
-https://topradio-de-hz-fal-stream03-cluster01.radiohost.de/brf-pure_mp3-128
-#EXTINF:-1,Radio Brocken 80er
-https://fhhalle.streamabc.net/fhhal-brocken80er-mp3-128-3856659
-#EXTINF:-1,Jam FM Rap
-https://rtlberlin.streamabc.net/rtlb-jamfmrap-mp3-128-1539918
-#EXTINF:-1,Radio Horeb
-https://rs16.stream24.net/horeb.mp3
-#EXTINF:-1,BFBS Germany
-https://edge-audio-02-gos1.sharp-stream.com/ssvcbfbs5.aac
-#EXTINF:-1,FFH Acoustic Hits
-https://mp3.ffh.de/ffhchannels/hqacoustichits.aac
-#EXTINF:-1,FFH Weihnachtsradio
-https://mp3.ffh.de/ffhchannels/hqxmas.mp3
-#EXTINF:-1,Rockland Digital
-http://88.99.238.147/rockland_48
-#EXTINF:-1,Radio Bamberg
-http://rs1.stream24.net/stream
-#EXTINF:-1,Klassik Radio - Smooth
-http://klassikr.streamabc.net/klr-smooth-mp3-192-1096057
-#EXTINF:-1,BB RADIO Kinder Hits
-https://irmedia.streamabc.net/irm-bbrkinderlieder-mp3-128-6084104
-#EXTINF:-1,Radio Hannover
-http://radio-hannover.divicon-stream.net/rhann_livestrea_zqu6-mp3-192
-#EXTINF:-1,Radio SAW - Neuheiten
-http://88.99.46.92/saw-neuheiten_48
-#EXTINF:-1,Lounge Radio
-https://loungeradio.stream.laut.fm/loungeradio
-#EXTINF:-1,Techno4ever Club
-https://rautemusik-de-hz-fal-stream13.radiohost.de/club?ref=rm5beta
-#EXTINF:-1,RauteMusik Salsa
-http://rautemusik-de-hz-fal-stream11.radiohost.de/salsa
-#EXTINF:-1,Radio SAW - 2000er
-http://88.99.46.91/saw-2000er_48
-#EXTINF:-1,RauteMusik Happy Hardcore
-http://138.201.252.31/happyhardcore
-#EXTINF:-1,Coolradio Jazz
-http://coolradio-jazz.stream.laut.fm/coolradio-jazz
-#EXTINF:-1,Radio Galaxy Oberfranken
-http://rs21.stream24.net/stream
-#EXTINF:-1,BB RADIO Schlager
-https://irmedia.streamabc.net/irm-bbrschlager-mp3-128-7128607
-#EXTINF:-1,Sunshine - Bunker
-https://sunsl.streamabc.net/sunsl-amsterdam-mp3-192-9011779
-#EXTINF:-1,Radio Top 40 Charts
-https://antenne-th.divicon-stream.net/antth_top40char_0f6x-mp3-192
-#EXTINF:-1,Best of Rock - Hard Rock.FM
-https://radio21.streamabc.net/radio21-hardrock-mp3-256-1630702?amsparams=playerid%3Abestofrock.fm&sABC=5r21q54s%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,BB RADIO Oldies
-https://irmedia.streamabc.net/irm-bbroldies-mp3-128-9971951
-#EXTINF:-1,Like That Underground
-http://hyades.shoutca.st:8091/stream
-#EXTINF:-1,Sunshine - Die 80er
-http://sunsl.streamabc.net/sunsl-sunsl6eifqasv1fngh-mp3-192-9467550
-#EXTINF:-1,Radio Ostrock
-http://secondradio.de:7070/ostrock
-#EXTINF:-1,Radio 2DAY 89.0
-http://radio2day.ip-streaming.net/radio2day
-#EXTINF:-1,Best of Rock - Soft Rock.FM
-https://radio21.streamabc.net/radio21-softrock-mp3-256-8445450?amsparams=playerid%3Abestofrock.fm&sABC=5r21q86n%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,Radio Eins
-http://rs3.stream24.net/radio-eins.mp3
-#EXTINF:-1,Jam FM K-pop
-https://rtlberlin.streamabc.net/rtlb-jamfmkpop-mp3-128-8582229
-#EXTINF:-1,Planet Radio Nightwax
-https://mp3.planetradio.de/plrchannels/hqnightwax.aac
-#EXTINF:-1,Jam FM Generation Deutschrap
-https://rtlberlin.streamabc.net/rtlb-jamfmdeutschrap-mp3-128-2122454
-#EXTINF:-1,FFH Brandneu
-http://mp3.ffh.de/ffhchannels/hqbrandneu.mp3
-#EXTINF:-1,Radio Brocken Partymix
-https://fhhalle.streamabc.net/fhhal-partymix-mp3-128-6210435
-#EXTINF:-1,Radio_SAW_-_70er
-http://88.99.46.90/saw-70er_48
-#EXTINF:-1,Radio_Gugelhopf
-http://uk3.internet-radio.com:8113/
-#EXTINF:-1,Radio_Summernight
-https://radiosummernight.stream.laut.fm/radiosummernight
-#EXTINF:-1,Radiologisch
-http://82.220.3.107:8000/stream/2/
-#EXTINF:-1,Klassik_Radio_-_Nature
-https://klassikr.streamabc.net/klr-nature-mp3-128-2199748
-#EXTINF:-1,ToXoRs_minimalRADIO
-http://toxor.de:8000/listen.pls?sid=1
-#EXTINF:-1,radio_hbw
-https://www.radio-hbw.de/livestream/radio_hbw.m3u
-#EXTINF:-1,BN-Radio
-http://stream.bn-radio.de:8000/bn-radio.mp3
-#EXTINF:-1,Evil-Radio_Pop_&_Rap
-http://stream.laut.fm/evil-radio-popundrap.m3u
-#EXTINF:-1,Evil-Radio
-http://stream.laut.fm/evil-radio.m3u
-#EXTINF:-1,Evil-Radio_Schlager
-http://stream.laut.fm/er-schlager.m3u
-#EXTINF:-1,54_Funk_Soul_Dance
-https://54-funk-soul-dance.stream.laut.fm/54-funk-soul-dance
-#EXTINF:-1,ffn_nur_90er
-https://ffn-de-hz-fal-stream04-cluster01.radiohost.de/neunziger_mp3-192
-#EXTINF:-1,Maretimo_Lounge_Radio
-https://s35.derstream.net/lounge.mp3
-#EXTINF:-1,Sunshine_-_Workout
-http://sunsl.streamabc.net/sunsl-workout-mp3-192-3330865
-#EXTINF:-1,Rouge_Urban
-https://rouge-urban.ice.infomaniak.ch/rouge-urban-128.mp3
-#EXTINF:-1,Rouge_Platine
-https://rougeplatine.ice.infomaniak.ch/rougeplatine-high.mp3
-#EXTINF:-1,1.FM_-_Sertaneja_Hits
-http://strm112.1.fm/sertanejo_mobile_mp3
-#EXTINF:-1,Magic_radio
-http://magicradio.ice.infomaniak.ch/magicradio-mobile.aac
-#EXTINF:-1,Ostseewelle_Sommer
-https://irmedia.streamabc.net/irm-oswsommer-mp3-128-6375323
-#EXTINF:-1,Radio_SAW_-_90er
-http://88.99.46.91/saw-90er_48
-#EXTINF:-1,Radio_Glarissimo
-http://fridolin.ice.infomaniak.ch/fridolin-192.mp3
-#EXTINF:-1,Bayerwald_Radio
-http://stream.bayerwaldradio.com/bayerwaldradio
-#EXTINF:-1,Alles_Hardstyle
-https://alles-hardstyle.stream.laut.fm/alles-hardstyle
-#EXTINF:-1,Arc_Musique
-https://arcmusique.ice.infomaniak.ch/arcmusique-128.mp3
-#EXTINF:-1,R102
-http://94.23.66.155:9334/stream.mp3?ver=156072
-#EXTINF:-1,SRF_1_-_Regional_Diagonal
-https://podcasts.srf.ch/world/audio/Regional-Diagonal_17-08-2020-1630.1597675441241.mp3?assetId=8224fd39-b6dd-416e-b47d-967b9573a712
-#EXTINF:-1,SRF_4_-_HeuteMorgen
-https://podcasts.srf.ch/world/audio/HeuteMorgen_17-08-2020-0600.1597642089667.mp3?assetId=79abb99d-bcac-4b65-b05d-1e7730a9334d
-#EXTINF:-1,Radio38_Braunschweig
-http://rs27.stream24.net/radio38.mp3
-#EXTINF:-1,Alpenpower
-https://alpenpower.stream.laut.fm/alpenpower
-#EXTINF:-1,FFH_Deutsch_Pur
-http://mp3.ffh.de/ffhchannels/hqdeutsch.mp3
-#EXTINF:-1,Radio_Brocken_-_Osthits
-https://fhhalle.streamabc.net/fhhal-rbosthits-mp3-128-4026567
-#EXTINF:-1,Planet_Radio_Oldschool
-http://mp3.planetradio.de/plrchannels/hqoldschool.aac
-#EXTINF:-1,Vogtland_Radio
-http://vogtlandradio.mp3.green.ch/vogtland_128k_mp3
-#EXTINF:-1,Berliner_Rundfunk_60er_70er
-https://topradio-de-hz-fal-stream03-cluster01.radiohost.de/brf-60er-70er_mp3-128
-#EXTINF:-1,Sunshine_-_Charts
-http://sunsl.streamabc.net/sunsl-charts-mp3-192-1193432
-#EXTINF:-1,Berliner_Rundfunk_Musik_non-stop
-https://topradio-de-hz-fal-stream03-cluster01.radiohost.de/brf-pure_mp3-128
-#EXTINF:-1,Radio_Brocken_80er
-https://fhhalle.streamabc.net/fhhal-brocken80er-mp3-128-3856659
-#EXTINF:-1,Jam_FM_Rap
-https://rtlberlin.streamabc.net/rtlb-jamfmrap-mp3-128-1539918
-#EXTINF:-1,Radio_Horeb
-https://rs16.stream24.net/horeb.mp3
-#EXTINF:-1,BFBS_Germany
-https://edge-audio-02-gos1.sharp-stream.com/ssvcbfbs5.aac
-#EXTINF:-1,FFH_Weihnachtsradio
-https://mp3.ffh.de/ffhchannels/hqxmas.mp3
-#EXTINF:-1,Rockland_Digital
-http://88.99.238.147/rockland_48
-#EXTINF:-1,Radio_Bamberg
-http://rs1.stream24.net/stream
-#EXTINF:-1,Klassik_Radio_-_Smooth
-http://klassikr.streamabc.net/klr-smooth-mp3-192-1096057
-#EXTINF:-1,BB_RADIO_Kinder_Hits
-https://irmedia.streamabc.net/irm-bbrkinderlieder-mp3-128-6084104
-#EXTINF:-1,Radio_Hannover
-http://radio-hannover.divicon-stream.net/rhann_livestrea_zqu6-mp3-192
-#EXTINF:-1,Radio_SAW_-_Neuheiten
-http://88.99.46.92/saw-neuheiten_48
-#EXTINF:-1,Lounge_Radio
-https://loungeradio.stream.laut.fm/loungeradio
-#EXTINF:-1,Techno4ever_Club
-https://rautemusik-de-hz-fal-stream13.radiohost.de/club?ref=rm5beta
-#EXTINF:-1,RauteMusik_Salsa
-http://rautemusik-de-hz-fal-stream11.radiohost.de/salsa
-#EXTINF:-1,Radio_SAW_-_2000er
-http://88.99.46.91/saw-2000er_48
-#EXTINF:-1,RauteMusik_Happy_Hardcore
-http://138.201.252.31/happyhardcore
-#EXTINF:-1,Radio_Galaxy_Oberfranken
-http://rs21.stream24.net/stream
-#EXTINF:-1,BB_RADIO_Schlager
-https://irmedia.streamabc.net/irm-bbrschlager-mp3-128-7128607
-#EXTINF:-1,Sunshine_-_Bunker
-https://sunsl.streamabc.net/sunsl-amsterdam-mp3-192-9011779
-#EXTINF:-1,Radio_Top_40_Charts
-https://antenne-th.divicon-stream.net/antth_top40char_0f6x-mp3-192
-#EXTINF:-1,Best_of_Rock_-_Hard_Rock.FM
-https://radio21.streamabc.net/radio21-hardrock-mp3-256-1630702?amsparams=playerid%3Abestofrock.fm&sABC=5r21q54s%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,BB_RADIO_Oldies
-https://irmedia.streamabc.net/irm-bbroldies-mp3-128-9971951
-#EXTINF:-1,Like_That_Underground
-http://hyades.shoutca.st:8091/stream
-#EXTINF:-1,Sunshine_-_Die_80er
-http://sunsl.streamabc.net/sunsl-sunsl6eifqasv1fngh-mp3-192-9467550
-#EXTINF:-1,Radio_Ostrock
-http://secondradio.de:7070/ostrock
-#EXTINF:-1,Radio_2DAY_89.0
-http://radio2day.ip-streaming.net/radio2day
-#EXTINF:-1,Best_of_Rock_-_Soft_Rock.FM
-https://radio21.streamabc.net/radio21-softrock-mp3-256-8445450?amsparams=playerid%3Abestofrock.fm&sABC=5r21q86n%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,Radio_Eins
-http://rs3.stream24.net/radio-eins.mp3
-#EXTINF:-1,Jam_FM_K-pop
-https://rtlberlin.streamabc.net/rtlb-jamfmkpop-mp3-128-8582229
-#EXTINF:-1,Jam_FM_Generation_Deutschrap
-https://rtlberlin.streamabc.net/rtlb-jamfmdeutschrap-mp3-128-2122454
-#EXTINF:-1,Radio_Brocken_Partymix
-https://fhhalle.streamabc.net/fhhal-partymix-mp3-128-6210435
-#EXTINF:-1,Radio_Charivari_Rosenheim
-http://s17.myradiostream.com:10938/
-#EXTINF:-1,Sunshine_-_Winter_Chill
-http://sunsl.streamabc.net/sunsl-winterchill-mp3-192-4518810
-#EXTINF:-1,Antenne_Thüringen_Charts
-https://antenne-th.divicon-stream.net/antth_atcharts_xE8A-mp3-192
-#EXTINF:-1,Radio_SAW_-_Deutsch
-http://88.99.46.92/saw-deutsch_48
-#EXTINF:-1,1A_90er
-http://88.99.18.22/saw-90er_48
-#EXTINF:-1,Munich's_Hardest_Hits
-http://munichhh.streamabc.net/munichhh-mhhlive-aacplus-64-1296605
-#EXTINF:-1,Europa-Park_Radio
-http://rs9.stream24.net/europa-park-radio.mp3
-#EXTINF:-1,rs2_90er
-https://topradio-de-hz-fal-stream05-cluster01.radiohost.de/rs2-90er_mp3-128
-#EXTINF:-1,1A_Party_Hits
-http://138.201.251.217/saw-party_48
-#EXTINF:-1,Antenne_Thüringen_90er
-https://antenne-th.divicon-stream.net/antth_at90er_ewov-mp3-192
-#EXTINF:-1,SCHLAGERINO_Kultschlager
-https://schlagerino-kultschlager.stream.laut.fm/schlagerino-kultschlager?pl=m3u&t302=2020-08-07_22-12-02&uuid=88ea3096-1698-4041-8264-756517093e55
-#EXTINF:-1,Ostseewelle_oldie_hits
-https://irmedia.streamabc.net/irm-oswoldies-mp3-128-8101166
-#EXTINF:-1,Radio_Galaxy_Passau
-https://rs4.stream24.net/galaxy-passau.mp3
-#EXTINF:-1,Radio_Brocken_90er_Dance
-https://fhhalle.streamabc.net/fhhal_rbrockenb_ut1n-mp3-128-6767438
-#EXTINF:-1,Radio_Mainwelle
-https://webstream.mainwelle.de/radio-mainwelle.mp3
-#EXTINF:-1,Planet_Radio_iTunes_hot_40
-https://mp3.planetradio.de/plrchannels/hqitunes.aac
-#EXTINF:-1,Radio_Fırat_Fm
-https://anadolu.liderhost.com.tr/3065/stream
-#EXTINF:-1,Radio_Top_40_Club_Sound
-https://antenne-th.divicon-stream.net/antth_top40electro_JlSz-mp3-192
-#EXTINF:-1,Antenne_Thüringen_Yesterhits
-https://antenne-th.divicon-stream.net/antth_atyesterh_jaiR-mp3-192
-#EXTINF:-1,Schlagerpur
-https://volksmusikpur.stream.laut.fm/volksmusikpur
-#EXTINF:-1,Best_of_Rock_-_Classic_Rock.FM
-https://radio21.streamabc.net/radio21-classicrock-mp3-256-9273095?amsparams=playerid%3Abestofrock.fm&sABC=5r21q512%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,Sunshine_-_90s_Anthems
-http://sunsl.streamabc.net/sunsl-90santhems-mp3-192-6626822
-#EXTINF:-1,Das_Radio_der_von_neil_young_Getoeteten
-https://server1084.streamplus.de/stream.mp3
-#EXTINF:-1,Radio_8
-http://live.radio8.de/liver8
-#EXTINF:-1,Radio_Galaxy_Rosenheim
-http://s17.myradiostream.com:13366/stream.mp3
-#EXTINF:-1,Club_FM
-http://rs7.stream24.net/clubfm.aac
-#EXTINF:-1,Best_of_Rock_-_Nonstop_Metal.FM
-https://radio21.streamabc.net/radio21-metal-mp3-256-1277714?amsparams=playerid%3Abestofrock.fm&sABC=5r21q65s%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,Klassik_Radio_-_Schiller
-http://klassikr.streamabc.net/klr-schiller-mp3-192-1913826
-#EXTINF:-1,Rattlesnake_Radio
-http://server3755.streamplus.de/
-#EXTINF:-1,unserRadio
-https://rs4.stream24.net/unser-radio.aac
-#EXTINF:-1,Berliner_Rundfunk_Top_800_80er
-https://topradio-de-hz-fal-stream03-cluster01.radiohost.de/brf-80er_mp3-128
-#EXTINF:-1,Best_of_Rock_-_Alternative_Rock.FM
-https://radio21.streamabc.net/radio21-alternativerock-mp3-256-9941142?amsparams=playerid%3Abestofrock.fm&sABC=5r21q4r8%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,rs2_80er_Party
-https://topradio-de-hz-fal-stream05-cluster01.radiohost.de/rs2-80er-party_mp3-128
-#EXTINF:-1,KTL_Oldieradio
-http://streamplus7.leonex.de:24844/
-#EXTINF:-1,BB_RADIO_Sommer
-https://irmedia.streamabc.net/irm-bbrsommer-mp3-128-5427013
-#EXTINF:-1,Sunshine_live_-_Pop
-http://sunsl.streamabc.net/sunsl-pop-mp3-192-8241940
-#EXTINF:-1,Jam_FM_Chill
-https://rtlberlin.streamabc.net/rtlb-jamfmchill-mp3-128-6575824
-#EXTINF:-1,Radio_Euroherz
-http://rs2.stream24.net/stream
-#EXTINF:-1,Dark_Zero_Radio
-https://darkzeroradio.stream.laut.fm/darkzeroradio?pl=m3u&t302=2020-08-07_22-20-11&uuid=e84d30ce-413e-407a-a9f9-eea2fa98e6ed
-#EXTINF:-1,BB_RADIO_Deutsch_relax
-https://irmedia.streamabc.net/irm-channel13-mp3-128-2047718
-#EXTINF:-1,The_Lake_Radio
-http://hyades.shoutca.st:8627/
-#EXTINF:-1,Radio_Superoldie_Musik
-http://87.118.87.46:8888/
-#EXTINF:-1,Radio_Silesia
-http://s1.slotex.pl:7350/
-#EXTINF:-1,MusikWelle_Allgaeu
-http://stream.musikwelle-allgaeu.de:8000/stream1?nocache=3&type=http
-#EXTINF:-1,Jam_FM_Elektro
-https://rtlberlin.streamabc.net/rtlb-jamfmelektro-mp3-128-8511839
-#EXTINF:-1,Jam_FM_Workout
-https://rtlberlin.streamabc.net/rtlb-jamfmworkout-mp3-128-4940474
-#EXTINF:-1,Radio_Brocken_90er
-https://fhhalle.streamabc.net/fhhal-brocken90er-mp3-128-5705884
-#EXTINF:-1,RauteMusik_Goldies
-http://138.201.33.223/goldies
-#EXTINF:-1,deutschFM
-http://streamplus7.leonex.de:35466/
-#EXTINF:-1,Antenne_Thüringen_Deutsch_Pop
-https://antenne-th.divicon-stream.net/antth_atdeutsch_cbRE-mp3-192
-#EXTINF:-1,Sunshine_-_Future_Bass
-http://sunsl.streamabc.net/sunsl-sunslcheqhs4qtygg6-mp3-192-1498751
-#EXTINF:-1,Radio_Brocken_Lovesongs
-https://fhhalle.streamabc.net/fhhal_rbrockenl_1rdw-mp3-128-1751477
-#EXTINF:-1,Radio_Brocken_Weihnachtsradio
-https://fhhalle.streamabc.net/fhhal-brockenweihnachten-mp3-128-6088611
-#EXTINF:-1,D-Rockz_Radio
-http://server4.streamserver24.com:21772/stream
-#EXTINF:-1,Thrashking
-https://thrashking.stream.laut.fm/thrashking
-#EXTINF:-1,mundARTradio
-https://mundartradio.stream.laut.fm/mundartradio?pl=m3u&t302=2020-08-07_22-21-55&uuid=eca1e1e6-8467-451d-bdf2-9b54dc047c75
-#EXTINF:-1,Türkiyem_FM
-http://radyopiryolu.canliyayinda.com:8032/
-#EXTINF:-1,Hrvatski_Radio_Frankfurt
-http://ec2s.crolive.com.hr:1610/stream
-#EXTINF:-1,Radio_Jukebox
-http://stream15.top-ix.org/radiojukebox
-#EXTINF:-1,Radio_Brocken_Kinderzeit
-https://fhhalle.streamabc.net/fhhal-brockenkinderzeit-mp3-128-8565893
-#EXTINF:-1,luluTRAX
-http://195.201.81.101/lulutrax.mp3
-#EXTINF:-1,Antenne_Bad_Kreuznach
-http://mp3.stream.antenne-kh.de/
-#EXTINF:-1,Chillharmonie
-https://chillharmonie.stream.laut.fm/chillharmonie
-#EXTINF:-1,Antenne_Thüringen_Rock
-https://antenne-th.divicon-stream.net/antth-atrock-mp3-192-4126120
-#EXTINF:-1,Meer_Radio_88.0_FM
-https://meerradio.ip-streaming.net/meerradio
-#EXTINF:-1,Sunshine_-_Die_2000er
-http://sunsl.streamabc.net/sunsl-die2000er-mp3-192-3233898
-#EXTINF:-1,Power_Radio_91.8
-http://85.25.217.22:8020/stream
-#EXTINF:-1,All_time_classics
-http://alltimeclassics.stream.laut.fm/alltimeclassics
-#EXTINF:-1,Sunshine_-_Afterhour
-http://sunsl.streamabc.net/sunsl-sunsldfw8j6rqyqnlw-mp3-192-9761542
-#EXTINF:-1,Best_of_Rock_-_Deutsch_Rock.FM
-https://radio21.streamabc.net/radio21-deutschrock-mp3-256-7466793?amsparams=playerid%3Abestofrock.fm&sABC=5r21q48n%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,Radio_Brocken_Chart-hits
-https://fhhalle.streamabc.net/fhhal-rbchart-mp3-128-6552181
-#EXTINF:-1,Radio_Charivari_Rosenheim
-http://s17.myradiostream.com:10938/
-#EXTINF:-1,Sunshine_-_Winter_Chill
-http://sunsl.streamabc.net/sunsl-winterchill-mp3-192-4518810
-#EXTINF:-1,Antenne_Thüringen_Charts
-https://antenne-th.divicon-stream.net/antth_atcharts_xE8A-mp3-192
-#EXTINF:-1,Radio_SAW_-_Deutsch
-http://88.99.46.92/saw-deutsch_48
-#EXTINF:-1,1A_90er
-http://88.99.18.22/saw-90er_48
-#EXTINF:-1,Munich's_Hardest_Hits
-http://munichhh.streamabc.net/munichhh-mhhlive-aacplus-64-1296605
-#EXTINF:-1,Europa-Park_Radio
-http://rs9.stream24.net/europa-park-radio.mp3
-#EXTINF:-1,rs2_90er
-https://topradio-de-hz-fal-stream05-cluster01.radiohost.de/rs2-90er_mp3-128
-#EXTINF:-1,1A_Party_Hits
-http://138.201.251.217/saw-party_48
-#EXTINF:-1,Antenne_Thüringen_90er
-https://antenne-th.divicon-stream.net/antth_at90er_ewov-mp3-192
-#EXTINF:-1,SCHLAGERINO_Kultschlager
-https://schlagerino-kultschlager.stream.laut.fm/schlagerino-kultschlager?pl=m3u&t302=2020-08-07_22-12-02&uuid=88ea3096-1698-4041-8264-756517093e55
-#EXTINF:-1,Mojo_Club_Radio
-http://mojo.stream.laut.fm/mojo
-#EXTINF:-1,Ostseewelle_oldie_hits
-https://irmedia.streamabc.net/irm-oswoldies-mp3-128-8101166
-#EXTINF:-1,Radio_Galaxy_Passau
-https://rs4.stream24.net/galaxy-passau.mp3
-#EXTINF:-1,Radio_Brocken_90er_Dance
-https://fhhalle.streamabc.net/fhhal_rbrockenb_ut1n-mp3-128-6767438
-#EXTINF:-1,Radio_Mainwelle
-https://webstream.mainwelle.de/radio-mainwelle.mp3
-#EXTINF:-1,Radio_Lübeck
-https://s35.derstream.net/radioluebeck-192.mp3
-#EXTINF:-1,Planet_Radio_iTunes_hot_40
-https://mp3.planetradio.de/plrchannels/hqitunes.aac
-#EXTINF:-1,Radio_Fırat_Fm
-https://anadolu.liderhost.com.tr/3065/stream
-#EXTINF:-1,Radio_Top_40_Club_Sound
-https://antenne-th.divicon-stream.net/antth_top40electro_JlSz-mp3-192
-#EXTINF:-1,Antenne_Thüringen_Yesterhits
-https://antenne-th.divicon-stream.net/antth_atyesterh_jaiR-mp3-192
-#EXTINF:-1,Schlagerpur
-https://volksmusikpur.stream.laut.fm/volksmusikpur
-#EXTINF:-1,Maretimo_House_Radio
-https://s35.derstream.net/house.mp3
-#EXTINF:-1,Best_of_Rock_-_Classic_Rock.FM
-https://radio21.streamabc.net/radio21-classicrock-mp3-256-9273095?amsparams=playerid%3Abestofrock.fm&sABC=5r21q512%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,Sunshine_-_90s_Anthems
-http://sunsl.streamabc.net/sunsl-90santhems-mp3-192-6626822
-#EXTINF:-1,Das_Radio_der_von_neil_young_Getoeteten
-https://server1084.streamplus.de/stream.mp3
-#EXTINF:-1,Radio_8
-http://live.radio8.de/liver8
-#EXTINF:-1,Radio_Galaxy_Rosenheim
-http://s17.myradiostream.com:13366/stream.mp3
-#EXTINF:-1,Club_FM
-http://rs7.stream24.net/clubfm.aac
-#EXTINF:-1,Best_of_Rock_-_Nonstop_Metal.FM
-https://radio21.streamabc.net/radio21-metal-mp3-256-1277714?amsparams=playerid%3Abestofrock.fm&sABC=5r21q65s%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,Klassik_Radio_-_Schiller
-http://klassikr.streamabc.net/klr-schiller-mp3-192-1913826
-#EXTINF:-1,Rattlesnake_Radio
-http://server3755.streamplus.de/
-#EXTINF:-1,unserRadio
-https://rs4.stream24.net/unser-radio.aac
-#EXTINF:-1,Berliner_Rundfunk_Top_800_80er
-https://topradio-de-hz-fal-stream03-cluster01.radiohost.de/brf-80er_mp3-128
-#EXTINF:-1,Best_of_Rock_-_Alternative_Rock.FM
-https://radio21.streamabc.net/radio21-alternativerock-mp3-256-9941142?amsparams=playerid%3Abestofrock.fm&sABC=5r21q4r8%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,rs2_80er_Party
-https://topradio-de-hz-fal-stream05-cluster01.radiohost.de/rs2-80er-party_mp3-128
-#EXTINF:-1,KTL_Oldieradio
-http://streamplus7.leonex.de:24844/
-#EXTINF:-1,BB_RADIO_Sommer
-https://irmedia.streamabc.net/irm-bbrsommer-mp3-128-5427013
-#EXTINF:-1,Sunshine_live_-_Pop
-http://sunsl.streamabc.net/sunsl-pop-mp3-192-8241940
-#EXTINF:-1,Jam_FM_Chill
-https://rtlberlin.streamabc.net/rtlb-jamfmchill-mp3-128-6575824
-#EXTINF:-1,Radio_Euroherz
-http://rs2.stream24.net/stream
-#EXTINF:-1,Dark_Zero_Radio
-https://darkzeroradio.stream.laut.fm/darkzeroradio?pl=m3u&t302=2020-08-07_22-20-11&uuid=e84d30ce-413e-407a-a9f9-eea2fa98e6ed
-#EXTINF:-1,Radio-Fantasie
-https://radio-fantasie.stream.laut.fm/radio-fantasie?pl=m3u&t302=2020-08-07_22-22-35&uuid=68660498-f612-4ced-ab0d-3dace2c114c4
-#EXTINF:-1,BB_RADIO_Deutsch_relax
-https://irmedia.streamabc.net/irm-channel13-mp3-128-2047718
-#EXTINF:-1,The_Lake_Radio
-http://hyades.shoutca.st:8627/
-#EXTINF:-1,Radio_Superoldie_Musik
-http://87.118.87.46:8888/
-#EXTINF:-1,Radio_Silesia
-http://s1.slotex.pl:7350/
-#EXTINF:-1,MusikWelle_Allgaeu
-http://stream.musikwelle-allgaeu.de:8000/stream1?nocache=3&type=http
-#EXTINF:-1,Jam_FM_Elektro
-https://rtlberlin.streamabc.net/rtlb-jamfmelektro-mp3-128-8511839
-#EXTINF:-1,Radio_BUH
-https://streaming.radio.co/saed08c46d/listen
-#EXTINF:-1,Jam_FM_Workout
-https://rtlberlin.streamabc.net/rtlb-jamfmworkout-mp3-128-4940474
-#EXTINF:-1,Radio_Brocken_90er
-https://fhhalle.streamabc.net/fhhal-brocken90er-mp3-128-5705884
-#EXTINF:-1,RauteMusik_Goldies
-http://138.201.33.223/goldies
-#EXTINF:-1,deutschFM
-http://streamplus7.leonex.de:35466/
-#EXTINF:-1,Antenne_Thüringen_Deutsch_Pop
-https://antenne-th.divicon-stream.net/antth_atdeutsch_cbRE-mp3-192
-#EXTINF:-1,Sunshine_-_Future_Bass
-http://sunsl.streamabc.net/sunsl-sunslcheqhs4qtygg6-mp3-192-1498751
-#EXTINF:-1,Radio_Brocken_Lovesongs
-https://fhhalle.streamabc.net/fhhal_rbrockenl_1rdw-mp3-128-1751477
-#EXTINF:-1,Radio_Brocken_Weihnachtsradio
-https://fhhalle.streamabc.net/fhhal-brockenweihnachten-mp3-128-6088611
-#EXTINF:-1,D-Rockz_Radio
-http://server4.streamserver24.com:21772/stream
-#EXTINF:-1,Thrashking
-https://thrashking.stream.laut.fm/thrashking
-#EXTINF:-1,mundARTradio
-https://mundartradio.stream.laut.fm/mundartradio?pl=m3u&t302=2020-08-07_22-21-55&uuid=eca1e1e6-8467-451d-bdf2-9b54dc047c75
-#EXTINF:-1,Türkiyem_FM
-http://radyopiryolu.canliyayinda.com:8032/
-#EXTINF:-1,Hrvatski_Radio_Frankfurt
-http://ec2s.crolive.com.hr:1610/stream
-#EXTINF:-1,Radio_Jukebox
-http://stream15.top-ix.org/radiojukebox
-#EXTINF:-1,Radio_Brocken_Kinderzeit
-https://fhhalle.streamabc.net/fhhal-brockenkinderzeit-mp3-128-8565893
-#EXTINF:-1,luluTRAX
-http://195.201.81.101/lulutrax.mp3
-#EXTINF:-1,Antenne_Bad_Kreuznach
-http://mp3.stream.antenne-kh.de/
-#EXTINF:-1,Chillharmonie
-https://chillharmonie.stream.laut.fm/chillharmonie
-#EXTINF:-1,Antenne_Thüringen_Rock
-https://antenne-th.divicon-stream.net/antth-atrock-mp3-192-4126120
-#EXTINF:-1,Meer_Radio_88.0_FM
-https://meerradio.ip-streaming.net/meerradio
-#EXTINF:-1,Sunshine_-_Die_2000er
-http://sunsl.streamabc.net/sunsl-die2000er-mp3-192-3233898
-#EXTINF:-1,Power_Radio_91.8
-http://85.25.217.22:8020/stream
-#EXTINF:-1,All_time_classics
-http://alltimeclassics.stream.laut.fm/alltimeclassics
-#EXTINF:-1,SCHLAGERINO
-https://schlagerino.stream.laut.fm/schlagerino?pl=m3u&t302=2020-08-07_22-24-28&uuid=6ecb8b7c-a18f-4525-bc70-d8b9bdc2e270
-#EXTINF:-1,Sunshine_-_Afterhour
-http://sunsl.streamabc.net/sunsl-sunsldfw8j6rqyqnlw-mp3-192-9761542
-#EXTINF:-1,Best_of_Rock_-_Deutsch_Rock.FM
-https://radio21.streamabc.net/radio21-deutschrock-mp3-256-7466793?amsparams=playerid%3Abestofrock.fm&sABC=5r21q48n%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,Radio_Brocken_Chart-hits
-https://fhhalle.streamabc.net/fhhal-rbchart-mp3-128-6552181
-#EXTINF:-1,JOKE_FM
-http://rs33.stream24.net/joke-fm.mp3
-#EXTINF:-1,Radio_Alpenstar
-https://server7517.streamplus.de/
-#EXTINF:-1,Jam_FM_Dj_Cooper
-https://rtlberlin.streamabc.net/rtlb-jamfmcooper-mp3-128-8254839
-#EXTINF:-1,TIDE
-http://streaming.tidenet.de:8000/tide-40.mp3
-#EXTINF:-1,Radio_PARALAX
-http://radio-paralax.de:8000/
-#EXTINF:-1,sonus.fm
-http://www.sonus.fm:8000/stream/2/
-#EXTINF:-1,Best_of_Rock_-_Konzertkracher.FM
-https://radio21.streamabc.net/radio21-konzertkracher-mp3-256-4745605?amsparams=playerid%3Abestofrock.fm&sABC=5r21q58s%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,Dinkelwelle
-http://server4.streamserver24.com:22126/
-#EXTINF:-1,rs2_Deutsch
-https://topradio-de-hz-fal-stream07-cluster01.radiohost.de/rs2-deutsch_mp3-128
-#EXTINF:-1,MemoryRadio_1
-http://www.memoryradio.de:4000/
-#EXTINF:-1,MyHitMusic_-_Nashville
-http://radio2.myhitmusic.de/Nashville.mp3
-#EXTINF:-1,lulu_2
-http://195.201.81.101/luluzwei.mp3
-#EXTINF:-1,Gemeinde_Gottes_in_Pforzheim
-http://streamplus19.leonex.de:18808/
-#EXTINF:-1,Radio_Brocken_Chillout
-https://fhhalle.streamabc.net/fhhal-rbchill-mp3-128-4327348
-#EXTINF:-1,Ostseewelle_2010er_Hits
-https://irmedia.streamabc.net/irm-osw2010er-mp3-128-1730903
-#EXTINF:-1,Cinemaitaliano
-https://cinemaitaliano.stream.laut.fm/cinemaitaliano
-#EXTINF:-1,MemoryRadio_2
-http://www.memoryradio.de:5000/
-#EXTINF:-1,BB_RADIO_Top50
-https://irmedia.streamabc.net/irm-bbrtop50-mp3-128-5958902
-#EXTINF:-1,MyHitMusic_-_8BEATZ_Deutschrap
-http://radio2.myhitmusic.de/52ndStreet-Deutschrap.mp3
-#EXTINF:-1,Ostseewelle_2000er_Hits
-https://irmedia.streamabc.net/irm-osw2000er-mp3-128-1925859
-#EXTINF:-1,FCK.FM
-https://streamer.radio.co/s23eb1dc4e/listen
-#EXTINF:-1,Herkules_Radio
-https://herkules.stream.laut.fm/herkules?pl=asx&t302=2020-08-07_22-07-25&uuid=4a8b4b8c-cb20-4882-af9a-84d155a8e722
-#EXTINF:-1,Jam_FM_2000er
-https://rtlberlin.streamabc.net/rtlb-jamfm2000er-mp3-128-7311016
-#EXTINF:-1,Freies_Radio_Freudenstadt
-http://s2.fairprice-streams.de:9140/
-#EXTINF:-1,Karneval_Radio
-https://karneval-radio.stream.laut.fm/karneval-radio
-#EXTINF:-1,1A_2000er
-http://88.99.46.90/saw-2000er_48
-#EXTINF:-1,Best_of_Rock_-_Zurück_in_die_80er.FM
-https://radio21.streamabc.net/radio21-80errock-mp3-256-6624232?amsparams=playerid%3Abestofrock.fm&sABC=5r21q8n8%230%2311npqo33o08rr48qpp0792748165959p%23orfgbsebpx.sz&sabcsid=210636cbed51
-#EXTINF:-1,Jam_FM_Party
-https://rtlberlin.streamabc.net/rtlb-jamfmparty-mp3-128-7302497
-#EXTINF:-1,luluEURO
-http://195.201.81.101/lulueuro.mp3
-#EXTINF:-1,knixx.fm
-http://s1.knixx.fm/dein_webradio_128.mp3
-#EXTINF:-1,MyHitMusic_-_8BEATZ_HIP-HOP
-http://radio2.myhitmusic.de/52ndStreet-HipHop.mp3
-#EXTINF:-1,MyHitMusic_-_Oxid_House
-http://radio2.myhitmusic.de/Oxid.mp3
-#EXTINF:-1,Radio_fresh80s
-http://213.239.219.50/live.mp3
-#EXTINF:-1,1A_Neuheiten
-http://88.99.181.107/saw-neuheiten_48
-#EXTINF:-1,Radio_Plassenburg
-http://rs15.stream24.net/radio-plassenburg.mp3
-#EXTINF:-1,Atlantic_Radio
-http://arc.stream.laut.fm/arc
-#EXTINF:-1,Jam_FM_2010er
-https://rtlberlin.streamabc.net/rtlb-jamfm2010er-mp3-128-1284278
-#EXTINF:-1,Radio_BHeins
-http://46.163.75.84:8000/
-#EXTINF:-1,Jam_FM_Study
-https://rtlberlin.streamabc.net/rtlb-jamfmstudy-mp3-128-4368876
-#EXTINF:-1,CoolCastFM
-https://sslradio.servsonic.com/9994/
-#EXTINF:-1,Radio_Fırat_Fm_Pop
-https://anadolu.liderhost.com.tr/3067/stream
-#EXTINF:-1,Jam_FM_90er
-https://rtlberlin.streamabc.net/rtlb-jamfm90er-mp3-128-5109909
-#EXTINF:-1,MyHitMusic_-_Jukebox_Gold
-http://radio2.myhitmusic.de/Jukebox-Gold.mp3
-#EXTINF:-1,J7_RADIO
-https://streamer.radio.co/se83a00ff1/listen
-#EXTINF:-1,Radio_Brebach
-http://147.135.251.28:12005/stream
-#EXTINF:-1,BB_RADIO_Superstars
-https://irmedia.streamabc.net/irm-bbrsuperstars-mp3-128-4078977
-#EXTINF:-1,BB_RADIO_Mein_Tag_Meine_Hits
-https://irmedia.streamabc.net/irm-channel22-mp3-128-7899816
-#EXTINF:-1,Radio_SSC_|_Internethörfunk_aus_Ilsenburg_|_Harz_|_Sachsen-Anhalt
-https://radio-ssc.stream.laut.fm/radio-ssc
-#EXTINF:-1,DMlive
-https://dmlive.stream.laut.fm/dmlive?pl=m3u&t302=2020-08-07_22-20-07&uuid=3f0ffe67-70f9-46ff-993e-407d21b42a47
-#EXTINF:-1,XXL-Radio
-http://audio.xxl-radio.de:8000/mobile
-#EXTINF:-1,MusikNation
-http://musiknation.stream.laut.fm/musiknation?pl=m3u&t302=2020-08-13_10-50-12&uuid=e5dc3de4-4166-45cb-96c6-2a0e2d70a832
-#EXTINF:-1,JM_ROCK_RADIO
-http://streamplus5.leonex.de:11076/
-#EXTINF:-1,Cashmere_Radio
-http://cashmereradio.out.airtime.pro:8000/cashmereradio_b
-#EXTINF:-1,BB_RADIO_2000er
-https://irmedia.streamabc.net/irm-channel18-mp3-128-1871175
-#EXTINF:-1,TOMi_FM
-https://tomifm.stream.laut.fm/tomifm
-#EXTINF:-1,Feucht_FM
-https://feuchtfm.stream.laut.fm/feuchtfm
-#EXTINF:-1,MyHitMusic_-_Senza_Chill
-http://radio2.myhitmusic.de/Senza.mp3
-#EXTINF:-1,Nightshift
-http://nightshift.stream.laut.fm/nightshift
-#EXTINF:-1,1_SPLASH_80s
-http://makri.cdnstream.com/1898_128
-#EXTINF:-1,Power_Classics
-https://radioc.stream.laut.fm/radioc?pl=m3u&t302=2020-08-07_22-05-17&uuid=1afd619d-f772-459b-9d42-871061bc35f8
-#EXTINF:-1,DWG_Radio
-https://server23644.streamplus.de/stream.mp3/type=mp3
-#EXTINF:-1,rs2_ED_Sheeran
-https://topradio-de-hz-fal-stream01-cluster01.radiohost.de/rs2-ed-sheeran_mp3-128
-#EXTINF:-1,889_FM_World
-https://889fmworld.stream.laut.fm/889fmworld
-#EXTINF:-1,Hitradio_Buxtehude_Fresh
-https://hitradio-fresh.stream.laut.fm/hitradio-fresh
-#EXTINF:-1,Sunshine_-_The_Mix
-http://sunsl.streamabc.net/sunsl-bestof20-mp3-192-8385504
-#EXTINF:-1,Sunshine_-_New_Music
-http://sunsl.streamabc.net/sunsl-newhits-mp3-192-1294829
-#EXTINF:-1,Radio_UNiCC
-http://stream.radio-unicc.de:8000/unicc_hq.mp3
-#EXTINF:-1,Friesenradio
-http://friesenradio.stream.laut.fm/friesenradio?pl=pls&t302=2020-08-10_01-54-29&uuid=5ee6a1e3-5c2d-4315-8ad6-2e4b5be8614f
-#EXTINF:-1,Hitradio_Ruhr
-https://hitradio-ruhr.stream.laut.fm/hitradio-ruhr
-#EXTINF:-1,Sunshine_-_Mix_Mission
-http://sunsl.streamabc.net/sunsl-mixmission-mp3-192-2059291
-#EXTINF:-1,Sunray_FM
-https://radio.sunray-fm.de/live.mp3
-#EXTINF:-1,Dermusikladen
-https://dermusikladen.stream.laut.fm/dermusikladen
-#EXTINF:-1,Radio_Dark_Universe
-http://radio-dark-universe.stream.laut.fm/radio-dark-universe
-#EXTINF:-1,MyHitMusic_-_Toms_Club_70s
-http://radio2.myhitmusic.de/Toms-Club70s.mp3
-#EXTINF:-1,Tannenbaum_Radio
-https://tannenbaumradio.stream.laut.fm/tannenbaumradio
-#EXTINF:-1,Hitradio_Buxtehude_Classic
-https://hitradio-classical.stream.laut.fm/hitradio-classical
-#EXTINF:-1,BB_RADIO_2010er
-https://irmedia.streamabc.net/irm-channel20-mp3-128-6206089
-#EXTINF:-1,Radio_Bavaria_International
-http://streamplus18.leonex.de:18576/%20type=
-#EXTINF:-1,Cevheri_Tasavvuf_Musikisi_Radyosu
-http://streamplus50.leonex.de:11190/
-#EXTINF:-1,moveIT_Radio
-http://broadcast.spdns.org:8080/radio/8000/radio.mp3
-#EXTINF:-1,Radio_Russisch
-http://hoffnungswelle.org:8000/russkaja
-#EXTINF:-1,Junger_Kulturkanal
-http://193.197.85.26:8000/

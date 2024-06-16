@@ -15,8 +15,6 @@ http://hpm.streamguys1.com/mixtape-mp3
 http://tampico.radio.wnsol.com:8300/
 #EXTINF:-1,KBLA 1580AM
 http://kblaradio.serverroom.us:9326/
-#EXTINF:-1,KIDE Radio
-http://peridot.streamguys.com:7470/live-mp3
 #EXTINF:-1,KLOG
 http://www.streamcontrol.net:11050/
 #EXTINF:-1,KTNN
@@ -39,6 +37,8 @@ http://http-live.sr.se/p4malmo-mp3-64
 http://http-live.sr.se/p4norrbotten-mp3-64
 #EXTINF:-1,Pumpkin FM - 1940s
 http://65.21.202.84:8392/stream
+#EXTINF:-1,Radio 102
+https://stream.radio102.no/radio102_hq
 #EXTINF:-1,Radio Beograd 202
 https://rtsradio-live.morescreens.com/RTS_2_004/playlist.m3u8
 #EXTINF:-1,Radio Centre-Ville
@@ -55,12 +55,6 @@ http://shoutcast.pondi.hr:8005/
 http://rad.radio-n.com:8000/
 #EXTINF:-1,Radio Sawa Gulf
 https://mbnvaudioingest-i.akamaihd.net/hls/live/1004561/MBNV_SAWA_IRAQ/merge.m3u8
-#EXTINF:-1,Radio Seoul
-http://radio1.koreatimes.com:8080/
-#EXTINF:-1,Radio Thailand Chiangmai
-http://prdonline.prd.go.th:8118/
-#EXTINF:-1,RFI Afrique
-http://live02.rfi.fr/rfiafrique-96k.mp3
 #EXTINF:-1,RI Free Radio
 http://149.56.155.73:8020/stream
 #EXTINF:-1,RKS Radio
@@ -71,10 +65,10 @@ http://radionz-ice.streamguys.com/international.mp3
 http://radio.ukraudio.com:8000/channel1
 #EXTINF:-1,RTV Radio Belle Amie
 http://92.60.230.200:5040/
+#EXTINF:-1,Sputnik Arabic
+https://icecast-rian.cdnvideo.ru/voicearb
 #EXTINF:-1,Sputnik English
 https://icecast-rian.cdnvideo.ru/voiceeng
-#EXTINF:-1,Sputnik English USA
-https://icecast-rian.cdnvideo.ru/voiceusa
 #EXTINF:-1,Sputnik Portuguese
 https://icecast-rian.cdnvideo.ru/voicepor
 #EXTINF:-1,Sputnik Russian- СПУТНИК Русский
@@ -89,6 +83,8 @@ https://live-cdn.sr.se/pool1/srsapmi/srsapmi.isml/srsapmi.m3u8
 https://ice64.securenetsystems.net/WETRAM
 #EXTINF:-1,Uniradioen
 http://uniradio.out.airtime.pro:8000/uniradio_a
+#EXTINF:-1,WAZN
+http://peace.str3am.com:6660/WAZN
 #EXTINF:-1,WBLS Radio
 http://s2.myradiostream.com:3604/
 #EXTINF:-1,WGBB
@@ -111,8 +107,8 @@ http://s27.myradiostream.com:14624/
 https://yleradiolive.akamaized.net/hls/live/2027721/yleradiolive-hls-28/master.m3u8
 #EXTINF:-1,Yle Radio Suomi
 https://yleradiolive.akamaized.net/hls/live/2027675/in-YleRS/master.m3u8
-#EXTINF:-1,Cu Radio
-http://161.200.134.32:1935/live/liveradio128/chunklist_w1831162738.m3u8
+#EXTINF:-1,Radio Brasov
+https://live.radiobrasov.ro/stream
 #EXTINF:-1,NDR 2 NDS - 96.2 FM
 https://d111.rndfnk.com/ard/ndr/ndr2/niedersachsen/mp3/128/stream.mp3?aggregator=tunein&sid=1yiIzlMrAyXARzRKvX6foDdGkwu&token=vYKp9r4xd4bbIGc3l_AsHGAeiYcyJQgfOCj4TYQfPzI&tvf=7v9JvVWxqBZkMTExLnJuZGZuay5jb20
 #EXTINF:-1,NDR 2 Schleswig-Holstein
@@ -139,16 +135,12 @@ http://45.64.97.82:9940/
 http://45.64.97.82:9940
 #EXTINF:-1,EBS FM
 http://streaming.suzanafm.com:8100/
-#EXTINF:-1,Srinadi FM
-http://srinadifm.onlivestreaming.net:9970/srinadifm
 #EXTINF:-1,Radio Amigo
 https://stream.core-prod.us-west-2.tunenet.io/listen.stream?streamId=4781068&rti=dEZzGgYzfxg4dhE2AxFRSGgyQE5Rdid8WFcFHQASHBMUTxMkflYCFVQZJSkFE0pkDBIYDQcSWT4UHAgaGBwLEAQWWB1pHQBO%7e%7e%7e&render=json&qs=
 #EXTINF:-1,Tyflo Radio
 http://radio.tyflopodcast.net:8000/
 #EXTINF:-1,Katolickie Radio Diecezji Plockiej
 http://s1.slotex.pl:7760/
-#EXTINF:-1,NHK WORLD RADIO JAPAN
-https://nhkworld.webcdn.stream.ne.jp/www11/radiojapan/all/263949/live_s.m3u8
 #EXTINF:-1,RTV Radio Belle Amie - 100.7 FM
 http://92.60.230.200:5040
 #EXTINF:-1,Radio 103
@@ -173,7 +165,5 @@ https://securestreams2.autopo.st:1242/livehttps://audio-edge-cmc51.fra.h.radioma
 https://stream-ice.radionz.co.nz/international_aac64
 #EXTINF:-1,Radio Apna 990 am
 https://ais-nzme.streamguys1.com/nz_145/playlist.m3u8
-#EXTINF:-1,Radio Thailand Chiangmai- 93.25 FM
-http://prdonline.prd.go.th:8118
 #EXTINF:-1,Latvijas Kristigais Radio
 http://shoutcast.lkr.lv:7007/

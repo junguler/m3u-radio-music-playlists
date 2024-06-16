@@ -1,8 +1,6 @@
 #EXTM3U
 #EXTINF:-1,90.5 wes
 https://ais-sa3.cdnstream1.com/2556_128.mp3
-#EXTINF:-1,90.7 WMFE-FM
-http://wmfe.iad.streamguys1.com/wmfe
 #EXTINF:-1,Capital Public Radio News (KXJZ, KKTO, KUOP, KQNC)
 http://playerservices.streamtheworld.com/m3u/KXJZ.m3u
 #EXTINF:-1,Colorado Public Radio News
@@ -49,6 +47,8 @@ http://localcurrent.stream.publicradio.org/localcurrent.mp3
 http://kcrw.streamguys1.com/kcrw_192k_mp3_on_air_internet_radio
 #EXTINF:-1,KCRW News 24 Channel - Santa Monica, CA
 http://kcrw.streamguys1.com/kcrw_192k_mp3_news_internet_radio
+#EXTINF:-1,KCUR 89.3
+https://14623.live.streamtheworld.com/KCURFM.mp3
 #EXTINF:-1,KDAQ 89.9 "Red River Radio" Shreveport, LA
 http://playerservices.streamtheworld.com/m3u/KDAQFM.m3u
 #EXTINF:-1,KDLG 670 && 89.9 Dillingham, AK
@@ -71,8 +71,6 @@ http://kera-ice.streamguys.us/keralive
 http://playerservices.streamtheworld.com/m3u/KETRFM.m3u
 #EXTINF:-1,KFSK 100.9 Petersburg, AK
 http://amber.streamguys.com:4620/kfsk
-#EXTINF:-1,KHSU 90.5 Arcata, CA
-http://peace.str3am.com:6650/
 #EXTINF:-1,KJZZ 91.5 Phoenix, AZ
 http://stream.kjzz.org/kjzz_mp3_128
 #EXTINF:-1,KKXT "KXT 91.7" Dallas, TX
@@ -139,8 +137,6 @@ http://playerservices.streamtheworld.com/m3u/KUARFM.m3u
 http://streaming.azpm.org/kuaz192.mp3
 #EXTINF:-1,KUNM 89.9 "New Mexico Public Radio" Albuquerque, NM
 http://playerservices.streamtheworld.com/pls/KUNMFM_128.pls
-#EXTINF:-1,KUT 90.5 FM
-https://kut.streamguys1.com/kut-free.aac
 #EXTINF:-1,KVNF 90.9 Paonia, CO
 http://peridot.streamguys.com:7140/live
 #EXTINF:-1,KVOQ 102.3 -Colorado Public Radio "OpenAir" - Denver, CO  AAC
@@ -253,6 +249,8 @@ https://ice2.wmuk.org:8443/mp31
 https://ice2.wmuk.org:8443/mp32
 #EXTINF:-1,WNED "Classical 94.5" Buffalo, NY
 http://playerservices.streamtheworld.com/m3u/WNEDFM.m3u
+#EXTINF:-1,WNIJ 89.5 "Northern Public Radio" DeKalb, IL
+http://peace.str3am.com:6810/live-96k.mp3.m3u
 #EXTINF:-1,WNJT 88.1 "New Jersey Public Radio" Trenton, NJ
 https://fm939.wnyc.org/wnycfm-web
 #EXTINF:-1,WNPR 90.5 Connecticut Public Radio - Meriden, CT
@@ -287,6 +285,8 @@ http://peace.str3am.com:7070/wskg
 http://peace.str3am.com:7070/wsqx
 #EXTINF:-1,WSUF 89.9 Noyack, NY
 http://wshu.streamguys.org/wsuf-air
+#EXTINF:-1,WTSU 89.9 Troy Public Radio - Troy, AL
+http://live.str3am.com:2380/troy1
 #EXTINF:-1,WUAL 91.5 Alabama Public Radio - Tuscaloosa, AL
 http://playerservices.streamtheworld.com/m3u/WUAL_HD1.m3u
 #EXTINF:-1,WUFT News
@@ -325,6 +325,8 @@ https://wvtf.streamguys1.com/wvtf-edge/wvtfmusic-aac-128/icecast.audio
 http://stream.cinradio.org/noads-wvxu
 #EXTINF:-1,WWNO 89.9 University of New Orleans, LA
 http://tektite.streamguys1.com:5140/wwnolive-mp3
+#EXTINF:-1,WXPR 91.7 Rhinelander, WI
+http://amber.streamguys.com:4370/wxpr2
 #EXTINF:-1,WYSO 91.3 Yellow Springs, OH
 http://playerservices.streamtheworld.com/m3u/WYSOFM.m3u
 #EXTINF:-1,WEAA 88.9
@@ -333,8 +335,6 @@ https://amber.streamguys1.com:4025/live
 https://stream5.opb.org/radio_player.mp3
 #EXTINF:-1,KQED Public Radio
 https://streams.kqed.org/kqedradio
-#EXTINF:-1,90.7 WMFE
-https://wmfe-iad.streamguys1.com/wmfe
 #EXTINF:-1,WSGE 91.7
 https://ice24.securenetsystems.net/WSGE
 #EXTINF:-1,WYPL 89.3 FM
@@ -351,10 +351,6 @@ https://am820.wnyc.org/wnycam-web
 https://ideastream.streamguys1.com/wcpn.mp3
 #EXTINF:-1,News 88.7
 https://stream.houstonpublicmedia.org/news-mp3
-#EXTINF:-1,WUNC 91.5
-https://wunc-ice.streamguys1.com/wunc-64-aac
-#EXTINF:-1,KPFK 90.7 FM
-https://ic1.sslstream.com/kpfk-fm
 #EXTINF:-1,89.7 WUSF
 https://wusf.streamguys1.com/wusf-web
 #EXTINF:-1,91.3 WKMS
@@ -383,8 +379,6 @@ https://nis.stream.publicradio.org/nis.aac
 https://amber.streamguys1.com:5595/riprdeskweb-aac
 #EXTINF:-1,KPVU 91.3 FM
 https://kpvu.streamguys1.com/live-mp3
-#EXTINF:-1,KUT 90.5
-https://kut.streamguys1.com/kut.aac
 #EXTINF:-1,KCRW 89.9 FM
 https://kcrw.streamguys1.com/kcrw_128k_mp3_on_air
 #EXTINF:-1,KEDT 90.3
@@ -407,6 +401,8 @@ https://wpr-ice.streamguys1.com/wpr-music-mp3-96
 https://peridot.streamguys1.com:5235/wsiu-hd1
 #EXTINF:-1,KRCB 104.9
 https://amber.streamguys1.com:5545/live-mp3
+#EXTINF:-1,88.5 FM WYSU
+https://live.streamguys1.com:3181/hd1
 #EXTINF:-1,IPR News
 https://news-stream.iowapublicradio.org/News.mp3
 #EXTINF:-1,WJSU 88.5
@@ -431,8 +427,6 @@ https://wvtf.streamguys1.com/wvtf-edge/radioiq-mp3-64/icecast.audio
 https://ice24.securenetsystems.net/WRFW
 #EXTINF:-1,WUFT 89.1/90.1
 https://ais-sa1.streamon.fm/7647_48k.aac
-#EXTINF:-1,KHSU Radio
-https://peace.streamguys1.com:6655/live-aac
 #EXTINF:-1,91.5 KRCC
 https://streams.krcc.org/krcc_mp3
 #EXTINF:-1,WSKG Radio
@@ -447,8 +441,8 @@ https://wicn-ice.streamguys1.com/live-mp3
 https://ais-sa1.streamon.fm/7043_48k.aac
 #EXTINF:-1,Robin Hood Radio
 https://ic2.mainstreamnetwork.com/whdd-fm
-#EXTINF:-1,KAMU 90.9 FM
-https://kamu.streamguys1.com/hd1-64
+#EXTINF:-1,Troy Public Radio
+https://live.streamguys1.com:2385/troy1
 #EXTINF:-1,KLCC 89.7
 https://tektite.streamguys1.com:5025/klcc.mp3
 #EXTINF:-1,WUGA 91.7 FM
@@ -461,21 +455,3 @@ https://war.streamguys1.com:8085/krbd
 http://bar.streamguys1.com/BubbaOne-mp3
 #EXTINF:-1,WFYI 90.1 FM
 https://wfyi-iad.streamguys1.com/live
-#EXTINF:-1,Yellowstone Public Radio
-https://ypr.streamguys1.com/live
-#EXTINF:-1,KSTK
-https://war.streamguys1.com:7165/
-#EXTINF:-1,KCBX 2 Public Radio
-https://kcbx-ice.streamguys1.com/hd2
-#EXTINF:-1,Indiana Public Radio
-https://ipr.streamguys1.com/aac
-#EXTINF:-1,KFSK Radio
-https://amber.streamguys1.com:4625/
-#EXTINF:-1,KSJD Radio
-https://war.streamguys1.com:8435/
-#EXTINF:-1,KUAC
-https://ais-sa1.streamon.fm/7180_24k.aac
-#EXTINF:-1,Vermont Public
-https://vpr.streamguys1.com/vpr-web
-#EXTINF:-1,Wyoming Public Radio
-https://wyoming-public-ice.streamguys1.com/WPR128MP3

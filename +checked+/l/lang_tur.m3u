@@ -11,8 +11,6 @@ http://dinle.afsinradyo.com:4646/afsinfm.mp3
 http://alternatifradyo.radyotvyayini.com:9150
 #EXTINF:-1,Ankara Universitesi Radyosu
 http://radyo.cc.ankara.edu.tr:8089/
-#EXTINF:-1,Arabesk Radyo
-http://dinle.arabeskradyo.biz:7446/
 #EXTINF:-1,Arkadas Radyo 104.1 FM
 http://yayin.yayindakiler.com:4134/
 #EXTINF:-1,Ask FM 102.1
@@ -23,6 +21,8 @@ http://37.247.98.7:80/
 http://46.20.7.126/
 #EXTINF:-1,Bilecik FM 99.9
 http://bilecikfm.kesintisizyayin.com:9980/
+#EXTINF:-1,Bizim Radyo 104.4 FM
+http://95.173.188.166:9986/
 #EXTINF:-1,Can Radyo 93.3 FM
 http://yayin1.yayindakiler.com:3124/
 #EXTINF:-1,Capital Radio 93.8 FM
@@ -95,16 +95,8 @@ http://live.nrgplay.com/stream/hiphop
 http://46.20.3.207:80/
 #EXTINF:-1,Ostim Radyo 96.0 FM
 http://stream.netradyom.com/radio/8010/radio.mp3
-#EXTINF:-1,Öz FM
-http://live.ozfm.com.tr:9914/
-#EXTINF:-1,Pal Akustik
-http://shoutcast.radyogrup.com:2030/stream
-#EXTINF:-1,Pal Alaturka
-http://shoutcast.radyogrup.com:3050/stream
 #EXTINF:-1,Pal Doga
 http://shoutcast.radyogrup.com:1040/
-#EXTINF:-1,Pal Slow
-http://shoutcast.radyogrup.com:2020/stream
 #EXTINF:-1,Pal Station
 http://shoutcast.radyogrup.com:1020/stream
 #EXTINF:-1,Park FM 96.9
@@ -119,16 +111,16 @@ http://listen.powerapp.com.tr/powerfm/mpeg/icecast.audio
 http://listen.powerapp.com.tr/powerdance/mpeg/icecast.audio
 #EXTINF:-1,Power Greece
 http://listen.powerapp.com.tr/powergreece/mpeg/icecast.audio
+#EXTINF:-1,Power Love
+http://powerlove.listenpowerapp.com/powerlove/mpeg/icecast.audio
 #EXTINF:-1,Power Love FM
 http://listen.powerapp.com.tr/powerlove/mpeg/icecast.audio
-#EXTINF:-1,Power Smooth Jazz
-http://listen.powerapp.com.tr/powersmoothjazz/mpeg/icecast.audio
-#EXTINF:-1,Power Turk Akustik
-http://listen.powerapp.com.tr/powerturkakustik/mpeg/icecast.audio
+#EXTINF:-1,Power Pop
+http://powerpop.listenpowerapp.com/powerpop/mpeg/icecast.audio
 #EXTINF:-1,Power Türk Taptaze
 http://listen.powerapp.com.tr/powerturktaptaze/mpeg/icecast.audio
-#EXTINF:-1,Power XL 100.2 FM
-http://listen.powerapp.com.tr/powerextralounge/mpeg/icecast.audio
+#EXTINF:-1,PowerTürk Taptaze
+http://mpegpowerturk.listenpowerapp.com/powerturktaptaze/mpeg/icecast.audio
 #EXTINF:-1,Radio Ak
 http://radyo.yayin.com.tr:8026/stream
 #EXTINF:-1,Radio Bayrak 1 90.6 FM
@@ -151,12 +143,12 @@ http://yayin.radiomoodtr.com:5862/
 http://46.20.7.104:80/
 #EXTINF:-1,Radyo 2000 Erzincan 92.2 FM
 http://yayin1.yayindakiler.com:3030/
-#EXTINF:-1,Radyo 3 Hilal
-http://185.16.61.132:8000/live
 #EXTINF:-1,Radyo 45’lik
 http://stream.radyo45lik.com:4545/stream
 #EXTINF:-1,Radyo 7 104.7 FM
 http://46.20.3.250/
+#EXTINF:-1,Radyo 80 94.8 FM
+http://yayin2.yayindakiler.com:4064/
 #EXTINF:-1,Radyo Ahiska FM
 http://radyo.ahiska.net:8063/
 #EXTINF:-1,Radyo Baris
@@ -213,12 +205,8 @@ http://37.247.98.8:80/stream/27/
 http://37.247.98.8:80/stream/22/
 #EXTINF:-1,Radyo Home - World Hits
 http://37.247.98.8:80/stream/34/
-#EXTINF:-1,Radyo HUR
-http://radyohur.com:9059/
 #EXTINF:-1,Radyo Islam
 http://yayin2.canliyayin.org:7676/
-#EXTINF:-1,Radyo Karabali Turku Sevdasi
-http://95.173.162.182:9884/
 #EXTINF:-1,Radyo Ki
 http://radyoki.kocaeli.edu.tr:8000/
 #EXTINF:-1,Radyo Mega 101.8 FM
@@ -239,8 +227,6 @@ http://stream.radyoodtu.com.tr/easy
 http://stream.radyoodtu.com.tr/rock
 #EXTINF:-1,Radyo ODTU 103.1 FM
 http://stream.radyoodtu.com.tr:8006/
-#EXTINF:-1,Radyo POP
-http://80.radyopop.com:80/
 #EXTINF:-1,Radyo Romantik Turk 103.4 FM
 http://radyo.yayin.com.tr:6042/stream
 #EXTINF:-1,Radyo Sirin 95.7 FM
@@ -279,6 +265,8 @@ http://yayin2.yayindakiler.com:4112/
 http://yayin.netradyom.com:9300
 #EXTINF:-1,Yön Radyo 96.6 FM
 http://stream.radyolarburada.com/radio/8020/yonradyo
+#EXTINF:-1,Yön Radyo Alaturka
+http://stream.radyolarburada.com/radio/8060/yonalaturca
 #EXTINF:-1,Yön Radyo Anatolia
 http://stream.radyolarburada.com/radio/8020
 #EXTINF:-1,Yozgat Sorgun FM

@@ -17,6 +17,8 @@ http://streams.crooze.fm:8000/stream128
 http://stream.laclassica.be:8023/stream
 #EXTINF:-1,VBRO Radio
 http://stream.vbro.be:9100/
+#EXTINF:-1,Radio Gompel
+http://caster05.streampakket.com:8916/radiogom
 #EXTINF:-1,Vibration 107.2 FM
 http://broadcast.infomaniak.ch/vibrationbelgique-high.mp3
 #EXTINF:-1,Stadsradio Vlaanderen
@@ -61,8 +63,6 @@ http://shoutcast.radiovictoria.be:8000/
 http://shoutcast2.wirelessantwerpen.be:8412/radiomoetoen
 #EXTINF:-1,Radio Superstar
 http://95.216.112.183:8000/
-#EXTINF:-1,BEM Heaven
-https://stream.bem-heaven.be/
 #EXTINF:-1,Radio Pallieter
 http://s39.myradiostream.com:14494/listen.mp3
 #EXTINF:-1,CK RADIO Charleking
@@ -95,6 +95,8 @@ http://centauri.shoutca.st:9060/
 http://beiaard.ddns.net:8066/stream
 #EXTINF:-1,Jess 89.9 FM
 http://95.85.21.223:8000/sid=1
+#EXTINF:-1,48FM
+http://stream.48fm.com:8000/48fm-64
 #EXTINF:-1,Ramdam Musique
 http://radio-shoutcast2.cyber-streaming.com:8156/
 #EXTINF:-1,MINIRADIO BELGIUM
@@ -117,8 +119,6 @@ http://bluford.torontocast.com:8070/stream
 http://cstmn.gr:8050/mobile.mp3
 #EXTINF:-1,Kiosk Radio
 http://kioskradiobxl.out.airtime.pro:8000/kioskradiobxl_b
-#EXTINF:-1,Radio Vice FM
-http://mediaserv30.live-streams.nl:8011/stream
 #EXTINF:-1,Elisa FM
 http://stream.vbro.be:9200/elisafm.mp3
 #EXTINF:-1,StarRadio
@@ -131,8 +131,6 @@ http://s19.myradiostream.com:18068/listen.mp3
 http://str0.creacast.com/pharefm_mons
 #EXTINF:-1,Lokale Radio MFY
 https://mfy.level27.be/stream.mp3
-#EXTINF:-1,Curve Radio
-http://178.32.107.151:5112/stream
 #EXTINF:-1,Antipode
 https://streaming.antipode.be/antipode.mp3
 #EXTINF:-1,RLO RADIO
@@ -143,9 +141,47 @@ http://vt-net.org:8072/
 http://stream.vbro.be:9600/
 #EXTINF:-1,Radio 100% BE
 http://audiostreamen.nl:8106/
-#EXTINF:-1,Dynamic One
-http://stream.dynamicone.be:8000/done_128.mp3
 #EXTINF:-1,Radio Internazionale
 https://wma07.fluidstream.net/fluid713.aac?FLID=6
 #EXTINF:-1,VRT NWS
 https://progressive-audio.lwc.vrtcdn.be/content/fixed/11_11niws-snip_hi.mp3
+#EXTINF:-1,    101.3 BRUGGE FM
+https://canli.arabeskinmerkezi.com/9180/stream?n=a0a12bd5a58a3611b22c
+#EXTINF:-1,name: undefined -> AFN 360 Benelux,
+http://playerservices.streamtheworld.com/m3u/AFNE_BLX.m3u?n=43c7f12d94ae83077f76
+#EXTINF:-1,1 MINI 1
+http://centauri.shoutca.st:9021/?n=356d6c069762656af72c
+#EXTINF:-1,100% Retro
+https://server.musicstars.online/radio/8000/listen?n=7dfcfe0aa2fd5441292c
+#EXTINF:-1,Arabel
+http://arabelfm.ice.infomaniak.ch/arabelprodcastfm.mp3?n=80dae0639fa9ddbc4c58
+#EXTINF:-1,Bruce Classic Rock
+http://streamingv2.shoutcast.com/bruce-classic-rock?n=d757abbd12c383096b91
+#EXTINF:-1,Bruzz
+https://rrr.sz.xlcdn.com/?account=fmbrussel&file=fmb988.mp3&type=live&service=icecast&protocol=https&port=8000&output=pls?n=8df0f6726df71be3b137
+#EXTINF:-1,c dance
+http://198.100.145.187:18304/?n=cf7aa26e28919f120f7f
+#EXTINF:-1,Charleking Radio
+http://charlekingradio.ice.infomaniak.ch/ckradio-192.mp3?n=e7b0f7795301dbd40716
+#EXTINF:-1,Chillout CROOZE
+http://streams.crooze.fm:8006/stream/1/?n=69189a0b31723b94235d
+#EXTINF:-1,CROOZE - Enjoy the Difference!
+https://streaming.shoutcast.com/crooze-aac?n=fa8513bd9b669ea2b310
+#EXTINF:-1,De Jukebox
+http://s35.myradiostream.com:14472/?n=452a6d2781181cef25df
+#EXTINF:-1,depechemode.be
+https://c2.radioboss.fm:8494/stream?n=de7d8de6ec90f09d3e96
+#EXTINF:-1,EasyRadio flac
+https://easyradio.bg/m3u/easyradio.bg-flac.m3u?n=acca723cd775eb75620f
+#EXTINF:-1,Elisa FM, Brugge, be
+http://stream.vbro.be:9200/ElisaFM?n=a2c41aff37700741d30f
+#EXTINF:-1,Emotion
+http://stream.radioemotion.be/stream.mp3?n=372ac008d93ae93c7a4c
+#EXTINF:-1,Equinoxe FM 100.1
+http://equinoxefm.ddns.net:8000/stream.ogg?n=45336000d8dd219321cf
+#EXTINF:-1,FM Goud Limburg
+https://streamingv2.shoutcast.com/fm-goud-noord-limburg?n=9a5c2d72bdd76411d09a
+#EXTINF:-1,FM Goud Maasland
+https://streamingv2.shoutcast.com/fm-goud-maasland?n=19456573f35ad5c587b7
+#EXTINF:-1,Frequence Eghezee
+http://stream.fr-eghezee.be:8054/FE?n=fdeca44f23927f7fda24

@@ -1,8 +1,6 @@
 #EXTM3U
 #EXTINF:-1,Radio RLDM
 http://srv2.streaming-ingenierie.fr:8176/
-#EXTINF:-1,Hajurko Radio
-http://live.itechnepal.com:9515/stream
 #EXTINF:-1,West Virginia Public Broadcasting
 http://live.str3am.com:7820/
 #EXTINF:-1,VPR
@@ -11,18 +9,18 @@ https://vpr.streamguys1.com/vpr-web
 https://s20.reliastream.com/stream/8030
 #EXTINF:-1,France Inter - 87.8 FM
 https://icecast.radiofrance.fr/franceinter-midfi.mp3?ID=76zqey582k_
-#EXTINF:-1,RFI - 89.0 FM Paris
-https://live-reflector.ice.infomaniak.ch/rfimonde-64.mp3
 #EXTINF:-1,RMC Info 
 https://audio.bfmtv.com/rmcradio_128.mp3?
+#EXTINF:-1,RFI Português (Rádio França Internacional)
+http://live02.rfi.fr/rfienportugais-64.mp3
 #EXTINF:-1,RTL
 https://live.m6radio.quortex.io/webpHJPXnXrN7B6J7Q8mcqmxP/grouprtl/national/long/index.m3u8
+#EXTINF:-1,Vesti FM
+http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_128kbps
 #EXTINF:-1,Комсомольская правда-Петербург
 http://kpradio.hostingradio.ru:8000/spb.radiokp128.mp3
-#EXTINF:-1,Business FM
-http://bfm.hostingradio.ru:8004/fm
-#EXTINF:-1,Moskva FM
-http://icecast.vgtrk.cdnvideo.ru/moscowfm128
+#EXTINF:-1,Маяк
+https://icecast-vgtrk.cdnvideo.ru/mayakfm_aac_64kbps
 #EXTINF:-1,Mayak UKV 67.22
 http://icecast.vgtrk.cdnvideo.ru:8000/mayakfm
 #EXTINF:-1,Business FM Kaliningrad
@@ -33,8 +31,6 @@ http://kpradio.hostingradio.ru:8000/russia.radiokp128.mp3?radiostatistica=TuneIn
 http://kpradio.hostingradio.ru:8000/128?radiostatistica=TuneIn
 #EXTINF:-1,Komsomolskaya Pravda Kirov
 https://kpradio.hostingradio.ru:8000/64
-#EXTINF:-1,KUT
-http://kut.streamguys1.com/kut-tunein
 #EXTINF:-1,WNYC-FM
 http://fm939.wnyc.org/wnycfm-tunein?source=TuneIn&gdpr=0&us_privacy=1YNY
 #EXTINF:-1,WWNO
@@ -55,8 +51,6 @@ http://67.225.254.37:2112
 http://ic2.mainstreamnetwork.com/whdd-fm
 #EXTINF:-1,Radio Ignacio Serrano
 https://sonic.portalfoxmix.club/8242/stream
-#EXTINF:-1,AIR VBS Daltonganj
-https://air.pc.cdn.bitgravity.com/air/live/pbaudio202/playlist.m3u8
 #EXTINF:-1,SBS Radio 2
 https://sbs-ice.streamguys1.com/sbs2-tunein
 #EXTINF:-1,SBS Radio 1
@@ -77,5 +71,3 @@ https://stream.core-prod.us-west-2.tunenet.io/listen.stream?streamId=40690625&rt
 http://radionz-ice.streamguys.com/international.mp3
 #EXTINF:-1,RNZ Pacific
 https://stream-ice.radionz.co.nz/international_aac64
-#EXTINF:-1,IRIB Radio Iran
-http://s1.cdn1.iranseda.ir:1935/liveedge/radio-iran/playlist.m3u8

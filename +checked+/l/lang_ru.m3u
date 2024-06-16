@@ -1,12 +1,10 @@
 #EXTM3U
 #EXTINF:-1,Радио 123
 http://139.162.156.56:8173/stream
-#EXTINF:-1,Ретро FM (Retro FM)
-http://retroserver.streamr.ru:8043/retro256.mp3
-#EXTINF:-1,DFM Радио 101.2 FM (DFM Radio)
-https://dfm.hostingradio.ru/dfm96.aacp
 #EXTINF:-1,Радио Шансон (Chanson)
 http://chanson.hostingradio.ru:8041/chanson128.mp3
+#EXTINF:-1,DFM Russian Dance
+https://dfm-dfmrusdance.hostingradio.ru/dfmrusdance96.aacp
 #EXTINF:-1,DFM Дискач 90х (DFM Disco 90s)
 https://dfm-disc90.hostingradio.ru/disc9096.aacp
 #EXTINF:-1,Радио 7 На семи холмах (Radio 7)
@@ -23,32 +21,30 @@ http://pub0301.101.ru:8000/stream/air/aac/64/200
 http://ic6.101.ru:8000/stream/trust/mp3/128/263?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpcCI6IjM3LjE4OS4xNTkuMTM5IiwidXNlcmFnZW50IjoiTW96aWxsYVwvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwLjEzOyBydjo3MS4wKSBHZWNrb1wvMjAxMDAxMDEgRmlyZWZveFwvNzEuMCIs
 #EXTINF:-1,XRadio
 http://185.8.60.5:8000/
-#EXTINF:-1,Зайцев FM (Zaycev Rus)
-http://zaycevfm.cdnvideo.ru/ZaycevFM_rus_256.mp3
 #EXTINF:-1,Ретро FM 90e (Retro FM)
 https://hls-01-retro90.emgsound.ru/3/playlist.m3u8
 #EXTINF:-1,Радио Максимум (Radio MAXIMUM)
 https://maximum.hostingradio.ru/maximum96.aacp
+#EXTINF:-1,Бизнес ФМ (Business FM)
+https://bfm.hostingradio.ru:9075/fm
 #EXTINF:-1,Комсомольская правда (Komsomolskaya pravda)
 http://kpradio.hostingradio.ru:8000/russia.radiokp128.mp3?radiostatistica=mytuner-radio
 #EXTINF:-1,Русский Рок
 http://rock.volna.top/RusRock
-#EXTINF:-1,Радио Шоколад (Chocolate)
-http://choco.hostingradio.ru:10010/fm
 #EXTINF:-1,DFM Deep
 https://dfm-dfmdeep.hostingradio.ru/dfmdeep96.aacp
 #EXTINF:-1,Маруся ФМ
 http://radio-holding.ru:9000/marusya_default
-#EXTINF:-1,Радио Классик (Radio Classic)
-http://jfm1.hostingradio.ru:14536/rcstream.mp3
+#EXTINF:-1,РУССКАЯ ВОЛНА - Russian Wave
+http://ru2.volna.top/RuWave48
 #EXTINF:-1,90s Eurodance
 https://listen1.myradio24.com/5967
 #EXTINF:-1,Радио Джаз (Radio Jazz - Smooth Jazz)
 http://jfm1.hostingradio.ru:14536/sjstream.mp3
 #EXTINF:-1,РЕТРО ХИТ - Retro Hit
 http://retro.volna.top/Retro
-#EXTINF:-1,Радио для двоих 90.6 (Radio dlya dvoikh)
-https://icecast-radiofortwo.cdnvideo.ru/radiofortwo
+#EXTINF:-1,Европа Плюс (Europa Plus Party)
+https://hls-01-europaplus-party.emgsound.ru/22/playlist.m3u8
 #EXTINF:-1,Рок FM (Rock FM 95.2)
 http://nashe2.hostingradio.ru/rock-128.mp3
 #EXTINF:-1,Говорит Москва (Govorit Moskva) 94.8 FM
@@ -63,20 +59,22 @@ https://mc-mcgold.hostingradio.ru/mcgold96.aacp
 http://zaycevfm.cdnvideo.ru/ZaycevFM_relax_256.mp3
 #EXTINF:-1,Радио Русский Хит
 http://air2.volna.top/RusHit-MSK
+#EXTINF:-1,Зайцев FM (Zaycev Club)
+http://zaycevfm.cdnvideo.ru/ZaycevFM_electronic_256.mp3
 #EXTINF:-1,Ultra 100.5 (Радио Ультра)
 http://nashe1.hostingradio.ru/ultra-128.mp3
-#EXTINF:-1,Монте Карло Sweet (Monte Carlo Sweet)
-https://mc-mcsweet.hostingradio.ru/mcsweet96.aacp
 #EXTINF:-1,Эльдорадио 101.4 FM (Eldoradio)
 http://emgspb.hostingradio.ru/eldoradio128.mp3
 #EXTINF:-1,Радио НЕСТАНДАРТ
 https://lk.castnow.ru:8100/nestandart-320.mp3
+#EXTINF:-1,Maximum - Metallica (Максимум)
+https://metallica.hostingradio.ru/metallica96.aacp
 #EXTINF:-1,Радио Джаз - Классика (Radio Jazz - Classic Jazz)
 http://jazz.streamr.ru/jazz-128.mp3
 #EXTINF:-1,Комсомольская правда - Санкт-Петербург (Komsomolskaya Pravda - St. Petersburg)
 http://kpradio.hostingradio.ru:8000/spb.radiokp128.mp3?radiostatistica=mytuner-radio
-#EXTINF:-1,Love Radio (Лав Радио)
-http://stream2.loveradio.ru/12_love_24
+#EXTINF:-1,Радио России (Radio Rossii) Вести Vesti
+http://icecast.vgtrk.cdnvideo.ru/rrzonam_mp3_192kbps
 #EXTINF:-1,ХИТ FM 2000-е (Hit FM 2000s)
 https://hitfm-hit2000.hostingradio.ru/hit200096.aacp
 #EXTINF:-1,Radio Cafe
@@ -93,8 +91,6 @@ http://91.185.32.165:8988/Energy_irk
 https://stream.deep1.ru/deep1aac
 #EXTINF:-1,Радио Джаз (Radio Jazz)
 http://nashe1.hostingradio.ru/jazz-128.mp3
-#EXTINF:-1,Монте Карло Nights (Monte Carlo Nights)
-https://mc-mcnight.hostingradio.ru/mcnight96.aacp
 #EXTINF:-1,Зайцев FM (Zaycev Shanson)
 http://zaycevfm.cdnvideo.ru/ZaycevFM_shanson_256.mp3
 #EXTINF:-1,Москва FM
@@ -153,14 +149,18 @@ http://79.111.14.76:8002/chillout
 https://radio.kamchatkalive.ru:8103/chillout
 #EXTINF:-1,Радио Джаз (Radio Jazz - Jazz Legends)
 http://jfm1.hostingradio.ru:14536/jlstream.mp3
-#EXTINF:-1,EDM Radio (Trance)
-https://lk.castnow.ru:8100/edm-320.mp3
+#EXTINF:-1,DFM Trap
+https://dfm-dfmtrap.hostingradio.ru/dfmtrap96.aacp
 #EXTINF:-1,RockTime Radio
 http://a9.radioheart.ru:8049/rocktime
 #EXTINF:-1,Noise FM
 http://play.sas-media.ru/play_256
+#EXTINF:-1,Радио Зенит (Radio Zenit 89.7)
+http://ic7.101.ru:8000/v15_1
 #EXTINF:-1,Radio Caprice Drone Ambient
 http://79.111.119.111:8000/droneambient
+#EXTINF:-1,Радио Сибирь | Radio Sibir
+http://stream.radiosibir.ru:8090/HQ
 #EXTINF:-1,Свежее Радио Европа Плюс (Svejee Radio Europa Plus)
 https://hls-01-fresh.emgsound.ru/9/playlist.m3u8
 #EXTINF:-1,Anison FM (Анисон ФМ)
@@ -169,6 +169,8 @@ http://pool.anison.fm:9000/AniSonFM(320)
 https://listen2.myradio24.com/8795
 #EXTINF:-1,Radio Caprice Indie Rock
 http://79.120.39.202:8002/indierock
+#EXTINF:-1,Anima Amoris - Dub Techno Mix
+https://amoris.sknt.ru/dubtechnomix.mp3
 #EXTINF:-1,Зайцев FM (Zaycev K-POP)
 https://zaycevfm.cdnvideo.ru/ZaycevFM_kpop_256.mp3
 #EXTINF:-1,Love Radio Russian (Лав Радио)
@@ -181,14 +183,14 @@ https://souz.hostingradio.ru:80/souz128.mp3?radiostatistica=mytuner-radio
 http://icecast.radonezh.cdnvideo.ru:8000/rad
 #EXTINF:-1,Radio Caprice Stoner Rock
 http://79.111.119.111:8000/stonerrock
+#EXTINF:-1,Anima Amoris - Techno
+https://amoris.sknt.ru/techno.mp3
 #EXTINF:-1,AlexFM (Алекс ФМ)
 http://listen6.myradio24.com:9000/2411
 #EXTINF:-1,Страна ФМ | Strana FM
 https://icecast-stranafm.cdnvideo.ru/stranafm_128
 #EXTINF:-1,Radio Caprice Progressive Rock
 http://79.111.119.111:8002/progressiverock
-#EXTINF:-1,ELF Radio (Moscow)
-https://elfradio.asuscomm.com/play.mp3
 #EXTINF:-1,Radio Caprice EBM
 http://79.111.14.76:8002/ebm
 #EXTINF:-1,Свое Радио | Svoe Radio
@@ -201,6 +203,8 @@ http://icecast-vgtrk.cdnvideo.ru/unost_mp3_64kbps
 http://79.120.39.202:8000/symphorock
 #EXTINF:-1,Radio Caprice AOR
 http://79.111.14.76:8000/aor
+#EXTINF:-1,Radio Caprice Dream Pop
+http://79.111.14.76:8002/dreampop
 #EXTINF:-1,Комсомольская правда-Новосибирск (Komsomolskaya Pravda-Novosibirsk)
 https://kpradio.hostingradio.ru:8000/novosibirsk.radiokp64.mp3?radiostatistica=mytuner-radio
 #EXTINF:-1,EuropaRussia
@@ -209,6 +213,8 @@ http://europarussia.ru:8000/live
 http://listen.radiopassazh.ru/mp3-128
 #EXTINF:-1,Radio Caprice Pop Rock
 http://79.120.77.11:8002/poprock
+#EXTINF:-1,Radio Caprice Dancehall
+http://79.111.14.76:8002/dancehall
 #EXTINF:-1,Kosava Klasik
 http://163.172.116.41:9968/
 #EXTINF:-1,RBS FM - Лучшие Песни
@@ -221,10 +227,14 @@ http://94.181.181.72:8002/stream.mp3
 http://vgtrk15.hostingradio.ru:8011/vgtrk15128.mp3
 #EXTINF:-1,Radio Caprice Piano Rock
 http://79.111.14.76:8000/pianorock
+#EXTINF:-1,Radio Caprice Folk Rock
+http://79.111.14.76:8002/folkrockru
 #EXTINF:-1,Радио Югра | Radio Ugra
 http://ugra.cdnradio.ru/radiougra
 #EXTINF:-1,Radio Caprice Orthodox
 http://79.111.14.76:8000/orthodox
+#EXTINF:-1,Anima Amoris - Electro
+https://amoris.sknt.ru/electro.mp3
 #EXTINF:-1,Радио Камчатка Rock (Radio Kamchatka Live)
 https://radio.kamchatkalive.ru:8103/rock
 #EXTINF:-1,L I G H T R A D I O
@@ -253,6 +263,8 @@ http://icecast.sibinformburo.cdnvideo.ru:8000/dipolfm
 http://185.39.195.90:8000/royal_live
 #EXTINF:-1,Kosava Love 1
 http://163.172.116.41:9978/
+#EXTINF:-1,Radio SPB1
+http://listen2.myradio24.com:9000/2666
 #EXTINF:-1,Kosava Folk 3
 http://163.172.116.41:9954/
 #EXTINF:-1,Love Radio Dance (Лав Радио)
@@ -267,8 +279,12 @@ https://depechemode.hostingradio.ru/depechemode96.aacp
 http://163.172.116.41:9966/
 #EXTINF:-1,Radio FRESH
 http://fresh.volna.top/Fresh
+#EXTINF:-1,Радио Берег (Bereg)
+http://radio-tochka.com:6135/
 #EXTINF:-1,Radio Caprice Art Rock
 http://79.120.39.202:8002/artrock
+#EXTINF:-1,Радио Дача 92.4 FM (Radio Dacha)
+http://stream.radiodacha.ru/14_dacha_64?UID=D9E44B3023A0470A9C206198E6567599&type=.aac
 #EXTINF:-1,Radio Kosava
 http://163.172.116.41:8544/
 #EXTINF:-1,Радио Борнео 107.2 (Radio Borneo)
@@ -277,8 +293,6 @@ http://live.borneo.ru:8888/128
 https://zaycevfm.cdnvideo.ru/ZaycevFM_zaychata_256.mp3
 #EXTINF:-1,Kosava Jazz
 http://163.172.116.41:9964/
-#EXTINF:-1,Otlichnoe Radio
-http://radio.oneex.ru:9000/8234
 #EXTINF:-1,Radio Free Music
 http://radio-holding.ru:9000/rfm
 #EXTINF:-1,Kosava Folk 1
@@ -289,59 +303,3 @@ http://c4.radioboss.fm/stream/218
 http://79.120.77.11:8002/grindcore
 #EXTINF:-1,Радио Голос Бирмы
 https://listen4.myradio24.com/39982
-#EXTINF:-1,FreshRock Internet Radio Station
-http://de.freshrock.net:8000/128.mp3
-#EXTINF:-1,Radio Caprice New Wave
-http://79.120.39.202:8002/newwave
-#EXTINF:-1,Kosava Rap
-http://163.172.116.41:9980/
-#EXTINF:-1,Love Summer (Лав Радио)
-http://stream2.loveradio.ru/5_summer_24
-#EXTINF:-1,Kosava Folk 2
-http://163.172.116.41:8050/
-#EXTINF:-1,Kosava Love 2
-http://163.172.116.41:9976/
-#EXTINF:-1,Радио Курс | Radio Kurs
-http://radio.dcatk.pro/radio.mp3
-#EXTINF:-1,Love Radio Alternative (Лав Радио)
-http://stream2.loveradio.ru/10_alternative_24
-#EXTINF:-1,Radio Bum Bum 89.4 FM
-http://bumbum-stream.netlogic.rs:8000/
-#EXTINF:-1,Kosava Rock
-http://163.172.116.41:9984/
-#EXTINF:-1,Love Power (Лав Радио)
-http://stream2.loveradio.ru/15_power_24
-#EXTINF:-1,Love Gold (Лав Радио)
-http://stream2.loveradio.ru/3_gold_24
-#EXTINF:-1,Love Chill (Лав Радио)
-http://stream2.loveradio.ru/4_chill_24
-#EXTINF:-1,Love RnB (Лав Радио)
-http://stream2.loveradio.ru/6_rnb_24
-#EXTINF:-1,Love Top 40 (Лав Радио)
-http://stream2.loveradio.ru/9_top40_24
-#EXTINF:-1,Kosava Koncert 2
-http://163.172.116.41:9970/
-#EXTINF:-1,Kosava Info
-http://163.172.116.41:9962/
-#EXTINF:-1,Kosava Cafe
-http://163.172.116.41:9946/
-#EXTINF:-1,Love Teens (Лав Радио)
-http://stream2.loveradio.ru/11_teens_24
-#EXTINF:-1,Радио Экспресс (Radio Express)
-http://misato.ru-hoster.com:8028/stream
-#EXTINF:-1,Восток ФМ 94.0 (Vostok FM)
-http://stream.n340.com/18_vostok_24?UID=F45278AEF1A620FAE0AEB31881DBD784&type=.aac
-#EXTINF:-1,Kosava City
-http://163.172.116.41:9948/
-#EXTINF:-1,Kosava Freedom
-http://163.172.116.41:9960/
-#EXTINF:-1,Kosava Clubbing
-http://163.172.116.41:9302/
-#EXTINF:-1,Grand FM
-http://grandfm.ru:8000/radio
-#EXTINF:-1,Kosava Koncert 1
-http://163.172.116.41:9972/
-#EXTINF:-1,Kosava 2
-http://163.172.116.41:9996/
-#EXTINF:-1,Kosava Evergreen
-http://163.172.116.41:9952/

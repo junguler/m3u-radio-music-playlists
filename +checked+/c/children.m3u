@@ -7,8 +7,8 @@ https://nrk-radio-super.akamaized.net/46/0/hls/nrk_radio_super/1403133980-140313
 https://live-cdn.sr.se/pool1/knattekanalen/knattekanalen.isml/index.m3u8
 #EXTINF:-1,Zig Zag
 https://streaming-live.rtp.pt/liveradio/zigzag80a/chunklist.m3u8
-#EXTINF:-1,Fun Kids
-https://listen-funkids.sharp-stream.com/funkids.mp3
+#EXTINF:-1,ABC Kids listen
+https://mediaserviceslive.akamaized.net/hls/live/2038321/abcextra/index.m3u8
 #EXTINF:-1,Radio Teddy
 https://irmedia.streamabc.net/irm-rtlive-mp3-128-6306268
 #EXTINF:-1,DR Ramasjang Ultra
@@ -59,6 +59,8 @@ https://live.xmcdn.com/live/2690/64.m3u8
 https://stream.hndt.com/live/jiaoyu/playlist.m3u8
 #EXTINF:-1,WEE Nation Radio
 https://live365.com/station/WEE-Nation-Radio-a08255
+#EXTINF:-1,NEXT KIDS WORLDWIDE
+http://149.56.175.167:5335/stream
 #EXTINF:-1,For Kids Bathtime Fun
 https://drive.uber.radio/uber/forkidzbathtimefun/icecast.audio
 #EXTINF:-1,For Kids Bedtime Stories
@@ -89,10 +91,12 @@ https://drive.uber.radio/uber/forkidztoddlertunes/icecast.audio
 https://drive.uber.radio/uber/forkidzwakeandshake/icecast.audio
 #EXTINF:-1,cron
 http://cron.stream.laut.fm/cron
+#EXTINF:-1,nickelodeon and disney
+http://nickelodeon_and_disney.stream.laut.fm/nickelodeon_and_disney
 #EXTINF:-1,radio kueken swiss
 http://radio-kueken-swiss.stream.laut.fm/radio-kueken-swiss
-#EXTINF:-1,Disney Village Radio
-https://webradio.ice.infomaniak.ch/webradio-128.mp3?type=.mp3/stream.mp3
+#EXTINF:-1,Aliusart Children Channel
+http://radio.aliusart.ru:8008/children.aac
 #EXTINF:-1,Allzic Enfant 712 Ans
 https://allzic16.ice.infomaniak.ch/allzic16.mp3?type=.mp3/stream.mp3
 #EXTINF:-1,Keys for Kids Radio
@@ -109,20 +113,16 @@ https://kinderradio.stream.laut.fm/kinderradio
 https://kinderradio-countrygirl.stream.laut.fm/kinderradio-countrygirl
 #EXTINF:-1,Radijojo FM
 https://radijojo.org/de/livestream/musikstunde_caribbean_cruise.mp3?1493669796047
-#EXTINF:-1,Radio Bus
-https://radiobus.ice.infomaniak.ch/radiobus-high.mp3
 #EXTINF:-1,Rdio Estrela da Manh Kids
 http://suaradio1.dyndns.ws:13213/stream
 #EXTINF:-1,Radio Keksplanet
 https://keksplanet.stream.laut.fm/keksplanet
 #EXTINF:-1,Radio Kids4m3
 https://radiokids4m3.stream.laut.fm/radiokids4m3
-#EXTINF:-1,Radio Ouistiti
-https://radioouistiti2.ice.infomaniak.ch/radioouistiti-high.mp3
+#EXTINF:-1,Radio Roya
+https://server-26.stream-server.nl:8632/stream
 #EXTINF:-1,Radio Studio Souto Clube da Crianca
 https://centova4.transmissaodigital.com:20104/
-#EXTINF:-1,detskoe-radio
-https://ic6.101.ru:8000/stream/air/aac/64/199
 #EXTINF:-1,Z 88.3 FM
 https://ice.zradio.org/z/high.mp3
 #EXTINF:-1,Radio Paraíso
@@ -135,8 +135,6 @@ https://60766ff53d5e6.streamlock.net/liveALR1/mp4:LR1/playlist.m3u8
 https://drive.uber.radio/uber/calmkids/icecast.audio
 #EXTINF:-1,RD Revival
 https://listen.radioking.com/radio/453221/stream/508076
-#EXTINF:-1,Radio Aguas
-https://servidor21-2.brlogic.com:8938/live
 #EXTINF:-1,Radio DK4 Dansktop
 https://stream.rcs.revma.com/puch9s6pshruv
 #EXTINF:-1,Radio Dzieciom
@@ -151,8 +149,6 @@ https://stream.open.fm/194
 https://mediaserviceslive.akamaized.net/hls/live/2038321/abcextra/masterlq.m3u8
 #EXTINF:-1,M Radio - Disney
 https://mfmwr-002.ice.infomaniak.ch/mfmwr-002.aac?i=78504
-#EXTINF:-1,Klassik Radio - Klassik für Kids
-https://klassikr.streamabc.net/klr-klassikfrkinder-mp3-192-8843124
 #EXTINF:-1,Radio Kinderwelle 
 https://kinderwelle.stream.laut.fm/kinderwelle
 #EXTINF:-1,The Kids MIXX
@@ -167,6 +163,8 @@ https://stream9.mexiserver.com/8084/
 https://stream.open.fm/160
 #EXTINF:-1,Europa-Park Radio
 https://rs9.stream24.net/europa-park-radio.mp3
+#EXTINF:-1,RTÉjr Radio
+https://www.rte.ie/radio/rtejrradio/
 #EXTINF:-1,Radio Contact Kids
 https://contactkids.ice.infomaniak.ch/contactkids-192.mp3
 #EXTINF:-1,YourClassical Children
@@ -187,8 +185,6 @@ https://listen.radioking.com/radio/361753/stream/411352
 https://irmedia.streamabc.net/irm-rtweihnachtslieder-mp3-128-1989390
 #EXTINF:-1,Kids Radio
 https://kids-radio.stream.laut.fm/kids-radio
-#EXTINF:-1,KPSU
-https://streamer.radio.co/scad0cc067/listen
 #EXTINF:-1,Kids radio
 https://listen.openstream.co/5591/audio
 #EXTINF:-1,Radio TEDDY - Kinderlieder
@@ -237,8 +233,6 @@ https://kinderweihnachtsradio.stream.laut.fm/kinderweihnachtsradio
 https://oxygenmusic.hu:8443/oxygenkids_128
 #EXTINF:-1,Illertal FM -  Kidsclub Illerfrösche
 https://kidsclub-illerfroesche.stream.laut.fm/kidsclub-illerfroesche
-#EXTINF:-1,RQP
-http://d3g7mrw8svrpar.cloudfront.net/rqp.m3u8
 #EXTINF:-1,Radio Epiayu Stereo
 https://radio.vegamultimedios.com:7112/stream.nsv
 #EXTINF:-1,Radio TEDDY - Schlager
@@ -259,45 +253,3 @@ https://irmedia.streamabc.net/irm-rtteddycool-mp3-128-5525267
 https://fluxfm.streamabc.net/flx-kinder1-mp3-128-2866827
 #EXTINF:-1,Radio Tamaran FM
 http://server6.20comunicacion.com:8038/*36000.stream
-#EXTINF:-1,Rock_the_Cradle_-_Minnesota
-http://rockthecradle.stream.publicradio.org:80/rockthecradle.mp3
-#EXTINF:-1,Efteling_Radio
-http://ice.cr5.streamzilla.xlcdn.com:8000/sz=efteling=hdstream
-#EXTINF:-1,Z88.3_FM
-http://ice.zradio.org/z/high.mp3
-#EXTINF:-1,SR_Radioapans_Knattekanal
-http://http-live.sr.se/knattekanalen-mp3-192
-#EXTINF:-1,Radio_Colorin
-http://dreamsiteradiocp.com:8076/
-#EXTINF:-1,Dreamfinder_Radio
-http://192.111.140.11:8596/
-#EXTINF:-1,ALLZIC_COMPTINES
-http://allzic05.ice.infomaniak.ch/allzic05
-#EXTINF:-1,ALLZIC_RADIO_ENFANTS_0/4_ANS
-http://allzic14.ice.infomaniak.ch/allzic14
-#EXTINF:-1,ALLZIC_RADIO_ENFANTS_7/12_ANS
-http://allzic16.ice.infomaniak.ch/allzic16
-#EXTINF:-1,Algorythme_Lounge
-https://radio8.pro-fhi.net/live/AlgorythmeLounge
-#EXTINF:-1,ALLZIC_RADIO_ENFANTS_4/7_ANS
-http://allzic15.ice.infomaniak.ch/allzic15
-#EXTINF:-1,Christmas_Hits_1
-https://radio12.pro-fhi.net/radio/9099/stream
-#EXTINF:-1,Jayaprithvi_F.M.
-https://streaming.softnep.net:10824/stream
-#EXTINF:-1,Jazz_Radio_Spain
-https://stream.tunerplay.com/radio/8020/jazzradiospain.mp3
-#EXTINF:-1,Kids_Club_Radio
-https://stream.revma.ihrhls.com/zc6551
-#EXTINF:-1,iHR_Family_Top_40_Countdown
-https://stream.revma.ihrhls.com/zc7013
-#EXTINF:-1,Lullabies_Radio
-https://stream.revma.ihrhls.com/zc7249
-#EXTINF:-1,Kids_Hits
-https://stream.revma.ihrhls.com/zc7223
-#EXTINF:-1,Abiding_Radio_-_Kids
-https://www.abidingradio.org/radio/kids
-#EXTINF:-1,The_International_Children’s_Arts_Network_(ICAN)
-https://allclassical-ord.streamguys1.com/ICAN
-#EXTINF:-1,Shallom_Radio
-http://stream.zeno.fm/75exe540s4zuv.m3u
