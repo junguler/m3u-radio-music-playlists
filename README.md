@@ -252,7 +252,8 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/listen_to_live-radio-24">live-radio-24</a></td>
 <td><a href="https://github.com/junguler/listen_to_my_radio-box">my_radio-box</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio_matik">radio_matik</a></td>
-<td colspan="1"></td>
+<td><a href="https://github.com/junguler/listen_to_fm_cube">fm_cube</a></td>
+<!-- <td colspan="1"></td> -->
 <tr>
 </tr>
 </tbody></table>
