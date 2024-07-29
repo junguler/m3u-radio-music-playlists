@@ -2,9 +2,11 @@
 m3u radio music playlists 
 </h1>
 
-<table align="right">
+<table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cassette.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cassette2.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/record.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/station.gif"></td>
 </tr>
 </table>
 
@@ -35,7 +37,13 @@ m3u radio music playlists
 <li><a href="https://github.com/junguler/m3u-radio-music-playlists#behind-the-scenes">behind the scenes</a></li>
 </ul>
 
-<p><br></p>
+<table align="center">
+<tr>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/airpod.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cool.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/headphone2.gif"></td>
+</tr>
+</table>
 
 <h3>how to listen</h3>
 
@@ -279,7 +287,13 @@ m3u radio music playlists
 
 <p>note: i need to investigate players for other devices, i will update this section later, if you know of a good program to use please let me know</p>
 
-<p><br></p>
+<table align="center">
+<tr>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/save.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/folder.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/micro.gif"></td>
+</tr>
+</table>
 
 <h3>How to download from a station</h3>
 
@@ -322,7 +336,13 @@ m3u radio music playlists
 
 <p>this command will download this stream <code>http://51.89.148.171:8022/stream/1/</code> for 1 hour, splitting all the songs and uses mozilla as the user agent, for more examples visit the man page for the program</p>
 
-<p><br></p>
+<table align="center">
+<tr>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/map.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/radio.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/world.gif"></td>
+</tr>
+</table>
 
 <h3>how to download this repo</h3>
 
@@ -345,7 +365,13 @@ m3u radio music playlists
 <p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_2.jpg" alt="" /></p>
 <p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_3.jpg" alt="" /></p>
 
-<p><br></p>
+<table align="center">
+<tr>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/list.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/note2.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/playlist.gif"></td>
+</tr>
+</table>
 
 <h3>sources</h3>
 <p>here is a list of websites i've scraped from already and included m3u streams for in this repo</p>
@@ -565,11 +591,11 @@ m3u radio music playlists
 </tbody></table>
 <p>my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)</p>
 
-<p><br></p>
-
-<table align="right">
+<table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/vinyl.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/rock.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/dj.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/note.gif"></td>
 </tr>
 </table>
 
