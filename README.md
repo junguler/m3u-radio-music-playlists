@@ -594,6 +594,11 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/oi_radio">/oi_radio</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/oi_radio.sh">oi_radio.sh</a></td>
 </tr>
+<tr>
+<td><a href="https://live365.com/listen">https://live365.com/listen</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/live_365">/live_365</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/live_365.sh">live_365.sh</a></td>
+</tr>
 </tbody></table>
 <p>my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)</p>
 
