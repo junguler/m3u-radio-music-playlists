@@ -264,7 +264,8 @@ m3u radio music playlists
 <tr>
 <td><a href="https://github.com/junguler/listen_to_fm_cube">fm_cube</a></td>
 <td><a href="https://github.com/junguler/listen_to_live_365">live_365</a></td>
-<td colspan="3"></td>
+<td><a href="https://github.com/junguler/listen_to_rcast.net">rcast.net</a></td>
+<td colspan="2"></td>
 </tr>
 </tbody></table>
 
