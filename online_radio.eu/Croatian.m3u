@@ -1,10 +1,10 @@
 #EXTM3U
-#EXTINF:-1,HRT  HR2
-https://playerservices.streamtheworld.com/api/livestream-redirect/PROGRAM2.mp3?dist=onlineradioeu
-#EXTINF:-1,Radio Ludnica
-http://192.111.140.6:8222/stream
-#EXTINF:-1,Tranzistor
-https://ec2s.crolive.com.hr/tranzistor
+#EXTINF:-1,HRT  HR1
+https://playerservices.streamtheworld.com/api/livestream-redirect/PROGRAM1.mp3
+#EXTINF:-1,Narodni Radio
+http://live.narodni.hr:8063/stream
+#EXTINF:-1,Radio Dalmacija
+http://shoutcast.pondi.hr:8000/
 #EXTINF:-1,Antena Hits
 http://centova16.ciclanohost.com.br:9860/
 #EXTINF:-1,Antena Zagreb
@@ -65,8 +65,8 @@ http://live.goldfm.hr:8169/
 http://85.17.172.242:8040/live.mp3
 #EXTINF:-1,Hit Radio Sinj
 http://s8.iqstreaming.com:8012/stream.mp3
-#EXTINF:-1,HRT  HR1
-https://playerservices.streamtheworld.com/api/livestream-redirect/PROGRAM1.mp3
+#EXTINF:-1,HRT  HR2
+https://playerservices.streamtheworld.com/api/livestream-redirect/PROGRAM2.mp3?dist=onlineradioeu
 #EXTINF:-1,HRT  HR3
 https://playerservices.streamtheworld.com/api/livestream-redirect/PROGRAM3.mp3
 #EXTINF:-1,HRT  Radio Sljeme
@@ -93,8 +93,6 @@ http://194.145.208.251:8000/start/lfmzg
 http://live.mediaservis.hr:8084/
 #EXTINF:-1,Medulin FM
 http://188.165.232.7:8263/medulinfm?_1536155049.4669
-#EXTINF:-1,Narodni Radio
-http://live.narodni.hr:8063/stream
 #EXTINF:-1,Narodni Radio Goga
 http://138.201.206.240:8440/
 #EXTINF:-1,Narodni Radio Goga
@@ -123,8 +121,6 @@ http://185.62.73.145:8004/prstream
 http://proglink4.ddns.net:58001/prstream.aac
 #EXTINF:-1,Pomorski Radio
 http://85.17.172.242:8010/live.mp3
-#EXTINF:-1,Radio 041 ZG
-https://listen.radioking.com/radio/300817/stream/347464
 #EXTINF:-1,Radio 051  Pop Rock
 https://distorzi.radioca.st/stream
 #EXTINF:-1,Radio 057
@@ -177,8 +173,6 @@ http://live.radio-cakovec.hr:7000/
 https://radiocentar.hr:8282/aac32
 #EXTINF:-1,Radio Centarstudio Pore
 https://radiocentar.hr:8282/mp3
-#EXTINF:-1,Radio Dalmacija
-http://shoutcast.pondi.hr:8000/
 #EXTINF:-1,Radio Daruvar
 http://85.17.172.242:8070/live.mp3
 #EXTINF:-1,Radio Deejay HR
@@ -210,7 +204,7 @@ http://194.56.74.7:9300/
 #EXTINF:-1,Radio GVM
 http://37.187.79.153:5726/arabellavie
 #EXTINF:-1,Radio GVM
-http://178.33.135.246:5726/stream
+http://cp.eu3.fastcast4u.com:2199/tunein/bhermese.pls
 #EXTINF:-1,Radio Ilok
 http://178.32.146.187:5172/stream/
 #EXTINF:-1,Radio Ilok
@@ -249,6 +243,8 @@ http://radiolabin.streamradio.com.hr:9500/256.mp3
 http://cmr-hosting.com:8470/stream.mp3
 #EXTINF:-1,Radio Ludbreg
 http://pa-hosting.de:23573/
+#EXTINF:-1,Radio Ludnica
+http://192.111.140.6:8222/stream
 #EXTINF:-1,Radio Mackamama
 http://139.162.255.38:8000/live
 #EXTINF:-1,Radio Maestral
@@ -403,6 +399,8 @@ http://d28int.novi-net.net:8020/studiomH
 https://mcp1.mydataknox.com:8010/stream
 #EXTINF:-1,Totalni FM Sisak
 http://c5.hostingcentar.com:8098/stream.ogg
+#EXTINF:-1,Tranzistor
+https://ec2s.crolive.com.hr/tranzistor
 #EXTINF:-1,Trend Radio
 https://stream1.dns69it.com/stream.mp3
 #EXTINF:-1,Trend Radio 047

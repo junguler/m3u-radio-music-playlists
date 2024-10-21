@@ -1,10 +1,10 @@
 #EXTM3U
 #EXTINF:-1,Radio 1 cz
 https://icecast2.play.cz/radio1.mp3?type=.mp3/stream.mp3
-#EXTINF:-1,RADIOIPIPCZ 1  Spacesynth BestOf
-http://212.96.160.160:8072/
-#EXTINF:-1,RADIOIPIPCZ 2  Spacesynth Album
-http://212.96.160.160:8074/
+#EXTINF:-1,Evropa 2
+https://playerservices.streamtheworld.com/api/livestream-redirect/EVROPA2AAC.aac?dist=onlineradioeu
+#EXTINF:-1,Freeravecz  Tekno Radio
+http://164.68.122.137:8061/
 #EXTINF:-1,AB Radio Club Beat
 http://mp3stream4.abradio.cz:8000/clubbeat128.mp3
 #EXTINF:-1,AB Radio Humor
@@ -91,8 +91,6 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/DANCEAAC.aac?d
 https://ice3.abradio.cz/jazzinec128.mp3
 #EXTINF:-1,Euro Jazz
 https://icecast1.play.cz/crojazz128.mp3
-#EXTINF:-1,Evropa 2
-https://playerservices.streamtheworld.com/api/livestream-redirect/EVROPA2AAC.aac?dist=onlineradioeu
 #EXTINF:-1,Evropa 2  Movin
 https://ice.actve.net/web-e2-movin
 #EXTINF:-1,Expres FM
@@ -123,8 +121,6 @@ http://ice.abradio.cz:8000/fajnlife128.mp3?type=.mp3/stream.mp3
 http://agnes.torontocast.com:8121/stream
 #EXTINF:-1,Free Radio
 https://icecast8.play.cz/freeradio128.mp3
-#EXTINF:-1,Freeravecz  Tekno Radio
-http://164.68.122.137:8061/
 #EXTINF:-1,Frekvence 1
 https://playerservices.streamtheworld.com/api/livestream-redirect/FREKVENCE1AAC.aac?dist=onlineradioeu
 #EXTINF:-1,Frekvence 1 Romantika
@@ -330,7 +326,7 @@ https://ice4.abradio.cz/oldiesrock128.mp3
 #EXTINF:-1,Rdio Orlicko
 http://46.28.111.246/stream192.mp3
 #EXTINF:-1,Radio Orlicko AAC 64 kbps
-http://server.radioorlicko.cz:80/stream64.aac
+http://server.radioorlicko.cz:80/stream64.aac.m3u
 #EXTINF:-1,Radio Patriot
 https://s28.myradiostream.com/17086/listen.mp3
 #EXTINF:-1,Rdio Pelhimov
@@ -375,24 +371,28 @@ https://icecast9.play.cz/radio-zapad-128.mp3
 http://212.111.2.151:8000/radiozlin_128.mp3
 #EXTINF:-1,Radio zurnal
 https://icecast7.play.cz/cro1-128.mp3
+#EXTINF:-1,RADIOIPIPCZ 1  Spacesynth BestOf
+http://212.96.160.160:8072/
+#EXTINF:-1,RADIOIPIPCZ 2  Spacesynth Album
+http://212.96.160.160:8074/
 #EXTINF:-1,RADIOIPIPCZ 3  Spacesynth Single
 http://212.96.160.160:8076/
 #EXTINF:-1,RADIOIPIPCZ 4  Spacesynth BestOf UHD
 http://212.96.160.160:8078/
 #EXTINF:-1,RADIOIPIPCZ 96MIXXCOM
-http://sc1.ipip.cz:8032/
+http://sc1.ipip.cz:8032/listen.pls
 #EXTINF:-1,RADIOIPIPCZ DanceRadio FreestyleFM
 http://212.96.160.160:8006/
 #EXTINF:-1,RADIOIPIPCZ KRDP
-http://212.96.160.160:8002/listen.pls
+http://212.96.160.160:8002/
 #EXTINF:-1,RADIOIPIPCZ PARTY RADIOS Nami Party Nikdy Nekonci
 http://212.96.160.160:8040/
 #EXTINF:-1,RADIOIPIPCZ Radio ceska jukebox
-http://212.96.160.160:8046/
+http://212.96.160.160:8046/listen.pls
 #EXTINF:-1,RADIOIPIPCZ Radio POHODA
-http://37.157.195.23:8030/
+http://37.157.195.23:8030/listen.pls
 #EXTINF:-1,RADIOIPIPCZ RadioTop20 1074FM
-http://sc1.ipip.cz:8012/
+http://sc1.ipip.cz:8012/listen.pls
 #EXTINF:-1,RADIOIPIPCZ Rebel Radio Brod
 http://212.96.160.160:7988/listen.pls
 #EXTINF:-1,Radio23cz

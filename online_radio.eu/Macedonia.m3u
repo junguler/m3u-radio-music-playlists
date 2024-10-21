@@ -1,10 +1,10 @@
 #EXTM3U
 #EXTINF:-1,Modea FM 977
-http://stream.zemi.mk:8008/stream
-#EXTINF:-1,Radio Rabrovo FM
-http://de1.internet-radio.com:8183/live
+https://live.mkdstream.com/listen/modea/modea
 #EXTINF:-1,Biser Radio Ohrid
 https://biserradioohrid.radioca.st/stream
+#EXTINF:-1,Vink Radio
+https://eu10.fastcast4u.com/vinkradio
 #EXTINF:-1,Antenna 5 FM
 http://antenna5stream.neotel.mk:8000/live128
 #EXTINF:-1,Biser Radio Orovnik
@@ -14,9 +14,9 @@ http://80.77.157.10:8000/stream.mp3
 #EXTINF:-1,Capitol FM
 http://89.205.127.244:8002/stream.mp3
 #EXTINF:-1,CAPITOL FM AAC48 Kbps
-http://89.205.127.244:8000/
+http://89.205.127.244:8000/listen.pls
 #EXTINF:-1,CAPITOL FM MP3 128 Kbps Skopje Macedonia
-http://89.205.127.244:8002/
+http://89.205.127.244:8002/listen.pls
 #EXTINF:-1,Club FM
 http://176.9.117.123:9996/
 #EXTINF:-1,Dubplate fm
@@ -31,10 +31,12 @@ http://89.205.127.244:8002/
 http://88.85.99.43:8000/hitportal?type=.mp3/stream.mp3
 #EXTINF:-1,I Love Heavy Metal
 https://streamingv2.shoutcast.com/IloveHeavyMetal
+#EXTINF:-1,Jazz FM
+https://radio.jazzfm.mk/listen/jazzfm/live
 #EXTINF:-1,Kanal 103
 http://radiostream.neotel.mk/kanal103
 #EXTINF:-1,Kanal 77
-http://kanal77.mk:8088/live.mp3
+https://radiocnd.mms.mk/proxy/offnet/stream
 #EXTINF:-1,Life Radio 891
 http://liferadio.ddns.net:8000/
 #EXTINF:-1,Metro Polis Radio
@@ -69,6 +71,8 @@ https://stream.laut.fm/alpenradio?type=.mp3/stream.mp3
 http://213.135.181.14:8000/audio.mp3
 #EXTINF:-1,Radio Joker
 https://cast.multihost.mk/radio/8020/radio.mp3
+#EXTINF:-1,Radio Kec
+https://live.mkdstream.com/listen/rakec/rakec
 #EXTINF:-1,Radio King Macedonia
 http://5.9.25.50:9330/
 #EXTINF:-1,Radio Ljubav
@@ -77,16 +81,22 @@ https://audio.asuradns.com/radio/8010/radio.mp3
 http://eu9.fastcast4u.com:2539//:
 #EXTINF:-1,Radio MEFF
 https://radiomeff.mk/stream
-#EXTINF:-1,Radio MOF
-http://89.205.123.35:8000/
 #EXTINF:-1,Radio Nika
 https://audio.asuradns.com/radio/8020/radio.mp3
+#EXTINF:-1,Radio Rabrovo FM
+http://de1.internet-radio.com:8183/live
+#EXTINF:-1,Radio S mk
+http://109.169.23.17:11081/
+#EXTINF:-1,Radio S Plus mk
+http://109.169.23.124:9580/
 #EXTINF:-1,Radio Sokolarci
 http://s2.free-shoutcast.com:18148/
+#EXTINF:-1,Radio Srce Makedonija
+https://radio.radiosrce.info:8000/live
 #EXTINF:-1,Radio TIM Makedonija
-http://radio.shoutcast.mk:8026/
+http://hydra.shoutca.st:8108/
 #EXTINF:-1,Radio Vmro Makedonija
-http://radio.shoutcast.mk:8024/
+http://hyades.shoutca.st:8072/
 #EXTINF:-1,Retro Radio FM Smooth Easy Hits
 http://ams-2.1radio.mk/1709_64
 #EXTINF:-1,Sky Radio 1025
@@ -99,24 +109,34 @@ http://89.205.123.70:8000/listen.pls
 http://89.205.123.70:8002/listen.pls
 #EXTINF:-1,Star Radio
 https://eu4.fastcast4u.com/proxy/radiostarmk?mp=/1
+#EXTINF:-1,Star Radio Boemi
+https://radiostar.pro/stream/boemi.php
+#EXTINF:-1,Star Radio Ex Yu Retro
+https://radiostar.pro/stream/exyuretro.php
+#EXTINF:-1,Star Radio Live
+https://eu10.fastcast4u.com/staronline
+#EXTINF:-1,Star Radio Mk Narodna
+https://radiostar.pro/stream/mknarodna.php
+#EXTINF:-1,Star Radio Plus
+https://radiostar.pro/stream/starplus.php
+#EXTINF:-1,Star Radio World Hits
+https://radiostar.pro/stream/worldretro.php
 #EXTINF:-1,Star Radio Narodna
 https://eu4.fastcast4u.com/proxy/radiostarmk?mp=/live
 #EXTINF:-1,STIL EX YU POP
-https://eu4.fastcast4u.com/proxy/stilradiomk?mp=/stream/2/
+https://stilradio.com/stream/stilexyupop.php
 #EXTINF:-1,STIL EX YU TRAP
-https://eu4.fastcast4u.com/proxy/stilradiomk?mp=/stream/4/
+https://stilradio.com/stream/stilexyutrap.php
 #EXTINF:-1,STIL MKD NARODNA
-https://eu4.fastcast4u.com/proxy/stilradiomk?mp=/stream/3/
+https://stilradio.com/stream/stilmkdnarodna.php
 #EXTINF:-1,STIL RADIO
-https://eu4.fastcast4u.com/proxy/stilradiomk?mp=/1
+https://stilradio.com/stream/stillive.php
 #EXTINF:-1,The Jazzmas Channel
 http://ams-2.1radio.mk/1647_64
 #EXTINF:-1,The Wave Smooth Jazz
 http://ams-2.1radio.mk/1radio_smoothjazz_128
 #EXTINF:-1,Time Fm
 http://stream.zemi.mk:8016/stream
-#EXTINF:-1,Vink Radio
-https://eu10.fastcast4u.com/vinkradio
 #EXTINF:-1,Zam Radio
 http://zamradio.sytes.net:8022/
 #EXTINF:-1,ZONA M1 RADIO

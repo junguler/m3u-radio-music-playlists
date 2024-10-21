@@ -3,8 +3,8 @@
 http://188.165.11.30:4120/live.mp3
 #EXTINF:-1,011FM Retro 70s
 http://listen.011fm.com:8006/stream04
-#EXTINF:-1,Radio 7 Mawa
-https://stream.radio7.pl:443/stream.mp3
+#EXTINF:-1,1A 70er Hits
+https://stream.1a-webradio.de/saw-70er/mp3-128/
 #EXTINF:-1,011FM  Retro 70s
 http://listen.011fm.com:8000/stream04.m3u
 #EXTINF:-1,1 Amazing channel
@@ -19,12 +19,10 @@ https://18853.live.streamtheworld.com/WCVTFMAAC.aac
 https://listen.radionomy.com/xtremalove
 #EXTINF:-1,108 FM
 http://radiostreams.radioup.com:2226/stream.mp3
-#EXTINF:-1,1A 70er Hits
-https://stream.1a-webradio.de/saw-70er/mp3-128/
 #EXTINF:-1,3GG Forever Classic
 https://playerservices.streamtheworld.com/api/livestream-redirect/3GGAAC.aac
 #EXTINF:-1,4 Decades Radio
-http://stream.4decadesradio.com:8003/stream
+http://stream.4decadesradio.com:8003/listen.pls
 #EXTINF:-1,70 80 Non Stop
 https://shoutcast2.streamingmedia.it/proxy/7080nonstop?mp=/stream.mp3
 #EXTINF:-1,70s 80s All Time Greatest
@@ -85,6 +83,8 @@ https://ice10.securenetsystems.net/KIJI
 http://atlanticthai.primcast.com:5898/
 #EXTINF:-1,Car Tunes Radio
 http://198.199.71.224:5000/cartunes
+#EXTINF:-1,Cariba fm
+https://cloud-faro.beheerstream.com/proxy/caribafm2?mp=/stream
 #EXTINF:-1,Casablanca Radio
 http://85.214.234.214:8005/
 #EXTINF:-1,Cassette Radio
@@ -114,13 +114,13 @@ https://listen.radionomy.com/classixradio
 #EXTINF:-1,Coast FM  Tenerife
 http://85.234.143.182:8192/
 #EXTINF:-1,Coast FM Tenerife Canary Islands
-http://95.211.3.65:8840/
+http://95.211.3.65:8840/listen.pls
 #EXTINF:-1,CSN Streamin Radio
 http://131.216.135.50:8000/
 #EXTINF:-1,Dance Groove Radio
 http://server3.digital-webstream.de:12160/
 #EXTINF:-1,Dave FM NZ
-http://91.121.1.157:4618/
+http://91.121.1.157:4618/listen.pls
 #EXTINF:-1,De Juke Box
 http://s35.myradiostream.com:14472/
 #EXTINF:-1,Disco Factory FM
@@ -128,7 +128,7 @@ http://server-26.stream-server.nl:8706/
 #EXTINF:-1,Eagle Oldies
 http://str3.sad.ukrd.com/mymusicradio-surrey?ts=1517484556
 #EXTINF:-1,EASY ROCK PARADISE
-http://78.129.227.10:8262/
+http://78.129.227.10:8262/listen.pls
 #EXTINF:-1,Estereo Mcintosh 1035
 http://173.236.71.61:9986/
 #EXTINF:-1,Euro Music Radio Mexico FM
@@ -142,7 +142,7 @@ https://stream.laut.fm/flashback-oldie-fm
 #EXTINF:-1,Flex Radio AAC
 http://caster02.streampakket.com:8384/FlexRadioAAC
 #EXTINF:-1,FlexRadio
-http://213.202.241.199:8384/FlexRadioMP3
+http://caster04.streampakket.com:8384/FlexRadioMP3
 #EXTINF:-1,FM 1015
 https://stream.statsradio.com:8016/stream
 #EXTINF:-1,Forum 70s
@@ -200,7 +200,7 @@ http://37.59.28.208:8519/listen.pls
 #EXTINF:-1,Jenny FM
 http://stream2.jenny.fm:9000/
 #EXTINF:-1,Jenny Fm Classic
-http://85.214.97.4:8500/
+http://85.214.97.4:8500/listen.pls
 #EXTINF:-1,Just 70s
 https://just70s.stream.laut.fm/just70s
 #EXTINF:-1,Kieran Taylor Goldenoldies
@@ -212,7 +212,7 @@ https://prod-3-86-163-21.wostreaming.net/adamsradio-wqtlfmaac-hlsc1.m3u8
 #EXTINF:-1,KTFM FM
 http://broadcast.infomaniak.net:80/ktfm-high.mp3
 #EXTINF:-1,KVKVI  Music Mikes Flashback Favorites
-http://69.46.24.226:7238/stream
+http://69.46.24.226:7238/listen.pls
 #EXTINF:-1,KXTJ 969 FM San Antonio
 http://67.212.165.106:8008/listen.pls
 #EXTINF:-1,Labgate Radio Classic Rock
@@ -275,8 +275,6 @@ https://oldies.stream.laut.fm/oldies
 http://104.250.155.162:9388/stream
 #EXTINF:-1,OMODJO Radio
 https://www.radioking.com/play/omodjo
-#EXTINF:-1,Onde Latine
-https://puma.streemlion.com:2435/stream
 #EXTINF:-1,One4All Radio
 http://nrf1.newradio.it:9898/
 #EXTINF:-1,P9 Retro
@@ -289,6 +287,8 @@ http://radio.solumedia.com.ar:7597/
 http://sc2.spacialnet.com:33358/
 #EXTINF:-1,PiratenRadionl
 http://www.radiozilvervos.com:8200/
+#EXTINF:-1,PodPaulRadio
+https://c11.radioboss.fm:18216/stream
 #EXTINF:-1,Premier Radio International
 http://173.249.0.141:8085/listen.pls
 #EXTINF:-1,ProgZilla
@@ -298,13 +298,15 @@ http://94.23.26.22:8090/live.mp3
 #EXTINF:-1,Pure Radio One
 http://listento.pureradio.one:8000/pure_128
 #EXTINF:-1,PureradioOne  Best of 70s80s90s 32kbit AAC
-http://listento.pureradio.one:8000/mobile
+http://listento.pureradio.one:8000/mobile.m3u
 #EXTINF:-1,R80 FM
 http://ded23.server54.net:8000/stream211
 #EXTINF:-1,Radio Web Contemporanea FM
 http://192.254.68.106:10232/listen.pls
 #EXTINF:-1,Radio 1 Gold
 http://111.gr:8000/
+#EXTINF:-1,Radio 7 Mawa
+https://stream.radio7.pl:443/stream.mp3
 #EXTINF:-1,Radio 7 Poland
 https://stream.radio7.pl:8002/radio7.mp3
 #EXTINF:-1,Radio 80 Forever Young
@@ -317,6 +319,8 @@ http://stream.arrobba.com.mx:24000/stream.mp3
 http://78.129.226.12:8696/
 #EXTINF:-1,Radio B2
 http://mp3ad.radiob2.c.nmdn.net/ps-radiob2regional/livestream.mp3
+#EXTINF:-1,Radio Carinho Do Amor
+https://tonyvendas.top:8530/stream
 #EXTINF:-1,Radio Charivari Wurzburg
 http://mp3ad.charivariwb.c.nmdn.net/ps-charivariwb/livestream.mp3
 #EXTINF:-1,Radio Clasicos 80
@@ -434,7 +438,7 @@ http://s4-stream.com:10030/stream
 #EXTINF:-1,Sallys Radio
 http://luna.dwe-gruppe.eu:9986/
 #EXTINF:-1,San Franciscos 70s HITS
-http://198.178.123.17:10922/
+http://198.178.123.17:10922/listen.pls
 #EXTINF:-1,Scandinavian Satellite Radio
 http://stream.radioh.no:443/scan128
 #EXTINF:-1,Solid Hits
@@ -494,11 +498,11 @@ http://stream.vdr-server.de:4010/
 #EXTINF:-1,Waterloo Radio
 https://listen.radionomy.com/waterlooradioonline
 #EXTINF:-1,WNAU Radio
-http://198.178.123.17:10498/
+http://198.178.123.17:10498/listen.pls
 #EXTINF:-1,Wrong Damga FM 917
 http://95.173.162.183:9818/
 #EXTINF:-1,WSVM
-http://64.78.234.173:8008/
+http://64.78.234.173:8008/listen.pls
 #EXTINF:-1,wunschradiofm 70er
 https://webstream.radiostreamserver.de/wunschradio-70er.mp3
 #EXTINF:-1,WVBO

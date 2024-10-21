@@ -1,10 +1,10 @@
 #EXTM3U
-#EXTINF:-1,1057 Radio Metro
-http://stream.radiometro.com.au:7777/
-#EXTINF:-1,Hand of Doom Radio
-http://158.69.114.190:8042/stream/
+#EXTINF:-1,957 HOT FM Bunbury
+https://legacy.scahw.com.au/6bun_32
 #EXTINF:-1,ABC News
 http://live-radio02.mediahubaustralia.com/PBW/mp3/
+#EXTINF:-1,Hand of Doom Radio
+http://158.69.114.190:8042/stream/
 #EXTINF:-1,1 RadioFM  Pop
 http://192.232.192.96:8050/stream/
 #EXTINF:-1,1007 Riverland Life FM
@@ -21,6 +21,8 @@ http://austereo-static.com.au/listen-regional/preroll/townsville_4tofm.mp3?type=
 http://101.178.249.86:7000/TripleTFM?type=.mp3/stream.mp3
 #EXTINF:-1,1051 Life FM
 https://stream2.cnmns.net/life1051-mp3
+#EXTINF:-1,1057 Radio Metro
+http://stream.radiometro.com.au:7777/
 #EXTINF:-1,1053 2CA
 https://playerservices.streamtheworld.com/api/livestream-redirect/2CA.mp3?dist=onlineradioeu
 #EXTINF:-1,1063 The Lounge
@@ -52,7 +54,7 @@ http://shoutcast.2gb.com/2ch
 #EXTINF:-1,2CH Easy 1170
 http://shoutcast.2gb.com/2chaudio.mp3
 #EXTINF:-1,2CR CHINA RADIO
-http://198.178.123.17:8016/
+http://198.178.123.17:8016/listen.pls
 #EXTINF:-1,2CR Radio
 http://s6.voscast.com:8016/stream1479405503139/1
 #EXTINF:-1,2Dry FM
@@ -247,8 +249,6 @@ http://s9.viastreaming.net:9565/
 http://streamer2.rightclickitservices.com:8070/
 #EXTINF:-1,955 KRock
 https://playerservices.streamtheworld.com/api/livestream-redirect/GEE_KROCK.mp3
-#EXTINF:-1,957 HOT FM Bunbury
-https://legacy.scahw.com.au/6bun_32
 #EXTINF:-1,965 Inner FM
 http://streamer3.rightclickitservices.com:8899/stream.mp3
 #EXTINF:-1,96five
@@ -374,7 +374,7 @@ http://46.105.125.110:13656/
 #EXTINF:-1,Big Hits Radio
 http://172.93.237.106:8155/live
 #EXTINF:-1,Black Star Radio
-http://192.96.205.59:8855/
+http://192.96.205.59:8855/listen.pls
 #EXTINF:-1,BladeFM
 https://s3.radio.co/s7eb323937/listen
 #EXTINF:-1,Bondi Beach Radio
@@ -407,6 +407,8 @@ http://jatish.serverroom.net:7664/stream.mp3?type=.mp3/stream.mp3
 http://198.178.121.76:8281/stream
 #EXTINF:-1,Caama Radio
 http://radio.caama.com.au:8000/stream.ogg
+#EXTINF:-1,Canberras 1WAY FM
+https://21333.live.streamtheworld.com/1WAY.mp3
 #EXTINF:-1,Capital Community Radio
 http://ic2489.c1788.fast-serv.com/stream
 #EXTINF:-1,CFA District 14 Victoria
@@ -420,13 +422,13 @@ https://s2.stationplaylist.com:9400/listen.aac
 #EXTINF:-1,Classic 876
 http://99.198.118.250:8329/stream.mp3
 #EXTINF:-1,Classic Hits FM 88 Midcoast
-http://198.105.216.204:8128/stream
+http://198.105.216.204:8128/listen.pls
 #EXTINF:-1,Classic Hits FM Mudgee
-http://69.162.103.66:8004/
+http://69.162.103.66:8004/listen.pls
 #EXTINF:-1,Classic Hits FM Roma
 http://5.63.151.52:7142/listen.pls
 #EXTINF:-1,Classic Hits FM Wollongong
-http://69.162.103.66:8161/stream
+http://69.162.103.66:8161/listen.pls
 #EXTINF:-1,CMS Radio 911
 http://167.114.157.212:8274/listen.pls
 #EXTINF:-1,Coles Radio CBD
@@ -782,7 +784,7 @@ http://198.74.51.37:9998/stream.mp3
 #EXTINF:-1,Radio 1RPH
 http://198.74.51.37:9998/
 #EXTINF:-1,RADIO 2000 FM 985 SYDNEY
-http://192.96.205.59:8500/
+http://192.96.205.59:8500/listen.pls
 #EXTINF:-1,Radio 2CBD
 http://103.243.239.110:8003/stream.mp3
 #EXTINF:-1,Radio 2ME
@@ -855,6 +857,8 @@ http://5rti.igateway.com.au:8000/stream
 http://streamer3.rightclickitservices.com:8006/stream.mp3/
 #EXTINF:-1,Radio KLFM
 http://streamer2.rightclickitservices.com:8006/stream.mp3?type=.mp3/stream.mp3
+#EXTINF:-1,RADIO KOOLFM
+https://stream.zeno.fm/eiz4xwqvihwtv
 #EXTINF:-1,Radio Kovar
 https://s2.stationplaylist.com:7046/listen.aac
 #EXTINF:-1,Radio KSA
@@ -1098,7 +1102,7 @@ https://tx.sharp-stream.com/http_live.php?i=vision180.aac
 #EXTINF:-1,Voice of Charity
 http://144.217.195.24:9496/xstream
 #EXTINF:-1,Voice Of Charity VOC
-http://144.217.195.24:9496/xstream
+http://144.217.195.24:9496/listen.pls
 #EXTINF:-1,Vox FM 1069
 http://s10.myradiostream.com:15272/stream.mp3
 #EXTINF:-1,Way FM 1053

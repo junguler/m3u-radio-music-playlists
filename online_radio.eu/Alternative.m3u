@@ -1,10 +1,10 @@
 #EXTM3U
-#EXTINF:-1,011FM Alternative
-http://listen.011fm.com:8028/stream15
-#EXTINF:-1,Mylene Farmer
-http://sv3.vestaradio.com:5020/
 #EXTINF:-1,RMF Maxxx
 http://195.150.20.244:8000/rmf_maxxx
+#EXTINF:-1,Radio Alba Kline
+http://server.radioalba.eu:8000/stream
+#EXTINF:-1,011FM Alternative
+http://listen.011fm.com:8028/stream15
 #EXTINF:-1,1FM  Channel X
 http://69.46.90.196:5060/listen.pls
 #EXTINF:-1,1FM HitRadio
@@ -22,7 +22,7 @@ https://ais-sa3.cdnstream1.com/2284_96.aac
 #EXTINF:-1,107 One
 https://playerservices.streamtheworld.com/api/livestream-redirect/WQKLFM.mp3
 #EXTINF:-1,1077 On The Pulse of Music
-http://192.211.51.158:5297/
+http://192.211.51.158:5297/listen.pls
 #EXTINF:-1,113FM Alt Nation
 https://113fm-edge1.cdnstream.com/1740_128
 #EXTINF:-1,1431 AM
@@ -68,7 +68,7 @@ https://stream.afkmax.de/afkmax-hq.mp3
 #EXTINF:-1,Air3 Radio
 http://s3.xrad.io:8042/
 #EXTINF:-1,Alachua Temple Live
-http://185.105.4.53:8038/stream
+http://185.105.4.53:8038/listen.pls
 #EXTINF:-1,All Rock Malta
 http://209.95.50.189:8296/
 #EXTINF:-1,ALT 360 Radio
@@ -89,6 +89,8 @@ http://audiovision.cdnstream1.com/alt64k
 https://streaming.live365.com/b87537_128mp3
 #EXTINF:-1,And How FM
 http://stream.andhow.org/
+#EXTINF:-1,Andes Streo 1032 fm
+https://stream.integracionvirtual.com/proxy/andesestereo?mp=/stream
 #EXTINF:-1,andHow FM
 http://199.180.75.6:80/
 #EXTINF:-1,Angel Of Darkness Radio
@@ -113,10 +115,12 @@ http://streaming.fueralle.org:8000/bermudafunk_low
 https://radio10.pro-fhi.net/live/bernay-radio.fr
 #EXTINF:-1,Beyond Belief
 https://stream.laut.fm/beyondbelief
+#EXTINF:-1,BI FM
+http://radioserver9.profesionalhosting.com:36379/stream?1456307293874.mp3
 #EXTINF:-1,Big FM Groove Night
 https://streams.bigfm.de/bigfm-groovenight-64-aac?usid=0-0-L-A-M-02
 #EXTINF:-1,BigNoise  music from Siberia
-http://bignoise.club:8000/nonstop
+http://bignoise.club:8000/nonstop.m3u
 #EXTINF:-1,Black Neon Radio
 https://blackneonradio.stream.laut.fm/blackneonradio?t302=2018-01-07_13-31-02&uuid=e12787df-58fc-4791-9e00-0c14a917c15b
 #EXTINF:-1,Bola Radio Extreme
@@ -168,7 +172,7 @@ http://s1.distortionradio.com/absolute-alternative-64?type=.mp3/stream.mp3
 #EXTINF:-1,Eper Radio
 http://radio.elte.hu:8000/eper2
 #EXTINF:-1,ERO RADIO 1 ELLINIKO RADIO OMOGENIAS
-http://5.175.8.84:8000/stream
+http://5.175.8.84:8000/listen.pls
 #EXTINF:-1,Estudio 979 FM
 http://paginas.moisespaulino.com:8067/stream
 #EXTINF:-1,EZO FM
@@ -196,7 +200,7 @@ https://dark-metal-radio.stream.laut.fm/dark-metal-radio?t302=2018-07-26_13-56-3
 #EXTINF:-1,Gin and Juice Radio
 http://quasar.shoutca.st:8388/autodj
 #EXTINF:-1,GOOGERADIOcom
-http://googeradio.dyndns-free.com:8000/listen
+http://googeradio.dyndns-free.com:8000/listen.m3u
 #EXTINF:-1,GR Web Rdio
 https://stream.zeno.fm/7rcyey0r3bruv
 #EXTINF:-1,Grace and Favour Radio
@@ -250,7 +254,7 @@ http://radiostream.neotel.mk/kanal103
 #EXTINF:-1,KCOU 881 FM
 http://70.38.12.44:8180/listen.pls
 #EXTINF:-1,KCOU Sports
-http://104.250.149.122:9106/stream
+http://104.250.149.122:9106/listen.pls
 #EXTINF:-1,Klik FM 1062
 http://www.111.gr:8042/
 #EXTINF:-1,KMUZ Shoutcast
@@ -291,6 +295,8 @@ https://mr-stream.mediaconnect.hu/4738/mr2.mp3
 https://eu9.fastcast4u.com/proxy/musicart?mp=/1
 #EXTINF:-1,Music Machine Radio
 https://svr1.msmn.co:8118/
+#EXTINF:-1,Mylene Farmer
+http://sv3.vestaradio.com:5020/
 #EXTINF:-1,Naxi Boem Radio
 http://109.206.96.18:8050/
 #EXTINF:-1,NonStop Radio
@@ -316,7 +322,7 @@ http://stream.sentiaglobal.com:8003/main/
 #EXTINF:-1,Pills Radio
 http://pillsradio.fr:8000/pills_320
 #EXTINF:-1,Pinguin Classics powered by Pinguin Radio
-http://178.18.143.120:80/
+http://178.18.143.120:80/listen.pls
 #EXTINF:-1,Pioneer 901
 http://134.29.211.155:8002/
 #EXTINF:-1,Pirate Gong
@@ -336,13 +342,13 @@ http://stream.punkrockers-radio.de:8000/mp3
 #EXTINF:-1,Punto 105 Fm
 http://178.32.62.163:9506/
 #EXTINF:-1,PYG Radio  Powered by radiopro
-http://67.212.165.106:8370/stream
+http://67.212.165.106:8370/listen.pls
 #EXTINF:-1,Pylos Live
 http://s4.myradiostream.com:14374/stream.mp3
 #EXTINF:-1,Q102 The Queen Bee
 https://streamingv2.shoutcast.com/wnuq-q102
 #EXTINF:-1,Radio Clube do Masico
-http://198.178.121.76:8012/listen.pls
+http://198.178.121.76:8012/stream
 #EXTINF:-1,Radio Transforma
 http://176.9.43.216:8560/stream
 #EXTINF:-1,RAD10
@@ -355,8 +361,6 @@ http://live2.radio87.fr
 https://listen.radionomy.com/laradioneuf
 #EXTINF:-1,Radio Agenda do Samba
 http://hts02.kshost.com.br:9556/live
-#EXTINF:-1,Radio Alba Kline
-http://server.radioalba.eu:8000/stream
 #EXTINF:-1,Radio ARA
 http://rs1.radiostreamer.com:8030/stream.mp3
 #EXTINF:-1,Rdio Armazm
@@ -380,11 +384,13 @@ https://hts07.painelstream.net/player-ssl/?porta=10488
 #EXTINF:-1,Radio Covenant
 https://stream.laut.fm/covenant
 #EXTINF:-1,Radio Dark Doll
-http://209.133.216.3:7298/
+http://209.133.216.3:7298/listen.pls
 #EXTINF:-1,Radio Efapi
 http://audio1.cmaudioevideo.com:8023/stream
 #EXTINF:-1,Radio Fabrik
 http://stream.radiofabrik.at:8000/rf_low.mp3
+#EXTINF:-1,Radio Forum Saarland
+https://s7.streamcaster.eu:8112/stream1
 #EXTINF:-1,Radio Fresh FM
 http://stream.laut.fm:80/radiofresh
 #EXTINF:-1,Radio G
@@ -392,7 +398,7 @@ https://80.82.229.202/radiog.mp3?type=.mp3/stream.mp3
 #EXTINF:-1,Radio Gugelhopf
 http://uk3.internet-radio.com:8113/stream
 #EXTINF:-1,Radio GVM
-http://178.33.135.246:5726/stream
+http://cp.eu3.fastcast4u.com:2199/tunein/bhermese.pls
 #EXTINF:-1,Radio Hospitals Blackburn
 http://uk3.internet-radio.com:8312/listen.pls
 #EXTINF:-1,Radio JamZONE DTKNP
@@ -468,7 +474,7 @@ http://188.40.107.198:9500/listen.pls
 #EXTINF:-1,RadioCOMA
 http://174.37.159.206:8094/listen.pls
 #EXTINF:-1,radioioIndieRock Your world Your station No boundaries c2007 ioWorldMedia inc
-http://206.190.150.92:8420/stream
+http://206.190.150.92:8420/listen.pls
 #EXTINF:-1,RadioMk Brasil
 https://player.xcast.com.br/proxy/8164
 #EXTINF:-1,RADIOPEPITOCOM 2018  CONNECTION STATUS wwwtwittercomradiopep ito  Interpol Snow Patrol Razorlight Beirut Arcade Fire Air The National Bloc Party
@@ -516,7 +522,7 @@ http://centova6.ciclanohost.com.br:9400/stream2
 #EXTINF:-1,Shoreditch Radio
 http://16153.live.streamtheworld.com:3690/SAM04AAC11_SC
 #EXTINF:-1,Sol  Frecuencia Primera RTVN
-http://67.212.179.138:8084/stream
+http://67.212.179.138:8084/listen.pls
 #EXTINF:-1,SOS Radio Germany
 https://stream.sos-radio.net/128
 #EXTINF:-1,SpacialNet ECFstereo
@@ -562,7 +568,7 @@ http://warg3.purestream.net:9066/
 #EXTINF:-1,WCNI Stream  Connecticut College 909
 http://184.154.145.114:8122/
 #EXTINF:-1,WEVL 899 Streaming Live from Memphis TN
-http://64.202.98.32:6030/
+http://64.202.98.32:6030/listen.pls
 #EXTINF:-1,WGRE 915 FM
 http://184.154.90.190/proxy/depauwun?mp=/&1492426240022
 #EXTINF:-1,Whatever One Radio

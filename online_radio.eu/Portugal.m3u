@@ -1,8 +1,8 @@
 #EXTM3U
+#EXTINF:-1,Radio Orbital
+http://centova.radios.pt:8401/stream/
 #EXTINF:-1,Radio Amalia
 http://link.radios.pt/radioamalia
-#EXTINF:-1,Antena 3
-http://radiocast.rtp.pt/antena380a.mp3
 #EXTINF:-1,Antena 1
 http://radiocast.rtp.pt/antena180a.mp3
 #EXTINF:-1,105 FM
@@ -27,6 +27,8 @@ http://centova.radios.pt:9496/stream?1444874431322.mp3/
 http://185.32.188.17:8027/stream
 #EXTINF:-1,Antena 2
 https://streaming-live.rtp.pt/liveradio/antena280a/playlist.m3u8
+#EXTINF:-1,Antena 3
+http://radiocast.rtp.pt/antena380a.mp3
 #EXTINF:-1,Antena Minho
 http://centova.radios.pt:9464/stream
 #EXTINF:-1,Antena Nove
@@ -134,7 +136,7 @@ http://freeuk13.listen2myradio.com:20223/
 #EXTINF:-1,Moods
 https://streamingv2.shoutcast.com/MOODS
 #EXTINF:-1,MundialFM  Radio e TV
-http://176.9.43.216:8093/stream
+http://176.9.43.216:8093/listen.pls
 #EXTINF:-1,Noite FM
 http://live.noite.pt:8080/
 #EXTINF:-1,nRP
@@ -146,7 +148,7 @@ http://195.8.58.150:32281/
 #EXTINF:-1,Porto Digital
 https://ssl.xpspainel.eu/jGot5udn8EMcaN9ELA0B
 #EXTINF:-1,Radio Cidade de Tomar
-http://193.164.131.215:9306/stream
+http://193.164.131.215:9306/listen.pls
 #EXTINF:-1,Radio Transforma
 http://176.9.43.216:8560/stream
 #EXTINF:-1,Radar FM
@@ -213,6 +215,8 @@ http://centova.radios.pt:8425/stream
 http://radios.dotsi.pt:8018/stream
 #EXTINF:-1,Radio Caria
 http://centova.radios.pt:8521/stream
+#EXTINF:-1,Radio Carinho Do Amor
+https://tonyvendas.top:8530/stream
 #EXTINF:-1,Rdio Castelo Branco
 http://centova.radios.pt:9462/
 #EXTINF:-1,Radio Castrense
@@ -468,8 +472,6 @@ http://130.185.144.199:29119/
 #EXTINF:-1,Radio Ondas Do Lima
 http://centova.radios.pt:8407/stream
 #EXTINF:-1,Radio Orbital
-http://centova.radios.pt:8401/stream/
-#EXTINF:-1,Radio Orbital
 http://195.23.85.126:8401/1
 #EXTINF:-1,Rdio Oxignio
 https://176.9.92.205/oxigenio_mp3
@@ -479,6 +481,8 @@ http://95.217.75.38:9892/
 http://centova.radio.com.pt:9484/
 #EXTINF:-1,Radio Pico
 http://centova.radios.pt:9420/stream
+#EXTINF:-1,Radio Pinhoense
+https://ssl.ndvendas.eu:9464
 #EXTINF:-1,Radio Pinhoense
 http://144.76.58.102:9464/
 #EXTINF:-1,Radio Placard
@@ -497,6 +501,8 @@ http://s1.stmip.eu:8282/
 http://199.101.98.82:8180/stream
 #EXTINF:-1,Radio Portugal Star
 http://185.118.112.12:8028/live
+#EXTINF:-1,RADIO PORTUSALACER
+https://stream.zeno.fm/ba5iojxol7vuv
 #EXTINF:-1,Radio Posto Emissor do Funchal
 http://centova.radios.pt:9422/stream
 #EXTINF:-1,Rdio Praia
@@ -567,8 +573,6 @@ http://s1.xps-ip.eu:8030/
 https://stream.zenolive.com/af3em5gbm0quv
 #EXTINF:-1,Radio Sim
 https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO_SIMAAC.aac
-#EXTINF:-1,Radio Sines
-http://95.217.75.38:9580/
 #EXTINF:-1,Radio Sintra Clube
 http://46.105.172.166:9300/
 #EXTINF:-1,Radio Som Do Alentejo
@@ -738,7 +742,7 @@ https://listen.radioking.com/radio/228313/stream/271894
 #EXTINF:-1,Web Radio Aoriana
 https://ssl.stmxp.eu:7044/
 #EXTINF:-1,Web Radio Apollo
-http://5.39.39.105:8038/stream
+http://centova.hostingfull.eu:2199/tunein/apollo.pls
 #EXTINF:-1,Web Rdio Portugal Online
 http://95.217.75.38:9838/
 #EXTINF:-1,Web Radio Tuga Tech

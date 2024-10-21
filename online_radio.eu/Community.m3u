@@ -1,10 +1,10 @@
 #EXTM3U
-#EXTINF:-1,Radio Concorde
-http://s9.voscast.com:8170/
 #EXTINF:-1,Radio Papilove 919 FM
 http://server7.servistreaming.com:10020/stream?type=.mp3
-#EXTINF:-1,GCR FM
-https://stream.radiojar.com/kgauw4bmb
+#EXTINF:-1,Radio Lumiere Inter
+https://stream.zeno.fm/s0x87e0w5neuv.aac
+#EXTINF:-1,Radio Concorde
+http://s9.voscast.com:8170/
 #EXTINF:-1,1031 FM
 https://stream.statsradio.com:8076/stream
 #EXTINF:-1,1031 FM
@@ -40,7 +40,7 @@ http://radio1.internode.on.net:8002/76?type=.mp3/stream.mp3
 #EXTINF:-1,3M FM
 http://58.179.135.104:88/broadwave.mp3
 #EXTINF:-1,3TFM Community Radio for Health
-http://149.255.59.162:8042/stream
+http://149.255.59.162:8042/listen.pls
 #EXTINF:-1,4EB
 https://stream.4eb.org.au:9800/4eb
 #EXTINF:-1,5GTR FM 1001
@@ -118,7 +118,7 @@ http://142.4.217.133:8458/listen.pls
 #EXTINF:-1,Brookdale Student Radio
 http://wbjb.net:8192/stream.mp3
 #EXTINF:-1,BRTVN
-http://173.193.205.96:9046/stream
+http://173.193.205.96:9046/listen.pls
 #EXTINF:-1,Buqueirao FM
 http://servidor1.crossdigital.com.br:8084/stream.mp3
 #EXTINF:-1,Business FM
@@ -128,7 +128,7 @@ http://live.canstream.co.uk:8000/bute.mp3?type=.mp3/stream.mp3
 #EXTINF:-1,Caledon FM
 http://zas2.ndx.co.za/proxy/caledonfm?mp=/stream
 #EXTINF:-1,Calon FM
-http://149.255.59.164:8035/stream
+http://149.255.59.164:8035/listen.pls
 #EXTINF:-1,CAM FM
 https://stream.camfm.co.uk/camfm?type=.mp3/stream.mp3
 #EXTINF:-1,Canalside Community Radio
@@ -182,9 +182,9 @@ http://128.100.197.46:80/stream.mp3
 #EXTINF:-1,CJAI Radio
 http://peridot.streamguys.com:5040/live?type=.mp3/stream.mp3
 #EXTINF:-1,CJAM 991  FM  WindsorDetroit
-http://137.207.3.25:8000/
+http://137.207.3.25:8000/listen.pls
 #EXTINF:-1,CJAM 991 fm low fi stream
-http://stream.cjam.ca:80/CJAM-live-256k.mp3
+http://137.207.3.25:8004/listen.pls
 #EXTINF:-1,CJAM FM
 http://137.207.3.25:8000/stream.mp3
 #EXTINF:-1,CJAN
@@ -279,8 +279,6 @@ http://usa7-vn.mixstream.net:8070/stream.mp3
 http://206.190.133.196:7034/stream.mp3
 #EXTINF:-1,FM Sertaneja 1049
 http://cast.hoost.com.br:8223/stream
-#EXTINF:-1,FMkahoku 787
-http://118.21.141.67:8000/
 #EXTINF:-1,Forest FM
 http://live.canstream.co.uk:8000/forestfm.mp3?type=.mp3/stream.mp3
 #EXTINF:-1,Formato 1049 FM
@@ -295,6 +293,8 @@ http://stream.fred.fm:8046/stream
 http://184.154.43.106:8003/stream
 #EXTINF:-1,Frequence 7 Radio
 http://live.francra.org:8000/Frequence7?type=.mp3/stream.mp3
+#EXTINF:-1,GCR FM
+https://stream.radiojar.com/kgauw4bmb
 #EXTINF:-1,Gente 3 Lagos
 http://184.154.43.106:8039/listen.pls
 #EXTINF:-1,German Radio  Television Denver
@@ -316,7 +316,7 @@ http://radios.la1ere.fr/guadeloupe
 #EXTINF:-1,Hailsham FM
 http://s21.myradiostream.com:10716/
 #EXTINF:-1,HBS  Hospital Broadcasting Service
-http://149.255.59.164:8021/stream
+http://149.255.59.164:8021/listen.pls
 #EXTINF:-1,HCR Huntingdon Community Radio
 http://stream.hcrfm.co.uk/hcr
 #EXTINF:-1,Hey Say Jump Best
@@ -330,9 +330,11 @@ http://203.45.159.151:88/broadwave.mp3
 #EXTINF:-1,Hull Kingston Radio
 http://hyades.shoutca.st:8031/stream
 #EXTINF:-1,Huntley Community Radio
-http://192.96.205.59:8285/
+http://192.96.205.59:8285/listen.pls
 #EXTINF:-1,Huon FM
 http://59.167.200.215:88/broadwave.mp3
+#EXTINF:-1,Hutt City FM
+https://station.huttcityfm.co.nz/listen/hutt_city_fm/radio.mp3
 #EXTINF:-1,Iguatama FM
 http://02.stmip.in:7272/
 #EXTINF:-1,ILC Tamil Radio
@@ -357,10 +359,14 @@ http://andromeda.shoutca.st:9350/stream?type=.mp3/stream.mp3
 http://144.76.110.138:9340/stream
 #EXTINF:-1,JPopsuki Radio
 http://213.239.204.252:8000/stream
+#EXTINF:-1,Jubilee Hospital Radio
+https://jubileehr.radioca.st/stream
 #EXTINF:-1,Justice Radio Station
 http://178.32.62.172:8890/listen.pls
 #EXTINF:-1,Kameme FM
 http://uk1-vn.mixstream.net:10104/
+#EXTINF:-1,Kathariya Online Radio
+https://stream.zeno.fm/6fdk6gyrhm8uv
 #EXTINF:-1,Katolickie Radio Zamosc
 https://91.231.120.124/hq
 #EXTINF:-1,KBBIAM 890
@@ -368,7 +374,7 @@ https://kbbi.streamguys1.com/xstream
 #EXTINF:-1,KDLG FM
 http://peace.str3am.com:6090/kdlg?type=.mp3/stream.mp3
 #EXTINF:-1,KLOILP 1029
-http://64.202.98.32:6380/
+http://64.202.98.32:6380/listen.pls
 #EXTINF:-1,Kolozsvari Radio
 http://89.238.227.6:8386/
 #EXTINF:-1,Kouv Radio
@@ -400,7 +406,7 @@ https://servidor35.brlogic.com:8196/live
 #EXTINF:-1,Mantiqueira FM
 http://controleflash.omegasistemas.net:8575/
 #EXTINF:-1,Marlow FM
-http://64.150.176.42:8126/listen.pls
+http://64.150.176.42:8126/stream
 #EXTINF:-1,Masjid Live
 http://95.154.250.9:9300/
 #EXTINF:-1,Mayotte 1ere
@@ -498,7 +504,7 @@ http://45.33.12.65:8012/
 #EXTINF:-1,Quissama FM
 http://sceua.softhost.com.br:8026/
 #EXTINF:-1,RVisionnaires
-http://199.180.75.2:10143/stream
+http://199.180.75.2:10143/listen.pls
 #EXTINF:-1,Rdio  Aliana
 https://69.162.122.45:8024/live
 #EXTINF:-1,Radio 10 Rwanda
@@ -607,8 +613,6 @@ https://radio.canstream.co.uk:8043/live.mp3
 http://live.itechnepal.com:9120/stream
 #EXTINF:-1,Radio Lenguerke
 http://172.245.202.218:8000/live
-#EXTINF:-1,Radio Lumiere Inter
-https://stream.zeno.fm/s0x87e0w5neuv.aac
 #EXTINF:-1,Radio Maanta FM 955 MHZ
 http://radio.ileysinc.com:9988/stream
 #EXTINF:-1,Radio Mar
@@ -623,6 +627,8 @@ http://stream.radiondekeluka.org:8001/ndekeluka
 https://ndr-ndrinfo-niedersachsen.cast.addradio.de/ndr/ndrinfo/niedersachsen/mp3/128/stream.mp3
 #EXTINF:-1,Radio Nfm
 http://188.138.93.53:80/
+#EXTINF:-1,Radio Osotua
+http://stream.zeno.fm/cdewrtdrkrhvv
 #EXTINF:-1,Radio Overberg FM
 http://85.25.164.45:80/listen.pls
 #EXTINF:-1,Radio Paulista
@@ -726,7 +732,7 @@ http://s2.voscast.com:9742/stream1485942010371/1
 #EXTINF:-1,Sandy Bay Radio
 http://sandybayradio.serverroom.us:8603/stream.mp3
 #EXTINF:-1,Sandy Bay Radios Online Broadcast
-http://38.96.175.20:8603/
+http://38.96.175.20:8603/listen.pls
 #EXTINF:-1,Sangeet 106 Fm
 http://media.guardian.co.tt:8000/sangeet106
 #EXTINF:-1,Seereer Radio  The Voice of the Seereer Community

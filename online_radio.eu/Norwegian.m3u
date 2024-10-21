@@ -1,10 +1,10 @@
 #EXTM3U
-#EXTINF:-1,ScanSat
-http://67.211.209.45:3041/dans192
 #EXTINF:-1,Radio 2 Bergen
 https://stream.radio.co/s81da37707/listen
-#EXTINF:-1,Radio Norge
-https://live-bauerno.sharp-stream.com/radionorge_no_mp3
+#EXTINF:-1,ScanSat
+http://67.211.209.45:3041/dans192
+#EXTINF:-1,NRK P2 Radio
+https://lyd.nrk.no/nrk_radio_p2_mp3_h
 #EXTINF:-1,1FM
 http://5.153.107.45:2016/mp3_ultra
 #EXTINF:-1,1FM AAC
@@ -103,8 +103,6 @@ https://lyd.nrk.no/nrk_radio_p1_sogn_og_fjordane_mp3_m
 https://lyd.nrk.no/nrk_radio_p1_trondelag_mp3_m
 #EXTINF:-1,NRK P13
 https://lyd.nrk.no/nrk_radio_p13_mp3_m
-#EXTINF:-1,NRK P2 Radio
-https://lyd.nrk.no/nrk_radio_p2_mp3_h
 #EXTINF:-1,NRK P3
 https://lyd.nrk.no/nrk_radio_p3_mp3_h
 #EXTINF:-1,NRK P3 Radio
@@ -219,6 +217,8 @@ http://nettradio.radionordsalten.no:8000/high
 http://audio.visto.no/radionordkapp.ogg
 #EXTINF:-1,Radio Norea Pluss Mediemisjon
 http://149.202.22.75:8168/
+#EXTINF:-1,Radio Norge
+https://live-bauerno.sharp-stream.com/radionorge_no_mp3
 #EXTINF:-1,Radio Norge 80s
 https://live-bauerno.sharp-stream.com/radionorge_80s_no_vip
 #EXTINF:-1,Radio Norge Topp 1000

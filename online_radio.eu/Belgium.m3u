@@ -1,10 +1,10 @@
 #EXTM3U
 #EXTINF:-1,La Classica
 http://stream.laclassica.be:8023/stream2
+#EXTINF:-1,Depeche Mode Radio
+https://c2.radioboss.fm:8494/stream
 #EXTINF:-1,Dinner Crooze
 http://streams.crooze.fm:8014/stream128
-#EXTINF:-1,One World Radio
-https://playerservices.streamtheworld.com/api/livestream-redirect/OWR_INTERNATIONAL.mp3
 #EXTINF:-1,t Is Vloms
 http://cristina.torontocast.com:8194/stream
 #EXTINF:-1,1 Mini 1
@@ -123,8 +123,6 @@ https://streamingv2.shoutcast.com/Our-Jukebox
 http://s1.streamaudio.de:8000/decibelhuis
 #EXTINF:-1,Decibelhuis Radio
 http://bb31.sonixcast.com:20008/1
-#EXTINF:-1,Depeche Mode Radio
-https://c2.radioboss.fm:8494/stream
 #EXTINF:-1,DH Radio
 http://dhradio.ice.infomaniak.ch/dhradio-96.mp3
 #EXTINF:-1,DH Radio
@@ -351,6 +349,8 @@ https://www.radioking.com/play/nuts-radio
 http://149.210.172.183:8004/
 #EXTINF:-1,Oldies Radio RGR
 https://5.255.85.19/rgrfm_oldiesradio
+#EXTINF:-1,One World Radio
+https://playerservices.streamtheworld.com/api/livestream-redirect/OWR_INTERNATIONAL.mp3
 #EXTINF:-1,Only 90s Radio
 https://stream.radio.co/s5709ea2c0/listen
 #EXTINF:-1,Opsinjoor
@@ -404,7 +404,7 @@ http://shoutcast2.wirelessbelgie.be:8310/stream.mp3
 #EXTINF:-1,Radio Apollo
 http://37.59.195.28:8045/
 #EXTINF:-1,Radio Apollo 1068 Fm Wiekevorst Belgie
-http://37.59.195.28:8045/stream
+http://37.59.195.28:8045/listen.pls
 #EXTINF:-1,Radio Ariane
 http://caster04.streampakket.com:8862/stream
 #EXTINF:-1,Radio Atlantis Gent
@@ -493,14 +493,12 @@ https://listen.radionomy.com/radiofood?type=.mp3/stream.mp3
 https://listen.radionomy.com/radiofrequencetubes
 #EXTINF:-1,Radio GO4IT
 https://listen.radionomy.com/go4it
-#EXTINF:-1,Radio Golden Flash
-http://stream.intronic.nl:80/goldenflash?type=.mp3/stream.mp3
 #EXTINF:-1,Radio GRK
 https://grk.stream01.level27.be/stream.mp3
 #EXTINF:-1,Radio Hitalia
 http://wma02.fluidstream.net:8130/
 #EXTINF:-1,RADIO HITALIA LIVE FROM BELGIUM
-http://178.32.143.103:8130/
+http://178.32.143.103:8130/listen.pls
 #EXTINF:-1,Radio Hoeselt
 https://caster04.streampakket.com/proxy/8874/stream
 #EXTINF:-1,Radio IRO
@@ -530,9 +528,7 @@ http://streamer.ledemedia.be:8010/radiolede
 #EXTINF:-1,Radio Lichtaart
 http://radiolichtaart.shoutcaststream.com:8114/stream.mp3
 #EXTINF:-1,Radio Lichtaart 1066 FM
-http://37.59.195.28:8290/stream
-#EXTINF:-1,Radio LRM
-https://5.255.85.19/lrmradio
+http://37.59.195.28:8290/listen.pls
 #EXTINF:-1,Radio LRM
 http://91.196.171.99/lrmradio
 #EXTINF:-1,Radio M FM
@@ -642,7 +638,7 @@ http://janus.shoutca.st:8675/stream
 #EXTINF:-1,Radio Valencia
 http://37.59.195.28:8140/stream?1429354049992.mp3?type=.mp3/stream.mp3
 #EXTINF:-1,Radio Valencia 105 mHz FM vanuit Meer
-http://37.59.195.28:8140/stream
+http://37.59.195.28:8140/listen.pls
 #EXTINF:-1,Radio Vibration
 https://vibrationbelgique.ice.infomaniak.ch/vibrationbelgique-high.mp3?
 #EXTINF:-1,Radio Vice FM

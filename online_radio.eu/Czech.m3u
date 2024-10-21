@@ -1,10 +1,10 @@
 #EXTM3U
 #EXTINF:-1,Radio 1 cz
 https://icecast2.play.cz/radio1.mp3?type=.mp3/stream.mp3
-#EXTINF:-1,Radio City Devadesatk
-https://ice.abradio.cz/city90128.mp3?type=.mp3/stream.mp3
 #EXTINF:-1,Evropa 2
 https://playerservices.streamtheworld.com/api/livestream-redirect/EVROPA2AAC.aac?dist=onlineradioeu
+#EXTINF:-1,Freeravecz  Tekno Radio
+http://164.68.122.137:8061/
 #EXTINF:-1,AB Radio Club Beat
 http://mp3stream4.abradio.cz:8000/clubbeat128.mp3
 #EXTINF:-1,AB Radio Humor
@@ -121,8 +121,6 @@ http://ice.abradio.cz:8000/fajnlife128.mp3?type=.mp3/stream.mp3
 http://agnes.torontocast.com:8121/stream
 #EXTINF:-1,Free Radio
 https://icecast8.play.cz/freeradio128.mp3
-#EXTINF:-1,Freeravecz  Tekno Radio
-http://164.68.122.137:8061/
 #EXTINF:-1,Frekvence 1
 https://playerservices.streamtheworld.com/api/livestream-redirect/FREKVENCE1AAC.aac?dist=onlineradioeu
 #EXTINF:-1,Frekvence 1 Romantika
@@ -241,6 +239,8 @@ https://ice4.abradio.cz/chillout128.mp3
 https://mp3stream4.abradio.cz/chillout64.mp3
 #EXTINF:-1,Radio City 937
 http://ice.abradio.cz:8000/cityzl128.mp3?type=.mp3/stream.mp3
+#EXTINF:-1,Radio City Devadesatk
+https://ice.abradio.cz/city90128.mp3?type=.mp3/stream.mp3
 #EXTINF:-1,Radio City Milenium
 https://ice.abradio.cz/citymi128.mp3?type=.mp3/stream.mp3
 #EXTINF:-1,Radio City Osmdesatk
@@ -324,7 +324,7 @@ https://ice4.abradio.cz/oldiesrock128.mp3
 #EXTINF:-1,Rdio Orlicko
 http://46.28.111.246/stream192.mp3
 #EXTINF:-1,Radio Orlicko AAC 64 kbps
-http://server.radioorlicko.cz:80/stream64.aac
+http://server.radioorlicko.cz:80/stream64.aac.m3u
 #EXTINF:-1,Radio Patriot
 https://s28.myradiostream.com/17086/listen.mp3
 #EXTINF:-1,Rdio Pelhimov
