@@ -1,4 +1,6 @@
 #EXTM3U
+#EXTINF:-1,CBC Music - Canada (Eastern time zone)
+https://playerservices.streamtheworld.com/api/livestream-redirect/CBLFM_CBC.mp3
 #EXTINF:-1,CICS Pure Country 91.7 FM - Sudbury, Ontario
 https://playerservices.streamtheworld.com/api/livestream-redirect/CICSFMAAC.aac
 #EXTINF:-1,CJRQ Rock 92.7 FM - Sudbury, Ontario
@@ -6,9 +8,11 @@ https://rogers-hls.leanstream.co/rogers/sud927.stream/icy
 #EXTINF:-1,CIGM Hot 93.5 FM - Sudbury, Ontario
 http://newcap.leanstream.co/CIGMFM-MP3
 #EXTINF:-1,CKNR 94.1 Moose FM - Elliot Lake, Ontario
-http://listenlive.vistaradio.ca/CKNR
+https://vistaradio.streamb.live/SB00098
+#EXTINF:-1,CBCS 99.9 FM CBC Radio One - Sudbury, Ontario
+https://playerservices.streamtheworld.com/api/livestream-redirect/CBCSFM_CBC.mp3
 #EXTINF:-1,CJJM 99.3 Moose FM - Espanola, Ontario
-http://listenlive.vistaradio.ca/CJJM
+https://vistaradio.streamb.live/SB00099
 #EXTINF:-1,CFRM 100.7 FM - Hits 100 - Little Current, Ontario
 https://stream.rcast.net/63090
 #EXTINF:-1,CHNO Rewind 103.9 FM - Sudbury, Ontario
@@ -17,9 +21,9 @@ http://newcap.leanstream.co/CHNOFM-MP3
 https://rogers-hls.leanstream.co/rogers/sud1053.stream/icy
 #EXTINF:-1,CKAT Country 600 AM - North Bay, Ontario
 http://rogers-hls.leanstream.co/rogers/nor600.stream/playlist.m3u8
-#EXTINF:-1,CFIQ 640 Toronto - Toronto, Ontario
+#EXTINF:-1,CFIQ 640 AM - Toronto, Ontario
 https://live.leanstream.co/CFIQAM-MP3
 #EXTINF:-1,CFZM Zoomer 740 AM/96.7 FM - Toronto, Ontario
-http://radiostream.zoomer.ca:8000/cfzm.mp3
+https://securestreaming.zoomer.ca/cfzm.mp3
 #EXTINF:-1,WJR News Talk 760 AM - Detroit, Michigan
 https://playerservices.streamtheworld.com/api/livestream-redirect/WJRAM.mp3

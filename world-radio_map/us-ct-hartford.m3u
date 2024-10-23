@@ -1,12 +1,10 @@
 #EXTM3U
 #EXTINF:-1,WRKN347 WHKA 87.7 FM - Middletown, Connecticut
 https://ks.mycp.stream/proxy/vheshdkk/stream
-#EXTINF:-1,WFCR 88.5 FM - New England Public Media
+#EXTINF:-1,WFCR 88.5 FM - NEPM News Network
 https://nepr.streamguys1.com/WFCR.mp3
-#EXTINF:-1,WFCR 88.5 FM - NEPM All Classical
+#EXTINF:-1,WFCR-HD2 - Classical NEPM
 https://nepr.streamguys1.com/WFCR-HD.mp3
-#EXTINF:-1,WNNZ 640 AM - NEPM News Network
-https://nepr.streamguys1.com/WNNZ.mp3
 #EXTINF:-1,WNPR 90.5 FM - Connecticut Public Radio
 https://playerservices.streamtheworld.com/api/livestream-redirect/WNPRFM.mp3
 #EXTINF:-1,WSHU Public Radio 91.1 FM - Fairfield, Connecticut
@@ -27,6 +25,8 @@ https://live.amperwave.net/direct/audacy-knxhd2aac-imc
 https://nwm.streamguys1.com/ktis-am-2
 #EXTINF:-1,WMAS 94.7 FM - Springfield, Massachusetts
 https://live.amperwave.net/direct/audacy-wmasfmaac-imc
+#EXTINF:-1,WHLL 1450 AM - La Nueva 98.1 - Springfield, Massachusetts
+https://live.amperwave.net/direct/audacy-whllamaac-imc
 #EXTINF:-1,WSDK Life Changing Radio 1550 AM & 95.3 FM - Hartford, Connecticut
 https://ic1.sslstream.com/wsdk-fm
 #EXTINF:-1,WKSS Kiss 95.7 FM - Hartford, Connecticut
@@ -43,10 +43,12 @@ https://live.amperwave.net/direct/audacy-wticamaac-imc
 https://stream.revma.ihrhls.com/zc453
 #EXTINF:-1,WMRQ-HD2 Bomba Radio - Hartford, Connecticut
 https://crystalout.surfernetwork.com:8001/WMRQ_HD2_MP3
-#EXTINF:-1,WUCS 97-9 ESPN - Hartford, Connecticut
+#EXTINF:-1,WLAT Mega 101.7/97.5 - Hartford, Connecticut
+https://server20.servistreaming.com:9058/stream
+#EXTINF:-1,WUCS 97.9 Fox Sports - Hartford, Connecticut
 https://stream.revma.ihrhls.com/zc5238
-#EXTINF:-1,WPOP NewsRadio 1410 AM - Hartford, Connecticut
-https://stream.revma.ihrhls.com/zc3897
+#EXTINF:-1,iHeart Magic
+https://stream.revma.ihrhls.com/zc10085
 #EXTINF:-1,WILI i98.3 FM - Willimantic, Connecticut
 https://playerservices.streamtheworld.com/api/livestream-redirect/WILIFM.mp3
 #EXTINF:-1,WGZO-LP Heartbeat 98.7 FM - Hartford, Connecticut
@@ -63,16 +65,16 @@ https://live.amperwave.net/direct/audacy-wrchfmaac-imc
 https://streaming.live365.com/a77334
 #EXTINF:-1,WEEI Sports Radio 93.7 FM - Boston, Massachusetts
 https://live.amperwave.net/direct/audacy-weeifmaac-imc
+#EXTINF:-1,WPOP NewsRadio 1410 AM - Hartford, Connecticut
+https://stream.revma.ihrhls.com/zc3897
 #EXTINF:-1,WKCI 101.3 FM - KC101 - New Haven, Connecticut
 https://stream.revma.ihrhls.com/zc457
 #EXTINF:-1,W265DB The Beat 100.9 FM - New Haven, Connecticut
 https://stream.revma.ihrhls.com/zc6766
-#EXTINF:-1,WLAT La Mega 910 AM/101.7 FM - Hartford, Connecticut
-https://server20.servistreaming.com:9058/stream
 #EXTINF:-1,WAQY Rock 102.1 FM - Springfield, Massachusetts
-https://live.wostreaming.net/direct/saga-waqyfmaac-ibc2
+https://live.amperwave.net/direct/saga-waqyfmaac-ibc2
 #EXTINF:-1,WLZX Lazer 99.3 & 98.5 - Springfield, Massachusetts
-https://live.wostreaming.net/direct/saga-wlzxfmaac-ibc2
+https://live.amperwave.net/direct/saga-wlzxfmaac-ibc2
 #EXTINF:-1,WBOM 102.5 Hartford’s R&B Station - Hartford, Connecticut
 https://crystalout.surfernetwork.com:8001/WBOM-AM_MP3
 #EXTINF:-1,WDRC The Whale 102.9 FM - Hartford, Connecticut
@@ -82,9 +84,7 @@ https://crystalout.surfernetwork.com:8001/WDRC-AM_MP3
 #EXTINF:-1,WMRQ Radio 104.1 FM - Hartford, Connecticut
 https://crystalout.surfernetwork.com:8001/WMRQ_MP3
 #EXTINF:-1,WHIS Christian Radio 104.9 FM - Middletown, Connecticut
-https://ic2.sslstream.com/wihs-fm
-#EXTINF:-1,WNEZ Exitos 1230 AM/105.3 FM - Hartford, Connecticut
-https://server20.servistreaming.com:9006/stream
+https://streaming.live365.com/a60257
 #EXTINF:-1,WHCN The River 105.9 FM - Hartford, Connecticut
 https://stream.revma.ihrhls.com/zc429
 #EXTINF:-1,WBMW Soft Rock 106.5 FM - Pawcatuck, Connecticut
@@ -111,8 +111,8 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/WABCAM.mp3
 https://stream.revma.ihrhls.com/zc1413
 #EXTINF:-1,WEEI 850 AM - Boston, Massachusetts
 https://live.amperwave.net/direct/audacy-weeiamaac-imc
-#EXTINF:-1,WCBS Newsradio 880 AM - New York, New York
-https://live.amperwave.net/direct/audacy-wcbsamaac-imc
+#EXTINF:-1,WHSQ - ESPN New York 880 AM
+https://live.amperwave.net/direct/goodkarma-wepnfmaac-ibc
 #EXTINF:-1,WBZ Newsradio 1030 AM - Boston, Massachusetts
 https://stream.revma.ihrhls.com/zc7729
 #EXTINF:-1,Bloomberg Radio - New York 1130 AM
@@ -123,5 +123,7 @@ https://ais-sa3.cdnstream1.com/2640_64.aac
 https://stream.revma.ihrhls.com/zc4705
 #EXTINF:-1,WARE Classic Hits 1250 AM/97.7 FM - Ware, Massachusetts
 https://radio1.getstreamhosting.com:8004/stream
+#EXTINF:-1,WWRX Jammin 107.7 - New London, Connecticut
+https://crystalout.surfernetwork.com:8001/WWRX_MP3
 #EXTINF:-1,WFIF Life Changing Radio 1500 AM & 101.9 FM - Milford, Connecticut
 https://ic1.sslstream.com/wfif-fm

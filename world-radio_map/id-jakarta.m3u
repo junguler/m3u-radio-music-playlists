@@ -4,17 +4,17 @@ https://stream.radiojar.com/7csmg90fuqruv
 #EXTINF:-1,PM2FAR Global Radio - Jakarta 88.4 FM
 http://202.147.199.98/stream.mp3
 #EXTINF:-1,8FA200 RRI Programa 3 - Indonesia
-https://cdnpro3.rri.co.id/web-kbrn.mp3
+https://stream-node0.rri.co.id/streaming/14/9014/kbrn.mp3
 #EXTINF:-1,PM2FGE i-Radio - Jakarta 89.6 FM
 https://stream.radiojar.com/4ywdgup3bnzuv
 #EXTINF:-1,PM2FGZ Radio Elshinta - Jakarta 90.0 FM
 https://stream-ssl.arenastreaming.com:8000/jakarta
-#EXTINF:-1,PM2FAP Cosmopolitan FM - Jakarta 90.4 FM
+#EXTINF:-1,Radio 90.4 FM - Jakarta, Indonesia
 https://stream.radiojar.com/u7d8heq3bnzuv
 #EXTINF:-1,OZ Radio 90.8 FM - Jakarta, Indonesia
 https://streaming.ozradiojakarta.com:8443/ozjakarta
 #EXTINF:-1,RRI Programa 1 - Jakarta 91.2 FM
-https://cdnjakartapro1.rri.co.id/web-rrijakartapro1.mp3
+https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro1.mp3
 #EXTINF:-1,PM2FAQ 91.6 Indika FM - Jakarta
 https://s2.radio.co/sf58a82d7d/listen
 #EXTINF:-1,PM2FGJ Radio Sonora - Jakarta 92.0 FM
@@ -22,9 +22,9 @@ https://streamingv2.shoutcast.com/sonora-jakarta
 #EXTINF:-1,PM3FHB Nagaswara 92.2 FM - Bogor
 http://bogor.nagaswarafm.com:8088/stream
 #EXTINF:-1,8FA202 RRI Programa 4 - Jakarta 1332 AM/92.8 FM
-https://cdnjakartapro4.rri.co.id/web-rrijakartapro4.mp3
+https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro4.mp3
 #EXTINF:-1,8FG220 RRI Programa 1 - Bogor 1242 AM/93.75 FM
-https://cdnbogorpro1.rri.co.id/web-rribogorpro1.mp3
+https://stream-node2.rri.co.id/streaming/19/9319/rribogorpro1.mp3
 #EXTINF:-1,PM2FPD 95.5 RASfm - Jakarta
 https://i.klikhost.com/9006/stream
 #EXTINF:-1,PM2FGV Radio Smart FM 95.9 - Jakarta
@@ -58,7 +58,7 @@ https://stream.radiojar.com/5k7t0rq3bnzuv
 #EXTINF:-1,VOA - Voice of America
 https://stream.radiojar.com/t2n88q0st5quv
 #EXTINF:-1,RRI Programa 2 - Jakarta 105.0 FM
-https://cdnjakartapro2.rri.co.id/web-rrijakartapro2.mp3
+https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro2.mp3
 #EXTINF:-1,PM3FAU Bens Radio - Jakarta 106.2 FM
 https://stream.zenolive.com/44tn9rgtkrhvv
 #EXTINF:-1,Attaqwa FM - Bekasi 106.4 FM
@@ -66,15 +66,21 @@ https://i.klikhost.com/8840/stream
 #EXTINF:-1,V Radio - Jakarta 106.6 FM
 http://202.147.199.100:8000/stream.mp3
 #EXTINF:-1,RRI Programa 2 - Bogor 106.8 FM
-https://cdnbogorpro2.rri.co.id/web-rribogorpro2.mp3
+https://stream-node2.rri.co.id/streaming/19/9319/rribogorpro2.mp3
 #EXTINF:-1,Airmen Radio - Jakarta 107.9 FM
 https://void.idserverhost.com/8024/stream
 #EXTINF:-1,RTC UI FM - Depok 107.9 MHz
 https://stream.zenolive.com/sau52xcf368uv
-#EXTINF:-1,RRI Channel Lima - Surabaya 91.7 FM
-https://cdnch5.rri.co.id/web-chlima.mp3
+#EXTINF:-1,RRI Pro 5 - Surabaya 91.7 FM
+https://stream-node1.rri.co.id/streaming/41/8941/chlima.mp3
+#EXTINF:-1,RRI Jazz Channel
+https://stream-node2.rri.co.id/streaming/40/9340/jazz.mp3
+#EXTINF:-1,RRI Kanal Kenangan
+https://stream-node2.rri.co.id/streaming/40/9340/memori.mp3
+#EXTINF:-1,RRI Suara Dangdut
+https://stream-node2.rri.co.id/streaming/40/9340/dangdut.mp3
 #EXTINF:-1,Suara Indonesia / Voice of Indonesia
-https://cdnvoi.rri.co.id/web-voi.mp3
+https://stream-node0.rri.co.id/streaming/25/9125/voi.mp3
 #EXTINF:-1,Radio Samhan - Jakarta 630 AM
 http://live.samhanradio.com:8090/stream.mp3
 #EXTINF:-1,Radio Muara - Jakarta 693 AM
@@ -85,5 +91,7 @@ https://i.klikhost.com/9030/stream
 https://ssg.streamingmurah.com:8398/stream
 #EXTINF:-1,GES Radio 1206 AM - Tangerang
 https://i.klikhost.com/9184/stream
+#EXTINF:-1,Radio Rona MKB - Jakarta 1440 AM
+https://void.idserverhost.com/8036/stream
 #EXTINF:-1,Radio MSK - Jakarta 1530 AM
 https://streaming.atasloteng.com:8443/msk

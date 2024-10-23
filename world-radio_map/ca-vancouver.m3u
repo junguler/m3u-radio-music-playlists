@@ -1,8 +1,12 @@
 #EXTM3U
-#EXTINF:-1,CJSU 89.7 Juice FM - Duncan, British Columbia
-http://listenlive.vistaradio.ca/CJSU
+#EXTINF:-1,CBU 690 AM CBC Radio One - Vancouver, British Columbia
+https://playerservices.streamtheworld.com/api/livestream-redirect/CBU2FM_CBC.mp3
+#EXTINF:-1,CJSU 89.7 Sun FM - Duncan, British Columbia
+https://vistaradio.streamb.live/SB00080
 #EXTINF:-1,CJSF 90.1 FM - Burnaby, British Columbia
 https://www.cjsf.ca:8443/listen-hq
+#EXTINF:-1,CBCV 90.5 FM CBC Radio One - Victoria, British Columbia
+https://playerservices.streamtheworld.com/api/livestream-redirect/CBCVFM_CBC.mp3
 #EXTINF:-1,CJZN The Zone 91.3 FM - Victoria, British Columbia
 http://redirect.jpbgdigital.com/CJZN
 #EXTINF:-1,CJCN Connect 91.5 FM - Surrey, British Columbia
@@ -10,11 +14,15 @@ https://stream.rcs.revma.com/ygxn9vgennruv
 #EXTINF:-1,CJCN Connect 91.5 FM-HD2 - Surrey, British Columbia
 https://stream.rcs.revma.com/dm32hsut068uv
 #EXTINF:-1,CKAY 91.7 Coast FM - Gibsons, British Columbia
-http://listenlive.vistaradio.ca/CKAY
+https://vistaradio.streamb.live/SB00081
+#EXTINF:-1,CBC Music - Canada (Pacific time zone)
+https://playerservices.streamtheworld.com/api/livestream-redirect/CBUFM_CBC.mp3
 #EXTINF:-1,KISM Classic Rock 92.9 FM - Bellingham, Washington
-https://live.wostreaming.net/direct/saga-kismfmmp3-ibc1
+https://live.amperwave.net/direct/saga-kismfmaac-ibc1
 #EXTINF:-1,KGMI News Talk 790 AM/96.5 FM - Bellingham, Washington
-https://live.wostreaming.net/direct/saga-kgmiammp3-ibc1
+https://live.amperwave.net/direct/saga-kgmiamaac-ibc1
+#EXTINF:-1,KISM-HD3 K-Bay 98.9 FM - Bellingham, Washington
+https://live.amperwave.net/direct/saga-kbaiamaac-ibc1
 #EXTINF:-1,CJJR 93.7 JR Country - Vancouver, British Columbia
 http://redirect.jpbgdigital.com/CJJR
 #EXTINF:-1,CFBT Virgin Radio 94.5 FM - Vancouver, British Columbia
@@ -39,30 +47,28 @@ http://redirect.jpbgdigital.com/CKKQ
 https://listen-coopradio.sharp-stream.com/coopradio.mp3
 #EXTINF:-1,CFMI Rock 101.1 FM - Vancouver, British Columbia
 https://corus.leanstream.co/CFMIFM
-#EXTINF:-1,980 CKNW - Vancouver, British Columbia
+#EXTINF:-1,CKNW 980 AM - Vancouver, British Columbia
 https://live.leanstream.co/CKNWAM-MP3
-#EXTINF:-1,CKGO AM 730 All Traffic - Vancouver, British Columbia
-http://live.leanstream.co/CHMJAM-MP3
 #EXTINF:-1,CHLY 101.7 FM - Nanaimo, British Columbia
 http://184.69.114.194:8000/stream.mp3
 #EXTINF:-1,CITR 101.9 FM - Vancouver, British Columbia
 http://live.citr.ca:8000/live.mp3
 #EXTINF:-1,CKWV The Wave 102.3 FM - Nanaimo, British Columbia
 http://redirect.jpbgdigital.com/CKWV
-#EXTINF:-1,CKPK 102.7 Now Radio - Vancouver, British Columbia
-http://redirect.jpbgdigital.com/CKPKFM
-#EXTINF:-1,CKPK 102.7-HD2 The Peak - Vancouver, British Columbia
+#EXTINF:-1,CKPK 102.7 The Peak - Vancouver, British Columbia
 http://redirect.jpbgdigital.com/CKPK
 #EXTINF:-1,CHTT Jack 103.1 FM - Victoria, British Columbia
 https://rogers-hls.leanstream.co/rogers/vic1031.stream/icy
 #EXTINF:-1,CHQM Move Radio 103.5 - Vancouver, British Columbia
 https://playerservices.streamtheworld.com/api/livestream-redirect/CHQMFMAAC.aac
 #EXTINF:-1,KAFE Today's Variety 104.1 FM - Bellingham, Washington
-https://live.wostreaming.net/direct/saga-kafefmmp3-ibc1
+https://live.amperwave.net/direct/saga-kafefmaac-ibc1
 #EXTINF:-1,CHLG The Breeze 104.3 FM - Vancouver, British Columbia
 http://newcap.leanstream.co/CHLGFM-MP3
 #EXTINF:-1,CKKS Sonic Radio 104.9 FM - Vancouver, British Columbia
 https://rogers-hls.leanstream.co/rogers/van1049.stream/icy
+#EXTINF:-1,CJNY Journey 106.3 FM - Vancouver, British Columbia
+https://cfnr.streamb.live/SB00168
 #EXTINF:-1,KWPZ Praise 106.5 FM - Lynden, Washington
 https://crista-kwpz.streamguys1.com/kwpzmp3
 #EXTINF:-1,CHWF The Wolf 106.9 FM - Nanaimo, British Columbia
@@ -81,7 +87,7 @@ https://ais-sa1.streamon.fm/7404_48k.aac
 https://ais-sa1.streamon.fm/7161_64k.aac
 #EXTINF:-1,KAD93 162.525 MHz - NOAA Weather Radio - Blaine, Washington
 http://161.55.224.79:88/broadwave.mp3?src=6&rate=1&ref=
-#EXTINF:-1,CBS Sports Radio - USA
+#EXTINF:-1,Infinity Sports Network - USA
 https://live.amperwave.net/direct/audacy-cbssportsaac-imc
 #EXTINF:-1,KIRO Seattle Sports 710 AM - Seattle, Washington
 https://bonneville.cdnstream1.com/2642_48.aac
@@ -89,16 +95,14 @@ https://bonneville.cdnstream1.com/2642_48.aac
 https://playerservices.streamtheworld.com/api/livestream-redirect/KGNWAM.mp3
 #EXTINF:-1,KIXI Retro Radio 880 AM - Seattle, Washington
 https://playerservices.streamtheworld.com/api/livestream-redirect/KIXIAM.mp3
-#EXTINF:-1,KBAI K-Bay 930 AM/98.9 FM - Bellingham, Washington
-https://live.wostreaming.net/direct/saga-kbaiammp3-ibc1
 #EXTINF:-1,KNWN Northwest Newsradio 1000 AM/97.7 FM - Seattle, Washington
-https://live.wostreaming.net/direct/sinclair-komoammp3-ibc2
+https://playerservices.streamtheworld.com/api/livestream-redirect/KNWNAMAAC.aac
 #EXTINF:-1,KRPA Radio India 1110 AM - Oak Harbor, Washington
 https://cast4.servcast.net/proxy/harryghuman/stream
 #EXTINF:-1,KPUG The Sports Leader 1170 AM/97.9 FM - Bellingham, Washington
-https://live.wostreaming.net/direct/saga-kpugammp3-ibc1
+https://live.amperwave.net/direct/saga-kpugamaac-ibc1
 #EXTINF:-1,ESPN Radio - USA
-https://live.wostreaming.net/direct/espn-networkmp3-48
+https://live.amperwave.net/direct/espn-networkmp3-48
 #EXTINF:-1,Radio Punjab - Surrey, British Columbia
 https://stream.zeno.fm/c0aaye918s5tv
 #EXTINF:-1,KRPI South Asian Voice 1550 AM - Ferndale, Washington
