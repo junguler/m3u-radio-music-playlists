@@ -167,8 +167,6 @@ http://stream.live.vc.bbcmedia.co.uk/bbc_radio_york
 http://bfmbusiness.bfmtv.com/bfmbradio-mp3
 #EXTINF:-1,BFM radio
 https://audio.bfmtv.com/bfmradio_128.mp3
-#EXTINF:-1,BFM Radio (128.mp3)
-https://audio.bfmtv.com/bfmradio_128.mp3
 #EXTINF:-1,BR 24 live
 https://dispatcher.rndfnk.com/br/br24live/live/mp3/mid
 #EXTINF:-1,BR24 [aac]
@@ -189,8 +187,6 @@ http://server10.emitironline.com:8040/
 http://91.121.156.27:8011/stream#.mp3
 #EXTINF:-1,Cause Commune (Libre @ Toi)
 http://212.129.27.101:8000/voixdulat_ogg
-#EXTINF:-1,Cause Commune (Libre @ Toi)
-http://vdl.stream-lat.org:8000/voixdulat_mp3
 #EXTINF:-1,CBC Radio 1 Halifax (90.5 FM)
 https://cbcliveradio-lh.akamaihd.net/i/CBCR1_HFX@353708/master.m3u8
 #EXTINF:-1,CBC Radio 1 Kelowna (CBTK-FM, 88.9 MHz)
@@ -213,20 +209,8 @@ http://zbbf2.ahbztv.com/live/4f3.m3u8
 https://lhttp.qtfm.cn/live/20211323/64k.mp3
 #EXTINF:-1,detektor.fm Wort
 https://detektor.fm/stream/aac/wort/
-#EXTINF:-1,detektor.fm Wort
-https://detektor.fm/stream/mp3/wort/
 #EXTINF:-1,Deutschlandfunk
 https://st01.sslstream.dlf.de/dlf/01/high/opus/stream.opus
-#EXTINF:-1,Deutschlandfunk
-https://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3?aggregator=web
-#EXTINF:-1,Deutschlandfunk
-https://st01.sslstream.dlf.de/dlf/01/low/opus/stream.opus?aggregator=web
-#EXTINF:-1,Deutschlandfunk
-http://st01.dlf.de/dlf/01/128/mp3/stream.mp3
-#EXTINF:-1,Deutschlandfunk
-https://st01.sslstream.dlf.de/dlf/01/high/opus/stream.opus?aggregator=web
-#EXTINF:-1,Deutschlandfunk - [Opus 64 kbit/s]
-https://st01.sslstream.dlf.de/dlf/01/high/opus/stream.opus?aggregator=web
 #EXTINF:-1,Deutschlandfunk – Dokumente und Debatten | AAC 48 kbit/s
 https://st04.sslstream.dlf.de/dlf/04/low/aac/stream.aac?aggregator=web
 #EXTINF:-1,Deutschlandfunk [AAC 192 kbit/s]
@@ -235,14 +219,8 @@ https://st01.sslstream.dlf.de/dlf/01/high/aac/stream.aac?aggregator=web
 https://st01.sslstream.dlf.de/dlf/01/high/aac/stream.aac
 #EXTINF:-1,Deutschlandfunk [AAC 96]
 https://st01.sslstream.dlf.de/dlf/01/mid/aac/stream.aac
-#EXTINF:-1,Deutschlandfunk [MP3 128k]
-http://st01.dlf.de/dlf/01/128/mp3/stream.mp3
 #EXTINF:-1,Deutschlandfunk [Opus 24kbit/s]
 https://st01.sslstream.dlf.de/dlf/01/low/opus/stream.opus
-#EXTINF:-1,Deutschlandfunk [Opus 24kbit/s]
-https://st01.sslstream.dlf.de/dlf/01/low/opus/stream.opus
-#EXTINF:-1,Deutschlandfunk [Opus 64kbis/s]
-https://st01.sslstream.dlf.de/dlf/01/high/opus/stream.opus?aggregator=web
 #EXTINF:-1,Deutschlandfunk | AAC 48 kbit/s
 https://st01.sslstream.dlf.de/dlf/01/low/aac/stream.aac?aggregator=web
 #EXTINF:-1,Deutschlandfunk Dokumente und Debatte [AAC 256 kbit/s]
@@ -257,20 +235,12 @@ https://st02.sslstream.dlf.de/dlf/02/low/opus/stream.opus
 https://st02.sslstream.dlf.de/dlf/02/high/opus/stream.opus
 #EXTINF:-1,Deutschlandfunk Nova [MP3 128k]
 http://st03.dlf.de/dlf/03/128/mp3/stream.mp3
-#EXTINF:-1,Deutschlandfunk OPUS 24 kbps
-https://st01.sslstream.dlf.de/dlf/01/low/opus/stream.opus?aggregator=web
-#EXTINF:-1,DLF
-https://st01.sslstream.dlf.de/dlf/01/high/aac/stream.aac?aggregator=web
 #EXTINF:-1,DLF aac 48
 https://st01.sslstream.dlf.de/dlf/01/low/aac/stream.aac
-#EXTINF:-1,DLF Deutschlandfunk [AAC 192k]
-https://st01.sslstream.dlf.de/dlf/01/high/aac/stream.aac?aggregator=web
 #EXTINF:-1,DLF Deutschlandfunk Nova [AAC 192k]
 https://st03.sslstream.dlf.de/dlf/03/high/aac/stream.aac?aggregator=web
 #EXTINF:-1,DLF mp3 128
 https://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3
-#EXTINF:-1,DLF opus 64
-https://st01.sslstream.dlf.de/dlf/01/high/opus/stream.opus?aggregator=web
 #EXTINF:-1,Focus
 http://online.focus-radio.net:8100/sofia
 #EXTINF:-1,France Info
@@ -300,7 +270,7 @@ https://1192747t.ha.azioncdn.net/primary/ita_poa.sdp/chunklist_f67b569e-6c38-4de
 #EXTINF:-1,JCR – Jones College Radio
 http://ice5.securenetsystems.net/WKTZ
 #EXTINF:-1,KBC
-http://node-21.zeno.fm/4fdwx9mydbruv?rj-ttl=5\u0026rj-tok=AAABfp_alpMAU2hDPBfQPJQhMA
+http://node-21.zeno.fm/4fdwx9mydbruv?rj-ttl=5&rj-tok=AAABfp_alpMAU2hDPBfQPJQhMA
 #EXTINF:-1,KCFR 90.1 - Colorado Public Radio News - Denver, CO AAC+
 http://livestream.cprnetwork.org/pls/live_newsinfo_aac.pls
 #EXTINF:-1,KCFR 90.1 Colorado Public Radio - News  - Denver, CO  MP3
@@ -333,8 +303,6 @@ http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_hh.m3u
 https://icecast.ndr.de/ndr/ndrinfo/hamburg/mp3/128/stream.mp3
 #EXTINF:-1,NDR Info (Hamburg) (HTTPS AAC)
 https://www.ndr.de/resources/metadaten/audio/aac/ndrinfo_hh.m3u
-#EXTINF:-1,NDR Info (Hamburg) (HTTPS AAC)
-https://icecast.ndr.de/ndr/ndrinfo/hamburg/aac/low
 #EXTINF:-1,NDR Info (Mecklenburg Vorpommern) AAC
 http://icecast.ndr.de/ndr/ndrinfo/mecklenburgvorpommern/aac/low
 #EXTINF:-1,NDR Info (Niedersachsen)
@@ -347,8 +315,6 @@ http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_spezial.m3u
 http://188.40.62.20:8070/
 #EXTINF:-1,Polskie Radio 24
 http://stream3.polskieradio.pl:8080/.mp3
-#EXTINF:-1,Polynésie 1ère
-https://polynesie.ice.infomaniak.ch/polynesie-128.mp3
 #EXTINF:-1,Polynésie 1ère
 https://polynesie.ice.infomaniak.ch/polynesie-128.mp3
 #EXTINF:-1,Pravasi Bharathi
@@ -365,8 +331,6 @@ http://air.radioart.com/fSongs_and_Lieder.mp3
 http://air.radioart.com/fYo_yo_ma.mp3
 #EXTINF:-1,Radio BI (Aguascalientes) - 88.7 FM - XHBI-FM - Radiogrupo - Aguascalientes, AG
 http://201.159.48.107:2860/
-#EXTINF:-1,Radio BI (Aguascalientes) - 88.7 FM - XHBI-FM - Radiogrupo - Aguascalientes, AG
-https://radiobi.streaming.radiogrupo.com/
 #EXTINF:-1,Radio Brcko District
 http://91.191.0.45:8000/listen.pls
 #EXTINF:-1,Radio Capital
@@ -410,11 +374,9 @@ http://parh.rtrs.tv:1935/radio/live/playlist.m3u8
 #EXTINF:-1,Radio RKS Grenoble 97FM
 https://securestreams5.autopo.st:1833/live
 #EXTINF:-1,Radio RMF24.pl
-https://rs202-krk-cyfronet.rmfstream.pl/RMF24?aw_0_req.gdpr=false\u0026aw_0_req.userConsentV2=\u0026aw_0_1st.playerid=RMF_Player_JS_P\u0026aw_0_1st.rmf_disable_preroll=true
+https://rs202-krk-cyfronet.rmfstream.pl/RMF24?aw_0_req.gdpr=false&aw_0_req.userConsentV2=&aw_0_1st.playerid=RMF_Player_JS_P&aw_0_1st.rmf_disable_preroll=true
 #EXTINF:-1,Radio Sarajevo
 http://malla.softnet.si:8000/.mp3
-#EXTINF:-1,Radio SRF 4 News
-https://stream.srg-ssr.ch/m/drs4news/aacp_96
 #EXTINF:-1,Radio SRF 4 News
 https://stream.srg-ssr.ch/m/drs4news/aacp_32
 #EXTINF:-1,Radio Suno
@@ -456,7 +418,7 @@ http://sc-rtllive.newmedia.lu/
 #EXTINF:-1,SATzentrale - Das Radio
 http://stream.laut.fm/satzentrale
 #EXTINF:-1,SER+
-https://21293.live.streamtheworld.com/CADENASERAAC.aac?csegid=10000\u0026gdpr=1\u0026gdpr_consent=CPPTC1xPPTC1xAHABBENBzCsAP_AAAAAAAAAIUNf_X__b3_j-_59__t0eY1f9_7_v-0zjhfdt-8N2f_X_L8X_2M7vF36pq4KuR4Eu3LBIQdlHOHcTUmw6okVrzPsbk2cr7NKJ7PEmnMbe2dYGH9_n93T-ZKY7______7__-_______f__-_____5_X-_-_f_V_997Lv9_____9_N___9v__8AAABJKADAAEEKQ0AGAAIIUioAMAAQQpKQAYAAghSOgAwABBCkhABgACCFISADAAEEKREAGAAIIUjIAMAAQQp.f_gAAAAAAAAA\u0026dist=cser-web-playperm-live_str_play\u0026tdsdk=js-2.9\u0026pname=TDSdk\u0026pversion=2.9\u0026banners=300x250\u0026sbmid=951d9e29-0baf-4e14-ef5d-9e259bb36688
+https://21293.live.streamtheworld.com/CADENASERAAC.aac?csegid=10000&gdpr=1&gdpr_consent=CPPTC1xPPTC1xAHABBENBzCsAP_AAAAAAAAAIUNf_X__b3_j-_59__t0eY1f9_7_v-0zjhfdt-8N2f_X_L8X_2M7vF36pq4KuR4Eu3LBIQdlHOHcTUmw6okVrzPsbk2cr7NKJ7PEmnMbe2dYGH9_n93T-ZKY7______7__-_______f__-_____5_X-_-_f_V_997Lv9_____9_N___9v__8AAABJKADAAEEKQ0AGAAIIUioAMAAQQpKQAYAAghSOgAwABBCkhABgACCFISADAAEEKREAGAAIIUjIAMAAQQp.f_gAAAAAAAAA&dist=cser-web-playperm-live_str_play&tdsdk=js-2.9&pname=TDSdk&pversion=2.9&banners=300x250&sbmid=951d9e29-0baf-4e14-ef5d-9e259bb36688
 #EXTINF:-1,Sociedad Creativa FM
 https://live.allatra-radio.com/radio/8040/radio.mp3
 #EXTINF:-1,SR 1 Europawelle (56 kbit/s)
@@ -467,8 +429,6 @@ http://radio.unios.hr:8000/stream.mp3
 https://liveradio.swr.de/sw331ch/swr2/
 #EXTINF:-1,SWR 2  [MP3 256k]
 https://liveradio.swr.de/sw282p3/swr2/
-#EXTINF:-1,SWR Aktuell
-https://liveradio.swr.de/sw282p3/swraktuell/
 #EXTINF:-1,SWR Aktuell
 https://liveradio.swr.de/sw282p3/swraktuell/play.aac
 #EXTINF:-1,SWR Aktuell | 48k aac
@@ -510,7 +470,7 @@ http://whyy.streamguys1.com/whyy-mp3
 #EXTINF:-1,WNYC-FM 93.9 New York Public Radio
 http://www.wnyc.org/stream/wnyc-fm939/mp3.pls
 #EXTINF:-1,WP Radio
-https://stream.open.fm/367?type=.aac\u0026user=800035396554\u0026player_group=WWWf
+https://stream.open.fm/367?type=.aac&user=800035396554&player_group=WWWf
 #EXTINF:-1,WSB 750 && 95.5 Atlanta, GA
 http://oom-cmg.streamguys1.com/atl750/atl750-iheart.aac
 #EXTINF:-1,WUNO 630 "Noti Uno" San Juan
@@ -526,8 +486,6 @@ http://satellitepull.cnr.cn/live/wx32nmgjtgb/playlist.m3u8
 #EXTINF:-1,包河女子调频
 https://lhttp.qtfm.cn/live/5022668/64k.mp3
 #EXTINF:-1,台中城市廣播
-http://fm901.cityfm.tw:8080/901.mp3
-#EXTINF:-1,台北健康電台
 http://fm901.cityfm.tw:8080/901.mp3
 #EXTINF:-1,吉林资讯广播
 https://live.xmcdn.com/live/432/64.m3u8
@@ -605,5 +563,3 @@ https://lhttp.qtfm.cn/live/20182/64k.mp3
 https://lhttp.qtfm.cn/live/5022479/64k.mp3
 #EXTINF:-1,香港普通话台
 https://rthkaudio6-lh.akamaihd.net/i/radiopth_1@355869/index_56_a-p.m3u8
-#EXTINF:-1,香港普通话台
-https://rthkradiopth-live.akamaized.net/hls/live/2040082/radiopth/master.m3u8

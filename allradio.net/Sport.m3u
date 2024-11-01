@@ -3,14 +3,8 @@
 https://d11fwwlrb0wuhh.cloudfront.net/playlist.m3u8
 #EXTINF:-1,1A Fitness Hits
 http://stream.1a-webradio.de/saw-fitness/aac-48/radiosure-1a/stream.mp3
-#EXTINF:-1,1A Fitness Hits
-http://stream.1a-webradio.de/saw-fitness/mp3-128/radio-browser-1a/stream.mp3
 #EXTINF:-1,2GB Sydney
 https://18743.live.streamtheworld.com/2GBAAC.aac
-#EXTINF:-1,2GB Sydney
-http://playerservices.streamtheworld.com/api/livestream-redirect/2GBAAC.aac
-#EXTINF:-1,2GB Sydney
-http://syd2gbaud-lh.akamaihd.net/i/sydneygbaudio_1@367120/master.m3u8
 #EXTINF:-1,2SM 1269kHz AM Sydney NSW John Laws SuperStation 20220701
 http://144.140.228.109:8220/mp3
 #EXTINF:-1,3AW 693 Melbourne
@@ -49,16 +43,10 @@ http://singaporestream.axr.online/
 http://57764j.ha.azioncdn.net/7764j/_definst_/bnfmrj.sdp/chunklist.m3u8
 #EXTINF:-1,BBC Radio 5 Live
 http://open.live.bbc.co.uk/mediaselector/5/select/version/2.0/mediaset/http-icy-mp3-a/vpid/bbc_radio_five_live/format/pls.pls
-#EXTINF:-1,BBC Radio 5 Live
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_radio_five_live.m3u8
 #EXTINF:-1,BBC Radio 5 Live Sports Extra
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_med/ak/bbc_radio_five_live_sports_extra.m3u8
-#EXTINF:-1,BBC Radio 5 Live Sports Extra
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_five_live_sports_extra.m3u8
 #EXTINF:-1,BBC Radio Cymru
 http://stream.live.vc.bbcmedia.co.uk/bbc_radio_cymru
-#EXTINF:-1,BBC Radio Cymru
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_radio_cymru.m3u8
 #EXTINF:-1,BBC Radio Foyle
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_radio_foyle.m3u8
 #EXTINF:-1,BBC Radio Orkney
@@ -71,8 +59,6 @@ http://stream.live.vc.bbcmedia.co.uk/bbc_radio_scotland_mw
 http://stream.live.vc.bbcmedia.co.uk/bbc_radio_stoke
 #EXTINF:-1,BBC Radio Ulster
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_radio_ulster.m3u8
-#EXTINF:-1,BBC Radio Wales
-http://stream.live.vc.bbcmedia.co.uk/bbc_radio_wales_fm
 #EXTINF:-1,BBC Radio Wales
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_radio_wales_fm.m3u8
 #EXTINF:-1,BH Radio 1
@@ -114,15 +100,13 @@ http://provisioning.streamtheworld.com/pls/CKSTAMAAC.pls
 #EXTINF:-1,ČRO Radiožurnál Sport
 https://rozhlas2.stream/sport_mp3_256.mp3
 #EXTINF:-1,Dengi Kurdsat
-http://uk3.internet-radio.com:8011/stream?type=http\u0026nocache=74
+http://uk3.internet-radio.com:8011/stream?type=http&nocache=74
 #EXTINF:-1,DLR-3 大连体育广播
 http://ye23.win/iptv/dl2021.php?id=ty2ALdp
 #EXTINF:-1,East Africa Radio FM
 https://eatv.radioca.st/stream
 #EXTINF:-1,ESPN Radio JOX 2 Birmingham
 http://playerservices.streamtheworld.com/pls/WJQXFMAAC.pls
-#EXTINF:-1,Fiveaa Adelaide 5AA
-http://streaming.novaentertainment.com.au/fiveaa
 #EXTINF:-1,Fiveaa Adelaide 5AA
 https://23203.live.streamtheworld.com/FIVEAA_AAC48.aac
 #EXTINF:-1,Frecuencia Deportiva (Guadalajara) - 1340 AM - XEDKT-AM - Radiorama - Guadalajara, JC
@@ -172,7 +156,7 @@ https://servidor1.hostradios.com:8132/stream
 #EXTINF:-1,Global Radio
 https://zas7.ndx.co.za:8026/stream
 #EXTINF:-1,Goal FM
-http://ample-zeno-07.radiojar.com/uwq6pusuvg5tv?rj-ttl=5\u0026rj-token=AAABXqN0taC_FgJ6U0Tlr2-ck1LZjfkW8pwCH3M3yTgV3FVrHTGC8Q
+http://ample-zeno-07.radiojar.com/uwq6pusuvg5tv?rj-ttl=5&rj-token=AAABXqN0taC_FgJ6U0Tlr2-ck1LZjfkW8pwCH3M3yTgV3FVrHTGC8Q
 #EXTINF:-1,Golo FM
 http://play.golo.fm:8020/
 #EXTINF:-1,Imagen (San Luis Potosí) - 103.1 FM - XHEPO-FM - GlobalMedia - San Luis Potosí, SL
@@ -230,7 +214,7 @@ http://ice55.securenetsystems.net/DASH96
 #EXTINF:-1,NRJ Fitness
 http://cdn.nrjaudio.fm/adwz1/fr/30007/mp3_128.mp3?origine=fluxradios
 #EXTINF:-1,NRJ Fitness Cardio
-https://scdn.nrjaudio.fm/fr/56808/aac_64.mp3?origine=playernrj\u0026aw_0_req.userConsent=undefined\u0026cdn_path=adswizz_lbs8\u0026adws_out_b3
+https://scdn.nrjaudio.fm/fr/56808/aac_64.mp3?origine=playernrj&aw_0_req.userConsent=undefined&cdn_path=adswizz_lbs8&adws_out_b3
 #EXTINF:-1,NRJ Hits for Running
 http://cdn.nrjaudio.fm/adwz1/fr/30057/mp3_128.mp3?origine=fluxradios
 #EXTINF:-1,NRJ Pour le Sport
@@ -300,7 +284,7 @@ http://suaradio2.dyndns.ws:10082/stream
 #EXTINF:-1,Rádio Pernes
 http://213.239.218.99:7068/stream.mp3
 #EXTINF:-1,Radio Planargia
-http://nr2.newradio.it:8294/listen\u0026ext=.mp3
+http://nr2.newradio.it:8294/listen&ext=.mp3
 #EXTINF:-1,Radio Punto Nuovo
 http://onair15.xdevel.com:8062/listen.pls
 #EXTINF:-1,Radio Punto Zero Tre Venezie
@@ -317,8 +301,6 @@ http://stream.saw-musikwelt.de/saw-fitness/mp3-128/radio-browser/stream.mp3
 http://radiosei.newradio.it/stream
 #EXTINF:-1,Radio Sportiva
 http://46.105.114.57:8000/stream
-#EXTINF:-1,Radio Sportiva
-https://mediahit.inmystream.it:9000/stream
 #EXTINF:-1,Radio Touring 104
 http://onair20.xdevel.com:8074/stream.aac
 #EXTINF:-1,Radio Tua
@@ -349,18 +331,12 @@ http://ice2.hystream.com:8000/asroma
 http://rosfm.ddns.net:8000/stream.mp3
 #EXTINF:-1,RTÉ Radio 1
 https://www.rte.ie/manifests/radio1.m3u8
-#EXTINF:-1,RTÉ Radio 1
-https://liveaudio.rte.ie/hls-radio/radio1/chunklist.m3u8
-#EXTINF:-1,RTÉ Radio 1
-https://liveaudio.rte.ie/hls-radio/radio1/chunklist.m3u8
 #EXTINF:-1,Social Web Radio
 http://dreamsiteradiocp3.com:8256/stream
 #EXTINF:-1,Somali Super Sport
 https://stream.zeno.fm/7ytz1pedps8uv
 #EXTINF:-1,Sport FM 94.6
 http://netradio.live24.gr/sportfm7712
-#EXTINF:-1,Sport FM 94.6
-http://sportfm.live24.gr/sportfm7712?344b685e2518b0370f0d731432f51438
 #EXTINF:-1,Sportrádió
 https://stream.rcs.revma.com/t6dn5c8bdchvv
 #EXTINF:-1,Sportradio Deutschland
@@ -372,7 +348,7 @@ http://s3.yesstreaming.net:7014/stream
 #EXTINF:-1,talkSPORT
 http://radio.talksport.com/stream?aisGetOriginalStream=true
 #EXTINF:-1,talkSPORT 2
-http://radio.talksport.com/stream2?awparams=platform:ts-web\u0026amsparams=playerid:ts-web
+http://radio.talksport.com/stream2?awparams=platform:ts-web&amsparams=playerid:ts-web
 #EXTINF:-1,talkSPORT chinese
 http://live.talksport.com/channel1m-zh?awparams=platfrom:part-tuneinlang-zh
 #EXTINF:-1,talkSPORT spanish
@@ -380,10 +356,6 @@ http://live.talksport.com/channel1m-es
 #EXTINF:-1,Tampereen Kiakkoradio: Tappara
 https://st.downtime.fi/kiakko-tappara.aac
 #EXTINF:-1,Tele Radio Stereo
-http://trsw.inmystream.info:8068/stream.mp3
-#EXTINF:-1,Tele Radio Stereo
-https://sr8.inmystream.it:8016/stream
-#EXTINF:-1,TeleRadioStereo
 https://sr8.inmystream.it:8016/stream
 #EXTINF:-1,TMW Radio
 https://stream.tmwradio.com/tmw.aac
@@ -397,16 +369,12 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/CHUMAM_ADP.m3u
 https://prod-35-230-119-33.wostreaming.net/univision-deportesaac-imc2
 #EXTINF:-1,TUDN Radio (Dallas) - 1270 AM - KFLC - Uforia Audio Network - Dallas, Texas
 https://prod-34-82-80-86.wostreaming.net/univision-deportesaac-imc2
-#EXTINF:-1,TUDN Radio (Houston) - 1010 AM - KLAT - Uforia Audio Network - Houston, Texas
-https://prod-34-82-80-86.wostreaming.net/univision-deportesaac-imc2
 #EXTINF:-1,TUDN Radio (Las Vegas) - 870 AM - KLSQ - Uforia Audio Network - Las Vegas, Nevada
 https://prod-34-145-12-218.wostreaming.net/univision-deportesaac-imc2
 #EXTINF:-1,TUDN Radio (San Diego) - 1420 AM - XEXX-AM - PSN Primer Sistema de Noticias - Tijuana, Baja California
 http://184.154.43.106:8078/live?type=.aac
 #EXTINF:-1,TUDN Radio (Tijuana) - 1420 AM - XEXX-AM - PSN Primer Sistema de Noticias - Tijuana, BC
 http://184.154.43.106:8078/live?type=.mp3
-#EXTINF:-1,TUDN Radio (Tijuana) - 1420 AM - XEXX-AM - PSN Primer Sistema de Noticias - Tijuana, BC
-http://184.154.43.106:8078/live?type=.aac
 #EXTINF:-1,Uhuru
 https://s33.myradiostream.com/15450/listen.mp3
 #EXTINF:-1,Umbria Radio
@@ -455,16 +423,10 @@ http://provisioning.streamtheworld.com/pls/WXSMAMAAC.pls
 http://playerservices.streamtheworld.com/pls/XERED_AMAAC.pls
 #EXTINF:-1,XEVA (Villahermosa) - 91.7 FM - XHVA-FM - Grupo Pazos - Villahermosa, TB
 https://xevavilla.centrocibernetico.com/
-#EXTINF:-1,XEVA (Villahermosa) - 91.7 FM - XHVA-FM - Grupo Pazos - Villahermosa, TB
-https://sgaudio.centrocibernetico.com/xevavillahermosa
 #EXTINF:-1,ZBS Zodiak FM
 https://ice31.securenetsystems.net/0079
 #EXTINF:-1,Радио Београд - 1
 https://rtsradio-live.morescreens.com/RTS_2_001/audio/chunklist.m3u8
-#EXTINF:-1,РТС - Радио Београд - 1
-https://rtsradio-live.morescreens.com/RTS_2_001/audio/chunklist.m3u8
-#EXTINF:-1,北京体育广播
-http://cnlive.cnr.cn/hls/bjtygb.m3u8
 #EXTINF:-1,北京体育广播
 http://audiolive.rbc.cn:1935/live/fm1025/96K/tzwj_video.m3u8
 #EXTINF:-1,大连体育广播

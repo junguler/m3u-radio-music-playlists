@@ -1,16 +1,14 @@
 #EXTM3U
 #EXTINF:-1,- 0 N - Indie on Radio
 https://0n-indie.radionetz.de/0n-indie.mp3
-#EXTINF:-1,- 0 N - Indie on Radio
-https://0n-indie.radionetz.de/0n-indie.aac
 #EXTINF:-1,013 FM 100.7
 http://r16.ciclano.io:9036/stream
 #EXTINF:-1,100hitz - 90's Hitz
-http://pureplay.cdnstream1.com/6056_128.mp3?DIST=TuneIn\u0026TGT=TuneIn\u0026maxServers=2\u0026gdpr=0\u0026us_privacy=1YNY\u0026partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTYzMzk1ODgyMywiaXNzIjoidGlzcnYifQ.p0ux4zgs6Xj7dhIr3EqVlXAiEOTKtY7snGxgD55apOM
+http://pureplay.cdnstream1.com/6056_128.mp3?DIST=TuneIn&TGT=TuneIn&maxServers=2&gdpr=0&us_privacy=1YNY&partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTYzMzk1ODgyMywiaXNzIjoidGlzcnYifQ.p0ux4zgs6Xj7dhIr3EqVlXAiEOTKtY7snGxgD55apOM
 #EXTINF:-1,100hitz - Indie
 http://206.217.213.236:8360/stream
 #EXTINF:-1,100hitz - Indie Rock
-http://pureplay.cdnstream1.com/6056_64.aac?DIST=TuneIn\u0026TGT=TuneIn\u0026maxServers=2\u0026gdpr=0\u0026us_privacy=1YNY\u0026partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTYzMzk1ODAzMywiaXNzIjoidGlzcnYifQ.iRK4czQtolWgtNsj8Uy5lioP0EoZu1wCuvj2VwsCs3o
+http://pureplay.cdnstream1.com/6056_64.aac?DIST=TuneIn&TGT=TuneIn&maxServers=2&gdpr=0&us_privacy=1YNY&partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTYzMzk1ODAzMywiaXNzIjoidGlzcnYifQ.iRK4czQtolWgtNsj8Uy5lioP0EoZu1wCuvj2VwsCs3o
 #EXTINF:-1,2XS Rocks
 https://2xs.rocks:8443/2XS
 #EXTINF:-1,3RRR "Triple R" 102.7 FM Melbourne, VIC
@@ -23,10 +21,10 @@ https://cast.egofm.de/50fresh-elektro.mp3?ar-distributor=ffa0
 https://premium.shoutcastsolutions.com/radio/8050/256.mp3
 #EXTINF:-1,8K.NZ
 http://radio8k.out.airtime.pro:8000/radio8k_a.m3u
-#EXTINF:-1,959 Nueve Cinco Nueve
-https://streannlivepuravida.cachefly.net/puravida4/puravida4/chunks.m3u8
 #EXTINF:-1,959 Nueve Cinco NUeve
 https://ott.streann.com/loadbalancer/services/public/radios/5931869f9738fd49d4169b36/playlist.m3u8
+#EXTINF:-1,959 Nueve Cinco Nueve
+https://streannlivepuravida.cachefly.net/puravida4/puravida4/chunks.m3u8
 #EXTINF:-1,95bFM Auckland
 http://streams.95bfm.com/stream112
 #EXTINF:-1,ABC Triple J Unearthed  (MP3)
@@ -49,8 +47,6 @@ https://igor.torontocast.com:1945/stream
 https://us4.internet-radio.com/proxy/andhowfm?mp=/stream
 #EXTINF:-1,Anti Radio
 https://stream.antiradio.net/radio/8000/mp3
-#EXTINF:-1,Anti Radio
-https://stream.antiradio.net/radio/8000/mp3
 #EXTINF:-1,Antithèse
 https://listen.radioking.com/radio/11549/stream/22940
 #EXTINF:-1,asahidenpa
@@ -59,24 +55,12 @@ http://stream.zeno.fm/xmmkuekpffhvv
 http://167.114.118.120:7804/
 #EXTINF:-1,autobazaradio
 http://s3.myradiostream.com:7022/
-#EXTINF:-1,autobazaradio
-http://s3.myradiostream.com:7022/listen.m4a
 #EXTINF:-1,Baltic Radio
 http://stream1.ground-gate.net/baltic1-128
 #EXTINF:-1,BBC Radio 1
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_one.m3u8
 #EXTINF:-1,BBC Radio 6 Music
-http://open.live.bbc.co.uk/mediaselector/5/select/version/2.0/mediaset/http-icy-mp3-a/vpid/bbc_6music/format/pls.pls
-#EXTINF:-1,BBC Radio 6 Music
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_vlow/ak/bbc_6music.m3u8
-#EXTINF:-1,BBC Radio 6 Music
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_6music.m3u8
-#EXTINF:-1,BBC Radio 6 Music
-http://open.live.bbc.co.uk/mediaselector/5/select/version/2.0/mediaset/http-icy-mp3-a/vpid/bbc_6music/format/pls.pls
-#EXTINF:-1,BBC Radio 6 Music
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_6music.m3u8
-#EXTINF:-1,BBC Radio 6Music (Low Bitrate)
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_vlow/ak/bbc_6music.m3u8
 #EXTINF:-1,Be
 https://radio.streamings.gr:9018/live
 #EXTINF:-1,Be-Music Surge - BMS music
@@ -90,7 +74,7 @@ http://s4.citrus3.com:8366/stream
 #EXTINF:-1,Big Indie Giant
 http://node-07.zeno.fm/h092qnwqwmzuv
 #EXTINF:-1,Black Duck
-http://n07.radiojar.com/2p937t2kb.m4a?rj-ttl=5\u0026rj-tok=AAABeKdtZzUALIMVzk2Pobu-Ig
+http://n07.radiojar.com/2p937t2kb.m4a?rj-ttl=5&rj-tok=AAABeKdtZzUALIMVzk2Pobu-Ig
 #EXTINF:-1,Black Rhino Radio
 https://blackrhinoradio.out.airtime.pro/blackrhinoradio_a
 #EXTINF:-1,BN Mallorca
@@ -140,15 +124,15 @@ https://st03.sslstream.dlf.de/dlf/03/high/aac/stream.aac?aggregator=web
 #EXTINF:-1,DKFM Shoegaze Radio
 https://maggie.torontocast.com:8090/live.mp3
 #EXTINF:-1,DM Pulse
-http://samcloud.spacial.com/api/listen?sid=78384\u0026rid=140033\u0026f=mp3,any\u0026br=128000,any\u0026m=pls
+http://samcloud.spacial.com/api/listen?sid=78384&rid=140033&f=mp3,any&br=128000,any&m=pls
 #EXTINF:-1,Dreampop Radio
 http://stream.laut.fm/dreampopradio
 #EXTINF:-1,DrGnu - 20th Century Rock
 http://streams.radiobob.de/2000er/mp3-192/mediaplayer/
 #EXTINF:-1,DrGnu - 70th Rock
-http://fluxfm.streamabc.net/flx-70er-mp3-320-4383769?sABC=6202qr25%230%237osorqnn86p8nnp979o1124290qqo247%23fgernzf.syhksz.qr\u0026amsparams=playerid:streams.fluxfm.deskey:1644355109
+http://fluxfm.streamabc.net/flx-70er-mp3-320-4383769?sABC=6202qr25%230%237osorqnn86p8nnp979o1124290qqo247%23fgernzf.syhksz.qr&amsparams=playerid:streams.fluxfm.deskey:1644355109
 #EXTINF:-1,DrGnu - 80th Rock II
-https://fluxfm.streamabc.net/flx-80er-mp3-320-9596107?sABC=6202qrr6%230%23sorr1p583723p06268o324o2ps5n399q%23fgernzf.syhksz.qr\u0026amsparams=playerid:streams.fluxfm.deskey:1644355302
+https://fluxfm.streamabc.net/flx-80er-mp3-320-9596107?sABC=6202qrr6%230%23sorr1p583723p06268o324o2ps5n399q%23fgernzf.syhksz.qr&amsparams=playerid:streams.fluxfm.deskey:1644355302
 #EXTINF:-1,DrGnu - 90th Rock
 http://streams.radiobob.de/bob-90srock/mp3-192/mediaplayer
 #EXTINF:-1,DrGnu - BOB's Livestream
@@ -160,11 +144,11 @@ http://streams.radiobob.de/gothic/mp3-192/mediaplayer
 #EXTINF:-1,DrGnu - Hard Rock
 http://streams.radiobob.de/bob-ironworkout/mp3-192/mediaplayer
 #EXTINF:-1,DrGnu - Hard Rock II
-https://fluxfm.streamabc.net/flx-hardrock-mp3-320-7063932?sABC=6202qsp7%230%23sorr1p583723p06268o324o2ps5n399q%23fgernzf.syhksz.qr\u0026amsparams=playerid:streams.fluxfm.deskey:1644355527
+https://fluxfm.streamabc.net/flx-hardrock-mp3-320-7063932?sABC=6202qsp7%230%23sorr1p583723p06268o324o2ps5n399q%23fgernzf.syhksz.qr&amsparams=playerid:streams.fluxfm.deskey:1644355527
 #EXTINF:-1,DrGnu - Metal 1
 http://streams.radiobob.de/bob-metal/mp3-192/mediaplayer
 #EXTINF:-1,DrGnu - Metal 2
-https://fluxfm.streamabc.net/flx-metalfm-mp3-320-9154971?sABC=6202r2p8%230%23sorr1p583723p06268o324o2ps5n399q%23fgernzf.syhksz.qr\u0026amsparams=playerid:streams.fluxfm.deskey:1644356296
+https://fluxfm.streamabc.net/flx-metalfm-mp3-320-9154971?sABC=6202r2p8%230%23sorr1p583723p06268o324o2ps5n399q%23fgernzf.syhksz.qr&amsparams=playerid:streams.fluxfm.deskey:1644356296
 #EXTINF:-1,DrGnu - Metal 2 Knight
 http://streams.radiobob.de/ritter/mp3-192/mediaplayer
 #EXTINF:-1,DrGnu - Metalcore 1
@@ -176,19 +160,13 @@ http://streams.radiobob.de/rockparty/mp3-192/mediaplayer/
 #EXTINF:-1,DrGnu - Wacken Radio
 http://streams.radiobob.de/bob-wacken/mp3-192/mediaplayer
 #EXTINF:-1,DrGnu - X-Mas Rock II
-https://fluxfm.streamabc.net/flx-event04-mp3-320-5268754?sABC=6202r047%230%23sorr1p583723p06268o324o2ps5n399q%23fgernzf.syhksz.qr\u0026amsparams=playerid:streams.fluxfm.deskey:1644355655
+https://fluxfm.streamabc.net/flx-event04-mp3-320-5268754?sABC=6202r047%230%23sorr1p583723p06268o324o2ps5n399q%23fgernzf.syhksz.qr&amsparams=playerid:streams.fluxfm.deskey:1644355655
 #EXTINF:-1,DROD
 http://stream.laut.fm/drod
 #EXTINF:-1,egoFLASH
 https://egofm-flash.cast.addradio.de/egofm/flash/mp3/high/stream.mp3?ar-distributor=f0a2
 #EXTINF:-1,egoFM
-http://streams.egofm.de/egoFM-hq
-#EXTINF:-1,egoFM
 http://www.egofm.de/stream/44kb.pls
-#EXTINF:-1,egoFM
-https://egofm-live.cast.addradio.de/egofm/live/mp3/high/stream.mp3
-#EXTINF:-1,egoFM
-https://egofm-live.cast.addradio.de/egofm/live/mp3/high/stream.mp3?ar-distributor=f0a2
 #EXTINF:-1,egoSNOW
 https://egofm-snow.cast.addradio.de/egofm/snow/mp3/high/stream.mp3?ar-distributor=f0a2
 #EXTINF:-1,egoSUN
@@ -207,8 +185,6 @@ https://jenny.torontocast.com:8048/192
 http://streams.fluxfm.de/live/mp3-320/audio/
 #EXTINF:-1,FluxFM - FluxKompensator
 http://streams.fluxfm.de/fluxkompensator/mp3-128/audio/play.m3u
-#EXTINF:-1,FluxFM - FluxKompensator
-http://streams.fluxfm.de/fluxkompensator/aac-64/audio/play.m3u
 #EXTINF:-1,FluxFM - JägerMusic Radio
 http://streams.fluxfm.de/jaegermusic/mp3-128/streams.fluxfm.de/
 #EXTINF:-1,FM Universidad 107.5 UNLP
@@ -270,7 +246,7 @@ https://radioislanegra.org/radio/8010/basic.aac
 #EXTINF:-1,Isla Negra Upbeat
 https://radioislanegra.org/radio/8030/basic.aac
 #EXTINF:-1,Jackson
-http://ice.streams.ovh:1120/?type=http\u0026nocache=1161
+http://ice.streams.ovh:1120/?type=http&nocache=1161
 #EXTINF:-1,Jams and Kooks
 http://stream.zenolive.com/0vqtrtyzg4duv.m3u
 #EXTINF:-1,JUKA Radio
@@ -285,10 +261,6 @@ http://130.166.82.184:8000/.mp3
 https://kexp-mp3-128.streamguys1.com/kexp128.mp3
 #EXTINF:-1,KEXP 90.3 Seattle, WA
 http://live-mp3-128.kexp.org/kexp128.mp3
-#EXTINF:-1,KEXP 90.3 Seattle, WA
-http://live-mp3-128.kexp.org:8000/
-#EXTINF:-1,KEXP 90.3 Seattle, WA
-http://live-aacplus-64.kexp.org/kexp64.aac
 #EXTINF:-1,Kill Radio - Los Angeles, CA
 http://killradio.org:8000/killradio64.mp3.m3u
 #EXTINF:-1,KINK 128k aac
@@ -332,7 +304,7 @@ http://s10.voscast.com:7858/
 #EXTINF:-1,laut.fm gitarre.fm
 http://stream.laut.fm/gitarrefm
 #EXTINF:-1,Laut.FM GitarreFM
-http://gitarrefm.stream.laut.fm/gitarrefm?t302=2018-01-20_14-05-15\u0026uuid=1c8009a5-68f5-476b-bc54-9abff67988b5
+http://gitarrefm.stream.laut.fm/gitarrefm?t302=2018-01-20_14-05-15&uuid=1c8009a5-68f5-476b-bc54-9abff67988b5
 #EXTINF:-1,laut.fm Kakerlakenradio
 http://stream.laut.fm/kakerlakenradio
 #EXTINF:-1,Laut.fm Popklub
@@ -354,11 +326,9 @@ http://server9.streamserver24.com:18900/motherearth
 #EXTINF:-1,mtc-fm
 https://stream.laut.fm/mtc-fm
 #EXTINF:-1,Musica Radio
-http://n11.radiojar.com/w6c6bssk95vtv?rj-ttl=5\u0026rj-tok=AAABeL2tvXsA_W4ZZxft3G5omQ
+http://n11.radiojar.com/w6c6bssk95vtv?rj-ttl=5&rj-tok=AAABeL2tvXsA_W4ZZxft3G5omQ
 #EXTINF:-1,MusicArtclub Radio
 http://eu9.fastcast4u.com:8090/
-#EXTINF:-1,Mystery Train Radio
-https://streamer.radio.co/sf662f27c0/low
 #EXTINF:-1,Mystery Train Radio
 https://streamer.radio.co/sf662f27c0/listen
 #EXTINF:-1,NazaRadio Buenos Aires | by aureofy.com
@@ -394,7 +364,7 @@ https://hits.pashpashradio.com:7000/
 #EXTINF:-1,Path through the Forest
 http://stream.laut.fm/path_through_the_forest
 #EXTINF:-1,Phonic FM
-http://stream.sentiaglobal.com:8003/main?=\u0026\u0026___cb=914156402529906
+http://stream.sentiaglobal.com:8003/main?=&&___cb=914156402529906
 #EXTINF:-1,Pidgin
 http://178.18.137.247/
 #EXTINF:-1,Pinguin Classics
@@ -403,8 +373,6 @@ http://streams.pinguinradio.com/PinguinClassics192.mp3
 http://streams.pinguinradio.com/PinguinRadio192.mp3
 #EXTINF:-1,Pinguin Radio
 http://streams.pinguinradio.com/PinguinRadio320.mp3
-#EXTINF:-1,Pinguin Radio
-http://pr320.pinguinradio.com/
 #EXTINF:-1,Piraten Radio
 http://piratenradioch.ice.infomaniak.ch/piratenradioch-128.mp3
 #EXTINF:-1,plant80s
@@ -412,7 +380,7 @@ https://laut.fm/planet80s
 #EXTINF:-1,Playgroud Radio
 http://playground.stream.laut.fm/playground
 #EXTINF:-1,Playground Radio
-http://playground.stream.laut.fm/playground?t302=2019-08-15_17-45-19\u0026uuid=74a24b34-418f-487d-872b-1377b197775b
+http://playground.stream.laut.fm/playground?t302=2019-08-15_17-45-19&uuid=74a24b34-418f-487d-872b-1377b197775b
 #EXTINF:-1,Polygon.FM - Indie Russian
 https://eu6.fastcast4u.com/proxy/mrrm?mp=/stream
 #EXTINF:-1,popadelica
@@ -441,8 +409,6 @@ http://air.radioart.com/fRock_and_indie.mp3
 http://listen.radioking.com/radio/372715/stream/422872
 #EXTINF:-1,Radio Britannia
 http://01.solumedia.com.ar:8472/stream/
-#EXTINF:-1,Radio Campus BXL 92.1 [AAC+]
-https://www.radiocampus.be/stream/stream.aacplus
 #EXTINF:-1,Radio Campus BXL 92.1 [AAC+]
 https://www.radiocampus.be/stream/stream.aacplus.m3u
 #EXTINF:-1,Radio Campus BXL 92.1 [Ogg HQ]
@@ -475,8 +441,6 @@ http://icepe14.infomaniak.ch/nova-lyon-128.mp3
 http://stream-uk1.radioparadise.com/aac-128
 #EXTINF:-1,Radio Paradise [Main Mix]
 http://stream.radioparadise.com/mp3-128
-#EXTINF:-1,Radio Paradise [Main Mix]
-http://stream.radioparadise.com/aac-128
 #EXTINF:-1,Radio Paradise [Mobile AAC+ 24k]
 http://www.radioparadise.com/m3u/aac-24.m3u
 #EXTINF:-1,Radio Paradise [Mobile OGG 32k]
@@ -503,16 +467,10 @@ https://us-b4-p-e-zx8-audio.cdn.mdstrm.com/live-audio/5bedd217987abd4e5d9e04b1/5
 http://www.radiosix.com/stream_mp3.m3u
 #EXTINF:-1,Radio UNiCC
 http://stream.radio-unicc.de:8000/unicc_mq.aacp
-#EXTINF:-1,Radio UNiCC
-http://stream.radio-unicc.de:8000/unicc_xq.mp3
-#EXTINF:-1,Radio UNiCC
-http://stream.radio-unicc.de:8000/unicc_hq.mp3
 #EXTINF:-1,Radio UTN Mendoza 94.5
 http://streaming.fmutn.com.ar:8000/FMUTN
 #EXTINF:-1,Radio X
-https://n07.radiojar.com/yv5xu5h7zwwtv?rj-ttl=5\u0026rj-tok=AAABeMgD8O4ADk3iEmxYJju41w
-#EXTINF:-1,Radio X
-http://media-the.musicradio.com/RadioXUK
+https://n07.radiojar.com/yv5xu5h7zwwtv?rj-ttl=5&rj-tok=AAABeMgD8O4ADk3iEmxYJju41w
 #EXTINF:-1,Radio X Basel (MP3 Stream)
 http://mp3.radiox.ch:8000/standard.mp3.m3u
 #EXTINF:-1,Radio Xiuxiu
@@ -585,8 +543,6 @@ http://stream.laut.fm/tonaktiv
 http://n09.radiojar.com/4f89tufzv9duv
 #EXTINF:-1,Trión Ciudad de México - 103.3 HD4 - XERFR-FM - Grupo Fórmula - Ciudad de México
 https://streaming.radio.co/s46aa86627/listen
-#EXTINF:-1,Trión Ciudad de México - 103.3 HD4 - XERFR-FM - Grupo Fórmula - Ciudad de México
-https://stream.radiojar.com/4f89tufzv9duv
 #EXTINF:-1,Trión Nogales - 89.1 FM - XHEHF-FM - Grupo Fórmula - Nogales, SO
 https://stream.radiojar.com/qqtzpdr76p8uv
 #EXTINF:-1,Trión San Luis - 90.1 FM - XHSMR-FM - GlobalMedia - San Luis Potosí, SL
@@ -596,10 +552,6 @@ http://stream.radiojar.com/a5qpu2en3p8uv
 #EXTINF:-1,Triple J (QLD)
 http://live-radio01.mediahubaustralia.com/4TJW/mp3/
 #EXTINF:-1,Uncertain FM
-https://uncertain.fm/streams/direct
-#EXTINF:-1,UncertainFM
-https://uncertain.fm/streams/direct
-#EXTINF:-1,UncertainFM
 https://uncertain.fm/streams/direct
 #EXTINF:-1,Universe Radio
 http://www.universeradio.nl/playlist/radio.pls

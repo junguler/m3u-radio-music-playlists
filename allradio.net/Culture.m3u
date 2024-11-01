@@ -23,8 +23,6 @@ https://dispatcher.rndfnk.com/br/br2/nord/aac/low
 https://dispatcher.rndfnk.com/br/br2/sued/mp3/mid
 #EXTINF:-1,BBC Radio 3
 http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_vlow/ak/bbc_radio_three.m3u8
-#EXTINF:-1,BBC Radio 3
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_radio_three.m3u8
 #EXTINF:-1,BBMFM
 http://stream.zenolive.com/kchb1gp3a1duv
 #EXTINF:-1,Book Network
@@ -33,8 +31,6 @@ https://lorenzovisi.radioca.st/stream
 https://dispatcher.rndfnk.com/br/brklassik/live/mp3/high
 #EXTINF:-1,Bremen Zwei
 https://icecast.radiobremen.de/rb/bremenzwei/live/mp3/64/stream.mp3
-#EXTINF:-1,Bremen Zwei
-http://rb-bremenzwei-live.cast.addradio.de/rb/bremenzwei/live/mp3/128/stream.mp3
 #EXTINF:-1,Bremen Zwei NEU
 https://icecast.radiobremen.de/rb/bremenzwei/live/mp3/128/stream.mp3
 #EXTINF:-1,Bunka Radio
@@ -49,8 +45,6 @@ https://stream.radio.co/s978e5f6bd/listen
 http://st01.dlf.de/dlf/01/128/mp3/stream.mp3
 #EXTINF:-1,Deutschlandfunk - [Opus 64 kbit/s]
 https://st01.sslstream.dlf.de/dlf/01/high/opus/stream.opus?aggregator=web
-#EXTINF:-1,Deutschlandfunk [MP3 128k]
-http://st01.dlf.de/dlf/01/128/mp3/stream.mp3
 #EXTINF:-1,Deutschlandfunk [Opus 24kbit/s]
 https://st01.sslstream.dlf.de/dlf/01/low/opus/stream.opus
 #EXTINF:-1,Deutschlandfunk Kultur [MP3 128kbit/s]
@@ -71,16 +65,12 @@ https://st02.sslstream.dlf.de/dlf/02/high/aac/stream.aac?aggregator=web
 https://st02.sslstream.dlf.de/dlf/02/128/mp3/stream.mp3
 #EXTINF:-1,DLF mp3 128
 https://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3
-#EXTINF:-1,DLF opus 64
-https://st01.sslstream.dlf.de/dlf/01/high/opus/stream.opus?aggregator=web
 #EXTINF:-1,DLR-6 大连都市之声
 http://ye23.win/iptv/dl2021.php?id=ogOu6vA
 #EXTINF:-1,Emisora HJUT | Universidad de Bogotá Jorge Tadeo Lozano
 http://hjut.utadeo.edu.co:8000/emisora-hjut.mp3
 #EXTINF:-1,EnglishWaves
 https://streaming.englishwaves.fr/englishwavesclassique.mp3
-#EXTINF:-1,France Culture
-http://icecast.radiofrance.fr/franceculture-hifi.aac
 #EXTINF:-1,France Culture
 http://icecast.radiofrance.fr/franceculture-midfi.mp3
 #EXTINF:-1,Fred Film Radio
@@ -124,8 +114,6 @@ https://sp2.servidorrprivado.com/8354/stream
 #EXTINF:-1,Jalisco Radio (AM) (Puerto Vallarta) - 1080 AM - XEPBPV-AM - Gobierno del Estado de Jalisco - Puerto Vallarta, JC
 https://sp2.servidorrprivado.com/8354/puertovallarta
 #EXTINF:-1,Jalisco Radio (FM) (Ciudad Guzmán) - 107.1 FM - XHCGJ-FM - Gobierno del Estado de Jalisco - Ciudad Guzmán, JC
-https://sp2.servidorrprivado.com/8136/ciudadguzman
-#EXTINF:-1,Jalisco Radio (FM) (Ciudad Guzmán) - 107.1 FM - XHCGJ-FM - Gobierno del Estado de Jalisco - Ciudad Guzmán, JC
 https://sp2.servidorrprivado.com/8136/cdadguzman
 #EXTINF:-1,Jalisco Radio (FM) (Guadalajara) - 96.3 FM - XEJB-FM - Gobierno del Estado de Jalisco - Guadalajara, JC
 https://sp2.servidorrprivado.com/8136/guadalajarafm
@@ -161,8 +149,6 @@ http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo_hh.m3u
 https://icecast.ndr.de/ndr/ndrinfo/hamburg/mp3/128/stream.mp3
 #EXTINF:-1,NDR Info (Hamburg) (HTTPS AAC)
 https://www.ndr.de/resources/metadaten/audio/aac/ndrinfo_hh.m3u
-#EXTINF:-1,NDR Info (Hamburg) (HTTPS AAC)
-https://icecast.ndr.de/ndr/ndrinfo/hamburg/aac/low
 #EXTINF:-1,NDR Info (Niedersachsen)
 http://www.ndr.de/resources/metadaten/audio/m3u/ndrinfo.m3u
 #EXTINF:-1,NDR Info (Schleswig-Holstein)
@@ -183,8 +169,6 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/NIUFM.mp3?dist
 http://s2.mexside.net/8016/stream
 #EXTINF:-1,ORF Ö1
 https://orf-live.ors-shoutcast.at/oe1-q2a
-#EXTINF:-1,ORF Ö1
-https://orf-live.ors-shoutcast.at/oe1-q1a
 #EXTINF:-1,RAC1
 https://playerservices.streamtheworld.com/api/livestream-redirect/RAC_1.mp3
 #EXTINF:-1,RAC1 +1
@@ -262,7 +246,7 @@ https://s5.mexside.net:2000/stream/libertad/stream
 #EXTINF:-1,Radio Nova
 http://centova.radios.pt:9528/
 #EXTINF:-1,Radio Nowy Świat
-https://stream.open.fm/368?type=.aac\u0026user=800043471858\u0026player_group=WWW
+https://stream.open.fm/368?type=.aac&user=800043471858&player_group=WWW
 #EXTINF:-1,Radio Nowy Swiat OF
 https://stream.open.fm/368
 #EXTINF:-1,Radio Orient Paris
@@ -277,8 +261,6 @@ https://www.radioromaniacultural.ro/asculta.m3u
 http://85.25.185.202:8138/stream
 #EXTINF:-1,Radio SRF 2 Kultur
 https://stream.srg-ssr.ch/m/drs2/aacp_32
-#EXTINF:-1,Radio SRF 2 Kultur
-https://stream.srg-ssr.ch/m/drs2/aacp_96
 #EXTINF:-1,Radio Tautoko
 https://s5.voscast.com:9751/TautokoFM.aac
 #EXTINF:-1,Radio UAdeO (Los Mochis) - 89.3 FM - XHUDO-FM - Universidad Autónoma de Occidente - Los Mochis, Sinaloa
@@ -313,12 +295,10 @@ http://icestreaming.rai.it/3.mp3
 https://edge.mixlr.com/channel/zwtuo
 #EXTINF:-1,RFI en español (Radio Francia Internacional)
 http://icepe1.infomaniak.ch/rfienespagnol-64.mp3
-#EXTINF:-1,RFI Spanish
-http://icepe1.infomaniak.ch/rfienespagnol-64.mp3
 #EXTINF:-1,RNE Radio 3
-http://hlsliveamdgl0-lh.akamaihd.net/i/rnerne3_1@793568/index_128_a-p.m3u8?sd=10\u0026rebase=on
+http://hlsliveamdgl0-lh.akamaihd.net/i/rnerne3_1@793568/index_128_a-p.m3u8?sd=10&rebase=on
 #EXTINF:-1,RNE Radio Nacional
-http://hlsliveamdgl0-lh.akamaihd.net/i/rnerne_1@586398/index_128_a-p.m3u8?sd=10\u0026rebase=on
+http://hlsliveamdgl0-lh.akamaihd.net/i/rnerne_1@586398/index_128_a-p.m3u8?sd=10&rebase=on
 #EXTINF:-1,RTHK Radio 4
 https://bbx.xmgspace.me/radio/rthk4/i/radio4_1@355867/master.m3u8
 #EXTINF:-1,Rúv rás1
@@ -347,8 +327,6 @@ https://icast1.streamcom.net/Kahungunu
 http://apple.irirangi.net:8000/S_Sun.aac
 #EXTINF:-1,Turanga FM
 http://apple.irirangi.net:8000/G_Turanga.aac
-#EXTINF:-1,Turanga FM
-https://ais-nzme.streamguys1.com/nz_136/playlist.m3u8
 #EXTINF:-1,Tuwharetoa FM
 https://icast1.streamcom.net/Tuwharetoa
 #EXTINF:-1,UA: Радіо Культура - UR-3
@@ -403,10 +381,8 @@ https://live.xmcdn.com/live/2767/64.m3u8
 https://lhttp.qtfm.cn/live/20500102/64k.mp3
 #EXTINF:-1,宁夏旅游广播
 https://lhttp.qingting.fm/live/1842/64k.mp3
-#EXTINF:-1,宁夏旅游广播
-http://lhttp.qingting.fm/live/1842/64k.mp3
 #EXTINF:-1,宁德交通旅游广播
-http://mmitv.top/test/ytradio.php?id=2237\u0026type=fujian
+http://mmitv.top/test/ytradio.php?id=2237&type=fujian
 #EXTINF:-1,安徽农村广播
 https://lhttp.qtfm.cn/live/1950/64k.mp3
 #EXTINF:-1,小小说电台
@@ -419,8 +395,6 @@ http://audiolive302.iqilu.com/sdradioWenyi/sdradio03/playlist.m3u8
 https://lhttp.qtfm.cn/live/20212427/64k.mp3
 #EXTINF:-1,张家口综艺广播
 https://lhttp.qtfm.cn/live/5021910/64k.mp3
-#EXTINF:-1,张家口综艺广播
-http://nlive.zjkgdcs.com:8091/live/jtgb.m3u8
 #EXTINF:-1,承德交通文艺广播
 https://lhttp.qtfm.cn/live/15318216/64k.mp3
 #EXTINF:-1,抚顺经济交通广播

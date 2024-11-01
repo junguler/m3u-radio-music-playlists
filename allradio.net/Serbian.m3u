@@ -134,8 +134,6 @@ https://naxidigital-mix128ssl.streaming.rs:8222/stream.nsv
 #EXTINF:-1,Naxi R'n'B Radio
 https://naxidigital-rnb128ssl.streaming.rs:8122/stream.nsv
 #EXTINF:-1,Naxi Radio
-http://naxi128.streaming.rs:9150/
-#EXTINF:-1,Naxi Radio
 http://naxi48.streaming.rs:9180/listen.pls
 #EXTINF:-1,Naxi Radio - Lounge
 http://naxidigital-lounge128.streaming.rs:8250/listen.pls
@@ -146,7 +144,7 @@ https://naxidigital-rock128ssl.streaming.rs:8182/
 #EXTINF:-1,No Limit Radio
 http://webradio.sksyu.net:8000/nolimithq.ogg
 #EXTINF:-1,OK radio
-https://sslstream.okradio.net/?type=http\u0026nocache=8804
+https://sslstream.okradio.net/?type=http&nocache=8804
 #EXTINF:-1,OK radio plus
 http://live.okplus.rs:8000/stream.nsv
 #EXTINF:-1,OK Radio Prelo
@@ -181,8 +179,6 @@ https://radio3-64ssl.streaming.rs:9212/stream.nsv
 http://stream.radio34.rs:8889/*.mp3
 #EXTINF:-1,Radio Ada 107,7
 http://94.130.196.243:9010/stream
-#EXTINF:-1,Radio Aparat
-http://ca3.rcast.net:8060/stream.mp3
 #EXTINF:-1,Radio Aparat
 http://ca3.rcast.net:8060/stream.mp3
 #EXTINF:-1,Radio Apatin
@@ -265,16 +261,14 @@ https://radio3-64ssl.streaming.rs:9212/*.mp3
 http://streaming11.tdiradio.com:8000/radiojat
 #EXTINF:-1,Radio Javor
 http://javor.streaming.rs:9320/
-#EXTINF:-1,Radio Javor Ivanjica
-http://javor.streaming.rs:9320/
 #EXTINF:-1,Radio K4
 http://fm.radiokfor.com:8090/stream.nsv
 #EXTINF:-1,Radio Kanal 6
 https://node-19.zeno.fm/qqx4q8pdfwzuv
 #EXTINF:-1,Radio Kanal 6 - Chill Out
-http://node-33.zeno.fm/qqx4q8pdfwzuv?rj-ttl=5\u0026rj-tok=AAABcjX9oLIANNDdFLkpsKmn4g
+http://node-33.zeno.fm/qqx4q8pdfwzuv?rj-ttl=5&rj-tok=AAABcjX9oLIANNDdFLkpsKmn4g
 #EXTINF:-1,Radio Kanal 6 - Rock and Roll
-http://node-08.zeno.fm/gku3bymq6tzuv?rj-ttl=5\u0026rj-tok=AAABcjYA_bMAgAziQNglcHCmFg
+http://node-08.zeno.fm/gku3bymq6tzuv?rj-ttl=5&rj-tok=AAABcjYA_bMAgAziQNglcHCmFg
 #EXTINF:-1,Radio Karolina - Classic hits 80′ 90′
 http://streaming.karolina.rs/classics.mp3
 #EXTINF:-1,Radio Klas
@@ -348,7 +342,7 @@ http://79.101.121.123:1935/rns1/prviprogram/livestream/playlist.m3u8
 #EXTINF:-1,Radio Novi Sad 3
 http://79.101.121.123:1935/rns3/treciprogram/livestream/playlist.m3u8
 #EXTINF:-1,Radio Novosti
-http://novostir.kbcnet.rs/stream.nsv\u0026type=mp3
+http://novostir.kbcnet.rs/stream.nsv&type=mp3
 #EXTINF:-1,Radio Patrola 021
 https://srv.mediastriming.com/8444/stream
 #EXTINF:-1,Radio Pingvin
@@ -358,7 +352,7 @@ http://s1.skeletor.rs:8000/podrinje
 #EXTINF:-1,Radio Puls Grocka
 http://176.9.59.144:8090/puls
 #EXTINF:-1,Radio Puls Luxembourg
-https://uk1.listen2myradio.com:2199/listen.php?port=8312\u0026type=s2\u0026mount=/stream
+https://uk1.listen2myradio.com:2199/listen.php?port=8312&type=s2&mount=/stream
 #EXTINF:-1,Radio Razbibriga
 http://213.239.205.210:8001/stream
 #EXTINF:-1,Radio Republike Srpske
@@ -369,8 +363,6 @@ http://live.radiorodnagruda.net:9203/stream.nsv
 http://stream.zeno.fm/q7300aptbwzuv
 #EXTINF:-1,Radio S
 https://53be5ef2d13aa.streamlock.net/asmedia/radios/playlist.m3u8
-#EXTINF:-1,Radio S
-https://5bc45691ca49f.streamlock.net/asmedia/radios/playlist.m3u8
 #EXTINF:-1,Radio S Cafe
 https://53be5ef2d13aa.streamlock.net/asmedia/radio_s_cafe/playlist.m3u8
 #EXTINF:-1,Radio S Dance
@@ -511,12 +503,8 @@ http://109.206.96.34:8200/stream.nsv
 http://live.wtfradio.rs/wtfradio.mp3
 #EXTINF:-1,YuEco Radio
 https://s1.skeletor.rs/yueco
-#EXTINF:-1,Радио Београд - 1
-https://rtsradio-live.morescreens.com/RTS_2_001/audio/chunklist.m3u8
 #EXTINF:-1,Радио Републике Српске
 https://parh.rtrs.tv/radio/live/chunklist_.m3u8
-#EXTINF:-1,РТС - Радио Београд - 1
-https://rtsradio-live.morescreens.com/RTS_2_001/audio/chunklist.m3u8
 #EXTINF:-1,РТС - Радио Београд - 2
 https://rtsradio-live.morescreens.com/RTS_2_002/audio/chunklist.m3u8
 #EXTINF:-1,РТС - Радио Београд - 202

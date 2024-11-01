@@ -27,18 +27,10 @@ http://legacy.scahw.com.au/2day_32
 http://198.74.51.37:9986/
 #EXTINF:-1,2FBI "FBi Radio" 94.5 FM Sydney, NSW
 https://streamer.fbiradio.com/stream
-#EXTINF:-1,2FBI "FBi Radio" 94.5 FM Sydney, NSW
-https://stream.fbiradio.com/stream.mp3
 #EXTINF:-1,2GB 873kHz AM Sydney NSW News and ShockJock 20220701
 https://18813.live.streamtheworld.com/2GBAAC.aac?
 #EXTINF:-1,2GB Sydney
-http://playerservices.streamtheworld.com/api/livestream-redirect/2GB.mp3
-#EXTINF:-1,2GB Sydney
 https://18743.live.streamtheworld.com/2GBAAC.aac
-#EXTINF:-1,2GB Sydney
-http://syd2gbaud-lh.akamaihd.net/i/sydneygbaudio_1@367120/master.m3u8
-#EXTINF:-1,2GB Sydney
-http://playerservices.streamtheworld.com/api/livestream-redirect/2GBAAC.aac
 #EXTINF:-1,2KRR-FM
 https://23203.live.streamtheworld.com/2KRR.mp3
 #EXTINF:-1,2MFM "Muslim Community Radio" 92.1 FM Sydney, NSW
@@ -48,8 +40,6 @@ http://broadcaster1.newcastle.edu.au:8000/live
 #EXTINF:-1,2ser
 https://livestream.2ser.com/streamrelay.m3u
 #EXTINF:-1,2SM "Super Network" 1269 Pyrmont, NSW
-http://144.140.228.109:8220/mp3
-#EXTINF:-1,2SM 1269kHz AM Sydney NSW John Laws SuperStation 20220701
 http://144.140.228.109:8220/mp3
 #EXTINF:-1,2SSR 99.7
 https://radio11.shoutcast.net.au/proxy/2ssr?mp=/stream
@@ -72,7 +62,7 @@ http://eno.emit.com:8000/3mbs_live_64.aacp
 #EXTINF:-1,3MDR
 http://eno.emit.com:8000/3mdr_live_64.aacp
 #EXTINF:-1,3mFM
-http://listen.3mfm.com.au:88/broadwave.mp3?src=1\u0026rate=1
+http://listen.3mfm.com.au:88/broadwave.mp3?src=1&rate=1
 #EXTINF:-1,3MP 1377 AM, Melbourne's Easy Music
 http://playerservices.streamtheworld.com/api/livestream-redirect/3MPAAC.aac
 #EXTINF:-1,3RPH 1179 AM
@@ -84,7 +74,7 @@ http://ondemand.rrr.org.au/stream/ws-lq.m3u
 #EXTINF:-1,3RRR Melbourne
 https://ondemand.rrr.org.au/stream/ws-hq.m3u
 #EXTINF:-1,3zzz 92.3 Melbourne Ethnic Community Radio
-http://right-click.com.au/rcPlayer2/p.php?c=3zzz\u0026t=pls
+http://right-click.com.au/rcPlayer2/p.php?c=3zzz&t=pls
 #EXTINF:-1,4AAA  "98.9FM" Brisbane, QLD
 http://s7.viastreaming.net:8305/listen.pls
 #EXTINF:-1,4AM Radio
@@ -105,8 +95,6 @@ http://www.surfmusic.de/m3u/4ca-864-am,18582.m3u
 https://usa4.fastcast4u.com/proxy/4k1g?mp=/stream
 #EXTINF:-1,4KQ 693
 https://ais-arn.streamguys1.com/au_009/playlist.m3u8
-#EXTINF:-1,4KQ 693
-https://ais-arn.streamguys1.com/au_009_icy
 #EXTINF:-1,4KZ Radio
 http://198.74.51.37:8425/stream.mp3
 #EXTINF:-1,4MBS Classic FM
@@ -123,8 +111,6 @@ http://playerservices.streamtheworld.com/api/livestream-redirect/ROC_4ROAAC.aac
 https://onlineradiobox.com/json/au/triplet/play?platform=web%22%20streamType=%22mp3
 #EXTINF:-1,4zzz
 https://iheart.4zzz.org.au/4zzz
-#EXTINF:-1,4ZZZ Community Radio
-https://iheart.4zzz.org.au/4zzz
 #EXTINF:-1,5AA
 http://streaming.novaentertainment.com.au/fiveaa?type=.mp3
 #EXTINF:-1,5AU 1242
@@ -135,14 +121,12 @@ http://203.45.194.8:88/broadwave.mp3
 https://23203.live.streamtheworld.com/6IX.mp3
 #EXTINF:-1,6PR Perth
 http://per6praud-lh.akamaihd.net/i/perthpraud_1@110913/master.m3u8
-#EXTINF:-1,6PR Perth
-https://23193.live.streamtheworld.com/6PRAAC.aac
 #EXTINF:-1,6PR Perth (MP3)
 https://23163.live.streamtheworld.com/6PR.mp3
 #EXTINF:-1,7HO FM Hobart
 http://playerservices.streamtheworld.com/api/livestream-redirect/HOB_7HO.mp3
 #EXTINF:-1,7RPH "Print Radio Tasmania"
-http://165.228.181.146:88/broadwave.mp3?src=1\u0026rate=1
+http://165.228.181.146:88/broadwave.mp3?src=1&rate=1
 #EXTINF:-1,88.6 Hard Rock
 http://radio886.at/streams/88.6_Hard_Rock/mp3
 #EXTINF:-1,88.9 FM Richmond Valley Radio
@@ -185,8 +169,6 @@ http://live-radio01.mediahubaustralia.com/2FMW/mp3/*.mp3
 https://mediaserviceslive.akamaized.net/hls/live/2038316/classicfmnsw/masterhq.m3u8
 #EXTINF:-1,ABC Country (AAC)
 http://live-radio01.mediahubaustralia.com/CTRW/aac/
-#EXTINF:-1,ABC Country (MP3)
-http://live-radio01.mediahubaustralia.com/CTRW/mp3/*.mp3
 #EXTINF:-1,ABC Country (MP3)
 http://live-radio01.mediahubaustralia.com/CTRW/mp3/*.mp3
 #EXTINF:-1,ABC Country 20220701
@@ -305,10 +287,6 @@ https://mediaserviceslive.akamaized.net/hls/live/2038157/localnorthqld/masterhq.
 http://live-radio03.mediahubaustralia.com/2TAMW/aac/
 #EXTINF:-1,ABC News Radio
 http://www.abc.net.au/res/streaming/audio/aac/news_radio.pls
-#EXTINF:-1,ABC News Radio
-http://www.abc.net.au/res/streaming/audio/aac/news_radio.pls
-#EXTINF:-1,ABC News Radio
-http://www.abc.net.au/res/streaming/audio/aac/news_radio.pls
 #EXTINF:-1,ABC News Radio 20220701
 https://mediaserviceslive.akamaized.net/hls/live/2038311/newsradio/masterhq.m3u8
 #EXTINF:-1,ABC NewsRadio MP3
@@ -339,8 +317,6 @@ http://www.abc.net.au/res/streaming/audio-live/shout-aac/local_southwestwa.pls
 http://live-radio03.mediahubaustralia.com/4SUNW/aac/
 #EXTINF:-1,ABC Triple J (AAC)
 http://live-radio01.mediahubaustralia.com/2TJW/aac/
-#EXTINF:-1,ABC Triple J (AAC)
-http://live-radio01.mediahubaustralia.com/2TJW/aac/
 #EXTINF:-1,ABC Triple J (MP3)
 http://live-radio01.mediahubaustralia.com/2TJW/mp3/stream.nsv
 #EXTINF:-1,ABC Triple J (SA)
@@ -358,8 +334,6 @@ https://5b622f07944df.streamlock.net/alkarmatv.com/alkarmaau.smil/chunklist_w377
 #EXTINF:-1,Andrew Haug Metal  Radio
 http://streamer.radio.co/s6a349b3a2/listen
 #EXTINF:-1,ArtSound FM
-http://119.15.96.188/stream2.mp3
-#EXTINF:-1,ArtSound FM 90.3
 http://119.15.96.188/stream2.mp3
 #EXTINF:-1,Australian Made Music
 https://listen10.as.amplifystreaming.com/radio/8000/amm_128.aac
@@ -419,8 +393,6 @@ http://icecast.zog.net.au:8000/source
 http://wznsw.scahw.com.au/live/2easy_32.stream/playlist.m3u8
 #EXTINF:-1,Fiveaa Adelaide 5AA
 http://streaming.novaentertainment.com.au/fiveaa
-#EXTINF:-1,Fiveaa Adelaide 5AA
-https://23203.live.streamtheworld.com/FIVEAA_AAC48.aac
 #EXTINF:-1,Fox FM
 http://wzvic.scahw.com.au/live/3fox_128.stream/playlist.m3u8
 #EXTINF:-1,Free FM Rock Austral
@@ -429,8 +401,6 @@ https://freefmrock.radioca.st/
 https://live.fresh927.com.au/freshaac
 #EXTINF:-1,Gold 104.3
 https://ais-arn.streamguys1.com/au_004/playlist.m3u8
-#EXTINF:-1,Gold 104.3
-https://ais-arn.streamguys1.com/au_004_icy
 #EXTINF:-1,Gold Central Victoria
 http://playerservices.streamtheworld.com/api/livestream-redirect/BEN_GOLDAAC.aac
 #EXTINF:-1,Golden Days Radio
@@ -455,14 +425,12 @@ https://wz6web.scahw.com.au/live/6ppm_128.stream/playlist.m3u8
 https://wz2liw.scahw.com.au/live/2aay_128.stream
 #EXTINF:-1,Hobart FM
 https://radio11.shoutcast.net.au/proxy/hobartfm?mp=/stream
-#EXTINF:-1,Hobart FM
-https://radio11.shoutcast.net.au/proxy/hobartfm?mp=/stream
 #EXTINF:-1,Hope St Radio
 http://hopestreetradio.out.airtime.pro:8000/hopestreetradio_a
 #EXTINF:-1,Hot 91.1
 https://playerservices.streamtheworld.com/api/livestream-redirect/MAR_HOT91AAC.m3u8
 #EXTINF:-1,Huon and Kingston FM
-http://59.167.200.215:88/broadwave.mp3?src=1\u0026amprate=1\u0026amp
+http://59.167.200.215:88/broadwave.mp3?src=1&amprate=1&amp
 #EXTINF:-1,Islam2Day Channel 1
 http://www.islam2day.tv/radio-station/ch1.m3u
 #EXTINF:-1,Islam2Day Channel 2
@@ -489,8 +457,6 @@ http://radio1.internode.on.net:8002/21
 https://stream.thelight.com.au:8130/listen.asx
 #EXTINF:-1,Mackay 4MK 1026kHz AM Central Queensland Classic Hits 20220701
 https://24963.live.streamtheworld.com/MAC_4MKAAC/HLS/playlist.m3u8?
-#EXTINF:-1,Mackay 4MK 1026kHz AM Central Queensland Classic Hits 20220708
-https://24963.live.streamtheworld.com/MAC_4MKAAC/HLS/playlist.m3u8?
 #EXTINF:-1,Magic 87.6
 https://syd02.sdn.dhcmedia.com.au/radio/8010/magic876
 #EXTINF:-1,MAINfm
@@ -503,8 +469,6 @@ https://ais-arn.streamguys1.com/au_003_icy
 https://ais-arn.streamguys1.com/au_006/playlist.m3u8
 #EXTINF:-1,Moranbah 4RFM 96.6MHz FM Community Radio Central Queensland
 https://stream.4rfm.com.au/1
-#EXTINF:-1,NixRadio
-http://nixradio.net:8001/nixradio
 #EXTINF:-1,NixRadio
 http://nixradio.net:8001/nixradio
 #EXTINF:-1,Nomad Radio
@@ -531,8 +495,6 @@ https://s4.radio.co/s99b8a01f4/listen
 http://stream.outbackradio.com.au:7230/
 #EXTINF:-1,PBS 106.7FM
 http://eno.emit.com:8000/pbsfm_live_64.aacp
-#EXTINF:-1,PBS 106.7FM
-https://23153.live.streamtheworld.com/3PBS_FMAAC.aac?DIST=TuneIn\u0026TGT=TuneIn\u0026maxServers=2\u0026gdpr=0\u0026us_privacy=1YNY\u0026partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTY0OTA2NDY0MywiaXNzIjoidGlzcnYifQ.1Rc-ikek812xDy3j-yFdv9j_ulLiTPVJPhd4CF47gPk
 #EXTINF:-1,PBS FM
 https://cast-1.nucleusstreaming.com:4443/pbsfm_live_64.aacp
 #EXTINF:-1,Perth Chinese Radio珀斯中文调频 FM90.5
@@ -540,7 +502,7 @@ http://streamer2.rightclickitservices.com:7200/
 #EXTINF:-1,Plastic Age Radio
 http://s6.nexuscast.com/tunein/plasticage.pls
 #EXTINF:-1,plastic radio
-http://n0d.radiojar.com/wdc34p1r8eeuv?rj-ttl=5\u0026rj-tok=AAABfeDPsoYAE0e9s2AMD1cBxw
+http://n0d.radiojar.com/wdc34p1r8eeuv?rj-ttl=5&rj-tok=AAABfeDPsoYAE0e9s2AMD1cBxw
 #EXTINF:-1,Portuguese Radio Australia
 https://s2.radio.co/sdff54b89f/listen
 #EXTINF:-1,POWER100
@@ -549,8 +511,6 @@ http://15363.live.streamtheworld.com/TOW_POWER100AAC.aac
 https://playerservices.streamtheworld.com/api/livestream-redirect/TOW_POWER100AAC_SC
 #EXTINF:-1,Pure Hits Australian Made
 http://stream10.as.amplifystreaming.com/radio/8000/amm_128.aac
-#EXTINF:-1,Pure Hits Australian Made
-http://stream10.as.amplifystreaming.com/radio/8000/amm_128.mp3
 #EXTINF:-1,Pure Hits FRESH
 https://listen10.as.amplifystreaming.com/radio/8040/fresh_128.aac
 #EXTINF:-1,Pure Hits RETRO
@@ -575,8 +535,6 @@ https://servidor40.brlogic.com:8004/live
 http://s3.myradiostream.com:10968/
 #EXTINF:-1,Radio Five-O-Plus
 http://61.69.112.50:88/broadwave.mp3
-#EXTINF:-1,Radio Five-O-Plus
-http://61.69.112.50:88/broadwave.mp3
 #EXTINF:-1,Radio Great Southern - AM 1422 Wagin WA
 http://procyon.shoutca.st:8377/stream
 #EXTINF:-1,Radio Italian Music
@@ -591,8 +549,6 @@ https://white.radio.sydney/320
 https://s8.yesstreaming.net:17145/RblGC_hq?1638436061635
 #EXTINF:-1,River 94.9
 http://playerservices.streamtheworld.com/api/livestream-redirect/IPS_RIVER949AAC.m3u8
-#EXTINF:-1,River 94.9
-http://playerservices.streamtheworld.com/api/livestream-redirect/IPS_RIVER949AAC.aac
 #EXTINF:-1,Riverland Life FM
 http://streaming.1007life.com:19198/listen.mp3
 #EXTINF:-1,RPPFM
@@ -626,7 +582,7 @@ https://ais-arn.streamguys1.com/au_033/playlist.m3u8
 #EXTINF:-1,Skylab Radio
 http://stream.skylab-radio.com:8000/live
 #EXTINF:-1,Smooth 90's
-https://23153.live.streamtheworld.com/SMOOTH_90S_AAC.aac?dist=neweb\u0026tdsdk=js-2.9\u0026pname=TDSdk\u0026pversion=2.9\u0026banners=none\u0026sbmid=abef4b80-f919-4890-d5fd-a5499445c36d
+https://23153.live.streamtheworld.com/SMOOTH_90S_AAC.aac?dist=neweb&tdsdk=js-2.9&pname=TDSdk&pversion=2.9&banners=none&sbmid=abef4b80-f919-4890-d5fd-a5499445c36d
 #EXTINF:-1,Smooth FM 91.5
 https://23153.live.streamtheworld.com/SMOOTH915_AAC48.aac
 #EXTINF:-1,Smooth FM 95.3
@@ -638,13 +594,11 @@ https://23153.live.streamtheworld.com/SMOOTHRELAX_SYD.mp3
 #EXTINF:-1,Smooth-Relax
 http://playerservices.streamtheworld.com/api/livestream-redirect/SMOOTHRELAX_SYD_AAC.aac
 #EXTINF:-1,Sound of Hope Australia (Mandarin)
-http://livecast1.soundofhope.org:2086/SYDNEY?DIST=TuneIn\u0026TGT=TuneIn\u0026maxServers=2\u0026partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTYzNzEzMDYzMSwiaXNzIjoidGlzcnYifQ.QwRoZTsz_NPXxnuSwo_uR7b_ANDbYEAKOVzHyMC-MtE
+http://livecast1.soundofhope.org:2086/SYDNEY?DIST=TuneIn&TGT=TuneIn&maxServers=2&partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTYzNzEzMDYzMSwiaXNzIjoidGlzcnYifQ.QwRoZTsz_NPXxnuSwo_uR7b_ANDbYEAKOVzHyMC-MtE
 #EXTINF:-1,Southern FM
 http://stream.swifthosting.com.au:8080/stream
 #EXTINF:-1,Spacesynth FM
 https://stream.nightride.fm/spacesynth.m4a
-#EXTINF:-1,Star 104.5
-http://playerservices.streamtheworld.com/api/livestream-redirect/STARFM_AAC48.aac
 #EXTINF:-1,Star 104.5
 http://streaming.novaentertainment.com.au/starfm
 #EXTINF:-1,Star 106.3 Townsville
@@ -665,17 +619,7 @@ https://onlineradiobox.com/json/au/971sweet/play?platform=web%22%20streamType=%2
 http://128.199.77.168:8000/stream907
 #EXTINF:-1,Systrum Sistum - SSR1
 http://systrum.net:8000/SSR1.m3u
-#EXTINF:-1,Systrum Sistum - SSR1
-https://systrum.net/SSR1.m3u
-#EXTINF:-1,Systrum Sistum - SSR1
-https://systrum.net/SSR1.m3u
 #EXTINF:-1,Systrum Sistum - SSR2
-https://systrum.net/SSR2.m3u
-#EXTINF:-1,Systrum Sistum - SSR2
-https://systrum.net/SSR2.m3u
-#EXTINF:-1,Systrum Sistum (SSR1)
-https://systrum.net/SSR1.m3u
-#EXTINF:-1,Systrum Sistum (SSR2)
 https://systrum.net/SSR2.m3u
 #EXTINF:-1,The Fox FM
 https://wz3web.scahw.com.au/live/3fox_128.stream/playlist.m3u8
@@ -712,7 +656,7 @@ https://18553.live.streamtheworld.com/T_RAD_00S_S01AAC_SC
 #EXTINF:-1,Totally Radio 90's
 https://18553.live.streamtheworld.com/T_RAD_90S_S01AAC
 #EXTINF:-1,Totally Radio 90's (update)
-https://18553.live.streamtheworld.com/T_RAD_90S_S01AAC.aac?dist=triton-widget\u0026tdsdk=js-2.9\u0026pname=tdwidgets\u0026pversion=2.9\u0026banners=none\u0026sbmid=c8b3b9f3-1ddf-44ea-944a-75516a135952
+https://18553.live.streamtheworld.com/T_RAD_90S_S01AAC.aac?dist=triton-widget&tdsdk=js-2.9&pname=tdwidgets&pversion=2.9&banners=none&sbmid=c8b3b9f3-1ddf-44ea-944a-75516a135952
 #EXTINF:-1,Totally Radio Greatest Hits
 https://18533.live.streamtheworld.com/T_RAD_GRTST_HITS_S01AAC
 #EXTINF:-1,Totally Radio Hits
@@ -745,8 +689,6 @@ https://wz3web.scahw.com.au/live/3classicrock_32.stream/playlist.m3u8
 https://wz4web.scahw.com.au/live/4aussie_32.stream/playlist.m3u8
 #EXTINF:-1,Triple M Greatest Hits
 https://wz2web.scahw.com.au/live/2greatesthits_32.stream/playlist.m3u8
-#EXTINF:-1,Triple M Greatest Hits
-https://wz2web.scahw.com.au/live/2greatesthits_32.stream/playlist.m3u8?scaweb=national
 #EXTINF:-1,Triple M Greatest Hits - Brisbane
 https://wz4web.scahw.com.au/live/4greatesthits_32.stream/playlist.m3u8
 #EXTINF:-1,Triple M Melbourne
@@ -766,7 +708,7 @@ http://www.abc.net.au/res/streaming/audio/mp3/triplej.pls
 #EXTINF:-1,TSIMA Radio 4MW 1260kHz AM Torres Strait
 https://firstnationsmedia.stream/8024/stream
 #EXTINF:-1,UGFM
-http://right-click.com.au/rcPlayer/p.php?c=ugfm\u0026t=m3u
+http://right-click.com.au/rcPlayer/p.php?c=ugfm&t=m3u
 #EXTINF:-1,Urban Hits
 https://ic2ti.scahw.com.au/2urbanhits_128
 #EXTINF:-1,V1 RADIO
@@ -788,7 +730,7 @@ http://east.coastdev.net/6mm-mp3
 #EXTINF:-1,WaveFM 96.5
 http://23023.live.streamtheworld.com/WOL_WAVE_FMAAC.aac
 #EXTINF:-1,WOW FM
-http://right-click.com.au/rcPlayer/p.php?c=wowfm\u0026t=m3u
+http://right-click.com.au/rcPlayer/p.php?c=wowfm&t=m3u
 #EXTINF:-1,WSFM 101.7
 https://ais-arn.streamguys1.com/au_002_icy
 #EXTINF:-1,WSFM 101.7 Sydney

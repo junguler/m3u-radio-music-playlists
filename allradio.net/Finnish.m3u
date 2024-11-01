@@ -1,8 +1,6 @@
 #EXTM3U
 #EXTINF:-1,Aito Iskelmä
 https://supla.digitacdn.net/live/_definst_/supla/aitoiskelma/playlist.m3u8
-#EXTINF:-1,Aito Iskelmä
-https://digitacdn.akamaized.net/hls/live/629243/aitoiskelma/master-128000.m3u8
 #EXTINF:-1,Bassoradio
 https://stream.radioplay.fi/basso/bassoradio_64.aac
 #EXTINF:-1,bitcoin radio suomenkieli | btcrad.io
@@ -21,8 +19,6 @@ https://hakkeriradio.fi:8443/stream
 https://c7.toivon.net/toivon/toivon_7?mp=/stream
 #EXTINF:-1,Helmiradio
 https://digitacdn.akamaized.net/hls/live/629243/radiohelmi/master-128000.m3u8
-#EXTINF:-1,HitMix
-https://supla.digitacdn.net/live/_definst_/supla/hitmix/playlist.m3u8
 #EXTINF:-1,HitMix
 https://digitacdn.akamaized.net/hls/live/629243/hitmix/master-128000.m3u8
 #EXTINF:-1,https://www.patmos.fi/radio-patmos/
@@ -116,7 +112,7 @@ http://radio.radiohelsinki.fi/
 #EXTINF:-1,Radio Helsinki (256 kb/s)
 http://77.86.233.1:8002/
 #EXTINF:-1,Radio Helsinki 98,5 Mhz
-http://opml.radiotime.com/Tune.ashx?id=s97243\u0026formats=aac,ogg,mp3\u0026partnerId=16\u0026serial=afe4c1a95cc7f3a92c47dbad1b283293
+http://opml.radiotime.com/Tune.ashx?id=s97243&formats=aac,ogg,mp3&partnerId=16&serial=afe4c1a95cc7f3a92c47dbad1b283293
 #EXTINF:-1,Radio Inari
 http://radioinari.radioman.fi:8000/radioinari
 #EXTINF:-1,Radio KAAKKO
@@ -131,8 +127,6 @@ http://n09.radiojar.com/n6yg5q0z8vzuv.m4a
 https://stream-redirect.bauermedia.fi/nostalgia/nostalgia_128.mp3
 #EXTINF:-1,Radio Nova
 https://stream.bauermedia.fi/radionova/radionova_64.aac
-#EXTINF:-1,Radio Nova
-https://stream.bauermedia.fi/radionova/radionova_128.mp3
 #EXTINF:-1,Radio nova
 http://stream.bauermedia.fi/radionova/radionova_128.mp3
 #EXTINF:-1,Radio Pooki
@@ -145,8 +139,6 @@ http://c0.toivon.net:8100/stream
 http://stream.radiorex.fi:8000/radiorex
 #EXTINF:-1,Radio Rock
 https://digitacdn.akamaized.net/hls/live/629243/radiorock/master-128000.m3u8
-#EXTINF:-1,Radio Rock
-https://supla.digitacdn.net/live/_definst_/supla/radiorock/chunklist.m3u8
 #EXTINF:-1,Radio Sandels
 http://suomiradio.pro:8080/listen.pls
 #EXTINF:-1,Radio SUN
@@ -200,11 +192,9 @@ https://yleuni-f.akamaihd.net/i/yleliveradiohd_12@113889/master.m3u8
 #EXTINF:-1,YLE Radio Suomi - Kotka
 http://yleuni-f.akamaihd.net/i/yleliveradiohd_16@113893/master.m3u8
 #EXTINF:-1,YLE Radio Suomi - Tampere
-https://yleuni-f.akamaihd.net/i/yleliveradiohd_26@113903/index_128_a-p.m3u8?sd=10\u0026rebase=on
-#EXTINF:-1,YLE Radio Suomi - Tampere
-https://yleuni-f.akamaihd.net/i/yleliveradiohd_26@113903/master.m3u8
+https://yleuni-f.akamaihd.net/i/yleliveradiohd_26@113903/index_128_a-p.m3u8?sd=10&rebase=on
 #EXTINF:-1,YLE Radio Suomi - Turku
-https://yleuni-f.akamaihd.net/i/yleliveradiohd_27@113904/index_128_a-p.m3u8?sd=10\u0026rebase=on
+https://yleuni-f.akamaihd.net/i/yleliveradiohd_27@113904/index_128_a-p.m3u8?sd=10&rebase=on
 #EXTINF:-1,Yle Radio Suomi Lappeenranta
 https://yleuni-f.akamaihd.net/i/yleliveradiohd_19@113896/index_128_a-p.m3u8
 #EXTINF:-1,Yle Radio Suomi Rovaniemi
@@ -219,7 +209,5 @@ https://icecast.live.yle.fi/radio/YleTampere/icecast.audio
 http://yleuni-f.akamaihd.net/i/yleliveradiohd_2@113879/master.m3u8
 #EXTINF:-1,Ylex
 https://yleradiolive.akamaized.net/hls/live/2027674/in-YleX/master.m3u8
-#EXTINF:-1,YleX
-https://icecast.live.yle.fi/radio/YleX/icecast.audio
 #EXTINF:-1,Ysäri
 https://stream.bauermedia.fi/ysari/ysari_64.aac

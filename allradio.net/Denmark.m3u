@@ -22,17 +22,11 @@ http://stereo.dfm.nu:8205/dfm_1
 #EXTINF:-1,DR Nyheder
 http://live-icy.gss.dr.dk/A/A02L.mp3.m3u
 #EXTINF:-1,DR P1
-http://live-icy.gss.dr.dk/A/A03H.mp3
-#EXTINF:-1,DR P1
 http://live-icy.dr.dk/A/A03H.mp3.m3u
 #EXTINF:-1,DR P2
 http://live-icy.gss.dr.dk/A/A04H.mp3.m3u
-#EXTINF:-1,DR P2
-http://live-icy.dr.dk/A/A04H.mp3.m3u
 #EXTINF:-1,DR P3
 http://live-icy.gss.dr.dk/A/A05H.mp3.m3u
-#EXTINF:-1,DR P3
-http://live-icy.gss.dr.dk:8000/A/A05H.mp3
 #EXTINF:-1,DR P4 Bornholm
 http://live-icy.gss.dr.dk/A/A06H.mp3.m3u
 #EXTINF:-1,DR P4 Esbjerg
@@ -61,8 +55,6 @@ http://live-icy.gss.dr.dk/A/A29H.mp3.m3u
 http://live-icy.gss.dr.dk/A/A22H.mp3.m3u
 #EXTINF:-1,DR P8 Jazz
 http://live-icy.gss.dr.dk/A/A22H.mp3
-#EXTINF:-1,DR P8 Jazz
-http://live-icy.dr.dk/A/A22H.mp3.m3u
 #EXTINF:-1,DR Ramasjang/Ultra Radio
 http://live-icy.gss.dr.dk/A/A24H.mp3
 #EXTINF:-1,Fimbul Radio - Danheim
@@ -101,8 +93,6 @@ http://onair.100fmlive.dk/100fm_live.mp3
 http://stream.wlmm.dk:8010/radio208
 #EXTINF:-1,Radio ABC
 http://netradio.radioabc.dk/
-#EXTINF:-1,Radio ABC
-https://radioserver.dk/abc
 #EXTINF:-1,Radio ALR
 http://streamer.radio.co/s6a9beb92e/listen
 #EXTINF:-1,Radio Diablo
@@ -113,19 +103,13 @@ http://stream.radiojar.com/fqt2y0ds97zuv
 http://solid67.streamupsolutions.com:15507/stream
 #EXTINF:-1,Radio Globus
 https://stream.probroadcast.dk/radioglobus
-#EXTINF:-1,Radio Globus
-https://stream.probroadcast.dk/radioglobus
 #EXTINF:-1,Radio Klassisk
 http://tx-bauerdk.sharp-stream.com/http_live.php?i=radioklassisk_dk_mp3
 #EXTINF:-1,Radio Klitholm
 http://stream.radioklitholm.dk:8000/stream
 #EXTINF:-1,Radio Limfjord
 http://media.limfjordnetradio.dk/limfjord128
-#EXTINF:-1,Radio Limfjord
-http://media.limfjordnetradio.dk/limfjordaac
 #EXTINF:-1,Radio Mælkebøtten
-http://live2.rcast.net:8722/stream
-#EXTINF:-1,Radio MB
 http://live2.rcast.net:8722/stream
 #EXTINF:-1,Radio MFK
 https://stream1.radiomfk.dk/radiomfk
@@ -147,10 +131,6 @@ https://webradio.radioviborg.dk/viborg
 http://netradio.radio4.dk/radio4
 #EXTINF:-1,Retro Radio
 http://stream128.retro-radio.dk/retro
-#EXTINF:-1,Retro-Radio
-http://stream128.retro-radio.dk/retro
-#EXTINF:-1,Retro-Radio
-http://stream128.retro-radio.dk/retro
 #EXTINF:-1,Retro-Radio Jul
 http://isstream.kanalplus.fm/TX-1
 #EXTINF:-1,Retro-Radio Millennium
@@ -164,7 +144,7 @@ http://webradio.skala.fm/kolding
 #EXTINF:-1,Syddjurs Lokalradio - Radio Ronde 101.7 FM
 http://media.wlmm.dk/djurs
 #EXTINF:-1,Tango Copenhagen Radio
-https://tangocopenhagen.stream.laut.fm/tangocopenhagen?t302=2021-01-15_18-47-40\u0026uuid=64db9a91-4a6e-4bc8-ba24-26a2fa7f24d0
+https://tangocopenhagen.stream.laut.fm/tangocopenhagen?t302=2021-01-15_18-47-40&uuid=64db9a91-4a6e-4bc8-ba24-26a2fa7f24d0
 #EXTINF:-1,TechnoBase.FM - AACplus 96k
 http://listen.technobase.fm/tunein-aacplus-pls
 #EXTINF:-1,TechnoBase.FM - MP3 192k
