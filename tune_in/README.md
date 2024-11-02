@@ -1,0 +1,1 @@
+this website only had a few genre playlists so i've used the search feature to get a wide range of genres, countries and languages, this means some of these playlists might have wrong links in them since they were not hand-picked by a human and were queried by machines
