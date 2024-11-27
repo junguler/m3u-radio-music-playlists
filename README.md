@@ -622,6 +622,11 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/tune_in">/tune_in</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/tune_in.sh">tune_in.sh</a></td>
 </tr>
+<tr>
+<td><a href="https://kuasark.com/en/">https://kuasark.com/en/</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/kuasark">/kuasark</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/kuasark.sh">kuasark.sh</a></td>
+</tr>
 </tbody></table>
 <p>my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)</p>
 
