@@ -271,7 +271,7 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/listen_to_kuasark">kuasark</a></td>
 </tr>
 <tr>
-<td><a href="https://github.com/junguler/listen_to_fm_cube">fm_cube</a></td>
+<td><a href="https://github.com/junguler/listen_to_radio-mixer">radio-mixer</a></td>
 <td colspan="4"></td>
 </tr>
 </tbody></table>
