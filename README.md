@@ -256,17 +256,23 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/listen_to_radio.menu">radio.menu</a></td>
 <td><a href="https://github.com/junguler/listen_to_top-radio">top-radio</a></td>
 </tr>
+<tr>
 <td><a href="https://github.com/junguler/listen_to_stream_finder">stream_finder</a></td>
 <td><a href="https://github.com/junguler/listen_to_live-radio-24">live-radio-24</a></td>
 <td><a href="https://github.com/junguler/listen_to_my_radio-box">my_radio-box</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio_matik">radio_matik</a></td>
 <td><a href="https://github.com/junguler/listen_to_fm_cube">fm_cube</a></td>
+</tr>
 <tr>
 <td><a href="https://github.com/junguler/listen_to_fm_cube">fm_cube</a></td>
 <td><a href="https://github.com/junguler/listen_to_live_365">live_365</a></td>
 <td><a href="https://github.com/junguler/listen_to_rcast.net">rcast.net</a></td>
 <td><a href="https://github.com/junguler/listen_to_shoutcast">shoutcast</a></td>
 <td><a href="https://github.com/junguler/listen_to_kuasark">kuasark</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/junguler/listen_to_fm_cube">fm_cube</a></td>
+<td colspan="4"></td>
 </tr>
 </tbody></table>
 
