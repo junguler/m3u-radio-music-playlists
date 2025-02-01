@@ -272,7 +272,8 @@ m3u radio music playlists
 </tr>
 <tr>
 <td><a href="https://github.com/junguler/listen_to_radio-mixer">radio-mixer</a></td>
-<td colspan="4"></td>
+<td><a href="https://github.com/junguler/listen_to_radio_tune">radio_tune</a></td>
+<td colspan="3"></td>
 </tr>
 </tbody></table>
 
