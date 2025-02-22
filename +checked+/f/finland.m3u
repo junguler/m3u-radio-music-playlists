@@ -1,12 +1,50 @@
 #EXTM3U
+#EXTINF:-1,Radio Pooki
+https://stream.bauermedia.fi/radiopooki/radiopooki_64.aac
+#EXTINF:-1,NRJ fi Pop
+https://stream.bauermedia.fi/nrj/nrj_64.aac
+#EXTINF:-1,Radio City
+https://stream.bauermedia.fi/radiocity/radiocity_64.aac
+#EXTINF:-1,Yle Radio Suomi
+https://yleradiolive.akamaized.net/hls/live/2027675/in-YleRS/256/variant.m3u8
+#EXTINF:-1,Radio SuomiPop
+https://ms-live-suomipop.nm-elemental.nelonenmedia.fi/master-256000.m3u8
+#EXTINF:-1,Auran Aallot
+https://stream.bauermedia.fi/auranaallot/auranaallot_64.aac
+#EXTINF:-1,Radio Rock Finland
+https://ms-live-radiorock.nm-elemental.nelonenmedia.fi/master.m3u8
+#EXTINF:-1,Groove FM Finland
+https://ms-live-groove.nm-elemental.nelonenmedia.fi/master-256000.m3u8
+#EXTINF:-1,Finest FM
+https://shoutcast.finestfm.fi/stream/1/:80/stream
+#EXTINF:-1,Loop
+https://ms-live-loop.nm-elemental.nelonenmedia.fi/master.m3u8
+#EXTINF:-1,Radio Pori
+https://stream.bauermedia.fi/radiopori/radiopori_128.mp3
+#EXTINF:-1,Radio Nostalgia fi
+https://stream.bauermedia.fi/nostalgia/nostalgia_128.mp3
+#EXTINF:-1,SteelFM
+http://ice6.securenetsystems.net/STEELFM?type=.mp3
+#EXTINF:-1,Radio Helsinki 98.5
+https://stream.radiohelsinki.fi/
+#EXTINF:-1,Radio Boost FM
+https://stream.studio247.io/boostfm
+#EXTINF:-1,Radio Classic
+https://stream.bauermedia.fi/classic/classic_64.aac
+#EXTINF:-1,Võmba FM
+https://c4.radioboss.fm:18123/stream
+#EXTINF:-1,MOI Web Radio
+https://everestcast.streams.ovh/MOIWebRadio
+#EXTINF:-1,Bassoradio
+https://stream.radioplay.fi/basso/bassoradio_64.aac
+#EXTINF:-1,SuomiRock
+https://stream.radioplay.fi/suomirock/suomirock_64.aac
+#EXTINF:-1,Radio Kuhan.FM
+https://fra-pioneer08.dedicateware.com:3135/stream
 #EXTINF:-1,ReggaeNord
 http://104.167.4.67:8142/index
 #EXTINF:-1,Radio Auran Aallot
 https://stream.radioplay.fi/suomirap/suomirap_64.aac
-#EXTINF:-1,MOI Web Radio
-https://everestcast.streams.ovh/MOIWebRadio
-#EXTINF:-1,Finest FM
-https://shoutcast.finestfm.fi/stream/1/:80/;stream
 #EXTINF:-1,YLE Klassinen
 https://stream.radiohelsinki.fi/;
 #EXTINF:-1,Iskelmä_National_Finland
@@ -43,8 +81,6 @@ https://radioplay.fi/radio-pori/
 https://radioplay.fi/radio-957/
 #EXTINF:-1,Aito Iskelmä radio
 https://ms-live-aitoiskelma.nm-elemental.nelonenmedia.fi/master.m3u8
-#EXTINF:-1,Loop radio
-https://ms-live-loop.nm-elemental.nelonenmedia.fi/master.m3u8
 #EXTINF:-1,Bassoradio radio
 https://radioplay.fi/basso/
 #EXTINF:-1,YleX radio
@@ -73,8 +109,6 @@ https://radioplay.fi/suomi-rock/
 https://radioplay.fi/kiss/
 #EXTINF:-1,Radio Nostalgia 87.6-105.5 FM radio
 https://radioplay.fi/radio-nostalgia/
-#EXTINF:-1,Radio Rock 94.9 FM radio
-https://ms-live-radiorock.nm-elemental.nelonenmedia.fi/master.m3u8
 #EXTINF:-1,Radio Nova 87.8-107.9 FM radio
 https://radioplay.fi/radio-nova/
 #EXTINF:-1,Yle Klassinen – Helsinki – Southern Finland – FI
@@ -101,8 +135,6 @@ https://yleradiolive.akamaized.net/hls/live/2027678/in-YleX3M/master.m3u8
 https://yleradiolive.akamaized.net/hls/live/2027720/in-YleTurku/master.m3u8
 #EXTINF:-1,Radio Auran Aallot – Turku – Western Finland – FI
 https://stream.radioplay.fi/auranaallot/auranaallot_64.aac?direct=true&listenerid=undefined&aw_0_1st.bauer_listenerid=undefined&aw_0_1st.playerid=BMUK_inpage_html5&aw_0_1st.skey=1669659434&aw_0_1st.bauer_loggedin=false&aw_0_req.userConsentV2=CPi8wgAPi8wgA
-#EXTINF:-1,SuomiRock – 99.5 FM – Helsinki – Southern Finland – FI
-https://stream.radioplay.fi/suomirock/suomirock_64.aac
 #EXTINF:-1,Yle Radio Häme – Hämeenlinna – Southern Finland – FI
 https://yleradiolive.akamaized.net/hls/live/2027681/in-YleHameenlinna/master.m3u8
 #EXTINF:-1,Yle Radio 1 – Tampere – Western Finland – FI
@@ -111,8 +143,6 @@ https://yleradiolive.akamaized.net/hls/live/2027672/in-YleRadio1/master.m3u8
 https://wr2.downtime.fi:8000/kaakko.mp3
 #EXTINF:-1,NRJ Suomihitit
 http://stream.bauermedia.fi/nostalgia/nostalgia_64.aac
-#EXTINF:-1,Radio Nostalgia fi
-http://212.47.220.188:8000/
 #EXTINF:-1,Radio Romona
 http://suomiradio.pro:8080/
 #EXTINF:-1,Sea FM Rovaniemi
@@ -193,8 +223,6 @@ https://yleradiolive.akamaized.net/hls/live/2027683/in-YleJKL/master.m3u8
 https://icecast.live.yle.fi/radio/YleVega/icecast.audio
 #EXTINF:-1,Radio Top51
 https://stream.bauermedia.fi/top51/top51_128.mp3?context=fHA6LTE
-#EXTINF:-1,Finest radio
-https://shoutcast.finestfm.fi/stream/1/:80/stream
 #EXTINF:-1,Ysäri Radio
 https://stream.bauermedia.fi/ysari/ysari_128.mp3
 #EXTINF:-1,957
@@ -211,18 +239,12 @@ https://stream.bauermedia.fi/suomirap/suomirap_128.mp3?context=fHA6LTE
 https://stream.bauermedia.fi/kiss/kiss_64.aac
 #EXTINF:-1,Classic
 https://stream.bauermedia.fi/kasari/kasari_128.mp3
-#EXTINF:-1,Yle Radio Suomi
-https://yleradiolive.akamaized.net/hls/live/2027675/in-YleRS/master.m3u8
 #EXTINF:-1,Yle Puhe
 https://yleradiolive.akamaized.net/hls/live/2027677/in-YlePuhe/master.m3u8
 #EXTINF:-1, Radio Rex
 https://st.downtime.fi/sun.mp3
 #EXTINF:-1,NRJ (Suomi)
 https://stream.radioplay.fi/nrj/nrj_64.aac
-#EXTINF:-1,Nostalgia
-https://stream.bauermedia.fi/nostalgia/nostalgia_128.mp3
-#EXTINF:-1,Radio Pooki Listen live
-https://stream.bauermedia.fi/radiopooki/radiopooki_64.aac
 #EXTINF:-1,Radio Nostalgia Listen live
 https://stream.bauermedia.fi/nostalgia/nostalgia_128.mp3?aw_0_1st.bauer_loggedin=false&ampaw_0_1st.playerid=BMUK_partner&ampaw_0_1st.skey=1597814197
 #EXTINF:-1,RMF Classic Rock Listen live
@@ -231,38 +253,18 @@ https://rs102-krk-cyfronet.rmfstream.pl/CLASSICROCKVT
 https://c8.toivon.net/toivon/toivon_8?mp=/server
 #EXTINF:-1,Jouluradio - Indiejoulu Listen live
 https://c9.toivon.net/toivon/toivon_9?mp=/server
-#EXTINF:-1,SuomiRock
-https://stream.bauermedia.fi/suomirock/suomirock_64.aac
 #EXTINF:-1,Finest FM 1020
 http://212.47.220.188:8000/stream.mp3
-#EXTINF:-1,Radio Helsinki 98.5
-https://stream.radiohelsinki.fi/
-#EXTINF:-1,SteelFM
-http://ice6.securenetsystems.net/STEELFM?type=.mp3
 #EXTINF:-1,Radio Pro
 https://streamer.radio.co/se4f0e40ca/listen
-#EXTINF:-1,Radio Pori
-https://stream.bauermedia.fi/radiopori/radiopori_128.mp3
-#EXTINF:-1,Radio Boost FM
-https://stream.studio247.io/boostfm
 #EXTINF:-1,Iskelman Aikakone
 https://stream.bauermedia.fi/iskelma/iskelma_64.aac
 #EXTINF:-1,NRJ Finland
 https://stream.bauermedia.fi/nrj/nrj_128.mp3
 #EXTINF:-1,Jarvi Radio
 https://stream.bauermedia.fi/radiopooki/radiopooki_128.mp3
-#EXTINF:-1,Võmba FM
-https://c4.radioboss.fm:18123/stream
-#EXTINF:-1,NRJ fi Suomihitit
-https://stream.bauermedia.fi/nrj/nrj_64.aac
-#EXTINF:-1,Auran Aallot
-https://stream.bauermedia.fi/auranaallot/auranaallot_64.aac
 #EXTINF:-1,Iskelma Rex
 https://stream.radiorex.fi:8000/radiorex
-#EXTINF:-1,Radio Classic
-https://stream.bauermedia.fi/classic/classic_64.aac
-#EXTINF:-1,Radio City
-https://stream.bauermedia.fi/radiocity/radiocity_64.aac
 #EXTINF:-1,Basso Radio
 https://stream.bauermedia.fi/basso/bassoradio_128.mp3
 #EXTINF:-1,Ysäri
@@ -297,8 +299,6 @@ http://st.downtime.fi/sun.mp3
 https://streaming.radiostreamlive.com/radiosantaclaus_devices
 #EXTINF:-1,Radio Rex
 http://stream.radiorex.fi:8000/radiorex
-#EXTINF:-1,Radio Pooki
-http://stream.bauermedia.fi/radiopooki/radiopooki_64.aac
 #EXTINF:-1,Radio nova
 http://stream.bauermedia.fi/radionova/radionova_128.mp3
 #EXTINF:-1,Radio Nova

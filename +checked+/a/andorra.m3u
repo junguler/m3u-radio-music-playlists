@@ -1,12 +1,20 @@
 #EXTM3U
 #EXTINF:-1,Proxima FM
-http://91.187.93.115:8000/;stream/1
+http://91.187.93.115:8000/
+#EXTINF:-1,Radio Valira
+https://mars.streamerr.co/8192/stream
+#EXTINF:-1,KW Rock FM
+http://usa7.fastcast4u.com:5230/stream
+#EXTINF:-1,La Veu
+http://streaming.enantena.com:8000/laveu128.mp3
+#EXTINF:-1,AndorraDifusio AM
+https://live-edge-eu-1.cdn.enetres.net/56495F77FD124FECA75590A906965F2C024/am/index.m3u8
+#EXTINF:-1,Antenna Web La Vella
+https://italiavera.radioca.st/stream
 #EXTINF:-1,Andorra Música
 https://www.andorradifusio.ad/endirecte/am
 #EXTINF:-1,FLAIX FM AND
 https://streaming.giraweb.com/8020/stream
-#EXTINF:-1,La_Veu
-http://streaming.enantena.com:8000/laveu128.mp3
 #EXTINF:-1,Ràdio Nacional d'Andorra radio
 https://live-edge-ams-1.cdn.enetres.net/56495F77FD124FECA75590A906965F2C023/rna/index.m3u8
 #EXTINF:-1,Rádio Ondas de Portugal radio
@@ -35,15 +43,9 @@ https://ssl.ndvendas.eu:9538/stream.mp3/
 https://streaming.giraweb.com/8010/stream
 #EXTINF:-1,One 95.7 FM Listen live
 https://s2.radio.co/s03d947c9d/listen
-#EXTINF:-1,Radio Valira
-http://91.187.93.115:8020/
 #EXTINF:-1,Flaix FM
 SimpleHTTP/0.6 http://flaixfmmob.streaming-pro.com:8002/
 #EXTINF:-1,Ibiza Sound Radio
 http://listen.openstream.co/3138/audio
-#EXTINF:-1,KW Rock FM
-http://usa7.fastcast4u.com:5230/stream
-#EXTINF:-1,Proxima FM 94.6 Andorra la Vella
-http://91.187.93.115:8000/
 #EXTINF:-1,DnB&&EDM
 http://edmdnb.com:85/public/dnb_edm/playlist.pls
