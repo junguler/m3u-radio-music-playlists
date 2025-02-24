@@ -17,22 +17,15 @@
 ### index of content
 
 * [How to listen](https://github.com/junguler/m3u-radio-music-playlists#how-to-listen)
-
    * [on the web](https://github.com/junguler/m3u-radio-music-playlists#on-the-web)
    * [on your devices](https://github.com/junguler/m3u-radio-music-playlists#on-windows-mac-and-linux)
-
 * [Check for dead links without using code](https://github.com/junguler/m3u-radio-music-playlists#Check-for-dead-links-without-using-code)
-
 * [How to download from a station](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-from-a-station)
-
    * [as a long audio file](https://github.com/junguler/m3u-radio-music-playlists#as-a-long-audio-file)
    * [as individual songs](https://github.com/junguler/m3u-radio-music-playlists#as-individual-songs)
-
 * [How to download this repo](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-this-repo)
-
    * [using git](https://github.com/junguler/m3u-radio-music-playlists#using-git)
    * [as a zip file](https://github.com/junguler/m3u-radio-music-playlists#as-a-zip-file)
-
 * [git stats](https://github.com/junguler/m3u-radio-music-playlists#git-stats)
 * [sources](https://github.com/junguler/m3u-radio-music-playlists#sources)
 * [you](https://github.com/junguler/m3u-radio-music-playlists#you)
