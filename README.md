@@ -298,14 +298,6 @@ if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc …
 
 note: i need to investigate players for other devices, i will update this section later, if you know of a good program to use please let me know
 
-<table align="center">
-<tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/save.gif"></td>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/folder.gif"></td>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/micro.gif"></td>
-</tr>
-</table>
-
 <br>
 
 ### Check for dead links without using code
@@ -326,6 +318,14 @@ now click on `Select All` then `Copy` and paste it to a txt editor, save it as a
 ![3](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cat_catch3.jpg)
 
 note: this method does not give you the stream title (tho most streams broadcast their names pretty regularly) and you have to wait for links to load so keep that in mind
+
+<table align="center">
+<tr>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/save.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/folder.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/micro.gif"></td>
+</tr>
+</table>
 
 <br>
 
