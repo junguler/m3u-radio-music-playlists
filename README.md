@@ -1,6 +1,4 @@
-<h1>
-m3u radio music playlists 
-</h1>
+# m3u radio music playlists 
 
 <table align="center">
 <tr>
@@ -10,32 +8,30 @@ m3u radio music playlists
 </tr>
 </table>
 
-<h3>index of content</h3>
+### index of content
 
-<ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-listen">How to listen</a></li>
-<ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#on-the-web">on the web</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#on-windows-mac-and-linux">on your devices</a></li>
-</ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-download-from-a-station">How to download from a station</a></li>
-<ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#as-a-long-audio-file">as a long audio file</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#as-individual-songs">as individual songs</a></li>
-</ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#how-to-download-this-repo">How to download this repo</a></li>
-<ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#using-git">using git</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#as-a-zip-file">as a zip file</a></li>
-</ul>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#git-stats">git stats</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#sources">sources</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#you">you</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#me">me</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#related-projects">related projects</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#acknowledgement-thanks">acknowledgement</a></li>
-<li><a href="https://github.com/junguler/m3u-radio-music-playlists#behind-the-scenes">behind the scenes</a></li>
-</ul>
+*   [How to listen](https://github.com/junguler/m3u-radio-music-playlists#how-to-listen)
+
+*   [on the web](https://github.com/junguler/m3u-radio-music-playlists#on-the-web)
+*   [on your devices](https://github.com/junguler/m3u-radio-music-playlists#on-windows-mac-and-linux)
+
+*   [How to download from a station](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-from-a-station)
+
+*   [as a long audio file](https://github.com/junguler/m3u-radio-music-playlists#as-a-long-audio-file)
+*   [as individual songs](https://github.com/junguler/m3u-radio-music-playlists#as-individual-songs)
+
+*   [How to download this repo](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-this-repo)
+
+*   [using git](https://github.com/junguler/m3u-radio-music-playlists#using-git)
+*   [as a zip file](https://github.com/junguler/m3u-radio-music-playlists#as-a-zip-file)
+
+*   [git stats](https://github.com/junguler/m3u-radio-music-playlists#git-stats)
+*   [sources](https://github.com/junguler/m3u-radio-music-playlists#sources)
+*   [you](https://github.com/junguler/m3u-radio-music-playlists#you)
+*   [me](https://github.com/junguler/m3u-radio-music-playlists#me)
+*   [related projects](https://github.com/junguler/m3u-radio-music-playlists#related-projects)
+*   [acknowledgement](https://github.com/junguler/m3u-radio-music-playlists#acknowledgement-thanks)
+*   [behind the scenes](https://github.com/junguler/m3u-radio-music-playlists#behind-the-scenes)
 
 <table align="center">
 <tr>
@@ -45,10 +41,14 @@ m3u radio music playlists
 </tr>
 </table>
 
-<h3>how to listen</h3>
+<br>
 
-<h4>on the web</h4>
-<p>all of the stream files in the root folder of this repo can be listened to using their own page on this repo and the amazing <a href="https://github.com/captbaritone/webamp">webamp player</a>, use the playlist buttons or click on the entries and hit play</p>
+### how to listen
+
+#### on the web
+
+all of the stream files in the root folder of this repo can be listened to using their own page on this repo and the amazing [webamp player](https://github.com/captbaritone/webamp), use the playlist buttons or click on the entries and hit play
+
 <table>
 <thead>
 <tr>
@@ -200,7 +200,8 @@ m3u radio music playlists
 </tr>
 </tbody></table>
 
-<p>to listen to other m3u playlists in this repo click on the specific repo for each folder and listen to them from there</p>
+to listen to other m3u playlists in this repo click on the specific repo for each folder and listen to them from there
+
 <table>
 <thead>
 <tr>
@@ -277,26 +278,23 @@ m3u radio music playlists
 </tr>
 </tbody></table>
 
-<p>if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc …) you are not able to listen to the most of the streams, here is an explanation from <a href="https://support.google.com/chrome/thread/29505473?hl=en&msgid=29673696">chrome support</a> which tells you why this happens and how to fix it</p>
-<blockquote>
-<p>Usually this error occurs because the radio station you are trying to listen to is running on an unencrypted port (not 443). This is quite common and it's not technically necessary for radio stations to be encrypted but nowadays web browsers like Chrome have started disallowing unencrypted content to be shown in an otherwise encrypted websites. There is a few solutions for you right now:</p>
-</blockquote>
-<ul>
-<li><p>Use a different browser like Firefox. For the moment they haven't blocked unencrypted content on an otherwise encrypted page web page.</p></li>
-<li><p>Open Chrome (or other chromium web browsers), go to the website and then click on the padlock icon to the left of the URL box and then from the drop down menu select the 'Site Settings' option, you can then scroll down to the 'Insecure content' option at the bottom of the page and select 'Allow', this will create an exception for the website and allow you to continue using the player as before.</p></li>
-<li><p>download the stream files and play them locally on your pc or other devices which i've talked about further down in this markdown file</p></li>
-</ul>
+if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc …) you are not able to listen to the most of the streams, here is an explanation from [chrome support](https://support.google.com/chrome/thread/29505473?hl=en&msgid=29673696) which tells you why this happens and how to fix it
 
-<p><br></p>
+> Usually this error occurs because the radio station you are trying to listen to is running on an unencrypted port (not 443). This is quite common and it's not technically necessary for radio stations to be encrypted but nowadays web browsers like Chrome have started disallowing unencrypted content to be shown in an otherwise encrypted websites. There is a few solutions for you right now:
 
-<h6>on windows, mac and linux</h6>
-<ul>
-<li>mpv: for the tinkerer types, see my <a href="https://github.com/junguler/win_confs/tree/main/mpv/portable_config">config files</a> for an example</li>
-<li>vlc: if you want an out of the box experience that just works</li>
-<li>AIMP: suggested by <a href="https://github.com/lux5am">@lux5am</a> in <a href="https://github.com/junguler/m3u-radio-music-playlists/discussions/23">#23</a>, a winamp clone with everything you might need to listen and record radio</li>
-</ul>
+*   Use a different browser like Firefox. For the moment they haven't blocked unencrypted content on an otherwise encrypted page web page.
+    
+*   Open Chrome (or other chromium web browsers), go to the website and then click on the padlock icon to the left of the URL box and then from the drop down menu select the 'Site Settings' option, you can then scroll down to the 'Insecure content' option at the bottom of the page and select 'Allow', this will create an exception for the website and allow you to continue using the player as before.
+    
+*   download the stream files and play them locally on your pc or other devices which i've talked about further down in this markdown file
 
-<p>note: i need to investigate players for other devices, i will update this section later, if you know of a good program to use please let me know</p>
+###### on windows, mac and linux
+
+*   mpv: for the tinkerer types, see my [config files](https://github.com/junguler/win_confs/tree/main/mpv/portable_config) for an example
+*   vlc: if you want an out of the box experience that just works
+*   AIMP: suggested by [@lux5am](https://github.com/lux5am) in [#23](https://github.com/junguler/m3u-radio-music-playlists/discussions/23), a winamp clone with everything you might need to listen and record radio
+
+note: i need to investigate players for other devices, i will update this section later, if you know of a good program to use please let me know
 
 <table align="center">
 <tr>
@@ -306,46 +304,69 @@ m3u radio music playlists
 </tr>
 </table>
 
-<h3>How to download from a station</h3>
+<br>
 
-<h4>as a long audio file</h4>
+### How to download from a station
 
-<p>downloading from these m3u files is not possible as far as i know since they contain multiple streams, but if you want to download from a particular stream you can achieve this by using ffmpeg, i use the most popular (first stream) in the <code>trance.m3u</code> to showcase this, in your terminal change directory to where you want this file to be downloaded (note that lines starting with # are not actual streams and are there for embedding extra info to your media player)</p>
-<pre><code>ffmpeg -y -i http:<span >//</span>stream.dancewave.online:<span >8080</span>/dance.mp3 -c copy dancewave.mp3
-</code></pre>
-<p>change the filename at the end to what you like, as ffmpeg suggests when you feel happy with the length/size of this file press <code>q</code> in your terminal emulator to finish the process and save the file</p>
-<p>because these are online streams there is no way to download the whole thing as they are constantly changing, but you can set a hard limit to when recording stops using the timeout command on bash/zsh shells</p>
-<pre><code><span >timeout</span> 60 ffmpeg -y -i http://stream.dancewave.online:8080/dance.mp3 -c copy dancewave.mp3
-</code></pre>
-<p>the above command saves about one minute of the audio live-stream, you can specify longer times using <code>-m</code> for minutes <code>-h</code> for hours and <code>-d</code> for days, these can also be used with decimals for more control, so one and half minute can be set with 1.5m or 3 hour and 45 minutes can be set with 3.75h</p>
-<pre><code><span >timeout</span> 1h ffmpeg -y -i http://stream.dancewave.online:8080/dance.mp3 -c copy dancewave.mp3
-</code></pre>
-<p>another more elegant way to do this is to use ffmpeg to segment these files with your desired time and add a timestamp at the end as filenames, code was copied from <a href="https://write.corbpie.com/ffmpeg-saving-stream-in-intervals-with-date-time-as-filename/">here</a></p>
-<pre><code>ffmpeg -i http://stream.dancewave.online:<span >8080</span>/dance.mp<span >3</span> -<span >c</span> copy -f segment -strftime <span >1</span> -segment_time <span >60</span> <span >%Y-</span><span >%m-</span><span >%d-</span><span >%H-</span><span >%M-</span><span >%S.mp3</span>
-</code></pre>
-<p>this will save a new mp3 file every minute, if you want to make this longer change <code>-segment_time 60</code> and multiply the number of minutes you want for each file by 60, so if i want my mp3 files to each be 5 minutes i do <code>-segment_time 300</code>  this process goes on forever unless you run out of disk space or if you are not connected to the internet for some reason </p>
-<p>this command can also be stopped using <code>ctrl + c</code> shortcut or the timeout command showcased above so adding <code>timeout 1h</code> in front of the above command stops the whole process after an hour</p>
+#### as a long audio file
 
-<p><br></p>
+downloading from these m3u files is not possible as far as i know since they contain multiple streams, but if you want to download from a particular stream you can achieve this by using ffmpeg, i use the most popular (first stream) in the `trance.m3u` to showcase this, in your terminal change directory to where you want this file to be downloaded (note that lines starting with # are not actual streams and are there for embedding extra info to your media player)
 
-<h4>as individual songs</h4>
+```
+ffmpeg -y -i http://stream.dancewave.online:8080/dance.mp3 -c copy dancewave.mp3
+```
 
-<p>i have been looking for a way to do this for a while, i found this program <a href="https://streamwriter.org/en/downloads/">streamwriter</a> that does this but unfortunently it's only available on windows, this <a href="https://appdb.winehq.org/objectManager.php?sClass=application&iId=19745">winehq page</a> lists the program as platinum and it should work with wine without any issues but i have not tested it myself as i'm not on linux at the moment and don't have a virtual machine ready either</p>
-<p>download the portable version of the program and extract it somewhere in your hard drive, the first time you open the program it's going to ask a few questions, things like language and where it's going to save downloaded songs, now that you are greeted with the program go to a m3u file of your favorite music genre and copy a stream link to start download, here is mine from the trance.m3u</p>
-<pre><code>http:<span >//</span><span >51.89</span>.<span >148.171</span>:<span >8022</span><span >/stream/</span><span >1</span>/
-</code></pre>
-<p>now put it inside the area i've shown and click to button next to it to start recording, after each song is completed it's going to create a new file and put a name on it from the title the stream is broadcasting</p>
-<p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/streamwriter.jpg" alt="streamwriter" /></p>
-<p>once you are happy with the amount of songs downloaded, right click on the stream and click on <code>stop recording after current title</code></p>
-<p>note that in some rare cases a stream does not broadcast song titles and if you happen to come accross of these there is really nothing else you can do and the program is going to continuously record the stream until you manually stop it</p>
+change the filename at the end to what you like, as ffmpeg suggests when you feel happy with the length/size of this file press `q` in your terminal emulator to finish the process and save the file
 
-<p><br></p>
+because these are online streams there is no way to download the whole thing as they are constantly changing, but you can set a hard limit to when recording stops using the timeout command on bash/zsh shells
 
-<p>if you prefer to stay on the commandline, use the <a href="https://streamripper.sourceforge.net/">streamripper</a> program, change directory to the folder you want to save songs in and do:</p>
+```
+timeout 60 ffmpeg -y -i http://stream.dancewave.online:8080/dance.mp3 -c copy dancewave.mp3
+```
 
-<pre><code>streamripper http://51.89.148.171:8022/stream/1/ -u Mozilla/5.0 -l 3600</code></pre>
+the above command saves about one minute of the audio live-stream, you can specify longer times using `-m` for minutes `-h` for hours and `-d` for days, these can also be used with decimals for more control, so one and half minute can be set with 1.5m or 3 hour and 45 minutes can be set with 3.75h
 
-<p>this command will download this stream <code>http://51.89.148.171:8022/stream/1/</code> for 1 hour, splitting all the songs and uses mozilla as the user agent, for more examples visit the man page for the program</p>
+```
+timeout 1h ffmpeg -y -i http://stream.dancewave.online:8080/dance.mp3 -c copy dancewave.mp3
+```
+
+another more elegant way to do this is to use ffmpeg to segment these files with your desired time and add a timestamp at the end as filenames, code was copied from [here](https://write.corbpie.com/ffmpeg-saving-stream-in-intervals-with-date-time-as-filename/)
+
+```
+ffmpeg -i http://stream.dancewave.online:8080/dance.mp3 -c copy -f segment -strftime 1 -segment_time 60 %Y-%m-%d-%H-%M-%S.mp3
+```
+
+this will save a new mp3 file every minute, if you want to make this longer change `-segment_time 60` and multiply the number of minutes you want for each file by 60, so if i want my mp3 files to each be 5 minutes i do `-segment_time 300` this process goes on forever unless you run out of disk space or if you are not connected to the internet for some reason
+
+this command can also be stopped using `ctrl + c` shortcut or the timeout command showcased above so adding `timeout 1h` in front of the above command stops the whole process after an hour
+
+<br>
+
+#### as individual songs
+
+i have been looking for a way to do this for a while, i found this program [streamwriter](https://streamwriter.org/en/downloads/) that does this but unfortunently it's only available on windows, this [winehq page](https://appdb.winehq.org/objectManager.php?sClass=application&iId=19745) lists the program as platinum and it should work with wine without any issues but i have not tested it myself as i'm not on linux at the moment and don't have a virtual machine ready either
+
+download the portable version of the program and extract it somewhere in your hard drive, the first time you open the program it's going to ask a few questions, things like language and where it's going to save downloaded songs, now that you are greeted with the program go to a m3u file of your favorite music genre and copy a stream link to start download, here is mine from the trance.m3u
+
+```
+http://51.89.148.171:8022/stream/1/
+``` 
+
+now put it inside the area i've shown and click to button next to it to start recording, after each song is completed it's going to create a new file and put a name on it from the title the stream is broadcasting
+
+![streamwriter](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/streamwriter.jpg)
+
+once you are happy with the amount of songs downloaded, right click on the stream and click on `stop recording after current title`
+
+note that in some rare cases a stream does not broadcast song titles and if you happen to come accross of these there is really nothing else you can do and the program is going to continuously record the stream until you manually stop it
+
+if you prefer to stay on the commandline, use the [streamripper](https://streamripper.sourceforge.net/) program, change directory to the folder you want to save songs in and do:
+
+```
+streamripper http://51.89.148.171:8022/stream/1/ -u Mozilla/5.0 -l 3600
+```
+
+this command will download this stream `http://51.89.148.171:8022/stream/1/` for 1 hour, splitting all the songs and uses mozilla as the user agent, for more examples visit the man page for the program
 
 <table align="center">
 <tr>
@@ -355,26 +376,34 @@ m3u radio music playlists
 </tr>
 </table>
 
-<h3>how to download this repo</h3>
+<br>
 
-<h4>using git</h4>
+### how to download this repo
 
-<p>run a git clone on this repo</p>
-<pre><code>git clone https:<span >//gi</span>thub.com<span >/junguler/m</span>3u-radio-music-playlists.git
-</code></pre>
-<p>for further updates cd into the folder and do <code>git pull</code></p>
+#### using git
 
-<h4>as a zip file</h4>
+run a git clone on this repo
 
-<p>download the <a href="https://github.com/junguler/m3u-radio-music-playlists/archive/refs/heads/main.zip">auto-generated zip file</a> </p>
+    git clone https://github.com/junguler/m3u-radio-music-playlists.git
+    
 
-<p><br></p>
+for further updates cd into the folder and do `git pull`
 
-<h3>git Stats</h3>
-<p>since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them every two weeks so you can have a feel for how this repo is doing</p>
-<p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_1.jpg" alt="" /></p>
-<p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_2.jpg" alt="" /></p>
-<p><img src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_3.jpg" alt="" /></p>
+#### as a zip file
+
+download the [auto-generated zip file](https://github.com/junguler/m3u-radio-music-playlists/archive/refs/heads/main.zip)
+
+<br>
+
+### git Stats
+
+since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them every two weeks so you can have a feel for how this repo is doing
+
+![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_1.jpg)
+
+![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_2.jpg)
+
+![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_3.jpg)
 
 <table align="center">
 <tr>
@@ -384,8 +413,12 @@ m3u radio music playlists
 </tr>
 </table>
 
-<h3>sources</h3>
-<p>here is a list of websites i've scraped from already and included m3u streams for in this repo</p>
+<br>
+
+### sources
+
+here is a list of websites i've scraped from already and included m3u streams for in this repo
+
 <table>
 <thead>
 <tr>
@@ -645,7 +678,8 @@ m3u radio music playlists
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/radio_tune.sh">radio_tune.sh</a></td>
 </tr>
 </tbody></table>
-<p>my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)</p>
+
+my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)
 
 <table align="center">
 <tr>
@@ -655,45 +689,38 @@ m3u radio music playlists
 </tr>
 </table>
 
-<h3>you</h3>
-<ul>
-<li>found a bug or issue? open an issue or discussion</li>
-<li>know a radio website you like to be scraped? suggest it to me</li>
-<li>have knowledge on how to improve something? don't hesitate to share it with me</li>
-</ul>
+<br>
 
-<h3>me</h3>
-<ul>
-<li>i'm planning to extend this repo as much as possible</li>
-<li>trying to improve the quality of everything regarding this repo</li>
-<li>looking for more websites to scrape</li>
-</ul>
+### you
 
-<p><br></p>
+*   found a bug or issue? open an issue or discussion
+*   know a radio website you like to be scraped? suggest it to me
+*   have knowledge on how to improve something? don't hesitate to share it with me
 
-<h3>related projects</h3>
-<ul>
-<li><a href="https://github.com/gabrielproencaalves/focus">focus</a> by <a href="https://github.com/gabrielproencaalves">gabriel proenca alves</a> : a fork of this repo that includes a script to easily listen to m3u streams using the <a href="https://www.mpg123.de/">mpg123</a> linux audio player</li>
-<li><a href="https://github.com/konzumpro/m3u-radio-music-playlists-moode">*-moode</a> by <a href="https://github.com/konzumpro">konzumpro</a> : a fork of this repo that converts m3u files in the root of this repo to <a href="https://github.com/moode-player/moode">MoOde</a> compatible stream files</li>
-<li><a href="https://github.com/LionyxML/pyradio-m3u-to-playlist">pyradio-m3u-to-playlist</a> by <a href="https://github.com/LionyxML">Rahul M. Juliato (LionyxML)</a> : converts any m3u file to <a href="https://github.com/coderholic/pyradio">pyradio</a> compatible csv playlist file, includes the everything-full.m3u file in this repo as a quick way to generate a playlist</li>
-</ul>
+### me
 
-<p><br></p>
+*   i'm planning to extend this repo as much as possible
+*   trying to improve the quality of everything regarding this repo
+*   looking for more websites to scrape
 
-<h3>acknowledgement, thanks</h3>
-<ul>
-<li>to github for hosting this repo and the free access to it's pages and actions</li>
-<li>to all of the website owners and admins for making those awesome radio websites</li>
-<li>to <a href="https://github.com/captbaritone">jordan eldredge (captbaritone)</a> for making the amazing <a href="https://github.com/captbaritone/webamp">webamp</a> player which i've used for playing these radio streams in the online section of these repos</li>
-<li>to all those websites i stole code snippets from to scrape these websites</li>
-<li>to you</li>
-</ul>
+<br>
 
-<p><br></p>
+### related projects
 
-<h3>behind the scenes</h3>
-<p>if you are interested on how i actually scrape websites, i've made a markdown that goes thru the nitty gritty of it all, you can find it <a href="https://github.com/junguler/how_to_m3u">here</a>
-</p>
+*   [focus](https://github.com/gabrielproencaalves/focus) by [gabriel proenca alves](https://github.com/gabrielproencaalves) : a fork of this repo that includes a script to easily listen to m3u streams using the [mpg123](https://www.mpg123.de/) linux audio player
+*   [\*-moode](https://github.com/konzumpro/m3u-radio-music-playlists-moode) by [konzumpro](https://github.com/konzumpro) : a fork of this repo that converts m3u files in the root of this repo to [MoOde](https://github.com/moode-player/moode) compatible stream files
+*   [pyradio-m3u-to-playlist](https://github.com/LionyxML/pyradio-m3u-to-playlist) by [Rahul M. Juliato (LionyxML)](https://github.com/LionyxML) : converts any m3u file to [pyradio](https://github.com/coderholic/pyradio) compatible csv playlist file, includes the everything-full.m3u file in this repo as a quick way to generate a playlist
 
-<p>this repo was made possible by using github actions, you can see my temp repo for more details and access to raw un-edited files <a href="https://github.com/junguler/m3u-temp">here</a>
-</p>
+### acknowledgement, thanks
+
+*   to github for hosting this repo and the free access to it's pages and actions
+*   to all of the website owners and admins for making those awesome radio websites
+*   to [jordan eldredge (captbaritone)](https://github.com/captbaritone) for making the amazing [webamp](https://github.com/captbaritone/webamp) player which i've used for playing these radio streams in the online section of these repos
+*   to all those websites i stole code snippets from to scrape these websites
+*   to you
+
+### behind the scenes
+
+if you are interested on how i actually scrape websites, i've made a markdown that goes thru the nitty gritty of it all, you can find it [here](https://github.com/junguler/how_to_m3u)
+
+this repo was made possible by using github actions, you can see my temp repo for more details and access to raw un-edited files [here](https://github.com/junguler/m3u-temp)
