@@ -313,7 +313,7 @@ unlike most music websites and other highly curated selections, my repo does not
 
 the first thing you need is the excellent [cat-catch](https://github.com/xifangczy/cat-catch) browser extension, install it for [chrome (and it's derivative)](https://chrome.google.com/webstore/detail/jfedfbgedapdagkghmgibemcoggfppbb), [firefox](https://addons.mozilla.org/addon/cat-catch/) and [edge](https://microsoftedge.microsoft.com/addons/detail/oohmdefbjalncfplafanlagojlakmjci) and open one of the many pages i've created via webamp to listen to music online, make sure to pin the cat-catch extension to your toolbar for easier operations
 
-here i've used the 'Trance' page of the 'listen_to_icecast' repo, open it and wait things to load, as you can see the cat in the toolbar has a number above it, these are the streams that are loaded to this point and are listenable in my region
+here i've used the `Trance` page of the `listen_to_icecast` repo, open it and wait things to load, as you can see the cat in the toolbar has a number above it, these are the streams that are loaded to this point and are listenable in my region
 
 ![1](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cat_catch1.jpg)
 
