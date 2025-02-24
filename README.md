@@ -10,30 +10,30 @@
 
 ### index of content
 
-*   [How to listen](https://github.com/junguler/m3u-radio-music-playlists#how-to-listen)
+* [How to listen](https://github.com/junguler/m3u-radio-music-playlists#how-to-listen)
 
-*   [on the web](https://github.com/junguler/m3u-radio-music-playlists#on-the-web)
-*   [on your devices](https://github.com/junguler/m3u-radio-music-playlists#on-windows-mac-and-linux)
+   * [on the web](https://github.com/junguler/m3u-radio-music-playlists#on-the-web)
+   * [on your devices](https://github.com/junguler/m3u-radio-music-playlists#on-windows-mac-and-linux)
 
-*   [Check for dead links without using code](https://github.com/junguler/m3u-radio-music-playlists#Check-for-dead-links-without-using-code)
+* [Check for dead links without using code](https://github.com/junguler/m3u-radio-music-playlists#Check-for-dead-links-without-using-code)
 
-*   [How to download from a station](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-from-a-station)
+* [How to download from a station](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-from-a-station)
 
-*   [as a long audio file](https://github.com/junguler/m3u-radio-music-playlists#as-a-long-audio-file)
-*   [as individual songs](https://github.com/junguler/m3u-radio-music-playlists#as-individual-songs)
+   * [as a long audio file](https://github.com/junguler/m3u-radio-music-playlists#as-a-long-audio-file)
+   * [as individual songs](https://github.com/junguler/m3u-radio-music-playlists#as-individual-songs)
 
-*   [How to download this repo](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-this-repo)
+* [How to download this repo](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-this-repo)
 
-*   [using git](https://github.com/junguler/m3u-radio-music-playlists#using-git)
-*   [as a zip file](https://github.com/junguler/m3u-radio-music-playlists#as-a-zip-file)
+   * [using git](https://github.com/junguler/m3u-radio-music-playlists#using-git)
+   * [as a zip file](https://github.com/junguler/m3u-radio-music-playlists#as-a-zip-file)
 
-*   [git stats](https://github.com/junguler/m3u-radio-music-playlists#git-stats)
-*   [sources](https://github.com/junguler/m3u-radio-music-playlists#sources)
-*   [you](https://github.com/junguler/m3u-radio-music-playlists#you)
-*   [me](https://github.com/junguler/m3u-radio-music-playlists#me)
-*   [related projects](https://github.com/junguler/m3u-radio-music-playlists#related-projects)
-*   [acknowledgement](https://github.com/junguler/m3u-radio-music-playlists#acknowledgement-thanks)
-*   [behind the scenes](https://github.com/junguler/m3u-radio-music-playlists#behind-the-scenes)
+* [git stats](https://github.com/junguler/m3u-radio-music-playlists#git-stats)
+* [sources](https://github.com/junguler/m3u-radio-music-playlists#sources)
+* [you](https://github.com/junguler/m3u-radio-music-playlists#you)
+* [me](https://github.com/junguler/m3u-radio-music-playlists#me)
+* [related projects](https://github.com/junguler/m3u-radio-music-playlists#related-projects)
+* [acknowledgement](https://github.com/junguler/m3u-radio-music-playlists#acknowledgement-thanks)
+* [behind the scenes](https://github.com/junguler/m3u-radio-music-playlists#behind-the-scenes)
 
 <table align="center">
 <tr>
@@ -309,11 +309,11 @@ note: i need to investigate players for other devices, i will update this sectio
 <br>
 
 ### Check for dead links without using code
-unlike most music websites and other highly curated selections, my repo does not actively check for dead/off_air links due to the large amount of stations (more than 1 million unique stream links) and this being a one man project, i do have a folder that is `+checked+` but even then it's checked on that date i've pushed the update using american ips (github's) so things my not work on you region, so lets explain how you can check links for yourself without needing to know any coding
+unlike most music websites and other highly curated selections, my repo does not actively check for dead/off_air links due to the large amount of stations (more than 1 million unique stream links) and this being a one man project, i do have a folder that is `+checked+` but even then it's checked on that date i've pushed the update using american ips (github's) so things my not work on your region, so lets explain how you can check links for yourself without needing to know any coding
 
 the first thing you need is the excellent [cat-catch](https://github.com/xifangczy/cat-catch) browser extension, install it for [chrome (and it's derivative)](https://chrome.google.com/webstore/detail/jfedfbgedapdagkghmgibemcoggfppbb), [firefox](https://addons.mozilla.org/addon/cat-catch/) and [edge](https://microsoftedge.microsoft.com/addons/detail/oohmdefbjalncfplafanlagojlakmjci) and open one of the many pages i've created via webamp to listen to music online, make sure to pin the cat-catch extension to your toolbar for easier operations
 
-here i've used the `Trance` page of the `listen_to_icecast` repo, open it and wait things to load, as you can see the cat in the toolbar has a number above it, these are the streams that are loaded to this point and are listenable in my region
+here i've used the `Trance` page of the `listen_to_icecast` repo, open it and wait for things to load, as you can see the cat icon in the toolbar has a number above it, these are the streams that are loaded to this point and are listenable in your region
 
 ![1](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cat_catch1.jpg)
 
@@ -325,7 +325,7 @@ now click on `Select All` then `Copy` and paste it to a txt editor, save it as a
 
 ![3](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cat_catch3.jpg)
 
-note: this method does not give you the stream title (tho most streams broadcast their names pretty reguraly) and you have to wait for links to load so keep that in mind
+note: this method does not give you the stream title (tho most streams broadcast their names pretty regularly) and you have to wait for links to load so keep that in mind
 
 <br>
 
