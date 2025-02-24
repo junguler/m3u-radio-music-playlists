@@ -3,10 +3,16 @@
 <table align="center">
 <tr>
 <td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cassette2.gif"></td>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/record.gif"></td>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/station.gif"></td>
 </tr>
 </table>
+
+<!-- <td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/record.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/station.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/radio.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/list.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/note2.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/playlist.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/rock.gif"></td> -->
 
 ### index of content
 
@@ -35,15 +41,13 @@
 * [acknowledgement](https://github.com/junguler/m3u-radio-music-playlists#acknowledgement-thanks)
 * [behind the scenes](https://github.com/junguler/m3u-radio-music-playlists#behind-the-scenes)
 
+<br>
+
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/airpod.gif"></td>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cool.gif"></td>
 <td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/headphone2.gif"></td>
 </tr>
 </table>
-
-<br>
 
 ### how to listen
 
@@ -300,6 +304,12 @@ note: i need to investigate players for other devices, i will update this sectio
 
 <br>
 
+<table align="center">
+<tr>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/airpod.gif"></td>
+</tr>
+</table>
+
 ### Check for dead links without using code
 unlike most music websites and other highly curated selections, my repo does not actively check for dead/off_air links due to the large amount of stations (more than 1 million unique stream links) and this being a one man project, i do have a folder that is `+checked+` but even then it's checked on that date i've pushed the update using american ips (github's) so things my not work on your region, so lets explain how you can check links for yourself without needing to know any coding
 
@@ -319,15 +329,13 @@ now click on `Select All` then `Copy` and paste it to a txt editor, save it as a
 
 note: this method does not give you the stream title (tho most streams broadcast their names pretty regularly) and you have to wait for links to load so keep that in mind
 
+<br>
+
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/save.gif"></td>
 <td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/folder.gif"></td>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/micro.gif"></td>
 </tr>
 </table>
-
-<br>
 
 ### How to download from a station
 
@@ -391,15 +399,13 @@ streamripper http://51.89.148.171:8022/stream/1/ -u Mozilla/5.0 -l 3600
 
 this command will download this stream `http://51.89.148.171:8022/stream/1/` for 1 hour, splitting all the songs and uses mozilla as the user agent, for more examples visit the man page for the program
 
+<br>
+
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/map.gif"></td>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/radio.gif"></td>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/world.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/save.gif"></td>
 </tr>
 </table>
-
-<br>
 
 ### how to download this repo
 
@@ -418,6 +424,12 @@ download the [auto-generated zip file](https://github.com/junguler/m3u-radio-mus
 
 <br>
 
+<table align="center">
+<tr>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/micro.gif"></td>
+</tr>
+</table>
+
 ### git Stats
 
 since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them every two weeks so you can have a feel for how this repo is doing
@@ -428,15 +440,13 @@ since the traffic section of the insight tab is hidden to other viewers of this 
 
 ![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_3.jpg)
 
+<br>
+
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/list.gif"></td>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/note2.gif"></td>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/playlist.gif"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/map.gif"></td>
 </tr>
 </table>
-
-<br>
 
 ### sources
 
@@ -704,15 +714,13 @@ here is a list of websites i've scraped from already and included m3u streams fo
 
 my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)
 
+<br>
+
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/rock.gif"></td>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/dj.gif"></td>
 <td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/note.gif"></td>
 </tr>
 </table>
-
-<br>
 
 ### you
 
@@ -728,11 +736,25 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <br>
 
+<table align="center">
+<tr>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/world.gif"></td>
+</tr>
+</table>
+
 ### related projects
 
 *   [focus](https://github.com/gabrielproencaalves/focus) by [gabriel proenca alves](https://github.com/gabrielproencaalves) : a fork of this repo that includes a script to easily listen to m3u streams using the [mpg123](https://www.mpg123.de/) linux audio player
 *   [\*-moode](https://github.com/konzumpro/m3u-radio-music-playlists-moode) by [konzumpro](https://github.com/konzumpro) : a fork of this repo that converts m3u files in the root of this repo to [MoOde](https://github.com/moode-player/moode) compatible stream files
 *   [pyradio-m3u-to-playlist](https://github.com/LionyxML/pyradio-m3u-to-playlist) by [Rahul M. Juliato (LionyxML)](https://github.com/LionyxML) : converts any m3u file to [pyradio](https://github.com/coderholic/pyradio) compatible csv playlist file, includes the everything-full.m3u file in this repo as a quick way to generate a playlist
+
+<br>
+
+<table align="center">
+<tr>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cool.gif"></td>
+</tr>
+</table>
 
 ### acknowledgement, thanks
 
@@ -741,6 +763,14 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 *   to [jordan eldredge (captbaritone)](https://github.com/captbaritone) for making the amazing [webamp](https://github.com/captbaritone/webamp) player which i've used for playing these radio streams in the online section of these repos
 *   to all those websites i stole code snippets from to scrape these websites
 *   to you
+
+<br>
+
+<table align="center">
+<tr>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/dj.gif"></td>
+</tr>
+</table>
 
 ### behind the scenes
 
