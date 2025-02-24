@@ -319,7 +319,7 @@ here i've used the 'Trance' page of the 'listen_to_icecast' repo, open it and wa
 
 click on the cat icon to open the extension's menu
 
-![2](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cat_catch1.jpg)
+![2](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cat_catch2.jpg)
 
 now click on `Select All` then `Copy` and paste it to a txt editor, save it as a `.m3u` file and it's ready to be listend to, now every link works
 
