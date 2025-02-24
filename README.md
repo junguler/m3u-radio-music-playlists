@@ -323,6 +323,8 @@ click on the cat icon to open the extension's menu
 
 now click on `Select All` then `Copy` and paste it to a txt editor, save it as a `.m3u` file and it's ready to be listend to, now every link works
 
+![3](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cat_catch3.jpg)
+
 note: this method does not give you the stream title (tho most streams broadcast their names pretty reguraly) and you have to wait for links to load so keep that in mind
 
 <br>
