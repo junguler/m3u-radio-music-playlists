@@ -8,7 +8,6 @@
 
 <!-- <td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/record.gif"></td>
 <td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/station.gif"></td>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/radio.gif"></td>
 <td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/list.gif"></td>
 <td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/note2.gif"></td>
 <td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/playlist.gif"></td>
@@ -19,6 +18,7 @@
 * [How to listen](https://github.com/junguler/m3u-radio-music-playlists#how-to-listen)
    * [on the web](https://github.com/junguler/m3u-radio-music-playlists#on-the-web)
    * [on your devices](https://github.com/junguler/m3u-radio-music-playlists#on-windows-mac-and-linux)
+* [What are these genres names even mean?](https://github.com/junguler/m3u-radio-music-playlists#What-are-these-genres-names-even-mean)
 * [Check for dead links without using code](https://github.com/junguler/m3u-radio-music-playlists#Check-for-dead-links-without-using-code)
 * [How to download from a station](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-from-a-station)
    * [as a long audio file](https://github.com/junguler/m3u-radio-music-playlists#as-a-long-audio-file)
@@ -294,6 +294,17 @@ if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc …
 *   AIMP: suggested by [@lux5am](https://github.com/lux5am) in [#23](https://github.com/junguler/m3u-radio-music-playlists/discussions/23), a winamp clone with everything you might need to listen and record radio
 
 note: i need to investigate players for other devices, i will update this section later, if you know of a good program to use please let me know
+
+<br>
+
+<table align="center">
+<tr>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/radio.gif"></td>
+</tr>
+</table>
+
+### What are these genres names even mean?
+you might not know what every genre name means, i'm the same, so you can eaither search for it online or as an alternative see my [repo](https://github.com/junguler/music_genres_explained) that has explanations about almost every music genres you see here
 
 <br>
 
