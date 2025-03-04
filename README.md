@@ -18,7 +18,7 @@
 * [How to listen](https://github.com/junguler/m3u-radio-music-playlists#how-to-listen)
    * [on the web](https://github.com/junguler/m3u-radio-music-playlists#on-the-web)
    * [on your devices](https://github.com/junguler/m3u-radio-music-playlists#on-windows-mac-and-linux)
-* [What are these genres names even mean?](https://github.com/junguler/m3u-radio-music-playlists#What-are-these-genres-names-even-mean)
+* [What are these genres names even mean?](https://github.com/junguler/m3u-radio-music-playlists#what-are-these-genres-names-even-mean)
 * [Check for dead links without using code](https://github.com/junguler/m3u-radio-music-playlists#Check-for-dead-links-without-using-code)
 * [How to download from a station](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-from-a-station)
    * [as a long audio file](https://github.com/junguler/m3u-radio-music-playlists#as-a-long-audio-file)
