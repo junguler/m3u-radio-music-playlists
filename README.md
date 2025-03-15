@@ -465,7 +465,7 @@ here is a list of websites i've scraped from already and included m3u streams fo
 </tr>
 </thead>
 <tbody><tr>
-<td><a href="http://radio.pervii.com/en/online-playlists-m3u.htm">http://radio.pervii.com/en/online-playlists-m3u.htm</a></td>
+<td><a href="http://radio.pervii.com/en/online-playlists-m3u.htm">http://radio.pervii.com/...-playlists-m3u.htm</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists">root</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/radio.pervii.sh">radio.pervii.sh</a></td>
 </tr>
@@ -535,7 +535,7 @@ here is a list of websites i've scraped from already and included m3u streams fo
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/openradio.app.sh">openradio.app.sh</a></td>
 </tr>
 <tr>
-<td><a href="https://vtuner.com/setupapp/guide/asp/BrowseStations/startpage.asp">https://vtuner.com/setupapp/guide/asp/BrowseStations/startpage.asp</a></td>
+<td><a href="https://vtuner.com/setupapp/guide/asp/BrowseStations/startpage.asp">https://vtuner.com/.../startpage.asp</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/vtuner">/vtuner</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/vtuner.sh">vtuner.sh</a></td>
 </tr>
