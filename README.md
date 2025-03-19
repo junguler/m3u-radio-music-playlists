@@ -317,6 +317,14 @@ you might not know what every genre name means, i'm the same, so you can eaither
 ### Check for dead links without using code
 unlike most music websites and other highly curated selections, my repo does not actively check for dead/off_air links due to the large amount of stations (more than 1 million unique stream links) and this being a one man project, i do have a folder that is `+checked+` but even then it's checked on that date i've pushed the update using american ips (github's) so things my not work on your region, so lets explain how you can check links for yourself without needing to know any coding
 
+with the help of chatgpt i've made a simple [m3u link checker](https://github.com/junguler/M3U-link-checker) web page, it has 3 main features
+
+* check local file: upload a m3u playlist and click this button to check it
+* check online link: input the link of a m3u playlist (the raw file from github for example) and click the button to check it
+* check pasted streams: copy and paste the streams title and links from wherever and click the button to check it
+
+alternatively use the below method:
+
 the first thing you need is the excellent [cat-catch](https://github.com/xifangczy/cat-catch) browser extension, install it for [chrome (and it's derivative)](https://chrome.google.com/webstore/detail/jfedfbgedapdagkghmgibemcoggfppbb), [firefox](https://addons.mozilla.org/addon/cat-catch/) and [edge](https://microsoftedge.microsoft.com/addons/detail/oohmdefbjalncfplafanlagojlakmjci) and open one of the many pages i've created via webamp to listen to music online, make sure to pin the cat-catch extension to your toolbar for easier operations
 
 here i've used the `Trance` page of the `listen_to_icecast` repo, open it and wait for things to load, as you can see the cat icon in the toolbar has a number above it, these are the streams that are loaded to this point and are listenable in your region
