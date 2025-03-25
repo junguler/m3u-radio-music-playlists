@@ -287,6 +287,12 @@ if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc …
     
 *   download the stream files and play them locally on your pc or other devices which i've talked about further down in this markdown file
 
+alternativly use this [M3U radio player](https://junguler.github.io/M3U-radio-player/) i've made with the help of chatgpt
+
+* the player comes with 10 pre loaded stream links
+* click on the folder icon to load your local m3u playlist
+* click on the globe icon to load an online playlist (a raw github address for example)
+
 ###### on windows, mac and linux
 
 *   mpv: for the tinkerer types, see my [config files](https://github.com/junguler/win_confs/tree/main/mpv/portable_config) for an example
