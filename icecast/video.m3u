@@ -1,11 +1,19 @@
 #EXTM3U
 #EXTINF:-1,NoLife Radio
 http://listen.nolife-radio.com:80/stream
-#EXTINF:-1,RadioSEGA
-http://content.radiosega.net:8006/live
-#EXTINF:-1,ARCADE RADIO (AAC)
-http://server10.reliastream.com:9000/autodj
+#EXTINF:-1,RadioSEGA (HE-AAC v2)
+http://icecast.radiosega.net:8006/live
 #EXTINF:-1,ARCADE RADIO (MP3)
 http://server10.reliastream.com:9000/stream2_autodj
+#EXTINF:-1,RadioSEGA (MP3 LQ)
+http://icecast.radiosega.net:8006/rs-mpeg.mp3
+#EXTINF:-1,RadioSEGA (Opus HQ)
+http://icecast.radiosega.net:8006/rs-opus.ogg
+#EXTINF:-1,ARCADE RADIO (AAC)
+http://server10.reliastream.com:9000/autodj
 #EXTINF:-1,NamKoCom Radio
 https://spritelayerradio.com/listen/namkocom_radio/namkocom.mp3
+#EXTINF:-1,RadioSEGA (Vorbis)
+http://icecast.radiosega.net:8006/rs-vorbis.ogg
+#EXTINF:-1,RadioSEGA (Opus LQ)
+http://icecast.radiosega.net:8006/rs-opus-low.ogg
