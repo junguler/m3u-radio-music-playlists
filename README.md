@@ -2,7 +2,7 @@
 
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/01-cassette-3"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/01-cassette-3.gif"></td>
 </tr>
 </table>
 
@@ -31,7 +31,7 @@
 
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/02-headphone-3"></td>
+<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/02-headphone-3.gif"></td>
 </tr>
 </table>
 
