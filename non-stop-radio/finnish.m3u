@@ -13,10 +13,12 @@ http://stream.bauermedia.fi/radionova/radionova_128.mp3
 https://stream.bauermedia.fi/basso/bassoradio_64.aac
 #EXTINF:-1,Finest FM
 http://212.47.220.188:8000
+#EXTINF:-1,Radio City 99.4 FM
+https://stream.radioplay.fi/radiocity/radiocity_128.mp3
 #EXTINF:-1,YLE Tampereen Radio
 http://stream.radiodacha.ru/14_dacha_28?type=.aac&UID=5CB3E5619446D01077CBB30F60F197B3 https://yleuni-f.akamaihd.net/i/yleliveradiohd_26@113903/master.m3u8?set-segment-duration=quality
 #EXTINF:-1,Radio Sandels - 104.6 FM
-http://37.187.5.67:8080
+https://radiosandels.radiotaajuus.fi:9050/radio
 #EXTINF:-1,Radio SUN- 106.1 FM
 http://st.downtime.fi:80/sun.mp3
 #EXTINF:-1,Raute
@@ -29,12 +31,8 @@ http://radio.6net.fi:8000/jarviradio
 http://ice6.securenetsystems.net:80/STEELFM
 #EXTINF:-1,NRJ Suomihitit
 https://stream.bauermedia.fi/nrj/nrj_64.aac
-#EXTINF:-1,Radio City Jyvaskyla - 102.5 FM
-https://stream.bauermedia.fi/radiocity/jkl_64.aac
 #EXTINF:-1,Radio Santa Claus
 https://streaming.radiostreamlive.com/radiosantaclaus_devices
-#EXTINF:-1,Joulu Radio
-http://c0.toivon.net:8100/stream
 #EXTINF:-1,Radio Nostalgia Finland
 https://stream.bauermedia.fi/nostalgia/nostalgia_128.mp3
 #EXTINF:-1,Radio Alands - 91.3 FM
@@ -43,6 +41,8 @@ https://stream.alandsradio.ax/stream.ogg
 https://stream.bauermedia.fi/suomirock/suomirock_64.aac
 #EXTINF:-1,RQL
 http://149.202.196.92:8238
+#EXTINF:-1,Radio Aalto - 92.5 FM
+https://proxy01.servidorenlinea.net/cdehosting/8042/?an-uid=6427168739786314769&dot-uid=0ae52204009353f711da024a&amb-uid=3129243929485457110&aw-uid=496701d691b554cedc1fb7549b899846&dbm-uid=CAESEEbOY3J2oB4CQAcvph7s9LM&cto-uid=26930a0e-f907-449c-864d-404b5d9d618c-66b725f6-5553&bsw-uid=af63dd95-0d85-4708-8a4e-f3d900a3586c&dyn-uid=5267274478558955079&ttd-uid=d14d7e6b-bf1a-4e1f-bad4-4e32f212091b&triton-uid=cookie%3A6d231ce9-e20a-4c98-978f-d7a80bbd1f9a&adt-uid=cuid_975e7101-bac4-11ef-81f6-12707100b72d&aw_0_req_lsid=b091bda7e9891608307c4cd3db6e3f53
 #EXTINF:-1,Radio Musa
 https://audio-edge-hy4wy.blr.d.radiomast.io/94ef3d8b-7fea-47ee-a609-c0d3cd8e4dde?_=0.31606680459544845
 #EXTINF:-1,Radio Pori
@@ -57,8 +57,6 @@ http://hel2-77-86-247-184.ext.nebulacloud.fi:8000/aallot
 https://stream.bauermedia.fi/nostalgia/nostalgia_64.aac?
 #EXTINF:-1,Radio Vaasa
 https://stream.protonbroadcast.com:8443/radiovaasa.mp3
-#EXTINF:-1,Pas Radio
-http://releet.pasiradio.com:8000
 #EXTINF:-1,Radio Mikkeli
 https://stream.bauermedia.fi/radiocity/radiocity_64.aac
 #EXTINF:-1,Radio Hear
@@ -67,39 +65,31 @@ http://hear.fi:8000/hear.mp3
 https://stream.bauermedia.fi/ysari/ysari_64.aac?&aw_0_1st.skey=1637584877
 #EXTINF:-1,Radio Verkko
 http://kuuntele.radioverkko.fi:8000/live
-#EXTINF:-1,Radio Kompassi
-http://hel2-77-86-247-184.ext.nebulacloud.fi:8000/kompassi
 #EXTINF:-1,Radio Gramofoni
 https://solid9.streamupsolutions.com/proxy/kookmuod?mp=/stream
 #EXTINF:-1,Radio City, Jyväskylä
-https://stream-redirect.bauermedia.fi/radiocity/jkl_128.mp3?aw_0_1st.bauer_loggedin=false&aw_0_1st.playerid=BMUK_tunein
+https://stream.bauermedia.fi/radiocity/radiocity_64.aac?
 #EXTINF:-1,Järviradio
-http://radio2.6net.fi:8000/jarviradio2
+https://jarviradio.radiotaajuus.fi:9000/jr
 #EXTINF:-1,Radio Pooki
 https://stream-redirect.bauermedia.fi/radiopooki/radiopooki_128.mp3?aw_0_1st.bauer_loggedin=false&aw_0_1st.playerid=BMUK_tunein
 #EXTINF:-1,Radio SuomiPop
-https://digitacdn.akamaized.net/hls/live/629243/radiosuomipop/master.m3u8
+https://nelonenmedia-pmd-ads-audio.nm-stream.nelonenmedia.fi/ifleasing.mp3
 #EXTINF:-1,Iskelmä, Helsinki
-https://stream-redirect.bauermedia.fi/iskelma/hki_128.mp3?aw_0_1st.bauer_loggedin=false&aw_0_1st.playerid=BMUK_tunein
+https://stream.bauermedia.fi/iskelma/iskelma_64.aac
 #EXTINF:-1,Bassoradio
 https://stream-redirect.bauermedia.fi/basso/bassoradio_128.mp3?aw_0_1st.bauer_loggedin=false&aw_0_1st.playerid=BMUK_tunein
 #EXTINF:-1,Radio NRJ Finland
 https://stream-redirect.bauermedia.fi/nrj/nrj_128.mp3?aw_0_1st.bauer_loggedin=false&aw_0_1st.playerid=BMUK_tunein
 #EXTINF:-1,Radio Sun
 http://st.downtime.fi/sun.aac
-#EXTINF:-1,Radio Iskelma
-https://stream-redirect.bauermedia.fi/iskelma/oul_128.mp3?aw_0_1st.bauer_loggedin=false&aw_0_1st.playerid=BMUK_tunein
 #EXTINF:-1,Radio City, Helsinki
-https://stream-redirect.bauermedia.fi/radiocity/hki_128.mp3?aw_0_1st.bauer_loggedin=false&aw_0_1st.playerid=BMUK_tunein
-#EXTINF:-1,Radio Helsinki
-http://77.86.233.1:8006/
-#EXTINF:-1,Radio Moreeni
-http://153.1.15.29:8080/moreeni.mp3
+https://stream.radioplay.fi/radiocity/radiocity_64.aac
 #EXTINF:-1,Radio Nova
 https://stream-redirect.bauermedia.fi/radionova/radionova_128.mp3?aw_0_1st.bauer_loggedin=false&aw_0_1st.playerid=BMUK_tunein
 #EXTINF:-1,Radio Trombit
 http://wr2.downtime.fi/trombit.mp3
-#EXTINF:-1,Groove FM
-https://digitacdn.akamaized.net/hls/live/629243/groove/master.m3u8
 #EXTINF:-1,Radio Rwanda
 http://listen.rba.co.rw:8000/
+#EXTINF:-1,Zik FM
+https://stream-147.zeno.fm/z97k8ry9sxquv?zs=P4PlYoa3QlaNNUe1v2_zlA

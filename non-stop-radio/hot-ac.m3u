@@ -8,7 +8,7 @@ http://stream.104.6rtl.com/rtl-live/mp3-128/www.listenlive.eu:pls-rtl_air
 #EXTINF:-1,Radio FFN - radio ffn 101.9 FM
 https://stream.ffn.de/ffn/mp3-192/stream.mp3?ref=tunein
 #EXTINF:-1,HR3
-https://hlshr3.akamaized.net/hls/live/2016536/hr3/master.m3u8
+https://dispatcher.rndfnk.com/hr/hr3/live/mp3/high?aggregator=radio-de
 #EXTINF:-1,Die neue - 107.7 FM
 https://dieneue1077.cast.addradio.de/dieneue1077/simulcast/high/stream.mp3
 #EXTINF:-1,HIT RADIO FFH 105.1 FM
@@ -41,8 +41,6 @@ http://stream.kissfm.de/kissfm/mp3-128/internetradio
 http://stream.radiowestfalica.de/444zbcy
 #EXTINF:-1,radio SAW-80er
 http://saw-de-hz-fal-stream03-cluster01.radiohost.de/saw-80er_128
-#EXTINF:-1,delta radio - 105.9 FM
-http://regiocast.hoerradar.de/deltaradio-live-mp3-hq
 #EXTINF:-1,Radio Gong
 https://edge64.streamonkey.net/gong-live?aggregator=radioplayer&=&&___cb=990480781243188
 #EXTINF:-1,radio SAW-Deutsch
@@ -63,8 +61,6 @@ https://stream.rpr1.de/kaiserslautern/mp3-128/radiofm
 https://stream.rpr1.de/ludwigshafen/mp3-128/radiofm
 #EXTINF:-1,villachfm
 http://stream.laut.fm/villachfm
-#EXTINF:-1,Metropolys 97.6 FM
-http://str0.creacast.com/metropolys
 #EXTINF:-1,Delta FM Dunkerque 100.7
 https://deltafmdunkerque.ice.infomaniak.ch/deltafmdunkerque-high.mp3
 #EXTINF:-1,X-STREET
@@ -87,8 +83,6 @@ http://stream2.n340.com/12_love_24_reg_1975?type=.flv&UID=46DFABCBC9303935194D07
 http://online.krasnoyarskfm.ru:8000/krasnoyarskfm_mp3
 #EXTINF:-1,Radio Karnaval
 http://online.carnivalfm.ru:8000/stream/2
-#EXTINF:-1,Bit FM
-http://150.209.66.45:8000/
 #EXTINF:-1,STYL CLASSICS
 http://s2.nexuscast.com:8042/
 #EXTINF:-1,R101 - 101.2 FM Milano
@@ -99,8 +93,6 @@ http://195.201.31.54:8000/
 https://stream.dimensionesuonosoft.radio/audio/dssn.stream_aac/chunklist.m3u8
 #EXTINF:-1,Die Antenne
 https://stream.dieantenne.it:8443/
-#EXTINF:-1,ctuDance
-https://jenny.torontocast.com:8154/stream
 #EXTINF:-1,ctuSlow-The Love Channel
 https://maggie.torontocast.com:8044/stream
 #EXTINF:-1,ctuHot
@@ -128,7 +120,7 @@ http://radio.ukraudio.com:8000/babamisha.aac
 #EXTINF:-1,COOL FM (from COOLFM.hu)
 https://mediagw.e-tiger.net/stream/coolfmtin
 #EXTINF:-1,Antena Zadar
-http://live.antenazadar.hr:9002/
+https://securestreams5.autopo.st:1935/live
 #EXTINF:-1,Ljungbykanalen
 http://lyssna.ljungbykanalen.se/lkweb
 #EXTINF:-1,Kiss 98
@@ -155,6 +147,8 @@ http://ice.abradio.cz:80/orionval64.mp3
 http://ice.abradio.cz/orion128.mp3
 #EXTINF:-1,Radio Hitradio Orion Valassko Low
 http://ice.abradio.cz/orionval64.mp3
+#EXTINF:-1,Radio 100FM
+https://cdn.cybercdn.live/Radios_100FM/Audio/icecast.audio?dist=onnss
 #EXTINF:-1,VibeFM
 http://stream.vibefm.dk/live
 #EXTINF:-1,Code Hits 1
@@ -163,7 +157,5 @@ https://radio7.pro-fhi.net/listen/xqahcorv/stream.mp3
 http://radioip.no:8000/stream/1/
 #EXTINF:-1,Radio 1 - Koper
 http://live.radio.si/Radio1
-#EXTINF:-1,Dobré rádio SK
-http://stream.dobreradio.sk:8813/dobreradio.mp3
 #EXTINF:-1,Radio SWH
 http://80.232.162.149:8000/swh96mp3

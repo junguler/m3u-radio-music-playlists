@@ -1,22 +1,24 @@
 #EXTM3U
 #EXTINF:-1,Radio Monte Carlo
-http://radiolatina.live:7900/stream?type=http&nocache=49379
+https://icy.unitedradio.it/RMC.aac
+#EXTINF:-1,Diamante FM
+https://stream.zeno.fm/n4tcsndvtxhvv?n=4af9157e0648d853b822
 #EXTINF:-1,Radio El Espectador
-https://server4.hostradios.com/8368/stream
+https://espectador-1.nty.uy/
 #EXTINF:-1,Radio Imparcial
-https://stream.core-prod.us-west-2.tunenet.io/listen.stream?streamId=4106194&rti=dEZzGgYzfxg4dhE2AxFRSGgyQE5Rdid8WFcFHQASHBMUTxMkflYCFVQZJSkFE0pkDBIYDQcSWT4UHAgaGBwLEAQWWB1qGgFO%7e%7e%7e&render=json&qs=
+https://stream.zeno.fm/xfutcgmn6cgtv
 #EXTINF:-1,La Costa
-http://200.58.118.108:8235/stream
+https://lacostafm-2.nty.uy/?
 #EXTINF:-1,Radio 098
 http://fluoz.zeno.fm:80/aam2ts855p8uv/source
 #EXTINF:-1,Viví Fm
-http://51.15.152.81:8126/
+https://free.rcast.net/200690
 #EXTINF:-1,Radio Atalaias Mundo
 https://stream-42.zeno.fm/n3s14cwc1rhvv?
 #EXTINF:-1,Radio Futura (Montevideo)
-https://d1rnjt8o1ldtod.cloudfront.net/futura.m3u8
+https://alba-uy-radiofutura-futura.stream.mediatiquestream.com/index.m3u8
 #EXTINF:-1,Azul FM
-http://icecasthd.net:8294/live
+https://azul-1.nty.uy
 #EXTINF:-1,Radio Atalaias Rou
 http://stream.zeno.fm/v9o0lzd1poqvv
 #EXTINF:-1,Radio Atalaias Continental 
@@ -43,10 +45,8 @@ https://salida.stream.com.uy:8508/stream
 http://server-uk1.radioseninternet.net:8034/
 #EXTINF:-1,Radio Yi Durazno
 http://usa15.ciudaddigital.com.uy:8144/AM960
-#EXTINF:-1,Radio Acuarela
-http://204.197.245.100:8280/
 #EXTINF:-1,Radio Carve 850 AM
-https://radiolatina.live/9202/stream
+https://streamingcasazorrilla.innovanexo.com:8000/radiocarve850.mp3
 #EXTINF:-1,Radiocero
 https://radiolatina.live/7902/stream
 #EXTINF:-1,Radio Disney
@@ -77,8 +77,6 @@ https://stream.zeno.fm/pw3r6bqbn48uv
 https://stream.zeno.fm/4s66m52ce3quv
 #EXTINF:-1,Radio Aurora Digital
 http://198.204.234.10:8229/stream/1/
-#EXTINF:-1,RTM Uruguay
-https://cdn.instream.audio/:9390/stream
 #EXTINF:-1,Radio La Loca
 https://radio20.servidorderadio.net:8052/radio-la-loca
 #EXTINF:-1,Emisora Mercedes Online
@@ -95,8 +93,6 @@ https://streaming.tacuatecstreaming.com/radio/8090/radio.mp3
 https://stream.zeno.fm/ddkxgd9sywzuv
 #EXTINF:-1,Radio Poder Online
 http://76.164.217.100:7112/live
-#EXTINF:-1,Radio 1010 AM
-https://radiolatina.live/9204/stream.mp3
 #EXTINF:-1,Difusora Soriano
 http://usa15.ciudaddigital.com.uy:8094/DifusoraSoriano
 #EXTINF:-1,Alfa FM 96.3
@@ -134,7 +130,7 @@ http://usa15.ciudaddigital.com.uy:8030/CityFM
 #EXTINF:-1,Clásica 650 AM
 https://radios.iwstreaming.uy/8032/stream
 #EXTINF:-1,Clarin AM580
-http://usa15.ciudaddigital.com.uy:8032/ClarinAM
+https://radioclarin-zikoxweb.radioca.st/stream
 #EXTINF:-1,Lacosta Fm 88.3
 https://lacostafm-2.nty.uy/
 #EXTINF:-1,Radiodifusión Nacional del Uruguay
@@ -167,10 +163,6 @@ https://sonic.sistemahost.es/8022/stream
 http://emisiones.com.uy:5108/artigas
 #EXTINF:-1,FM Del Carmen
 http://radios-online.info:2930/
-#EXTINF:-1,La Estación Montevideo Radio
-http://equinox.shoutca.st:9266/
-#EXTINF:-1,FM HIT 90.3
-https://hit2.net.com.uy:8022/stream
 #EXTINF:-1,Radio Rincón
 http://88.198.5.134:8145/stream
 #EXTINF:-1,Ciudad de Melo FM
@@ -183,8 +175,6 @@ http://usa15.ciudaddigital.com.uy:8040/FederalFM
 https://radios.iwstreaming.uy/8034/stream
 #EXTINF:-1,FM Toros
 https://streaming2.hostingmontevideo.com:7016/
-#EXTINF:-1,Radio Fantasma
-http://us4freenew.listen2myradio.com:11673/stream.nsv
 #EXTINF:-1,Luna FM 93.3
 https://servermm.com/radio/lunafm
 #EXTINF:-1,Radio Fest
@@ -194,7 +184,7 @@ https://streaming.radiosenlinea.com.ar/8868/stream
 #EXTINF:-1,NUEVA ERA FM
 http://192.240.99.146:8127/als
 #EXTINF:-1,Mufa Jagger Radio Online
-http://158.106.131.228:9096/
+https://mufajagger.com/
 #EXTINF:-1,Némesis Radio
 https://stream.zeno.fm/e68u1105p5iuv
 #EXTINF:-1,Emisora Libertad 88.5
@@ -212,13 +202,11 @@ https://streaming.criterioonline.com.ar/proxy/rdolores/stream.mp3
 #EXTINF:-1,Galaxia FM
 https://stream-161.zeno.fm/7pgbbcnpvgkuv
 #EXTINF:-1,El Puente FM
-http://radios-online.info:4130/
+https://as100.globalhost1.com/8082/stream
 #EXTINF:-1,Impacto FM 93.3
 http://149.56.195.94:8634/stream.nsv
 #EXTINF:-1,Cafe Express Radio
-https://tustreamingradios2.com/8052/stream
-#EXTINF:-1,Diamante FM
-http://qwcast.com:9870/stream
+https://emisorasdigitales2.com:8016/stream
 #EXTINF:-1,Radio Extravagante FM
 https://stream.zeno.fm/61epffwku0quv
 #EXTINF:-1,Radio Charrua
@@ -239,8 +227,6 @@ http://streamingraddios.online:10588/stream/
 https://server-usa2.radioseninternet.net/9508/stream
 #EXTINF:-1,Radio Punto Centro
 https://stream.zeno.fm/ks3a5u8yfm8uv
-#EXTINF:-1,915 Espacio FM
-http://radiolatina.live:7926/stream
 #EXTINF:-1,Radio Más
 https://streamall.alsolnet.com/radiomas
 #EXTINF:-1,Utopía al Sur
@@ -257,10 +243,6 @@ http://usa15.ciudaddigital.com.uy:8076/EmisoraDelEste
 http://uniradio.edu.uy:8008/uniradio
 #EXTINF:-1,Radio3 Montevideo
 https://sc10.conectarhosting.com/proxy/radio3montevideo?mp=/stream:8820/stream
-#EXTINF:-1,Crazy FM 983
-https://streamingraddios.online/proxy/loca?mp=/stream
-#EXTINF:-1,Esperanza fm 107.1
-http://78.129.229.120:38018/stream.nsv
 #EXTINF:-1,Emisora Chana
 https://stream.zenolive.com/u7c19u0u72quv
 #EXTINF:-1,Radio 098 - Más música!
@@ -308,7 +290,7 @@ http://servidor29.brlogic.com:8732/live
 #EXTINF:-1,Máxima FM
 https://laradiossl.online:10674/stream.nsv
 #EXTINF:-1,Del Exodo
-https://hostingservicios.tk:8010/
+http://01.solumedia.com.ar:8530/stream
 #EXTINF:-1,Amanecer 91.9 FM
 http://198.100.145.187:17700/
 #EXTINF:-1,FLY Radio
@@ -340,7 +322,7 @@ https://stream.zeno.fm/91nq1mt8cm8uv
 #EXTINF:-1,Radio Tabaré
 https://emisiones.com.uy:8147/taba
 #EXTINF:-1,Estilo Radio
-http://emisiones.com.uy:8083/estilo
+https://audio3.tustreaming.cl/7120/stream
 #EXTINF:-1,Radio Box
 https://radio.thevikingarmy.com/radio/8000/radio.mp3
 #EXTINF:-1,90.1 FM Ideal

@@ -1,16 +1,18 @@
 #EXTM3U
 #EXTINF:-1,RTL 2 - 105.9 FM
-https://icecast.rtl2.fr/rtl2-1-44-128?listen=webAwQMBgULAAQFAg8PBAEDBQ 
+https://streamer-04.rtl.fr/rtl2-1-44-128?listen=webAwQMBgULAAQFAg8PBAEDBQ
 #EXTINF:-1,Nostalgie Chansons Francaises
 https://scdn.nrjaudio.fm/fr/30611/mp3_128.mp3?origine=https://scdn.nrjaudio.fm/adwz1/fr/30611/mp3_128.mp3?origine=appradiofm&aw_0_1st.station=Nostalgie-Chansons-Fran-aises&cdn_path=adswizz_lbs8&adws_out_1&access_token=8ddf6d00d4b04ce3991294b0e0751961
 #EXTINF:-1,FIP - 105.1 FM
 https://direct.fipradio.fr/live/fip-midfi.mp3?ID=76zqey582k 
+#EXTINF:-1,Web Radio RTL 2 - 105.9 FM
+https://icecast.rtl2.fr/rtl2-1-44-128?listen=webAwQMBgULAAQFAg8PBAEDBQ 
 #EXTINF:-1,RFM - 94.1 FM
 https://stream.rfm.fr/rfm-live/playlist.m3u8
+#EXTINF:-1,Radio France Maghreb - 99.5 FM
+https://francemaghreb2.ice.infomaniak.ch/francemaghreb2-high.mp3?disc=thenonstopradio.com
 #EXTINF:-1,Tropiques FM - 92.6 FM
 https://listen.radioking.com/radio/8916/stream/19088?disc=thenonstopradio.com
-#EXTINF:-1,Radio Freedom FM - 97.4 FM
-https://freedomice.streamakaci.com/freedom.mp3 
 #EXTINF:-1,France Bleu Loire Ocean
 http://direct.francebleu.fr/live/fbloireocean-midfi.mp3
 #EXTINF:-1,Wit - 100.8 FM
@@ -26,7 +28,7 @@ http://ouifm.ice.infomaniak.ch/ouifm-high.mp3
 #EXTINF:-1,France Bleu Gironde
 http://direct.francebleu.fr/live/fbgironde-midfi.mp3?ID=f9fbk29m84
 #EXTINF:-1,EXO FM 
-http://exofm.ice.infomaniak.ch/exofm-64.aac
+https://exofmreunion.ice.infomaniak.ch/exofmreunion-64.aac
 #EXTINF:-1,MFM - 102.7 FM
 http://mfm.ice.infomaniak.ch:80/mfm-128
 #EXTINF:-1,Radio Alfa - 98.6 FM
@@ -115,8 +117,6 @@ https://chantefrance80s.ice.infomaniak.ch/chantefrance80s-96.aac
 https://snb.ice.infomaniak.ch/snb-high.mp3
 #EXTINF:-1,Frequence Paris Plurielle
 http://radio.toile-libre.org:8000/fpp.mp3
-#EXTINF:-1,Radio Campus Paris
-http://radiocampusparis.org:8000/stream_rcp
 #EXTINF:-1,Millenium FM Electro DJ Webradio 
 https://radio7.pro-fhi.net:19141/milleniumfm.mp3
 #EXTINF:-1,Radio Marseillette
@@ -237,8 +237,6 @@ http://radio-shoutcast2.cyber-streaming.com:8120/
 http://91.121.176.26:7900
 #EXTINF:-1,Radio Salvetat Peinard
 http://sv6.vestaradio.com:8350/
-#EXTINF:-1,Radio Bulle
-http://vm2.caramania.net:7036/stream.mp3
 #EXTINF:-1,Radio Ondaine
 http://live.francra.org:8000/RadioOndaine
 #EXTINF:-1,Radio Aria
@@ -307,8 +305,6 @@ http://fm43.ice.infomaniak.ch:80/fm43-128.mp3
 http://91.121.176.26:7900/
 #EXTINF:-1,Radio Top FM - 88.6 FM
 http://str30.creacast.com/top_fm
-#EXTINF:-1,Nostalgie Johnny Hallyday
-http://streamingp.shoutcast.com/NostalgieJohnnyHallyday-aac
 #EXTINF:-1,Radio Bonheur
 http://srv2.streaming-ingenierie.fr:8172
 #EXTINF:-1,Radio Prima
@@ -323,3 +319,5 @@ http://stream.radiochablais.ch/chablais-100francais.mp3
 http://stream.srg-ssr.ch/m/retedue/mp3_128
 #EXTINF:-1,Radio Cité Genève
 https://stream.core-prod.us-west-2.tunenet.io/listen.stream?streamId=1600842&rti=dEZzGgYzfxg4dhE2AxFRSGgyQE5Rdid8WFcFHQASHBMUTxMkflYCFVQZJSkFE0pkDBIYDQcSWT4UHAgaGBwLEAQWWB1pHwdE%7e%7e%7e&render=json&qs=
+#EXTINF:-1,ZOUK FM
+http://france16.coollabel-productions.com:8276/

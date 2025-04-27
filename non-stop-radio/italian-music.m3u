@@ -1,6 +1,8 @@
 #EXTM3U
 #EXTINF:-1,Nostalgie Italia
 https://scdn.nrjaudio.fm/adwz1/fr/30663/mp3_128.mp3?origine=appradiofm&aw_0_1st.station=Nostalgie-Italia
+#EXTINF:-1,Crooner Radio Italiano
+https://direct.croonerradio.fr/croonerradio-italiano-midfi.mp3
 #EXTINF:-1,Radio Italia
 https://streaming.radiostreamlive.com/radioitalylive_devices
 #EXTINF:-1,RTL 102.5 Radio Guardia Costiera
@@ -35,8 +37,6 @@ https://sphera.fluidstream.eu/rpd_hita.mp3?FLID=L&aw_0_req.gdpr=true&type=.mp3
 https://icecast.unitedradio.it/Suby.mp3
 #EXTINF:-1,Radio Sorrriso
 https://ice02.fluidstream.net/sorriso.mp3?FLID=3
-#EXTINF:-1,Radio Alcamo Centrale
-http://onair11.xdevel.com:8214
 #EXTINF:-1,Dimensione Suono Due
 https://stream.dimensionesuonosoft.radio/audio/dssn.stream_aac/chunklist.m3u8
 #EXTINF:-1,Radio Gelosa 100.2 FM
@@ -51,8 +51,6 @@ http://onair1.xdevel.com/RadioFantasticaCT
 http://sr7.inmystream.info:8075
 #EXTINF:-1,ITALIAN RADIO 
 https://italianradio.streamingmedia.it/play
-#EXTINF:-1,Radioluce
-http://onair20.xdevel.com:8190
 #EXTINF:-1,Radio Diaconia
 http://46.105.111.94:9286/
 #EXTINF:-1,Radio Stella FM
@@ -64,17 +62,15 @@ http://ice05.fluidstream.net/fluid0505.mp3
 #EXTINF:-1,Radio Amore Campania
 http://onair11.xdevel.com:8002/
 #EXTINF:-1,Radio Margherita Giovane
-http://onair20.xdevel.com:8018/stream.mp3
-#EXTINF:-1,Radio Fantastica 89.3 FM
-https://mediahit.inmystream.it:9006/stream2
+https://streaming.radiomargherita.com/stream/radiomargheritagiovane
 #EXTINF:-1,Radio Azzurra
-https://s3.mediastreaming.it:17100/
+https://radio.garden/api/ara/content/listen/OCYa3YY8/channel.mp3?r=1&1715336050326
 #EXTINF:-1,Radio Studio Emme
 https://ice09.fluidstream.net:80/fluid0901.aac?FLID=3
 #EXTINF:-1,FM Italia
 http://onair7.xdevel.com:8700/
 #EXTINF:-1,Radio CRC Targato Italia
-http://onair11.xdevel.com:9998
+http://onair11.xdevel.com:9998/
 #EXTINF:-1,Radio Nettuno 97.0 FM
 http://80.211.90.209:9944/
 #EXTINF:-1,RDF 102.7 FM
@@ -83,16 +79,12 @@ http://onair22.streaming.xdevel.com:8244
 http://stream.laut.fm/radioazzurra
 #EXTINF:-1,Radio Nuova San Giorgio
 http://eu1.fastcast4u.com:10942/
-#EXTINF:-1,Radio Studio Emme Classic
-http://ice05.fluidstream.net/fluid0511.mp3?FLID=L
 #EXTINF:-1,Radio Monte Carlo 2
 https://edge.singsingmusic.net/MC2.mp3
 #EXTINF:-1,Radio Sprint - 104.3 FM
 https://nr8.newradio.it/proxy/radiospr?mp=/
 #EXTINF:-1,Radio Digitalia - Ricordi
 https://stream.laut.fm/radiodigitalia-ricordi
-#EXTINF:-1,Radio Vasco
-http://streaming.radiovasco.it:8000
 #EXTINF:-1,Radio Sound Milano
 http://nrf1.newradio.it:9864/stream
 #EXTINF:-1,Life Gate Music
@@ -105,14 +97,12 @@ http://stream15.top-ix.org/radioitaliauno
 http://shoutcast.streamingmedia.it:7158
 #EXTINF:-1,Life Gate Radio 105.3
 http://onair15.xdevel.com:8254
-#EXTINF:-1,Milan Inter Radio Tv - 96.1 FM
-http://178.33.224.197:1935/milaninter/milaninter/playlist.m3u8
 #EXTINF:-1,Radio Bergamo
 https://ice04.fluidstream.net/bergamo.mp3?FLID=3
 #EXTINF:-1,Radio Kemonia
 http://kemoniastreaming2.net:8000/
 #EXTINF:-1,Radio Cuore
-https://mediahit.inmystream.it:9001/stream2
+https://stream10.xdevel.com/audio32s975552-1839/stream/icecast.audio
 #EXTINF:-1,Radio Cafe 94.6 FM
 http://onair18.xdevel.com:8218
 #EXTINF:-1,Radio Amore Catania
@@ -134,7 +124,7 @@ https://sphera.fluidstream.eu/rpd.mp3?FLID=L
 #EXTINF:-1,Visit Italy Web Radio
 https://sr12.inmystream.it/proxy/radio?mp=/stream/type=mp3
 #EXTINF:-1,Radio Uni
-http://eu.radioboss.fm:8335/stream2
+https://cdn-cms.tunein.com/service/Audio/nostream.enUS.mp3
 #EXTINF:-1,Radio Sportiva
 https://sportiva.inmystream.it/stream/sportiva
 #EXTINF:-1,Radio Toscana
@@ -145,14 +135,10 @@ https://geminione.it/proxy/cafeitalia/stream
 https://nr9.newradio.it/proxy/radioome?mp=/stream&1624539038314
 #EXTINF:-1,Radio Reggio
 http://onair15.xdevel.com:9082
-#EXTINF:-1,Comoradio International
-https://streaming.comoradio.it:9888/stream
 #EXTINF:-1,Radio Eco Sud
 http://178.32.140.82:9577/
 #EXTINF:-1,Milan Inter Radio Tv
 http://91.121.222.160:1935/milaninter/milaninter.sdp/playlist.m3u8
-#EXTINF:-1,Radio Zeta
-https://streamingv2.shoutcast.com/radio-zeta
 #EXTINF:-1,Rai Radio Tutta Italiana
 http://icestreaming.rai.it/4.mp3
 #EXTINF:-1,Radio Digitalia - NewGeneration
@@ -162,13 +148,15 @@ http://173.212.222.170:8000/stream
 #EXTINF:-1,Radio Siena 92.2 FM
 http://onair18.xdevel.com:8042
 #EXTINF:-1,Sunday Net Radio
-http://198.7.59.28:8017/stream
+http://5rti.igateway.com.au:8000/stream?
 #EXTINF:-1,Radio Gamma Stereo
 http://94.23.66.114:8030/
 #EXTINF:-1,Radio Puglia
 http://audio1.meway.tv:8108
 #EXTINF:-1,Radio Ufita
 http://onair15.xdevel.com:8516
+#EXTINF:-1,RVS Catania 90.8 FM
+https://stream.radiorvs.it/rvs.it?
 #EXTINF:-1,Radio Venere
 http://5.135.39.189:8060/
 #EXTINF:-1,Erreti Radio Tadino 101.1 FM101.1
@@ -177,8 +165,6 @@ https://erretismart.phon.in/live/
 https://rblive80.it/radiobrand2/8324
 #EXTINF:-1,Lady Radio
 http://onair15.xdevel.com:9126
-#EXTINF:-1,Radio Sanremo
-https://secure1.reliastream.com/radio_sanremo/sanremo2
 #EXTINF:-1,Rete Smash
 http://178.32.139.184:8300/stream/1
 #EXTINF:-1,Radio Deltauno FM
@@ -209,8 +195,6 @@ http://sr7.inmystream.info:8038
 http://sr2.webradionetwork.eu:8000
 #EXTINF:-1,Radio Clodia 103.6 FM
 http://sr4.inmystream.info:8063/
-#EXTINF:-1,Radio Amore Messina
-http://onair11.xdevel.com:8034/
 #EXTINF:-1,RadioSerena 
 http://s1.shoutitaly.com:2199/tunein/agoradio2.pls
 #EXTINF:-1,Radio MPA
@@ -367,8 +351,6 @@ http://ice12.fluidstream.net/fluid1202.mp3
 http://sr3.inmystream.info:8018/
 #EXTINF:-1,Radio Mola International
 http://usa1.fastcast4u.com:3076
-#EXTINF:-1,RADIO AMORE CATANZARO
-https://radioamorecatanzaro.stream.laut.fm/radioamorecatanzaro
 #EXTINF:-1,Radio Pico Classic
 http://onair11.xdevel.com:8014
 #EXTINF:-1,Radio Rete Alfa
@@ -403,8 +385,6 @@ http://onair20.xdevel.com:8076
 https://mediahit.inmystream.it:9009/stream2
 #EXTINF:-1,Radio Universal - 87.5 FM
 https://onair7.xdevel.com/proxy/universal?mp=/stream
-#EXTINF:-1,Radio Flumeri
-http://onair15.xdevel.com:8190/stream
 #EXTINF:-1,Radio Del Golfo - 93.9 FM
 http://nr11.newradio.it:9415/stream
 #EXTINF:-1,Radio Azzurra 88 Rete Liguria
@@ -421,8 +401,6 @@ http://nrf1.newradio.it:9662/
 http://37.187.79.93:8264/stream
 #EXTINF:-1,Radio Ananas 91.0 FM
 https://ice05.fluidstream.net/fluid0501.aac?FLID=L
-#EXTINF:-1,Radio Stella
-http://stream.susaondaradio.it:8000/radio
 #EXTINF:-1,Radio Golfo degli Angeli
 http://82.85.31.157:8090/
 #EXTINF:-1,Unica Radio
@@ -470,7 +448,7 @@ http://sr7.inmystream.info:8054
 #EXTINF:-1,Radio Punto
 http://94.23.247.18:8062/stream
 #EXTINF:-1,RVS PALERMO 92.6 FM
-http://onair15.xdevel.com:8180
+http://nr2.newradio.it:8068/stream
 #EXTINF:-1,Radio Gamma No Stop
 http://nr8.newradio.it:9568/
 #EXTINF:-1,Primaradio Sicilia
@@ -489,12 +467,6 @@ http://178.32.139.167:8274/
 https://maggie.torontocast.com:8018/stream
 #EXTINF:-1,Radio Italiana 531am
 http://5rti.igateway.com.au:8000/stream
-#EXTINF:-1,Radio Italia Uno ADELAIDE 87.6
-http://nr6.newradio.it:9198/stream
-#EXTINF:-1,RMI - Italo Disco Classic
-https://ruby.torontocast.com:1385/stream
-#EXTINF:-1,Radio Italia Charleroi- 105.2 FM
-https://ice18.fluidstream.net/ric.mp3?FLID=L&aw_0_req.gdpr=true&type=.mp3
 #EXTINF:-1,Radio Internazionale- 105.8 FM
 http://str01.fluidstream.net/fluid06.mp3?FLID=1&type=.mp3
 #EXTINF:-1,Radio Italia Charleroi

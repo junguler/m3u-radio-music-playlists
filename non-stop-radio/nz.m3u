@@ -1,22 +1,28 @@
 #EXTM3U
 #EXTINF:-1,ZM Online - 91.0 FM
-http://ais-nzme.streamguys1.com/nz_008_aac
+https://playerservices.streamtheworld.com/api/livestream-redirect/NZME_03AAC_SC
+#EXTINF:-1,Mai 88.6 FM
+https://digitalstreams-edge-lb.mediaworks.nz/mai_net_icy?Dist=TuneIn
 #EXTINF:-1,The Coast FM - 105.4 FM
-http://ais-nzme.streamguys1.com/nz_011_aac
+https://playerservices.streamtheworld.com/api/livestream-redirect/NZME_07AAC_SC
 #EXTINF:-1,Gaia FM
 https://s2.stationplaylist.com:9000/gaiafm.aac
+#EXTINF:-1,More FM Canterbury - 92.1 FM
+https://digitalstreams4.mediaworks.nz/more-CHC-high?Dist=TuneIn
+#EXTINF:-1,Brian FM - 88.8 FM
+https://ais-sa1.streamon.fm/7654_128k.aac/playlist.m3u8
 #EXTINF:-1,Radio New Zealand Concert - 92.6 FM
 http://radionz-ice.streamguys.com/concert
 #EXTINF:-1,Sleep Radio
 https://cast4.my-control-panel.com/proxy/sleeprad/stream
 #EXTINF:-1,Free FM - 89.0 FM
 https://live.accessmedia.nz/FreeFM.stream_aac/playlist.m3u8
+#EXTINF:-1,The Edge - 94.2 FM
+https://digitalstreams-edge-lb.mediaworks.nz/edge_net_icy?Dist=TuneIn
 #EXTINF:-1,Radio New Zealand National - 567 AM
 http://radionz-ice.streamguys.com/national.mp3
 #EXTINF:-1,World FM
 http://www.worldfm.co.nz:8882/worldfm.aac
-#EXTINF:-1,Niu FM
-https://18513.live.streamtheworld.com/NIUFM_SC
 #EXTINF:-1,Radio Samoa
 http://radiosamoa.broadcast.co.nz:8000/rsamoa48k
 #EXTINF:-1,Otago Access Radio - 105.4 FM
@@ -31,14 +37,8 @@ http://nebula.shoutca.st:8545
 http://rhema-radio.streamguys1.com/rhema.mp3
 #EXTINF:-1,Wellington Access Radio - 783 AM
 https://live.accessmedia.nz/Wellington.stream_aac/playlist.m3u8
-#EXTINF:-1,Radio Dunedin
-https://livestream.mediaworks.nz/radio_origin/Radio_Dunedin/chunklist.m3u8
-#EXTINF:-1,The Hits (Waikato)
-http://ais-nzme.streamguys1.com/nz_027_aac
 #EXTINF:-1,Radio New Zealand Pacific
 http://radionz-ice.streamguys.com/international.mp3
-#EXTINF:-1,Trucking Radio 24/7
-https://truckingradio247.radioca.st/stream
 #EXTINF:-1,XS80s
 http://s1.myradiostream.com:12508/stream.mp3
 #EXTINF:-1,Dave FM
@@ -58,7 +58,7 @@ http://dledgar.dyndns.org:8000/westfm
 #EXTINF:-1,The Hits (Dunedin)
 http://ais-nzme.streamguys1.com/nz_014_aac
 #EXTINF:-1,Calvary Radio
-https://s1.voscast.com:11363/live?_=101723
+https://radio.garden/api/ara/content/listen/UdzBqDTE/channel.mp3?r=1&1715938549586
 #EXTINF:-1,SKI FM
 https://s2.radio.co/s6436891bc/listen
 #EXTINF:-1,100.3 FM South Canterbury
@@ -66,11 +66,9 @@ http://uk4-vn.mixstream.net:8066/
 #EXTINF:-1,Access Radio Taranaki FM - 104.4
 https://live.accessmedia.nz/Taranaki.stream_aac/playlist.m3u8
 #EXTINF:-1,Newstalk ZB Auckland
-http://ais-nzme.streamguys1.com/nz_002_aac
+https://playerservices.streamtheworld.com/api/livestream-redirect/NZME_01_SC
 #EXTINF:-1,Mix FM Wellington
 https://stream.mixfm.nz/
-#EXTINF:-1,The Breeze Auckland
-http://tunein-icecast.mediaworks.nz/breeze_128kbps
 #EXTINF:-1,Q97
 http://radio.e-cast.co.nz/q97/stream.m3u8
 #EXTINF:-1,The Hits Auckland
@@ -87,8 +85,6 @@ http://audio.fleetfm.co.nz/shows/jimmy_210115.mp3
 http://listen.radionomy.com/thefurynz
 #EXTINF:-1,Tama-Ohi Radio
 https://stream.zeno.fm/y4xnq17q068uv?1680711220740
-#EXTINF:-1,Radio Hydra
-https://streaming.radio.co/sed9109681/low
 #EXTINF:-1,The Edge
 http://tunein-icecast.mediaworks.nz/edge_128kbps
 #EXTINF:-1,Power Hit FM 87.8
@@ -99,8 +95,6 @@ https://cp12.shoutcheap.com:18220/strem
 https://ais-nzme.streamguys1.com/nz_002/playlist.m3u8
 #EXTINF:-1,Radio New Zealand Concert
 https://stream-ice.radionz.co.nz/concert_aac64
-#EXTINF:-1,Tamil Panpalai Oceania
-https://tamilpanpalai.radioca.st/stream
 #EXTINF:-1,Big River FM
 http://bigriver.broadcast.co.nz/bigriverfm
 #EXTINF:-1,Newstalk ZB Christchurch
@@ -113,24 +107,18 @@ http://radionz-ice.streamguys.com/national_aac64
 https://ssl.shoutcaststreaming.us:8138
 #EXTINF:-1,More FM Southland
 http://tunein-icecast.mediaworks.nz/more_southland_128kbps
-#EXTINF:-1,Newstalk ZB Wellington
-http://ais-nzme.streamguys1.com/nz_004_aac
 #EXTINF:-1,AndHow.FM
 https://us4.internet-radio.com/proxy/andhowfm?mp=/stream
 #EXTINF:-1,Brian FM - 99.7 FM
 https://ais-sa1.streamon.fm/7653_128k.aac/playlist.m3u8
-#EXTINF:-1,The Hits Wellington
-http://ais-nzme.streamguys1.com/nz_007_aac
 #EXTINF:-1,Radio Virsa NZ
 http://s8.voscast.com:7992
-#EXTINF:-1,The Breeze Wellington
-http://tunein-icecast.mediaworks.nz/breeze_wellington_128kbps
 #EXTINF:-1,Wellington Access Radio
 https://live.accessmedia.nz/Wellington.stream/playlist.m3u8
 #EXTINF:-1,One Double X (1XX)
 http://radio.e-cast.co.nz/1xxone/stream.m3u8
 #EXTINF:-1,The Rock FM
-http://tunein-icecast.mediaworks.nz/rock_128kbps
+https://digitalstreams-edge-lb.mediaworks.nz/rock_net_icy?Dist=TuneIn
 #EXTINF:-1,RNZ Pacific
 https://stream-ice.radionz.co.nz/international_aac64
 #EXTINF:-1,Viperfm
@@ -143,8 +131,6 @@ https://ais-nzme.streamguys1.com/nz_013/playlist.m3u8
 http://stream.radiojar.com/k0t12bsns1duv
 #EXTINF:-1,The Cheese
 http://thecheese.ddns.net:8000
-#EXTINF:-1,Radio Apna 990 am
-https://ais-nzme.streamguys1.com/nz_145/playlist.m3u8
 #EXTINF:-1,More FM Northland
 http://tunein-icecast.mediaworks.nz/more_whangerei_128kbps
 #EXTINF:-1,Plains FM
@@ -153,16 +139,12 @@ https://live.accessmedia.nz/plains.stream_aac/playlist.m3u8
 https://c2.radioboss.fm:18440/stream
 #EXTINF:-1,Coast Access Radio
 https://live.accessmedia.nz/Coast.stream_aac/playlist.m3u8
-#EXTINF:-1,Radio Tarana
-https://peridot.streamguys1.com:7155/Tarana.aac
 #EXTINF:-1,Just FM
 http://stream.justfm.co.nz:88/broadwave.mp3?src=1&rate=1&ref=
 #EXTINF:-1,More FM Taranaki
 http://tunein-icecast.mediaworks.nz/more_taranaki_128kbps
 #EXTINF:-1,Brian FM Alexandra
 http://ais-sa1.streamon.fm/7655_128k.aac
-#EXTINF:-1,Radio Bollybop FM
-https://s3.radio.co/s2f19d44d0/listen
 #EXTINF:-1,Radio KPS
 http://210.54.147.177:8000
 #EXTINF:-1,Radio Spice
@@ -215,3 +197,11 @@ http://arrowfm.co.nz:8080/arrowfm
 https://s8.myradiostream.com:58408/
 #EXTINF:-1,George FM
 http://tunein-icecast.mediaworks.nz/george_128kbps
+#EXTINF:-1,Tamil Panpalai Oceania
+https://tamilpanpalai.radioca.st/stream
+#EXTINF:-1,Radio Apna 990 am
+https://ais-nzme.streamguys1.com/nz_145/playlist.m3u8
+#EXTINF:-1,Radio Tarana
+https://peridot.streamguys1.com:7155/Tarana.aac
+#EXTINF:-1,Radio Bollybop FM
+https://s3.radio.co/s2f19d44d0/listen

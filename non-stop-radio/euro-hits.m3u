@@ -1,4 +1,6 @@
 #EXTM3U
+#EXTINF:-1,Cassette Radio
+https://vm65162.streamerr.co/listen/cassette_radio/radio.mp3
 #EXTINF:-1,1000 HITS 80s
 https://ais-sa9.cdnstream1.com/1898_128
 #EXTINF:-1,1LIVE - Das junge Radio des WDR.
@@ -6,7 +8,11 @@ https://wdrhf.akamaized.net/hls/live/2027955/1live/master.m3u8
 #EXTINF:-1,ENERGY Sachsen
 http://cdn.nrjaudio.fm/adwz1/de/33013/mp3_128.mp3
 #EXTINF:-1,Radio PSR
-https://regiocast.hoerradar.de/psr128
+https://streams.radiopsr.de/psr-live/mp3-192/homepage/?
+#EXTINF:-1,ENERGY München
+https://edge11.streamonkey.net/energy-berlin/stream/mp3
+#EXTINF:-1,ENERGY Berlin
+https://edge11.streamonkey.net/energy-berlin/stream/mp3?
 #EXTINF:-1,Radio Schlagerparadies
 http://server.schlagerparadies.de:30842
 #EXTINF:-1,radio SAW
@@ -16,19 +22,15 @@ http://stream.ffn.de/energybremen/mp3-192/livestream.mp3
 #EXTINF:-1,MDR 1 Radio Thüringen 92.5 FM
 http://mdr-284300-0.cast.mdr.de/mdr/284300/0/aac/high/stream.aac
 #EXTINF:-1,ENERGY Nürnberg
-http://cdn.nrjaudio.fm/adwz1/de/33011/mp3_128.mp3
+https://frontend.streamonkey.net/energy-digital/stream/mp3?aggregator=energyde
 #EXTINF:-1,HR4
 https://hlshr4.akamaized.net/hls/live/2016537/hr4/master.m3u8
-#EXTINF:-1,ENERGY Berlin
-https://scdn.nrjaudio.fm/adwz1/de/33001/mp3_128.mp3?origine=energy.de
 #EXTINF:-1,ANT BAY - Antenne Bayern 101.5 FM
 http://mp3channels.webradio.antenne.de/das-schlager-karussell
 #EXTINF:-1,Planet Radio
 http://mp3.planetradio.de/planetradio/hqlivestream.mp3
 #EXTINF:-1,Antenne Brandenburg - 99.7 FM
 http://antennebrandenburg.de:80/livemp3
-#EXTINF:-1,AngelsFox Radio - Wesel
-http://62.138.147.36/angelsfox-radio.mp3
 #EXTINF:-1,ENERGY - Hit Music Only !
 https://frontend.streamonkey.net/energy-digital/stream/mp3?aggregator=appradiofm
 #EXTINF:-1,FFH Digital - Top 40 - HQ
@@ -63,12 +65,8 @@ https://streaming.radio-r.net/radio-r
 http://radionorthsea.zapto.org:8008
 #EXTINF:-1,0nlineradio GRAN PRIX
 https://stream.0nlineradio.com/grandprix?ref=radiofm
-#EXTINF:-1,RSMUSIC4 ♥ Best Of Oldies, 70s, 80s & 90s
-https://stream4.rsmusic.eu
 #EXTINF:-1,bigFM TikTok Charts
 https://stream.bigfm.de/tiktokcharts/mp3-128/onestopradio
-#EXTINF:-1,Contact - 91.4 FM
-https://radio-contact.ice.infomaniak.ch/radio-contact-high.mp3 
 #EXTINF:-1,Tonic Radio - 98.4 FM
 https://tonicradiohd.ice.infomaniak.ch/tonicradiohd-128.mp3 
 #EXTINF:-1,Pep'Hit
@@ -102,31 +100,23 @@ http://www.radioking.com/play/mrcradio
 #EXTINF:-1,DIGITAL 2
 https://ecmanager4.pro-fhi.net:2315/stream
 #EXTINF:-1,Зайцев.FM Disco (Zaycev.FM Disco)
-http://zaycevfm.cdnvideo.ru/ZaycevFM_disco_32.mp3
+https://abs.zaycev.fm/disco256k
 #EXTINF:-1,Zaycev.FM Pop
-http://zaycevfm.cdnvideo.ru/ZaycevFM_pop_256.mp3
+https://abs.zaycev.fm/pop128k?
 #EXTINF:-1,Bim Radio 102.8 FM
 http://av.bimradio.ru:8066/bim_mp3_128k
 #EXTINF:-1,Super Radio
 http://aska.ru-hoster.com:8000/stream
 #EXTINF:-1,Радио Адам (ADAM_IZHEVSK)
-http://91.226.107.50:8001/adam/128
+https://radio.izhlife.ru/adam/128
 #EXTINF:-1,Диполь FM
 http://icecast.sibinformburo.cdnvideo.ru:8000/dipolfm
 #EXTINF:-1,Мегаполис ФМ - Мегаполис FM 89.5 FM
 https://megapolisfm.md:8443/886aac?disc=thenonstopradio.com
-#EXTINF:-1,NN-Радио
-http://cast.r52.ru:8000/nrd
-#EXTINF:-1,ТВС
-https://radio.dline-media.com/tvsradio
 #EXTINF:-1,Maria FM
 http://mariafm.ru:8000/maria-fm-128.mp3
-#EXTINF:-1,радио метро - Radio Metro 102.4 FM
-http://195.182.132.18:8230
 #EXTINF:-1,Maks FM
 https://maksfm.hostingradio.ru/maksfm320.mp3
-#EXTINF:-1,Radio Kuray
-http://av.bimradio.ru:8066/kurai_mp3
 #EXTINF:-1,Volna FM
 http://radio.volnafm.ru:8000/polevskoy
 #EXTINF:-1,Radio July
@@ -149,8 +139,6 @@ http://listen.radionomy.com/panacea-radio
 https://be.server89.com:10998/stream
 #EXTINF:-1,RADIO CARINA L'Italiana 
 https://assocarina63.radioca.st/
-#EXTINF:-1,Radio Luna
-http://185.202.128.1:1935/Luna/luna.stream/playlist.m3u8
 #EXTINF:-1,Radio Venere
 http://51.254.76.66:8014
 #EXTINF:-1,Rete Uno Network
@@ -165,16 +153,10 @@ http://listen.radionomy.com/RadioPimonteSound20
 http://5.135.39.189:8030
 #EXTINF:-1,Radio Euro Extasis
 https://conexion.radioeuroextasis.com
-#EXTINF:-1,Cassette Radio
-https://panel2.mistreamingtv.uno:5999/stream
-#EXTINF:-1,RDMIX EURODANCE 90s
-https://maggie.torontocast.com:8046/stream
 #EXTINF:-1,Eurodance Classic
 https://quincy.torontocast.com:2965/stream
 #EXTINF:-1,Radio Cakra Bandung
 https://stream-156.zeno.fm/yoengdcdzyauv
-#EXTINF:-1,Qmusic nonstop
-http://icecast-qmusic.cdp.triple-it.nl/Qmusic_nl_nonstop_96.mp3
 #EXTINF:-1,Qmusic Non-stop
 http://icecast-qmusicnl-cdp.triple-it.nl/Qmusic_nl_nonstop_96.mp3
 #EXTINF:-1,Radio Capelle
@@ -189,6 +171,8 @@ http://stream.roulettefm.nl/roulettefm
 http://213.202.241.199:8340/stream
 #EXTINF:-1,Regio FM
 http://217.21.199.146:8030/
+#EXTINF:-1,SBS Radio 4
+https://stream.zeno.fm/rgx4fehmjjytv?an-uid=6427168739786314769&dot-uid=0ae52204009353f711da024a&amb-uid=3129243929485457110&aw-uid=496701d691b554cedc1fb7549b899846&dbm-uid=CAESEEbOY3J2oB4CQAcvph7s9LM&cto-uid=26930a0e-f907-449c-864d-404b5d9d618c-66b725f6-5553&bsw-uid=af63dd95-0d85-4708-8a4e-f3d900a3586c&dyn-uid=5267274478558955079&ttd-uid=d14d7e6b-bf1a-4e1f-bad4-4e32f212091b&triton-uid=cookie%3A6d231ce9-e20a-4c98-978f-d7a80bbd1f9a&adt-uid=cuid_975e7101-bac4-11ef-81f6-12707100b72d&aw_0_req_lsid=b091bda7e9891608307c4cd3db6e3f53
 #EXTINF:-1,Radio RMF Gold
 http://195.150.20.5:8000/rmf_gold
 #EXTINF:-1,Radio FTB Disco Polo
@@ -196,7 +180,7 @@ http://play.radioftb.net:8022
 #EXTINF:-1,Radio MUZO.FM- 102.0 FM
 https://n12.rcs.revma.com/1nnezw8qz7zuv?rj-ttl=5&rj-tok=AAABdl_WllYA_lXWOmYYOZO6lg
 #EXTINF:-1,ZET Hits
-http://zethit-02.cdn.eurozet.pl:8428
+https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO_ZETAAC_SC
 #EXTINF:-1,Radio Naklo- 107.5 FM
 http://sluchaj.107i5.fm
 #EXTINF:-1,Radio Eska Opole - 90.8 FM
@@ -218,7 +202,7 @@ http://s1.slotex.pl:7294/
 #EXTINF:-1,Radio Kaszebe
 http://stream3.nadaje.com:8048/
 #EXTINF:-1,Top Radio Belgium 99.4 FM
-http://25223.live.streamtheworld.com/TOP_RADIOAAC.aac
+http://listen.radionomy.com/wiccaradio
 #EXTINF:-1,Radio Bingo
 https://mediacp.audiostreamen.nl/radiobingo
 #EXTINF:-1,Belgian Dance Radio
@@ -237,8 +221,6 @@ https://stream.topradiowesthoek.eu:9000/
 http://streammelodie.dgnet.be:8008
 #EXTINF:-1,Pacifique FM
 http://vt-net.org:8072/
-#EXTINF:-1,HIBI
-http://209.126.116.143:8048/
 #EXTINF:-1,Radio Top
 http://icecast.radiotop.ch/radiotop_128
 #EXTINF:-1,1.FM - All Euro 80's
@@ -249,12 +231,14 @@ http://vibration108-high.ice.infomaniak.ch/vibration108-high.mp3
 http://energyzuerich.ice.infomaniak.ch/energyzuerich-high.mp3
 #EXTINF:-1,SuperDj Radio
 http://s03.diazol.hu:35150/stream
+#EXTINF:-1,OK Radio - 94.2 FM
+http://live7.okradio.net/*.mp3
 #EXTINF:-1,Top FM 106.8 FM
-http://109.206.96.11:8000
+https://topfm64ssl.streaming.rs:9287/
 #EXTINF:-1,Radio Seven (TDI)
 http://streaming.tdiradio.com:8000/tdiradio
 #EXTINF:-1,Radio Drenasi FM
-http://69.64.49.131:8010/
+http://cfm.albaservers.com:8010/
 #EXTINF:-1,Radio Puls
 http://178.79.25.9:8026
 #EXTINF:-1,Radio Imotski
@@ -283,7 +267,13 @@ http://live3.infonetmedia.si:8000/Radio1
 http://stream01.exit.si:8000/live
 #EXTINF:-1,Radio Krka
 http://93.103.12.127:8000
+#EXTINF:-1,Пилот FM - 101.2 FM
+https://stream2.datacenter.by/pilotfm
 #EXTINF:-1,Novoe Radio- 98.4 FM
 https://live.novoeradio.by:444/live/novoeradio_aac128/icecast.audio?listening-from-radio-garden=1607927641292
 #EXTINF:-1,Rtvs radio fm
-http://live.slovakradio.sk:8000/FM_256.mp3
+https://icecast.stv.livebox.sk/fm_128.mp3
+#EXTINF:-1,Bigode Grosso
+https://stream-150.zeno.fm/4zs20qz1m0hvv?zs=evc35pVBSEaTSoDjQpxVaw
+#EXTINF:-1,Schlagerparadies Live
+http://144.76.218.232:31883/rmnchristmas

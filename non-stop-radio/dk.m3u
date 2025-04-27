@@ -1,4 +1,6 @@
 #EXTM3U
+#EXTINF:-1,Radio 100FM
+https://cdn.cybercdn.live/Radios_100FM/Audio/icecast.audio?dist=onnss
 #EXTINF:-1,DR P4 Midt & Vest
 http://live-icy.gss.dr.dk:8000/A/A09L.mp3
 #EXTINF:-1,DR P6 Beat
@@ -7,6 +9,8 @@ http://live-icy.gss.dr.dk:8000/A/A29L.mp3
 http://live-icy.gss.dr.dk:8000/A/A02H.mp3
 #EXTINF:-1,DR P2 Klassisk
 http://live-icy.gss.dr.dk:8000/A/A04L.mp3
+#EXTINF:-1,Radio Klassisk
+https://stream.zeno.fm/dxmcnq1svk8uv?an-uid=6427168739786314769&dot-uid=0ae52204009353f711da024a&amb-uid=3129243929485457110&aw-uid=496701d691b554cedc1fb7549b899846&dbm-uid=CAESEEbOY3J2oB4CQAcvph7s9LM&cto-uid=26930a0e-f907-449c-864d-404b5d9d618c-66b725f6-5553&bsw-uid=af63dd95-0d85-4708-8a4e-f3d900a3586c&dyn-uid=5267274478558955079&ttd-uid=d14d7e6b-bf1a-4e1f-bad4-4e32f212091b&triton-uid=cookie%3A7b38ff1d-00de-4633-93a9-99e2b7b2ee7a&adt-uid=cuid_975e7101-bac4-11ef-81f6-12707100b72d&aw_0_req_lsid=71fa7f2d7d4b68ebf4efa3d8dea4b602
 #EXTINF:-1,DR P5 - HQ
 http://live-icy.gss.dr.dk:8000/A/A25H.mp3
 #EXTINF:-1,Radio VLR- 101.7 FM
@@ -24,15 +28,13 @@ https://drliveradio.akamaized.net/hls/live/2022411/p4sjaelland/playlist-320000.m
 #EXTINF:-1,Danmarks Radio P3
 https://drliveradio.akamaized.net/hls/live/2022411/p3/masterab.m3u8?playerid=dr.drc-audio-player.1.5.8&portalid=DR
 #EXTINF:-1,Radio Soft
-http://onair.100fmlive.dk:80/soft_live.mp3
+https://live-bauerdk.sharp-stream.com/radiosoft_dk_mp3
 #EXTINF:-1,Radio Viborg
 http://webradio.radioviborg.dk/viborg.aac
 #EXTINF:-1,DR P4 Bornholm
 http://live-icy.gss.dr.dk:8000/A/A06L.mp3
 #EXTINF:-1,DR P5
 http://live-icy.gss.dr.dk:8000/A/A25L.mp3
-#EXTINF:-1,Rise FM Denmark
-http://stream.risefm.org:8023/stream
 #EXTINF:-1,myRock
 http://stream.myrock.fm/myrock128
 #EXTINF:-1,Radio Sydhavsoerne - 87.8 FM
@@ -45,14 +47,10 @@ http://media.limfjordnetradio.dk/limfjord128
 http://streamer.psyradio.org:8020
 #EXTINF:-1,DR P4 Esbjerg
 http://live-icy.gss.dr.dk:8000/A/A15L.mp3
-#EXTINF:-1,Dance100.com
-http://s31.myradiostream.com:20624/stream.m3u
 #EXTINF:-1,DR P4 Oestjylland
 http://live-icy.gss.dr.dk:8000/A/A14L.mp3
 #EXTINF:-1,DR P3
 http://live-icy.gss.dr.dk:80/A/A05L.mp3
-#EXTINF:-1,Web FM
-http://stream1.webfm.dk/Web192
 #EXTINF:-1,Radio SLR
 http://netradio.radioslr.dk:80
 #EXTINF:-1,Voksenradio DK
@@ -64,7 +62,7 @@ http://netradio.radioalfa.dk:80/silkeborg
 #EXTINF:-1,DR P4 Nordjylland
 http://live-icy.gss.dr.dk:8000/A/A10L.mp3
 #EXTINF:-1,Metallica and Iron Maiden Only
-http://46.4.184.212:8000/stream
+https://streaming.exclusive.radio/er/ironmaiden/icecast.audio?
 #EXTINF:-1,ABINAYAM FM
 http://192.99.170.8:5756
 #EXTINF:-1,La Salsa Del Tren Del Sabor
@@ -84,11 +82,9 @@ http://netradio.radioviborg.dk/viborg
 #EXTINF:-1,Limfjord Plus
 http://media.limfjordnetradio.dk/plus128
 #EXTINF:-1,Radio Stoholm
-https://usa7.fastcast4u.com/proxy/biyqgymc
+https://stream.zeno.fm/kmg5mh9eka0uv?an-uid=6427168739786314769&dot-uid=0ae52204009353f711da024a&amb-uid=3129243929485457110&aw-uid=496701d691b554cedc1fb7549b899846&dbm-uid=CAESEEbOY3J2oB4CQAcvph7s9LM&cto-uid=26930a0e-f907-449c-864d-404b5d9d618c-66b725f6-5553&bsw-uid=af63dd95-0d85-4708-8a4e-f3d900a3586c&dyn-uid=5267274478558955079&ttd-uid=d14d7e6b-bf1a-4e1f-bad4-4e32f212091b&triton-uid=cookie%3Aef94f51e-6bea-4397-91fd-85b42a8a865b&adt-uid=cuid_975e7101-bac4-11ef-81f6-12707100b72d&aw_0_req_lsid=cc187d9e7340612e3937ed444d6561b0
 #EXTINF:-1,Radio Ballerup
 http://5.39.89.17:15246/?type=http&nocache=1638959091?0.2561486029715445
-#EXTINF:-1,Radio Sydhavsoerne
-http://netradio.dk
 #EXTINF:-1,DR Ramasjang
 http://live-icy.gss.dr.dk:80/A/A24L.mp3
 #EXTINF:-1,DR P4 København
@@ -97,10 +93,12 @@ http://live-icy.gss.dr.dk:8000/A/A08H.mp3
 http://stream.radioklitholm.dk:8000/stream
 #EXTINF:-1,Nordic Lodge Copenhagen
 http://sky1.torontocast.com:9095/stream
+#EXTINF:-1,AllSoundFM Worship
+https://allsoundfm.stream.laut.fm/allsoundfm?ref=radiodns
 #EXTINF:-1,Radio Silkeborg
 http://stream.radiosilkeborg.dk/silkeborg
 #EXTINF:-1,MTV Radio
-https://n13.rcs.revma.com/s1b95y0ybhruv
+https://stream.zeno.fm/c26kplsdxgttv
 #EXTINF:-1,Radio Sydhavsoerne- 90.4 FM
 http://netradio.dk:80
 #EXTINF:-1,Radio Als - 88.0 FM
@@ -130,11 +128,9 @@ http://stream1.webfm.dk/Webfm?.mp3
 #EXTINF:-1,Radio Playback
 http://stream02.radioplayback.dk/stream
 #EXTINF:-1,Radio Dobre Vibracije
-http://81.7.160.152:8010/live
+https://ec6.yesstreaming.net:1700/stream
 #EXTINF:-1,Ahenfo Radio
 http://s35.myradiostream.com:4702
-#EXTINF:-1,Arhus Studenterradio
-http://aasr-stream.iha.dk:8000
 #EXTINF:-1,Norea Radio
 http://radio.norea.dk:8080/?type=http&nocache=96984
 #EXTINF:-1,Radio Antena Denmark
@@ -161,8 +157,6 @@ http://netvarp.kringvarp.fo:443/uvhm
 http://stream.radiohelsingor.dk/rh
 #EXTINF:-1,Det Rigtige Faaborg
 http://stream.wlmm.dk/detrigtigefaaborg
-#EXTINF:-1,Pop FM
-https://tx.planetradio.co.uk/http_live_bauerdk.php?i=popfm_dk_tunein_mp3&aw_0_1st.playerid=BMUK_TuneIn
 #EXTINF:-1,Radio Aura
 http://stream.anr.dk:80/aura
 #EXTINF:-1,Arkens Radio
@@ -173,8 +167,6 @@ http://ca6.rcast.net:4058/stream.mp3
 http://srv1.stream.fo:8000/128.mp3
 #EXTINF:-1,ANR
 http://stream.anr.dk:80/anr
-#EXTINF:-1,Radioti
-https://stream.core-prod.us-west-2.tunenet.io/listen.stream?streamId=88711154&rti=dEZzGgYzfxg4dhE2AxFRSGgyQE5Rdid8WFcFHQASHBMUTxMkflYCFVQZJSkFE0pkDBIYDQcSWT4UHAgaGBwLEAQWWB1pGgFC%7e%7e%7e&render=json&qs=
 #EXTINF:-1,Radio Diablo
 http://icecast.radiostuff.dk:8000/Diablo128
 #EXTINF:-1,DR P4 Trekanten
@@ -187,8 +179,6 @@ http://stream.wlmm.dk/classicrockarhmp3
 https://stream.probroadcast.dk/radiokoege
 #EXTINF:-1,Retro-Radio Millennium
 http://tx-2.retro-radio.dk/TX-2
-#EXTINF:-1,Radio Alborz , Persian
-http://live.indvandrerradio.dk:8000
 #EXTINF:-1,DR P4 Syd
 http://live-icy.gss.dr.dk:8000/A/A12H.mp3
 #EXTINF:-1,Radio Mojn
@@ -199,8 +189,6 @@ http://stream.midlar.fo/voxpop-128
 https://tx.planetradio.co.uk/http_live_bauerdk.php?i=nova_dk_tunein_mp3&aw_0_1st.playerid=BMUK_TuneIn
 #EXTINF:-1,Radio 100
 https://tx.planetradio.co.uk/http_live_bauerdk.php?i=radio100_dk_tunein_mp3&aw_0_1st.playerid=BMUK_TuneIn
-#EXTINF:-1,Radio Klassisk
-http://tx-bauerdk.sharp-stream.com/http_live.php?i=radioklassisk_dk_tunein_mp3
 #EXTINF:-1,Radio NORDJYSKE
 http://stream.anr.dk/nordjyske2
 #EXTINF:-1,Retro Radio
@@ -210,4 +198,4 @@ http://stream.aasr.dk:8000/
 #EXTINF:-1,902 FM Det nye Radio Ballerup
 http://stream.wlmm.dk/902fmmp3
 #EXTINF:-1,Radio Projekti 21
-http://64.150.176.42:8178/
+http://64.150.176.42:8178/?1494865587033.mp3

@@ -11,8 +11,6 @@ https://iceant.antfarm.co.za/Bosveld
 https://streaming.fabrik.fm/izwi/echocast/audio/index.m3u8
 #EXTINF:-1,Voice of the Cape
 https://node-11.zeno.fm/fr1nsv1n7s8uv?rj-tok=AAABepr13zEAInOWt4rusC1RvA&rj-ttl=5
-#EXTINF:-1,Mams Radio
-https://s4.radio.co/sccba1da9b/listen
 #EXTINF:-1,Phalaphala FM
 https://playerservices.streamtheworld.com/api/livestream-redirect/PHALAPHALAAAC.aac?dist=onlineradiobox
 #EXTINF:-1,Metro FM
@@ -21,6 +19,8 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/METROFMAAC.aac
 https://s54.radiolize.com/radio/8240/radio.mp3
 #EXTINF:-1,Ikwekwezi FM
 https://playerservices.streamtheworld.com/api/livestream-redirect/IKWEKWEZIAAC.aac?dist=onlineradiobox
+#EXTINF:-1,RSG
+https://playerservices.streamtheworld.com/api/livestream-redirect/RSG.mp3?dist=thenonstopradio.com
 #EXTINF:-1,Radio Cape Pulpit
 https://edge.iono.fm/xice/110_medium.aac
 #EXTINF:-1,Viva Nation Radio live
@@ -41,22 +41,22 @@ https://stream.zeno.fm/xr9m2h7qruhvv
 https://stream.zeno.fm/zfbcx29cxzzuv
 #EXTINF:-1,Bok Radio
 http://radiostream.co.za:9104/
+#EXTINF:-1,Groot FM 90.5 - Pretoria
+https://cast3.my-control-panel.com/proxy/grootfm/stream
 #EXTINF:-1,Kfm
 https://playerservices.streamtheworld.com/api/livestream-redirect/KFM.mp3?dist=onlineradiobox
 #EXTINF:-1,Radio Pulpit
 https://edgeza.iono.fm/xice/189_medium.mp3
 #EXTINF:-1,ChaiFM
-http://zas2.ndx.co.za/proxy/chaifm?mp=/stream&1591013027890
+https://zas1.ndx.co.za:8008/stream
 #EXTINF:-1,Okuhle FM
 https://stream.zeno.fm/wknvce6fx4zuv
-#EXTINF:-1,Faith Armaria Online 
-https://stream.zeno.fm/dvzubqha2mruv
 #EXTINF:-1,barradio.co.za
 http://stream.zeno.fm/pmvcyumpv98uv
 #EXTINF:-1,Ikhaya Labantu Radio Station Fm
 https://stream.zeno.fm/75zsxkzdfv8uv
 #EXTINF:-1,Kamhlushwa Radio
-https://securestreams7.autopo.st/?uri=http://live.exertion.in:8040/radio.mp3
+https://live.exertion.in/radio/8040/radio.mp3
 #EXTINF:-1,Richmond Online Radio
 https://stream.zeno.fm/my9sktz96f8uv
 #EXTINF:-1,Esikhaleni Youth Radio - NPC
@@ -76,21 +76,21 @@ https://zas7.ndx.co.za:8024/stream
 #EXTINF:-1,Woodbridge online radio station
 https://stream-42.zeno.fm/9nbahx0f4uhvv?zs=Z9iYzAcaSwKKrrj1yN-RGQ
 #EXTINF:-1,Springbok Radio
-http://www.springbokradio.xyz:8000/_b
+https://playerservices.streamtheworld.com/api/livestream-redirect/SPRINGBOKRADIOAAC.aac
 #EXTINF:-1,Icamagu Radio
 https://sv2.famcast.co.za/proxy/icamagu?mp=/live&1622008774364
 #EXTINF:-1,Maluti FM
-http://zas4.ndx.co.za/proxy/malutifm?mp=/stream
+https://cast3.my-control-panel.com/proxy/malutifm/stream
 #EXTINF:-1,Bophelo Fm
 https://stream.zeno.fm/pqr2xbqa2d0uv
+#EXTINF:-1,Motsweding FM
+https://playerservices.streamtheworld.com/api/livestream-redirect/MOTSWEDINGAAC.aac?dist=onlineradiobox
 #EXTINF:-1,Bar Radio
 https://stream.zeno.fm/pmvcyumpv98uv
 #EXTINF:-1,African Crest Radio
 http://212.78.94.168:7076/
 #EXTINF:-1,Viper-Oceania Sound Revolution
 https://vipersoundrevolution.radioca.st/viper-oceania-sound-revolution.fm
-#EXTINF:-1,Lokuhle FM
-https://broadcast.urbanza.co.za/listen/lokuhle/radio
 #EXTINF:-1,SFM 90.1
 http://capeant.antfarm.co.za:8000/SFM
 #EXTINF:-1,Radio Joyful FM
@@ -99,12 +99,10 @@ https://c15.radioboss.fm:8218/stream
 https://streaming.coollective.nl:8443/UbuntuFMafrica
 #EXTINF:-1,Radio Today
 https://rt1485.out.airtime.pro/rt1485_b
-#EXTINF:-1,Venrap Radio
-https://stream.zeno.fm/gfq7k2nec4duv
 #EXTINF:-1,Big Indie Giant Radio
 https://puma.streemlion.com:1955/stream
 #EXTINF:-1,Radio Tygerberg
-http://zas6.ndx.co.za:8007/stream
+https://edge.iono.fm/xice/328_medium.aac?adToken=&ref=https%3A//www.104fm.co.za/
 #EXTINF:-1,KMS Radio
 https://cast1.asurahosting.com/proxy/kaleka/stream
 #EXTINF:-1,TruLight Radio XM
@@ -113,120 +111,92 @@ https://s18.myradiostream.com/:9438/listen.mp3
 https://stream.zeno.fm/f0yzc2g7fd0uv
 #EXTINF:-1,Platinum Gold Radio
 http://s2.voscast.com:10128/stream.mp3
-#EXTINF:-1,TTN Radio
-https://stream.zeno.fm/8hu7frua6nhvv
-#EXTINF:-1,Kingfisher FM
-http://fm.radiovip.co.za:8000/kingfisherfm_80.aac
-#EXTINF:-1,Channel Islam Radio
-https://edge.iono.fm/xice/109_medium.aac
 #EXTINF:-1,Limpopo Radio
 https://stream-54.zeno.fm/84s03dyg2c9uv
 #EXTINF:-1,Agape Radio
-https://s4.radio.co/sce8413896/listen
+https://stream.zeno.fm/rlrdkgnkuzctv
 #EXTINF:-1,Sabela FM
 https://stream.zeno.fm/g9hebd3h74zuv
 #EXTINF:-1,Channel Africa
 https://playerservices.streamtheworld.com/api/livestream-redirect/CA247AAC.aac?dist=onlineradiobox
 #EXTINF:-1,Vuka Online Radio
 http://s5.voscast.com:8542/
-#EXTINF:-1,Les Royals FM
-https://lesroyals.radioca.st/stream
 #EXTINF:-1,Hillbrow Radio 24/7
 https://s5.radio.co/s1673f1aa3/listen
-#EXTINF:-1,Kokomo Radio
-https://playerservices.streamtheworld.com/api/livestream-redirect/SAM02AAC86_SC?dist=onlineradiobox
 #EXTINF:-1,Moutse Community Radio
 https://zas7.ndx.co.za:8042/stream
-#EXTINF:-1,Poort FM 88.2
-https://zas7.ndx.co.za:8008/stream
-#EXTINF:-1,uDubs Radio
-https://stream.zeno.fm/ruhk3td5krruv
-#EXTINF:-1,By The Grace Radio
-http://s7.voscast.com:9580/
-#EXTINF:-1,Umsinga Fm
-https://stream.zeno.fm/sact73uquzzuv
-#EXTINF:-1,Thokoza Radio
-https://stream.zeno.fm/3e9bcnrzum0uv
-#EXTINF:-1,Link FM
-https://de2.streamingpulse.com/ssl/LinkFM
-#EXTINF:-1,Stereo1 IRS SA
-https://cast1.my-control-panel.com/proxy/stereoi1/stream
 #EXTINF:-1,Durban Youth Radio
 http://zas4.ndx.co.za/proxy/dyr?mp=/stream
-#EXTINF:-1,Go Africa FM
-https://stream.zeno.fm/7xr6svrpb2zuv
-#EXTINF:-1,VOW FM
-https://edge.iono.fm/xice/101_medium.aac
-#EXTINF:-1,UMbuso FM
-https://stream.zeno.fm/cdy5xfwznp8uv
-#EXTINF:-1,Mutoli Online Community Radio Station
-https://radio.digibro.net:1325/stream
-#EXTINF:-1,Life FM KZN
-https://stream.zeno.fm/599s958ptqruv
-#EXTINF:-1,Daveyton FM
-https://stream.zeno.fm/xms3hk7tef9uv
-#EXTINF:-1,Umdoni Community Radio
-https://stream.zeno.fm/euqu1s9dz38uv
-#EXTINF:-1,eRadio SA
-https://s3.radio.co/s8a69138f9/listen
-#EXTINF:-1,PE FM
-http://zas2.ndx.co.za/proxy/pefm?mp=/stream&1614681610789
+#EXTINF:-1,265 Online Radio
+https://studio23.radiolize.com/radio/8120/radio.mp3
+#EXTINF:-1,Link FM
+https://de2.streamingpulse.com/ssl/LinkFM
+#EXTINF:-1,Umsinga Fm
+https://stream.zeno.fm/sact73uquzzuv
+#EXTINF:-1,By The Grace Radio
+http://s7.voscast.com:9580/
+#EXTINF:-1,Thokoza Radio
+https://stream.zeno.fm/3e9bcnrzum0uv
 #EXTINF:-1,Afri Fm
 https://stream.zeno.fm/d5apx0ntfzzuv
+#EXTINF:-1,VOW FM
+https://edge.iono.fm/xice/101_medium.aac
+#EXTINF:-1,Umdoni Community Radio
+https://stream.zeno.fm/euqu1s9dz38uv
 #EXTINF:-1,Lesedi FM
 https://playerservices.streamtheworld.com/api/livestream-redirect/LESEDIAAC.aac?dist=onlineradiobox
-#EXTINF:-1,North Side Online
-https://finessethedj.radioca.st/stream
+#EXTINF:-1,Life FM KZN
+https://stream.zeno.fm/599s958ptqruv
+#EXTINF:-1,UMbuso FM
+https://stream.zeno.fm/cdy5xfwznp8uv
+#EXTINF:-1,Energy FM
+https://sv2.famcast.co.za/proxy/energyfm?mp=/stream
 #EXTINF:-1,VOD RADIO
 https://stream.zeno.fm/1dkba5c60s8uv
 #EXTINF:-1,UMusa FM
 https://stream.zeno.fm/webeze1se5zuv
-#EXTINF:-1,Energy FM
-https://sv2.famcast.co.za/proxy/energyfm?mp=/stream
 #EXTINF:-1,Botshabelo Fm
 https://stream.zeno.fm/126zth9zs98uv
-#EXTINF:-1,Skatkis Stereo
-http://64.150.176.42:8122/stream?1482659282176.mp3
 #EXTINF:-1,Lekker FM
 https://zas3.ndx.co.za:8002/stream
 #EXTINF:-1,Classic Central Radio
 https://stream.zeno.fm/bp1pwy8mky8uv
+#EXTINF:-1,Grace Radio
+https://ssl-proxy.icastcenter.com/get.php?type=Icecast2&server=199.180.75.2&port=9033&mount=/stream&data=aac
+#EXTINF:-1,UCT Radio
+https://edge.iono.fm/xice/uctradio_live_medium.aac
+#EXTINF:-1,Radio 635
+https://stream.zeno.fm/c8usu60rvxhvv
 #EXTINF:-1,Ezekiel Radio
 https://s36.radiolize.com/radio/8160/radio.mp3
 #EXTINF:-1,YCN Radio
 https://stream.zeno.fm/ggwfr1qccnruv
 #EXTINF:-1,Isambulo Radio
 http://78.129.222.62/stream.mp3?ipport=78.129.222.62_16323
+#EXTINF:-1,Radio Khwezi
+https://s9.voscast.com:8659/stream
+#EXTINF:-1,Gold Fm
+http://88.198.119.244:8000/stream.mp3
+#EXTINF:-1,SA Radio
+https://playerservices.streamtheworld.com/api/livestream-redirect/SAFMAAC_SC?
+#EXTINF:-1,UB FM LIVE
+https://stream.zeno.fm/bjockoqaniotv
+#EXTINF:-1,Infinity FM
+https://stream.zeno.fm/ruw59fx2czzuv
+#EXTINF:-1,RA Rock
+https://live.rarock.com/stream
+#EXTINF:-1,Bitter Sweet Music ZA
+http://91.121.236.34:8520/za
+#EXTINF:-1,Ezase Coast Radio
+https://stream-42.zeno.fm/u5hrk66sxxquv
 #EXTINF:-1,Gateway fm
 https://streaming.radio.co/s1ebd7fad9/listen
 #EXTINF:-1,Southside FM
 https://southside-fm.simplestreaming.co.za/radio/8000/radio.mp3
-#EXTINF:-1,Radio Rosestad
-https://edge.iono.fm/xice/122_medium.aac
 #EXTINF:-1,IKapa FM
 https://stream.zeno.fm/dvmqm1k0afhvv
-#EXTINF:-1,Gold Fm
-http://88.198.119.244:8000/stream.mp3
-#EXTINF:-1,Radio 537
-http://173.208.177.90:21334/
-#EXTINF:-1,Ezase Coast Radio
-https://stream-42.zeno.fm/u5hrk66sxxquv
-#EXTINF:-1,Radio Al Ansaar
-https://al-ansaar.simplestreaming.co.za/radio/8000/radio.mp3
-#EXTINF:-1,Bhongweni FM
-https://stream.zeno.fm/ezr5bmx35k0uv
-#EXTINF:-1,Bitter Sweet Music ZA
-http://91.121.236.34:8520/za
-#EXTINF:-1,Coastal Radio SA
-http://ifastekpanel.com:1640/stream
-#EXTINF:-1,RA Rock
-https://live.rarock.com/stream
-#EXTINF:-1,Infinity FM
-https://stream.zeno.fm/ruw59fx2czzuv
-#EXTINF:-1,UB FM LIVE
-https://stream.zeno.fm/bjockoqaniotv
-#EXTINF:-1,SA Radio
-https://playerservices.streamtheworld.com/api/livestream-redirect/SAM01AAC427.mp3?dist=onlineradiobox
+#EXTINF:-1,Radio Rosestad
+https://edge.iono.fm/xice/122_medium.aac
 #EXTINF:-1,Cape Winelands FM
 https://stream.zeno.fm/x265y658k0quv
 #EXTINF:-1,Choice FM
@@ -237,16 +207,10 @@ https://stream.zeno.fm/fn5kvtfw2a0uv
 https://stream.zeno.fm/3hy6dd419u8uv
 #EXTINF:-1,Capricorn FM
 https://edge.iono.fm/xice/67_medium.aac?p=embed
-#EXTINF:-1,Hindvani Radio
-https://edge.iono.fm/xice/129_medium.aac
 #EXTINF:-1,Bush Radio
-http://zas4.ndx.co.za/proxy/bushradio?mp=/stream
-#EXTINF:-1,Scottburgh Mall Radio
-https://stream.zeno.fm/a8qegsak0hhvv
+https://zas4.ndx.co.za:9100/stream
 #EXTINF:-1,Nqubeko FM
 https://stream.zeno.fm/ne13frkgs0hvv
-#EXTINF:-1,The Voice Radio
-https://kappa.radioplayer.com.ar:9212/voiceradio1015
 #EXTINF:-1,Shalom Internet Radio
 http://c34.radioboss.fm:8520/stream
 #EXTINF:-1,BMB Live Broadcast
@@ -255,8 +219,6 @@ https://stream-43.zeno.fm/xud8h1mq7rhvv
 https://streams.radio.co/s701e7d612/listen
 #EXTINF:-1,AFTV Radio
 https://stream.zeno.fm/4p3md467ytzuv
-#EXTINF:-1,One FM 94.0
-https://edge.iono.fm/xice/68_medium.aac
 #EXTINF:-1,VOD Radio 
 http://stream-50.zeno.fm/1dkba5c60s8uv?zs=b1HyQZpBRUqwafC4YtHqzA
 #EXTINF:-1,Capital Live South Afrika
@@ -267,8 +229,6 @@ https://stream.zeno.fm/8sbfeqrm8whvv
 https://edge.iono.fm/xice/49_medium.mp3?p=embed
 #EXTINF:-1,Madibaz Radio
 https://edge.iono.fm/xice/75_medium.aac?p=embed
-#EXTINF:-1,Gallivant Radio
-https://stream.radiojar.com/x27af9qxm18uv
 #EXTINF:-1,Munghana Lonene FM
 https://playerservices.streamtheworld.com/api/livestream-redirect/MUNGANALONENEAAC.aac?dist=onlineradiobox
 #EXTINF:-1,Boervolk Radio
@@ -291,18 +251,12 @@ https://streaming.coollective.nl:8443/UbuntuFMsoul
 https://stream-41.zeno.fm/z4fs4y22ag0uv
 #EXTINF:-1,Durban South Radio
 https://stream.zeno.fm/qf7vh12nhm8uv
-#EXTINF:-1,Zone Radio
-http://zas4.ndx.co.za/proxy/zoneradio?mp=/stream
 #EXTINF:-1,Radio Overberg
 https://zas7.ndx.co.za:8040/stream?1613841850002
 #EXTINF:-1,Umhlobo Wenene FM
 https://playerservices.streamtheworld.com/api/livestream-redirect/UMHLOBOWENENEAAC.aac?dist=onlineradiobox
-#EXTINF:-1,MegaZone Bollywood
-https://stream-55.zeno.fm/z41dudznkxhvv
 #EXTINF:-1,Radio X5 Stereo
 https://c32.radioboss.fm:18317/stream
-#EXTINF:-1,Koepel Stereo
-https://live2ssl.rcast.net/stream/68455/
 #EXTINF:-1,Blaze FM SA
 https://stream-39.zeno.fm/6xine5bdwjdvv
 #EXTINF:-1,Radio Sonskyn
@@ -310,7 +264,7 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/SP_R4180726_SC
 #EXTINF:-1,Easy Сrew Radio
 https://easycrewradio.out.airtime.pro/easycrewradio_a
 #EXTINF:-1,Radio Free Tankwa
-https://playerservices.streamtheworld.com/api/livestream-redirect/SAM09AAC213.mp3?dist=onlineradiobox
+https://26453.live.streamtheworld.com/SAM09AAC213.aac
 #EXTINF:-1,Kings Love Radio
 https://stream.zeno.fm/23st8cwg09duv
 #EXTINF:-1,Vaal Stereo
@@ -321,22 +275,14 @@ https://albert.antfarm.co.za/hellenic/hellenic.stream/playlist.m3u8
 https://playerservices.streamtheworld.com/api/livestream-redirect/XKFMAAC.aac?dist=onlineradiobox
 #EXTINF:-1,Oana FM 94.0
 https://servidor18-2.brlogic.com:7662/live
-#EXTINF:-1,DCC FM Radio
-https://servidor16-4.brlogic.com:8272/live
 #EXTINF:-1,Boan Live Fm
 https://stream.zeno.fm/wg8pk7gn308uv
 #EXTINF:-1,Impala Radio
 http://www.impalaradio.xyz:8000/_a
-#EXTINF:-1,Radio Suid Afrika®
-https://s5.radio.co/s4b3da491d/listen
-#EXTINF:-1,Ekurhuleni FM
-https://zas7.ndx.co.za:8012/stream
 #EXTINF:-1,Impact Radio
 https://edge.iono.fm/xice/204_medium.aac
 #EXTINF:-1,Power 102
 https://s8.yesstreaming.net:17169/stream
-#EXTINF:-1,SAFFA On-Air World Radio Station
-https://s4.radio.co/s33a35603e/listen
 #EXTINF:-1,Tzgospel Radio
 https://stream.zeno.fm/edeftqc4tchvv
 #EXTINF:-1,East Coast Radio
@@ -361,8 +307,6 @@ https://stream.zeno.fm/anyrmew32mzuv
 http://s15.myradiostream.com:16486/
 #EXTINF:-1,Smile
 https://edge.iono.fm/xice/212_medium.aac
-#EXTINF:-1,Doors Rock Radio
-https://radio.doorsrockradio.co.za/radio/8000/radio.mp3
 #EXTINF:-1,UbuntuFM HipHop Radio
 https://streaming.coollective.nl:8443/UbuntuFMhiphop
 #EXTINF:-1,Fresh Radio SA
@@ -383,12 +327,6 @@ https://stream-46.zeno.fm/gsf5zfck4zhvv
 http://noasrv.caster.fm:10151/stream
 #EXTINF:-1,UMzi Online Radio
 https://stream.zeno.fm/lebyomvwb1evv
-#EXTINF:-1,Radio Teemaneng Stereo
-http://zas2.ndx.co.za/proxy/teemaneng?mp=/stream&1620340364210
-#EXTINF:-1,Wave FM
-https://s23.myradiostream.com/:17458/listen.mp3
-#EXTINF:-1,Bakoni Fm
-https://s3.radio.co/s6d95aaaef/listen
 #EXTINF:-1,Katlego Fm
 https://streaming.live365.com/a26642
 #EXTINF:-1,Urban Central Radio
@@ -402,7 +340,7 @@ https://edge.iono.fm/xice/51_medium.aac?p=embed
 #EXTINF:-1,K8TLEGO Fm
 http://streaming.radionomy.com:80/JamendoLounge
 #EXTINF:-1,Overvaal Stereo
-http://overvaal.serverroom.us:5806/
+https://cast3.my-control-panel.com/proxy/overvaalstereo/stream
 #EXTINF:-1,Gaan Groot Radio
 https://playerservices.streamtheworld.com/api/livestream-redirect/SP_R2982692_SC?dist=onlineradiobox
 #EXTINF:-1,Vutha Fm Radio
@@ -413,16 +351,10 @@ https://streaming.coollective.nl:8443/UbuntuFMdance
 https://vibezlive.radioca.st/stream
 #EXTINF:-1,CARR RADIO
 https://stream.zeno.fm/0adby0r9uv8uv
-#EXTINF:-1,Kasi FM
-http://91.121.178.222:9128/
 #EXTINF:-1,Morgeez Radio
 https://c15.radioboss.fm:18500/morgeezradio
-#EXTINF:-1,R FM 103.2
-https://stream.zeno.fm/hncdcdx24k8uv
 #EXTINF:-1,UbuntuFM World Radio
 https://streaming.coollective.nl:8443/UbuntuFM
-#EXTINF:-1,Kapitol Afrika Radio 
-https://s3.radio.co/s22e66c126/listen
 #EXTINF:-1,Vogue Play SA
 https://stream.zeno.fm/y05cp78a508uv
 #EXTINF:-1,Shooting Stars FM
@@ -435,8 +367,6 @@ https://stream.zeno.fm/ev5rn2qbmf9uv
 https://c19.radioboss.fm:18080/stream
 #EXTINF:-1,Eldos FM
 https://zas5.ndx.co.za:9612/stream
-#EXTINF:-1,Warehouse Christian Radio
-https://s4.radio.co/sa435fb8f9/listen
 #EXTINF:-1,UniqueFive HD Radio
 https://stream.zeno.fm/0bv7vt7q3a0uv
 #EXTINF:-1,Whale Coast FM
@@ -461,10 +391,6 @@ https://stream.zeno.fm/4g1q7kyfmy8uv
 https://stream.zeno.fm/ugqu6qtd5zhvv
 #EXTINF:-1,Good News Community Radio
 https://edge.iono.fm/xice/155_medium.aac
-#EXTINF:-1,FFP Radio
-http://freeuk10.listen2myradio.com:11326/
-#EXTINF:-1,Knysna 97.0 FM
-http://zas4.ndx.co.za:9066/stream.nsv
 #EXTINF:-1,KZN Gospel Radio
 https://stream.zeno.fm/dmur09xxwhhvv
 #EXTINF:-1,Amass Radio
@@ -476,7 +402,7 @@ https://streaming.coollective.nl:8443/UbuntuFMreggae
 #EXTINF:-1,Waves of Glory Kingdom Network
 https://wavesofgloryradio.out.airtime.pro/wavesofgloryradio_a
 #EXTINF:-1,KeithNgesiRadio
-https://keithngesiradio.radioca.st/stream/1/
+https://radio.garden/api/ara/content/listen/6xrTNotl/channel.mp3?1733825015589
 #EXTINF:-1,Valley FM
 https://zas7.ndx.co.za:8036/stream
 #EXTINF:-1,CAPS
@@ -499,8 +425,6 @@ https://zas3.ndx.co.za:8016/stream
 https://samcloud.spacial.com/api/listen?sid=73804&m=sc&rid=129389
 #EXTINF:-1,Dalaman Radio Link
 http://live.exertion.in:8040/radio.mp3
-#EXTINF:-1,Sirius FM
-http://s8.voscast.com:7112/
 #EXTINF:-1,Radio Disa
 https://zas7.ndx.co.za:8022/stream
 #EXTINF:-1,Black Star FM
@@ -523,8 +447,6 @@ https://stream.zeno.fm/xxcydl6xse7uv
 https://stream.zeno.fm/kehd5k9dmzzuv
 #EXTINF:-1,Aloe FM
 https://stream.zeno.fm/yzwv42ywx2quv
-#EXTINF:-1,eKasi FM 101.1
-https://stream.zeno.fm/gwbtkfn24k8uv
 #EXTINF:-1,Civic FM
 https://civicfm1.radioca.st/stream?_=1
 #EXTINF:-1,Fashion District Radio
@@ -545,10 +467,6 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/LIGWALAGWALAAA
 https://stream.zeno.fm/7xc6cn3wnqzuv
 #EXTINF:-1,RedRadio
 https://eu10.fastcast4u.com:3880/stream
-#EXTINF:-1,Khululeka FM
-https://khululekafm.radioca.st/stream
-#EXTINF:-1,Radio Islam
-http://listen.radioislam.org.za:8080/radioislam.mp3
 #EXTINF:-1,Faith Armaria Radio
 https://stream.zenolive.com/12y3eq05na0uv.aac
 #EXTINF:-1,Bergman Square Fm
@@ -561,8 +479,6 @@ https://edge.iono.fm/xice/69_medium.aac
 https://s5.radio.co/s252195209/listen
 #EXTINF:-1,TWR Africa
 https://iceant.antfarm.co.za/TWR
-#EXTINF:-1,Voice of Thembisa 
-http://zas2.ndx.co.za/proxy/voiceoftembisa?mp=/stream?1495048455865.aac
 #EXTINF:-1,Wild Coast FM
 http://116.202.241.212:8090/
 #EXTINF:-1,Radiomassh
@@ -572,15 +488,13 @@ https://stream.zeno.fm/renzxpwub0hvv
 #EXTINF:-1,Urban Touch Radio
 https://stream.zeno.fm/vhvf4ytqr0hvv
 #EXTINF:-1,DanceRadioZA
-https://danceradio.site/listen/radio/radio.mp3
+http://danceradio.site/listen/radio/radio.mp3
 #EXTINF:-1,Naas Top Stereo
 https://solid33.streamupsolutions.com/proxy/xycpflty/stream
 #EXTINF:-1,Kcci Radio
 http://stream.zeno.fm/mv35fezmrgfvv
 #EXTINF:-1,Siloam Live
 https://s3.radio.co/s44a8f0904/listen
-#EXTINF:-1,Tru FM
-http://www.sabc.co.za/wps/portal/SABC/listenlivepopup#fragment-19
 #EXTINF:-1,Amaciko FM
 https://stream.zeno.fm/rd0esdxv7k0uv
 #EXTINF:-1,DK Radio
@@ -620,10 +534,24 @@ https://stream.zenolive.com/aadbzxd6sfeuv
 #EXTINF:-1,Life&Style 88FM
 https://edge.iono.fm/xice/165_medium.aac
 #EXTINF:-1,The Grind Radio
-http://stream.thegrindradio.co.za:8000/stream
+https://eclipse-radio.eclipse-streaming.co.za/listen/thegrindradio/radio.mp3
 #EXTINF:-1,Heavyhops
 https://kitkat.soundtrek.co.za/radio/8000/radio.mp3
 #EXTINF:-1,Mpako FM
 https://stream.zeno.fm/b9a9zmwz2tzuv
 #EXTINF:-1,Mobs Broadcasting Services
 https://stream.zeno.fm/chgpne9qqqzuv
+#EXTINF:-1,QwaQwa Radio
+https://uk8freenew.listen2myradio.com/live.mp3?typeportmount=s1_8217_stream_649423973
+#EXTINF:-1,Radio Houtstok - 100.6 FM
+http://zas4-5-7.ndx.co.za:8038/stream
+#EXTINF:-1,Radio Eendrag
+https://fm.radioeendrag.com/8016/stream.mp3
+#EXTINF:-1,Vukani Community Radio 
+https://edge.iono.fm/xice/108_medium.aac
+#EXTINF:-1,Kaya FM 95.9
+https://edge.iono.fm/xice/82_medium.aac
+#EXTINF:-1,YFM 99.2
+https://streaming.fabrik.fm/yfm/echocast/audio/index.m3u8
+#EXTINF:-1,Hindvani Radio
+https://edge.iono.fm/xice/129_medium.aac

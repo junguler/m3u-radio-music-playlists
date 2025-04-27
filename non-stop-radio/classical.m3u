@@ -1,8 +1,6 @@
 #EXTM3U
 #EXTINF:-1,Solo Piano Radio
 http://pianosolo.streamguys.net/live
-#EXTINF:-1,Classical Guitar Radio
-https://livessl.rcast.net/stream/65641//type=mp3
 #EXTINF:-1,IRN Jams
 https://live.indieradionetwork.net/irnjams1
 #EXTINF:-1,Classically
@@ -33,8 +31,6 @@ https://d111.rndfnk.com/ard/br/brklassik/live/mp3/256/stream.mp3?aggregator=web&
 http://mdr-284311-0.cast.mdr.de/mdr/284311/0/mp3/high/stream.mp3
 #EXTINF:-1,SWR2
 https://liveradio.swr.de/sw282p3/swr2/play.mp3
-#EXTINF:-1,Radio Piano Improvisation
-http://miba-piano.de:8200/
 #EXTINF:-1,WDR 3 - 93.1 FM
 http://wdr-wdr3-live.icecast.wdr.de/wdr/wdr3/live/mp3/128/stream.mp3
 #EXTINF:-1,BR-Klassik
@@ -174,13 +170,13 @@ https://stream.klassikradio.de/movieheroes/mp3-192/onestopradio
 #EXTINF:-1,Furrrioso! Die Show
 https://stream.klassikradio.de/furioso/mp3-192/appradiofm
 #EXTINF:-1,Radio Classique-88.9 FM
-https://radioclassique.ice.infomaniak.ch/radioclassique-high.mp3 
+https://radioclassique.ice.infomaniak.ch/radioclassique-high.mp3
 #EXTINF:-1,France Musique - 91.7 FM
 https://direct.francemusique.fr/live/francemusique-midfi.mp3?ID=76zqey582k 
+#EXTINF:-1,Radio Classique - 101.1 FM
+https://radioclassique.ice.infomaniak.ch/radioclassique-high.mp3 
 #EXTINF:-1,Radio Puissance Parcs
 https://radio.puissanceparcs.fr:8443/radio
-#EXTINF:-1,Bretagne
-https://oceanequimperle.ice.infomaniak.ch/oceanequimperle-128.mp3
 #EXTINF:-1,Classic and Jazz Radio
 http://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3
 #EXTINF:-1,Radio CLASSIC M2
@@ -191,6 +187,8 @@ http://live.m2stream.fr/m2classic-128.mp3
 https://kathy.torontocast.com:1825/stream
 #EXTINF:-1,RadioM2 JAZZ
 http://live.m2stream.fr/m2jazz-128.mp3
+#EXTINF:-1,Bretagne
+http://icecast.infini.fr:8000/neptune
 #EXTINF:-1,Splash Jazz
 https://ais-sa2.cdnstream1.com/2346_128.mp3
 #EXTINF:-1,HotmixRadio Classical
@@ -204,7 +202,7 @@ http://tsf62.free.fr/audio/tsf/090905-19H00.mp3
 #EXTINF:-1,Radio Culture
 http://icecast.vgtrk.cdnvideo.ru/kulturafm_mp3_128kbps
 #EXTINF:-1,Jazz Philharmonic Radio
-http://broad.jazz-hall.ru:8000/jphradio.mp3
+https://ais-sa3.cdnstream1.com/2442_128.aac
 #EXTINF:-1,Radio Muzkom
 http://s02.radio-tochka.com:5000/stream
 #EXTINF:-1,Воскресение
@@ -213,6 +211,8 @@ http://orthodox-ural.ru:8000/stream.mp3
 https://orfeyfm.hostingradio.ru:8034/orfeyfm128.mp3
 #EXTINF:-1,Avtoradio Ufa FM
 https://pub0102.101.ru:8443/stream/reg/mp3/128/region_avto_200
+#EXTINF:-1,101.ru - 2000 DANCE CLASSICS
+https://pub0102.101.ru:8443/stream/personal/aacp/64/856929?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJrZXkiOiI3ZjgxYTc2NGQyY2FkN2I1ZjZjMWE5MzRhNzgwZTg2YyIsIklQIjoiMjAzLjEwMS44Mi4xMTgiLCJVQSI6Ik1vemlsbGFcLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdFwvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lXC8xMDAuMC40ODk2LjEyNyBTYWZhcmlcLzUzNy4zNiIsInVpZF9jaGFubmVsIjoiODU2OTI5IiwidHlwZV9jaGFubmVsIjoicGVyc29uYWwiLCJ0eXBlRGV2aWNlIjoiUEMiLCJCcm93c2VyIjoiQ2hyb21lIiwiQnJvd3NlclZlcnNpb24iOiIxMD
 #EXTINF:-1,Radio Caprice - Classical Piano
 http://79.120.39.202:9069/
 #EXTINF:-1,Northwest Public Radio NPR and Classical Music-Fm
@@ -239,8 +239,6 @@ https://pub0302.101.ru:8443/stream/pro/aac/64/117
 http://213.141.131.10:8002/classavant
 #EXTINF:-1,Radio Caprice - Neoclassical
 http://79.120.39.202:8000/neoclassical
-#EXTINF:-1,Omdaru Radio
-https://magicscope.s02.radio-tochka.com:4635/stream
 #EXTINF:-1,Radio Voskreseniye
 http://217.24.181.164:8000/stream.mp3
 #EXTINF:-1,Radio Caprice - Contemporary Classical
@@ -249,8 +247,6 @@ http://79.111.119.111:8002/contclass
 http://213.177.106.78:8006/?6766
 #EXTINF:-1,Radio Caprice - Classical Guitar
 http://213.141.131.10:8002/classguitar
-#EXTINF:-1,101.ru - Classics New
-https://pub0202.101.ru:8443/stream/personal/aacp/64/709457
 #EXTINF:-1,Linn Classical
 http://radio.linn.co.uk:8004/autodj
 #EXTINF:-1,Classical MPR
@@ -457,10 +453,14 @@ http://natrix.sugarrivermedia.com:8000/wscs
 https://favorites.stream.publicradio.org/favorites-tunein.mp3
 #EXTINF:-1,WDFC, Christ Church Radio
 https://ice41.securenetsystems.net/WDFCLP
+#EXTINF:-1,RNE Radio 3
+https://dispatcher.rndfnk.com/crtve/rner3/main/mp3/high?an-uid=6427168739786314769&dot-uid=0ae52204009353f711da024a&triton-uid=cookie%3A77f98e5d-9cf5-4027-9187-a2465523b7ae&amb-uid=3129243929485457110&dbm-uid=CAESEEbOY3J2oB4CQAcvph7s9LM&cto-uid=26930a0e-f907-449c-864d-404b5d9d618c-66b725f6-5553&bsw-uid=af63dd95-0d85-4708-8a4e-f3d900a3586c&dyn-uid=5267274478558955079&ttd-uid=d14d7e6b-bf1a-4e1f-bad4-4e32f212091b&aw_0_req_lsid=cc187d9e7340612e3937ed444d6561b0
+#EXTINF:-1,RNE Radio Clásica - 98.8 FM
+http://dispatcher.rndfnk.com/crtve/rnerc/main/mp3/high
 #EXTINF:-1,Catalunya Música
 https://shoutcast.ccma.cat/ccma/catalunyamusicaHD.mp3
 #EXTINF:-1,Clásica FM
-http://edge.mixlr.com/channel/asnfw
+https://stream.zeno.fm/auik61bzpa6vv
 #EXTINF:-1,Radio Radio Network - 98.8 FM
 http://94.23.85.189:8000/listen.mp3
 #EXTINF:-1,AdagioRadio
@@ -483,12 +483,8 @@ http://116.202.241.212:8010/stream1
 https://rtr99.fluidstream.eu/rtr99.aac?FLID=3
 #EXTINF:-1,RAI R5 Classica - 100.3 FM
 https://icestreaming.rai.it/5.mp3
-#EXTINF:-1,Radio Classica 94.0 FM
-https://f027b3b473cf4361.msvdn.net/icecastRelay/S18953915/icecast
 #EXTINF:-1,Radio Amore Blu
 https://onair15.xdevel.com/proxy/radioondablu?mp=/stream
-#EXTINF:-1,Radio MCA
-https://uk2.streamingpulse.com/ssl/mca
 #EXTINF:-1,Bru Zane Classical Radio
 http://116.202.241.212:7001/stream
 #EXTINF:-1,Radio Classica Bresciana
@@ -503,16 +499,12 @@ https://f027b3b473cf4361.msvdn.net/icecastRelay/S18953915/icecasthttps://s17.ssl
 https://ss2.deegay.fm/stream
 #EXTINF:-1,Radio Stella
 http://192.99.17.12:2054/
-#EXTINF:-1,RadioCalabria27
-https://stream-43.zeno.fm/r950k185hwzuv?zs=NqLbi-e1TcCI98pd6kt1-w
-#EXTINF:-1,100 GREATEST CLASSICAL MUSIC
-https://giorgia.radiobellissima.it/radio/8140/radio.mp3
 #EXTINF:-1,City Radio - 95.9 FM Medan
 http://streaming.cityradio.id:8000/cityradio.ogg
 #EXTINF:-1,Classic FM Nederland
-http://22723.live.streamtheworld.com/CLASSICFM.mp3
+https://stream.classic.nl/classicnl.mp3
 #EXTINF:-1,Classic FM - Classical music
-http://25233.live.streamtheworld.com/CLASSICFM.mp3
+https://media-the.musicradio.com/ClassicFM
 #EXTINF:-1,Concertzender Oude Muziek
 http://streams.greenhost.nl:8080/oudemuziek
 #EXTINF:-1,Concertzender Klassieke Muziek
@@ -525,8 +517,6 @@ http://25253.live.streamtheworld.com/CLASSICFM.mp3
 http://icecast.omroep.nl/radio4-sb-aac
 #EXTINF:-1,Radio4
 http://icecast.omroep.nl:80/radio4-bb-mp3
-#EXTINF:-1,Live Classic FM
-https://25343.live.streamtheworld.com/CLASSICFM.mp3
 #EXTINF:-1,Concertzender De Gehoorde Stilte
 http://streams.greenhost.nl:8080/gehoordestilte
 #EXTINF:-1,Radio 4 - Eigentijds
@@ -553,12 +543,14 @@ http://playerservices.streamtheworld.com/api/livestream-redirect/CLASSICFM.mp3?D
 http://icecast.omroep.nl/radio4-eigentijds-mp3
 #EXTINF:-1,Radio Aa en Hunze
 http://213.125.168.60:8000/
+#EXTINF:-1,Non Stop Hindi
+http://s5.voscast.com:8216/stream
 #EXTINF:-1,Marwar Radio
 https://stream.zeno.fm/vq6p5vxb4v8uv
+#EXTINF:-1,All India Radio - Raagam
+https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudioragam/hlspbaudioragam_Auto.m3u8
 #EXTINF:-1,Rangeelo Rajasthan Rajputana Radio
 http://node-08.zeno.fm/vq6p5vxb4v8uv?rj-ttl=5&rj-tok=AAABfEBRL-oANRsw3qEQQalL4g
-#EXTINF:-1,Hungama - Kannada
-http://103.16.47.70:9333/live/
 #EXTINF:-1,Khamma Gani Rajasthan
 https://stream.zeno.fm/cc9ez9yydy8uv
 #EXTINF:-1,Rajasthani Bhajan
@@ -568,19 +560,17 @@ https://stream.zeno.fm/pr0zc64zdy8uv
 #EXTINF:-1,NP 24 Radio
 https://stream.zeno.fm/8wk1s0pt008uv
 #EXTINF:-1,Marudhara Radio
-http://node-27.zeno.fm/eyxg23ky4x8uv?rj-ttl=5&rj-tok=AAABfEBTFhAAKPclS5a7Vbd8Ew
+https://stream.zeno.fm/eyxg23ky4x8uv
 #EXTINF:-1,Listen Gurbani
 https://gurbanikirtan.radioca.st/start.mp3
+#EXTINF:-1,AIR Amruthavarshini
+https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio028/hlspbaudio028_Auto.m3u8
 #EXTINF:-1,Radio City - Tamil
-https://stream.zeno.fm/cwhuuebvyc9uv
-#EXTINF:-1,India Sings
-https://stream.zeno.fm/crrvmrsmug0uv
+https://radios.crabdance.com:8002/5
 #EXTINF:-1,Southradios - K. J. Yesudas Radio
-http://psrlive3.listenon.in/kjy?station=kjyesudas
+https://webpermission.southradios.net/play/tamilpopradio
 #EXTINF:-1,2ABCFM - ABC Classic FM 92.9 FM
 http://live-radio02.mediahubaustralia.com/2FMW/mp3
-#EXTINF:-1,Fine Music 102.5
-http://eno.emit.com:8000/2mbs_live_128.mp3
 #EXTINF:-1,4MBS Classic FM
 http://s9.viastreaming.net:9620/stream.mp3
 #EXTINF:-1,Art Sound FM - 90.3,92.7
@@ -590,23 +580,17 @@ http://stream.5mbs.com/5mbs-128-mp3
 #EXTINF:-1,6ABCFM ABC Classic
 http://live-radio01.mediahubaustralia.com/6FMW/mp3/stream.mp3
 #EXTINF:-1,Exclusively Mozart
-https://streaming.exclusive.radio/er/mozart/icecast.audio
-#EXTINF:-1,Exclusively Beethoven
-https://streaming.exclusive.radio/er/beethoven/icecast.audio
+https://stream.klassikradio.de/mozart/aac-128/radiode
 #EXTINF:-1,Exclusively JS Bach
 https://streaming.exclusive.radio/er/jsbach/icecast.audio
 #EXTINF:-1,Exclusively Chopin
 https://streaming.exclusive.radio/er/chopin/icecast.audio
-#EXTINF:-1,EXCLUSIVELY CLASSICAL
-https://streaming.exclusive.radio/er/classical/icecast.audio
 #EXTINF:-1,Exclusively Vivaldi
 https://streaming.exclusive.radio/er/vivaldi/icecast.audio
 #EXTINF:-1,Exclusively Handel
 https://streaming.exclusive.radio/er/handel/icecast.audio
 #EXTINF:-1,Positively Classical
 https://streaming.positivity.radio/pr/posiclassical/icecast.audio
-#EXTINF:-1,Exclusively Tchaikovsky
-https://streaming.exclusive.radio/er/tchaikovsky/icecast.audio
 #EXTINF:-1,Exclusively Strauss
 https://streaming.exclusive.radio/er/strauss/icecast.audio
 #EXTINF:-1,Exclusively John Williams
@@ -631,12 +615,6 @@ https://streaming.exclusive.radio/er/ralphvaughanwilliams/icecast.audio
 https://streaming.exclusive.radio/er/stravinsky/icecast.audio
 #EXTINF:-1,Exclusively Sibelius
 https://streaming.exclusive.radio/er/sibelius/icecast.audio
-#EXTINF:-1,Antyradio Classic
-https://n-22-14.dcs.redcdn.pl/sc/o2/Eurozet/live/antyradio.livx?audio=5?t=1636373742577
-#EXTINF:-1,sopocki | the seasight radio
-https://sopocki.com:8000/hd.mp3
-#EXTINF:-1,Radio Zielona Gora
-http://stream02.rzg.pl:10117/
 #EXTINF:-1,PR2 Dwójka
 http://stream3.polskieradio.pl:8902
 #EXTINF:-1,RTBF-Musiq 3- 91.2 FM
@@ -653,8 +631,6 @@ http://streaming.brf.be/brf2-high.mp3
 http://icecast.vrtcdn.be/klaracontinuo-high.mp3
 #EXTINF:-1,Radyo Kordelya
 http://38.96.148.39:8488
-#EXTINF:-1,TRT Nağme
-https://nmicenotrt.mediatriple.net/trt_nagme.aac
 #EXTINF:-1,Radio Svizzera Classica
 https://stream.srg-ssr.ch/m/rsc_de/mp3_128
 #EXTINF:-1,Radio SRF 2 Kultur
@@ -675,8 +651,6 @@ https://live.streams.klassikradio.de/klassikradio-oesterreich?aggregator=onestop
 http://kanliveicy.media.kan.org.il/icy/kankolhamusica_mp3?providername=tunein
 #EXTINF:-1,HRYW - Radio Panamericana 95.9 FM
 http://online.radiodifusion.net:8024
-#EXTINF:-1,Stereo Pinares
-http://198.204.234.10:8408/live
 #EXTINF:-1,Adoración Radio
 https://stream.zeno.fm/pf32wfye8yzuv
 #EXTINF:-1,P2 Musik
@@ -690,19 +664,19 @@ http://amp.cesnet.cz:8000/cro-d-dur.ogg
 #EXTINF:-1,Classic Praha - 98.7 FM
 http://icecast8.play.cz/classic128.mp3
 #EXTINF:-1,CRo D-dur
-http://icecast5.play.cz/croddur-128.mp3
+https://rozhlas.stream/ddur_high.aac
 #EXTINF:-1,CRo D-dur Prague
 http://icecast2.play.cz/croddur128aac
 #EXTINF:-1,CRo 3 Vltava
 http://icecast7.play.cz/cro3-256.mp3
 #EXTINF:-1,DR P2 Klassisk
 http://live-icy.gss.dr.dk:8000/A/A04L.mp3
+#EXTINF:-1,Radio Klassisk
+https://stream.zeno.fm/dxmcnq1svk8uv?an-uid=6427168739786314769&dot-uid=0ae52204009353f711da024a&amb-uid=3129243929485457110&aw-uid=496701d691b554cedc1fb7549b899846&dbm-uid=CAESEEbOY3J2oB4CQAcvph7s9LM&cto-uid=26930a0e-f907-449c-864d-404b5d9d618c-66b725f6-5553&bsw-uid=af63dd95-0d85-4708-8a4e-f3d900a3586c&dyn-uid=5267274478558955079&ttd-uid=d14d7e6b-bf1a-4e1f-bad4-4e32f212091b&triton-uid=cookie%3A7b38ff1d-00de-4633-93a9-99e2b7b2ee7a&adt-uid=cuid_975e7101-bac4-11ef-81f6-12707100b72d&aw_0_req_lsid=71fa7f2d7d4b68ebf4efa3d8dea4b602
 #EXTINF:-1,Radio Ballerup
 http://5.39.89.17:15246/?type=http&nocache=1638959091?0.2561486029715445
-#EXTINF:-1,Radio Klassisk
-http://tx-bauerdk.sharp-stream.com/http_live.php?i=radioklassisk_dk_tunein_mp3
 #EXTINF:-1,Radio 316
-http://tx.sharp-stream.com/icecast.php?i=familymedia.mp3
+https://uksoutha.streaming.broadcast.radio/familyradio316?1727516427098=
 #EXTINF:-1,Radio New Zealand Concert - 92.6 FM
 http://radionz-ice.streamguys.com/concert
 #EXTINF:-1,Radio New Zealand Concert
@@ -719,12 +693,12 @@ https://mp3.rtvslo.si/ars
 https://radiodzair.net:8020/andaloussia
 #EXTINF:-1,Steel FM- 95.9 FM
 http://ice6.securenetsystems.net:80/STEELFM
-#EXTINF:-1,Rondo Classic Klasu
-http://stream.iradio.fi:8000/klasupro-hi.mp3
 #EXTINF:-1,RTVS R Devin
-http://live.slovakradio.sk:8000/Devin_256.mp3
+https://icecast.stv.livebox.sk/devin_128.mp3?n=87214c586f3d90e45b1b
 #EXTINF:-1,RTVS R Klasika
 http://live.slovakradio.sk:8000/Klasika_256.mp3
+#EXTINF:-1,Lounge FM - 99.5 FM
+https://stream.loungefm.lv:8443/lounge
 #EXTINF:-1,Latvijas Radio 3 Klasika
 http://lr3mp0.latvijasradio.lv:8006
 #EXTINF:-1,LRT KLASIKA
@@ -733,3 +707,9 @@ http://lrt-cast.lrt.lt:8000/lrt_klasika
 https://zeno.fm/radio/radio-moussa/
 #EXTINF:-1,Days Old FM live
 https://stream.zeno.fm/xda10sbtsg0uv
+#EXTINF:-1,RTHK Radio 5 AM 783
+https://rthkaudio5-lh.akamaihd.net/i/radio5_1@355868/index_56_a-b.m3u8
+#EXTINF:-1,7fla FM
+https://node-28.zeno.fm/pnbrptybs2zuv?zs=CLuhmzi2QfamXOTfJaM0lw&rj-tok=AAABgSlwJsUAffeqtnXmJ-7VRQ&rj-ttl=5
+#EXTINF:-1,Talal Abu-Ghazaleh Business and Culture Radio Station (TAGBC Radio)
+http://89.28.216.245:8000/tagbc

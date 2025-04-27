@@ -1,8 +1,12 @@
 #EXTM3U
+#EXTINF:-1,Flaix FM
+https://stream.flaixfm.cat/icecast?
+#EXTINF:-1,Cadena SER - Catalunya/Barcelona
+https://sdmedia.playser.cadenaser.com/playser/audio/202501/11/1736583336_8490.mp3?dist=cadenaser-web-portadilla&stid=167083
 #EXTINF:-1,Flaix FM - 105.7 FM
-https://nodo03-cloud01.streaming-pro.com:8003/flaixfm.aacp
+https://stream.flaixfm.cat/icecast
 #EXTINF:-1,Rádio Barcelona (Cadena SER) 96.9 FM
-http://21253.live.streamtheworld.com/SER_BARCELONA_SC
+https://playerservices.streamtheworld.com/api/livestream-redirect/SER_BARCELONA.mp3
 #EXTINF:-1,Catalunya Música
 https://shoutcast.ccma.cat/ccma/catalunyamusicaHD.mp3
 #EXTINF:-1,Para que gocen los pollitos

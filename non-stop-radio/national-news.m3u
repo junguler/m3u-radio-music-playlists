@@ -1,6 +1,8 @@
 #EXTM3U
 #EXTINF:-1,Rádio Jovem Pan AM (São Paulo)
-https://playerservices.streamtheworld.com/api/livestream-redirect/JP_SP_AMAAC.aac?1661701357951
+https://stream.zeno.fm/vlcraijc6yiuv
+#EXTINF:-1,Band News FM salvador
+https://stream-153.zeno.fm/zuuex390pa0uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ6dXVleDM5MHBhMHV2IiwiaG9zdCI6InN0cmVhbS0xNTMuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6IjBUU3RsZ3pjVEhxN21EenNWY2tRbVEiLCJpYXQiOjE3MzYzMTM2MjMsImV4cCI6MTczNjMxMzY4M30.kLE44aN_DQsKqgwFicXkQ0-2hn5bxxoQW9uPdt6FzTE
 #EXTINF:-1,WDR2
 https://wdrhf.akamaized.net/hls/live/2027966/wdr2rheinland/96/seglist.m3u8
 #EXTINF:-1,MDR Info - MDR INFO 95.3 FM
@@ -9,14 +11,14 @@ https://d121.rndfnk.com/ard/mdr/284340/0/mp3/128/stream.mp3?aggregator=tunein&si
 https://d141.rndfnk.com/ard/dlf/01/mp3/128/stream.mp3?aggregator=web&sid=226JT43UsPsgZ7w20KsUP4V24pF&token=5E6O7O5l-66-yB_aks5BMOTYh_EX-Sr_B0emLY4D0PY&tvf=z3Yibc2DvxZkMTQxLnJuZGZuay5jb20
 #EXTINF:-1,MDR Info - 91.0 FM
 http://mdr-284340-0.cast.mdr.de/mdr/284340/0/mp3/low/stream.mp3
-#EXTINF:-1,HR Info
-http://d131.rndfnk.com/ard/hr/hrinfo/live/mp3/96/stream.mp3?aggregator=my-radios-com&sid=233EoPoiNYwMeKLJAFhLW117C6c&token=xJIOdW9R1pUIiLd7DEt_blgtq3Nl-Wup7Jfoa9Id4HM&tvf=stVbCxzrxRZkMTMxLnJuZGZuay5jb20
+#EXTINF:-1,hr-iNFO Radio
+https://dispatcher.rndfnk.com/hr/hrinfo/live/mp3/high?aggregator=radio-de
 #EXTINF:-1,hr-info
-https://hlshrinfo.akamaized.net/hls/live/2016539/hrinfo/master.m3u8
+http://dispatcher.rndfnk.com/hr/hrinfo/live/mp3/high?aggregator=radio-de
 #EXTINF:-1,NDR 1 Welle Nord
 https://d141.rndfnk.com/ard/ndr/ndr1wellenord/kiel/mp3/128/stream.mp3?sid=1yXFU44A0rmbPO1eFFoVPHPEhBG&token=E5rq3jByBaFqOXpYZHZrCl2UDpjOIYZtBhYgVoOYKtQ&tvf=VGqpQbx9pxZkMTQxLnJuZGZuay5jb20
 #EXTINF:-1,HR1Radio
-https://hlshr1.akamaized.net/hls/live/2016533/hr1/48/seg.m3u8
+https://dispatcher.rndfnk.com/hr/hr1/live/mp3/high?aggregator=radio-de
 #EXTINF:-1,NDR 1 R MV Rostock
 https://d131.rndfnk.com/ard/ndr/ndr1radiomv/schwerin/mp3/128/stream.mp3?sid=1yXdfEUFBZw2LFPxTInaJm91nAw&token=LrJYZNroUigVt4QKqHPEts87XIr34QXyZw9IglphVJg&tvf=Gg2z-pWIpxZkMTMxLnJuZGZuay5jb20
 #EXTINF:-1,Deutschlandfunk Radio 89.1 FM
@@ -47,30 +49,18 @@ http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_128kbps
 http://kpradio.hostingradio.ru:8000/spb.radiokp128.mp3
 #EXTINF:-1,Vesti FM - 97.6 FM
 https://icecast-vgtrk.cdnvideo.ru/vestifm
+#EXTINF:-1,R Mayak Omsk
+http://icecast.vgtrk.cdnvideo.ru/mayakfm_mp3_192kbps
 #EXTINF:-1,R Mayak Tomsk
 https://icecast-vgtrk.cdnvideo.ru/mayakfm_mp3_128kbps
-#EXTINF:-1,Onda Cero - Barcelona
-https://livefastly-webs.ondacero.es/barcelona-pull/audio/master.m3u8
 #EXTINF:-1,Radio Galicia (Cadena SER) - 95.2 FM
 http://21633.live.streamtheworld.com/SER_GALICIA_SC
-#EXTINF:-1,Onda Cero - Sevilla
-https://livefastly-webs.ondacero.es/ondacero/audio/master.m3u8
-#EXTINF:-1,Onda Cero - Málaga
-https://livefastly-webs.ondacero.es/malaga-pull/audio/master.m3u8
 #EXTINF:-1,Onda Cero - Murcia
-https://livefastly-webs.ondacero.es/murcia-pull/audio/master.m3u8?random=0.9370131430738258
-#EXTINF:-1,Onda Cero Network - Onda Melodia - Gijon 93.5 FM
-https://livefastly-webs.ondacero.es/barcelona-pull/audio/master.m3u8?random=0.19290295152698955
-#EXTINF:-1,Onda Melodia - Castellón
-https://livefastly-webs.ondacero.es/castellon-pull/audio/master.m3u8?random=0.2678904436759362
+https://atres-live.ondacero.es/live/delegaciones/oc/murcia/bitrate_1.m3u8
 #EXTINF:-1,Onda Cero - Badajoz 104.8 FM
 https://livefastly-webs.ondacero.es/badajoz-pull/audio/master.m3u8?random=0.7964310838281217
 #EXTINF:-1,Onda Cero - Noroeste 91.5 FM
 http://stream.ondaceronoroeste.es:8000/stream
-#EXTINF:-1,Onda Cero - Jaen
-https://livefastly-webs.ondacero.es/jaen-pull/audio/master.m3u8?random=0.5330943943446971
-#EXTINF:-1,Onda Cero - Canarias
-https://livefastly-webs.ondacero.es/canarias-pull/audio/master.m3u8?random=0.11643294700702977
 #EXTINF:-1,Onda Cero - La Rioja 89.1 FM
 https://livefastly-webs.ondacero.es/logrono-pull/audio/master.m3u8?random=0.4969819748382589
 #EXTINF:-1,Onda Cero - Lugo - 94.9 FM
@@ -91,12 +81,10 @@ https://streaming2.elitecomunicacion.es:8142/stream
 https://livefastly-webs.ondacero.es/merida-pull/audio/master.m3u8?random=0.6860843129045704
 #EXTINF:-1,Radio 24 L'Aquila - 89.2 FM
 http://shoutcast.radio24.ilsole24ore.com:8000
-#EXTINF:-1,Ciao
-https://24streams.me:7010
 #EXTINF:-1,Radio Suara Surabaya langsung
 http://c5.siar.us/proxy/ssfm/stream
 #EXTINF:-1,BNR Nieuws Radio - 99.9 FM
-https://22533.live.streamtheworld.com/BNR_NIEUWSRADIO.mp3?dist=BNRWEB
+https://stream.bnr.nl/bnr_mp3_128_01
 #EXTINF:-1,2NC - 1233 ABC Newcastle
 http://live-radio02.mediahubaustralia.com/2NEWW/mp3
 #EXTINF:-1,4ABCRR - ABC Gold Coast 91.7 FM
