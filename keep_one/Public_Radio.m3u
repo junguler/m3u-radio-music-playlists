@@ -11,8 +11,6 @@ https://rtsradio-live.morescreens.com/RTS_2_001/playlist.m3u8
 https://stream.wqxr.org/wqxr.aac
 #EXTINF:-1,5 FM
 http://5fm.mk:8000/stream.mp3
-#EXTINF:-1,5YYY - Triple Y
-http://173.255.143.170:8015/
 #EXTINF:-1,88 vier
 http://ice.rosebud-media.de:8000/88vier-low
 #EXTINF:-1,90.5 The Night
@@ -72,9 +70,9 @@ https://mediaserviceslive.akamaized.net/hls/live/2038336/localdubbo/index.m3u8
 #EXTINF:-1,ABC Radio WESTERN QUEENSLAND
 https://mediaserviceslive.akamaized.net/hls/live/2038331/locallongreach/index.m3u8
 #EXTINF:-1,ABC Sport
-https://mediaserviceslive.akamaized.net/hls/live/2038320/grandstand/index.m3u8
+https://live-radio01.mediahubaustralia.com/GSDW/aac/
 #EXTINF:-1,Africa N°1
-http://african1paris.ice.infomaniak.ch/african1paris-64.mp3
+https://african1paris.ice.infomaniak.ch/african1paris-64.mp3
 #EXTINF:-1,ALEX Berlin
 http://alex-radio.rosebud-media.de:8000/alex-radio
 #EXTINF:-1,Aspen Public Radio
@@ -82,19 +80,17 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/KAJXFM.mp3
 #EXTINF:-1,Bayern 2
 https://mcdn.hf.br.de/br/hf/b2sued/master.m3u8
 #EXTINF:-1,BBC Radio 4
-https://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/low/aks/bbc_radio_fourfm.m3u8
+https://a.files.bbci.co.uk/ms6/live/3441A116-B12E-4D2F-ACA8-C1984642FA4B/audio/simulcast/hls/nonuk/audio_syndication_low_sbr_v1/cfs/bbc_radio_fourfm.m3u8
 #EXTINF:-1,BBC Radio 4 LW
-https://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/low/aks/bbc_radio_fourlw.m3u8
+https://a.files.bbci.co.uk/ms6/live/3441A116-B12E-4D2F-ACA8-C1984642FA4B/audio/simulcast/hls/nonuk/audio_syndication_low_sbr_v1/aks/bbc_radio_fourlw.m3u8
 #EXTINF:-1,BBC Radio London
-https://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/low/aks/bbc_london.m3u8
+https://a.files.bbci.co.uk/ms6/live/3441A116-B12E-4D2F-ACA8-C1984642FA4B/audio/simulcast/hls/nonuk/audio_syndication_low_sbr_v1/aks/bbc_london.m3u8
 #EXTINF:-1,BCB Radio 106.6FM
 https://radio.canstream.co.uk:9071/live.aac
-#EXTINF:-1,Bitter Sweet Music
-http://91.121.236.34:8520/stream
 #EXTINF:-1,Bluegrass Country
 http://ice24.securenetsystems.net/WAMU
 #EXTINF:-1,Cambridge 105
-http://stream.cambridge105.fm:443/105-128s-mp3
+https://stream.cambridge105.co.uk:8443/105-radioplayer-low
 #EXTINF:-1,CBC Radio - 94.7FM
 http://108.178.16.190:8000/947fm.mp3
 #EXTINF:-1,CBC Radio One Saskatoon
@@ -104,11 +100,11 @@ http://stream.wbez.org/wbez128.mp3
 #EXTINF:-1,CKWE-FM
 http://stream03.ustream.ca/kitiganzibi128.mp3
 #EXTINF:-1,Classical 90.5
-http://lpm.streamguys1.com/wuol-tunein
+https://lpm.streamguys1.com/wuol-tunein
 #EXTINF:-1,Classical 91.5
-http://playerservices.streamtheworld.com/api/livestream-redirect/WXXIFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WXXIFM.mp3
 #EXTINF:-1,Classical IPR
-http://playerservices.streamtheworld.com/api/livestream-redirect/WIAAFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WIAAFM.mp3
 #EXTINF:-1,Classical MPR
 http://cms.stream.publicradio.org/cms.mp3
 #EXTINF:-1,Classical WETA
@@ -116,25 +112,27 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/WETAFM.mp3
 #EXTINF:-1,Community Radio Youghal
 https://cry104fmtech.radioca.st/stream?1586882797189
 #EXTINF:-1,Different Radio
-http://playerservices.streamtheworld.com/api/livestream-redirect/WRURFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WRURFM.mp3
 #EXTINF:-1,ERT Kosmos
 https://radiostreaming.ert.gr/ert-kosmos
+#EXTINF:-1,Escenario Radio
+https://edge.teveo.com.co/live/AeAAAgA0AAS7A1IAyADIUCQAAABAAAAAAmcFUdJdgsMXAAAA/playlist.m3u8
 #EXTINF:-1,Felixstowe Radio
 https://alexa.felixstoweradio.co.uk/FXR
 #EXTINF:-1,Fine Arts Radio
 http://amber.streamguys.com:6050/live
 #EXTINF:-1,Folk Alley
 https://freshgrass.streamguys1.com/folkalley-128mp3
-#EXTINF:-1,FRCN Kaduna Hausa Service
-http://213.32.16.94:9984/
 #EXTINF:-1,GPB Atlanta
-http://gpb.iad.streamguys1.com/gpb-atlanta-mp3
+https://gpb.iad.streamguys1.com/gpb-atlanta-mp3
+#EXTINF:-1,HighlandsFM
+http://203.31.10.83:9988/
 #EXTINF:-1,Hit Mix 88.9
 http://139.67.162.45:1139/1
 #EXTINF:-1,ICI Première Alberta
-http://cbcmp3.ic.llnwd.net/stream/cbcmp3_P-2AEDM0_EDM
+https://rcavliveaudio.akamaized.net/hls/live/2006949/P-2AEDM0_EDM/master.m3u8
 #EXTINF:-1,ICI Première Colombie-Britannique
-http://cbcmp3.ic.llnwd.net/stream/cbcmp3_P-2BVAN0_VAN
+https://rcavliveaudio.akamaized.net/hls/live/2006975/P-2BVAN0_VAN/master.m3u8
 #EXTINF:-1,ICI Première Île-du-Prince-Édouard
 https://rcavliveaudio.akamaized.net/hls/live/2006948/P-2EMCT3_CHR/playlist.m3u8
 #EXTINF:-1,ICI Première Manitoba
@@ -148,7 +146,7 @@ https://rcavliveaudio.akamaized.net/hls/live/2006950/P-2EMCT2_HAL/playlist.m3u8
 #EXTINF:-1,ICI Première Ottawa-Gatineau
 https://rcavliveaudio-tunein.akamaized.net/hls/live/2006652/P-2OOTT0_OTT/playlist.m3u8
 #EXTINF:-1,ICI Première Québec
-http://cbcmp3.ic.llnwd.net/stream/cbcmp3_P-2QQUE0_QUE
+https://rcavliveaudio.akamaized.net/hls/live/2006953/P-2QQUE0_QUE/master.m3u8
 #EXTINF:-1,ICI Première Saskatchewan
 https://rcavliveaudio.akamaized.net/hls/live/2006954/P-2SREG0_REG/playlist.m3u8
 #EXTINF:-1,ICI Première Sudbury
@@ -158,7 +156,7 @@ https://rcavliveaudio.akamaized.net/hls/live/2006973/P-2OTOR0_TOR/playlist.m3u8
 #EXTINF:-1,ICI Première Windsor
 https://rcavliveaudio.akamaized.net/hls/live/2006976/P-2OWDR0_WDR/playlist.m3u8
 #EXTINF:-1,IPR News Radio
-http://playerservices.streamtheworld.com/api/livestream-redirect/WICAFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WICAFM.mp3
 #EXTINF:-1,Islamic Lectures 24/7 Buzzislam
 https://tunein.buzzislam.com/radio/8000/radio.mp3
 #EXTINF:-1,Jazz KWMU-HD2
@@ -178,15 +176,15 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/KBUTFM.mp3
 #EXTINF:-1,KCAW
 http://tektite.streamguys1.com:5190/live
 #EXTINF:-1,KCCU
-http://playerservices.streamtheworld.com/api/livestream-redirect/KCCUFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/KCCUFM.mp3
 #EXTINF:-1,KCFR
 http://stream2.cprnetwork.org:8000/cpr1_lo
 #EXTINF:-1,KCRW
-http://kcrw.streamguys1.com/kcrw_128k_aac_on_air_tunein
+https://kcrw.streamguys1.com/kcrw_128k_aac_on_air_tunein
 #EXTINF:-1,KCRW Eclectic24
-http://kcrw.streamguys1.com/kcrw_192k_mp3_e24_tunein
+https://kcrw.streamguys1.com/kcrw_192k_mp3_e24_tunein
 #EXTINF:-1,KCRW News
-http://kcrw.streamguys1.com/kcrw_192k_mp3_news_tunein
+https://kcrw.streamguys1.com/kcrw_192k_mp3_news_tunein
 #EXTINF:-1,KDLG
 http://peace.str3am.com:6090
 #EXTINF:-1,KDLL
@@ -196,13 +194,13 @@ http://ice10.securenetsystems.net/KENWFM
 #EXTINF:-1,KERA
 http://kera-ice.streamguys.us/keralive
 #EXTINF:-1,KFAI
-http://stream.kfai.org:8080/kfai-1
+https://kfai.broadcasttool.stream/kfai-1
 #EXTINF:-1,KGLT
-http://shoutcast.kglt.net:8000/
+https://live.kgltradio.com/256
 #EXTINF:-1,KHNS
-http://peridot.streamguys.com:5130/live
+https://khns.streamguys1.com/live
 #EXTINF:-1,KHSU
-http://peace.str3am.com:6650
+https://23093.live.streamtheworld.com/KHSUFM.mp3
 #EXTINF:-1,KIDE Radio
 http://peridot.streamguys.com:7470/live-mp3
 #EXTINF:-1,KIYU-FM
@@ -210,9 +208,9 @@ http://64.150.176.42:8009/live
 #EXTINF:-1,KJZZ
 http://kjzz.streamguys1.com:80/kjzz_mp3_128
 #EXTINF:-1,KNCH
-http://playerservices.streamtheworld.com/api/livestream-redirect/KNCHFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/KNCHFM.mp3
 #EXTINF:-1,KOTO
-http://playerservices.streamtheworld.com/api/livestream-redirect/KOTOFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/KOTOFM.mp3
 #EXTINF:-1,KPBS-FM
 https://kpbs.streamguys1.com/kpbs-aac
 #EXTINF:-1,KPCC - LAist 89.3
@@ -224,25 +222,25 @@ https://streams.kqed.org/kqedradio
 #EXTINF:-1,KRBD
 http://war.str3am.com:8080/krbd
 #EXTINF:-1,KRCU
-http://krculive.semo.edu:8000/128k
+https://krculive.semo.edu:8443/128k
 #EXTINF:-1,KRWG
 https://playerservices.streamtheworld.com/api/livestream-redirect/KRWGFM.mp3
 #EXTINF:-1,KSDP
-http://apradio.org/ksdp.pls
+https://stream.apradio.org/stream.aac
 #EXTINF:-1,KSJD-FM
 http://war.str3am.com:8430
-#EXTINF:-1,KSKA
-http://stream.kska.org:8290/xstream
+#EXTINF:-1,KSKA 91.1 FM
+https://alaskapublic-live.streamguys1.com/aac-web
 #EXTINF:-1,KSTK
 http://war.str3am.com:7160
 #EXTINF:-1,KTEP
 https://playerservices.streamtheworld.com/api/livestream-redirect/KTEPFM_ADP.aac
 #EXTINF:-1,KTTZ-FM
-http://playerservices.streamtheworld.com/api/livestream-redirect/KTTZHD1.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/KTTZHD1.mp3
 #EXTINF:-1,KTTZ-HD2
-http://playerservices.streamtheworld.com/api/livestream-redirect/KTTZHD2.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/KTTZHD2.mp3
 #EXTINF:-1,KTTZ-HD3
-http://playerservices.streamtheworld.com/api/livestream-redirect/KTTZHD3.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/KTTZHD3.mp3
 #EXTINF:-1,KUAF
 http://war.str3am.com:7030/kuaf1
 #EXTINF:-1,KUAF 2
@@ -250,13 +248,13 @@ https://war.streamguys1.com:7031/kuaf2
 #EXTINF:-1,KUAT-FM
 http://streaming.azpm.org/kuat128.mp3
 #EXTINF:-1,KUER-FM
-http://audio.kuer.org:8000/high
+https://kuer.streamguys1.com/high_icy
 #EXTINF:-1,KUFM
 http://stream.tc.umt.edu
 #EXTINF:-1,KUNM
 https://playerservices.streamtheworld.com/api/livestream-redirect/KUNMFM_128.mp3?uuid=6j0xa0sd
 #EXTINF:-1,KUNR
-http://108.178.13.122:8164/
+https://kunrstream.com:8443/live?uuid=6vsxp5fd
 #EXTINF:-1,KUOW-FM
 https://playerservices.streamtheworld.com/api/livestream-redirect/KUOWFM_HIGH_MP3.mp3
 #EXTINF:-1,KUSC
@@ -274,15 +272,15 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/KUYIFM_SC
 #EXTINF:-1,KVCR
 http://mp3.kvcr.org/live.mp3
 #EXTINF:-1,KVNF
-http://peridot.streamguys.com:7140/live
+https://peridot.streamguys1.com:7145/live
 #EXTINF:-1,KVOD
 http://stream2.cprnetwork.org:8000/cpr2_lo
 #EXTINF:-1,KXCV
-http://198.209.246.63:8000/
+http://198.209.246.63:8000
 #EXTINF:-1,Latvijas Radio 4 - LR4 - Doma Laukums
-http://lr4mp1.latvijasradio.lv:8020/
+https://5a44e5b800a41.streamlock.net/shoutcast/mp4:lr4a.stream/playlist.m3u8
 #EXTINF:-1,Maine Public Radio
-http://playerservices.streamtheworld.com/api/livestream-redirect/WMEAFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WMEAFM.mp3
 #EXTINF:-1,Michigan Radio
 https://playerservices.streamtheworld.com/api/livestream-redirect/WUOMFM_SC
 #EXTINF:-1,Montcada Radio
@@ -290,15 +288,15 @@ https://streaming.enacast.com/montcada128.mp3
 #EXTINF:-1,MPR News
 http://nis.stream.publicradio.org/nis.mp3
 #EXTINF:-1,NEPR News Network
-http://nepr.iad.streamguys1.com/WNNZ.mp3
+https://nepr.iad.streamguys1.com/WNNZ.mp3
 #EXTINF:-1,NET Radio HD2
 https://playerservices.streamtheworld.com/api/livestream-redirect/KUCVHD2.mp3
 #EXTINF:-1,New England Public Radio
-http://nepr.iad.streamguys1.com/WFCR.mp3
+https://nepr.streamguys1.com/WFCR.mp3
 #EXTINF:-1,NHPR
 http://nhpr-sc.streamguys.us/nhpr
 #EXTINF:-1,North State Public Radio (KCHO/KFPR)
-http://playerservices.streamtheworld.com/api/livestream-redirect/KCHOFM_64.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/KCHOFM_64.mp3
 #EXTINF:-1,NWPR Classical Music
 http://134.121.234.129:8000/NWPRCLASSICAL
 #EXTINF:-1,NWPR News
@@ -310,7 +308,7 @@ http://stream1.opb.org/radio_player.mp3
 #EXTINF:-1,Public Radio East
 https://playerservices.streamtheworld.com/api/livestream-redirect/WTEBFM.mp3
 #EXTINF:-1,Public radio of Armenia
-http://178.160.193.131:8000/stream
+http://46.182.174.131:8000/stream
 #EXTINF:-1,Punto Radio Castilla y León
 https://libertaddigital-radio-live4.flumotion.com/libertaddigital/ld-live4-low.mp3
 #EXTINF:-1,Radio 5fm
@@ -318,7 +316,7 @@ http://5fm.mk:8000/stream/1/
 #EXTINF:-1,Radio 91
 http://amber.streamguys.com:5540/live
 #EXTINF:-1,Ràdio Arenys
-http://streaming.enantena.com:8000/radioarenysdemar128.mp3
+https://streaming.enacast.com/radioarenysdemar128.mp3
 #EXTINF:-1,Radio Aura
 http://streamingv2.shoutcast.com/radio-aura-blagoevgrad
 #EXTINF:-1,Radio Beograd 2 - Радио Београд 2
@@ -328,7 +326,7 @@ https://ice.radiobgm.org.uk/listen
 #EXTINF:-1,Radio Clasica
 http://streaming.mundoclasicaupa.com:8000/radioclasica
 #EXTINF:-1,Rádio Difusora Acreana
-http://midia.ac.gov.br:/
+http://midia.ac.gov.br/difusora
 #EXTINF:-1,Radio Europa Libera Moldovan
 http://rfe-channel-18.akacast.akamaistream.net/7/380/229668/v1/ibb.akacast.akamaistream.net/rfe_channel_18.mp3
 #EXTINF:-1,Radio Helderberg
@@ -338,7 +336,7 @@ https://live.itech.host/himalayaradio
 #EXTINF:-1,Radio Kansas
 https://audio-edge-w4d68.yul.o.radiomast.io/5567306a-66f6-4d8f-a399-520e2936e3a0
 #EXTINF:-1,Radio Moreeni
-http://153.1.15.29:8080/moreeni.mp3
+https://moreenistream.tuni.fi/moreeni.mp3
 #EXTINF:-1,Radio Nacional (Catamarca)
 https://sa.mp3.icecast.magma.edge-access.net/sc_rad27
 #EXTINF:-1,Radio Nacional (Formosa)
@@ -348,7 +346,7 @@ https://sa.mp3.icecast.magma.edge-access.net/sc_rad29
 #EXTINF:-1,Radio Nacional (Santa Rosa)
 https://sa.mp3.icecast.magma.edge-access.net/sc_rad3
 #EXTINF:-1,Radio Ondas Do Lima
-http://centova.radios.pt:8407/
+http://centova.radios.pt:8407/stream
 #EXTINF:-1,Radio Panik
 https://streaming.domainepublic.net/radiopanik.ogg
 #EXTINF:-1,Radio Rebelde
@@ -356,9 +354,9 @@ https://icecast.teveo.cu/zrXXWK9F
 #EXTINF:-1,Radio Rumantsch
 http://stream.srg-ssr.ch/m/rr/mp3_128
 #EXTINF:-1,Radio Rwanda
-http://listen.rba.co.rw:8000/stream.nsv
+http://listen.rba.co.rw:8000/
 #EXTINF:-1,Radio Santo Domingo
-http://ample-zeno-01.radiojar.com/2hbuch6tf2wtv
+https://ample-zeno-01.radiojar.com/2hbuch6tf2wtv
 #EXTINF:-1,Radio Student
 http://161.53.122.184:8000/AAC128.aac
 #EXTINF:-1,Radio Tirana 2
@@ -387,12 +385,16 @@ https://kwmu1-ice.streamguys1.com/kwmu1?uuid=t6z0ikcdt
 http://commsweb.aut.ac.nz:8000/live
 #EXTINF:-1,The Current
 http://current.stream.publicradio.org/kcmp.mp3
+#EXTINF:-1,Triple Y
+https://playerservices.streamtheworld.com/api/livestream-redirect/5YYY.mp3
 #EXTINF:-1,Troy Public Radio
-http://live.str3am.com:2380/troy1
+https://live.streamguys1.com:2385/troy1
 #EXTINF:-1,Vocalo Radio
 http://stream.vocalo.org/vocalo128-tunein
 #EXTINF:-1,Voces Campeche
-http://192.187.112.50:8119/
+https://streamingcwsradio30.com/8288/stream
+#EXTINF:-1,Voice of Strait News Radio
+https://www.vos.com.cn/live/liveNew/800k/tzwj_video.m3u8
 #EXTINF:-1,VPR
 http://vpr.streamguys.net/vpr96.mp3
 #EXTINF:-1,VPR Classical
@@ -404,15 +406,15 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/WABEFM_HD1.mp3
 #EXTINF:-1,WAMU
 http://wamu-1.streamguys.com/wamu-1
 #EXTINF:-1,WBAA News
-http://purdue.streamguys1.com/wbaa-news
+https://purdue.streamguys1.com/wbaa-news
 #EXTINF:-1,WBFO
-http://playerservices.streamtheworld.com/api/livestream-redirect/WBFOFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WBFOFM.mp3
 #EXTINF:-1,WBGO
-http://wbgo.streamguys.net/wbgo96
+https://wbgo.streamguys1.com/wbgo128
 #EXTINF:-1,WBUR-FM
-http://wbur-sc.streamguys.com/wbur.mp3
+https://fm909.wbur.org/wbur_www
 #EXTINF:-1,WCAI
-http://audio.wgbh.org:8002/wcai
+https://streams.audio.wgbh.org/wcai-itunes-256k.aac?uuid=nxte6q85b
 #EXTINF:-1,WCBE
 https://playerservices.streamtheworld.com/api/livestream-redirect/WCBEFM.mp3
 #EXTINF:-1,WCLV
@@ -424,31 +426,31 @@ http://wgbh.streamguys.com:8006/classical-hi
 #EXTINF:-1,WDCB
 http://wdcb-ice.streamguys.org/wdcb128
 #EXTINF:-1,WDIY
-http://war.str3am.com:7880/wdiy_7880
+https://war.streamguys1.com:7883/wdiy_7880
 #EXTINF:-1,WEAA
-http://amber.streamguys.com:4020/live
+https://amber.streamguys1.com:4025/live
 #EXTINF:-1,WEFT
-http://s9.viastreaming.net:7510/
+https://weft.broadcasttool.stream/stream
 #EXTINF:-1,WEKU
-http://playerservices.streamtheworld.com/api/livestream-redirect/WEKUFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WEKUFM.mp3
 #EXTINF:-1,WFAE
-http://wfae.iad.streamguys1.com:80/wfae1
+https://wfae-ice.streamguys1.com/wfae1
 #EXTINF:-1,WFAE Remix
 http://wfae.iad.streamguys1.com:80/wfae3
 #EXTINF:-1,WFCR-HD2
-http://nepr.iad.streamguys1.com/WFCR-HD.mp3
+https://nepr.iad.streamguys1.com/WFCR-HD.mp3
 #EXTINF:-1,WFMT
 http://stream.wfmt.com/main-mp3
 #EXTINF:-1,WFPK
-http://lpm.streamguys1.com/wfpk-tunein
+https://lpm.streamguys1.com/wfpk-tunein
 #EXTINF:-1,WFPL
-http://lpm.streamguys1.com/wfpl-tunein
+https://lpm.streamguys1.com/wfpl-tunein
 #EXTINF:-1,WFUV
 http://wfuv-onair.streamguys.org/onair-hi
 #EXTINF:-1,WFYI
 http://wfyi-iad.streamguys1.com:80/live
 #EXTINF:-1,WGCU-FM
-http://playerservices.streamtheworld.com/api/livestream-redirect/WGCUFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WGCUFM.mp3
 #EXTINF:-1,WGUC
 http://cpr2.streamguys.net/wguc
 #EXTINF:-1,WHDD-FM
@@ -456,45 +458,43 @@ http://ic2.mainstreamnetwork.com/whdd-fm
 #EXTINF:-1,WHQR
 https://whqr.streamguys1.com/whqr_hd1
 #EXTINF:-1,WHYY-FM
-http://whyy.streamguys1.com/whyy-mp3
+https://whyy.streamguys1.com/whyy-mp3
 #EXTINF:-1,WHYY-HD2
-http://whyy-hd.streamguys1.com/whyy-hd-mp3
+https://whyy-hd.streamguys1.com/whyy-hd-mp3
 #EXTINF:-1,WITF-FM
-http://playerservices.streamtheworld.com/api/livestream-redirect/WITFFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WITFFM.mp3
 #EXTINF:-1,WITH
-http://playerservices.streamtheworld.com/api/livestream-redirect/WITHFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WITHFM.mp3
 #EXTINF:-1,WIUM
-http://playerservices.streamtheworld.com/api/livestream-redirect/WIUMFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WIUMFM.mp3
 #EXTINF:-1,WJCT
-http://playerservices.streamtheworld.com/api/livestream-redirect/WJCTFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WJCTFM.mp3
 #EXTINF:-1,WJFF 90.5FM Radio Catskill
 http://live2.rcast.net:8968/stream
 #EXTINF:-1,WKAR
 http://mozart.wkar.msu.edu/wkar-am-mp3
 #EXTINF:-1,WKCR-FM
-http://wkcr.streamguys1.com/live
+https://wkcr.streamguys1.com/live
 #EXTINF:-1,WLRH
 https://wlrh.streamguys1.com/live
 #EXTINF:-1,WLRN-FM
 http://stream.wlrn.mobi/WLRNFMMP3
 #EXTINF:-1,WMFE-FM
-http://wmfe.iad.streamguys1.com/wmfe
+https://wmfe.iad.streamguys1.com/wmfe
 #EXTINF:-1,WMHT-FM
-http://wmht.streamguys1.com/wmht1
+https://wmht.streamguys1.com/wmht1
 #EXTINF:-1,WMNF
 http://stream.wmnf.org:8000/wmnf_high_quality
 #EXTINF:-1,WMPN
-http://playerservices.streamtheworld.com/api/livestream-redirect/WMPNHD3_56.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WMPNHD3_56.mp3
 #EXTINF:-1,WMUK
-http://ice2.wmuk.org:8000/mp31
+https://ice2.wmuk.org:8443/mp31
 #EXTINF:-1,WMUK-HD2
 http://ice2.wmuk.org:8000/mp32
-#EXTINF:-1,WNCW
-http://audio-mp3.ibiblio.org:8000/wncw-128k
 #EXTINF:-1,WNIN-FM
 https://wnin.streamguys1.com/live
 #EXTINF:-1,WNPR
-http://playerservices.streamtheworld.com/api/livestream-redirect/WNPRFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WNPRFM.mp3
 #EXTINF:-1,WNYC-AM
 http://am820.wnyc.org/wnycam-tunein
 #EXTINF:-1,WNYC-FM
@@ -510,11 +510,11 @@ http://wpr-ice.streamguys.net/wpr-ideas-mp3-64
 #EXTINF:-1,WPR News & Classical
 http://wpr-ice.streamguys.net/wpr-music-mp3-96
 #EXTINF:-1,WPSU
-http://wpsu-ice.streamguys1.com/wpsu1
+https://wpsu-ice.streamguys1.com/wpsu1
 #EXTINF:-1,WPSU 3
-http://wpsu-ice.streamguys1.com/wpsu3
+https://wpsu-ice.streamguys1.com/wpsu3
 #EXTINF:-1,WRKF
-http://playerservices.streamtheworld.com/api/livestream-redirect/WRKFFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WRKFFM.mp3
 #EXTINF:-1,WRVO Public Media
 https://playerservices.streamtheworld.com/api/livestream-redirect/WRVOFM.mp3
 #EXTINF:-1,WSDL
@@ -522,7 +522,7 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/WSDLFM_SC
 #EXTINF:-1,WSHU
 http://wshu.streamguys.org/wshu-news
 #EXTINF:-1,WSHU-FM
-http://wshu-iad.streamguys1.com/wshu-air
+https://wshu-iad.streamguys1.com/wshu-air
 #EXTINF:-1,WSIU
 http://peridot.streamguys.com:5230/wsiu-hd1
 #EXTINF:-1,WSKG-FM
@@ -538,11 +538,11 @@ http://war.str3am.com:7780/wuis.mp3
 #EXTINF:-1,WUKY
 https://wuky.streamguys1.com/wuky?uuid=s53796eoe
 #EXTINF:-1,WUMB-FM
-http://wumb.streamguys1.com/wumb919fast
+https://wumb.streamguys1.com/wumb919fast
 #EXTINF:-1,WUWM
-http://wuwm.streamguys1.com/live.mp3
+https://wuwm.streamguys1.com/live.mp3
 #EXTINF:-1,WVAS
-http://playerservices.streamtheworld.com/api/livestream-redirect/WVASFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WVASFM.mp3
 #EXTINF:-1,WVXU
 http://cpr.streamguys.net/noads-wvxu
 #EXTINF:-1,WWNO
@@ -550,16 +550,16 @@ http://tektite.streamguys1.com:5140/wwnolive
 #EXTINF:-1,WXPN
 http://wxpnhi.streamguys.com/xpnhi
 #EXTINF:-1,WXPR
-http://amber.streamguys.com:4370/wxpr2
+https://amber.streamguys1.com:4372/wxpr2-aac
 #EXTINF:-1,WXXI
-http://playerservices.streamtheworld.com/api/livestream-redirect/WXXIAM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WXXIAM.mp3
 #EXTINF:-1,Wyoming Public Radio
 https://wyoming-public-ice.streamguys1.com/WPR128MP3
 #EXTINF:-1,WYPR
-http://17483.live.streamtheworld.com:3690/WYPR_HD1_SC
+https://playerservices.streamtheworld.com/api/livestream-redirect/WYPR_HD1_SC
 #EXTINF:-1,WYSO Public Radio
-http://playerservices.streamtheworld.com/api/livestream-redirect/WYSOFM.mp3
+https://playerservices.streamtheworld.com/api/livestream-redirect/WYSOFM.mp3
 #EXTINF:-1,WYSU
-http://live.wysu.org:3180/hd1
+https://live.streamguys1.com:3181/hd1
 #EXTINF:-1,Yellowstone Public Radio
-http://ypr-sc.streamguys.net/live
+https://ypr.streamguys1.com/live
