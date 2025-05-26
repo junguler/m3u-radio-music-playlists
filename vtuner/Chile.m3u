@@ -11,6 +11,8 @@ http://playerservices.streamtheworld.com/api/livestream-redirect/ADN_SC
 http://stream5.eltelon.com/alborada.aac
 #EXTINF:-1,Armonia 106.3 FM
 http://audio.armonia.cl:3032/1.mp3
+#EXTINF:-1,c
+http://sonic.portalfoxmix.club/8244/stream
 #EXTINF:-1,Canal 95
 http://streaming.conectaapp.cl/canal95
 #EXTINF:-1,Caribe 104.9 FM
@@ -45,8 +47,6 @@ http://stream.festival.cl/1
 http://radiostreaming.cloudserverlatam.com/8058/stream
 #EXTINF:-1,FM Joven
 http://200.24.229.253:8040
-#EXTINF:-1,Radio FM Latina Chile
-http://jm8n.com/8140/stream
 #EXTINF:-1,FM Plus 106.9 FM
 http://sonando.us.digitalproserver.com/fmplus_aac
 #EXTINF:-1,FMDOS 98.5
@@ -80,7 +80,7 @@ http://streaming.fmokey.cl:8000/FmOkLA.mp3
 #EXTINF:-1,OK FM 103.1
 http://streaming.fmokey.cl/moviles.mp3
 #EXTINF:-1,Patagonia Radio
-http://audio.streaminghd.cl:2000/stream/patagoniaradio/stream
+https://audio.streaminghd.cl:2000/stream/patagoniaradio
 #EXTINF:-1,Pudahuel 90.5 FM
 http://playerservices.streamtheworld.com/api/livestream-redirect/PUDAHUEL_SC
 #EXTINF:-1,Puerto Salsa Radio
@@ -105,8 +105,6 @@ http://unlimited4-us.dps.live/beethovenfm/aac/icecast.audio
 http://unlimited4-us.dps.live/biobioconcepcion/aac/icecast.audio
 #EXTINF:-1,Radio Bio-Bio Santiago
 http://unlimited4-us.dps.live/biobiosantiago/aac/icecast.audio
-#EXTINF:-1,Radio Caricia 102.3 FM
-http://sonic.portalfoxmix.club/8244/stream
 #EXTINF:-1,Radio Carolina 98.9 FM
 http://unlimited3-cl.dps.live/carolinafm/aac/icecast.audio
 #EXTINF:-1,Radio Carolina 99.3 FM
@@ -145,10 +143,12 @@ http://streaming.chiloestreaming.com:9622/
 http://192.99.18.164:9886
 #EXTINF:-1,Radio Femenina FM 96.7
 http://archi-us.digitalproserver.com/femenina.aac
+#EXTINF:-1,Radio Fernanda
+http://ascella.streamerr.co/radio/8070/radiofernanda.mp3
 #EXTINF:-1,Radio Festiva 100.9 FM
 http://s6.jcwebnew.com:8070/stream
-#EXTINF:-1,Radio FM Dance
-http://sonic.portalfoxmix.cl/9818/stream
+#EXTINF:-1,Radio FM Latina Chile
+http://jm8n.com/8140/stream
 #EXTINF:-1,Radio Folclor de Chile
 http://procyon.shoutca.st:8508/
 #EXTINF:-1,Radio Gennesis 92.7 FM
@@ -179,8 +179,6 @@ http://archi-us.digitalproserver.com/marcelafm.aac
 http://dreamsiteradiocp.com:8066/
 #EXTINF:-1,Radio Mas que Flamenco Chile
 http://stm3.hostingystreaming.net:20488
-#EXTINF:-1,Radio Montserrat
-http://168.195.128.187:9302/
 #EXTINF:-1,Radio Nacional de Chile
 http://s6.jcwebnew.com:8165/stream
 #EXTINF:-1,Radio Nuevo Mundo 93 FM
@@ -241,73 +239,3 @@ http://stream5.eltelon.com:80/radio-soberania.aac
 http://online.radiosol.cl:8000/
 #EXTINF:-1,Radio Sur 92.1
 http://ww3.radiosur.cl:5074/rsur
-#EXTINF:-1,Radio Tazmaniahit
-http://sonic.portalfoxmix.cl/8162/stream
-#EXTINF:-1,Radio Tierra del Fuego
-http://srv6.sonicpanel.cl/8072/
-#EXTINF:-1,RADIO UBB 1360 AM
-http://radioubb.cl:8000/online
-#EXTINF:-1,Radio Universal 94.7 FM
-http://s01.azuracast.cl/radio/8010/universal
-#EXTINF:-1,Radio Universidad de Chile 102.5 FM
-http://200.89.71.21:8000/
-#EXTINF:-1,Radio Universidad de Concepcion 95.1 FM
-http://audio.divalstream.com:7019/stream
-#EXTINF:-1,Radio UVM 96.3 FM
-http://200.24.229.253:8020
-#EXTINF:-1,Radio Vacaciones 97.5 FM
-http://184.154.173.147:8005//stream
-#EXTINF:-1,Radio Valentin Letelier
-http://audio.streaminghd.cl:9030//stream
-#EXTINF:-1,Radio Ventisqueros 97.7 FM
-http://archi-us.digitalproserver.com/ventisqueros-coyhaique.aac
-#EXTINF:-1,Radio Vida Intemi
-http://130.185.144.199:20173
-#EXTINF:-1,Radio Zero 97.7 FM
-http://unlimited4-us.dps.live/zero/aac/icecast.audio
-#EXTINF:-1,Radioactiva 92.5 FM
-http://playerservices.streamtheworld.com/api/livestream-redirect/ACTIVAAAC_SC
-#EXTINF:-1,Radios Aconcagua 91.7 FM
-http://atanua.broadcastchile.cl:4080/
-#EXTINF:-1,RadioUC 660 AM
-http://giss.tv:8001/senalchile.mp3
-#EXTINF:-1,Radiovivo  
-http://sonicpanel.streaming10.net/8018/stream
-#EXTINF:-1,Rancagua 1510 AM
-http://168.195.128.187:9324/
-#EXTINF:-1,RETROCLASICOS Radio
-http://144.217.197.70:8094/stream
-#EXTINF:-1,RINFM
-http://radioislanegra.org/radio/8000/basic.aac
-#EXTINF:-1,Rock & Pop
-http://playerservices.streamtheworld.com/api/livestream-redirect/ROCK_AND_POP_SC
-#EXTINF:-1,Romantica 104.1 FM
-http://unlimited4-us.dps.live/romantica/aac/icecast.audio
-#EXTINF:-1,RTL Curico 95.5 FM
-http://radio.mediadev.cl:8090/rtl_curico
-#EXTINF:-1,RTL San Fernando 93.7 FM
-http://radio.mediadev.cl:8110/san_fernando
-#EXTINF:-1,Sago 780 AM
-http://audio.divalstream.com:7001/stream
-#EXTINF:-1,San Bartolome 96.7 AM
-http://stream5.eltelon.com/san-bartolome.aac
-#EXTINF:-1,SER FM
-http://sonando.us.digitalproserver.com/serfm_aac
-#EXTINF:-1,Solo Radio
-http://stream.zeno.fm/7w966kvt5x8uv
-#EXTINF:-1,Sonar FM 105.3
-http://mdstrm.com/audio/5c915724519bce27671c4d15/icecast.audio
-#EXTINF:-1,SuperStereo 1 sd
-http://198.204.228.202:8157/canal1
-#EXTINF:-1,SuperStereo 2
-http://198.204.228.202:8157/aac_live
-#EXTINF:-1,SuperStereo 3
-http://198.204.228.202:8539/aac
-#EXTINF:-1,SuperStereo 4
-http://198.204.228.202:8162/
-#EXTINF:-1,Universidad Técnica Federico Santa María
-http://streamssl.eu:1288/stream
-#EXTINF:-1,UTFSM 99.7 FM
-http://chileservidores.cl:9994/audio
-#EXTINF:-1,Valparaiso 1210 AM
-http://200.24.229.253:8250/

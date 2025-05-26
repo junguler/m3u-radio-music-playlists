@@ -2,7 +2,7 @@
 #EXTINF:-1,105.7 Pulzar FM
 http://s2.reliastream.com/proxy/pulzarfm?mp=/pulzarfm
 #EXTINF:-1,95b FM
-http://streams.95bfm.com/stream128
+https://streams.95bfm.com/stream128
 #EXTINF:-1,Amazing Truth Radio
 http://s4.radio.co/s814755f63/listen
 #EXTINF:-1,andhow.FM 107.5
@@ -32,7 +32,7 @@ http://ais-nzme.streamguys1.com/nz_010_aac
 #EXTINF:-1,Gaia FM
 http://stream.stationplaylist.com:8000
 #EXTINF:-1,George FM
-http://icecast.mediaworks.nz/george_128kbps
+https://digitalstreams-edge-lb.mediaworks.nz/george_net_icy
 #EXTINF:-1,Groove 107.7 FM
 http://live.outcastdigital.com:8000/groove
 #EXTINF:-1,Hokonui Mid-Canterbury
@@ -42,7 +42,7 @@ http://ais-nzme.streamguys1.com/nz_013_aac
 #EXTINF:-1,Hokonui Taranaki
 http://ais-nzme.streamguys1.com/nz_046_aac
 #EXTINF:-1,Humm FM 106.2
-http://cp12.serverse.com/proxy/hummfm?mp=/live
+https://digitalstreams-edge-lb.mediaworks.nz/humm_net_icy
 #EXTINF:-1,KIX FM Wellington
 http://stream.amsmusic.co.nz:8178/
 #EXTINF:-1,Life FM 94.6 Waikato
@@ -52,7 +52,7 @@ http://rhema-radio.streamguys1.com/rhema-lifefm.mp3
 #EXTINF:-1,MAD FM Worldwide
 http://37.59.28.208:8325/stream
 #EXTINF:-1,Magic FM
-http://icecast.mediaworks.nz/magic_128kbps
+https://digitalstreams-edge-lb.mediaworks.nz/magic_net_icy?Dist=airable
 #EXTINF:-1,Magic FM Wellington
 http://icecast.mediaworks.nz/magic_wellington128kbps
 #EXTINF:-1,Mai FM
@@ -60,7 +60,7 @@ http://icecast.mediaworks.nz/maifm_128kbps
 #EXTINF:-1,Mix 98.2 FM
 http://ais-nzme.streamguys1.com/nz_012_aac
 #EXTINF:-1,More FM Auckland 91.8
-http://tunein-icecast.mediaworks.nz/more_128kbps
+https://digitalstreams-edge-lb.mediaworks.nz/more_net_icy
 #EXTINF:-1,More FM Christchurch 92.1 FM
 http://tunein-icecast.mediaworks.nz/more_chc_128kbps
 #EXTINF:-1,More FM Dunedin 97.4
@@ -163,12 +163,12 @@ http://58.28.153.160/broadwave.mp3
 http://rdu985fm-gecko.radioca.st/stream
 #EXTINF:-1,Retro Hit Radio
 http://gemini.shoutca.st:8293/
-#EXTINF:-1,RNZ Concert (HQ)
-http://radionz-ice.streamguys.com/Concert_aac128
-#EXTINF:-1,RNZ International (HQ)
-http://radionz-ice.streamguys.com/international_aac64
-#EXTINF:-1,RNZ National (HQ)
-http://radionz-ice.streamguys.com/National_aac128
+#EXTINF:-1,RNZ Concert
+http://stream-ice.radionz.co.nz/concert_aac64
+#EXTINF:-1,RNZ National
+http://radionz.streamguys1.com/national/national/playlist.m3u8
+#EXTINF:-1,RNZ Pacific
+http://stream-ice.radionz.co.nz/international_aac64
 #EXTINF:-1,SKI FM
 http://s2.radio.co/s6436891bc/listen
 #EXTINF:-1,Sleep Radio
@@ -186,102 +186,16 @@ http://falcon.shoutca.st:8103/TAB
 #EXTINF:-1,Te Korimako O Taranaki 94.8 FM
 http://apple.irirangi.net:8000/L_Korimako.aac
 #EXTINF:-1,The Breeze Auckland 93.4 FM
-http://icecast.mediaworks.nz/breeze_128kbps
+https://digitalstreams3.mediaworks.nz/breeze-AKL-high
 #EXTINF:-1,The Breeze Christchurch 94.5 FM
-http://icecast.mediaworks.nz/breeze_cantebury_128kbps
+https://digitalstreams3.mediaworks.nz/breeze-CHC-high
 #EXTINF:-1,The Breeze Waikato 99.4 FM
-http://icecast.mediaworks.nz/breeze_waikato_128kbps
+https://digitalstreams3.mediaworks.nz/breeze-HAM-high
 #EXTINF:-1,The Breeze Wellington 94.1 FM
-http://icecast.mediaworks.nz/breeze_wellington_128kbps
+https://digitalstreams3.mediaworks.nz/breeze-WTN-high
 #EXTINF:-1,The Cheese 88.4 FM
 http://thecheese.ddns.net:8000/
 #EXTINF:-1,The Coast Auckland 105.4 FM
 http://ais-nzme.streamguys1.com/nz_011_aac
 #EXTINF:-1,The Coast Christchurch 1593 AM
 http://ais-nzme.streamguys1.com/nz_011_aac
-#EXTINF:-1,The Coast Gisborne 88.3 FM
-http://ais-nzme.streamguys1.com/nz_011_aac
-#EXTINF:-1,The Coast Wellington 95.7 FM
-http://ais-nzme.streamguys1.com/nz_011_aac
-#EXTINF:-1,The Edge 94.2 FM
-http://icecast.mediaworks.nz/edge_128kbps
-#EXTINF:-1,The Flea 88.2 FM
-http://49.50.246.42:8020/
-#EXTINF:-1,The Hits 98.6 FM
-http://ais-nzme.streamguys1.com/nz_027_aac
-#EXTINF:-1,The Hits Auckland
-http://ais-nzme.streamguys1.com/nz_005_aac
-#EXTINF:-1,The Hits Bay of Plenty
-http://ais-nzme.streamguys1.com/nz_025_aac
-#EXTINF:-1,The Hits Christchurch
-http://ais-nzme.streamguys1.com/nz_006_aac
-#EXTINF:-1,The Hits Coromandel
-http://ais-nzme.streamguys1.com/nz_048_aac
-#EXTINF:-1,The Hits Dunedin
-http://ais-nzme.streamguys1.com/nz_014_aac
-#EXTINF:-1,The Hits Gisborne
-http://ais-nzme.streamguys1.com/nz_015_aac
-#EXTINF:-1,The Hits Hawkes Bay
-http://ais-nzme.streamguys1.com/nz_017_aac
-#EXTINF:-1,The Hits Manawatu
-http://ais-nzme.streamguys1.com/nz_019_aac
-#EXTINF:-1,The Hits Nelson
-http://ais-nzme.streamguys1.com/nz_020_aac
-#EXTINF:-1,The Hits Northland
-http://ais-nzme.streamguys1.com/nz_021_aac
-#EXTINF:-1,The Hits Rotorua
-http://ais-nzme.streamguys1.com/nz_022_aac
-#EXTINF:-1,The Hits South Canterbury
-http://ais-nzme.streamguys1.com/nz_026_aac
-#EXTINF:-1,The Hits Southern Lakes
-http://ais-nzme.streamguys1.com/nz_023_aac
-#EXTINF:-1,The Hits Southland
-http://ais-nzme.streamguys1.com/nz_018_aac
-#EXTINF:-1,The Hits Taranaki
-http://ais-nzme.streamguys1.com/nz_024_aac
-#EXTINF:-1,The Hits Waikato
-http://ais-nzme.streamguys1.com/nz_027_aac
-#EXTINF:-1,The Hits Wanganui
-http://ais-nzme.streamguys1.com/nz_028_aac
-#EXTINF:-1,The Hits Wellington
-http://ais-nzme.streamguys1.com/nz_007_aac
-#EXTINF:-1,The Hits West Coast
-http://ais-nzme.streamguys1.com/nz_016_aac
-#EXTINF:-1,The Mosen Channel
-http://199.180.75.28/
-#EXTINF:-1,The Most 100.4 FM
-http://gordon.mostfm.com:8000/high
-#EXTINF:-1,The Pits New Zealand Speedway FM 107.7
-http://streamingv2.shoutcast.com/the-pits-fm
-#EXTINF:-1,The Plug NZ Radio 106.9 FM
-http://s2.voscast.com:11614
-#EXTINF:-1,The Pulse - NZ
-http://173.255.253.156:8000/pulse
-#EXTINF:-1,The Rock 90.2 FM
-http://tunein-icecast.mediaworks.nz/rock_128kbps
-#EXTINF:-1,The Sound FM 93.8
-http://icecast.mediaworks.nz/sound_128kbps
-#EXTINF:-1,The Wireless 90.4 FM
-http://144.217.203.184:8045/
-#EXTINF:-1,Timeless Taupo 106.4 FM
-http://timelesstaupo.co.nz/stream
-#EXTINF:-1,Triple X FM 107.5
-http://s28.myradiostream.com:20738/
-#EXTINF:-1,True Light FM 87.8
-http://stream.truelightfm.co.nz:8000/mp3
-#EXTINF:-1,Waatea Radio
-http://apple.irirangi.net:8000/I_Waatea.aac
-#EXTINF:-1,World FM 88.2
-http://vps.worldfm.co.nz:8882/worldfmstereo.mp3
-#EXTINF:-1,XS80s
-http://s1.myradiostream.com:12508/
-#EXTINF:-1,ZFM
-http://188.165.232.7:8545/stream
-#EXTINF:-1,ZFM Global
-http://nebula.shoutca.st:8545/stream
-#EXTINF:-1,ZM 91.0 FM
-http://ais-nzme.streamguys1.com/nz_008_aac
-#EXTINF:-1,ZM Christchurch 91.3 FM
-http://ais-nzme.streamguys1.com/nz_008_aac
-#EXTINF:-1,ZM Wellington 90.9 FM
-http://ais-nzme.streamguys1.com/nz_008_aac

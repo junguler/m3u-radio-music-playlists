@@ -78,13 +78,13 @@ http://91.187.93.115:8000/
 #EXTINF:-1,Pròxima FM 94.6
 http://91.187.93.115:8000/
 #EXTINF:-1,RAC 1 87.7 FM
-http://streaming3.radiocat.net:80/
+http://playerservices.streamtheworld.com/api/livestream-redirect/RAC_1_SC
 #EXTINF:-1,RAC 1 89.0 FM
-http://streaming3.radiocat.net:80/
+http://playerservices.streamtheworld.com/api/livestream-redirect/RAC_1_SC
 #EXTINF:-1,RAC 105 FM
-http://streaming105.radiocat.net:80/
+http://playerservices.streamtheworld.com/api/livestream-redirect/RAC105_SC
 #EXTINF:-1,RAC 105 FM Andorra
-http://rac105.radiocat.net/
+http://playerservices.streamtheworld.com/api/livestream-redirect/RAC105_SC
 #EXTINF:-1,Ràdio 90
 http://giss.tv:8000/r90.mp3
 #EXTINF:-1,Radio Abrera 107.9 FM
@@ -153,6 +153,8 @@ http://streaming.enantena.com:8000/radiomarina128.mp3
 http://radiomartorell.streaming-pro.com:8061/
 #EXTINF:-1,Ràdio Nissa Pantai
 http://www.radioking.com/play/radio-nissa-pantai
+#EXTINF:-1,Radio Occitania
+http://radio-occitania.tetaneutral.net:8000/occitania.mp3
 #EXTINF:-1,Radio Olot 98.1 FM
 http://radiolot.frilab.com:8100/
 #EXTINF:-1,Radio Ona FM 107.4
@@ -198,7 +200,7 @@ http://str2.mediatelekom.net:9986/stream
 #EXTINF:-1,Rap 107
 http://streaming.enantena.com:8000/rapradio128.mp3
 #EXTINF:-1,RNE - Radio 4
-http://crtve-rner4-main.cast.addradio.de/crtve/rner4/main/aac/high
+https://rtvelivestreamv3.akamaized.net/rtvesec/rne_r4_main.m3u8
 #EXTINF:-1,Sants 3 Radio
 http://radio.08-produccions.cat:8000/sants3radio.mp3
 #EXTINF:-1,Som Reggae FM
