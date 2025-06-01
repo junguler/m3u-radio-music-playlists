@@ -33,7 +33,7 @@ http://68.168.101.146:8635/mp3
 https://playerservices.streamtheworld.com/api/livestream-redirect/W_RADIO_SC
 #EXTINF:-1,La Nueva Radio 105.3 FM
 https://server2.sit-mexico.com:2199/proxy/xhinfo?mp=%2Fstream
-#EXTINF:-1,Antena 1 FM
+#EXTINF:-1,Antena 1
 https://antenaone.crossradio.com.br/stream/1
 #EXTINF:-1,Radio Apintie Suriname - Powered by Bombelman.com
 https://surilive.com:8000/stream
@@ -268,7 +268,7 @@ http://shoutcast.beamfm.net:8512/
 #EXTINF:-1,Smoothfm 95.3 Sydney
 https://playerservices.streamtheworld.com/api/livestream-redirect/SMOOTH953_AAC48_SC
 #EXTINF:-1,Alpha FM 101.7
-https://ice.fabricahost.com.br/alphafm1017
+https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO_ALPHAFM_ADP.aac
 #EXTINF:-1,Direct Life 92.1 FM
 http://s9.voscast.com:7368/stream/1
 #EXTINF:-1,Eco 99 FM
@@ -460,7 +460,7 @@ http://icecast.unitedradio.it/r101_mp3
 #EXTINF:-1,Monumental 100.3 FM
 http://stm2.grupointernet.com:8103/
 #EXTINF:-1,Blue FM
-https://playerservices.streamtheworld.com/api/livestream-redirect/BLUE_FM_100_7.mp3
+https://stream.openstream.fm/stream/ngfeq16h
 #EXTINF:-1,Radio Infinita
 http://unlimited11-cl.dps.live/infinita/aac/icecast.audio
 #EXTINF:-1,Mega 102.1 FM
@@ -619,6 +619,8 @@ http://192.99.170.8/proxy/radiomotel?mp=%2Fstream3
 https://unlimited11-cl.dps.live/universo/aac/icecast.audio
 #EXTINF:-1,Capital
 https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO_CAPITALAAC_SC
+#EXTINF:-1,Hitz Radio Dublin
+https://live.hitzireland.com:8170/live
 #EXTINF:-1,OFM
 http://edge.iono.fm/xice/ofm_live_medium.aac?p=embed
 #EXTINF:-1,Radio LRB
@@ -871,6 +873,10 @@ https://cast2.radiovoima.fi/voima.mp3
 http://stream.zeno.fm/4ht0s8s8bveuv
 #EXTINF:-1,Fabu 105.7 FM
 https://radios-ec.cdn.nedmedia.io/radios/ec-fabu-gy.m3u8
+#EXTINF:-1,PM RADIO Quevedo
+https://www.radio42.globalhost1,com/8010/stream
+#EXTINF:-1,PM RADIO Quevedo
+https://as100.globalhost1.com/8010/stream
 #EXTINF:-1,Radio Norba
 http://onair20.xdevel.com:8218/
 #EXTINF:-1,Radio Supra 90.5 FM
@@ -1027,7 +1033,7 @@ https://playerservices.streamtheworld.com/api/livestream-redirect/KSSEFMAAC_SC
 https://streams.radio.co/sce558c2e6/listen
 #EXTINF:-1,Radio Student
 http://161.53.122.184:8000/AAC128.aac
-#EXTINF:-1,Dancefmlive Reggae
+#EXTINF:-1,Dancefmlive Love
 https://broadcast.dancefmlive.com/radio/8020/radio.mp3
 #EXTINF:-1,TANANANA
 http://live.tananana.ro:8010/stream-48.aac
@@ -1223,6 +1229,8 @@ https://ssl.painelcast.com:28860/
 http://stm3.painelcast.com:17730
 #EXTINF:-1,PuntoJazz
 https://radios.yanapak.org/puntojazz
+#EXTINF:-1,Fanática UNO
+https://ascl.denial.cl:2020/stream/8042/
 #EXTINF:-1,Vision FM
 http://stream.zeno.fm/xm655uxkr7zuv
 #EXTINF:-1,Radyo ODTU
@@ -1788,7 +1796,7 @@ https://media.planetradio.ie:8000/OnAir
 #EXTINF:-1,Radio Wanda FM
 https://stream.zenolive.com/6d4tpc728c5tv
 #EXTINF:-1,Dancefmlive UK Hardcore
-http://213.251.187.204:8000/
+https://broadcast.dancefmlive.com/radio/8050/radio.mp3
 #EXTINF:-1,ICPRP FM Cagayan de oro city
 https://stream.zenolive.com/fuyss138grquv
 #EXTINF:-1,Ciccio Riccio
@@ -1879,6 +1887,10 @@ http://stream2.dobrevibracije.dk/
 http://live.radiototalromania.ro:8000/
 #EXTINF:-1,KISS Love (Canada)
 https://fred.torontocast.com:2555/stream
+#EXTINF:-1,Amos Radio Online GH
+http://stream.zeno.fm/e0mza51bvv8uv
+#EXTINF:-1,DT Radio Online Gh
+http://stream.zeno.fm/a9sf7e7uvueuv
 #EXTINF:-1,Capital Live SA
 http://cassini.shoutca.st:8855/stream
 #EXTINF:-1,ICPRP FM Zamboanga City
@@ -2094,7 +2106,7 @@ https://stream-mz.planetradio.co.uk/northsound1.aac
 #EXTINF:-1,Kishfm 96.5
 https://node-19.zeno.fm/gdh4m7vsebruv
 #EXTINF:-1,Defi Dimotika Tragoudia
-https://stream.zeno.fm/aqp69p25e4duv
+https://toradio.cc:8020/stream
 #EXTINF:-1,CJFX-FM 989 XFM
 http://stream989xfm.no-ip.org:88/broadwavehigh.mp3?src=1
 #EXTINF:-1,Radio VivaFm
@@ -2845,6 +2857,8 @@ http://31.130.206.32:2015/gomelradio
 http://s36.myradiostream.com:18372/listen.mp3
 #EXTINF:-1,WDR 2 Münsterland
 https://wdr2-lh.akamaihd.net/i/wdr2_muenster@384671/index_1_a-p.m3u8?rebase=on&sd=10
+#EXTINF:-1,SLOWLY RADIO
+https://www.radioking.com/play/slowlyradio/476452
 #EXTINF:-1,Hit Radio N1
 https://addrad.io/4454jx5
 #EXTINF:-1,Rother Radio
@@ -3015,6 +3029,8 @@ https://stm.infinityserver.com.br/listen/infinity/infinity
 https://stmav.com.br/listen/imperio_fm/imperio_fm
 #EXTINF:-1,radio mega itaipava
 http://stm11.painelvox.com:9078
+#EXTINF:-1,Genesis Web Rádio
+https://stm2.streaminghd.net.br:7404
 #EXTINF:-1,Love FM Area 2
 https://ice04.fluidstream.net/fluid7102.aac?FLID=6
 #EXTINF:-1,Nasze Radio
@@ -3647,7 +3663,7 @@ https://ice5.securenetsystems.net/CKMQ
 https://mytuner-radio.com/radio/country/australia-stations
 #EXTINF:-1,Q Radio Newry and Mourne
 http://edge-audio-01-cr.sharp-stream.com/qr1005.mp3
-#EXTINF:-1,Giant Radio
+#EXTINF:-1,Atlantic 252 - The Giant Radio
 http://streaming.live365.com/a31231
 #EXTINF:-1,SWR 4 Ludwigshafen
 https://addrad.io/4WRMh5
@@ -3861,6 +3877,10 @@ http://streaming.cjpx.leclerccommunication.ca:8000/cjpx.mp3
 http://78.129.224.21:18077/listen.pls
 #EXTINF:-1,Simplemente Exitos X99
 http://hazel.torontocast.com:1490/stream
+#EXTINF:-1,Suave X99
+https://listen.suave.torontocast.stream
+#EXTINF:-1,Ritmo X99
+https://listen.ritmo.torontocast.stream
 #EXTINF:-1,Radio Galaxy Oberfranken
 http://webstream.galaxy-oberfranken.de/galaxy-oberfranken.mp3
 #EXTINF:-1,Rathergood Radio
@@ -4945,6 +4965,8 @@ https://frontend01.lb.streamonkey.net/radio7-aalen?aggregator=mytuner
 https://playerservices.streamtheworld.com/api/livestream-redirect/WMGQFMAAC_SC
 #EXTINF:-1,R D'ICI
 https://radio.pro-fhi.net:19258/stream2
+#EXTINF:-1,SLOWLY RADIO
+https://www.radioking.com/play/slowlyradio/476452
 #EXTINF:-1,KWLZ Wild 99.3 FM
 https://ice6.securenetsystems.net/KWLZ
 #EXTINF:-1,KMGL Magic 104.1 FM
@@ -5003,6 +5025,8 @@ http://167.114.118.119:7320/
 https://radio.blueditor.com/8248/stream
 #EXTINF:-1,Radio Mineria
 https://radio.blueditor.com/8244/stream
+#EXTINF:-1,Radio Ebenezer Perú
+http://stream.zeno.fm/ynmtxhmz6q4vv
 #EXTINF:-1,Antena Esportiva
 https://stream.zeno.fm/mgwvgmh3nhruv
 #EXTINF:-1,KSFI 100.3 FM (US Only)
