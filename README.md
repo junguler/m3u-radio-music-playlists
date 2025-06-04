@@ -24,6 +24,7 @@
 * [you](https://github.com/junguler/m3u-radio-music-playlists#you)
 * [me](https://github.com/junguler/m3u-radio-music-playlists#me)
 * [related projects](https://github.com/junguler/m3u-radio-music-playlists#related-projects)
+* [friends of the repo](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#friends-of-the-repo)
 * [acknowledgement](https://github.com/junguler/m3u-radio-music-playlists#acknowledgement-thanks)
 * [behind the scenes](https://github.com/junguler/m3u-radio-music-playlists#behind-the-scenes)
 
