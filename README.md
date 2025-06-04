@@ -761,6 +761,11 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <br>
 
+### friend(s) of the repo
+*  [fony repo](https://github.com/wadadawadada/fony) + [fony website](https://fony.space/) desribed by the author as 'FONY is more than just a music player — it's a revolutionary Web3 platform designed for infinite global music streaming, blending freedom, decentralization, and cutting-edge technology.'
+
+<br>
+
 <table align="center">
 <tr>
 <td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/11-eyeglass-3.gif"></td>
