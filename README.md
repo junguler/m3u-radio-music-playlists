@@ -39,6 +39,9 @@
 ### how to listen
 
 #### on the web
+a newly curated list of playlists containing of many checked streams from this repo can be listened to using this [web radio player](https://junguler.github.io/m3u-player-web/)
+
+<br>
 
 all of the stream files in the root folder of this repo can be listened to using their own page on this repo and the amazing [webamp player](https://github.com/captbaritone/webamp), use the playlist buttons or click on the entries and hit play
 
