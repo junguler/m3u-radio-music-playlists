@@ -728,6 +728,10 @@ here is a list of websites i've scraped from already and included m3u streams fo
 <td><a href="https://appradiofm.com/radio">https://appradiofm.com/radio</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/app_radio-fm">/app_radio-fm</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/app_radio-fm.sh">app_radio-fm.sh</a></td>
+<tr>
+<td><a href="https://radioly.app/">https://radioly.app/</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/radio-ly">/radio-ly</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/radio-ly.sh">radio-ly.sh</a></td>
 </tr>
 </tbody></table>
 
