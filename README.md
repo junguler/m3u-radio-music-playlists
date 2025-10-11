@@ -2,7 +2,7 @@
 
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/01-cassette-3.gif"></td>
+<td><img align="right" src="stuff/o-cassette_tape.gif"></td>
 </tr>
 </table>
 
@@ -32,9 +32,11 @@
 
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/02-headphone-3.gif"></td>
+<td><img align="right" src="stuff/o-headphone.gif"></td>
 </tr>
 </table>
+
+<br>
 
 ### how to listen
 
@@ -302,20 +304,16 @@ note: i need to investigate players for other devices, i will update this sectio
 
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/03-radio-3.gif"></td>
+<td><img align="right" src="stuff/o-jukebox.gif"></td>
 </tr>
 </table>
+
+<br>
 
 ### What are these genres names even mean?
 you might not know what every genre name means, i'm the same, so you can eaither search for it online or as an alternative see my [repo](https://github.com/junguler/music_genres_explained) that has explanations about almost every music genres you see here
 
 <br>
-
-<table align="center">
-<tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/04-player-3.gif"></td>
-</tr>
-</table>
 
 ### Check for dead links without using code
 unlike most music websites and other highly curated selections, my repo does not actively check for dead/off_air links due to the large amount of stations (more than 1 million unique stream links) and this being a one man project, i do have a folder that is `+checked+` but even then it's checked on that date i've pushed the update using american ips (github's) so things my not work on your region, so lets explain how you can check links for yourself without needing to know any coding
@@ -348,9 +346,11 @@ note: this method does not give you the stream title (tho most streams broadcast
 
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/05-folder-3.gif"></td>
+<td><img align="right" src="stuff/o-disco_ball.gif"></td>
 </tr>
 </table>
+
+<br>
 
 ### How to download from a station
 
@@ -418,9 +418,11 @@ this command will download this stream `http://51.89.148.171:8022/stream/1/` for
 
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/06-floppy-3.gif"></td>
+<td><img align="right" src="stuff/o-boombox.gif"></td>
 </tr>
 </table>
+
+<br>
 
 ### how to download this repo
 
@@ -441,9 +443,11 @@ download the [auto-generated zip file](https://github.com/junguler/m3u-radio-mus
 
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/07-file-3.gif"></td>
+<td><img align="right" src="stuff/o-music_note.gif"></td>
 </tr>
 </table>
+
+<br>
 
 ### git Stats
 
@@ -459,9 +463,11 @@ since the traffic section of the insight tab is hidden to other viewers of this 
 
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/08-map-3.gif"></td>
+<td><img align="right" src="stuff/o-globe.gif"></td>
 </tr>
 </table>
+
+<br>
 
 ### sources
 
@@ -741,9 +747,11 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/09-note-3.gif"></td>
+<td><img align="right" src="stuff/o-guitar.gif"></td>
 </tr>
 </table>
+
+<br>
 
 ### you
 
@@ -761,9 +769,11 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/10-globe-3.gif"></td>
+<td><img align="right" src="stuff/o-ipod.gif"></td>
 </tr>
 </table>
+
+<br>
 
 ### related projects
 
@@ -780,9 +790,11 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/11-eyeglass-3.gif"></td>
+<td><img align="right" src="stuff/o-sunglass.gif"></td>
 </tr>
 </table>
+
+<br>
 
 ### acknowledgement, thanks
 
@@ -796,9 +808,11 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/12-cool-3.gif"></td>
+<td><img align="right" src="stuff/o-dj.gif"></td>
 </tr>
 </table>
+
+<br>
 
 ### behind the scenes
 
