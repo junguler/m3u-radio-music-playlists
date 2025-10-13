@@ -170,7 +170,7 @@
 
         /* Sidebar */
         .sidebar {
-            width: 350px;
+            width: 400px;
             background-color: var(--sidebar-bg);
             border-right: 1px solid var(--border-color);
             display: flex;
@@ -1081,7 +1081,7 @@
                 createListItem(item, index) {
                     const li = document.createElement('li');
                     li.dataset.index = index;
-                    
+
                     if (index === state.selectedIndex) {
                         li.classList.add('selected');
                     }
@@ -1095,9 +1095,7 @@
                                 </div>
                                 <span class="file-size">Parent</span>
                             `;
-                            li.onclick = () => {
-                                goBackOneFolder();
-                            };
+                            li.onclick = () => goBackOneFolder();
                         } else {
                             li.innerHTML = `
                                 <div class="file-info">
@@ -1105,25 +1103,38 @@
                                     <span class="file-name">${item.name}</span>
                                 </div>
                             `;
-                            li.onclick = () => {
-                                renderDirectory([...state.currentPath, item.name]);
-                            };
+                            li.onclick = () => renderDirectory([...state.currentPath, item.name]);
                         }
                     } else {
                         const icon = getFileIcon(item.name);
                         const size = item.size ? formatFileSize(item.size) : '';
-                        li.innerHTML = `
-                            <div class="file-info">
-                                <span class="icon">${icon}</span>
-                                <span class="file-name">${item.name}</span>
-                            </div>
-                            <span class="file-size">${size}</span>
-                        `;
-                        li.onclick = () => {
-                            renderFile(item.path, item.name, item.size);
-                        };
+
+                        const dirDisplay = item.directory || '';
+
+                        if (item.isSearchResult && dirDisplay) {
+                            li.innerHTML = `
+                                <div class="file-info" style="min-width:0;">
+                                    <span class="icon">${icon}</span>
+                                    <div style="display:flex;flex-direction:column;overflow:hidden;min-width:0;">
+                                        <span class="file-path" style="font-size:11px;color:var(--file-size-color);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${dirDisplay}</span>
+                                        <span class="file-name">${item.name}</span>
+                                    </div>
+                                </div>
+                                <span class="file-size">${size}</span>
+                            `;
+                        } else {
+                            li.innerHTML = `
+                                <div class="file-info">
+                                    <span class="icon">${icon}</span>
+                                    <span class="file-name">${item.name}</span>
+                                </div>
+                                <span class="file-size">${size}</span>
+                            `;
+                        }
+
+                        li.onclick = () => renderFile(item.path, item.name, item.size);
                     }
-                    
+
                     return li;
                 }
             }
@@ -1702,6 +1713,9 @@
                             <span><i class="fas fa-folder"></i> ${filePath}</span>
                         </div>
                         <div class="file-actions">
+                            <button id="back-btn" onclick="goBackOneFolder()">
+                                <i class="fas fa-arrow-left"></i> Back
+                            </button>
                             <button id="raw-btn" onclick="viewRaw('${filePath}')">
                                 <i class="fas fa-file"></i> Raw
                             </button>
@@ -1787,6 +1801,11 @@
                             <div class="file-meta">
                                 <span><i class="fas fa-chart-bar"></i> ${size}</span>
                                 <span><i class="fas fa-folder"></i> ${filePath}</span>
+                            </div>
+                            <div class="file-actions">
+                                <button id="back-btn" onclick="goBackOneFolder()">
+                                    <i class="fas fa-arrow-left"></i> Back
+                                </button>
                             </div>
                         </div>
                         <p style="color: var(--error-color);">Error loading file: ${error.message}</p>
