@@ -10,26 +10,20 @@
 
 ### Index of content
 
-* [Dedicated file previewer](https://github.com/junguler/m3u-radio-music-playlists#Dedicated-file-previewer)
-* [How to listen](https://github.com/junguler/m3u-radio-music-playlists#How-to-listen)
-   * [on the web](https://github.com/junguler/m3u-radio-music-playlists#on-the-web)
-   * [on your devices](https://github.com/junguler/m3u-radio-music-playlists#on-windows-mac-and-linux)
+* [Dedicated file previewer](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#dedicated-file-previewer)
+* [How to listen](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#how-to-listen)
 * [What are these genres names even mean?](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#what-are-these-genres-names-even-mean)
-* [Check for dead links without using code](https://github.com/junguler/m3u-radio-music-playlists#Check-for-dead-links-without-using-code)
-* [How to download from a station](https://github.com/junguler/m3u-radio-music-playlists#How-to-download-from-a-station)
-   * [as a long audio file](https://github.com/junguler/m3u-radio-music-playlists#as-a-long-audio-file)
-   * [as individual songs](https://github.com/junguler/m3u-radio-music-playlists#as-individual-songs)
-* [How to download this repo](https://github.com/junguler/m3u-radio-music-playlists#How-to-download-this-repo)
-   * [using git](https://github.com/junguler/m3u-radio-music-playlists#using-git)
-   * [as a zip file](https://github.com/junguler/m3u-radio-music-playlists#as-a-zip-file)
-* [Git stats](https://github.com/junguler/m3u-radio-music-playlists#Git-stats)
-* [Sources](https://github.com/junguler/m3u-radio-music-playlists#Sources)
-* [You](https://github.com/junguler/m3u-radio-music-playlists#You)
-* [Me](https://github.com/junguler/m3u-radio-music-playlists#Me)
-* [Related projects](https://github.com/junguler/m3u-radio-music-playlists#Related-projects)
+* [Check for dead links without using code](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#check-for-dead-links-without-using-code)
+* [How to download from a station](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#how-to-download-from-a-station)
+* [How to download this repo](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#how-to-download-this-repo)
+* [Git stats](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#git-stats)
+* [Sources](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#sources)
+* [You](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#you)
+* [Me](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#me)
+* [Related projects](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#related-projects)
 * [Friends of the repo](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#Friends-of-the-repo)
-* [Acknowledgement](https://github.com/junguler/m3u-radio-music-playlists#Acknowledgement-thanks)
-* [Behind the scenes](https://github.com/junguler/m3u-radio-music-playlists#Behind-the-scenes)
+* [Acknowledgement](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#acknowledgement-thanks)
+* [Behind the scenes](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#behind-the-scenes)
 
 <br>
 
