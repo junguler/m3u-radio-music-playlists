@@ -6,7 +6,7 @@
 </tr>
 </table>
 
-### index of content
+### Index of content
 
 * [How to listen](https://github.com/junguler/m3u-radio-music-playlists#how-to-listen)
    * [on the web](https://github.com/junguler/m3u-radio-music-playlists#on-the-web)
@@ -19,14 +19,14 @@
 * [How to download this repo](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-this-repo)
    * [using git](https://github.com/junguler/m3u-radio-music-playlists#using-git)
    * [as a zip file](https://github.com/junguler/m3u-radio-music-playlists#as-a-zip-file)
-* [git stats](https://github.com/junguler/m3u-radio-music-playlists#git-stats)
-* [sources](https://github.com/junguler/m3u-radio-music-playlists#sources)
-* [you](https://github.com/junguler/m3u-radio-music-playlists#you)
-* [me](https://github.com/junguler/m3u-radio-music-playlists#me)
-* [related projects](https://github.com/junguler/m3u-radio-music-playlists#related-projects)
-* [friends of the repo](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#friends-of-the-repo)
-* [acknowledgement](https://github.com/junguler/m3u-radio-music-playlists#acknowledgement-thanks)
-* [behind the scenes](https://github.com/junguler/m3u-radio-music-playlists#behind-the-scenes)
+* [Git stats](https://github.com/junguler/m3u-radio-music-playlists#git-stats)
+* [Sources](https://github.com/junguler/m3u-radio-music-playlists#sources)
+* [You](https://github.com/junguler/m3u-radio-music-playlists#you)
+* [Me](https://github.com/junguler/m3u-radio-music-playlists#me)
+* [Related projects](https://github.com/junguler/m3u-radio-music-playlists#related-projects)
+* [Friends of the repo](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#friends-of-the-repo)
+* [Acknowledgement](https://github.com/junguler/m3u-radio-music-playlists#acknowledgement-thanks)
+* [Behind the scenes](https://github.com/junguler/m3u-radio-music-playlists#behind-the-scenes)
 
 <br>
 
@@ -38,19 +38,19 @@
 
 <br>
 
-### how to listen
+### How to listen
 
-#### on the web
-a newly curated list of playlists containing of many checked streams from this repo can be listened to using this [web radio player](https://junguler.github.io/m3u-player-web/)
+#### On the web
+a newly curated list of playlists containing many (500k+) checked streams from this repo can be listened to using this [web radio player](https://junguler.github.io/m3u-player-web/)
 
 <br>
 
-all of the stream files in the root folder of this repo can be listened to using their own page on this repo and the amazing [webamp player](https://github.com/captbaritone/webamp), use the playlist buttons or click on the entries and hit play
+additionaly all of the stream files in the root folder of this repo can be listened to using their own page on this repo and the amazing [webamp player](https://github.com/captbaritone/webamp), use the playlist buttons or click on the entries and hit play
 
 <table>
 <thead>
 <tr>
-<th colspan="6">decades</th>
+<th colspan="6">Decades</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -62,7 +62,7 @@ all of the stream files in the root folder of this repo can be listened to using
 </tr>
 <thead>
 <tr>
-<th colspan="6">genres</th>
+<th colspan="6">Genres</th>
 </tr>
 </thead>
 <tr>
@@ -154,7 +154,7 @@ all of the stream files in the root folder of this repo can be listened to using
 </tr>
 <thead>
 <tr>
-<th colspan="6">location</th>
+<th colspan="6">Location</th>
 </tr>
 </thead>
 <tr>
@@ -167,7 +167,7 @@ all of the stream files in the root folder of this repo can be listened to using
 </tr>
 <thead>
 <tr>
-<th colspan="6">language</th>
+<th colspan="6">Language</th>
 </tr>
 </thead>
 <tr>
@@ -188,7 +188,7 @@ all of the stream files in the root folder of this repo can be listened to using
 </tr>
 <thead>
 <tr>
-<th colspan="6">miscellaneous</th>
+<th colspan="6">Miscellaneous</th>
 </tr>
 </thead>
 <tr>
@@ -197,6 +197,8 @@ all of the stream files in the root folder of this repo can be listened to using
 <td colspan="4"></td>
 </tr>
 </tbody></table>
+
+<br>
 
 to listen to other m3u playlists in this repo click on the specific repo for each folder and listen to them from there
 
@@ -292,8 +294,11 @@ alternativly use this [M3U radio player](https://junguler.github.io/M3U-radio-pl
 * click on the folder icon to load your local m3u playlist
 * click on the globe icon to load an online playlist (a raw github address for example)
 
+<br
+
 ###### on windows, mac and linux
 
+*   kodi: a complete solution of all things iptv and much more
 *   mpv: for the tinkerer types, see my [config files](https://github.com/junguler/win_confs/tree/main/mpv/portable_config) for an example
 *   vlc: if you want an out of the box experience that just works
 *   AIMP: suggested by [@lux5am](https://github.com/lux5am) in [#23](https://github.com/junguler/m3u-radio-music-playlists/discussions/23), a winamp clone with everything you might need to listen and record radio
@@ -311,7 +316,7 @@ note: i need to investigate players for other devices, i will update this sectio
 <br>
 
 ### What are these genres names even mean?
-you might not know what every genre name means, i'm the same, so you can eaither search for it online or as an alternative see my [repo](https://github.com/junguler/music_genres_explained) that has explanations about almost every music genres you see here
+you might not know what every genre name means, i'm the same, so you can either search for it online or as an alternative see my [repo](https://github.com/junguler/music_genres_explained) that has explanations about almost every music genres you see here
 
 <br>
 
@@ -424,7 +429,7 @@ this command will download this stream `http://51.89.148.171:8022/stream/1/` for
 
 <br>
 
-### how to download this repo
+### How to download this repo
 
 #### using git
 
@@ -449,15 +454,13 @@ download the [auto-generated zip file](https://github.com/junguler/m3u-radio-mus
 
 <br>
 
-### git Stats
+### Git stats
 
-since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include them and update them every two weeks so you can have a feel for how this repo is doing
+since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include and update them every two weeks so you can have a feel for how this repo is doing
 
 ![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_1.jpg)
 
 ![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_2.jpg)
-
-![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_3.jpg)
 
 <br>
 
@@ -469,16 +472,16 @@ since the traffic section of the insight tab is hidden to other viewers of this 
 
 <br>
 
-### sources
+### Sources
 
 here is a list of websites i've scraped from already and included m3u streams for in this repo
 
 <table>
 <thead>
 <tr>
-<th>website</th>
-<th>folder</th>
-<th>script</th>
+<th>Website</th>
+<th>Folder</th>
+<th>Script</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -753,13 +756,13 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <br>
 
-### you
+### You
 
 *   found a bug or issue? open an issue or discussion
 *   know a radio website you like to be scraped? suggest it to me
 *   have knowledge on how to improve something? don't hesitate to share it with me
 
-### me
+### Me
 
 *   i'm planning to extend this repo as much as possible
 *   trying to improve the quality of everything regarding this repo
@@ -775,7 +778,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <br>
 
-### related projects
+### Related projects
 
 *   [focus](https://github.com/gabrielproencaalves/focus) by [gabriel proenca alves](https://github.com/gabrielproencaalves) : a fork of this repo that includes a script to easily listen to m3u streams using the [mpg123](https://www.mpg123.de/) linux audio player
 *   [\*-moode](https://github.com/konzumpro/m3u-radio-music-playlists-moode) by [konzumpro](https://github.com/konzumpro) : a fork of this repo that converts m3u files in the root of this repo to [MoOde](https://github.com/moode-player/moode) compatible stream files
@@ -783,7 +786,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <br>
 
-### friend(s) of the repo
+### Friend(s) of the repo
 *  [fony repo](https://github.com/wadadawadada/fony) + [fony website](https://fony.space/) desribed by the author as 'FONY is more than just a music player — it's a revolutionary Web3 platform designed for infinite global music streaming, blending freedom, decentralization, and cutting-edge technology.'
 
 <br>
@@ -796,7 +799,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <br>
 
-### acknowledgement, thanks
+### Acknowledgement, Thanks
 
 *   to github for hosting this repo and the free access to it's pages and actions
 *   to all of the website owners and admins for making those awesome radio websites
@@ -814,7 +817,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <br>
 
-### behind the scenes
+### Behind the scenes
 
 if you are interested on how i actually scrape websites, i've made a markdown that goes thru the nitty gritty of it all, you can find it [here](https://github.com/junguler/how_to_m3u)
 
