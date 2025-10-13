@@ -6,27 +6,30 @@
 </tr>
 </table>
 
+<br>
+
 ### Index of content
 
-* [How to listen](https://github.com/junguler/m3u-radio-music-playlists#how-to-listen)
+* [Dedicated file previewer](https://github.com/junguler/m3u-radio-music-playlists#Dedicated-file-previewer)
+* [How to listen](https://github.com/junguler/m3u-radio-music-playlists#How-to-listen)
    * [on the web](https://github.com/junguler/m3u-radio-music-playlists#on-the-web)
    * [on your devices](https://github.com/junguler/m3u-radio-music-playlists#on-windows-mac-and-linux)
-* [What are these genres names even mean?](https://github.com/junguler/m3u-radio-music-playlists#what-are-these-genres-names-even-mean)
+* [What are these genres names even mean?](https://github.com/junguler/m3u-radio-music-playlists#Follow -are-these-genres-names-even-mean)
 * [Check for dead links without using code](https://github.com/junguler/m3u-radio-music-playlists#Check-for-dead-links-without-using-code)
-* [How to download from a station](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-from-a-station)
+* [How to download from a station](https://github.com/junguler/m3u-radio-music-playlists#How-to-download-from-a-station)
    * [as a long audio file](https://github.com/junguler/m3u-radio-music-playlists#as-a-long-audio-file)
    * [as individual songs](https://github.com/junguler/m3u-radio-music-playlists#as-individual-songs)
-* [How to download this repo](https://github.com/junguler/m3u-radio-music-playlists#how-to-download-this-repo)
+* [How to download this repo](https://github.com/junguler/m3u-radio-music-playlists#How-to-download-this-repo)
    * [using git](https://github.com/junguler/m3u-radio-music-playlists#using-git)
    * [as a zip file](https://github.com/junguler/m3u-radio-music-playlists#as-a-zip-file)
-* [Git stats](https://github.com/junguler/m3u-radio-music-playlists#git-stats)
-* [Sources](https://github.com/junguler/m3u-radio-music-playlists#sources)
-* [You](https://github.com/junguler/m3u-radio-music-playlists#you)
-* [Me](https://github.com/junguler/m3u-radio-music-playlists#me)
-* [Related projects](https://github.com/junguler/m3u-radio-music-playlists#related-projects)
-* [Friends of the repo](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#friends-of-the-repo)
-* [Acknowledgement](https://github.com/junguler/m3u-radio-music-playlists#acknowledgement-thanks)
-* [Behind the scenes](https://github.com/junguler/m3u-radio-music-playlists#behind-the-scenes)
+* [Git stats](https://github.com/junguler/m3u-radio-music-playlists#Git-stats)
+* [Sources](https://github.com/junguler/m3u-radio-music-playlists#Sources)
+* [You](https://github.com/junguler/m3u-radio-music-playlists#You)
+* [Me](https://github.com/junguler/m3u-radio-music-playlists#Me)
+* [Related projects](https://github.com/junguler/m3u-radio-music-playlists#Related-projects)
+* [Friends of the repo](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#Friends-of-the-repo)
+* [Acknowledgement](https://github.com/junguler/m3u-radio-music-playlists#Acknowledgement-thanks)
+* [Behind the scenes](https://github.com/junguler/m3u-radio-music-playlists#Behind-the-scenes)
 
 <br>
 
@@ -35,6 +38,11 @@
 <td><img align="right" src="stuff/o-headphone.gif"></td>
 </tr>
 </table>
+
+<br>
+
+### Dedicated file previewer
+if you don't like how github file viewer is/looks you can open the dedicated file viewer [here](https://junguler.github.io/m3u-radio-music-playlists/) which is a better viewing experience (i think)
 
 <br>
 
