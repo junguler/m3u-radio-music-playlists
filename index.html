@@ -738,6 +738,36 @@
             color: var(--error-color);
         }
 
+        /* Advanced Help Modal (centered, large text, minimal horizontal padding) */
+        .adv-help-overlay {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.45);
+            z-index: 1200;
+        }
+
+        .adv-help-modal {
+            background: var(--sidebar-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 12px 8px; /* minimal horizontal padding */
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-width: 90%;
+            width: auto;
+            font-size: 2em; /* twice as big text size */
+            line-height: 1.3;
+            text-align: left;
+        }
+
+        /* Make sure small screens still center properly */
+        @media (max-width: 480px) {
+            .adv-help-modal { font-size: 1.6em; padding: 10px 6px; }
+        }
+
         /* Error Boundary */
         .error-boundary {
             padding: 20px;
@@ -853,19 +883,6 @@
                 placeholder="🔍 Search files... (use ext:, size:, path:, type: filters)"
                 autocomplete="off"
             >
-            <button id="search-help" class="search-help" aria-expanded="false" title="Search tips">
-                <i class="fas fa-info-circle"></i>
-            </button>
-            <div id="search-help-panel" class="search-help-panel" role="dialog" aria-hidden="true">
-                <div><b>Advanced search examples</b></div>
-                <div style="margin-top:6px;">
-                    <div><b>ext:</b> js, py, md — e.g. <code>ext:js</code></div>
-                    <div><b>size:</b> comparison (>, >=, <, <=, =) with k/m/g — e.g. <code>size:>10k</code></div>
-                    <div><b>path:</b> match anywhere in path — e.g. <code>path:src/components</code></div>
-                    <div><b>type:</b> file or folder — e.g. <code>type:folder</code></div>
-                </div>
-                <div style="margin-top:8px;color:var(--file-size-color);font-size:12px;">Tip: Press <kbd>/</kbd> to focus search, use <kbd>↑</kbd>/<kbd>↓</kbd> to navigate results.</div>
-            </div>
             <div class="search-filters" id="search-filters"></div>
         </div>
         <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
@@ -893,70 +910,23 @@
         </aside>
 
         <main class="content-viewer" id="content-viewer">
-            <div class="welcome-screen">
-                <div class="shortcuts-grid">
-                    <div class="shortcut-card">
-                        <div>
-                            <span class="shortcut-key">↑</span>
-                            <span class="shortcut-key">↓</span>
-                        </div>
-                        <div class="shortcut-description">Navigate file list</div>
-                    </div>
-                    
-                    <div class="shortcut-card">
-                        <div>
-                            <span class="shortcut-key">Enter</span>
-                        </div>
-                        <div class="shortcut-description">Open file/folder</div>
-                    </div>
-                    
-                    <div class="shortcut-card">
-                        <div>
-                            <span class="shortcut-key">←</span>
-                            <span class="shortcut-key">→</span>
-                        </div>
-                        <div class="shortcut-description">Go back/Enter</div>
-                    </div>
-                    
-                    <div class="shortcut-card">
-                        <div>
-                            <span class="shortcut-key">/</span>
-                        </div>
-                        <div class="shortcut-description">Focus search</div>
-                    </div>
-                    
-                    <div class="shortcut-card">
-                        <div>
-                            <span class="shortcut-key">Esc</span>
-                        </div>
-                        <div class="shortcut-description">Clear search</div>
-                    </div>
-                    
-                    <div class="shortcut-card">
-                        <div>
-                            <span class="shortcut-key">T</span>
-                        </div>
-                        <div class="shortcut-description">Toggle theme</div>
-                    </div>
-
-                    <!-- Added shortcuts -->
-                    <div class="shortcut-card">
-                        <div>
-                            <span class="shortcut-key">B</span>
-                        </div>
-                        <div class="shortcut-description">Toggle sidebar</div>
-                    </div>
-
-                    <div class="shortcut-card">
-                        <div>
-                            <span class="shortcut-key">Ctrl</span>
-                            <span class="shortcut-key">C</span>
-                        </div>
-                        <div class="shortcut-description">Copy file content (Ctrl/Cmd + C)</div>
-                    </div>
-                </div>
-            </div>
+            <!-- welcome-screen removed from static HTML to avoid a brief duplicate flash.
+                 renderDirectory([]) will render the welcome screen consistently. -->
         </main>
+    </div>
+
+    <!-- Advanced Help Modal -->
+    <div id="adv-help-modal" class="adv-help-overlay" aria-hidden="true">
+        <div class="adv-help-modal" role="dialog" id="adv-help-content">
+            <div><b>Advanced search examples</b></div>
+            <div style="margin-top:8px;">
+                <div><b>ext:</b> js, py, md — e.g. <code>ext:js</code></div>
+                <div><b>size:</b> comparison (>, >=, <, <=, =) with k/m/g — e.g. <code>size:>10k</code></div>
+                <div><b>path:</b> match anywhere in path — e.g. <code>path:src/components</code></div>
+                <div><b>type:</b> file or folder — e.g. <code>type:folder</code></div>
+            </div>
+            <div style="margin-top:10px;color:var(--file-size-color);font-size:0.6em;">Press <kbd>h</kbd> again or click/press any key to dismiss.</div>
+        </div>
     </div>
 
     <button class="wrap-toggle" id="wrap-toggle" title="Toggle Word Wrap" style="display: none;">
@@ -991,7 +961,9 @@
                     visibleItems: 0,
                     startIndex: 0,
                     scrollTop: 0
-                }
+                },
+                // advanced help state
+                advHelpOpenTime: 0
             };
 
             // DOM elements
@@ -1009,9 +981,10 @@
                 themeToggle: document.getElementById('theme-toggle'),
                 virtualScrollContainer: document.getElementById('virtual-scroll-container'),
                 virtualScrollContent: document.getElementById('virtual-scroll-content'),
-                searchHelp: document.getElementById('search-help'),
-                searchHelpPanel: document.getElementById('search-help-panel')
+                advHelpModal: document.getElementById('adv-help-modal')
             };
+            // handlers reference so we can remove listeners reliably
+            const advHelpHandlers = { pointer: null, key: null };
 
             // File type icon mapping
             const fileIcons = {
@@ -1653,6 +1626,14 @@
                                     </div>
                                     <div class="shortcut-description">Clear search</div>
                                 </div>
+
+                                <!-- Advanced help keybind card added here (keeps welcome screen consistent) -->
+                                <div class="shortcut-card">
+                                    <div>
+                                        <span class="shortcut-key">h</span>
+                                    </div>
+                                    <div class="shortcut-description">Advanced search tips</div>
+                                </div>
                                 
                                 <div class="shortcut-card">
                                     <div>
@@ -1674,7 +1655,7 @@
                                         <span class="shortcut-key">Ctrl</span>
                                         <span class="shortcut-key">C</span>
                                     </div>
-                                    <div class="shortcut-description">Copy file content (Ctrl/Cmd + C)</div>
+                                    <div class="shortcut-description">Copy file content</div>
                                 </div>
                             </div>
                         </div>
@@ -1952,152 +1933,192 @@
                 }, 150);
             });
             
-            // toggle help panel
-            elements.searchHelp.addEventListener('click', (e) => {
-                const panel = elements.searchHelpPanel;
-                const show = !panel.classList.contains('show');
-                panel.classList.toggle('show', show);
-                elements.searchHelp.setAttribute('aria-expanded', String(show));
-                panel.setAttribute('aria-hidden', String(!show));
-            });
-            // close help on outside click
-            document.addEventListener('click', (e) => {
-                if (!elements.searchHelpPanel.contains(e.target) && !elements.searchHelp.contains(e.target)) {
-                    elements.searchHelpPanel.classList.remove('show');
-                    elements.searchHelp.setAttribute('aria-expanded', 'false');
-                    elements.searchHelpPanel.setAttribute('aria-hidden', 'true');
+            // Advanced help modal functions (opened by keybind '?')
+            function showAdvancedHelp() {
+                // Toggle behaviour: if already open, close
+                const overlay = elements.advHelpModal;
+                if (!overlay) return;
+                if (overlay.style.display === 'flex') {
+                    hideAdvancedHelp();
+                    return;
                 }
-            });
-            
-             // Clear search on Escape
+                
+                // Open modal and note the open time to avoid immediately reacting to the same key event
+                overlay.style.display = 'flex';
+                overlay.setAttribute('aria-hidden', 'false');
+                state.advHelpOpenTime = performance.now();
+                
+                // add handlers that will close the modal on next pointer or key input
+                advHelpHandlers.pointer = (e) => {
+                    hideAdvancedHelp();
+                };
+                advHelpHandlers.key = (e) => {
+                    // ignore the event that opened the modal (very recent events)
+                    const now = performance.now();
+                    if (now - state.advHelpOpenTime < 50) return;
+                    hideAdvancedHelp();
+                };
+                document.addEventListener('pointerdown', advHelpHandlers.pointer, true);
+                document.addEventListener('keydown', advHelpHandlers.key, true);
+            }
+
+            function hideAdvancedHelp() {
+                const overlay = elements.advHelpModal;
+                if (!overlay) return;
+                overlay.style.display = 'none';
+                overlay.setAttribute('aria-hidden', 'true');
+                // remove any attached handlers
+                if (advHelpHandlers.pointer) {
+                    document.removeEventListener('pointerdown', advHelpHandlers.pointer, true);
+                    advHelpHandlers.pointer = null;
+                }
+                if (advHelpHandlers.key) {
+                    document.removeEventListener('keydown', advHelpHandlers.key, true);
+                    advHelpHandlers.key = null;
+                }
+             }
+
+            // Clear search on Escape
             elements.searchBox.addEventListener('keydown', (e) => {
-                // keep Escape behaviour when typing
-                if (e.key === 'Escape') {
-                    elements.searchBox.value = '';
-                    elements.searchBox.blur();
-                    renderDirectory(state.currentPath);
-                }
-            });
-             
-             // Keyboard navigation
-             document.addEventListener('keydown', (e) => {
-                const items = virtualScroller.items;
-                const activeIsSearch = document.activeElement === elements.searchBox;
-
-                // If search box is focused, allow arrow navigation and Enter to select results
-                if (activeIsSearch) {
-                    if (!items || items.length === 0) return;
-                    if (['ArrowUp','ArrowDown','Enter'].includes(e.key)) {
-                        e.preventDefault();
-                        if (e.key === 'ArrowUp') {
-                            state.selectedIndex = Math.max(0, state.selectedIndex - 1);
-                            updateSelection();
-                            return;
-                        }
-                        if (e.key === 'ArrowDown') {
-                            state.selectedIndex = Math.min(items.length - 1, state.selectedIndex + 1);
-                            updateSelection();
-                            return;
-                        }
-                        if (e.key === 'Enter') {
-                            const selectedItem = items[state.selectedIndex];
-                            if (selectedItem) {
-                                if (selectedItem.isBack) {
-                                    renderDirectory(state.currentPath.slice(0, -1));
-                                } else if (selectedItem.type === 'folder') {
-                                    renderDirectory([...state.currentPath, selectedItem.name]);
-                                } else {
-                                    renderFile(selectedItem.path, selectedItem.name, selectedItem.size);
-                                }
-                            }
-                            return;
-                        }
-                    }
-                    // Escape key handled elsewhere (searchBox keydown) — let typing work for other keys
-                    return;
-                }
-
-                // Not focused in search box: keep existing behavior
-                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-                    if (e.key === 'Escape') {
-                        e.target.blur();
-                    }
-                    return;
-                }
-
-                if (!items || items.length === 0) return;
-                switch(e.key) {
-                    case 'ArrowUp':
-                        e.preventDefault();
-                        state.selectedIndex = Math.max(0, state.selectedIndex - 1);
-                        updateSelection();
-                        break;
-                    case 'ArrowDown':
-                        e.preventDefault();
-                        state.selectedIndex = Math.min(items.length - 1, state.selectedIndex + 1);
-                        updateSelection();
-                        break;
-                    case 'ArrowLeft':
-                        e.preventDefault();
-                        if (state.currentPath.length > 0) {
-                            renderDirectory(state.currentPath.slice(0, -1));
-                        } else {
-                            renderDirectory([]);
-                        }
-                        break;
-                    case 'ArrowRight':
-                    case 'Enter':
-                        e.preventDefault();
-                        if (state.selectedIndex >= 0 && items[state.selectedIndex]) {
-                            const selectedItem = items[state.selectedIndex];
-                            if (selectedItem.isBack) {
-                                renderDirectory(state.currentPath.slice(0, -1));
-                            } else if (selectedItem.type === 'folder') {
-                                renderDirectory([...state.currentPath, selectedItem.name]);
-                            } else {
-                                renderFile(selectedItem.path, selectedItem.name, selectedItem.size);
-                            }
-                        }
-                        break;
-                    case '/':
-                        e.preventDefault();
-                        elements.searchBox.focus();
-                        break;
-                    case 'Escape':
-                        e.preventDefault();
-                        if (elements.searchBox.value) {
-                            elements.searchBox.value = '';
-                            renderDirectory(state.currentPath);
-                        } else {
-                            renderDirectory([]);
-                        }
-                        break;
-                    case 'b':
-                    case 'B':
-                        e.preventDefault();
-                        elements.sidebar.classList.toggle('collapsed');
-                        break;
-                    case 't':
-                    case 'T':
-                        e.preventDefault();
-                        const themeKeys = Object.keys(themes);
-                        const currentIndex = themeKeys.indexOf(state.currentTheme);
-                        const nextIndex = (currentIndex + 1) % themeKeys.length;
-                        switchTheme(themeKeys[nextIndex]);
-                        break;
-                    case 'c':
-                    case 'C':
-                        if (e.ctrlKey || e.metaKey) {
-                            e.preventDefault();
-                            const codeContent = elements.contentViewerEl.querySelector('.code-content code');
-                            if (codeContent) {
-                                navigator.clipboard.writeText(codeContent.textContent);
-                                showToast('File content copied to clipboard');
-                            }
-                        }
-                        break;
-                }
+                 // keep Escape behaviour when typing
+                 if (e.key === 'Escape') {
+                     elements.searchBox.value = '';
+                     elements.searchBox.blur();
+                     renderDirectory(state.currentPath);
+                 }
              });
+              
+              // Keyboard navigation
+              document.addEventListener('keydown', (e) => {
+                 const items = virtualScroller.items;
+                 const activeIsSearch = document.activeElement === elements.searchBox;
+ 
+                 // If search box is focused, allow arrow navigation and Enter to select results
+                 if (activeIsSearch) {
+                    // allow opening advanced help even when search is focused (key 'h', case-insensitive)
+                    if (e.key && e.key.toLowerCase() === 'h') {
+                        e.preventDefault();
+                        showAdvancedHelp();
+                        return;
+                    }
+                     if (!items || items.length === 0) return;
+                     if (['ArrowUp','ArrowDown','Enter'].includes(e.key)) {
+                         e.preventDefault();
+                         if (e.key === 'ArrowUp') {
+                             state.selectedIndex = Math.max(0, state.selectedIndex - 1);
+                             updateSelection();
+                             return;
+                         }
+                         if (e.key === 'ArrowDown') {
+                             state.selectedIndex = Math.min(items.length - 1, state.selectedIndex + 1);
+                             updateSelection();
+                             return;
+                         }
+                         if (e.key === 'Enter') {
+                             const selectedItem = items[state.selectedIndex];
+                             if (selectedItem) {
+                                 if (selectedItem.isBack) {
+                                     renderDirectory(state.currentPath.slice(0, -1));
+                                 } else if (selectedItem.type === 'folder') {
+                                     renderDirectory([...state.currentPath, selectedItem.name]);
+                                 } else {
+                                     renderFile(selectedItem.path, selectedItem.name, selectedItem.size);
+                                 }
+                             }
+                         return;
+                         }
+                     }
+                     // Escape key handled elsewhere (searchBox keydown) — let typing work for other keys
+                     return;
+                 }
+ 
+                 // Not focused in search box: keep existing behavior
+                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                     if (e.key === 'Escape') {
+                         e.target.blur();
+                     }
+                     return;
+                 }
+ 
+                 if (!items || items.length === 0) return;
+                 // top-level toggle key for advanced help (h/H)
+                 if (e.key && e.key.toLowerCase() === 'h') {
+                     e.preventDefault();
+                     showAdvancedHelp();
+                     return;
+                 }
+                 switch(e.key) {
+                      case 'ArrowUp':
+                          e.preventDefault();
+                          state.selectedIndex = Math.max(0, state.selectedIndex - 1);
+                          updateSelection();
+                          break;
+                     case 'ArrowDown':
+                         e.preventDefault();
+                         state.selectedIndex = Math.min(items.length - 1, state.selectedIndex + 1);
+                         updateSelection();
+                         break;
+                     case 'ArrowLeft':
+                         e.preventDefault();
+                         if (state.currentPath.length > 0) {
+                             renderDirectory(state.currentPath.slice(0, -1));
+                         } else {
+                             renderDirectory([]);
+                         }
+                         break;
+                     case 'ArrowRight':
+                     case 'Enter':
+                         e.preventDefault();
+                         if (state.selectedIndex >= 0 && items[state.selectedIndex]) {
+                             const selectedItem = items[state.selectedIndex];
+                             if (selectedItem.isBack) {
+                                 renderDirectory(state.currentPath.slice(0, -1));
+                             } else if (selectedItem.type === 'folder') {
+                                 renderDirectory([...state.currentPath, selectedItem.name]);
+                             } else {
+                                 renderFile(selectedItem.path, selectedItem.name, selectedItem.size);
+                             }
+                         }
+                         break;
+                     case '/':
+                         e.preventDefault();
+                         elements.searchBox.focus();
+                         break;
+                     case 'Escape':
+                         e.preventDefault();
+                         if (elements.searchBox.value) {
+                             elements.searchBox.value = '';
+                             renderDirectory(state.currentPath);
+                         } else {
+                             renderDirectory([]);
+                         }
+                         break;
+                     case 'b':
+                     case 'B':
+                         e.preventDefault();
+                         elements.sidebar.classList.toggle('collapsed');
+                         break;
+                     case 't':
+                     case 'T':
+                         e.preventDefault();
+                         const themeKeys = Object.keys(themes);
+                         const currentIndex = themeKeys.indexOf(state.currentTheme);
+                         const nextIndex = (currentIndex + 1) % themeKeys.length;
+                         switchTheme(themeKeys[nextIndex]);
+                         break;
+                     case 'c':
+                     case 'C':
+                         if (e.ctrlKey || e.metaKey) {
+                             e.preventDefault();
+                             const codeContent = elements.contentViewerEl.querySelector('.code-content code');
+                             if (codeContent) {
+                                 navigator.clipboard.writeText(codeContent.textContent);
+                                 showToast('File content copied to clipboard');
+                             }
+                         }
+                         break;
+                 }
+              });
             
             // Go back one folder
             function goBackOneFolder() {
