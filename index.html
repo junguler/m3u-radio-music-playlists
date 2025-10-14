@@ -96,6 +96,43 @@
             position: relative;
             width: 100%;
         }
+        .search-help {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--file-size-color);
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-help:focus {
+            outline: none;
+        }
+
+        .search-help-panel {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: calc(100% + 8px);
+            background: var(--sidebar-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            display: none;
+            z-index: 200;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+        }
+
+        .search-help-panel.show {
+            display: block;
+        }
+
+        .search-help-panel b { color: var(--accent-color); }
 
         .search-box {
             width: 100%;
@@ -813,9 +850,22 @@
                 type="text" 
                 class="search-box" 
                 id="search-box" 
-                placeholder="🔍 Search files... (use ext:, size:, path: filters)"
+                placeholder="🔍 Search files... (use ext:, size:, path:, type: filters)"
                 autocomplete="off"
             >
+            <button id="search-help" class="search-help" aria-expanded="false" title="Search tips">
+                <i class="fas fa-info-circle"></i>
+            </button>
+            <div id="search-help-panel" class="search-help-panel" role="dialog" aria-hidden="true">
+                <div><b>Advanced search examples</b></div>
+                <div style="margin-top:6px;">
+                    <div><b>ext:</b> js, py, md — e.g. <code>ext:js</code></div>
+                    <div><b>size:</b> comparison (>, >=, <, <=, =) with k/m/g — e.g. <code>size:>10k</code></div>
+                    <div><b>path:</b> match anywhere in path — e.g. <code>path:src/components</code></div>
+                    <div><b>type:</b> file or folder — e.g. <code>type:folder</code></div>
+                </div>
+                <div style="margin-top:8px;color:var(--file-size-color);font-size:12px;">Tip: Press <kbd>/</kbd> to focus search, use <kbd>↑</kbd>/<kbd>↓</kbd> to navigate results.</div>
+            </div>
             <div class="search-filters" id="search-filters"></div>
         </div>
         <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
@@ -888,6 +938,22 @@
                         </div>
                         <div class="shortcut-description">Toggle theme</div>
                     </div>
+
+                    <!-- Added shortcuts -->
+                    <div class="shortcut-card">
+                        <div>
+                            <span class="shortcut-key">B</span>
+                        </div>
+                        <div class="shortcut-description">Toggle sidebar</div>
+                    </div>
+
+                    <div class="shortcut-card">
+                        <div>
+                            <span class="shortcut-key">Ctrl</span>
+                            <span class="shortcut-key">C</span>
+                        </div>
+                        <div class="shortcut-description">Copy file content (Ctrl/Cmd + C)</div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -942,7 +1008,9 @@
                 toast: document.getElementById('toast'),
                 themeToggle: document.getElementById('theme-toggle'),
                 virtualScrollContainer: document.getElementById('virtual-scroll-container'),
-                virtualScrollContent: document.getElementById('virtual-scroll-content')
+                virtualScrollContent: document.getElementById('virtual-scroll-content'),
+                searchHelp: document.getElementById('search-help'),
+                searchHelpPanel: document.getElementById('search-help-panel')
             };
 
             // File type icon mapping
@@ -1449,7 +1517,8 @@
                 elements.breadcrumbsEl.style.display = 'none';
                 elements.searchResultsInfo.style.display = 'block';
                 elements.searchResultsInfo.textContent = `Found ${results.length} file${results.length !== 1 ? 's' : ''} matching "${query}"`;
-                state.selectedIndex = -1;
+                // start selection at first result so keyboard navigation works immediately
+                state.selectedIndex = results.length > 0 ? 0 : -1;
                 
                 if (results.length === 0) {
                     elements.fileListEl.innerHTML = '<li class="loading" style="color: var(--file-size-color);">No files found</li>';
@@ -1464,6 +1533,8 @@
                 }));
                 
                 virtualScroller.setItems(items);
+                // ensure selected item is visible after setting items
+                setTimeout(updateSelection, 0);
             }
 
             // Update selection
@@ -1588,6 +1659,22 @@
                                         <span class="shortcut-key">T</span>
                                     </div>
                                     <div class="shortcut-description">Toggle theme</div>
+                                </div>
+
+                                <!-- Added shortcuts -->
+                                <div class="shortcut-card">
+                                    <div>
+                                        <span class="shortcut-key">B</span>
+                                    </div>
+                                    <div class="shortcut-description">Toggle sidebar</div>
+                                </div>
+
+                                <div class="shortcut-card">
+                                    <div>
+                                        <span class="shortcut-key">Ctrl</span>
+                                        <span class="shortcut-key">C</span>
+                                    </div>
+                                    <div class="shortcut-description">Copy file content (Ctrl/Cmd + C)</div>
                                 </div>
                             </div>
                         </div>
@@ -1864,18 +1951,73 @@
                     searchFiles(e.target.value);
                 }, 150);
             });
-
-            // Clear search on Escape
+            
+            // toggle help panel
+            elements.searchHelp.addEventListener('click', (e) => {
+                const panel = elements.searchHelpPanel;
+                const show = !panel.classList.contains('show');
+                panel.classList.toggle('show', show);
+                elements.searchHelp.setAttribute('aria-expanded', String(show));
+                panel.setAttribute('aria-hidden', String(!show));
+            });
+            // close help on outside click
+            document.addEventListener('click', (e) => {
+                if (!elements.searchHelpPanel.contains(e.target) && !elements.searchHelp.contains(e.target)) {
+                    elements.searchHelpPanel.classList.remove('show');
+                    elements.searchHelp.setAttribute('aria-expanded', 'false');
+                    elements.searchHelpPanel.setAttribute('aria-hidden', 'true');
+                }
+            });
+            
+             // Clear search on Escape
             elements.searchBox.addEventListener('keydown', (e) => {
+                // keep Escape behaviour when typing
                 if (e.key === 'Escape') {
                     elements.searchBox.value = '';
+                    elements.searchBox.blur();
                     renderDirectory(state.currentPath);
                 }
             });
+             
+             // Keyboard navigation
+             document.addEventListener('keydown', (e) => {
+                const items = virtualScroller.items;
+                const activeIsSearch = document.activeElement === elements.searchBox;
 
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                // Don't interfere with input fields
+                // If search box is focused, allow arrow navigation and Enter to select results
+                if (activeIsSearch) {
+                    if (!items || items.length === 0) return;
+                    if (['ArrowUp','ArrowDown','Enter'].includes(e.key)) {
+                        e.preventDefault();
+                        if (e.key === 'ArrowUp') {
+                            state.selectedIndex = Math.max(0, state.selectedIndex - 1);
+                            updateSelection();
+                            return;
+                        }
+                        if (e.key === 'ArrowDown') {
+                            state.selectedIndex = Math.min(items.length - 1, state.selectedIndex + 1);
+                            updateSelection();
+                            return;
+                        }
+                        if (e.key === 'Enter') {
+                            const selectedItem = items[state.selectedIndex];
+                            if (selectedItem) {
+                                if (selectedItem.isBack) {
+                                    renderDirectory(state.currentPath.slice(0, -1));
+                                } else if (selectedItem.type === 'folder') {
+                                    renderDirectory([...state.currentPath, selectedItem.name]);
+                                } else {
+                                    renderFile(selectedItem.path, selectedItem.name, selectedItem.size);
+                                }
+                            }
+                            return;
+                        }
+                    }
+                    // Escape key handled elsewhere (searchBox keydown) — let typing work for other keys
+                    return;
+                }
+
+                // Not focused in search box: keep existing behavior
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
                     if (e.key === 'Escape') {
                         e.target.blur();
@@ -1883,22 +2025,18 @@
                     return;
                 }
 
-                const items = virtualScroller.items;
                 if (!items || items.length === 0) return;
-                
                 switch(e.key) {
                     case 'ArrowUp':
                         e.preventDefault();
                         state.selectedIndex = Math.max(0, state.selectedIndex - 1);
                         updateSelection();
                         break;
-                        
                     case 'ArrowDown':
                         e.preventDefault();
                         state.selectedIndex = Math.min(items.length - 1, state.selectedIndex + 1);
                         updateSelection();
                         break;
-                        
                     case 'ArrowLeft':
                         e.preventDefault();
                         if (state.currentPath.length > 0) {
@@ -1907,12 +2045,10 @@
                             renderDirectory([]);
                         }
                         break;
-                        
                     case 'ArrowRight':
                     case 'Enter':
                         e.preventDefault();
                         if (state.selectedIndex >= 0 && items[state.selectedIndex]) {
-                             // This part needs to be handled carefully
                             const selectedItem = items[state.selectedIndex];
                             if (selectedItem.isBack) {
                                 renderDirectory(state.currentPath.slice(0, -1));
@@ -1923,30 +2059,24 @@
                             }
                         }
                         break;
-                        
                     case '/':
                         e.preventDefault();
                         elements.searchBox.focus();
                         break;
-                        
                     case 'Escape':
                         e.preventDefault();
                         if (elements.searchBox.value) {
                             elements.searchBox.value = '';
                             renderDirectory(state.currentPath);
-                        } else if (state.currentPath.length > 0) {
-                            renderDirectory([]);
                         } else {
                             renderDirectory([]);
                         }
                         break;
-                        
                     case 'b':
                     case 'B':
                         e.preventDefault();
                         elements.sidebar.classList.toggle('collapsed');
                         break;
-                        
                     case 't':
                     case 'T':
                         e.preventDefault();
@@ -1955,7 +2085,6 @@
                         const nextIndex = (currentIndex + 1) % themeKeys.length;
                         switchTheme(themeKeys[nextIndex]);
                         break;
-                        
                     case 'c':
                     case 'C':
                         if (e.ctrlKey || e.metaKey) {
@@ -1968,8 +2097,8 @@
                         }
                         break;
                 }
-            });
-
+             });
+            
             // Go back one folder
             function goBackOneFolder() {
                 if (state.currentPath.length > 0) {
