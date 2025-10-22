@@ -276,7 +276,9 @@ to listen to other m3u playlists in this repo click on the specific repo for eac
 <tr>
 <td><a href="https://github.com/junguler/listen_to_radio-mixer">radio-mixer</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio_tune">radio_tune</a></td>
-<td colspan="3"></td>
+<td><a href="https://github.com/junguler/listen_to_radio-ly">radio-ly</a></td>
+<td><a href="https://github.com/junguler/listen_to_radio-copycat">radio-copycat</a></td>
+<td colspan="1"></td>
 </tr>
 </tbody></table>
 
