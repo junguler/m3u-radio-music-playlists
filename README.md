@@ -756,6 +756,11 @@ here is a list of websites i've scraped from already and included m3u streams fo
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/strea-m-itter">/strea-m-itter</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/strea-m-itter.sh">strea-m-itter.sh</a></td>
 </tr>
+<tr>
+<td><a href="https://radiospinner.com/">https://radiospinner.com/</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/radio_spinner">/radio_spinner</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/radio_spinner.sh">radio_spinner.sh</a></td>
+</tr>
 </tbody></table>
 
 my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)
