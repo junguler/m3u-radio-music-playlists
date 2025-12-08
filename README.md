@@ -278,7 +278,12 @@ to listen to other m3u playlists in this repo click on the specific repo for eac
 <td><a href="https://github.com/junguler/listen_to_radio_tune">radio_tune</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio-ly">radio-ly</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio-copycat">radio-copycat</a></td>
-<td colspan="1"></td>
+<td><a href="https://github.com/junguler/listen_to_radio-stations_live">radio-stations_live</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/junguler/listen_to_strea-m-itter">strea-m-itter</a></td>
+<td><a href="https://github.com/junguler/listen_to_radio_spinner">radio_spinner</a></td>
+<td colspan="3"></td>
 </tr>
 </tbody></table>
 
@@ -298,7 +303,7 @@ alternativly use this [M3U radio player](https://junguler.github.io/M3U-radio-pl
 * click on the folder icon to load your local m3u playlist
 * click on the globe icon to load an online playlist (a raw github address for example)
 
-<br
+<br>
 
 ###### on windows, mac and linux
 
