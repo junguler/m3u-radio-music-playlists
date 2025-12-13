@@ -547,18 +547,8 @@ http://91.239.65.100:8003/chillout
 http://s2.free-shoutcast.com:18360/stream.mp3
 #EXTINF:-1,OA//RADIO.KZ
 http://streaming.radio.co:80/sd96be1033/listen
-#EXTINF:-1,Жулдыз ФМ
-https:/http:/adiosolo.ruhttp:/adio/zhuldyz-fm/icecast.audio
-#EXTINF:-1,Авторадио - KZ
-https:/http:/usradio.cdnqb.net/stream
-#EXTINF:-1,Радио Шалкар
-https:/http:/adio-streams.kaztrk.kz/shalqar/shalqar/icecast.audio
-#EXTINF:-1,Казахское Радио
-https:/http:/adio-streams.kaztrk.kz/qazradio/qazradio/icecast.audio
 #EXTINF:-1,Европа Плюс
 https://hls-01-regions.emgsound.ru/11_kazakhstan/96/playlist.m3u8
-#EXTINF:-1,Радио Classic
-https:/http:/adio-streams.kaztrk.kz/classic/classic/icecast.audio
 #EXTINF:-1,Ретро FM Qazaqstan
 http://91.201.214.229:8000/vostokfm
 #EXTINF:-1,Радио NS - Шансон
@@ -569,8 +559,6 @@ https://listen3.myradio24.com/87888
 https://myradio24.org/8334
 #EXTINF:-1,Радио SANA
 https://listen4.myradio24.comhttp:/adiosana
-#EXTINF:-1,Радио Bulbul
-https:/http:/adiobulbul.stream.laut.fmhttp:/adiobulbul?t302=2023-04-25_19-52-29&uuid=2e23c109-9b3b-474e-ae93-0227a13b0450
 #EXTINF:-1,Radio City
 https://cp.time4radio.ruhttp:/adio/8090http:/usradiokostanai
 #EXTINF:-1,Радио NS - Kazakh Music
@@ -585,8 +573,6 @@ http://85.29.144.124:8000/;audio.mp3
 https://icecast.ns.kzhttp:/adions-jazz
 #EXTINF:-1,Радио NS - Rock
 https://icecast.ns.kzhttp:/adions-rock
-#EXTINF:-1,Радио EDM Classic
-https:/http:/adio.geometryfm.ru/hls/geometryfm/live.m3u8
 #EXTINF:-1,Радио NS - Lounge
 https://icecast.ns.kzhttp:/adions-lounge
 #EXTINF:-1,Радио NS – Лаунж
@@ -645,3 +631,49 @@ https://worldradio.online/proxy/?q=http://sat.radio-betelgeuse.com:8000/live
 https://myradio24.org/aloha
 #EXTINF:-1,Радио Тандем - Pop Hits from Kazakhstan
 https://stream02.pcradio.ru/tandem_kz-med
+#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/113251.v12.png",ТЕХНОСБОРНИКRADIO 
+http://freeuk28.listen2myradio.com:4478/
+#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/81460.v4.png",Lux Radio, Almaty 
+https://lux-radio.com:8005/stream
+#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/132032.v5.png",Beu FM 
+https://stream.beufm.kz/beufm
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/FN2UZS.png",Best FM - 100.5 FM
+http://best128.streamr.ru/
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/CZMPC.png",Europa Plus Light
+https://emg02.hostingradio.ru/ep-light128.mp3
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/MQ69FI.png",Europa Plus New
+https://emg02.hostingradio.ru/ep-new128.mp3
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/19Z9NH.png",Europa Plus Residance
+https://emg02.hostingradio.ru/ep-residance128.mp3
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/7U6BCS.png",Europa Plus Top 40
+http://eptop128server.streamr.ru:8033/eptop128
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/QLW6KI.png",Radio 31
+http://perseus.shoutca.st:9380/stream
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80235/logo_4WTKR8gaKj.png",Love Radio
+https://stream.gakku.kz:8443/love128.mp3
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80259/logo_BxVtiJcOQI.png",Той Думан Radio
+https://stream.gakku.kz:8443/live.mp3
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80260/logo_ppwaQANqjn.png",Европа Плюс Казахстан Radio
+https://hls-01-europaplus-top40.emgsound.ru/21/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80246/logo_s3uJRbMMrA.png",Like [Русский Хит] Radio
+https://myradio24.org/91712
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80251/logo_zvSLaChha8.png",Aloha FM Radio
+https://listen3.myradio24.com/aloha
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80241/logo_Ie6J2BaKYH.png",Radio City Almaty
+https://icecast.cityradio.kz/city
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80223/logo_d3ubxJFqry.png",Радио NS - Национальная Сеть
+https://icecast.ns.kz/radions
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80225/logo_8VSA4QpKLN.png",Радио КН
+https://player.radiokn.kz/56
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80240/logo_67q177iWVr.png",Радио Дача
+https://stream.gakku.kz:8443/dacha
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80248/logo_Elgl6HYSdL.png",Business FM Radio
+https://bfmreg.hostingradio.ru/kz.bfm128.mp3
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/103133/logo_PEDOzXs6W9.png",Orda FM Radio
+https://ordacast.astanatv.kz:8443/orda
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80255/logo_FEbhy8ekM8.png",Green Dance Radio
+https://listen.radio-greendance.su/listen/green_dance/green_dance
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80263/logo_YoZXPFdQAz.png",Русское Радио Азия
+https://rusradioreg.hostingradio.ru/asia.rusradio128.mp3
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/103340/logo_vX9TvxuN9n.png",Geedeon Radio
+https://myradio24.org/87888

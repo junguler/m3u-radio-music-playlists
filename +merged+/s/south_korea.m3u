@@ -527,8 +527,6 @@ http://c7.inlive.co.kr:6520/
 http://c9.inlive.co.kr:5140/
 #EXTINF:-1,Jonghap Top 20
 http://ch01.saycast.com/
-#EXTINF:-1,Cast.CC
-/urlParser?l=http%3A%2F%2Fcast.cc%2Flisten.pls
 #EXTINF:-1,Radio FallingStars - Pop
 http://sunsetpop.saycast.com
 #EXTINF:-1,Mukulcast
@@ -615,8 +613,6 @@ http://mini.imbc.com/v2/index.html?src=http://mini.imbc.com/&ref=http://www.imbc
 https://onair.kbs.co.kr/index.html?sname=onair&stype=live&ch_code=21&ch_type=radioList
 #EXTINF:-1,MBC FM4U
 http://mini.imbc.com/v2/index.html?src=http://mini.imbc.com/&ref=http://www.imbc.com/broadhttp:/adio/index.html#./datas/pagedata_home.js
-#EXTINF:-1,YTN News FM
-https:/http:/adio.ytn.co.kr/_comm/fmlive.php
 #EXTINF:-1,국방FM
 https://www.dema.mil.kr/web/fm/onair.do
 #EXTINF:-1,TBC Dream FM
@@ -669,10 +665,6 @@ http://andong.webcasting.co.kr:1935/live/amlive/playlist.m3u8
 https://listen.moe/kpop/fallback
 #EXTINF:-1,TBS TV
 http://58.234.158.60:1935/catvlive/myStream/playlist.m3u8
-#EXTINF:-1,Radio Seoul
-https:/http:/adio1.koreatimes.com/?DIST=TuneIn&TGT=TuneIn&maxServers=2&partnertok=eyJhbGciOiJIUzI1NiIsImtpZCI6InR1bmVpbiIsInR5cCI6IkpXVCJ9.eyJ0cnVzdGVkX3BhcnRuZXIiOnRydWUsImlhdCI6MTYzNzEyNjE0MywiaXNzIjoidGlzcnYifQ.ssVJ7H8C2H_IpmydNuCcKNV1I0UH93kqOAc_nsdqsOU
-#EXTINF:-1,TBN 교통방송
-http:/http:/adio2.tbn.or.kr:1935/gyeongin/myStream/playlist.m3u8
 #EXTINF:-1,wbs-smok 원음방송
 http://115.85.182.39/mapofm?type=.mp3
 #EXTINF:-1,Fred Film Radio(한국어)
@@ -681,8 +673,6 @@ https://s10.webradio-hosting.com/proxy/fredradiokr/stream
 http://211.33.246.4:32954http:/adio_stfm/myStream.sdp/chunklist_w392819215.m3u8
 #EXTINF:-1,MBC충북 FM4U
 http://211.33.246.4:32954http:/adio_fm/myStream.sdp/chunklist_w348337231.m3u8
-#EXTINF:-1,TBN 울산교통방송
-http:/http:/adio2.tbn.or.kr:1935/ulsan/myStream/playlist.m3u8
 #EXTINF:-1,CBS Music FM Radio
 http://aac.cbs.co.kr:1935/cbs939/_definst_/cbs939.stream/playlist.m3u8
 #EXTINF:-1,iFM 경인방손
@@ -711,3 +701,23 @@ https://stream.zeno.fm/r0tbse9jnbptv
 https://worldradio.online/proxy/?q=http://bbslive.clouducs.com:1935/bbsradio-mlive/livestream/playlist.m3u8
 #EXTINF:-1,CBS 표준FM - Spiritual Sounds from South Korea
 https://m-aac.cbs.co.kr/mweb_cbs939/_definst_/cbs939.stream/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/29758.v2.png",KBS - 1Radio 
+http://onair.kbs.co.kr/index.html?sname=onair&ampampstype=live&ampampch_code=21&ampampch_type=radioList
+#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/30889.png",MBC 라디오 
+http://mini.imbc.com/v2/index.html?src=http://mini.imbc.com/&ampampref=http://www.imbc.com/broad/radio/index.html#./datas/pagedata_home.jsstream.nsvstream.nsv
+#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/130151.v3.png",MMLR FM 
+https://stream.zeno.fm/2h4b2x5bpy8uv
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/L1NR38.png",BOX : K-POP 케이팝
+https://play.streamafrica.net/kpopradio
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/BGJ2D.png",Mirakuru Radio
+https://s2.radio.co/s2604110cf/listen
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/I0KJYS.png",Seoul FM
+https://singapore.kpopradio.net/radio/8000/seoulfm
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/N5B2J6.png",Vintage Cafe - Piano
+https://rsh.hoerradar.de/rsh-relax-mp3-hq
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/5VW3X.png",YAHWEH CHRISTIAN RADIO
+https://s3.radio.co/s22189b87c/listen
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80320/logo_3CcfaP7ZVz.png",The plug | k-pop Radio
+https://kpop-jakeradiomasterserver.radioca.st/stream
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80315/logo_mP4jFCa7S0.png",Moon Music 4K Radio
+https://stream.zeno.fm/nkb20ze9t18uv
