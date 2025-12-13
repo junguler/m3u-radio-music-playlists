@@ -2863,8 +2863,6 @@ https://server.mediacast4u.stream/8002/stream
 http://live.ianl.org.uk:4016/stream.mp3
 #EXTINF:-1,Ibiza Global Classics - 0 - Spain - club - dance - electronic - house - trance
 https://control.streaming-pro.com:8000/ibizaglobalclassics.mp3
-#EXTINF:-1,Ibiza Global Radio - 0 - Spain - dance - electronic - house
-SimpleHTTP/0.6 http://ibizaglobalradio.streaming-pro.com:8024/
 #EXTINF:-1,Ibiza Sonica - 256 - Spain - chill - electronic
 https://ibizasonica.streaming-pro.com:8000/ibizasonica
 #EXTINF:-1,IceRadio Germany - 192 - Germany - cyberpunk - ebm - futurepop - gothic - industrial - melancholic - synthpop - synthwave
@@ -6193,45 +6191,34 @@ https://dygedge.radyotvonline.net/kralpop/playlist.m3u8
 https://yayin.istanbulfm.com.tr/istanbulfm#
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15542.png",Radyo Ritim
 https://radyo.yayin.com.tr:8091/stream?/stream.mp3
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15548.png",Radyo Viva
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15551.png",Radyo En
 https://yayin2.canliyayin.org:7222/
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15552.png",POLİS RADYOSU
 https://m.egm.gov.tr:8093//
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15566.png",Özgür Radyo
 https://yayin.turkhosted.com:6072/
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15571.png",Karadeniz FM
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15601.png",Kilis Sultan Radyo
 https://kilissul.80.yayin.com.tr//stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15606.png",Hatay Asya Radyo
 https://sslyayin.netyayin.net/9850/Asya
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15613.png",Radyo Nikomedya
 https://sslyayin.radyoyayini.com:7091/stream.mp3
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15619.png",Radyo Hevi
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15623.png",Mix FM
 https://mixfm.ozelip.com/9598/stream
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15638.png",Bati Radyo
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15667.png",Radyo Akdeniz
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15669.png",Radyo Kafses
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15747.png",Radyo Remix Odemis
 https://radyo.yayin.com.tr:5250/playlist.mp3
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15752.png",Arabesk Damar Fm
 https://arabeskdamarfm.kesintisizyayin.com/9306/stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15805.png",Raks FM
 https://sslyayin.radyoyayini.com:7092/stream.mp3
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15813.png",Radyo Home EFSANE4&#39;LÜ
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15820.png",Bodrum FM
 https://live.bodrumfm.org/
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15854.png",GÖKSUN Fm
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15928.png",Radyo Metronom 
 https://kralpop.radyotvonline.net/#
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15944.png",RadyoHome - Kuran Meali
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15946.png",radio-ruby
 https://cast.egofm.de/ruby.mp3?ar-distributor=ffa0
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15950.png",Radyo Home - World Hits
 https://ssl4.radyotvonline.com/radyohome/worldhit.stream_aac/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15956.png",DWG Radio
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15957.png",Radyo Home - Relax Home
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15963.png",Radyo Home - Maziden Bir Demet
 https://ssl4.radyotvonline.com/radyohome/mazidenbirdemet.stream_aac/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/15968.png",Radyo Güney
@@ -6250,21 +6237,12 @@ https://ssl4.radyotvonline.com/radyohome/ulkeradyo.stream_aac/playlist.m3u8
 https://moondigitaledge.radyotvonline.net/altinsarkilar/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/16029.png",Barış FM
 https://barisfm.ozelip.com:9588/
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/16038.png",Radyo Home - Türkülerle Türkiye
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/16044.png",Radyo Home - Melankolik Home 
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/16046.png",Radyo Home - Radyo Vokal
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/16056.png",Radyo DamaRFM
 https://yayin.damarfm.com:8080/mp3
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/16070.png",Bogazliyan FM
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/16074.png",Radyo Home - 90’lar
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/16075.png",Radyo Home - Ankara Havaları
 https://ssl4.radyotvonline.com/radyohome/ankarahavalari.stream_aac/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/16077.png",Radyo Home - Pop Home
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/16088.png",Radyo Home - SlowHome
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/16099.png",Radyo Home - Klasik Home
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/71083315.png",Best FM dinle
 https://n09a-eu.rcs.revma.com/h34x4kgg9hhvv.m4a?1651572028=&rj-ttl=5&rj-tok=AAABlcz1DM4AzHOE046b_DByhQ
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/114117023.jpg",Damar Turk FM dinle
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/79796485.png",Datça OnAir dinle
 https://datcaonair.ozelip.com/8008/stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/80942399.png",Karadeniz Sesi FM dinle
@@ -6275,12 +6253,10 @@ https://karadenizakustik.radyotvonline.net/
 https://radyo.yayin.com.tr:7070//stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/109718895.png",Bodrum FM dinle
 https://live.bodrumfm.org/stream.mp3
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/82575884.jpg",Lig Radyo dinle
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/11130095.png",Radio Net Arabesk dinle
 https://anadolu.liderhost.com.tr/9352/stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/88473391.png",Radyo Fenomen Rap dinle
 https://live.radyofenomen.com/fenomenrap/abr/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/33669321.png",Arabesk Vadisi dinle
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/59481575.png",Elazığ Mavi Radyo dinle
 https://yayin.turkhosted.com/elazigmaviradyo/stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/54764960.jpg",Sultan Radyo dinle
@@ -6291,19 +6267,16 @@ https://22353.live.streamtheworld.com/WEB22_MP3_SC?dist=onlineradiobox
 https://radiostreaming.ert.gr/ert-958fm
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/86983403.png",Londra Turk Radyosu dinle
 https://s2.radio.co/s899a861e2/listen
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/33705128.jpg",Babyland dinle
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/105371672.png",Radyo Başkent 104.2 dinle
 https://kralpop.radyotvonline.net/
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/12204858.png",Sıla FM dinle
 https://radyo.yayin.com.tr:4164/stream/
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/94123380.png",Radyo 08 dinle
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/30225092.png",Radio Net Dance dinle
 https://anadolu.liderhost.com.tr/6952/stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/95126252.jpg",Radyo izmit 102.1 FM dinle
 https://radyomelodi.80.yayin.com.tr/stream?type=https&nocache=1658828382
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/20510272.jpg",Noksanlar Kenti dinle
 https://ip169.ozelip.com:10952/stream?type=http&nocache=1
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/58710628.jpg",Radio | OnlyClan dinle
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/111555115.jpg",Loops Radio dinle
 https://progressive.ozelip.com/7670/stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/77824550.jpg",Bingöl FM 102.0 dinle
@@ -6320,7 +6293,6 @@ https://23543.live.streamtheworld.com/SUPER_FM128AAC.aac
 https://radyo7icecast.radyotvonline.net/radyo7
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/66789131.png",Tam 90 İmbat FM
 https://radyo.medyahost.com.tr/8034/stream
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/81365996.png",Star Arti 98.8 FM
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/38155350.png",CNN Türk
 https://moondigitaledge2.radyotvonline.net/cnnturk/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/57909135.png",Radyo Cinar
@@ -6345,7 +6317,6 @@ https://listen.powerapp.com.tr/powergreece/abr/powergreece/256/chunks.m3u8
 https://radyo1.radyo-dinle.tc/8138/stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/59354083.jpg",Akustik Fm 
 https://ip169.ozelip.com/8042/stream
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/72575387.jpg",Akra FM
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/96754922.jpg",TURKUVAZ EFSANE
 https://trkvz-radyolar.ercdn.net/turkuvazefsane/chunklist.m3u8
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/61349329.jpg",PowerTürk Taptaze
@@ -6358,7 +6329,6 @@ https://live.radyositesihazir.com/8032/stream
 https://listen.radioking.com/radio/301204/stream/347869
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/5609607.jpg",SolfejFm - İzmir
 https://radyoyek.80.yayin.com.tr/
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/97129491.jpg",Elazığ Mavi Radyo
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/93082598.jpg",Seyr FM 
 https://sslyayin.netyayin.net/8024/stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/76340994.jpg",Radyo Nida
@@ -6393,11 +6363,7 @@ https://radyo1.radyo-dinle.tc/8156/stream
 https://ssl120.radyotelekom.com.tr/8106/stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/115409700.jpeg",Medrese Radyo
 https://admin.medreseradyo.com/radio/8000/radio.mp3
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/103214194.jpg",Radyo 81
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/8243542.jpg",Sky Radyo
 https://server.radiogs.net:7056/
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/40504771.jpg",Radyo Turk 
 https://radyo.yayindakiler.com:4028/stream
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/95053637.jpg",Arabeskin Merkezi 102.1 FM
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/99181255.jpg",DT NOSTALJİ
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/2711236.png",Haber Turk Radyo 90.4 FM
