@@ -13,8 +13,6 @@ http://cast4.audiostream.com.br:8653/mp3
 http://cast4.audiostream.com.br:8654/mp3
 #EXTINF:-1,104 FM
 http://cast4.audiostream.com.br:8651/mp3
-#EXTINF:-1,Alegria 92.9 FM
-https://stream01.ouveai.com.br:1046/stream
 #EXTINF:-1,Rádio RS HITS
 https://cloud.cdnseguro.com:2305/;
 #EXTINF:-1,Rádio Eldorado
@@ -25,6 +23,8 @@ https://1592747t.ha.azioncdn.net/primary/far_poa.sdp/playlist.m3u8
 https://servidor16-3.brlogic.com:7614/live
 #EXTINF:-1,Rádio Cultura
 https://sonicpanel.oficialserver.com:7011/;
+#EXTINF:-1,Radio Big Love
+https://player.xcast.com.br/proxy/9958
 #EXTINF:-1,FM Express
 http://cast4.audiostream.com.br:8648/aac
 #EXTINF:-1,Radio Continental 1120
@@ -57,8 +57,6 @@ http://148.72.158.239:8012/live
 http://sd.dnip.com.br:11790/;
 #EXTINF:-1,Fronteira FM
 https://sonicpanel.oficialserver.com/9990/stream
-#EXTINF:-1,Rede Total Hits
-http://sv12.hdradios.net:7282/;stream.nsv
 #EXTINF:-1,Tramandaí FM
 http://cast4.audiostream.com.br:8658/mp3
 #EXTINF:-1,FM Premium
@@ -73,8 +71,6 @@ http://cast4.audiostream.com.br:8659/aac
 https://centova4.transmissaodigital.com:20065/;
 #EXTINF:-1,Imbé FM
 http://cast4.audiostream.com.br:8660/mp3
-#EXTINF:-1,Solaris Play
-https://stream1.play.radio.br:8089/Solaris101/Solaris101/icecast.audio
 #EXTINF:-1,Vale Feliz
 https://stream02.ouveai.com.br/8066/stream
 #EXTINF:-1,Rádio Planalto
@@ -91,8 +87,6 @@ https://player.ipstm.net/ssl.php?ip=srv10.ipstm.net&port=25252&mount=/;
 https://servidor32.brlogic.com:8160/live
 #EXTINF:-1,Rádio Clube FM
 https://9599.brasilstream.com.br/stream
-#EXTINF:-1,Tua Radio São Francisco
-https://play.radio.br:8089/saofrancisco/saofrancisco/playlist.m3u8
 #EXTINF:-1,Rádio Universidade
 https://casthttps.suaradionanet.net/8098/stream
 #EXTINF:-1,Popular FM
@@ -105,8 +99,6 @@ https://s13.maxcast.com.br:8443/live
 https://wms5.webradios.com.br:18960/8960
 #EXTINF:-1,Guaíra FM
 https://paineldj5.com.br:9530/stream
-#EXTINF:-1,Venus FM
-https://www.appradio.app:8078/live
 #EXTINF:-1,Rádio Difusora
 https://ssl.xcast.com.br:13246/stream
 #EXTINF:-1,Ghost Rádios
@@ -129,8 +121,6 @@ http://143.208.11.100:8874/l/stream/1/Title1
 http://centova17.ciclanohost.com.br:8177/stream
 #EXTINF:-1,CBS FM
 https://shout35.crossradio.com.br:18034/1
-#EXTINF:-1,Rádio Venâncio Aires
-https://www.appradio.app:8079/live
 #EXTINF:-1,Rádio Aliança
 http://streaming.omegasistemas.com.br:8407/stream.mp3
 #EXTINF:-1,Rádio Amizade 89.1 FM
@@ -143,20 +133,18 @@ https://casthttps1.suaradionanet.net/10266/stream
 https://stream2.svrdedicado.org/8158/stream
 #EXTINF:-1,Só toca bailão
 https://player.ipstm.net/ssl.php?ip=srv11.ipstm.net&port=26500&mount=/;
+#EXTINF:-1,Rádio Web Sul RS
+https://sv15.hdradios.net:8526/;stream.nsv
 #EXTINF:-1,Rádio Cultura Riograndin
 https://casthttps.suaradionanet.net/10402/stream
 #EXTINF:-1,Rádio Ética
 https://player.transmissaodigital.com/proxy/7532?1593713302535
-#EXTINF:-1,Rádio Camaquense
-https://casthttps1.suaradionanet.net/10046/stream
 #EXTINF:-1,Mundial FM
 https://centova4.transmissaodigital.com:20071/;
 #EXTINF:-1,Ponto Norte FM
 https://centova4.transmissaodigital.com:20073/;
 #EXTINF:-1,Vale FM
 http://s01.transmissaodigital.com:7116/;
-#EXTINF:-1,Rádio CS FM
-https://play.radio.br:8089/CSFMapp/CSFMaudioAPP/icecast.audio
 #EXTINF:-1,Rádio Águas Claras
 https://centova4.transmissaodigital.com:20075/live/;
 #EXTINF:-1,Querência
@@ -169,8 +157,6 @@ https://server16.srvsh.com.br:8534/stream
 http://server02.srvsh.com.br:10688/;stream.nsv
 #EXTINF:-1,Rádio Mercosul
 https://s11.maxcast.com.br:8164/live
-#EXTINF:-1,Radio Minuano AM 1410
-https://sv10.hdradios.net:6776/stream
 #EXTINF:-1,Rádio Top Rio Grande
 https://servidor19.brlogic.com:7058/live
 #EXTINF:-1,Rádio Armazém
@@ -185,8 +171,8 @@ https://s09.maxcast.com.br:8497/live?id=40576808528
 https://vp090.voope.com.br/8036/;
 #EXTINF:-1,Rede Cidade AM
 http://srv7.ipstm.net:15334/;transmitir/1
-#EXTINF:-1,Rádio Glória FM
-https://casthttps.suaradionanet.net/10456/stream
+#EXTINF:-1,Semente da Paz
+https://player.betelhost.com.br/proxy/11734/
 #EXTINF:-1,Nossa FM Radio Gospel
 https://player-ssl.painelstream.net:8442/live
 #EXTINF:-1,Rede Super SM
@@ -209,8 +195,6 @@ https://ssl.voxhd.com.br:7350/;
 http://player.comunitaria.com.br/popup/
 #EXTINF:-1,Web Radio Cristo é a Resposta
 https://stm6.xcast.com.br:11082/stream
-#EXTINF:-1,Rádio São Roque
-http://centova6.ciclanohost.com.br:9038/stream.mp3
 #EXTINF:-1,SONORA FM
 https://casthttps1.suaradionanet.net/10318/stream
 #EXTINF:-1,Rádio Lagoa FM
@@ -223,22 +207,18 @@ https://str02.kfmidia.com.br:6682/stream
 https://servidor27.brlogic.com:8196/live
 #EXTINF:-1,Rádio Giruá
 https://servidor25-1.brlogic.com:8018/live
-#EXTINF:-1,Viamix Rádio Web
-https://ssl.srvstm.com:7924/;stream.nsv
 #EXTINF:-1,Rádio Vinhedos
 http://centova6.ciclanohost.com.br:9184/;
-#EXTINF:-1,Web Rádio Nós Na Fita
-http://s01.maxcast.com.br:8040/autodj
 #EXTINF:-1,Radio Gospel RS
 https://ssl.xcast.com.br:8326/;stream.nsv
+#EXTINF:-1,Radio Reviver Gospel
+http://stm38.stmsrv.com:8318/;
 #EXTINF:-1,FM Sarandi
 http://s02.maxcast.com.br:8150/live
 #EXTINF:-1,Rádio Infinita Graça Jovem
 https://stream2.svrdedicado.org/8244/stream
 #EXTINF:-1,Ghost Club
 https://servidor28.brlogic.com:7234/live
-#EXTINF:-1,Radio Sucesso Gospel
-http://142.54.167.154:7164/;
 #EXTINF:-1,102.3 FM Porto Alegre ZYD566
 http://1192747t.ha.azioncdn.net/primary/ita_poa.sdp/playlist.m3u8
 #EXTINF:-1,Radio Elétrica
@@ -261,6 +241,10 @@ https://live9.livemus.com.br:27434/stream
 https://stm19.xcast.com.br:11526/;
 #EXTINF:-1,Rádio Top Sul
 https://s09.maxcast.com.br:8004/live
+#EXTINF:-1,Rádio Santa Cruz 98.3 FM
+http://cast.radiu.live:6734/;
+#EXTINF:-1,Rádio Online Esperança em Deus
+http://stm5.srvvox.com.br:7576/;
 #EXTINF:-1,Radio ara web
 https://sv12.hdradios.net:6752/;
 #EXTINF:-1,Rádio Genuína

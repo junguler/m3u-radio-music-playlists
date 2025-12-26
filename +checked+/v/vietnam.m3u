@@ -1,67 +1,37 @@
 #EXTM3U
-#EXTINF:-1,Hoa Binh TV
-http://hoabinhtvlive.746b3ddb.cdnviet.com/hoabinhtv/playlist.m3u8
-#EXTINF:-1,INTER FM
-http://stream.zeno.fm/1hbb9qbwszzuv.m3u
-#EXTINF:-1,Test Radio
-https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3
-#EXTINF:-1,VOV Giao Thông Hà Nội
-http://media.kythuatvov.vn:7025/stream/
-#EXTINF:-1,VOVMedia - VOV Giao thông Hồ Chí Minh
-http://media.kythuatvov.vn:7023/stream/
-#EXTINF:-1,VOVMedia - VOV5 Phát thanh đối ngoại
-http://media.kythuatvov.vn:7007/stream/
-#EXTINF:-1,Quran in Vietnamese
-https://www.qurantranslations.net/sound/English/AbdulBaset_AbdulSamad/002.mp3
-#EXTINF:-1,Saigon Radio Hai Ngoai 106.3
-http://ice3.securenetsystems.net/KALIM?playSessionID=B2EF8726-042D-601D-0DB377897A7EDF85
-#EXTINF:-1,Saigon Radio San Jose 1430AM
-http://ice5.securenetsystems.net/KVVN?playSessionID=B2E069BC-019E-D87D-979D1FD9DD0EB2E2
-#EXTINF:-1,VOH FM Radio
-https://strm.voh.com.vn/radio/channel2/chunklist_w182917363.m3u8
+#EXTINF:-1,Khanh Hoa Radio
+http://210.245.20.94/hls/radio.m3u8
+#EXTINF:-1,Khanh Hoa TV
+http://210.245.20.94/hls/ktv1.m3u8
+#EXTINF:-1,Zen Patriarch
+http://163.172.169.217/asp-s?lang=*
 #EXTINF:-1,VNFM
-http://www.abc.net.au/res/streaming/audio/aac/news_radio.pls
+http://streaming.abc-cdn.net.au/audio/ice/newsradio.pls
 #EXTINF:-1,VOV Giao Thông Hà Nội – Hanoi – Vietnam
 https://str.vov.gov.vn/vovlive/vovGTHN.sdp_aac/chunklist_w601606653.m3u8
 #EXTINF:-1,Scientific Sound Asia – Ho Chi Minh City – Vietnam
 http://carol.epichosts.co.uk:8270/live.mp3
-#EXTINF:-1,Đài PTTH Thái Bình – Thành Phố Thái Bình – Thái Bình – Vietnam
-http://118.70.118.191:1935/tbtvlive/radio/playlist.m3u8
 #EXTINF:-1,Đài PTTH Đồng Nai – Biên Hòa – Đồng Nai – Vietnam
 http://118.107.85.5:1935/radio/dongnai_aac/playlist.m3u8
+#EXTINF:-1,Đài PTTH Cà Mau – Cà Mau – Vietnam
+http://tv.ctvcamau.vn/live/radio/radio.m3u8
+#EXTINF:-1,Đài PTTH Bạc Liêu – Thành phố Bạc Liêu – Bạc Liêu – Vietnam
+https://tv.thbl.vn/live/radio/radio.m3u8
 #EXTINF:-1,Đài PTTH Cao Bằng – Thành Phố Cao Bằng – Cao Bằng – Vietnam
 http://118.107.85.4:1935/live/smil:CRTV.smil/playlist.m3u8
-#EXTINF:-1,Đài PTTH Lâm Đồng – Da Lat – Lâm Đồng – Vietnam
-http://118.107.85.4:1935/radio/lamdong_aac/chunklist_w1647434900.m3u8
 #EXTINF:-1,Đài PTTH Bình Phước – 89.4 FM – Dong Xoai – Bình Phước – Vietnam
 http://c13.radioboss.fm:8127/stream
-#EXTINF:-1,Đài PTTH Điện Biên – Điện Biên Phủ – Huyện Ðiện Biên – Vietnam
-https://truyenhinh.vnptvas.vn/live.m3u8
-#EXTINF:-1,RFA (Radio Free Asia) ch.2 – Hanoi – Vietnam
-https://rfahls-i.akamaihd.net/hls/live/226233/RFALive_2/index.m3u8
-#EXTINF:-1,Quran in Vietnamese radio
-https://www.qurantranslations.net/sound/English/AbdulBaset_AbdulSamad/002.mp3?type=.mp3/stream.mp3
-#EXTINF:-1, VOV 5 radio
-https://stream.vovmedia.vn/vov5
-#EXTINF:-1,VOV 2 radio
-http://media.kythuatvov.vn:7003/stream.nsv
 #EXTINF:-1,Saigon Television
 https://saigontivi.com/
-#EXTINF:-1,VOV1 Radio
-http://113.164.229.226:7001/stream
-#EXTINF:-1,VOV1 - 256 - Vietnam - government - news
-https://str.vov.gov.vn/vovlive/vov1vov5Vietnamese.sdp_aac/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/83681/logo_SNYgAnWme0.png",VOH 95.6 Radio
-https://strm.voh.com.vn/radio/channel1/playlist.m3u8
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/83683/logo_xn1X91wtUW.png",VOH 99.9 Radio
-https://strm.voh.com.vn/radio/channel3/chunklist_w309271778.m3u8
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/83684/logo_FbQ8Vln5md.png",RFI Tiếng Việt Radio
-https://rfivietnamien96k.ice.infomaniak.ch/rfivietnamien-96k.mp3
+#EXTINF:-1,VOH AM
+https://strm.voh.com.vn/radio/channel2/chunklist_w2147462479.m3u8
+#EXTINF:-1,Radio Voice of Vietnam
+https://www.qurantranslations.net/sound/English/AbdulBaset_AbdulSamad/002.mp3
+#EXTINF:-1,RFI Tiếng Việt - 64 - Vietnam - news
+https://rfienvietnamien64k.ice.infomaniak.ch/rfienvietnamien-64.mp3
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/83679/logo_zoYcQQUQRj.png",VOH 610 AM Radio
 https://strm.voh.com.vn/radio/channel2/chunklist_w290535666.m3u8
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/83677/logo_Bg1MndJWux.png",Quran in Vietnamese Radio
 https://www.qurantranslations.net/sound/English/AbdulBaset_AbdulSamad/002.mp3?type=.mp3%2F%3Bstream.mp3
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/83682/logo_BZbr8LlJri.png",VOV 2 Radio
 https://stream.vovmedia.vn/vov2/
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/83687/logo_pgQpsNKmat.png",VOV 5 World 24/7 English Radio
-https://stream.vovmedia.vn/vov247

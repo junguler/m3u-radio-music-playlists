@@ -9,42 +9,36 @@ http://luyse.mediatriple.net/luystv/luystv.smil/playlist.m3u8
 http://dreamsiteradiocp.com:8056/stream
 #EXTINF:-1,R Rossii
 http://icecast.vgtrk.cdnvideo.ru/rrzonam_mp3_128kbps
-#EXTINF:-1,Ethno IMusic AM
-https://radio.imusic.am/ethno.mp3
 #EXTINF:-1,La UFM Estereo
 http://c11.radioboss.fm:8054/stream
 #EXTINF:-1,Activist Radio
 http://216.55.165.146:8000/PRNaudio.mp3?hash=1579164785294
-#EXTINF:-1,Classic IMusic AM
-https://radio.imusic.am/classic.mp3
 #EXTINF:-1,Radio Mayak Armenia
 http://icecast.vgtrk.cdnvideo.ru/mayakfm_mp3_128kbps
 #EXTINF:-1,La Voz del Cafe
 https://server2.ejeserver.com:8224/stream?1591859730546
-#EXTINF:-1,Fusion IMusic AM
-https://radio.imusic.am/fusion.mp3
-#EXTINF:-1,Jammin IMusic AM
-https://radio.imusic.am/jammin.mp3
 #EXTINF:-1,Armenian Christian Radio  Bashde Radio
 https://streams.radio.co/sa0bf8ec29/listen
+#EXTINF:-1,Armenian Gospel Radio
+https://s8.myradiostream.com:15554/listen.mp3?nocache=1766011322
 #EXTINF:-1,Radio Armenia
 http://direct.radioarmenie.com:9029/stream
 #EXTINF:-1,radio-fama
 http://eu.stream4cast.com:8036/stream/?
-#EXTINF:-1,Buddy Radio - บัดดี้เรดิโอ 104.5 MHz Listen live
-https://apps4.mcot.net/stream579.aac
+#EXTINF:-1,Exclusively George Jones Listen live
+https://nl4.mystreaming.net/er/georgejones/icecast.audio
+#EXTINF:-1,DJ-Marcel Listen live
+https://djmarcel.stream.laut.fm/djmarcel?t302=2025-12-17_22-42-07&uuid=abf8abcd-e124-432a-952b-e128dda57a6c
 #EXTINF:-1,Авторадио
 https://pub0102.101.ru:8443/stream/air/mp3/256/100
-#EXTINF:-1,IMusic.am-fusion
-https://radio.imusic.am/fusion.mp3?1596641052
+#EXTINF:-1,WOLR
+https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1,Radio Mayak
 https://icecast-vgtrk.cdnvideo.ru/mayakfm_mp3_128kbps
 #EXTINF:-1,Радио России
 https://icecast-vgtrk.cdnvideo.ru/rrzonam_mp3_128kbps
 #EXTINF:-1,Europa plus
 http://europaplus.hostingradio.ru:8014/europaplus320.mp3
-#EXTINF:-1,FM 105.5 Yerevan
-http://14842.cloudrad.io:9536/live
 #EXTINF:-1,Lav Radio - Armenian Radio
 http://eu.stream4cast.com:8000/stream
 #EXTINF:-1,Lav Radio Mix - Armenian Radio
@@ -59,8 +53,6 @@ http://stream.radioaurora.am:8050/
 http://eu.stream4cast.com:8030/stream.mp3
 #EXTINF:-1,Radio Impuls
 http://stream.radiovan.fm/stream/index.m3u8
-#EXTINF:-1,Radio Hay
-http://14678.cloudrad.io:9440/live
 #EXTINF:-1,Sputnik Armenian Արմենիա
 https://icecast-rian.cdnvideo.ru/voicearm1
 #EXTINF:-1,Радио Шансон
@@ -77,25 +69,35 @@ http://dreamsiteradiocp.com:8056/
 http://sc7.mystreamserver.com:8036/
 #EXTINF:-1,Radio XFM radio
 http://eu.stream4cast.com:8050/stream
+#EXTINF:-1,Radio Jan 90.7 FM
+https://stream02.pcradio.biz/radio_jan_907-med
+#EXTINF:-1,Radio Fama
+https://stream02.pcradio.biz/radiofama_am-med
+#EXTINF:-1,Radio Marshall 103.5
+https://stream02.pcradio.biz/marshall_am-med
+#EXTINF:-1,Vem Radio 91.1 FM
+https://stream02.pcradio.biz/vem_am-med
+#EXTINF:-1,Radio XFM
+https://stream02.pcradio.biz/rad_xfmradarm-med
 #EXTINF:-1,Радио Шансон Армения
 https://chanson.hostingradio.ru:8041/chanson128.mp3
-#EXTINF:-1,Сити-ФМ
-http://14678.cloudrad.io:9440/live?ver=684682
 #EXTINF:-1,YAN - Folk Tunes from Armenia
 https://worldradio.online/proxy/?q=http://83.169.36.75:8000/stream?1573722895304
+#EXTINF:-1,FM-105.5 (Armenia) - Pop Hits from Armenia
+https://worldradio.online/proxy/?q=http://14842.cloudrad.io:9536/live
 #EXTINF:-1,Radio Fama - Pop Hits from Armenia
 https://worldradio.online/proxy/?q=http://eu.stream4cast.com:8036/stream/
 #EXTINF:-1,Radio Marshall - Pop Hits from Armenia
 https://worldradio.online/proxy/?q=http://eu.stream4cast.com:8030/stream.mp3
 #EXTINF:-1,Radio Aurora - Pop Hits from Armenia
 https://worldradio.online/proxy/?q=http://am.radioaurora.am:8010/al.mp3
+#EXTINF:-1,Lratvakan Radio - Talk Radio from Armenia
+https://worldradio.online/proxy/?q=http://212.34.233.78:8000/live
+#EXTINF:-1,Radio Hay - Pop Hits from Armenia
+https://worldradio.online/proxy/?q=http://14678.cloudrad.io:9440/live
 #EXTINF:-1,Public Radio of Armenia - Pop Hits from Armenia
 https://worldradio.online/proxy/?q=http://46.182.174.131:8000/stream
 #EXTINF:-1,Radio Jazz FM - Smooth Jazz from Armenia
 https://radiojazzfm.am/audio/BennyGoodman-OhBaby.mp3
-#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/72215.v4.png",Armenian Gospel Radio
-https://s8.myradiostream.com:15554/listen.mp3?nocache=1762527482
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/station-logo-no.png",Mega Armenia
 https://media.rcn.com.co/audios/lamega/Daniel_tres_palacios.mp3
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80146/logo_3SMBJe7pEl.png",Armenian Gospel Radio
-https://s8.myradiostream.com:15554/listen.mp3?nocache=1765138471

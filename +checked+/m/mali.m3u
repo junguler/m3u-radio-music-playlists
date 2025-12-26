@@ -1,4 +1,10 @@
 #EXTM3U
+#EXTINF:-1,RMV
+http://51.210.148.30:8000/
+#EXTINF:-1,RFI Afrique
+https://rfiafrique64k.ice.infomaniak.ch/rfiafrique-64.mp3
+#EXTINF:-1,Radio Wassoulou Internationale
+https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1,Radio Madjoura 94.0
 http://185.41.154.86:8004
 #EXTINF:-1,Caravane
@@ -7,6 +13,14 @@ https://caravan.radioca.st/stream
 https://sonic.sistemahost.es:7000/dialcomercial.mp3
 #EXTINF:-1,Bone Pool Radio Listen live
 https://streamer.radio.co/s49a58b236/low
+#EXTINF:-1,tunein Listen live
+https://tunein.stream.laut.fm/tunein?ref=radiode&t302=2025-12-18_15-19-23&uuid=7f843468-755a-4bdd-9353-04d9406f9aa9
+#EXTINF:-1,RauteMusik - Karneval Listen live
+https://rautemusik.stream43.radiohost.de/rm-karneval_mp3-192?ref=rm5beta&upd-meta&upd-scheme=https&_art=dD0xNzY2MDcxNDYzJmQ9YmJlZThlNGU5Y2M3N2IyZTAxZmM
+#EXTINF:-1,Exclusively Glen Campbell Listen live
+https://nl4.mystreaming.net/er/glencampbell/icecast.audio
+#EXTINF:-1,WXPN Listen live
+https://wxpnhi.xpn.org/xpnhi
 #EXTINF:-1,Voice of America - VOA Mali
 http://voa-ingest.akamaized.net/hls/live/2035213/152_138L/playlist.m3u8
 #EXTINF:-1,RADIO KLEDU
@@ -21,37 +35,37 @@ http://185.41.154.86:8004/listen.pls
 https://fps5.listen2myradio.com:2199/listen.php?ip=78.129.139.48\u0026port=9880\u0026type=s1
 #EXTINF:-1,Radio Madjoura Touba radio
 http://185.41.154.86:8004/stream.nsv
+#EXTINF:-1,Radio Dankoun
 #EXTINF:-1,Africa N°1
 http://african1paris.ice.infomaniak.ch/african1paris-64.mp3
 #EXTINF:-1,Bamako24
 https://fps5.listen2myradio.com:2199/listen.php?ip=78.129.139.48&port=9880&type=s1
 #EXTINF:-1,Djenneca24
 https://fps2.listen2myradio.com:2199/listen.php?ip=109.169.23.17&port=8966&type=s1
+#EXTINF:-1,Radio Azawad Internation
 #EXTINF:-1,Antenna Web Mali
 https://italiavera.radioca.st/stream
-#EXTINF:-1,BBC Somali Radio - 101 - The United Kingdom Of Great Britain And Northern Ireland - news - somali - talk
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_somali_radio.m3u8
+#EXTINF:-1,Bollywood Armaan malik - 0 - India - music
+https://2.mystreaming.net/uber/bollywoodarmaanmalik/icecast.audio
 #EXTINF:-1,KBUU-LP 97.5 Malibu -  CA - 128 - The United States Of America - adult album alternative - malibu
 http://livefta.malimarcdn.com/ftaedge00/nat.sdp/playlist.m3u8
 #EXTINF:-1,Paranormalium - 24 - Poland - talk
 http://shoutcast.paranormalium.pl:8000/5
-#EXTINF:-1,Paranormalium [OPUS 8kbps] - 0 - Poland - 
-https://azuracast.paranormalium.pl/listen/radio_paranormalium/opus8
 #EXTINF:-1,Radio Caprice Minimalism - 320 - The Russian Federation - instrumental - minimalism
 http://213.141.131.10:8000/minimalism
-#EXTINF:-1,Radio Paranormalium - 128 - Poland - 
-https://azuracast.paranormalium.pl/listen/radio_paranormalium/1
-#EXTINF:-1,Radyo Natin Malita - 64 - The Philippines - 
-https://link.radyonatinfm.com/listen/dxsa/malita
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/123996.v1.png",Djenneca24
 https://fps2.listen2myradio.com:2199/listen.php?ip=109.169.23.17&ampampport=8966&ampamptype=s1
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/98289.v6.png",Bamako24
 https://fps5.listen2myradio.com:2199/listen.php?ip=78.129.139.48&ampampport=9880&ampamptype=s1
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/ABQ6C.png",Khasso Radio
+https://26343.live.streamtheworld.com/SAM06AAC006.mp3
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/NQ38D0.png",Radio Madjoura Touba
 http://185.41.154.86:8004/stream
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/79184/logo_gO5sDY8Nez.png",Hero Radio (Mali)
 https://a2.asurahosting.com:6790/mali.mp3
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/79181/logo_iL5lZuctgS.png",Antenna Web Bamako Radio
 https://halo.streamerr.co/listen/italiavera/stream.mp3
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/79182/logo_v7h0fzDxPn.png",Antenna Web Gao Radio
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/79183/logo_DiTCCspcxt.png",Antenna Web Mali Radio
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/79158/logo_5TNuOSWb98.png",Bamako24 Radio
 https://fps5.listen2myradio.com:2199/listen.php?ip=78.129.139.48&ampport=9880&amptype=s1

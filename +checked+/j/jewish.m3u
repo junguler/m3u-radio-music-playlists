@@ -1,20 +1,39 @@
 #EXTM3U
 #EXTINF:-1,Eco 99 FM
 http://eco01.mediacast.co.il/ecolive/99fm/icecast.audio
+#EXTINF:-1,Radio Tel Aviv 102 FM
+https://cdn88.mediacast.co.il/102fm-tlv/102fm_aac/icecast.audio
+#EXTINF:-1,Radio Savta
+https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1,J-AIR 88FM
 http://s19.myradiostream.com:4918/
 #EXTINF:-1,Toker FM
 https://broadcast.adpronet.com/radio/6060/radio.mp3
+#EXTINF:-1,Kol-Barama
+https://cdn.cybercdn.live/Kol_Barama/Live_Audio/icecast.audio
+#EXTINF:-1,Radio Hamesh
+http://995.livecdn.biz:8000/995fm?
 #EXTINF:-1,Radio B.B Bukharian Jewish Music
 https://liveradio.co.il:1100/?type=http&ampnocache=1641830637
+#EXTINF:-1,Nachum Segal Network
+https://nsn.streamguys1.com/nsnstream
+#EXTINF:-1,רדיו עסקים
+https://icecast.live/ivr
+#EXTINF:-1,92.3 The Fox
+https://16643.live.streamtheworld.com/KOFXFMAAC.aac?dist=onlineradiobox
 #EXTINF:-1,Ivri 6
 https://streaming.radio.co/sa06221901/listen
 #EXTINF:-1,Agape Radio
 https://s3.radio.co/s43b65d791/listen
-#EXTINF:-1,J-Air
-http://176.31.111.65:4918/
+#EXTINF:-1,Mt. Scopus Radio 106.0 FM
+https://msradio.huji.ac.il/wwwroot/basics/48Kmancreation.mp3
+#EXTINF:-1,Apple Kugel Radio
+#EXTINF:-1,Praising YAH Radio
+http://streamingp.shoutcast.com/JamendoLounge?lang=*
 #EXTINF:-1,Radio RCJ.Info 94.8 FM
 https://str0.creacast.com/radio-rcj
+#EXTINF:-1,רדיו נושמים מזרחית
+https://mzr.mediacast.co.il/mzradio
 #EXTINF:-1,Chabad Radio
 http://streams.radio.co/s9f35c3afc/listen
 #EXTINF:-1,Radio Yiddish Pour Tous
@@ -27,12 +46,14 @@ http://judaica.ice.infomaniak.ch:80/judaica-high
 http://radiokolhachalom.ice.infomaniak.ch/radiokolhachalom-high.mp3
 #EXTINF:-1,Radio-J.com
 http://208.93.20.18:80/radioj
+#EXTINF:-1,93fm רדיו קול חי Live voice radio
+https://live.kcm.fm/live-new
 #EXTINF:-1,Kol Barama
 https://radio.streamgates.net/stream/kolbarama
 #EXTINF:-1,Toker FM radio
 http://dc3.serverse.com:1120/?type=http\u0026nocache
+#EXTINF:-1,Radio Noshmim Mizrahit radio
 #EXTINF:-1,Kol-Barama radio
-https://cdn.cybercdn.live/Kol_Barama/Live_Audio/icecast.audio
 #EXTINF:-1,Radio B.B Bukharian Jewish Music radio
 https://liveradio.co.il:1100/?type=http\u0026nocache=1641830637
 #EXTINF:-1,Radio Hamesh radio
@@ -43,12 +64,12 @@ https://das-edge11-live365-dal03.cdnstream.com/a81295
 https://das-edge12-live365-dal02.cdnstream.com/a42872
 #EXTINF:-1,Hebrew Institute Live!
 https://das-edge11-live365-dal03.cdnstream.com/a73249
-#EXTINF:-1,The Prophetic Encounter
-https://das-edge13-live365-dal02.cdnstream.com/a76558
+#EXTINF:-1,JewishMusic Stream
+https://free.rcast.net/212511
+#EXTINF:-1,Jewish Radio Network
+https://free.rcast.net/2037
 #EXTINF:-1,J-AIR - Melbourne - 88.0 FM (MP3) - 128 - Australia - community radio - jewish - various
 https://stream.jewishmusicstream.com:8000/
-#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/02/30583.v4.png",Nachum Segal Network
-https://nsn.streamguys1.com/nsnstream
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/126642.v10.png",Radio keazvmizrchit (רדיו קצב מזרחית)
 https://liveradio.co.il:9040/
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/10863.v7.png",Radio Orenu
@@ -57,6 +78,8 @@ https://listen7.myradio24.com/orenu
 http://dc3.serverse.com:1120/?type=http&ampnocache
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/93024.v3.png",RadioJ
 https://stream.rcs.revma.com/138w9xn95tuvv
+#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/10864.v9.png",Radio Breslev
+https://stream.radiobreslev.co.il/live
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/52025.v7.png",SIMJA TORAH RADIO
 http://204.12.193.98:8381/
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/7163.v5.png",Radio Judaica Lyon
@@ -66,24 +89,18 @@ https://live.kcm.fm/livemusic
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/10789.v6.png",Radio B.B Bukharian Jewish Music
 https://liveradio.co.il:1100/?type=http&ampampnocache=1641830637
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/10791.v4.png",Radio Kol-Chai
-https://live.kcm.fm/live-new
-#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/105876.v6.png",רדיו כחול לבן
-https://ams-pioneer02.dedicateware.com/appa
-#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/10865.v10.png",Radio Noshmim Mizrahit
-https://mzr.mediacast.co.il/mzradio
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/11033.v11.png",Radio Breslov Karmiel
 https://securestreams6.autopo.st:2294/mp3
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/10911.v8.png",Radio 2000, Tel Aviv
 https://cdn.cybercdn.live/Radio2000/MP3/icecast.audio
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/100223.v6.png",רדיו עסקים
-https://icecast.live/ivr
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/83938/logo_jIrew5xLxE.png",Radio keazvmizrchit (רדיו קצב מזרחית)
 https://liveradio.co.il:9089/stream
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/83897/logo_rWLHZcrN3l.png",Kabbalah TV Radio
+https://edge3.uk.kab.tv/live/tvrus-rus-high/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/83867/logo_ylqgKnuIRI.png",Yeshua Messianic Radio
 http://dc3.serverse.com:1120/?type=http
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/83866/logo_VhkAbNpkjR.png",RADIO 5
 https://liveradio.co.il:8070/stream
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/83891/logo_UKyFVOjV6x.png",Kabbalah TV Radio
-https://edge2.uk.kab.tv/live/tv66-heb-medium/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/95680/logo_qM6lTTPoXR.png",Radio Shofar FM
 http://109.169.15.16:36659/stream

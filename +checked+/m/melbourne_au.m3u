@@ -1,6 +1,6 @@
 #EXTM3U
 #EXTINF:-1,ABC Classic FM
-https://mediaserviceslive.akamaized.net/hls/live/2038316/classicfmnsw/masterhq.m3u8
+https://streaming.abc-cdn.net.au/audio/hls/classicnsw.m3u8
 #EXTINF:-1,Islamic Voice Radio
 http://streamer3.rightclickitservices.com:9755/;
 #EXTINF:-1,3AW Radio
@@ -21,20 +21,8 @@ http://stream.lightfm.com.au:8138/;stream.nsv
 https://nicherad.radioca.st/stream2
 #EXTINF:-1,TheLight Mix
 http://27.131.74.8:8148/;
-#EXTINF:-1,it&#039;s Chill
-https://securestream.cuelightsmedia.com.au/listen/chilled/CLM.aac
 #EXTINF:-1,La family tu radio
 http://198.245.50.150:5346/;
-#EXTINF:-1,Voice Laikos
-https://sp2.streams.ovh:7043/steam
-#EXTINF:-1,3RPP
-https://streaming.radio.co/sfbd79db12/listen
-#EXTINF:-1,3SER
-https://s3.radio.co/s8f8288fe9/low
-#EXTINF:-1,J-Air
-http://s19.myradiostream.com:4918/;
-#EXTINF:-1,Thelight Christmas
-https://stream.thelight.com.au:8150/;stream/1
 #EXTINF:-1,Smoothjazz.Melbourne
 https://stream.radio.co/s22b123b09/listen
 #EXTINF:-1,CroRadio
@@ -59,16 +47,25 @@ https://wz7liw.scahw.com.au/live/7girlpower_128.stream/playlist.m3u8
 https://wz7liw.scahw.com.au/live/7firstnations_128.stream/playlist.m3u8
 #EXTINF:-1,Mac Fm Radio Melbourne 88.0 FM &amp; 151.8 FM
 http://s33.myradiostream.com:16972/listen.mp3
+#EXTINF:-1,ABC Local Radio 100.7  Gippsland, VIC (MP3)
+http://abc.streamguys1.com/live/localgippsland/icecast.audio
+#EXTINF:-1,ABC Local Radio 774 Melbourne (AAC)
+http://abc.streamguys1.com/live/localmelbourne/icecast.audio
+#EXTINF:-1,ABC Local Radio 774 Melbourne (MP3)
+#EXTINF:-1,KIIS 101.1
+https://28863.live.streamtheworld.com/ARN_KIIS1011AAC.aac
+#EXTINF:-1,Gold 104.3
+https://14533.live.streamtheworld.com/ARN_GOLD1043AAC.aac
 #EXTINF:-1,Smooth FM 91.5
 https://23153.live.streamtheworld.com/SMOOTH915_AAC48.aac
-#EXTINF:-1,Hope St Radio
-http://hopestreetradio.out.airtime.pro:8000/hopestreetradio_a
 #EXTINF:-1,Free FM Rock Austral
 https://freefmrock.radioca.st/;
 #EXTINF:-1,Light FM 89.9
 http://stream.thelight.com.au:8138/;
 #EXTINF:-1,3RPH 1179 AM
 http://23203.live.streamtheworld.com/3RPHAAC_SC
+#EXTINF:-1,ABC Radio Australia 20220701
+https://streaming.abc-cdn.net.au/audio/hls/ramulti.m3u8
 #EXTINF:-1,Triple M Melbourne
 https://wz3drp.scahw.com.au/live/3mmm_32.stream/playlist.m3u8
 #EXTINF:-1,Fox 101.9

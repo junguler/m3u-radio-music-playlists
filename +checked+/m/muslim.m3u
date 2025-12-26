@@ -1,16 +1,16 @@
 #EXTM3U
+#EXTINF:-1,Taleemul Islam Radio
+https://streamdb3web.securenetsystems.net/v5/index.cfm?stationCallSign=FMRADIO
 #EXTINF:-1,Radio 1 Sound
 http://radio1sound.listen2myradio.com/
-#EXTINF:-1,Saut Ul Quran
-https://whmsonic.radio.gov.pk:7002/stream?type=http&nocache=12
 #EXTINF:-1,Akra FM
 https://cdn3.akradyo.net/akracanli2/_definst_/livestream_aac/playlist.m3u8
-#EXTINF:-1,Radio Coran
-https://webradio.tda.dz/Coran_64K.mp3
 #EXTINF:-1,Islamic Voice Radio
 http://streamer3.rightclickitservices.com:9755/;
 #EXTINF:-1,Islamic Lectures Centre
 https://islamicl.radioca.st/;
+#EXTINF:-1,Dost FM
+http://yayin.dostfm.com:8920/;
 #EXTINF:-1,Semerkand Radyo
 https://mtisvwurbfcyslive.mediatriple.net/mtisvwurbfcyslive/broadcast_58e23cb112296.smil/Playlist.m3u8
 #EXTINF:-1,Radyo Tulu
@@ -27,6 +27,8 @@ http://yayin1.canliyayin.org:7010/;
 http://yayin2.canliyayin.org:7052/;stream.mp3
 #EXTINF:-1,En Radyo
 http://yayin2.canliyayin.org:7222/;
+#EXTINF:-1,Hedef Radyo
+http://stream.radyogrup.com:4010/;
 #EXTINF:-1,Radyo Denge
 http://yayin1.canliyayin.org:8278/;
 #EXTINF:-1,Birlik FM Radyo
@@ -35,8 +37,6 @@ http://yayin2.canliyayin.org:7082/;stream.nsv
 http://yayin1.canliyayin.org:8210/;
 #EXTINF:-1,Faydatidianiya
 http://listen.senemultimedia.net:5526/;
-#EXTINF:-1,Sas Fm Surabaya
-http://u.klikhost.net:7102/stream
 #EXTINF:-1,Damu FM
 http://e12440.cloudrad.io:8724/;
 #EXTINF:-1,Islam Radio Deutschland
@@ -87,10 +87,10 @@ http://162.244.80.118:4900/stream.mp3?ver=604498
 http://live.mp3quran.net:9842/
 #EXTINF:-1,قناة الجزيرة
 https://live-hls-web-aja.getaj.net/AJA/06.m3u8
+#EXTINF:-1,Jeevay Pakistan Quran Radio
+http://s2.reliastream.com:8239/Tune-In%20Links/;
 #EXTINF:-1,الرقية الشرعية
 http://live.mp3quran.net:9936/
-#EXTINF:-1,Aljazeera English
-http://live-hls-web-aje.getaj.net/AJE/06.m3u8
 #EXTINF:-1,القرآن الكريم - محمود علي البنا
 http://live.mp3quran.net:9810/
 #EXTINF:-1,Islam Sobhi
@@ -101,6 +101,10 @@ http://live.mp3quran.net:9728/
 https://partwota.cdn.mgmlcdn.com/quranrdoorg/quranrdo.stream_aac/chunklist.m3u8
 #EXTINF:-1,تلاوات خاشعة
 http://live.mp3quran.net:9992/
+#EXTINF:-1,AL-QURAN BANGLA
+http://66.45.232.131:9994/;stream/1/;
+#EXTINF:-1,salaammedia
+https://iceant.antfarm.co.za/Salaam
 #EXTINF:-1,Al-Faruq Purwokerto Banyumas &lt;24kb aac+&gt;
 http://alfaruq.radioislam.my.id:12000/;
 #EXTINF:-1,Radio Central 24

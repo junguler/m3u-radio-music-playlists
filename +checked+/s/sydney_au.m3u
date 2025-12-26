@@ -1,32 +1,38 @@
 #EXTM3U
 #EXTINF:-1,ABC NewsRadio
-https://mediaserviceslive.akamaized.net/hls/live/2038311/newsradio/master.m3u8
+https://streaming.abc-cdn.net.au/audio/hls/newsradio.m3u8
 #EXTINF:-1,ABC triple j
-https://mediaserviceslive.akamaized.net/hls/live/2038308/triplejnsw/index.m3u8
+https://streaming.abc-cdn.net.au/audio/hls/triplejnsw.m3u8
+#EXTINF:-1,ABC Radio National
+https://streaming.abc-cdn.net.au/audio/hls/rnnsw.m3u8
 #EXTINF:-1,ABC Sydney
-https://mediaserviceslive.akamaized.net/hls/live/2038302/localsydney/masterhq.m3u8
+https://streaming.abc-cdn.net.au/audio/hls/localsydney.m3u8
+#EXTINF:-1,ABC KIDS listen
+https://streaming.abc-cdn.net.au/audio/hls/abckids.m3u8
+#EXTINF:-1,ABC Double J Radio
+https://streaming.abc-cdn.net.au/audio/hls/doublejnsw.m3u8
 #EXTINF:-1,ABC Jazz Radio
-https://mediaserviceslive.akamaized.net/hls/live/2038319/abcjazz/masterhq.m3u8
-#EXTINF:-1,ABC Sport
-https://mediaserviceslive.akamaized.net/hls/live/2038320/grandstand/masterhq.m3u8
+https://streaming.abc-cdn.net.au/audio/hls/abcjazz.m3u8
+#EXTINF:-1,ABC Country
+https://streaming.abc-cdn.net.au/audio/hls/abccountry.m3u8
 #EXTINF:-1,ABC Classic 2
-https://mediaserviceslive.akamaized.net/hls/live/2038317/classic2/masterhq.m3u8
+https://streaming.abc-cdn.net.au/audio/hls/classic2.m3u8
 #EXTINF:-1,693 SENQ
 https://sen.streamguys1.com/SorryOutside/playlist.m3u8
 #EXTINF:-1,ABC triple j Unearthed
-https://mediaserviceslive.akamaized.net/hls/live/2038305/triplejunearthed/masterhq.m3u8
+https://streaming.abc-cdn.net.au/audio/hls/triplejunearthed.m3u8
 #EXTINF:-1,2GB Radio
 https://www.2gb.com/
 #EXTINF:-1,SBS PopAsia
 https://sbs-ice.streamguys1.com/sbs-popasia
 #EXTINF:-1,SBS Chill
 https://sbs-ice.streamguys1.com/sbschill
-#EXTINF:-1,ABC AFL Extra
-https://mediaserviceslive.akamaized.net/hls/live/2038313/itineranttwo/masterhq.m3u8
 #EXTINF:-1,ABC Sport Extra
-https://mediaserviceslive.akamaized.net/hls/live/2038312/itinerantthree/masterhq.m3u8
+https://streaming.abc-cdn.net.au/audio/hls/itinerantthree.m3u8
 #EXTINF:-1,Australian Country Radio
 https://streaming.radio.co/s5ea3fdd1c/listen
+#EXTINF:-1,The Wolf Australia
+http://procyon.shoutca.st:8193/stream
 #EXTINF:-1,OrbitRadio.FM
 http://195.23.85.126:8401/stream/;
 #EXTINF:-1,ItaliaFm 2
@@ -43,8 +49,6 @@ https://sbs-ice.streamguys1.com/sbs2
 https://indianlink1.radioca.st/;
 #EXTINF:-1,Sawt El Farah
 http://audiostreaming.itworkscdn.com:9036/;*.nsv
-#EXTINF:-1,Alfalah Radio
-http://janus.shoutca.st:8263/;stream.mp3
 #EXTINF:-1,SBS Radio 1
 https://sbs-ice.streamguys1.com/sbs1
 #EXTINF:-1,Tune India Radio
@@ -63,10 +67,10 @@ http://s2.stationplaylist.com:7014/listen.aac
 http://s4.onweb.gr:8430/;
 #EXTINF:-1,RadioSagar
 http://eu1.fastcast4u.com:3084/;stream.mp3
+#EXTINF:-1,Narodnjaci Narodni Evergreen Aus
+https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1,Sound of Hope Australia (Mandarin)
 https://ozvoice.out.airtime.pro/ozvoice_a
-#EXTINF:-1,Free Angel 898
-https://free.rcast.net/200453
 #EXTINF:-1,ΚΡΗΤΗ ΡΑΔΙΟ
 https://free.rcast.net/200308
 #EXTINF:-1,Sound of Hope Australia (Cantonese)

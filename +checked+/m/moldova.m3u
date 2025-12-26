@@ -1,24 +1,26 @@
 #EXTM3U
 #EXTINF:-1,Radio Moldova Tineret
 https://radiolive.trm.md:8001/hls_rmt/tineret.m3u8
-#EXTINF:-1,Radio Moldova Muzical
-https://radiolive.trm.md:8001/hls_rmm/muzical.m3u8
 #EXTINF:-1,Jurnal FM
 https://audio.jurnalfm.md/lq
 #EXTINF:-1,Radio Moldova
 https://radiolive.trm.md:8001/hls/actualitati.m3u8
 #EXTINF:-1,Europa Plus 106.4 FM
 http://ep128.hostingradio.ru:8030/ep128
-#EXTINF:-1,Radio 7
-http://radio7.md:8000/128
+#EXTINF:-1,Wilin Vision Radio
+https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1,Radio RECORD Moldova
 https://air.radiorecord.md/RecordMD
 #EXTINF:-1,Radio Micul Samaritean
 https://s5.radio.co/sfff7b7e97/listen
+#EXTINF:-1,Pro Life FM
+http://streamingp.shoutcast.com/JamendoLounge?lang=*
 #EXTINF:-1,Muz FM
 http://live.muzfm.md:8000/muzfm
 #EXTINF:-1,Haliz Gagauz Radiosu
 http://s02.radio-tochka.com:8020/radio?type=.mp3/stream.mp3
+#EXTINF:-1,Radio Bucovina
+http://live.radiobucovina.ro:8000/?1510244251076.mp3
 #EXTINF:-1,Kiss FM Chisinau Listen live
 https://live.kissfm.md:443/kissfm.chisinau
 #EXTINF:-1,Rádio São Paulo Rio Mais Listen live
@@ -27,10 +29,14 @@ https://s09.maxcast.com.br:8046/live
 https://positivealtradio.streamguys1.com/positivegold
 #EXTINF:-1,Радио Ваня - Свежий бит Listen live
 https://icecast-radiovanya.cdnvideo.ru/rv_hit
+#EXTINF:-1,Latriperie Listen live
+https://latriperie.stream.laut.fm/latriperie?t302=2025-12-18_15-31-56&uuid=597acb7f-968f-447c-be14-22be3abefaf6
 #EXTINF:-1,Enigmatic Station Listen live
-https://listen2.myradio24.com/8226
+https://listen8.myradio24.com/8226
 #EXTINF:-1,100% Weihnachts-Karaoke Listen live
 https://regiocast.streamabc.net/wmu-karaoke-mp3-192-7660118
+#EXTINF:-1,Ретро FM Кишинев 89,1 FM Listen live
+https://retro.hostingradio.ru:8043/retro256.mp3
 #EXTINF:-1,Sweet Radio SVG Listen live
 https://streaming.radio.co/sdf4651481/listen
 #EXTINF:-1,Positively 1990’s Listen live
@@ -45,8 +51,6 @@ https://streams.radiozum.md/listen/zum2/ZUM2
 https://hitfm.hostingradio.ru/hitfm96.aacp
 #EXTINF:-1,Radio Zum 1
 https://streams.radiozum.md/listen/zum1/ZUM1
-#EXTINF:-1,Radio Chișinău
-https://radiochisinau.md/hls/RChisinau.m3u8
 #EXTINF:-1,Авторадио
 https://pub0102.101.ru:8443/stream/air/mp3/256/100
 #EXTINF:-1,Юмор FM
@@ -55,8 +59,6 @@ https://ic6.101.ru:8000/stream/air/aac/64/102
 https://s0.radioheart.ru:8000/livedeephousemoldovaradio
 #EXTINF:-1,России
 https://icecast-vgtrk.cdnvideo.ru/rrzonam_mp3_64kbps
-#EXTINF:-1,Radio ZUM3
-https://streams.radiozum.md/listen/zum3/ZUM3
 #EXTINF:-1,Ретро FM
 http://retro.hostingradio.ru:8043/retro256.mp3
 #EXTINF:-1,LSM Radio Network
@@ -69,14 +71,12 @@ http://rusradio.hostingradio.ru/rusradio96.aacp
 http://air.radiorecord.md/recordmdhd
 #EXTINF:-1,Радио Дача Тирасполь
 http://online2.gkvr.ru:8000/dacha_nno_64.aac
-#EXTINF:-1,EcoFM
-http://188.138.204.98:8000/
 #EXTINF:-1,PRODj Radio
 http://live.prodjradio.net:8000
+#EXTINF:-1,Radio BEAT
+http://asculta.radiobeat.md:9998/stream.nsv
 #EXTINF:-1,Новое Радио
 https://live.muzfm.md/muzfm
-#EXTINF:-1,Радио 7
-http://radio7.md:8000/128?1515444530591.mp3
 #EXTINF:-1,Love Radio
 http://37.233.41.76:8000/lovefm
 #EXTINF:-1,HIT FM 101.7 radio
@@ -85,16 +85,52 @@ https://stream.dixi.md:9443/HitFM
 https://audio.jurnalfm.md/hq
 #EXTINF:-1,Авторадио Молдова radio
 https://streams.radiozum.md/listen/autoradio/autoradio
+#EXTINF:-1,Radio BEAT radio
+https://ssl.omegahost.ro/9998/stream
 #EXTINF:-1,Radio Relax Moldova radio
 https://stream.dixi.md:9443/RadioRelax
+#EXTINF:-1,Record Rock radio
+https://air.radiorecord.md/rock.aacp
 #EXTINF:-1,Love radio 91.6 FM Chișinău
 https://stream.mmgmoldova.md:8443/lovefm
 #EXTINF:-1,Dance FM 101.3 radio
 https://stream.mmgmoldova.md:8443/dancefm
 #EXTINF:-1,FM Radio Manele
 http://213.141.131.10:8000/manele
+#EXTINF:-1,Radio Zum 93.3 FM
+https://stream02.pcradio.biz/radiozum_933-med
+#EXTINF:-1,Radio OM Activ
+https://stream02.pcradio.biz/om_activ-med
+#EXTINF:-1,Kamonoff Radio
+https://stream02.pcradio.biz/kamonoff_radio-med
+#EXTINF:-1,RECORD Moldova Radio
+https://stream02.pcradio.biz/rad_rdrcrdmd-med
+#EXTINF:-1,Zdob si Zdub Radio
+https://stream02.pcradio.biz/Zdob_si_Zdub-med
+#EXTINF:-1,Novoe Radio (Moldova)
+https://stream02.pcradio.biz/novoe_md-med
+#EXTINF:-1,Hit FM 101,7 (Chisinau) Radio
+https://stream02.pcradio.biz/hitfm_kishinev-med
+#EXTINF:-1,HIT FM Russkoe Hitovoe Radio
+https://stream02.pcradio.biz/rad_hitfmrsskymd-med
+#EXTINF:-1,Megapolis FM (Chisinau) Radio
+https://stream02.pcradio.biz/rad_megaplisfmmd-med
+#EXTINF:-1,MUSI-Q Radio
+https://stream02.pcradio.biz/rad_musiqmd-med
+#EXTINF:-1,Radio Relax Funk & Soul
+https://stream02.pcradio.biz/rad_rlxfunkslmd-med
+#EXTINF:-1,Master Class FM Radio
+https://stream02.pcradio.biz/rad_mstrclassmd-med
+#EXTINF:-1,Stariy Portfel Radio
+https://stream02.pcradio.biz/rad_oldportfl-med
+#EXTINF:-1,Autoradio (Chisinau)
+https://stream02.pcradio.biz/rad_avtchishnu-med
+#EXTINF:-1,Radio Relax - Oasis
+https://stream02.pcradio.biz/rad_rdrelxsis-med
 #EXTINF:-1,Radio Chanson
 http://chanson.hostingradio.ru:8041/chanson256.mp3
+#EXTINF:-1,Master Class FM
+https://listen3.myradio24.com/master1
 #EXTINF:-1,Beat FM 96.2
 https://drh-connect.dline-media.com/beatfm
 #EXTINF:-1,Radio RFI R.
@@ -125,22 +161,12 @@ https://radio3.dixi.md/listen/hit_fm_best_hits/hitfm_besthits128.aac
 https://radio3.dixi.md/listen/hit_fm_hot_hits/hitfm_hothits128.aac
 #EXTINF:-1,HIT FM Tricolor de Hituri - Pop Hits from Moldova
 https://radio3.dixi.md/listen/hit_fm_tricolour/hitfmtricolor128.aac
-#EXTINF:-1,OM Radio - Relaxing Tunes from Moldova
-https://worldradio.online/proxy/?q=http://188.138.251.192:8002/stream.nsv
-#EXTINF:-1,Radio Vocea Sperantei - Spiritual Sounds from Moldova
-https://worldradio.online/proxy/?q=http://31.131.2.5:8000/rvs_mp3
-#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/128574.v4.png",Master Class FM
-https://listen3.myradio24.com/master1
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/130444.v1.png",RECORD Big Hits
 https://air.radiorecord.md/bighits.aacp
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/131352.v1.png",RFI Republica Moldova
 https://asculta.radiorfi.ro/live.aac
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/131244.v1.png",MUSI-Q
 https://lk.castnow.ru:8100/mykomon-192.mp3
-#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/1043.v10.png",Radio BEAT, Chisinau (Кишинёв)
-https://ssl.omegahost.ro/9998/stream
-#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/123166.v9.png",RECORD ROCK
-https://air.radiorecord.md/rock.aacp
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/128797.v7.png",RECORD 80'S
 https://air.radiorecord.md/record80.aacp
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/70725.v11.png",OM Radio
@@ -215,3 +241,5 @@ https://radio4.dixi.md/listen/hit_fm_90s_hits/90s_hits128.aac
 https://radio1.dixi.md/listen/relax_international/relaxinternational128.aac
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48345/logo_GPYWf6Gpzs.png",Radio Relax Summer Cocktail
 https://radio2.dixi.md/listen/relax_summer_cocktail/relax_summercocktail128.aac
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48269/logo_zTQShyfkQZ.png",Radio 7
+https://radio7.md/stream/mountr7.mp3?

@@ -1,8 +1,6 @@
 #EXTM3U
 #EXTINF:-1,Radio S - 94.9 FM
 http://53be5ef2d13aa.streamlock.net/asmedia/radios/playlist.m3u8
-#EXTINF:-1,Radio Pingvin - 90.9 FM
-https://5bc45691ca49f.streamlock.net/asmedia/pingvin/playlist.m3u8
 #EXTINF:-1,Radio Morava
 https://e3.radiomorava.rs/radio/8000/radiomorava128.mp3
 #EXTINF:-1,Radio Dženarika
@@ -21,6 +19,8 @@ http://w3.pink.rs:1935/radiopinkfta/pink.65.2.stream/playlist.m3u8
 http://cast2.name.ba:8153/stream.nsv
 #EXTINF:-1,Fan Radio 94.7 FM
 http://stream.fanradio.info:9000
+#EXTINF:-1,Bravo Radio
+http://streaming.orion.rs:8030
 #EXTINF:-1,Radio Stari grad - RSG
 https://stream.rsg.rs/live/
 #EXTINF:-1,I FM Radio
@@ -43,42 +43,28 @@ https://folkbgd.radioca.st/streams/320kbps
 http://pink.exyuserver.com:80/
 #EXTINF:-1,Radio - 88.9 FM
 https://stream.radios.rs:9002/
-#EXTINF:-1,Radio S1 - 94.9 FM
-https://53be5ef2d13aa.streamlock.net/asmedia/radios/playlist.m3u8
 #EXTINF:-1,Radio Patrola 021
 https://srv.mediastriming.com/8444/stream
 #EXTINF:-1,Radio Mackica - Zabavna Muzika
 http://cast2.name.ba:8157
-#EXTINF:-1,Gradski radio - 102.2 FM
-https://5bc45691ca49f.streamlock.net/asmedia/gradski/playlist.m3u8?nocache=375091
-#EXTINF:-1,Winwin Radio
-http://radio.striminghost.com:2199/tunein/winwin.pls
 #EXTINF:-1,RED
 https://stream.redradio.rs/sid=1
-#EXTINF:-1,Radio Kosava
-http://163.172.116.41:8544/stream.nsv
 #EXTINF:-1,MIX radio Beograd
 http://folkbgd.radioca.st/streams/128kbps
 #EXTINF:-1,Radio Banja 2
 http://stream.iradio.pro:8078/stream
-#EXTINF:-1,Radio S4
-https://53a7ed211fc32.streamlock.net/asmedia/gradski/playlist.m3u8
 #EXTINF:-1,Radio Zavičaj Plus
 http://s39.myradiostream.com:14870/
 #EXTINF:-1,Mis Radio
 https://srv.mediastriming.com/8012/stream
 #EXTINF:-1,Radio 4 YoU
 http://stream.radio4you.cc:7154/
-#EXTINF:-1,MB Radio
-http://188.40.95.74:8100/
 #EXTINF:-1,Radio 34
 http://stream.radio34.rs:8889/stream
 #EXTINF:-1,Radio Srpski Sion
 http://fmradiolive.net:8006/
 #EXTINF:-1,AMI Radio
 http://185.119.88.88:8005/*.mp3
-#EXTINF:-1,Radio 103
-https://stream.core-prod.us-west-2.tunenet.io/listen.stream?streamId=909713&rti=dEZzGgYzfxg4dhE2AxFRSGgyQE5Rdid8WFcFHQASHBMUTxMkflYCFVQZJSkFE0pkDBIYDQcSWT4UHAgaGBwLEAQWWB1pHwRF%7e%7e%7e&render=json&qs=
 #EXTINF:-1,Radio Marija Srbije
 http://dreamsiteradiocp.com:8012/
 #EXTINF:-1,Radio Televizija Kragujevac
@@ -89,16 +75,14 @@ http://shnpdecct1.dihostnet.com:8129/stream.mp3
 http://77.46.153.156:8000/stream.nsv
 #EXTINF:-1,Radio Peja
 http://ns5.albaservers.com:8020
+#EXTINF:-1,TOP 20 RADIO
+https://streamingp.shoutcast.com/JamendoLounge?lang=*
 #EXTINF:-1,Radio Pink
 http://pink.exyuserver.com/
-#EXTINF:-1,Bum Bum Radio-89.4 FM
-http://bumbum-stream.netlogic.rs:8000/
 #EXTINF:-1,Radio Llapi
 http://radio.1dhe1.com:8555
 #EXTINF:-1,Radio Kosova
 http://82.114.72.2:8088
-#EXTINF:-1,Radio Kosava.fm
-http://163.172.116.41:8544/
 #EXTINF:-1,Radio S3
 https://stream.radios.rs:9004/
 #EXTINF:-1,mr.chem fm
@@ -107,13 +91,17 @@ https://e20.yesstreaming.net:6217/stream
 http://82.114.72.2:8098
 #EXTINF:-1,RADIO K4 SHQIP
 http://fm.radiokfor.com:8080/?type=http&nocache=3040
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/38775.png",Radio Kosava
-https://main.radiokosava.rs/stream.mp3
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/38800.png",Resavski radio
 https://e3.radiomorava.rs/radio/8010/resavskiradio128.mp3
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/38821.png",RadioAparat
 https://stream4.rcast.net/72355/
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/38922.png",&#34;TOP 20&#34; RADIO
+https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/38936.png",MAX FM
 https://stream.radiodak.rs/maxfm
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/38942.png",Radio Gong
+https://radiogong--di--nacs-ais-lgc--07--cdn.cast.addradio.de/radiogong/live/aac/low?ar-distributor=f0a0&_art=dj0yJmlwPTIwLjE2MS4zMC4yMjQmaWQ9aWNzY3hsLWc0eGRnenhtYiZ0PTE3NjYxMDgzMzUmcz03ODY2ZjI5YyMwMmFkZWYzNWY2MzYxNjJjODcxMjBhNGJmZjUxNGNhMw
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/38957.png",Radio Ramce
 https://stm1.srvif.com:7202/
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/38974.png",Radio Ritam
+https://ec2s.crolive.com.hr:8455/stream

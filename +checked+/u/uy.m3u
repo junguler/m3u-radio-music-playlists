@@ -1,8 +1,6 @@
 #EXTM3U
 #EXTINF:-1,Radio El Espectador
 https://server4.hostradios.com/8368/stream
-#EXTINF:-1,Radio Imparcial
-https://stream.core-prod.us-west-2.tunenet.io/listen.stream?streamId=4106194&rti=dEZzGgYzfxg4dhE2AxFRSGgyQE5Rdid8WFcFHQASHBMUTxMkflYCFVQZJSkFE0pkDBIYDQcSWT4UHAgaGBwLEAQWWB1qGgFO%7e%7e%7e&render=json&qs=
 #EXTINF:-1,Del Molino FM
 https://sp2.servidorrprivado.com:10878/stream.nsv
 #EXTINF:-1,Nostalgia Radio Montevideo
@@ -11,6 +9,8 @@ https://stm6.xcast.com.br:9494/stream.nsv
 https://salida.stream.com.uy:8508/stream
 #EXTINF:-1,Atlantida FM
 http://server-uk1.radioseninternet.net:8034/
+#EXTINF:-1,Radio Disney
+https://26523.live.streamtheworld.com/DISNEY_URY_MVAAC/HLS/playlist.m3u8?dist=onlineradiobox
 #EXTINF:-1,Difusora Rochense
 https://rochense-1.nty.uy/
 #EXTINF:-1,Radio Uruguay 1050 AM
@@ -19,10 +19,12 @@ https://radios.iwstreaming.uy/8036/stream
 http://198.204.234.10:8229/stream/1/
 #EXTINF:-1,MCI Radio Uruguay
 http://panel.lifestreammedia.net:8130/stream
+#EXTINF:-1,CX46 Radio America
+https://america-2.nty.uy/stream
 #EXTINF:-1,RadioMarindia on line
 https://radios.iwstreaming.uy/8004/stream
-#EXTINF:-1,Radio Vichadero
-http://204.197.245.100:9146/
+#EXTINF:-1,FM Magica 93.5
+https://26673.live.streamtheworld.com/MAGICA.mp3?dist=onlineradiobox
 #EXTINF:-1,Emisora Principal
 https://s7.myradiostream.com/:10764/listen.mp3
 #EXTINF:-1,Fm San Ramón
@@ -31,12 +33,6 @@ https://sanramon-zikoxweb.radioca.st/stream
 https://metropolis-web-1.nty.uy/
 #EXTINF:-1,Clásica 650 AM
 https://radios.iwstreaming.uy/8032/stream
-#EXTINF:-1,Lacosta Fm 88.3
-https://lacostafm-2.nty.uy/
-#EXTINF:-1,Radio 41
-http://radios-online.info:2990/
-#EXTINF:-1,Emisora del valle 90.7
-http://radios.solumedia.com:6134/stream
 #EXTINF:-1,Babel FM
 https://radios.iwstreaming.uy/8030/stream
 #EXTINF:-1,Radio Sarandí del Yi
@@ -49,8 +45,6 @@ http://88.198.5.134:8145/stream
 https://rr5100.globalhost1.com/8454/stream
 #EXTINF:-1,Emisora del Sur
 https://radios.iwstreaming.uy/8034/stream
-#EXTINF:-1,FM Toros
-https://streaming2.hostingmontevideo.com:7016/
 #EXTINF:-1,Radio UNO Digital
 https://server-usa2.radioseninternet.net:10979/stream.nsv
 #EXTINF:-1,Info Ideas Radio
@@ -63,20 +57,22 @@ https://cast.youngtech.radio.br/radio/8780/fm
 https://server-usa2.radioseninternet.net/9508/stream
 #EXTINF:-1,Radio Zorrilla de San Martin
 http://server-uk1.radioseninternet.net:9312/
-#EXTINF:-1,Paso de los Toros
-https://streaming2.hostingmontevideo.com/8032/stream
 #EXTINF:-1,Retro Music Uruguay
 https://retroleo-zikoxweb.radioca.st/
 #EXTINF:-1,Rhumor Radio
 https://servidor29-1.brlogic.com:7026/live
 #EXTINF:-1,Fi.Radio
 https://cruradio.stream.laut.fm/cruradio
-#EXTINF:-1,Radio Ungidos
-http://servidor29.brlogic.com:8732/live
+#EXTINF:-1,Máxima FM
+https://laradiossl.online:10674/stream.nsv
 #EXTINF:-1,FLY Radio
 https://radio11.argentinaservers.online/8104/stream
 #EXTINF:-1,Montevideo Night Radio On line
 https://radio13.servidorderadio.net/8094/stream
+#EXTINF:-1,FM Del Sol
+http://radio.dl.uy:9950/radio
+#EXTINF:-1,Universal 970 AM
+https://970universal-3.nty.uy/
 #EXTINF:-1,Radio Continental
 https://server-usa2.radioseninternet.net/9316/stream
 #EXTINF:-1,Kairos FM
@@ -85,8 +81,14 @@ https://panel.streamenviron.com:8264/radiokairos
 https://salida.stream.com.uy:8514/stream
 #EXTINF:-1,Inolvidable FM
 http://inolvidable-2.nty.uy:8080/stream.nsv
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/31122.png",CX46 Radio America 
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/93000350.jpg",FM HIT 90.3
+https://hit-1.nty.uy/stream
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/31099.png",Radio El Espectador - AM 810
+https://espectador-1.nty.uy/
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/31122.png",CX46 Radio America
 https://america-2.nty.uy/
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/31126.png",Vida FM 104.7
+https://ice24.securenetsystems.net/WPYB?playSessionID=B70E319C-A561-A621-648CC51669594DF1
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/31135.png",Perfil FM 90.9
 https://radiosar.com:8086/stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/31136.png",CMF Radio
@@ -95,9 +97,9 @@ https://az11.yesstreaming.net:8130/radio.mp3
 https://sonicpanel.globalstream.pro/7602/stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/31149.png",FM Buenos Aires
 https://01.solumedia.com.ar:8352/stream
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/31150.png",Radio Aspen
-https://streaming2.hostingmontevideo.com:7010/
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/31187.png",La Bruja FM 
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/31187.png",La Bruja FM
 https://rr5100.globalhost1.com/8452/stream
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/31205.png",Radio Del Este
 https://proxy01.servidorenlinea.net/cdehosting/8040/
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/64681518.jpg", The Word Cleveland
+https://18063.live.streamtheworld.com/WHKWAMAAC.aac?dist=onlineradiobox

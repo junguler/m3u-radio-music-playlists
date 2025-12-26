@@ -1,42 +1,40 @@
 #EXTM3U
 #EXTINF:-1,Beam FM - Adult Hits India
 https://ice1.streeemer.com:8020/radio.mp3
-#EXTINF:-1,MBC 4 U FM
-https://ns1.tjmbc.co.kr/live_fm/live_fm.stream/playlist.m3u8
-#EXTINF:-1,MBC 4 U FM ( 울산MBC )
-https://5ddfd163bd00d.streamlock.net:443/FM4U/FM4U/playlist.m3u8
-#EXTINF:-1,HLAD - Febc 대전극동방송 93.3 FM
-http://mlive2.febc.net:1935/live/djlive/playlist.m3u8
-#EXTINF:-1,Febc 광주극동방송 93.1FM
-http://mlive2.febc.net:1935/live/gjlive/playlist.m3u8
-#EXTINF:-1,WOWCCM - 와우씨씨엠  
-http://wowccm.iptime.org:8000/
+#EXTINF:-1,Gugak FM
+http://mgugaklive.nowcdn.co.kr:1935/gugakradio/gugakradio.stream/playlist.m3u8
 #EXTINF:-1,Seongnam FM - 90.7
 http://115.85.182.39/seongnamfm
+#EXTINF:-1,AFN Kunsan-The Eagle
+http://29053.live.streamtheworld.com/AFNP_KSN.mp3
 #EXTINF:-1,HLAZ - FEBC 제주극동방송 1566 AM
 http://mlive2.febc.net:1935/live/jejuam/playlist.m3u8
-#EXTINF:-1,Jinli Radio
-https://streamer.radio.co/s014534c05/listen
+#EXTINF:-1,AFN Daegu-The Eagle
+http://14923.live.streamtheworld.com/AFNP_DGU.mp3
 #EXTINF:-1,Del Molino 89.3 FM
 https://sp2.servidorrprivado.com:10878/stream/1/
 #EXTINF:-1,Hyundai Mall
 http://123.111.139.103:1935/live/hmall.stream/playlist.m3u8
 #EXTINF:-1,Una FM 마음챙김을 위한 힐링 라디오 live
 https://cdn.podbbang.com/data1/unamaster/6m080110m3.mp3
+#EXTINF:-1,AFN Casey(동두천)
+https://provisioning.streamtheworld.com/pls/AFNP_CSYAAC.pls
 #EXTINF:-1,BOX : K-POP 케이팝 live
 https://boxradio-edge-07.streamafrica.net/kpop
 #EXTINF:-1,Mapo FM
 http://115.85.182.39/mapofm
-#EXTINF:-1,RFA 자유아시아방송 (Radio Free Asia Korean) live
-https://rfa-ingest.akamaized.net/hls/live/2040700/RFA_AUDIO_LIVE2/master.m3u8
 #EXTINF:-1,TBN 강원교통방송 live
 http://radio2.tbn.or.kr:1935/gangwon/myStream/playlist.m3u8
 #EXTINF:-1,Busan e-FM 부산영어라디오 live
 http://befm905.live.smilecdn.com:1935/befm905_live/live/playlist.m3u8
 #EXTINF:-1,CJB 청주방송 Joy FM live
 http://1.222.207.80:1935/live/cjbradio/playlist.m3u8
+#EXTINF:-1,HLKX-FM - FEBC 극동방송 FM 106.9
+http://mlive2.febc.net:1935/live/seoulfm/playlist.m3u8
 #EXTINF:-1,TBN 대구교통방송 live
 http://radio2.tbn.or.kr:1935/daegu/myStream/playlist.m3u8
+#EXTINF:-1,HLQR-FM - FEBC 울산극동방송 107.3 FM
+http://mlive2.febc.net:1935/live/uslive/playlist.m3u8
 #EXTINF:-1,TBN 부산교통방송 live
 http://radio2.tbn.or.kr:1935/busan/myStream/playlist.m3u8
 #EXTINF:-1,TBN 창원교통방송 live
@@ -51,17 +49,29 @@ http://radio2.tbn.or.kr:1935/ulsan/myStream/playlist.m3u8
 http://mlive2.febc.net:1935/live/ydlive/playlist.m3u8
 #EXTINF:-1,SCN(Sungseo Community FM) FM
 http://115.85.182.39/scnfm
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/14977.png",TBS eFM
+https://cdnefm.tbs.seoul.kr/tbs/_definst_/tbs_efm_web_360.smil/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/14982.png",CBS 표준FM
+https://m-aac.cbs.co.kr/mweb_cbs939/_definst_/cbs939.stream/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/59869753.png",KBIC live
 https://www.fbri-kobe.org/kbic/english/img/MP4bg.mp4?20200323
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/44564910.jpg",KBS World - نشرة الأخبار (updated Mon thru Sat)
 https://worldvod.gscdn.kbs.co.kr/podcast/Podcast/News/a240502.mp3
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/30147090.jpg",Free FM
 https://rocafmadrid.radioca.st/stream
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/106031084.jpg",Gugak FM
+https://mgugaklive.nowcdn.co.kr/gugakradio/gugakradio.stream/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/55456872.png",EBS FM - Educational Broadcasting Service
+https://ebsonair.ebs.co.kr/fmradiofamilypc/familypc1m/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/84780196.jpg",Beam FM - 취향저격 감각 팝송
 https://ice1.streeemer.com:8020/radio.aac
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/22190808.png",BOX : K-POP 케이팝
 https://boxradio-edge-00.streamafrica.net/kpop
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/96432198.png",BBN 성경방송네트워크
 https://audio-edge-vqwx4.yyz.g.radiomast.io/678de728-1691-4eb7-bf37-057bcc9b12f5
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/112463372.png",YTN 라디오 (YTN FM)
+https://radiolive.ytn.co.kr/radio/_definst_/20211118_fmlive/playlist.m3u8
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/84913769.jpg",BTN라디오 울림 (울림채널)
+https://btn.nowcdn.co.kr/btn_ch4st/live.stream/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/7314567.jpg",113.FM K-Pop (Korean Pop)
 https://113fm-atunwadigital.streamguys1.com/1049

@@ -3,14 +3,6 @@
 https://rtcg.ipradio.rs:9008/
 #EXTINF:-1,Radio Crne Gore 2
 https://r98.ipradio.rs:10100/
-#EXTINF:-1,Radio S1
-https://53a7ed211fc32.streamlock.net/asmedia/radios/chunklist.m3u8
-#EXTINF:-1,Radio S2
-https://53a7ed211fc32.streamlock.net/asmedia/index/chunklist.m3u8
-#EXTINF:-1,Radio S3
-https://53a7ed211fc32.streamlock.net/asmedia/pingvin/chunklist.m3u8
-#EXTINF:-1,Radio S4
-https://53be5ef2d13aa.streamlock.net/asmedia/gradski/chunklist.m3u8
 #EXTINF:-1,Radio Svetigora
 http://svetigoralive.com:8879/
 #EXTINF:-1,Radio Antena M
@@ -33,10 +25,16 @@ https://r.name.ba:7316/
 http://178.32.146.187:6166/stream
 #EXTINF:-1,Radio Balkansko Srce
 http://cmr-hosting.com:8445/
+#EXTINF:-1,Radio Monte Carlo 102.1 FM Listen live
+https://montecarlo.hostingradio.ru/montecarlo96.aacp
+#EXTINF:-1,michijurkowski Listen live
+https://michijurkowski.stream.laut.fm/michijurkowski?ref=radiode&t302=2025-12-18_01-03-23&uuid=1b3c34c0-0756-4e3e-b9d5-dcf058855c60
+#EXTINF:-1,Exclusively Meat Loaf Listen live
+https://nl4.mystreaming.net/er/meatloaf/icecast.audio
 #EXTINF:-1,Светигора
 https://svetigoralive.com/stream.mp3
-#EXTINF:-1,Radio S3 (CG)
-https://5bc45691ca49f.streamlock.net/asmedia/radios3-cg%20/chunklist_w1740796029.m3u8
+#EXTINF:-1,Bokanews
+https://www.bokanews.me/live/
 #EXTINF:-1,Studentski radio KRŠ
 http://c8.radioboss.fm:8199/stream
 #EXTINF:-1,RTCG
@@ -49,12 +47,14 @@ http://159.69.117.253:8879/
 http://sirius.shoutca.st:8604/stream
 #EXTINF:-1,Radio Bruškin
 http://centova.radiobruskin.me:8004/stream.mp3
+#EXTINF:-1,Radio Skala
+http://streamingp.shoutcast.com/JamendoLounge?lang=*
 #EXTINF:-1,Gradski Radio
 http://centauri.shoutca.st:8325/stream
 #EXTINF:-1,BUM RADIO
 https://stream.radios.rs:9018/stream
-#EXTINF:-1,Radio S1 (CG)
-https://53a7ed211fc32.streamlock.net/asmedia/radios1-cg/playlist.m3u8
+#EXTINF:-1,Antena M – 87.6 FM – Podgorica – Montenegro
+https://radioservis.me:8010/antenamlive.m3u
 #EXTINF:-1,Radio Elita – 93.9 FM – Ulcinj – Montenegro
 http://136.243.134.202:8098/stream
 #EXTINF:-1,Radio Budva 98.7 FM – 98.7 FM – Budva – Montenegro
@@ -79,6 +79,8 @@ https://radioservis.me:8050/radioskadar
 http://161.97.93.84:9000/stream.nsv
 #EXTINF:-1,City Radio Podgorica
 http://eu7.fastcast4u.com:6166/stream/1/
+#EXTINF:-1,Radio Titograd 101.1 FM
+https://stream1.rcast.net/64511
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/MRHNFT.png",Bum Radio Podgorica
 https://r.name.ba:7324/stream
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/5OKY8R.png",Drugačija Radio Stanica
@@ -86,7 +88,6 @@ http://178.33.135.245:3474/stream
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/YG32N0.png",Radio Renome FOLK - Podgorica
 https://r.name.ba:7316/stream
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/S1A9PC.png",Radio Titograd
-https://stream4.rcast.net/64511
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/49363/logo_ttYJTYa2ui.png",Radio Balkan Music (CG)
 https://media.radioexs.com/stream/radiobalkanmusic
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/49365/logo_9xA5N8eGwE.png",Radio Ćirilica

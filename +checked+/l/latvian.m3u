@@ -1,14 +1,18 @@
 #EXTM3U
 #EXTINF:-1,Kurzemes Radio
 http://31.170.16.6:8000/?type=http&ampnocache=457
+#EXTINF:-1,Latvijas Radio 5
+https://live.pieci.lv/live19-hq.mp3
+#EXTINF:-1,RETRO FM Latvija
+https://live.retrofm.lv/retrofmlatvia
 #EXTINF:-1,EHR
 http://stream.ehrhiti.lv:8000/ehr.aac
 #EXTINF:-1,Alise Plus
 http://fm2inet.aliseplus.lv:8000/
 #EXTINF:-1,Star FM Latvia
 https://live.advailo.com/audio/live/playlist.m3u8
-#EXTINF:-1,Latvijas Kristīgais Radio
-https://radio.lkr.lv/?type=http&ampnocache=40
+#EXTINF:-1,European Hit Radio
+http://stream.europeanhitradio.com:8000/ehr.aac
 #EXTINF:-1,European Hit Radio - Dance
 http://stream.europeanhitradio.com:8000/Stream_24.aac
 #EXTINF:-1,European Hit Radio - Eurochart
@@ -31,12 +35,11 @@ http://stream.europeanhitradio.com:8000/Stream_37.aac
 http://stream.europeanhitradio.com:8000/Stream_21.aac
 #EXTINF:-1,European Hit Radio - Top 40
 http://stream.europeanhitradio.com:8000/Stream_27.aac
+#EXTINF:-1,Krimināli ekselents radio
+https://live.pieci.lv/live27-hq.mp3
 #EXTINF:-1,PIECI FM
-https://live.pieci.lv/live19-hq.mp3
 #EXTINF:-1,RADIO MARIA LATVIA
 http://dreamsiteradiocp2.com:8046/stream
-#EXTINF:-1,Radio Merkurs
-http://www.radionord.lv/raadionord.m3u
 #EXTINF:-1,Radio Tulsi
 http://radio.kuums.lv:6555/
 #EXTINF:-1,Star Fm
@@ -75,10 +78,7 @@ https://live.pieci.lv/live11-hq.mp3
 https://live.pieci.lv/live17-hq.mp3
 #EXTINF:-1,Housemasters Radio
 https://everestcast-us.myautodj.com:1085/stream
-#EXTINF:-1,European Hit Radio 
 https://stream.ehrhiti.lv:8000/ehr.aac
-#EXTINF:-1,Radio Skonto 107.2
-https://radio.lkr.lv/
 #EXTINF:-1,EHR Darbam
 https://stream.ehrhiti.lv:8000/Stream_23.aac
 #EXTINF:-1,EHR Love songs
@@ -99,10 +99,19 @@ http://stream.europeanhitradio.com:8000/Stream_01.mp3
 http://185.8.60.5:8000/listen.pls?sid=1
 #EXTINF:-1,EHR Fitness
 http://stream.ehrhiti.lv:8000/Stream_14.aac
+#EXTINF:-1,Pieci Latvieši
+#EXTINF:-1,Pieci - Atklājumi
+https://live.pieci.lv/live5-hq.mp3
+#EXTINF:-1,Pieci Latgalieši
+https://live.pieci.lv/live22-hq.mp3
 #EXTINF:-1,Neverland Radio
 http://radio-neverland.stream.laut.fm/radio-neverland
 #EXTINF:-1,EHR RNB
 http://stream.europeanhitradio.com:8000/Stream_26.aac
+#EXTINF:-1,Baltupiu Radijas
+https://www.baltupiuprogimnazija.vilnius.lm.lt/wp-content/uploads/2014/04/Baltupi%C5%B3-progimnazijos-daina.mp3
+#EXTINF:-1,FUTURE BASS MIX
+https://strw3.openstream.co/463?aw_0_1st.collectionid%3D2941%26stationId%3D2941%26publisherId%3D283%26k%3D1766017598
 #EXTINF:-1,Balerija radio
 http://listen.openstream.co/3945/audio
 #EXTINF:-1,OMH - Our Music History
@@ -115,10 +124,6 @@ http://stream.europeanhitradio.com:8000/Stream_23.aac
 http://stream.europeanhitradio.com:8000/Stream_36.aac
 #EXTINF:-1,Latvijas Radio - LR2
 https://5a44e5b800a41.streamlock.net/shoutcast/mp4:lr2a.stream/playlist.m3u8
-#EXTINF:-1,Latvijas Radio - LR1
-https://60766ff53d5e6.streamlock.net/liveALR1/mp4:LR1/playlist.m3u8
-#EXTINF:-1,Latvijas Radio - LR3
-https://60766ff53d5e6.streamlock.net/liveALR3/mp4:klasika/playlist.m3u8
 #EXTINF:-1,Latvijas Radio - LR5
 https://5a44e5b800a41.streamlock.net/pieci/mp4:k2/playlist.m3u8
 #EXTINF:-1,European Hit Radio - Русские Хиты
@@ -133,16 +138,14 @@ https://stream.ehrhiti.lv:8000/Stream_33.aac
 https://c28.radioboss.fm:18234/stream
 #EXTINF:-1,Pieci -  Hiti
 https://5a44e5b800a41.streamlock.net/pieci/mp4:k3/playlist.m3u8
+#EXTINF:-1,Pieci -  Latvieši
+https://5a44e5b800a41.streamlock.net/pieci/mp4:k6/playlist.m3u8
 #EXTINF:-1,Pieci - Krimināli Ekselents Radio
 https://5a44e5b800a41.streamlock.net/pieci/mp4:k4/playlist.m3u8
-#EXTINF:-1,InsideFM Русское
-https://stream.insidefm.eu/listen/insidefm/nonstop
 #EXTINF:-1,European Hit Radio - Urban
 https://stream.ehrhiti.lv:8000/Stream_11.aac
 #EXTINF:-1,Flash Sound (LV) radio
 https://listen7.myradio24.com/65462
-#EXTINF:-1,InsideFM BassBoosted
-https://stream.insidefm.eu/listen/insidefm_bass/live
 #EXTINF:-1,European Hit Radio - SuperHits Gold
 https://stream.ehrhiti.lv:8000/Stream_64.aac
 #EXTINF:-1,LudzaFM

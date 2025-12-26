@@ -1,4 +1,6 @@
 #EXTM3U
+#EXTINF:-1,FIP
+http://icecast.radiofrance.fr/fip-midfi.mp3
 #EXTINF:-1,1.FM - Chillout Lounge Radio
 http://strm112.1.fm/chilloutlounge_mobile_mp3
 #EXTINF:-1,Radio Bonheur
@@ -21,26 +23,31 @@ http://pub0101.101.ru:8000/stream/pro/aac/64/49
 http://pub0101.101.ru:8000/stream/pro/aac/64/68
 #EXTINF:-1,Madelinot Radio Web
 https://streaming.radio.co/s513d4e3ca/listen
+#EXTINF:-1,Radio VCS
+http://s11.ssl-stream.com:8030/stream
+#EXTINF:-1,Douce France Radio
+https://doucefrance.ice.infomaniak.ch/doucefrance-192.mp3
 #EXTINF:-1,Radio Haiti Amérique Internationale
 http://173.208.177.90:21406/
 #EXTINF:-1,Sud Radio
 https://str0.creacast.com/sudradio
 #EXTINF:-1,M Radio
 https://mfm.ice.infomaniak.ch/mfm-128
-#EXTINF:-1,Oto Radio
-http://srv2.streaming-ingenierie.fr:8160/
 #EXTINF:-1,Delta FM Saint-Omer
 http://deltafmsaintomer.ice.infomaniak.ch/deltafmsaintomer-high.mp3
 #EXTINF:-1,Delta FM Boulogne/Mer
 http://deltafmboulogne.ice.infomaniak.ch/deltafmboulogne-high.mp3
 #EXTINF:-1,M Radio - 100% Enfoirés
 http://mfmwr-011.ice.infomaniak.ch/mfmwr-011.mp3
-#EXTINF:-1,M Radio 
 http://mradio-lyon.ice.infomaniak.ch/mradio-lyon.aac
 #EXTINF:-1,M Radio - Duos
 https://mfmwr-015.ice.infomaniak.ch/mfmwr-015.mp3
+#EXTINF:-1,Radio Scarpe Sensée
+https://radioscarpe.ice.infomaniak.ch/radioscarpe-128.mp3
 #EXTINF:-1,RADIO VALLESPIR
 http://stream.vestaradio.com:8091/Radio-Vallespir
+#EXTINF:-1,Frequence Plus Andenne
+https://frequenceplusandenne.ice.infomaniak.ch/frequenceplusandenne-192.mp3
 #EXTINF:-1,Radio Rempart
 http://rcast.pro-fhi.net/stream/rempart
 #EXTINF:-1,M Radio - Tubes du grenier
@@ -55,12 +62,16 @@ https://mfmwr-005.ice.infomaniak.ch/mfmwr-005.mp3
 http://mfmwr-013.ice.infomaniak.ch/mfmwr-013.mp3
 #EXTINF:-1,Radio Nemo
 https://listen.radioking.com/radio/267652/stream/312961
+#EXTINF:-1,FIP à Bordeaux
+https://icecast.radiofrance.fr/fip-midfi.mp3
 #EXTINF:-1,Radio Evry
 https://stream3.vestaradio.com/CRMR
 #EXTINF:-1,M Radio - Fitness
 https://mfmwr-004.ice.infomaniak.ch/mfmwr-004.mp3
 #EXTINF:-1,M Radio - Live
 https://mfmwr-008.ice.infomaniak.ch/mfmwr-008.aac
+#EXTINF:-1,M Radio - Séducteurs
+https://mfmwr-017.ice.infomaniak.ch/mfmwr-017.mp3
 #EXTINF:-1,M Radio - Voix du Sud
 http://voix-du-sud.ice.infomaniak.ch/voix-du-sud.mp3
 #EXTINF:-1,Radio Montmartre
@@ -77,6 +88,8 @@ http://deltaparty.ice.infomaniak.ch/deltaparty-128.mp3
 http://deltafmregion.ice.infomaniak.ch/deltafmregion-128.mp3
 #EXTINF:-1,Impact FM - Chansons françaises
 http://chansonfrancaise.ice.infomaniak.ch/chansonfrancaise-64.aac
+#EXTINF:-1,Yimago Radio - Radio Yé-Yé
+http://strw3.openstream.co/879?aw_0_1st.collectionid%3D3673%26stationId%3D3673%26publisherId%3D903%26k%3D1765991267
 #EXTINF:-1,Радио Монте-Карло - France
 https://mc-france.hostingradio.ru/france96.aacp
 #EXTINF:-1,DKL Dreyeckland - Vos Plus Belle Chansons
@@ -89,12 +102,16 @@ https://pleincoeur.ice.infomaniak.ch/pleincoeur-128.mp3
 https://ecmanager2.pro-fhi.net:1625/stream
 #EXTINF:-1,Voltage - En Francais
 https://voltageenfrancais.ice.infomaniak.ch/voltageenfrancais-128.mp3
+#EXTINF:-1,Exclusively Celine Dion
+https://2.mystreaming.net/er/celinedion/icecast.audio
 #EXTINF:-1,Easy Radio - Andrea Bocelli
 http://streaming.exclusive.radio/uber/easyandreabocelli/icecast.audio
 #EXTINF:-1,1.FM – Chillout Lounge Radio
 http://str0.creacast.com/oxy-meaux
 #EXTINF:-1,Chérie FM Côtes-d’Armor
 http://doucefrance.ice.infomaniak.ch/doucefrance-192.mp3
+#EXTINF:-1,Futuradio – Pop & Sweet
+http://futuradiohits.ice.infomaniak.ch/frhits-128.mp3?utm_host=stream.futuradios.com
 #EXTINF:-1,M Radio – 100% Quebec
 http://mfmwr-004.ice.infomaniak.ch/mfmwr-004.mp3
 #EXTINF:-1,M Radio – Duos
@@ -107,6 +124,8 @@ http://mfmwr-008.ice.infomaniak.ch/mfmwr-008.mp3
 http://mfmwr-005.ice.infomaniak.ch/mfmwr-005.mp3
 #EXTINF:-1,M Radio – Nouvelle Scène
 http://mfmwr-012.ice.infomaniak.ch/mfmwr-012.mp3
+#EXTINF:-1,M Radio – Séducteurs
+http://mfmwr-017.ice.infomaniak.ch/mfmwr-017.mp3
 #EXTINF:-1,M Radio – Talents de la télé
 http://mfmwr-025.ice.infomaniak.ch/mfmwr-025.mp3
 #EXTINF:-1,M Radio – Voix féminines

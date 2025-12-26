@@ -2,9 +2,11 @@
 #EXTINF:-1,GMS FM
 https://myfm.acan.group/radio/8140/radio.mp3
 #EXTINF:-1,Dakar Musique
-https://fr1-play.adtonos.com/8101/dakar-musique-3
+https://listen.adtonos.com/dakar-musique-3
 #EXTINF:-1,Radio Thiossane
-https://fr1-play.adtonos.com/8103/radio-thiossane
+https://listen.adtonos.com/radio-thiossane
+#EXTINF:-1,RFI Afrique
+https://rfiafrique64k.ice.infomaniak.ch/rfiafrique-64.mp3
 #EXTINF:-1,iRadio
 https://listen.radioking.com/radio/250102/stream/294397
 #EXTINF:-1,Faydatidianiya
@@ -17,22 +19,40 @@ https://listen.senemultimedia.net:8072/stream
 https://listen.senemultimedia.net:8002/stream
 #EXTINF:-1,Xalima Radio
 http://radiosunuker221.primcast.com:7148/
+#EXTINF:-1,AL Imane Radio
+http://streamingp.shoutcast.com/JamendoLounge?lang=*
 #EXTINF:-1,FULBE FM
 https://listen.radioking.com/radio/20674/stream/53398
 #EXTINF:-1,Radio Pakao FM
 http://192.95.39.65:5144/
+#EXTINF:-1,Rap Djolof
 #EXTINF:-1,Radio Keur Massar
 https://listen.senemultimedia.net:8142/stream
 #EXTINF:-1,Maack FM 97.4 Listen live
 https://rmf1.radioca.st/rmf1.mp3
+#EXTINF:-1,Rádio Peperi FM Listen live
+https://audio01.viaflux.com:5411/live
+#EXTINF:-1,magic_of_music Listen live
+https://magicofmusic.stream.laut.fm/magic_of_music?ref=radiode&t302=2025-12-19_00-11-55&uuid=f1882e10-97dd-4319-bed9-5e26b229c270
+#EXTINF:-1,KDUS - NBC Sports AM 1060 Listen live
+https://23263.live.streamtheworld.com/KDUSAM.mp3
+#EXTINF:-1,Radio Thiossane Listen live
+https://listen.radiothiossane.net/proxy/radiothiossane?mp=/1
 #EXTINF:-1,FunX NL Listen live
 https://icecast.omroep.nl/funx-bb-mp3
 #EXTINF:-1,Positively Rock Listen live
 https://streaming.positivity.radio/pr/rock/icecast.audio
 #EXTINF:-1,TurnON Radio Dance Listen live
 https://turnondance-rex.radioca.st/server
+#EXTINF:-1,ROCK ANTENNE Österreich Listen live
+https://s6-webradio.rockantenne.at/rockantenne-oesterreich
 #EXTINF:-1,Keur Massar
 https://listen.senemultimedia.net:8092/stream
+#EXTINF:-1,Sama Radio Senegal
+#EXTINF:-1,AlloDakar Radio TamTam
+https://17653.live.streamtheworld.com/SP_R3644495.aac
+#EXTINF:-1,Radio AlloDakar
+http://18093.live.streamtheworld.com/SP_R3644495.aac
 #EXTINF:-1,Radio Faydatidianiya
 http://listen.senemultimedia.net:5526/stream
 #EXTINF:-1,Baoumou-wague
@@ -41,8 +61,14 @@ http://listen.senemultimedia.net:5526/
 https://listen.senemultimedia.net:8112/stream
 #EXTINF:-1,West Africa Democracy Radio
 https://listen.radioking.com/radio/250102/stream/306970
+#EXTINF:-1,Radio AlloDakar – SN-DK
+https://17653.live.streamtheworld.com/SP_R3644495_SC?pname=TDSdk
 #EXTINF:-1,Sama Radio Dakar – SN-DK
 https://listen.shoutcast.com/samaradio.m3u
+#EXTINF:-1,Radio Thiossane radio
+https://18093.live.streamtheworld.com/SP_R3644495.aac?dist=onlineradiobox
+#EXTINF:-1,Radio Sunuker radio
+http://radiosunuker221.primcast.com:7148/stream
 #EXTINF:-1,Radio Keur Massar radio
 http://listen.senemultimedia.net:8140/stream
 #EXTINF:-1,Radio PAKAO FM radio
@@ -51,12 +77,16 @@ http://192.95.39.65:5144/stream.nsv
 http://s2.metaradio.ru/mradio.ranet
 #EXTINF:-1,Africa N°1
 http://african1paris.ice.infomaniak.ch/african1paris-64.mp3
+#EXTINF:-1,RTS Kolda FM
+https://rfimonde64k.ice.infomaniak.ch/rfimonde-64.mp3
 #EXTINF:-1,dine ji fm
 http://perseus.shoutca.st:8039/
-#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/77303.v4.png",Radio Sunuker
-http://radiosunuker221.primcast.com:7148/stream
-#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/77223.v5.png",AlloDakar Radio TamTam
-https://17653.live.streamtheworld.com/SP_R3644495.aac
+#EXTINF:-1,IRADIO SENEGAL
+https://free.rcast.net/211133
+#EXTINF:-1,TOUBA FM live Music- Senegal
+https://free.rcast.net/16510
+#EXTINF:-1,PIKINE DIASPORA RADIO : la radio du citoyen modele du Senegal
+https://free.rcast.net/4225
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/130681.v2.png",Houda FM
 https://radio4.pro-fhi.net/flux-wopdwhtp/stream
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/BT1O09.png",A QOOLAAND FM 92.6
@@ -72,7 +102,7 @@ https://stream.radiobn.net/
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/IS5578.png",Radio Dakar City
 http://listen.senemultimedia.net:8000/stream
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/7IKFIA.png",RTS Radio 1
-http://100komma7.stream11.radiohost.de/100komma7-100komma7_mp3-320?agend=true&upd-meta&upd-scheme=http&ref=mp3&amsparams=mp3&_art=dD0xNzYzMDM0NzQ5JmQ9NjZjOGJlMGZmYTk3Nzg4MGNjOTI
+http://100komma7.stream11.radiohost.de/100komma7-100komma7_mp3-320?agend=true&upd-meta&upd-scheme=http&ref=mp3&amsparams=mp3&_art=dD0xNzY2MTAzNDU4JmQ9ZWY4ZmFjNTMyOWM2NDZiOWE0M2U
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/G2MUDA.png",xassida online
 https://african1paris.ice.infomaniak.ch/african1paris-64.mp3
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/78308/logo_CG0I0iorfK.png",Radio PAKAO FM

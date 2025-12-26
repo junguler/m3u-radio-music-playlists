@@ -3,16 +3,18 @@
 http://befm905.live.smilecdn.com:1935/befm905_live/live/chunklist.m3u8
 #EXTINF:-1,TBN Korea
 http://radio2.tbn.or.kr:1935/gyeongin/myStream/chunklist.m3u8
-#EXTINF:-1,Bok Radio 989
-http://bokradio.lowquality.radiostream.co.za:80
-#EXTINF:-1,Jinli Radio
-https://streamer.radio.co/s014534c05/listen
+#EXTINF:-1,Gugak FM
+https://mgugaklive.nowcdn.co.kr/gugakradio/gugakradio.stream/playlist.m3u8
 #EXTINF:-1,Newage Happyday Radio
 http://newage.kr:8080/
 #EXTINF:-1,Radio Free Asia
 https://rfahls-i.akamaihd.net/hls/live/226232/RFALive_1/index.m3u8
+#EXTINF:-1,TBS 교통방송
+http://cdnefm.tbs.seoul.kr/tbs/_definst_/tbs_efm_web_360.smil/playlist.m3u8
 #EXTINF:-1,마포FM
 http://115.85.182.39:80/mapofm
+#EXTINF:-1,서울극동방송FM
+https://mlive2.febc.net/live/seoulfm/playlist.m3u8
 #EXTINF:-1,국악방송
 http://mgugaklive.nowcdn.co.kr/gugakradio/gugakradio.stream/playlist.m3u8
 #EXTINF:-1,아리랑 제주FM
@@ -23,20 +25,14 @@ http://123.140.197.22/stream/2/play.m3u8
 http://radio2.tbn.or.kr:1935/jeju/myStream/playlist.m3u8
 #EXTINF:-1,TBN - 창원FM 95.5
 http://radio2.tbn.or.kr:1935/gyeongnam/myStream/playlist.m3u8
-#EXTINF:-1,TBN - 부산FM 94.9
-http://radio2.tbn.or.kr:1935/busan/myStream/playlist.m3u8
-#EXTINF:-1,TBN - 전주FM 102.5
-http://radio2.tbn.or.kr:1935/jeonbuk/myStream/playlist.m3u8
 #EXTINF:-1,TBN - 울산FM 104.1
 http://radio2.tbn.or.kr:1935/ulsan/myStream/playlist.m3u8
-#EXTINF:-1,TBN - 광주FM 97.3
-http://radio2.tbn.or.kr:1935/gwangju/myStream/playlist.m3u8
-#EXTINF:-1,대전극동방송FM
-http://mlive2.febc.net:1935/live/djlive/playlist.m3u8
 #EXTINF:-1,TBN - 대전FM 102.9
 http://radio2.tbn.or.kr:1935/daejeon/myStream/playlist.m3u8
 #EXTINF:-1,포항 MBC FM
 http://stream.yubinet.com:1935/live/_definst_/Radio_Am/playlist.m3u8
+#EXTINF:-1,PBC FM Daegu 93.1
+http://live.dgcpbc.co.kr/dgcpbclive/livestream/playlist.m3u8
 #EXTINF:-1,TBN - 대구FM 103.9
 http://radio2.tbn.or.kr:1935/daegu/myStream/playlist.m3u8
 #EXTINF:-1,TBN - 인천FM 100.5
@@ -45,68 +41,106 @@ http://radio2.tbn.or.kr:1935/gyeongin/myStream/playlist.m3u8
 http://radio2.tbn.or.kr:1935/kyungbuk/myStream/playlist.m3u8
 #EXTINF:-1,Radio Free Asia - CH. 2: Vietnamese | Burmese | Korean
 https://rfahls-i.akamaihd.net/hls/live/226233/RFALive_2/index.m3u8
-#EXTINF:-1,BBS 불교방송
-http://bbslive.clouducs.com:1935/bbsradio-mlive/livestream/playlist.m3u8
 #EXTINF:-1,서울극동방송AM
 http://mlive2.febc.net:1935/live/seoulam/playlist.m3u8
+#EXTINF:-1,EBS 라디오
+https://ebsonair.ebs.co.kr/fmradiofamilypc/familypc1m/playlist.m3u8
 #EXTINF:-1,EBS English
 https://ebsonair.ebs.co.kr/plus3familypc/familypc1m/playlist.m3u8
 #EXTINF:-1,YAHWEH Christian Radio
 https://s3.radio.co/s22189b87c/low
 #EXTINF:-1,Oldpop Cafe
 http://cast.page2.kr:7080/
-#EXTINF:-1,목포 MBC AM
-https://vod.mpmbc.co.kr/live/encoder-am/playlist.m3u8
 #EXTINF:-1,목포 MBC FM FM4U
 http://vod.mpmbc.co.kr:1935/live/encoder-fm/playlist.m3u8
-#EXTINF:-1,Busan e-FM
-http://befm905.live.smilecdn.com:1935/befm905_live/live/playlist.m3u8
-#EXTINF:-1,울산 MBC FM
-https://5ddfd163bd00d.streamlock.net/STDFM/STDFM/chunks.m3u8
+#EXTINF:-1,광주극동방송 FM
+http://mlive2.febc.net:1935/live/gjlive/playlist.m3u8
 #EXTINF:-1,TBN - 강원FM 105.9
 http://radio2.tbn.or.kr:1935/gangwon/myStream/playlist.m3u8
-#EXTINF:-1,BBS Chuncheon Buddhist Radio 100.1 FM
-https://bbslive.clouducs.com/bbsradio-mlive/livestream/playlist.m3u8
+#EXTINF:-1,포항극동방송FM
+http://mlive2.febc.net:1935/live/phlive/playlist.m3u8
 #EXTINF:-1,강릉 MBC FM
 http://123.254.72.24:1935/fmlive/livestream/playlist.m3u8
+#EXTINF:-1,Love Lamp
+https://me.sayclub.com/bdcst/bdcst-home?bdcstDomainId=ch02
 #EXTINF:-1,Mapo 100.7 FM
 http://115.85.182.39/mapofm
 #EXTINF:-1,Oldpop cafe
 http://cast.page2.kr:7080
+#EXTINF:-1,Skylake
+https://www.inlive.co.kr/
 #EXTINF:-1,YAHWEH CHRISTIAN RADIO
 http://s3.radio.co/s22189b87c/listen
+#EXTINF:-1,Kpop Girls Club
+https://streaming.brol.tech/rtfmlounge
+#EXTINF:-1,KRadio
+#EXTINF:-1,Falling Stars
+http://streamingp.shoutcast.com/JamendoLounge?lang=*
 #EXTINF:-1,Andong MBC
 http://andong.webcasting.co.kr:1935/live/fmlive/chunklist_w379939268.m3u8
+#EXTINF:-1,Dreamcast
+https://me.sayclub.com/bdcst/bdcst-home?bdcstDomainId=dream
 #EXTINF:-1,BBS불교방송 Listen live
 https://bbstv.clouducs.com/bbstv-live/livestream/playlist.m3u8
 #EXTINF:-1,Semeando o Amor de Deus Listen live
 https://cloud.cdnseguro.com:2497//stream.mp3
+#EXTINF:-1,Team FM Groningen Listen live
+https://22723.live.streamtheworld.com/TEAMFMDRENTHEGRONINGEN.mp3
+#EXTINF:-1,Deutschrock Plus Listen live
+https://deutschrock-plus.stream.laut.fm/deutschrock-plus?t302=2025-12-18_01-51-41&uuid=2dfc40ab-edc7-49a4-bef2-11cc912b6594
+#EXTINF:-1,Radio Progreso, 103.3 FM Listen live
+https://streamingcwsradio30.com:7045/stream?type=http&nocache=102&1600459029128
+#EXTINF:-1,radiolandau3 Listen live
+https://radiolandau3.stream.laut.fm/radiolandau3?ref=radiode&t302=2025-12-18_01-51-41&uuid=3d1846ce-19fa-423c-ba35-bdb5f7944b7d
 #EXTINF:-1,HLSF 국방FM 별사탕
 https://mediaworks.dema.mil.kr/live_edge/audio.sdp/playlist.m3u8
+#EXTINF:-1,HLST tbs FM
+https://cdnfm.tbs.seoul.kr/tbs/_definst_/tbs_fm_web_360.smil/playlist.m3u8
 #EXTINF:-1,CJB 청주방송 – JOY FM
 http://ebsonair.ebs.co.kr/plus3familypc/familypc1m/playlist.m3u8
 #EXTINF:-1,FEBC 극동방송 FM 106.9
 http://mlive2.febc.net:1935/live/seoulfm/playlist.m3u8
 #EXTINF:-1,WOW CCM
 http://wowccm.iptime.org:8000/
-#EXTINF:-1,GFN Gwangju English Station
-http://media.gfn.or.kr:1935/gfnlive/myStream/playlist.m3u8
+#EXTINF:-1,Sky Lake Radio
+https://me.sayclub.com/bdcst/bdcst-home?bdcstDomainId=24sky
+#EXTINF:-1,Nanpasun Radio
+https://me.sayclub.com/bdcst/bdcst-home?bdcstDomainId=nanpasun
 #EXTINF:-1,EBS (Korea Educational Broadcasting System)
 http://ebsonairiosaod.ebs.co.kr/fm_kt_ai_hls/bandiappaac/playlist.m3u8
 #EXTINF:-1,Listen.moe [KR]
 https://listen.moe/kpop/stream
+#EXTINF:-1,TBS eFM radio
+https://cdnefm.tbs.seoul.kr/tbs/_definst_/tbs_efm_web_360.smil/playlist.m3u8
 #EXTINF:-1,Free FM 94.3 radio
 https://rocafmadrid.radioca.st/stream
 #EXTINF:-1,YTN News FM radio
 https://radio.ytn.co.kr/_comm/fmlive.php
-#EXTINF:-1,Pyongyang FM 
+#EXTINF:-1,MBC 라디오 radio
+http://mini.imbc.com/v2/index.html?src=http://mini.imbc.com/\u0026ref=http://www.imbc.com/broad/radio/index.html#./datas/pagedata_home.jsstream.nsvstream.nsvstream.nsv
+#EXTINF:-1,Jonghap Top 20
+https://me.sayclub.com/bdcst/bdcst-home?bdcstDomainId=ch01
+#EXTINF:-1,Radio FallingStars - Pop
+https://me.sayclub.com/bdcst/bdcst-home?bdcstDomainId=sunsetpop
+#EXTINF:-1,Old's Pop Memory
+https://me.sayclub.com/bdcst/bdcst-home?bdcstDomainId=maky3010
+#EXTINF:-1,Musictour24
+https://me.sayclub.com/bdcst/bdcst-home?bdcstDomainId=musictour1
+#EXTINF:-1,Yiruma Radio
+https://stream02.pcradio.biz/Yurima-med
+#EXTINF:-1,Pyongyang FM
 https://listen7.myradio24.com/69366
+#EXTINF:-1,OkBS RADIO
+https://me.sayclub.com/bdcst/bdcst-home?bdcstDomainId=okbs
+#EXTINF:-1,OkBS
 #EXTINF:-1,KBS World Radio Korean
 http://world.kbs.co.kr/service/index.htm?lang=k
-#EXTINF:-1,KBS - 1Radio 
+#EXTINF:-1,MBC 라디오
+http://mini.imbc.com/v2/index.html?src=http://mini.imbc.com/&ref=http://www.imbc.com/broadhttp:/adio/index.html#./datas/pagedata_home.js;stream.nsv;stream.nsv;stream.nsv
+#EXTINF:-1,KBS - 1Radio
 https://onair.kbs.co.kr/index.html?sname=onair&stype=live&ch_code=21&ch_type=radioList
 #EXTINF:-1,MBC FM4U
-http://mini.imbc.com/v2/index.html?src=http://mini.imbc.com/&ref=http://www.imbc.com/broadhttp:/adio/index.html#./datas/pagedata home.js
+http://mini.imbc.com/v2/index.html?src=http://mini.imbc.com/&ref=http://www.imbc.com/broadhttp:/adio/index.html#./datas/pagedata_home.js
 #EXTINF:-1,TBC Dream FM
 http://www.tbc.co.kr/onair/?mid=6_190
 #EXTINF:-1,Arirang TV
@@ -115,6 +149,8 @@ http://amdlive.ctnd.com.edgesuite.net/arirang_1ch/smil:arirang_1ch.smil/playlist
 http://ebsonair.ebs.co.kr/ebs2familypc/familypc1m/playlist.m3u8
 #EXTINF:-1,EBS TV-Plus 2
 http://ebsonairios.ebs.co.kr/plus2familypc/familypc1m/playlist.m3u8
+#EXTINF:-1,Buddhist True Network TV
+http://btn.nowcdn.co.kr/btn/btnlive01/playlist.m3u8
 #EXTINF:-1,EBS TV-Kids
 http://ebsonairios.ebs.co.kr/ebsufamilypc/familypc1m/playlist.m3u8
 #EXTINF:-1,EBS TV-1
@@ -123,25 +159,27 @@ http://ebsonair.ebs.co.kr/groundwavefamilypc/familypc1m/playlist.m3u8
 http://ebsonairios.ebs.co.kr/plus1familypc/familypc1m/playlist.m3u8
 #EXTINF:-1,CPBC TV
 http://onair1.cpbc.co.kr:1935/tv/mp4:live720/playlist.m3u8
+#EXTINF:-1,Gukak TV
+http://mgugaklive.nowcdn.co.kr/gugakvideo/gugakvideo.stream/playlist.m3u8
+#EXTINF:-1,GugakFM
+https://mgugaklive.nowcdn.co.kr/gugakradio/gugakradio.stream/chunklist_w253831608.m3u8
 #EXTINF:-1,안동MBC AM
 http://andong.webcasting.co.kr:1935/live/amlive/playlist.m3u8
 #EXTINF:-1,Listen.moe (K-Pop)
 https://listen.moe/kpop/fallback
 #EXTINF:-1,wbs-smok 원음방송
 http://115.85.182.39/mapofm?type=.mp3
-#EXTINF:-1,Free FM
-http://bbslive.clouducs.com:1935/bbsradio-mlive/livestream/chunklist_w1565939476.m3u8
-#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/29877.v17.png",TBS eFM
-https://cdnefm.tbs.seoul.kr/tbs/_definst_/tbs_efm_web_360.smil/playlist.m3u8
+#EXTINF:-1,Jazz Heart Radio
+https://amdlive-ch03-ctnd-com.akamaized.net/arirang_3ch/smil:arirang_3ch.smil/playlist.m3u8
+#EXTINF:-1,BBS FM - Folk Tunes from South Korea
+https://worldradio.online/proxy/?q=http://bbslive.clouducs.com:1935/bbsradio-mlive/livestream/playlist.m3u8
+#EXTINF:-1,CBS 표준FM - Spiritual Sounds from South Korea
+https://m-aac.cbs.co.kr/mweb_cbs939/_definst_/cbs939.stream/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/30889.png",MBC 라디오
 http://mini.imbc.com/v2/index.html?src=http://mini.imbc.com/&ampampref=http://www.imbc.com/broad/radio/index.html#./datas/pagedata_home.jsstream.nsvstream.nsv
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/L1NR38.png",BOX : K-POP 케이팝
 https://boxradio-edge-00.streamafrica.net/kpop
-#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/EYXFP9.png",Pinoy Seoul Radio
-https://radio.pinoyseoul.com/radio/8000/live.mp3
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/5VW3X.png",YAHWEH CHRISTIAN RADIO
 https://s3.radio.co/s22189b87c/listen
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80320/logo_3CcfaP7ZVz.png",The plug | k-pop Radio
 https://kpop-jakeradiomasterserver.radioca.st/stream
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80310/logo_zuvdqHUYZV.png",CBS 표준FM Radio
-https://m-aac.cbs.co.kr/mweb_cbs939/_definst_/cbs939.stream/playlist.m3u8

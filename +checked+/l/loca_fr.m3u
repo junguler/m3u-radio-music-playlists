@@ -1,36 +1,42 @@
 #EXTM3U
 #EXTINF:-1,France Info
 https://icecast.radiofrance.fr/franceinfo-midfi.mp3
+#EXTINF:-1,France Inter
+http://icecast.radiofrance.fr/franceinter-midfi.mp3
+#EXTINF:-1,Europe 1
+https://europe1.lmn.fm/europe1.mp3?aw_0_1st.playerid=lgrdrnwsradio-en-lignefr
+#EXTINF:-1,Skyrock
+https://icecast.skyrock.net/s/natio_mp3_128k?tvr_name=mytuner&tvr_section1=128mp3
+#EXTINF:-1,RFM
+https://rfm.lmn.fm/rfm.mp3?aw_0_1st.playerid=lgrdrnwsradio-en-lignefr
+#EXTINF:-1,France Culture
+http://icecast.radiofrance.fr/franceculture-midfi.mp3
+#EXTINF:-1,ABC Lounge Jazz
+http://str1.openstream.co/589?aw_0_1st.collectionid%3D3139%26stationId%3D3139%26publisherId%3D613%26k%3D1766199675
+#EXTINF:-1,FIP
+http://icecast.radiofrance.fr/fip-midfi.mp3
+#EXTINF:-1,RFI Monde
+https://rfimonde64k.ice.infomaniak.ch/rfimonde-64.mp3
+#EXTINF:-1,France Musique
+http://icecast.radiofrance.fr/francemusique-midfi.mp3
 #EXTINF:-1,Latina
 https://start-latina.ice.infomaniak.ch/start-latina-high.aac
+#EXTINF:-1,Chante France
+https://chantefrance.ice.infomaniak.ch/chantefrance-96.aac
+#EXTINF:-1,Mouv'
+http://icecast.radiofrance.fr/mouv-midfi.mp3
 #EXTINF:-1,TSF Jazz
 https://tsfjazz.ice.infomaniak.ch/tsfjazz-high
 #EXTINF:-1,RFI Afrique
 https://rfiafrique64k.ice.infomaniak.ch/rfiafrique-64.mp3
-#EXTINF:-1,OUI FM
-http://stream.ouifm.fr/ouifm-high.mp3
-#EXTINF:-1,Jazz Radio Piano Jazz
-https://jzr-piano.ice.infomaniak.ch/jzr-piano.aac
-#EXTINF:-1,MFM Radio
-https://mfm.ice.infomaniak.ch/mfm-128.mp3
-#EXTINF:-1,Jazz Radio Jazz & Cinema
-https://jzr-wr20.ice.infomaniak.ch/jzr-wr20.aac
-#EXTINF:-1,Latina Salsa
-http://latinasalsa.bcast.infomaniak.ch/latinasalsa.mp3
-#EXTINF:-1,Generations Funk
-https://gene-wr05.ice.infomaniak.ch/gene-wr05.mp3
-#EXTINF:-1,Jazz Radio Saxo Jazz
-https://jzr-saxo.ice.infomaniak.ch/jzr-saxo.aac
-#EXTINF:-1,Top Music
-http://str0.creacast.com/topmusic1
-#EXTINF:-1,Radio Meuh
-http://radiomeuh.ice.infomaniak.ch:8000/radiomeuh-128.mp3
 #EXTINF:-1,Generations R&B
 http://generationfm-slowjam.ice.infomaniak.ch/generationfm-slowjam-high.mp3
 #EXTINF:-1,Generations Reggae
 https://generations-caraibes.ice.infomaniak.ch/generations-caraibes-high.aac
 #EXTINF:-1,Tropiques FM
 https://listen.radioking.com/radio/8916/stream/19088
+#EXTINF:-1,Chante France 70's
+https://chantefrance70s.ice.infomaniak.ch/chantefrance70s-96.aac
 #EXTINF:-1,Generations Rap FR
 http://generationfm-rap.ice.infomaniak.ch/generationfm-rap-high.mp3
 #EXTINF:-1,Latina Fiesta
@@ -42,7 +48,7 @@ http://alouette.ice.infomaniak.ch/alouette-high.mp3
 #EXTINF:-1,Jazz Radio Blues
 http://jazzblues.ice.infomaniak.ch/jazzblues-high.mp3
 #EXTINF:-1,Latina Bachata
-https://latinabachata.ice.infomaniak.ch/latinabachata.mp3
+http://soundcastmaster2.bcast.infomaniak.ch:8000/latinabachata.mp3
 #EXTINF:-1,Voltage
 https://start-voltage.ice.infomaniak.ch/start-voltage-high.aac
 #EXTINF:-1,Generations Rap US
@@ -53,68 +59,124 @@ https://chantefrance80s.ice.infomaniak.ch/chantefrance80s-96.aac
 http://icecast.radiofrance.fr/francemusiqueclassiqueplus-midfi.mp3
 #EXTINF:-1,Jazz Radio Jazz & Classique
 https://jazz-wr17.ice.infomaniak.ch/jazz-wr17-64.aac
+#EXTINF:-1,Chill, Relaxing, Positive
+https://streamingp.shoutcast.com/JamendoLounge?lang=*
 #EXTINF:-1,Beur FM
 https://beurfm.ice.infomaniak.ch/beurfm-high.mp3
-#EXTINF:-1,Jazz Radio Funk
-https://jazz-wr06.ice.infomaniak.ch/jazz-wr06-64.aac
+#EXTINF:-1,FG. Chic
+https://stream.rcs.revma.com/cgvrymb6p98uv
 #EXTINF:-1,France Musique Concerts de Radio France
 http://icecast.radiofrance.fr/francemusiqueconcertsradiofrance-midfi.mp3
+#EXTINF:-1,RFM Lounge
+https://rfm.lmn.fm/rfm-wr6.aac?aw_0_1st.playerid=lgrdrnwsradio-en-lignefr
+#EXTINF:-1,France Bleu Provence
+http://icecast.radiofrance.fr/fbprovence-midfi.mp3
+#EXTINF:-1,Chante France 60's
+https://chantefrance60s.ice.infomaniak.ch/chantefrance60s-96.aac
 #EXTINF:-1,France Maghreb 2
 https://francemaghreb2.ice.infomaniak.ch/francemaghreb2-high.mp3
-#EXTINF:-1,Generations R&B Gold
-https://generations-rnb-gold.ice.infomaniak.ch/generations-rnb-gold.aac
+#EXTINF:-1,FIP autour du jazz
+http://icecast.radiofrance.fr/fipjazz-midfi.mp3
+#EXTINF:-1,RFI Chinese
+https://rfienchinois64k.ice.infomaniak.ch/rfienchinois-64.mp3
+#EXTINF:-1,Skyrock 100% Français
+https://icecast.skyrock.net/s/francais_aac_128k?tvr_name=mytuner&tvr_section1=64aac
+#EXTINF:-1,FG. Non Stop
+https://stream.rcs.revma.com/2v1zz979n98uv
 #EXTINF:-1,Jazz Radio Lounge
 https://jazzlounge.ice.infomaniak.ch/jazzlounge-high.mp3
-#EXTINF:-1,Blackbox RnB US
-https://blackbox-us.ice.infomaniak.ch/blackbox-us.mp3
-#EXTINF:-1,Jazz Radio Beatles Jazz
-http://jazzradio.ice.infomaniak.ch/jazzradio-high.mp3
-#EXTINF:-1,France Musique Classique Easy
-http://icecast.radiofrance.fr/francemusiqueeasyclassique-midfi.mp3
-#EXTINF:-1,Generations Rap FR Gold
-https://gene-wr06.ice.infomaniak.ch/gene-wr06.aac
-#EXTINF:-1,Ado
-https://start-adofm.ice.infomaniak.ch/start-adofm-high.aac
-#EXTINF:-1,PLAY ZOUK ANTILLES
-http://maevatropicale.com:8050/stream.mp3
-#EXTINF:-1,Latina Kizomba
-http://latinakizomba.bcast.infomaniak.ch/latinakizomba.mp3
 #EXTINF:-1,Vintage 80 90
 https://radio8.pro-fhi.net/live/VINTAGE80-90
 #EXTINF:-1,Generations Soul
 https://gene-wr07.ice.infomaniak.ch/gene-wr07.aac
+#EXTINF:-1,FIP autour du monde
+http://icecast.radiofrance.fr/fipworld-midfi.mp3
+#EXTINF:-1,France Bleu Nord
+http://icecast.radiofrance.fr/fbnord-midfi.mp3
 #EXTINF:-1,OUI FM Reggae
 http://ganja.stream.ouifm.fr/ouifmganja-128.mp3
+#EXTINF:-1,FG. Home Party
+https://stream.rcs.revma.com/5kucq079n98uv
+#EXTINF:-1,ABC Ambient & Lounge
+https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1,Generations Rap US Gold
 https://gene-wr08.ice.infomaniak.ch/gene-wr08.aac
+#EXTINF:-1,Skyrock Klassiks
+https://icecast.skyrock.net/s/klassiks_aac_128k?tvr_name=mytuner&tvr_section1=64aac
 #EXTINF:-1,RFI English
 https://rfienanglais64k.ice.infomaniak.ch/rfienanglais-64.mp3
+#EXTINF:-1,RFM Night Fever
+https://rfm.lmn.fm/rfm-wr2.aac?aw_0_1st.playerid=lgrdrnwsradio-en-lignefr
+#EXTINF:-1,RFM Slow
+https://rfm.lmn.fm/rfm-wr13.aac
 #EXTINF:-1,Vibration
 https://vibration.ice.infomaniak.ch/vibration-high.mp3
+#EXTINF:-1,FG. Underground
+https://stream.rcs.revma.com/vb3b5749n98uv
+#EXTINF:-1,Hawaii FM
+https://hawaiifm.stream.laut.fm/hawaii_fm?t302=2025-12-20_03-02-03&uuid=0983bdd1-d108-440c-99ae-770659c7a527
 #EXTINF:-1,Generations
 https://generationfm.ice.infomaniak.ch/generationfm-high.aac
 #EXTINF:-1,SWIGG FM
 https://start-adofm.ice.infomaniak.ch/start-adofm-high.mp3
+#EXTINF:-1,FIP autour du rock
+http://icecast.radiofrance.fr/fiprock-midfi.mp3
+#EXTINF:-1,France Bleu Azur
+http://icecast.radiofrance.fr/fbazur-midfi.mp3
 #EXTINF:-1,Chante France Emotion
 https://chantefranceemotion.ice.infomaniak.ch/chantefranceemotion-96.aac
 #EXTINF:-1,Radio Scoop - Lyon
 https://radioscooplyon.ice.infomaniak.ch/radioscoop-lyon-128.mp3
+#EXTINF:-1,Skyrock Rap & RnB Non-Stop
+https://icecast.skyrock.net/s/rap_rnb_aac_128k?tvr_name=mytuner&tvr_section1=64aac
+#EXTINF:-1,France Bleu Alsace
+http://icecast.radiofrance.fr/fbalsace-midfi.mp3
+#EXTINF:-1,France Bleu Loire Océan
+http://icecast.radiofrance.fr/fbloireocean-midfi.mp3
+#EXTINF:-1,Radio Courtoisie
+https://ice.creacast.com/radio-courtoisie
+#EXTINF:-1,FIP autour du reggae
+http://icecast.radiofrance.fr/fipreggae-midfi.mp3
 #EXTINF:-1,France Musique La Jazz
 http://icecast.radiofrance.fr/francemusiquelajazz-midfi.mp3
 #EXTINF:-1,Radio Africa 1
 https://african1paris.ice.infomaniak.ch/african1paris-128.mp3
 #EXTINF:-1,100% Radio
 https://100radio-albi.ice.infomaniak.ch/100radio-albi-128.mp3
+#EXTINF:-1,RFM Party 90
+https://rfm.lmn.fm/rfm-wr5.aac?aw_0_1st.playerid=lgrdrnwsradio-en-lignefr
+#EXTINF:-1,FIP autour du groove
+http://icecast.radiofrance.fr/fipgroove-midfi.mp3
 #EXTINF:-1,OUI FM Rock 70's
 http://rock70s.stream.ouifm.fr/ouifmseventies.mp3
 #EXTINF:-1,Web Radio RTL 2
 http://163.172.96.134:8090/stream.mp3
+#EXTINF:-1,Kiss FM
+https://kissfm.ice.infomaniak.ch/kissfm-64.aac
+#EXTINF:-1,France Bleu Armorique
+http://icecast.radiofrance.fr/fbarmorique-midfi.mp3
+#EXTINF:-1,Starter FG. By Hakimakli
+https://stream.rcs.revma.com/vww68g69n98uv
 #EXTINF:-1,Jazz Radio Electro Swing
 https://jazz-wr04.ice.infomaniak.ch/jazz-wr04-128.mp3
 #EXTINF:-1,Latina Love
 http://latinalove.bcast.infomaniak.ch/latinalove.mp3
+#EXTINF:-1,France Bleu Roussillon
+http://icecast.radiofrance.fr/fbroussillon-midfi.mp3
+#EXTINF:-1,PulsRadio Dance
+https://str3.openstream.co/1365?aw_0_1st.collectionid%3D6036%26stationId%3D6036%26publisherId%3D1389%26k%3D1766199728
+#EXTINF:-1,Skyrock Premier sur le Rap
+https://icecast.skyrock.net/s/1er_rap_aac_128k?tvr_name=mytuner&tvr_section1=64aac
+#EXTINF:-1,France Bleu Pays Basque
+http://icecast.radiofrance.fr/fbpaysbasque-midfi.mp3
+#EXTINF:-1,Tout nouveau, tout fip
+http://icecast.radiofrance.fr/fipnouveautes-midfi.mp3
 #EXTINF:-1,Radio Vinci Autoroutes Sud 107.7
 http://str0.creacast.com/radio_vinci_autoroutes_3
+#EXTINF:-1,France Bleu Breizh Izel
+http://icecast.radiofrance.fr/fbbreizizel-midfi.mp3
+#EXTINF:-1,RFM Pop Rock
+https://rfm.lmn.fm/rfm-wr10.aac?aw_0_1st.playerid=lgrdrnwsradio-en-lignefr
 #EXTINF:-1,Cannes Radio
 https://stream.rcs.revma.com/2ykc70sauwzuv.mp3
 #EXTINF:-1,Allzic Radio CLASSIC PIANO
@@ -123,6 +185,8 @@ https://allzic47.ice.infomaniak.ch/allzic47.mp3
 http://bluesnrock.stream.ouifm.fr/ouifmbluesnrock-128.mp3
 #EXTINF:-1,M Radio Chansons d'amour
 https://mfmwr-026.ice.infomaniak.ch/mfmwr-026.mp3
+#EXTINF:-1,Evasion FM
+https://evasion91.ice.infomaniak.ch/evasion91-128.mp3
 #EXTINF:-1,France Bleu Haute Normandie
 http://icecast.radiofrance.fr/fbhautenormandie-midfi.mp3?ID=radiofrance
 #EXTINF:-1,Algorythme Drum & Bass
@@ -143,6 +207,8 @@ https://100radio-love.ice.infomaniak.ch/100radio-love-128.mp3
 https://start-blackbox.ice.infomaniak.ch/start-blackbox-high.mp3
 #EXTINF:-1,Africa Rumba
 https://webradio1.ice.infomaniak.ch/webradio4-128.mp3
+#EXTINF:-1,France Bleu Gironde
+http://icecast.radiofrance.fr/fbgironde-midfi.mp3
 #EXTINF:-1,Jazz Radio Zen Attitude
 https://zen-attitude.ice.infomaniak.ch/zen-attitude.aac
 #EXTINF:-1,La Radio Sympa
@@ -169,22 +235,37 @@ https://allzic48.ice.infomaniak.ch/allzic48.mp3
 https://radiobruaysis.ice.infomaniak.ch/radiobruaysis-128.mp3
 #EXTINF:-1,Reggae Mix Station
 http://radio-shoutcast2.cyber-streaming.com:8142/
+#EXTINF:-1,France Bleu Pays De Savoie
+http://icecast.radiofrance.fr/fbpaysdesavoie-midfi.mp3
+#EXTINF:-1,FIP à Bordeaux
 #EXTINF:-1,OUI FM Alternatif
 http://alternatif.stream.ouifm.fr/ouifm2.mp3
 #EXTINF:-1,Radio Paris
 http://titan.shoutca.st:9094/
+#EXTINF:-1,France Bleu Drôme-Ardèche
+http://icecast.radiofrance.fr/fbdromeardeche-midfi.mp3
+#EXTINF:-1,PulsRadio Lounge
+https://str3.openstream.co/1501?aw_0_1st.collectionid%3D6044%26stationId%3D6044%26publisherId%3D1525%26k%3D1766199735
 #EXTINF:-1,PulsRadio Hits (HitParty)
 https://sc6.gergosnet.com/hitpartyHD.mp3
 #EXTINF:-1,Jazz Radio Ladies & Crooners
-https://jazzladiescrooners.ice.infomaniak.ch/jazzladiescrooners-high.aac
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazzladiescrooners-high.aac
+#EXTINF:-1,France Bleu Basse-Normandie
+http://icecast.radiofrance.fr/fbbassenormandie-midfi.mp3
 #EXTINF:-1,OUI FM Rock 60's
 http://rock60s.stream.ouifm.fr/ouifmsixties.mp3
 #EXTINF:-1,Allzic Radio ITALIA
-https://allzic35.ice.infomaniak.ch/allzic35.mp3
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/allzic35.mp3
 #EXTINF:-1,Bob Sinclar Radio
 https://stream.rcs.revma.com/bf91kfu8wqruv
+#EXTINF:-1,Skyrock Urban Music Non-Stop
+https://icecast.skyrock.net/s/urban_music_aac_128k?tvr_name=mytuner&tvr_section1=64aac
+#EXTINF:-1,Gaydial Radio
+https://strw3.openstream.co/2338?aw_0_1st.collectionid%3D6261%26stationId%3D6261%26publisherId%3D2362%26k%3D1766199739
 #EXTINF:-1,France Bleu Frequenza Mora (RCFM)
 http://icecast.radiofrance.fr/fbfrequenzamora-midfi.mp3
+#EXTINF:-1,France Bleu Pays d’Auvergne
+http://icecast.radiofrance.fr/fbpaysdauvergne-midfi.mp3
 #EXTINF:-1,Radio MBS
 https://mbs.ice.infomaniak.ch/mbs-96.aac
 #EXTINF:-1,OUI FM Rock Indé
@@ -195,16 +276,30 @@ http://str0.creacast.com/radio_vinci_autoroutes_5
 http://cressida.shoutca.st:8591/stream/1/
 #EXTINF:-1,Urban Hit Rap FR
 https://urbanhitrapfr.ice.infomaniak.ch/urbanhitrapfr-64.aac
+#EXTINF:-1,France Bleu Hérault
+http://icecast.radiofrance.fr/fbherault-midfi.mp3
 #EXTINF:-1,MFM Culte 60 - 70
 https://mfmwr-022.ice.infomaniak.ch/mfmwr-022.mp3
 #EXTINF:-1,Mona FM
 https://monafm.ice.infomaniak.ch/monafm-high.mp3
+#EXTINF:-1,PulsRadio 80's
+https://str3.openstream.co/2134?aw_0_1st.collectionid%3D6048%26stationId%3D6048%26publisherId%3D2158%26k%3D1766199742
+#EXTINF:-1,France Bleu Gascogne
+http://icecast.radiofrance.fr/fbgascogne-midfi.mp3
+#EXTINF:-1,France Bleu Toulouse
+http://icecast.radiofrance.fr/fbtoulouse-midfi.mp3
 #EXTINF:-1,Allzic Radio ZOUK
 https://allzic28.ice.infomaniak.ch/allzic28.mp3
 #EXTINF:-1,Radio Espace
 https://radioespace.ice.infomaniak.ch/radioespace-high.aac
+#EXTINF:-1,France Bleu La Rochelle
+http://icecast.radiofrance.fr/fblarochelle-midfi.mp3
 #EXTINF:-1,Generations - 90
 https://generations-90.ice.infomaniak.ch/generations-90.aac
+#EXTINF:-1,France Bleu Gard-Lozere
+http://icecast.radiofrance.fr/fbgardlozere-midfi.mp3
+#EXTINF:-1,RFM Cinéma
+https://rfm.lmn.fm/rfm-wr15.aac?aw_0_1st.playerid=lgrdrnwsradio-en-lignefr
 #EXTINF:-1,MFM Culte 80 - 90
 https://mfmwr-010.ice.infomaniak.ch/mfmwr-010.mp3
 #EXTINF:-1,Radio Capsao Lyon
@@ -213,6 +308,10 @@ http://str2.creacast.com/capsao
 https://jzr-events-01.ice.infomaniak.ch/jzr-events-01.mp3
 #EXTINF:-1,OUI FM Les Slows du Rock
 http://slowrock.stream.ouifm.fr/ouifmslowrock.mp3
+#EXTINF:-1,France Bleu Isère
+http://icecast.radiofrance.fr/fbisere-midfi.mp3
+#EXTINF:-1,Skyrock Hit U.S
+https://icecast.skyrock.net/s/hit_us_aac_128k?tvr_name=mytuner&tvr_section1=64aac
 #EXTINF:-1,TOP 80 radio
 https://securestreams6.autopo.st:2321/stream.mp3
 #EXTINF:-1,Vibration 90's
@@ -224,7 +323,10 @@ https://radioemotion.ice.infomaniak.ch/radioemotion-128.mp3
 #EXTINF:-1,Allzic Radio DISNEY
 https://allzic52.ice.infomaniak.ch/allzic52.mp3
 #EXTINF:-1,Generations Booba
-https://generations-booba.ice.infomaniak.ch/generations-booba.aac
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/generations-booba.aac
+#EXTINF:-1,FIP à Nantes
+#EXTINF:-1,France Bleu Picardie
+http://icecast.radiofrance.fr/fbpicardie-midfi.mp3
 #EXTINF:-1,OUI FM Summertime
 http://summertime.stream.ouifm.fr/ouifmsummertime.mp3
 #EXTINF:-1,Jazz Radio Only Women
@@ -243,6 +345,8 @@ https://allzic11.ice.infomaniak.ch/allzic11.mp3
 https://cdnradiohls.streamakaci.com/4uclassicrock/4uclassicrock/icecast.audio
 #EXTINF:-1,Radio Espérance
 https://esperance.streamakaci.com/esperance.mp3
+#EXTINF:-1,France Bleu Sud Lorraine
+http://icecast.radiofrance.fr/fbsudlorraine-midfi.mp3
 #EXTINF:-1,OUI FM Rock 2000
 http://rock2000.stream.ouifm.fr/ouifmrock2000.mp3
 #EXTINF:-1,Urban Hit Maroc
@@ -257,8 +361,15 @@ http://rockfrancais.stream.ouifm.fr/ouifmrockfrancais.mp3
 https://montagnefm.ice.infomaniak.ch/montagnefm-96.mp3
 #EXTINF:-1,Generations - 2000
 https://generations-2000.ice.infomaniak.ch/generations-2000.aac
+#EXTINF:-1,Allegro Classical Music
+#EXTINF:-1,Skyrock Tunis
+https://icecast.skyrock.net/s/tunis_aac_128k?tvr_name=mytuner&tvr_section1=64aac
+#EXTINF:-1,PulsRadio 90's
+https://str3.openstream.co/2132?aw_0_1st.collectionid%3D6046%26stationId%3D6046%26publisherId%3D2156%26k%3D1766199751
 #EXTINF:-1,Islam WebRadio
 http://79.137.32.10:8000/
+#EXTINF:-1,France Bleu Bourgogne
+http://icecast.radiofrance.fr/fbbourgogne-midfi.mp3
 #EXTINF:-1,MAXI 80
 https://audio1.maxi80.com/
 #EXTINF:-1,Tonic Radio Lyon 98.4 FM
@@ -279,70 +390,110 @@ http://freedomice.streamakaci.com/freedom2.mp3
 https://allzic53.ice.infomaniak.ch/allzic53.mp3
 #EXTINF:-1,Allzic Radio Années 70
 https://allzic50.ice.infomaniak.ch/allzic50.aac
+#EXTINF:-1,France Bleu Orléans
+http://icecast.radiofrance.fr/fborleans-midfi.mp3
+#EXTINF:-1,France Bleu Besançon
+http://icecast.radiofrance.fr/fbbesancon-midfi.mp3
+#EXTINF:-1,France Bleu Lorraine Nord
+http://icecast.radiofrance.fr/fblorrainenord-midfi.mp3
 #EXTINF:-1,Vinci Autoroute Languedoc Roussillon
 http://str0.creacast.com/radio_vinci_autoroutes_4
 #EXTINF:-1,Allzic Radio REGGAE
 https://allzic43.ice.infomaniak.ch/allzic43.mp3
 #EXTINF:-1,Lor' FM
 https://lorfm.ice.infomaniak.ch/lorfm-128.mp3
+#EXTINF:-1,France Bleu Berry
+http://icecast.radiofrance.fr/fbberry-midfi.mp3
 #EXTINF:-1,Horizon
 https://horizonradio-bethunelens.ice.infomaniak.ch/horizonradio-bethunelens-128
 #EXTINF:-1,Radio 6
 https://radio6-boulognesurmer.ice.infomaniak.ch/radio6-boulognesurmer-128.mp3
-#EXTINF:-1,Radio Cristal
-https://radiocristal.ice.infomaniak.ch/radiocristal-high.mp3
 #EXTINF:-1,Allzic Radio Années 80
 https://allzic08.ice.infomaniak.ch/allzic08.mp3
+#EXTINF:-1,RFM Collector
+https://rfm.lmn.fm/rfm-wr1.aac?aw_0_1st.playerid=lgrdrnwsradio-en-lignefr
 #EXTINF:-1,ODS Radio
 https://ods.ice.infomaniak.ch/ods-high.aac
 #EXTINF:-1,Allzic Radio DEEP DISCO
 https://allzic31.ice.infomaniak.ch/allzic31.mp3
+#EXTINF:-1,France Bleu Touraine
+http://icecast.radiofrance.fr/fbtouraine-midfi.mp3
 #EXTINF:-1,Forum FM
 https://start-forum.ice.infomaniak.ch/start-forum-high.aac
 #EXTINF:-1,Radio Scoop - 100% Années 90's
 https://radioscoopannees90.ice.infomaniak.ch/radioscoop-annees90-64.aac
 #EXTINF:-1,Est FM
 http://str0.creacast.com/estfm1
+#EXTINF:-1,ABC Relax
+https://manager7.streamradio.fr/abcrelax
+#EXTINF:-1,Fréquence3
+https://www.frequence3.com/f3-only90s/mp3-160.m3u
 #EXTINF:-1,Allzic Radio ZEN
 https://allzic20.ice.infomaniak.ch/allzic20.mp3
+#EXTINF:-1,All 80's
 #EXTINF:-1,Delta FM
 https://deltafmdunkerque.ice.infomaniak.ch/deltafmdunkerque-high.mp3
 #EXTINF:-1,MFM French Touch
 https://mfmwr-003.ice.infomaniak.ch/mfmwr-003.mp3
+#EXTINF:-1,France Bleu Vaucluse
+http://icecast.radiofrance.fr/fbvaucluse-midfi.mp3
+#EXTINF:-1,FIP autour du tout nouveau tout fip
+http://icecast.radiofrance.fr/fipnouveautes-midfi.mp3?ID=radiofrance
 #EXTINF:-1,MFM 100% Johnny
 https://mfmwr-006.ice.infomaniak.ch/mfmwr-006.mp3
 #EXTINF:-1,Allzic Radio CLASSIC
 https://allzic06.ice.infomaniak.ch/allzic06.mp3
+#EXTINF:-1,France Bleu Périgord
+http://icecast.radiofrance.fr/fbperigord-midfi.mp3
 #EXTINF:-1,Generations Girl
-https://generations-girls.ice.infomaniak.ch/generations-girls.aac
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/generations-girls.aac
 #EXTINF:-1,Radio Mont-Blanc
 https://radiomontblanc1.ice.infomaniak.ch/radiomontblanc1-128.mp3
+#EXTINF:-1,Skyrock PLM
+https://icecast.skyrock.net/s/plm_aac_128k?tvr_name=mytuner&tvr_section1=64aac
 #EXTINF:-1,Jazz Radio Soul Food
 https://jazz-wr12.ice.infomaniak.ch/jazz-wr12-128.mp3
 #EXTINF:-1,Radios chrétiennes francophones ( RCF )
 http://rcf.streamakaci.com/rcf.mp3
+#EXTINF:-1,France Bleu Auxerre
+http://icecast.radiofrance.fr/fbauxerre-midfi.mp3
+#EXTINF:-1,PulsRadio 2000
+https://str3.openstream.co/2142?aw_0_1st.collectionid%3D6056%26stationId%3D6056%26publisherId%3D2166%26k%3D1766199762
+#EXTINF:-1,France Bleu Limousin
+http://icecast.radiofrance.fr/fblimousin-midfi.mp3
 #EXTINF:-1,Allzic Radio BRAZIL
 https://allzic19.ice.infomaniak.ch/allzic19.mp3
+#EXTINF:-1,France Bleu Belfort-Montbéliard
+http://icecast.radiofrance.fr/fbbelfort-midfi.mp3
 #EXTINF:-1,Atlantica Oldies
 http://radios.topymedia.com:8052/
 #EXTINF:-1,Magnum La Radio
 http://str0.creacast.com/magnum
 #EXTINF:-1,Radio Nova Vintage
 https://novazz.ice.infomaniak.ch/novazz-128.mp3
+#EXTINF:-1,France Bleu Champagne
+http://icecast.radiofrance.fr/fbchampagne-midfi.mp3
 #EXTINF:-1,Allzic Radio BLUES
 https://allzic09.ice.infomaniak.ch/allzic09.mp3
 #EXTINF:-1,Radio Lovely
 https://lovely.ice.infomaniak.ch/lovely-96.aac
+#EXTINF:-1,FIP à Strasbourg
 #EXTINF:-1,Allzic Radio Africa
 https://allzic49.ice.infomaniak.ch/allzic51.aac
 #EXTINF:-1,Radio Nova La Nuit
 https://nova-ln.ice.infomaniak.ch/nova-ln-128
 #EXTINF:-1,RCJ FM
 http://str0.creacast.com/radio-rcj
+#EXTINF:-1,France Bleu Cotentin
+http://icecast.radiofrance.fr/fbcotentin-midfi.mp3
 #EXTINF:-1,France Musique Musiques du monde Ocora
 http://icecast.radiofrance.fr/francemusiqueocoramonde-midfi.mp3
 #EXTINF:-1,RadioStar
 https://listen.radioking.com/radio/9728/stream/20210
+#EXTINF:-1,Radio NTI
+https://www.radionti.com/pages_live/nti-mp3-128k.pls
+#EXTINF:-1,France Bleu Mayenne
+http://icecast.radiofrance.fr/fbmayenne-midfi.mp3
 #EXTINF:-1,Radio Mélodie
 http://str0.creacast.com/melodie
 #EXTINF:-1,Totem Aveyron
@@ -368,17 +519,23 @@ https://vibration80s.ice.infomaniak.ch/vibration80s.mp3
 #EXTINF:-1,Allzic Radio Années 50
 https://allzic29.ice.infomaniak.ch/allzic29.mp3
 #EXTINF:-1,Allzic Radio ORIENTALE
-https://allzic33.ice.infomaniak.ch/allzic33.mp3
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/allzic33.mp3
 #EXTINF:-1,Africa Selecta
 https://webradio6.ice.infomaniak.ch/webradio6-128.mp3
 #EXTINF:-1,Générations Parlez-vous français
 https://gene-wr09.ice.infomaniak.ch/gene-wr09.aac
 #EXTINF:-1,Vinci Autoroute Ouest Centre
 http://str0.creacast.com/radio_vinci_autoroutes_1
+#EXTINF:-1,France Musique La Contemporaine
+http://icecast.radiofrance.fr/francemusiquelacontemporaine-midfi.mp3
 #EXTINF:-1,RLM Radio 107.9 FM
 http://s2.free-shoutcast.com:18122/
+#EXTINF:-1,FIP autour du Rock
+http://icecast.radiofrance.fr/fiprock-midfi.mp3?ID=radiofrance
 #EXTINF:-1,RFI Kiswahili
 https://rfienswahili64k.ice.infomaniak.ch/rfienswahili-64.mp3
+#EXTINF:-1,France Bleu Béarn
+http://icecast.radiofrance.fr/fbbearn-midfi.mp3
 #EXTINF:-1,100% Radio Souvenirs
 https://100radio-souvenirs.ice.infomaniak.ch/100radio-souvenirs-128.mp3
 #EXTINF:-1,Allzic Radio JAZZ LOUNGE
@@ -389,20 +546,28 @@ https://montmartre.ice.infomaniak.ch/montmartre.aac
 https://mfmwr-023.ice.infomaniak.ch/mfmwr-023.mp3
 #EXTINF:-1,100% Radio Hit
 https://100radio-hit.ice.infomaniak.ch/100radio-hit-128.mp3
+#EXTINF:-1,RFM Run & Fit
+https://rfm.lmn.fm/rfm-wr9.aac
 #EXTINF:-1,Allzic Radio LATINO
 https://allzic39.ice.infomaniak.ch/allzic39.mp3
+#EXTINF:-1,France Bleu Elsass
+http://icecast.radiofrance.fr/fbelsass-midfi.mp3
 #EXTINF:-1,Azur FM
 http://live.radioking.fr/azur-fm-67
 #EXTINF:-1,Radio Scoop - Saint Etienne
 https://radioscoopsaintetienne.ice.infomaniak.ch/radioscoop-stetienne-128.mp3
 #EXTINF:-1,Allzic Radio LOVE SONG
-https://allzic34.ice.infomaniak.ch/allzic34.mp3
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/allzic34.mp3
 #EXTINF:-1,Allzic Radio DISCO
 https://allzic31.ice.infomaniak.ch/allzic31.aac
+#EXTINF:-1,Skyrock Abidjan
+https://icecast.skyrock.net/s/abidjan_aac_128k?tvr_name=mytuner&tvr_section1=64aac
 #EXTINF:-1,Radio Latitude
 https://latitude.ice.infomaniak.ch/latitude-128.mp3
 #EXTINF:-1,RCF Corsica
 https://rcf.streamakaci.com/rcf20.mp3
+#EXTINF:-1,Radio Judaica
+https://judaica.ice.infomaniak.ch/judaica-high.mp3
 #EXTINF:-1,Rock&Folk
 https://rockfolk.ice.infomaniak.ch/rockfolk.mp3?t=1588680546731
 #EXTINF:-1,Radio Scoop - 100% Années 2000's
@@ -413,12 +578,16 @@ http://str0.creacast.com/radio_vinci_autoroutes_2
 https://mfmwr-005.ice.infomaniak.ch/mfmwr-005.mp3
 #EXTINF:-1,4U Rock Live
 https://cdnradio.streamakaci.com/4urocklive.mp3
+#EXTINF:-1,France Bleu Saint-Étienne Loire
+http://icecast.radiofrance.fr/fbstetienne-midfi.mp3
 #EXTINF:-1,Urban Hit 94.6
 https://onlyrai.ice.infomaniak.ch/onlyrai-high.aac
 #EXTINF:-1,POP RADIO
 http://sirius.shoutca.st:9184/stream
 #EXTINF:-1,Soleil FM
 http://radio-shoutcast2.cyber-streaming.com:8120/stream.mp3
+#EXTINF:-1,France Bleu Maine
+http://icecast.radiofrance.fr/fbmaine-midfi.mp3
 #EXTINF:-1,Urban Hit Latino
 https://urbanhitlatino.ice.infomaniak.ch/urbanhitreggeaton-64.aac
 #EXTINF:-1,Jazz Radio Sunset
@@ -427,12 +596,16 @@ https://jzr-sunset.ice.infomaniak.ch/jzr-sunset.aac
 https://vibrationlove.ice.infomaniak.ch/vibrationlove.mp3
 #EXTINF:-1,Phare FM Worship
 http://str0.creacast.com/pharefmlive
+#EXTINF:-1,France Bleu Poitou
+http://icecast.radiofrance.fr/fbpoitou-midfi.mp3
 #EXTINF:-1,MFM Années 2000
 https://mfmwr-020.ice.infomaniak.ch/mfmwr-020.mp3
 #EXTINF:-1,FIP autour du Groove
 http://icecast.radiofrance.fr/fipgroove-midfi.mp3?ID=radiofrance
 #EXTINF:-1,Vibration Lounge
 https://vibrationlounge.ice.infomaniak.ch/vibrationlounge.mp3
+#EXTINF:-1,Skyrock La Nocturne
+https://icecast.skyrock.net/s/nocturne_aac_128k?tvr_name=mytuner&tvr_section1=64aac
 #EXTINF:-1,Jazz Radio Groov'Up
 https://jazz-wr13.ice.infomaniak.ch/jazz-wr13-64.aac
 #EXTINF:-1,RCA Saint-Nazaire 100.1 FM
@@ -455,6 +628,8 @@ http://girlsrock.stream.ouifm.fr/ouifmgirlsrock.mp3
 https://radio.metal-invasion.fr/radio/8000/stream96
 #EXTINF:-1,Prysm Deep
 https://stream.rcs.revma.com/ppzppua5rnruv
+#EXTINF:-1,France Bleu Creuse
+http://icecast.radiofrance.fr/fbcreuse-midfi.mp3
 #EXTINF:-1,Hits 1 radio
 https://radio12.pro-fhi.net/live/Hits1radio
 #EXTINF:-1,Radio Scoop Pop-Rock
@@ -467,6 +642,7 @@ https://wit2000.ice.infomaniak.ch/wit2000.mp3
 https://wit80s.ice.infomaniak.ch/wit80s.mp3
 #EXTINF:-1,Rádio IBNJ Paris
 http://stm1.hostplay.com.br:7036/
+#EXTINF:-1,A1 Quiet Radio
 #EXTINF:-1,Africa Mandingue
 https://webradio1.ice.infomaniak.ch/webradio2-128.mp3
 #EXTINF:-1,Allzic Radio FAIRE LA FETE
@@ -479,8 +655,6 @@ https://mfmwr-016.ice.infomaniak.ch/mfmwr-016.mp3
 http://str2.creacast.com/accent4
 #EXTINF:-1,Radio DouDou
 https://listen.radioking.com/radio/11565/stream/22961
-#EXTINF:-1,Allzic Radio ROAD 66
-https://allzic37.ice.infomaniak.ch/allzic37.mp3
 #EXTINF:-1,Generations Slowjam
 https://gene-wr11.ice.infomaniak.ch/gene-wr11.aac
 #EXTINF:-1,Wit 90's
@@ -499,24 +673,19 @@ http://play2.organlive.com:7000/128
 http://fcradio.ice.infomaniak.ch/fcradio-64.aac
 #EXTINF:-1,Allzic Radio TOP 50
 https://allzic55.ice.infomaniak.ch/allzic55.mp3
-#EXTINF:-1,Sanef 107.7 Ouest
-https://sanef.ice.infomaniak.ch/sanef1077-ouest.mp3
 #EXTINF:-1,Relax Zone
 http://relax-zone.vip-radios.fm:8045/stream-128kmp3-RelaxZone
 #EXTINF:-1,FGL Fréquence Grands Lacs
 http://str0.creacast.com/fgl
-#EXTINF:-1,K6 FM
-https://k6fm.ice.infomaniak.ch/k6fm-64.aac
 #EXTINF:-1,Métis Radio
 http://janus.shoutca.st:8031/type=mp3
-#EXTINF:-1,MFM Le Meilleur Du Grand Réveil
-https://mfm-thema.ice.infomaniak.ch/mfm-thema.mp3
 #EXTINF:-1,Vosges FM
 http://str0.creacast.com/vosgesfm-epinal
 #EXTINF:-1,Radio Menergy
 https://radiomenergy.ice.infomaniak.ch/radiomenergy-128.mp3
 #EXTINF:-1,MFM Voix Feminines
 https://mfmwr-013.ice.infomaniak.ch/mfmwr-013.mp3
+#EXTINF:-1,Sunrise to sunset
 #EXTINF:-1,Radio Judaica Strasbourg
 https://radiojudaicastrasbourg.ice.infomaniak.ch/radiojudaicastrasbourg-128.mp3
 #EXTINF:-1,Grande Sud FM
@@ -537,6 +706,8 @@ https://allzic24.ice.infomaniak.ch/allzic24.mp3
 https://mfmwr-028.ice.infomaniak.ch/mfmwr-028.mp3
 #EXTINF:-1,RCA Nantes 99.5 FM
 https://rcanantes.ice.infomaniak.ch/rcanantes-192.mp3
+#EXTINF:-1,MFM Séducteurs
+https://mfmwr-017.ice.infomaniak.ch/mfmwr-017.mp3
 #EXTINF:-1,La Radio Plus de Playlist
 https://plus-wr01.ice.infomaniak.ch/plus-wr01.aac
 #EXTINF:-1,Jazz Radio Valentine's Day
@@ -551,6 +722,7 @@ http://streamlive.syndicationradio.fr:8072/
 https://scoopkitsch.ice.infomaniak.ch/radioscoop-kitsch-64.aac
 #EXTINF:-1,Euradio
 http://euradio44.ice.infomaniak.ch/euradio44-192.mp3
+#EXTINF:-1,Nature 1 Max
 #EXTINF:-1,MFM 100% Comédies Musicales
 https://mfmwr-014.ice.infomaniak.ch/mfmwr-014.mp3
 #EXTINF:-1,Urban Hit À L'ancienne
@@ -561,16 +733,9 @@ http://str0.creacast.com/pharefm_louange
 https://mfmwr-008.ice.infomaniak.ch/mfmwr-008.mp3
 #EXTINF:-1,MFM Dessins Anims
 https://mfmwr-002.ice.infomaniak.ch/mfmwr-002.mp3
-#EXTINF:-1,Allzic Radio BLACK MUSIC
-https://allzic04.ice.infomaniak.ch/allzic04.mp3
-#EXTINF:-1,Wit Club
-https://witclub.ice.infomaniak.ch/witclub.mp3
-#EXTINF:-1,Allzic Radio DANCEFLOOR
-https://allzic07.ice.infomaniak.ch/allzic07.mp3
 #EXTINF:-1,Radio Esperance Byzantin
 https://esperance.streamakaci.com/alraja.mp3
-#EXTINF:-1,Radio SCOOP - Bourg en Bresse
-https://radioscoopbourg-en-bresse.ice.infomaniak.ch/radioscoop-bourg-128.mp3
+#EXTINF:-1,Surf Radio
 #EXTINF:-1,Generations Rohff
 https://generation-rohff.ice.infomaniak.ch/generation-rohff.aac
 #EXTINF:-1,Generations - Lyon
@@ -591,10 +756,11 @@ https://scoopannees2010.ice.infomaniak.ch/radioscoop-annees2010-64.aac
 https://allzic49.ice.infomaniak.ch/allzic49.mp3
 #EXTINF:-1,Africa Coupe DK
 https://webradio1.ice.infomaniak.ch/webradio1-128.mp3
+#EXTINF:-1,Kiss FM de Toulon à Marseille
+https://kissfm2.ice.infomaniak.ch/kissfm2-128.mp3
 #EXTINF:-1,Allzic Radio RAP US
 https://allzic01.ice.infomaniak.ch/allzic01.mp3
-#EXTINF:-1,Oxygene Radio
-http://str0.creacast.com/oxygene49_hq.mp3
+#EXTINF:-1,Allegro Jazz
 #EXTINF:-1,Allzic Radio RAP FR
 https://allzic02.ice.infomaniak.ch/allzic02.mp3
 #EXTINF:-1,Allzic Radio HUMOUR
@@ -603,8 +769,6 @@ https://allzic25.ice.infomaniak.ch/allzic25.mp3
 https://allzic41.ice.infomaniak.ch/allzic41.mp3
 #EXTINF:-1,MFM Duos
 https://mfmwr-015.ice.infomaniak.ch/mfmwr-015.mp3
-#EXTINF:-1,Radio Normandie Rock
-https://radio7.pro-fhi.net/flux-zyzlxxpq/stream
 #EXTINF:-1,RCF Bordeaux
 https://rcf.streamakaci.com/rcf33.mp3
 #EXTINF:-1,MFM 100% Enfoirés
@@ -641,14 +805,13 @@ https://allzic13.ice.infomaniak.ch/allzic13.mp3
 http://str0.creacast.com/pharefm
 #EXTINF:-1,MFM 100% Québec
 https://mfmwr-004.ice.infomaniak.ch/mfmwr-004.mp3
+#EXTINF:-1,Radio Gansta
 #EXTINF:-1,Kitten D'Amour Radio
 http://www.streamvortex.com:10120/
 #EXTINF:-1,Jazz Radio Sly Johnson
 https://jazz-thema.ice.infomaniak.ch/jazz-thema.mp3
 #EXTINF:-1,OUI FM Bring The Noise
 http://bringthenoise.stream.ouifm.fr/ouifmbringthenoise.mp3
-#EXTINF:-1,Sanef 107.7 Nord
-https://sanef.ice.infomaniak.ch/sanef1077-nord.mp3
 #EXTINF:-1,Futuradio Dance
 https://futuradiodance.ice.infomaniak.ch/frdance-128.mp3
 #EXTINF:-1,MFM Comptines
@@ -665,8 +828,6 @@ http://str30.creacast.com/ecn1
 https://stream.rcs.revma.com/h8wfr23a0mzuv
 #EXTINF:-1,Kernews
 https://kernews.ice.infomaniak.ch/kernews-128.mp3
-#EXTINF:-1,Sanef 107.7 Est
-https://sanef.ice.infomaniak.ch/sanef1077-est.mp3
 #EXTINF:-1,Vibration @Work
 https://vibrationwork.ice.infomaniak.ch/vibrationwork.mp3
 #EXTINF:-1,Radio Predication
@@ -681,6 +842,7 @@ https://stream.radio5050.com/
 https://rcf.streamakaci.com/rcf76.mp3
 #EXTINF:-1,Max FM
 https://maxfm.ice.infomaniak.ch/maxfm-945.mp3
+#EXTINF:-1,Frequence-tropicale
 #EXTINF:-1,RCF Reims-Ardennes
 https://rcf.streamakaci.com/rcf51r.mp3
 #EXTINF:-1,Wit Love
@@ -697,6 +859,9 @@ https://radiocampuslille.ice.infomaniak.ch/radiocampuslille-128.mp3
 http://icepe12.infomaniak.ch/helenefm-high.mp3
 #EXTINF:-1,Radio Scoop Love
 https://scoopinlove.ice.infomaniak.ch/radioscoop-inlove-64.aac
+#EXTINF:-1,Agora Côte d'Azur
+https://agoracotedazur.ice.infomaniak.ch/agoracotedazur.mp3
+#EXTINF:-1,RadioGroovy
 #EXTINF:-1,Atlantica Soleil
 http://radios.topymedia.com:8054/
 #EXTINF:-1,Radio Scoop - 100% Musiques de films
@@ -707,6 +872,8 @@ https://publicsantesexo.ice.infomaniak.ch/publicsantesexo-192.mp3
 https://voix-du-sud.ice.infomaniak.ch/voix-du-sud.mp3
 #EXTINF:-1,Radio Top FM
 http://str30.creacast.com/top_fm
+#EXTINF:-1,hitmusicradio
+https://manager4.streamradio.fr:1650/stream
 #EXTINF:-1,Allzic Radio ENFANTS 7/12 ANS
 https://allzic16.ice.infomaniak.ch/allzic16.mp3
 #EXTINF:-1,Tonic Radio 100% Pop Rock
@@ -723,6 +890,7 @@ https://rcf.streamakaci.com/rcf59.mp3
 http://bretagne5.streamakaci.com/bretagne5.mp3
 #EXTINF:-1,MFM Talents de la Tele
 https://mfmwr-025.ice.infomaniak.ch/mfmwr-025.mp3
+#EXTINF:-1,Surf Radio Clubbing
 #EXTINF:-1,MFM Génériques TV
 https://mfmwr-021.ice.infomaniak.ch/mfmwr-021.mp3
 #EXTINF:-1,Pure Radio
@@ -731,18 +899,18 @@ http://str0.creacast.com/purelectro
 https://rcf.streamakaci.com/rcf84.mp3
 #EXTINF:-1,Radio Scoop Les Terrasses
 https://scooplesterrasses.ice.infomaniak.ch/radioscoop-lesterrasses-64.aac
-#EXTINF:-1,RKH Radio Kol Hachalom
-http://broadcast.infomaniak.ch/radiokolhachalom-high.mp3
 #EXTINF:-1,MFM Nouvelle Scène
 https://mfmwr-012.ice.infomaniak.ch/mfmwr-012.mp3
 #EXTINF:-1,Phare FM Hits
 http://str0.creacast.com/pharefmhits
+#EXTINF:-1,Oblik
 #EXTINF:-1,Vivre FM
 https://vivrefm.ice.infomaniak.ch/vivrefm-128.mp3
 #EXTINF:-1,Flotteurs FM
 http://str30.creacast.com/flotteurs_fm
 #EXTINF:-1,Radio-Mix
 http://andromeda.shoutca.st:8427/mp3
+#EXTINF:-1,Paco Radio Hip Hop
 #EXTINF:-1,8D Radio
 http://listen.openstream.co/3879/audio
 #EXTINF:-1,Corail 80
@@ -755,38 +923,34 @@ https://allzic54.ice.infomaniak.ch/allzic54.mp3
 http://178.32.137.180:8689/
 #EXTINF:-1,Prysm Radio 1
 https://stream.rcs.revma.com/df9hy1eucrruv
+#EXTINF:-1,Corail Vintage
+http://strw3.openstream.co/518?aw_0_1st.collectionid%3D3052%26stationId%3D3052%26publisherId%3D542%26k%3D1766199863
 #EXTINF:-1,Alpes 1 Années 80
 https://allzic08.ice.infomaniak.ch/allzic08.aac
-#EXTINF:-1,D!CI Radio
-https://dici.ice.infomaniak.ch/dici-96.mp3
 #EXTINF:-1,MAXXI Sud
 http://radio9.pro-fhi.net:9100/stream
+#EXTINF:-1,Rio Radio
+https://rioradio.ice.infomaniak.ch/rioradio-192.mp3
 #EXTINF:-1,RVE
 http://str0.creacast.com/rve
 #EXTINF:-1,Futuradio Urban
 https://futuradiourban.ice.infomaniak.ch/frurban-128.mp3
-#EXTINF:-1,Generations Wati B
-https://generations-wati-b.ice.infomaniak.ch/generations-wati-b.aac
 #EXTINF:-1,RCA Les Sables d'Olonne 106.3 FM
 https://rcalessablesdolonne.ice.infomaniak.ch/rcalessablesdolonne-192.mp3
+#EXTINF:-1,Radio One Station
+https://stream.onestation.net/onestation-128.mp3
 #EXTINF:-1,Futuradio Hits
 https://futuradiohits.ice.infomaniak.ch/frhits-128.mp3
 #EXTINF:-1,RCF Vendée
 https://rcf.streamakaci.com/rcf85.mp3
+#EXTINF:-1,Radio L
+https://stream3.vestaradio.com/radioL
 #EXTINF:-1,Radio Capsao Oyonnax
 http://str2.creacast.com/capsao_f
 #EXTINF:-1,Mayana FM
 https://streaming.radio.co/s59aedb575/listen
-#EXTINF:-1,Generations - Noël
-https://generations-thema.ice.infomaniak.ch/generations-thema.aac
-#EXTINF:-1,Yellow radio
-https://yellowradio.ice.infomaniak.ch/yellowradio.mp3
-#EXTINF:-1,RCF Calvados-Manche
-https://rcf.streamakaci.com/rcf14.mp3
-#EXTINF:-1,ACTIVE RADIO
-http://manager.streaming-ingenierie.fr:8028/
-#EXTINF:-1,Fluid radio channel 1
-http://uk4-vn.mixstream.net:9270/listen.mp3
+#EXTINF:-1,Surf Radio 80
+#EXTINF:-1,Best Radio
 #EXTINF:-1,Blackbox @Work
 http://blackboxwork.bcast.infomaniak.ch/blackboxwork-128.mp3
 #EXTINF:-1,Radio 6 - Montreuil sur mer 94.1 FM
@@ -817,6 +981,7 @@ https://urbanhitus.ice.infomaniak.ch/urbanhitus-64.aac
 https://allzic21.ice.infomaniak.ch/allzic21.mp3
 #EXTINF:-1,DIGITAL 2
 https://ecmanager4.pro-fhi.net:2315/stream
+#EXTINF:-1,Sun Station Radio
 #EXTINF:-1,RCF Lorraine Nancy
 https://rcf.streamakaci.com/rcf54.mp3
 #EXTINF:-1,Cigale FM
@@ -843,6 +1008,9 @@ https://allzic38.ice.infomaniak.ch/allzic38.mp3
 https://stream.rcs.revma.com/2gx7q01a0mzuv
 #EXTINF:-1,X-Move la Radio
 http://s26.myradiostream.com:11428/stream.mp3
+#EXTINF:-1,Ghost Dog Radio
+#EXTINF:-1,Hits 1 latina
+https://str3.openstream.co/1183?aw_0_1st.collectionid%3D4194%26stationId%3D4194%26publisherId%3D1207%26k%3D1766199888
 #EXTINF:-1,RadioTamTam
 https://listen.radioking.com/radio/10736/stream/21710
 #EXTINF:-1,RCF Loiret
@@ -851,10 +1019,14 @@ https://rcf.streamakaci.com/rcf45.mp3
 https://rcf.streamakaci.com/rcf49.mp3
 #EXTINF:-1,Fréquence Verte
 https://listen.radioking.com/radio/209212/stream/252127
+#EXTINF:-1,Rast'Art Radio
+#EXTINF:-1,Sunset to sunrise
 #EXTINF:-1,Tonic Radio Ville Franche 94.7 FM
 https://tonicradiovillefranche.ice.infomaniak.ch/tonicradiovillefranche.mp3
 #EXTINF:-1,RCF Finistère
 https://rcf.streamakaci.com/rcf29.mp3
+#EXTINF:-1,Radio Montlucon Bourbonnais ( RMB )
+https://rmb.ice.infomaniak.ch/rmb-high.mp3
 #EXTINF:-1,Sud Nivernais Radio
 http://str0.creacast.com/sud-nivernais-radio
 #EXTINF:-1,Atlantica Radio
@@ -863,6 +1035,8 @@ http://radios.topymedia.com:8000/
 https://allzic27.ice.infomaniak.ch/allzic27.mp3
 #EXTINF:-1,Radio Côte Varoise
 https://radiocotevaroise.ice.infomaniak.ch/radiocotevaroise-128.mp3
+#EXTINF:-1,Feet Radio 80
+#EXTINF:-1,On Street Radio
 #EXTINF:-1,Radio Arc en Ciel
 https://str0.creacast.com/arcencielweb
 #EXTINF:-1,RCF Alsace
@@ -871,24 +1045,30 @@ https://rcf.streamakaci.com/rcf.mp3
 https://allzic49.ice.infomaniak.ch/allzic51.mp3
 #EXTINF:-1,Futuradio Rock
 https://futuradiorock.ice.infomaniak.ch/frrock-128.mp3
+#EXTINF:-1,ABC Dance Gold
 #EXTINF:-1,Futuradio Pop & Sweet
 https://futuradiopopsweet.ice.infomaniak.ch/frsweet-128.mp3
 #EXTINF:-1,Radio Vexin Val De Seine ( RVVS )
 http://rvvs.ice.infomaniak.ch/rvvs-64.aac
-#EXTINF:-1,RADIO87
-http://live.radio87.fr/
+#EXTINF:-1,Pepites
+#EXTINF:-1,Solid Gold
+#EXTINF:-1,MicroRadio
 #EXTINF:-1,RADIO FLAM
 http://streamlive.syndicationradio.fr:8038/
 #EXTINF:-1,Insidedancefloor la webradio
 http://listen.openstream.co/2866/audio
 #EXTINF:-1,Vogue Radio
 https://vogueradio.ice.infomaniak.ch/vogueradio-high.mp3
+#EXTINF:-1,OnlyHit J-music
+#EXTINF:-1,Khoja Radio
+https://stream.vestaradio.com/KHOJARADIO
 #EXTINF:-1,RCF Méditerranée
 https://rcf.streamakaci.com/rcf83.mp3
 #EXTINF:-1,Allzic Radio ENFANTS 4/7 ANS
 https://allzic15.ice.infomaniak.ch/allzic15.mp3
 #EXTINF:-1,Cocktail FM
 https://listen.radioking.com/radio/245467/stream/289642
+#EXTINF:-1,Radio 9
 #EXTINF:-1,Radio404
 https://listen.radioking.com/radio/240028/stream/285745
 #EXTINF:-1,Allzic Radio COMEDIES MUSICALES
@@ -905,6 +1085,7 @@ http://host.radio.2dms.fr:8016/stream
 https://listen.radioking.com/radio/139090/stream/179170
 #EXTINF:-1,RCF Loir-et-Cher
 https://rcf.streamakaci.com/rcf41.mp3
+#EXTINF:-1,Retro Game Music
 #EXTINF:-1,Radio RG30
 https://rg30.radioca.st/stream
 #EXTINF:-1,Allzic Radio LIVE Français
@@ -913,8 +1094,13 @@ https://allzic44.ice.infomaniak.ch/allzic44.mp3
 https://rcf.streamakaci.com/rcf39.mp3
 #EXTINF:-1,BPM FM
 http://str20.creacast.com/bpm
+#EXTINF:-1,Alzheimer la radio
+https://keycloak.octopus.saooti.com/realms/catalogue/protocol/openid-connect/auth?response_type=code&client_id=catalogue-web&scope=openid%20profile%20email&state=2cjHZ3bHNNo8UWqz68doj9ZLIEf2U8HT857vE3Q9CSE%3D&redirect_uri=https://radiofrancealzheimer.org/login/oauth2/code/keycloak&nonce=QUYADSr_zyVxaUuuys-vLh97GGIML_EOHMGWPJEg6Jk
+#EXTINF:-1,Radio Delta FM
+https://deltafm.ice.infomaniak.ch/deltafm-90-2
 #EXTINF:-1,RCF En Bourgogne
 https://rcf.streamakaci.com/rcf21.mp3
+#EXTINF:-1,Ange Radio
 #EXTINF:-1,RCF Alpha
 https://rcf.streamakaci.com/rcf35.mp3
 #EXTINF:-1,Radio Grand Ciel
@@ -929,6 +1115,7 @@ https://stream.akroradio.com:10012/AkroRadio
 http://str20.creacast.com/bazarnaom
 #EXTINF:-1,TruckersFM
 https://radio.truckers.fm/
+#EXTINF:-1,Jeff Radio Hit
 #EXTINF:-1,Ntemuk.com
 http://gemini.shoutca.st:8678/
 #EXTINF:-1,Radio LA16 Charente
@@ -941,6 +1128,8 @@ https://stric6.streamakaci.com/radiocoteaux.mp3
 http://euradio67.ice.infomaniak.ch/euradio67-192.mp3
 #EXTINF:-1,Totem Haute-Vienne
 https://aratotem.ice.infomaniak.ch/auvergne.mp3
+#EXTINF:-1,Radio Village Innovation
+https://www.radiovillageinnovation.com/
 #EXTINF:-1,Koulam Radio
 https://listen.radioking.com/radio/210166/stream/253141
 #EXTINF:-1,Deepinside Guest Sessions
@@ -951,8 +1140,11 @@ https://rcf.streamakaci.com/rcf58.mp3
 https://lausannefm.ice.infomaniak.ch/lausannefm-high.mp3
 #EXTINF:-1,Adofun Webradio
 https://listen.radioking.com/radio/121099/stream/160645
+#EXTINF:-1,RMV - Radio Miréréni Village
+http://51.210.148.30:8000/
 #EXTINF:-1,Radio Sail
 http://onair7.xdevel.com:7246/
+#EXTINF:-1,Play Hit
 #EXTINF:-1,RCF Alpes-Provence
 https://rcf.streamakaci.com/rcf05.mp3
 #EXTINF:-1,RCF Charente-Maritime
@@ -961,20 +1153,35 @@ https://rcf.streamakaci.com/rcf17.mp3
 http://serveur3.wanastream.com:11600/
 #EXTINF:-1,Starter FM: New Caledonia
 https://streaming.starterfm.com/radio/8010/nc64
+#EXTINF:-1,Libre Antenne
+https://stream.libre-antenne.fr/radio/8000/radio.mp3
+#EXTINF:-1,Face 2 Radio
+https://mytuner-radio.com/radio/country/france-stations
 #EXTINF:-1,Radio Club
 http://radio-shoutcast2.cyber-streaming.com:8128/
 #EXTINF:-1,Radio.Immo-Fr
 https://radio.immo/stream/immo.fr.mp3
 #EXTINF:-1,RCF Touraine
 https://rcf.streamakaci.com/rcf37.mp3
+#EXTINF:-1,Aufilduson 80s
 #EXTINF:-1,UP Radio
 https://listen.radioking.com/radio/208624/stream/251509
 #EXTINF:-1,NA Radio
 https://naradio.ice.infomaniak.ch/naradio-192.mp3
 #EXTINF:-1,Radio Public Santé Loisirs & Sports
 https://publicsanteloisirssports.ice.infomaniak.ch/publicsanteloisirssports-192.mp3
+#EXTINF:-1,Music Radio
+#EXTINF:-1,Radio Spirite
 #EXTINF:-1,Radio.Immo-Be
 https://radio.immo/stream/immo.be.mp3
+#EXTINF:-1,RTM
+#EXTINF:-1,Zen For You
+#EXTINF:-1,Contact Electro Touch
+#EXTINF:-1,Contact House Music
+#EXTINF:-1,Contact Hardstyle
+#EXTINF:-1,Contact Trance
+#EXTINF:-1,ABC Disco Funk
+#EXTINF:-1,Generikids
 #EXTINF:-1,Geoff FM
 http://82.65.128.140:9000/
 #EXTINF:-1,Canal Fuzz Radio
@@ -985,10 +1192,13 @@ http://radio.pro-fhi.net:2199/tunein/moegtrvy.pls
 https://radiopaysdegueret.ice.infomaniak.ch/radiopaysdegueret.mp3
 #EXTINF:-1,RADIO SEMNOZ
 https://listen.radioking.com/radio/76072/stream/114109
+#EXTINF:-1,Noel Web Radio
 #EXTINF:-1,RCF Besançon
 https://rcf.streamakaci.com/rcf25.mp3
 #EXTINF:-1,Radio Public Santé Famille
 https://pubicsantefamille.ice.infomaniak.ch/pubicsantefamille-192.mp3
+#EXTINF:-1,O'Hits radio
+#EXTINF:-1,Contact Dance
 #EXTINF:-1,RadioCSM
 https://radiocsm2.ice.infomaniak.ch/radiocsm2-128.mp3
 #EXTINF:-1,RCF En Berry
@@ -999,10 +1209,9 @@ http://91.121.29.128:8058/stream
 http://str0.creacast.com/oxy-meaux
 #EXTINF:-1,Radio Public Santé Génération Seniors
 https://publicsantegenerationsenior.ice.infomaniak.ch/publicsantegenerationsenior-192.mp3
-#EXTINF:-1,Hit 103 FM
-http://streaming.enantena.com:8000/radiovalls128.mp3
 #EXTINF:-1,Totem Lozere
 https://aratotem.ice.infomaniak.ch/lozere.mp3
+#EXTINF:-1,Elium Club and Dance
 #EXTINF:-1,Insidelatino
 http://listen.openstream.co/2865/audio
 #EXTINF:-1,Radio Public Sante
@@ -1011,28 +1220,37 @@ https://radiopublicsante.ice.infomaniak.ch/radiopublicsante-192.mp3
 https://publicsantenutri-conso.ice.infomaniak.ch/publicsantenutri-conso-192.mp3
 #EXTINF:-1,Prysm Stage
 https://stream.rcs.revma.com/gc7r5h2thnruv
+#EXTINF:-1,AtineaNature
 #EXTINF:-1,Euradio à Lille
 http://euradio59.ice.infomaniak.ch/euradio59-192.mp3
 #EXTINF:-1,Radio Mendililia
 http://manager.streaming-ingenierie.fr:8014/
+#EXTINF:-1,RCF Poitou
+https://rcf.streamakaci.com/rcf86.mp3
 #EXTINF:-1,Corail station
 http://listen.openstream.co/3049/audio
 #EXTINF:-1,RCF Allier
 https://rcf.streamakaci.com/rcf03.mp3
+#EXTINF:-1,Radio 74
+https://radio74.ice.infomaniak.ch/radio74-high.aac?type=.flv&ua=Infomaniak+Flash+Player+v2
 #EXTINF:-1,Radio Peinard Skyrock
 http://str2.creacast.com/radio_peinard
+#EXTINF:-1,Kiss FM Est e Centre var
+https://kissfmvarest.ice.infomaniak.ch/kissfmvarest-128.mp3
 #EXTINF:-1,Collines FM
 http://collineslaradio.bcast.infomaniak.ch/collineslaradio-128.mp3
+#EXTINF:-1,ABC Hits Music
 #EXTINF:-1,VFM Radio
 http://str0.creacast.com/vfm
 #EXTINF:-1,Radio Côte Bleue
 https://rcbradio.ice.infomaniak.ch/rcbradio.aac
-#EXTINF:-1,Triage FM
-http://radio.pro-fhi.net:9052/stream
 #EXTINF:-1,RCF Le Mans
 https://rcf.streamakaci.com/rcf72.mp3
+#EXTINF:-1,Elium Rock and Pop
 #EXTINF:-1,Eternal Webradio
 https://manager4.streamradio.fr:1185/stream
+#EXTINF:-1,LexRadio
+https://www.lexbase.fr/medias-juridiques
 #EXTINF:-1,Elise Radio H-Savoie
 http://serveur2.wanastream.com:25000/stream.nsv
 #EXTINF:-1,RCF Maguelone Hérault
@@ -1042,7 +1260,7 @@ https://rcf.streamakaci.com/rcf51c.mp3
 #EXTINF:-1,Allzic Radio NOUVEAUTES FRANCAISES
 https://allzic23.ice.infomaniak.ch/allzic23.mp3
 #EXTINF:-1,Frequence Sille
-http://cdnradio.streamakaci.com/frequencesille.mp3
+https://cdnradio.streamakaci.com/frequencesille.mp3
 #EXTINF:-1,Comète FM
 http://str2.creacast.com/cometefm
 #EXTINF:-1,Radio Coquelicot
@@ -1051,6 +1269,10 @@ http://str0.creacast.com/radio_coquelicot
 https://rcf.streamakaci.com/rcf61.mp3
 #EXTINF:-1,RCF Corrèze
 https://rcf.streamakaci.com/rcf19.mp3
+#EXTINF:-1,Radio Le Sang
+#EXTINF:-1,Hits 1 Latina
+https://str3.openstream.co/1183?aw_0_1st.collectionid%3D4194%26stationId%3D4194%26publisherId%3D1207%26k%3D1766200002
+#EXTINF:-1,Musifesta
 #EXTINF:-1,SWIGG WORK
 https://adowork.ice.infomaniak.ch/adowork-128.mp3
 #EXTINF:-1,RCF Pays de l'Ain
@@ -1061,22 +1283,21 @@ https://rcf.streamakaci.com/rcf22.mp3
 http://christmasrock.stream.ouifm.fr/ouifmnoel-128.mp3
 #EXTINF:-1,Generations La Fouine
 https://generations-la-fouine.ice.infomaniak.ch/generations-la-fouine.aac
-#EXTINF:-1,SUNALPES RADIO
-http://funalpesradio.ice.infomaniak.ch/funalpes.mp3
-#EXTINF:-1,Radio Cigogne
-https://philae.shoutca.st:2199/tunein/radiocigogne.pls
-#EXTINF:-1,SOUL RADIO Classics
-https://listen.soulradio.eu/eu
+#EXTINF:-1,Radio Decibelle
 #EXTINF:-1,Look FM
 https://odin.radioca.st/stream
 #EXTINF:-1,GhostMixRadio
 http://149.56.175.167:5150/stream
 #EXTINF:-1,Tonic Radio 100% Disco
 https://tonic100disco.ice.infomaniak.ch/tonic100disco-128.mp3
+#EXTINF:-1,Jolio's Party
 #EXTINF:-1,Sensation Rock
 https://sensationrock.ice.infomaniak.ch/sensationrock-128.aac
+#EXTINF:-1,Contact Main Stage
 #EXTINF:-1,Big Cactus Classic Rock
 https://radio10.pro-fhi.net/radio/9038/stream.mp3
+#EXTINF:-1,FunHits
+https://rocket.streamradio.fr:8074/stream
 #EXTINF:-1,RCF Savoie
 https://rcf.streamakaci.com/rcf73.mp3
 #EXTINF:-1,Radio Arménie
@@ -1089,20 +1310,30 @@ http://radiart.eu:2199/tunein/gardanneice.pls
 https://rcf.streamakaci.com/rcf81.mp3
 #EXTINF:-1,Tonic Radio Bourgoin 97.8 FM
 https://tonicradiobourgoin.ice.infomaniak.ch/tonicradiobourgoin.mp3
+#EXTINF:-1,Contact Up Mix
+#EXTINF:-1,VOLTING URBAN
+https://strw3.openstream.co/406?aw_0_1st.collectionid%3D2855%26stationId%3D2855%26publisherId%3D226%26k%3D1766200025
 #EXTINF:-1,RADIO CACTUS 92.2 FM
 http://94.23.27.6:8242/
 #EXTINF:-1,Wit @Work
 https://witwork.ice.infomaniak.ch/witwork.mp3
+#EXTINF:-1,Sam Radio Officiel
+https://radio12.pro-fhi.net:19035/stream
 #EXTINF:-1,OUI FM Rock'N'Food
 http://rocknfood.stream.ouifm.fr/ouifmrocknfood.mp3
-#EXTINF:-1,Allzic Radio LIVE GOLD
-https://allzic45.ice.infomaniak.ch/allzic45.mp3
+#EXTINF:-1,RFM Fresh
+https://rfm.lmn.fm/rfm-wr7.aac?aw_0_1st.playerid=lgrdrnwsradio-en-lignefr
+#EXTINF:-1,Fréquence Météo
+#EXTINF:-1,Contact Story
 #EXTINF:-1,StrackStation
 http://radio7.pro-fhi.net:9146/strackstation
+#EXTINF:-1,RADIO 81
 #EXTINF:-1,Melody
 http://www.melodiefm.net/live.m3u
+#EXTINF:-1,Friscofunkparker
 #EXTINF:-1,RCF Haute-loire
 https://rcf.streamakaci.com/rcf43.mp3
+#EXTINF:-1,OBR
 #EXTINF:-1,Tonic Radio 100% Ladies
 https://tonicradio100ladies.ice.infomaniak.ch/tonicradio100ladies-128.mp3
 #EXTINF:-1,Up eXtra
@@ -1131,10 +1362,12 @@ https://radio10.pro-fhi.net:19157/
 http://azurcast.kipaza.fr:8010/radio-fretoise.mp3
 #EXTINF:-1,Addict Radio Star
 http://stream1.addictradio.net/addictstar.mp3
+#EXTINF:-1,You-Move
 #EXTINF:-1,FunAdos-radio
 https://funados.ice.infomaniak.ch/funados.mp3
 #EXTINF:-1,Volting Radio
 http://listen.openstream.co/2673/audio
+#EXTINF:-1,Contact Advance
 #EXTINF:-1,RFI Journal - Afrique
 http://live02.rfi.fr/rfiafrique-64.mp3
 #EXTINF:-1,RFI Journal - Monde
@@ -1147,7 +1380,7 @@ http://telechargement.rfi.fr/rfi/francais/audio/last/rfi_trn_dernier_ameriques_h
 http://telechargement.rfi.fr/rfi/francais/audio/jff/202008/journal_francais_facile_journal_en_francais_facile_20200816.mp3
 #EXTINF:-1,VIKLAND
 http://vikland.c-prod.com/vikland.m3u
-#EXTINF:-1,  101.3 FRENCH FM
+#EXTINF:-1,_ 101.3 FRENCH FM
 https://canli.arabeskinmerkezi.com/9180/stream?n=525c6e2983830d93e282
 #EXTINF:-1,..87,5!. Nantes
 https://listen.radioking.com/radio/15130/stream/28217?n=28a4c81124ff09391f09
@@ -1187,14 +1420,19 @@ https://c4.auracast.net:8050/?n=1e43788d4040d737b7ce
 http://str4uice.streamakaci.com/4uclassicrock.mp3?n=6a9d624042cd608cfab4
 #EXTINF:-1,313 DBN Radio
 https://dbn313radio.radioca.st/stream?n=62ca31f0f7e9864f5aa9
+#EXTINF:-1,ABC-Loungr
 #EXTINF:-1,Active Radio
 http://manager.streaming-ingenierie.fr:8028/stream.mp3?n=ce4df97d30c043022467
 #EXTINF:-1,Active radio 100.6 FM
 http://manager.streaming-ingenierie.fr:8028/?n=0fa6f33466118553d784
 #EXTINF:-1,Addict Alternative
 http://stream2.addictradio.net/addictalternative.mp3?n=b56eed235708bab75bf1
+#EXTINF:-1,Addict Rock
+https://www.addictradio.net/files/rock.m3u
+#EXTINF:-1,Addict Star
+https://www.addictradio.net/files/star.m3u
 #EXTINF:-1,adofm
-http://start-adofm.ice.infomaniak.ch/start-adofm-high.mp3?n=c4b868118250336f22d3
+http://soundcastmaster2.bcast.infomaniak.ch:8000/start-adofm-high.mp3?n=c4b868118250336f22d3
 #EXTINF:-1,Africa N°1
 http://african1paris.ice.infomaniak.ch/african1paris-128.mp3?n=af3157869e44d34cfc98
 #EXTINF:-1,Africa Radio Abidjan Webradio
@@ -1205,6 +1443,8 @@ https://webradio1.ice.infomaniak.ch/webradio5-128.mp3?n=ccd1eda9a0e17dc3942e
 https://webradio1.ice.infomaniak.ch/webradio1-128.mp3?n=42628616ae522f6b7559
 #EXTINF:-1,Africa Radio Mandingue Webradio
 https://webradio1.ice.infomaniak.ch/webradio2-128.mp3?n=2641ab8672a3f233361b
+#EXTINF:-1,Africa Radio Manu Dibango Webradio
+https://webradio7.ice.infomaniak.ch/webradio7-128.mp3?n=679a7e924cf45c0e66ad
 #EXTINF:-1,Africa Radio Naija Webradio
 https://webradio1.ice.infomaniak.ch/webradio3-128.mp3?n=595a75d86d11fe4378c5
 #EXTINF:-1,Africa Radio Paris
@@ -1219,6 +1459,10 @@ https://agoracotedazur.ice.infomaniak.ch/agoracotedazur.mp3?n=bf07d627be46c7352f
 http://agoracotedazur.ice.infomaniak.ch/agoracotedazur.mp3?n=fe71e49d2d73e67b0097
 #EXTINF:-1,AkroRadio
 http://stream.akroradio.com:10012/AkroRadio?n=ad4e7a973cc8b8875392
+#EXTINF:-1,Album Radio Rock
+http://album-radio-rock.stream.laut.fm/album-radio-rock?n=c63ef023f873e6d5f298&t302=2025-12-20_03-07-50&uuid=325a2048-c8c6-4e27-93c5-3f806f425d4d
+#EXTINF:-1,Alefamusic
+https://www.radioking.com/api/radio/alefamusic.pls?n=29bd550706492ba605c0
 #EXTINF:-1,Alençon FM
 https://listen.radioking.com/radio/290959/stream/337222?n=452de6249b5245e54187
 #EXTINF:-1,Algorythme Lounge & Bossa
@@ -1343,6 +1587,8 @@ http://allzic02.ice.infomaniak.ch/allzic02.mp3?n=ddc6699a7e6302c60b41
 http://allzic28.ice.infomaniak.ch/allzic28.mp3?n=3fb73bbb129c6747c86c
 #EXTINF:-1,AllzicRadio Jazz Lounge
 https://allzic03.ice.infomaniak.ch/allzic03.aac?n=0316fd053fd1ffb9e017
+#EXTINF:-1,ALOUETTE INDIE
+https://alouetteindie.ice.infomaniak.ch/alouetteindie-128.mp3?n=4e1bd5198ec9eb309d19
 #EXTINF:-1,Alouette Le Club
 https://alouetteleclub.ice.infomaniak.ch/alouetteleclub-128.mp3?n=202a1117d31afc36747d
 #EXTINF:-1,Alouette Nouveau Talents
@@ -1363,32 +1609,10 @@ http://178.32.222.164:8002/listen.pls?sid=1?n=c26ef5121352a6173c2f
 http://psn3.prostreaming.net:8163/?n=86a42ac6dcecca3cd32b
 #EXTINF:-1,AYP FM
 http://stric6.streamakaci.com/radioayp.mp3?n=381a74f03cd4507a64e9
-#EXTINF:-1,B4B Deep House
-http://www.b4bradio.com/flux/deep-house.m3u?n=8a65e69a655e182e70a7
-#EXTINF:-1,B4B DISCO FUNK OFFICIAL
-http://www.b4bradio.com/flux/dance-classics.m3u?n=f4e512ab971ad1f99161
-#EXTINF:-1,B4B Radio DISCO FUNK
-https://eu10.fastcast4u.com:8120/?n=aa820b160f5c30b7fb0e
-#EXTINF:-1,badradio 24/7 OG Phonk, Memphis, Houston, Trap & Trill
-https://s2.radio.co/s2b2b68744/listen?n=7af86116f68f9cede115
-#EXTINF:-1,Banquise FM
-http://ecoute.banquisefm.com/?n=90629124e026a5915736
-#EXTINF:-1,Beem Boom Radio
-https://listen.radioking.com/radio/299368/stream/356549?n=5b6643aad41fb7876b3d
-#EXTINF:-1,beemboomradio
-https://listen.radioking.com/radio/299368/stream/356549?n=7fc46d5782c569e2b5a1
-#EXTINF:-1,BFM Avec RMC
-https://audio.bfmtv.com/rmcradio_128.mp3?n=4690107d15457dfa2aad
-#EXTINF:-1,BFM Business
-https://audio.bfmtv.com/bfmbusiness_128.mp3?n=4c173233e7288d0f1366
-#EXTINF:-1,BFM Business 
-http://audio.bfmtv.com/bfmbusiness_128.mp3?aw_0_1st.playerId=BFMBusiness_audio_web&aggregator=BFMBusiness_audio_web?n=cec7974930b24bf1d612
-#EXTINF:-1,BFM radio
-https://audio.bfmtv.com/bfmradio_128.mp3?n=5593a85897f878afb7ea
-#EXTINF:-1,BFM Radio 128.mp3
-https://audio.bfmtv.com/bfmradio_128.mp3?n=81c64560b2e5ad961a28
 #EXTINF:-1,Bible Esperance
 http://esperance.streamakaci.com/parole-de-dieu.mp3?n=66c7867bf8405eed7dd4
+#EXTINF:-1,Bide et Musique
+https://www.bide-et-musique.com/playlist-hq.m3u?n=12d6069c5335faae3060
 #EXTINF:-1,Black Corvette
 https://radio2.vip-radios.fm:18084/stream-mp3-BlackCorvette?n=4aff7a14ba8be70395f3
 #EXTINF:-1,BlackBox classic US
@@ -1405,10 +1629,16 @@ http://str20.creacast.com/bpm?n=df31bcaf0c30566488e3
 http://srv2.streaming-ingenierie.fr:8164/stream.nsv?n=817786ccdb0002a8fec2
 #EXTINF:-1,Carocelt
 http://carocelt.ice.infomaniak.ch/carocelt-128.mp3?n=393329af742c8f2b48bc
+#EXTINF:-1,Chansons oubliees ou presque
+https://manager7.streamradio.fr:2580/stream?1701295921862?n=c3e93a0a0886ef593a85
 #EXTINF:-1,Chante France 60s
 https://chantefrance60s.ice.infomaniak.ch/chantefrance60s-128.mp3?n=ce46e8470edaba09fe33
 #EXTINF:-1,Chante France 70s
 https://chantefrance70s.ice.infomaniak.ch/chantefrance70s-128.mp3?n=0dea668e97143a28917f
+#EXTINF:-1,Chante France 80s
+https://chantefrance80s.ice.infomaniak.ch/chantefrance80s-128.mp3
+#EXTINF:-1,Chillofi radio
+https://azc.rdstream-5677.dez.ovh/listen/chillofi/radio.mp3
 #EXTINF:-1,cinemusic radio
 https://listen.radioking.com/radio/422/stream/62785?n=e91ede55d3e26165303d
 #EXTINF:-1,Classic FM
@@ -1423,8 +1653,6 @@ http://collineslaradio.ice.infomaniak.ch/collineslaradio-128.mp3?n=d8d462ed292c1
 https://listen.radioking.com/radio/530131/stream/588580?n=e84aef391ebdb017d9f8
 #EXTINF:-1,CouleursJAZZ
 https://listen.radioking.com/radio/127546/stream/167344?n=15b688f40464c085ffe0
-#EXTINF:-1,Cristal
-http://radiocristal.ice.infomaniak.ch/radiocristal-high.mp3?n=1f256140fb106e8f8c7e
 #EXTINF:-1,Crooner Radio - Movies
 https://croonerradio_movies.ice.infomaniak.ch/croonerradio-movies-midfi.mp3?n=fcc1abaa1786faa0d8ad
 #EXTINF:-1,Crooner Radio American
@@ -1433,12 +1661,14 @@ http://croonerradio_american.ice.infomaniak.ch/croonerradio-american-midfi.mp3?n
 http://croonerradio_classicgold.ice.infomaniak.ch/croonerradio-classicgold-midfi.mp3?n=19ba21174797ca0f10f9
 #EXTINF:-1,Crooner Radio Frenchy
 http://croonerradio_frenchy.ice.infomaniak.ch/croonerradio-frenchy-midfi.mp3?n=22d9ae4bca1e99d90e1a
-#EXTINF:-1,Crooner Radio Swing 
+#EXTINF:-1,Crooner Radio Swing
 http://croonerradio_swing.ice.infomaniak.ch/croonerradio-swing-midfi.mp3?n=d8665881e0817286d10d
 #EXTINF:-1,Crooner Radio Zen
 http://croonerradio_zen.ice.infomaniak.ch/croonerradio-zen-midfi.mp3?n=02357770621c0d16d59a
 #EXTINF:-1,croonerradio julioiglesias
 http://croonerradio_julioiglesias.ice.infomaniak.ch/croonerradio-julioiglesias-midfi.mp3?n=aa18f158eb4639ff59a8
+#EXTINF:-1,Cuberadio.fr
+https://ais-sa3.cdnstream1.com/2627_128.mp3
 #EXTINF:-1,Decibel fm
 http://str20.creacast.com/decibel_fm?n=0b26fae872231b65e751
 #EXTINF:-1,Delta FM Dunkerque
@@ -1451,6 +1681,8 @@ https://delta.ice.infomaniak.ch/delta-192.mp3?n=853d3e466ae7bf632f19
 https://visual.shoutca.st/stream/DjMusicOnly/stream?n=c24410bad5c7df3aa0ce
 #EXTINF:-1,DnBRadio.com - Main Channel FR Mirror
 http://ildnb1.dnbradio.com:8000/dnbradio_main.mp3?n=75ea81b36b6a39f53b43
+#EXTINF:-1,Douce France MP3
+https://doucefrance.ice.infomaniak.ch/doucefrance-192.mp3?n=b2a319f36e22f0f22e16
 #EXTINF:-1,efr 12 radio
 http://listen.radioking.com/radio/151768/stream/192217?n=e04313bf8a08c1259fd7
 #EXTINF:-1,EFR12 Radio
@@ -1459,12 +1691,12 @@ https://listen.radioking.com/radio/151768/stream/192217?n=7d7ab41f6e8ab02ffd1a
 https://radio.egrego.re/radio/8000/radio.mp3?n=81f1777826ef95b5a565
 #EXTINF:-1,EIPM
 https://stunnel1.cyber-streaming.com:9046/stream?type=http&nocache=30?n=027669dc2309326f1bd6
-#EXTINF:-1,Elise radio 
+#EXTINF:-1,Elise radio
 https://elise.wanastream.com:25000/stream.nsv?n=122e638ea0bc8ce0f370
 #EXTINF:-1,ERFM
 https://karadoc.erfm.fr/radio?n=14e8636d28d7f3d59e42
 #EXTINF:-1,Espace Dancefloor
-http://espace-dancefloor.ice.infomaniak.ch/espace-dancefloor-high.aac?n=5df80a424c898200a3d5
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/espace-dancefloor-high.aac?n=5df80a424c898200a3d5
 #EXTINF:-1,ESSENTIEL Bible
 http://essentielradioing.streamakaci.com/essentielbible.mp3?n=8ee1dbeb362283e5139b
 #EXTINF:-1,ESSENTIEL kidz
@@ -1472,7 +1704,7 @@ http://essentielradioing.streamakaci.com/essentielkidz.mp3?n=5603bf393284f37e050
 #EXTINF:-1,ESSENTIEL radio
 http://essentielradioing.streamakaci.com/essentielradio.mp3?n=e64623d88b55ead34960
 #EXTINF:-1,ESSENTIEL.fr
-http://cdnradio.streamakaci.com/essentielfr.mp3?n=cda861f0a3d937d5169d
+https://cdnradio.streamakaci.com/essentielfr.mp3?n=cda861f0a3d937d5169d
 #EXTINF:-1,EuroDance 90 radio
 https://stream-eurodance90.fr/radio/8000/128.mp3?1627933323?n=e8c034bcd78cbdb18980
 #EXTINF:-1,Europe 1 Musique
@@ -1493,6 +1725,19 @@ https://europe2.lmn.fm/vr-wr1.mp3?aw_0_1st.playerid=lagardereappVirgin?n=302452b
 https://europe2.lmn.fm/vr-wr8.mp3?aw_0_1st.playerid=lagardereappVirgin?n=ade491d5569fd978bafb
 #EXTINF:-1,Europe 2 Radio Officiel
 https://europe2.lmn.fm/europe2-57600/playlist.m3u8?aw_0_1st.playerid=lagardereappEurope2?n=92ea05f1861b2b952269
+#EXTINF:-1,Evasion
+https://evasion75.ice.infomaniak.ch/evasion75-128.mp3
+#EXTINF:-1,Evasion FM Essonne
+#EXTINF:-1,Evasion FM Oise
+https://evasion60e.ice.infomaniak.ch/evasion60e-128.mp3
+#EXTINF:-1,Evasion FM Seine-et-Marne Nord
+https://evasion77n.ice.infomaniak.ch/evasion77n-128.mp3
+#EXTINF:-1,Evasion FM Seine-et-Marne Sud
+https://evasion77s.ice.infomaniak.ch/evasion77s-128.mp3
+#EXTINF:-1,Evasion FM Somme
+https://evasion80.ice.infomaniak.ch/evasion80-128.mp3
+#EXTINF:-1,Evasion FM Yvelines
+https://evasion78s.ice.infomaniak.ch/evasion78s-128.mp3
 #EXTINF:-1,FC Radio
 http://fcradio.ice.infomaniak.ch/fcradio-128.mp3?n=b35fafac4756aabb0a0d
 #EXTINF:-1,FGL Radio
@@ -1501,28 +1746,42 @@ http://str0.creacast.com/fgl?n=4cffbf9a53a8c6968eb1
 http://icecast.radiofrance.fr/fip-hifi.aac?n=4f649b092f57a955fac7
 #EXTINF:-1,FIP Metal
 https://stream.radiofrance.fr/fipmetal/fipmetal_hifi.m3u8?id=radiofrance?n=c0f305fbb8e80aa1c09a
+#EXTINF:-1,FIP autour de l’électro
+http://icecast.radiofrance.fr/fipelectro-midfi.mp3?n=fde662e63a356a750c37
+#EXTINF:-1,Fip Bordeaux
+http://icecast.radiofrance.fr/fip-midfi.mp3?ID=76zqey582k?n=0d60a7196699d1a8ac74
+#EXTINF:-1,Fip Electro
+http://icecast.radiofrance.fr/fipelectro-hifi.aac?n=227166d9a785cf452984
 #EXTINF:-1,FIP Electro
 http://icecast.radiofrance.fr/fipelectro-hifi.aac?n=7c63276e9e9910b3c1d4
 #EXTINF:-1,FIP Groove
 http://icecast.radiofrance.fr/fipgroove-hifi.aac?n=0eb2455457fd35a3ee2c
+#EXTINF:-1,Fip Groove
+http://icecast.radiofrance.fr/fipgroove-hifi.aac?n=d873841921b9397edcbe
 #EXTINF:-1,FIP Hip Hop
 http://icecast.radiofrance.fr/fiphiphop-hifi.aac?n=e662d5e18464392d0dd9
 #EXTINF:-1,FIP Jazz
 http://icecast.radiofrance.fr/fipjazz-hifi.aac?n=5127109aed904d8211c4
+#EXTINF:-1,Fip Jazz
+http://icecast.radiofrance.fr/fipjazz-hifi.aac?n=da79d8b043a4c03dac12
+#EXTINF:-1,Fip Monde
+http://icecast.radiofrance.fr/fipworld-hifi.aac?n=76ea30cf8370573ecfe5
 #EXTINF:-1,FIP Musiques du monde
 http://icecast.radiofrance.fr/fipworld-hifi.aac?n=fc6f22d52a4767e7375a
 #EXTINF:-1,FIP Pop
 https://icecast.radiofrance.fr/fippop-hifi.aac?n=f9212175fd878c1c58c5
 #EXTINF:-1,FIP Reggae
 http://icecast.radiofrance.fr/fipreggae-hifi.aac?n=95440daea3eb47c4de78
+#EXTINF:-1,fip rock
+http://icecast.radiofrance.fr/fipworld-midfi.mp3?n=0f9615ed8f54a53512d8
 #EXTINF:-1,FIP Rock
 http://icecast.radiofrance.fr/fiprock-hifi.aac?n=5e6a8053813c10248055
 #EXTINF:-1,FIP Sacré Français !
 http://icecast.radiofrance.fr/fipsacrefrancais-hifi.aac?n=37f8adc7c61b75a9ef52
+#EXTINF:-1,FIP tout nouveau, tout FIP
+http://icecast.radiofrance.fr/fipnouveautes-midfi.mp3?n=86c5baf26c0969abd356
 #EXTINF:-1,FM 80 FUNKY MUSIC
 https://listen.radioking.com/radio/467555/stream/523739?n=1dd0c3f34222a9f0ac71
-#EXTINF:-1,FM43
-https://fm43.ice.infomaniak.ch/fm43-64.aac?n=1540e7da26d448c14e4e
 #EXTINF:-1,Forum
 http://start-forum.ice.infomaniak.ch/start-forum-high.mp3?n=e53776086e3bf686f63d
 #EXTINF:-1,Forum Angers
@@ -1533,15 +1792,33 @@ https://start-forum.ice.infomaniak.ch/start-forum-high.mp3?n=96581c2d8793da5bef8
 http://webfor-tours.ice.infomaniak.ch/webfor-tours-128.mp3?n=6fa7242802f6bd88b6f3
 #EXTINF:-1,Francais dans le monde
 https://listen.radioking.com/radio/2079/stream/63043?n=bca39fa41226ac1d2aa7
-#EXTINF:-1,france 
+#EXTINF:-1,france
 https://stream-eurodance90.fr/radio/8000/128.mp3?n=8c09e7cbc7f647e08d04
+#EXTINF:-1,France Bleu Champagne-Ardenne
+http://icecast.radiofrance.fr/fbchampagne-midfi.mp3?n=42ef30a1d1aab7fe5ce3
+#EXTINF:-1,France Bleu Gard Lozère
+http://icecast.radiofrance.fr/fbgardlozere-midfi.mp3?n=fb10fba98b89d2135f55
+#EXTINF:-1,France Bleu Normandie Calvados - Orne
+http://icecast.radiofrance.fr/fbbassenormandie-midfi.mp3?n=25cf44a603386dc67050
+#EXTINF:-1,France Bleu Occitanie
+http://icecast.radiofrance.fr/fbtoulouse-midfi.mp3?n=6244cb403f48bea6ea58
+#EXTINF:-1,France Bleu Paris
+http://icecast.radiofrance.fr/fb1071-midfi.mp3?n=ede1c15a202afc1fdab5
+#EXTINF:-1,France Bleu Pays dAuvergne
+http://icecast.radiofrance.fr/fbpaysdauvergne-midfi.mp3?n=d701b8521bb41a08bf80
+#EXTINF:-1,France Bleu Pays de Savoie
+http://icecast.radiofrance.fr/fbpaysdesavoie-midfi.mp3?n=8911d2d73e020b45c7dd
+#EXTINF:-1,France Bleu RCFM
+http://icecast.radiofrance.fr/fbfrequenzamora-midfi.mp3?n=942cd5c63059d6dd3059
 #EXTINF:-1,France culture 2
 https://icecast.radiofrance.fr/franceculture-hifi.aac?n=8e53fc9f4667726ea4ad
-#EXTINF:-1,France Maghreb 2 Province
-http://francemaghreb2.ice.infomaniak.ch/francemaghreb2-high.mp3?n=effc4901030aa4c83a46
+#EXTINF:-1,france info lofi
+http://icecast.radiofrance.fr/franceinfo-lofi.mp3?n=5b32b76edd32c4c21880
 #EXTINF:-1,France Musique Concerts Radio France
 http://icecast.radiofrance.fr/francemusiqueconcertsradiofrance-hifi.aac?n=7491f9f87378b7f9d990
-#EXTINF:-1,France Musique Hi-fi 
+#EXTINF:-1,France Musique | Ocora - Musiques du monde
+http://icecast.radiofrance.fr/francemusiqueocoramonde-midfi.mp3?n=c8bc61fef541bb865ce1
+#EXTINF:-1,France Musique Hi-fi
 http://icecast.radiofrance.fr/francemusique-hifi.aac?n=9ce77028e39dd51eb115
 #EXTINF:-1,France Musique La B.O.
 http://icecast.radiofrance.fr/francemusiquelabo-hifi.aac?n=8628cc7bfac66542cbe2
@@ -1555,6 +1832,8 @@ https://icecast.radiofrance.fr/francemusiqueopera-hifi.aac?n=ca50d02e412ef723121
 http://static.france24.com/live/F24_ES_LO_HLS/live_audio.m3u8?n=f1e52b93e1bed2d1ca1e
 #EXTINF:-1,France24 Français
 http://static.france24.com/live/F24_FR_LO_HLS/live_audio.m3u8?n=7df43cfe581ff3cb5281
+#EXTINF:-1,FranceClassique Easy
+http://icecast.radiofrance.fr/francemusiqueeasyclassique-midfi.mp3?ID=76zqey582k?n=2fb95a4b646954fe799a
 #EXTINF:-1,FranceCulture
 https://stream.radiofrance.fr/franceculture/franceculture_hifi.m3u8?id=radiofrance?n=402a31bc4598c4354e8f
 #EXTINF:-1,FranceInter
@@ -1565,7 +1844,6 @@ http://freedomice.streamakaci.com/freedom2.mp3?n=3ac381991a62f29880d0
 http://frequencek.ice.infomaniak.ch/frequencek-128.mp3?n=84d78d88cb183bf9a49c
 #EXTINF:-1,Fréquence Nautique
 http://players.creacast.com/creacast/frequence_nautique/playlist.pls?n=05aac7fe05d7f85b0085
-#EXTINF:-1,Fréquence Plus 
 http://frequenceplus71.ice.infomaniak.ch/frequenceplus71-128.mp3?n=d6db88ec90362e9c0df1
 #EXTINF:-1,Frequence tropicale
 https://ecmanager2.pro-fhi.net:1640/stream?n=92e3b10fb261df81e884
@@ -1621,58 +1899,58 @@ http://quasar.shoutca.st:8853/?n=1f831977e87e56d604ef
 http://hitfm.ice.infomaniak.ch/hitfm-192.mp3?n=2a532d245bd00730b4fe
 #EXTINF:-1,I have a dream
 http://live.radio-ihaveadream.com/?type=http&nocache=392/stream/1?n=4df2729fcb74d054f81a
-#EXTINF:-1,Ibrahim 
+#EXTINF:-1,Ibrahim
 http://hosting.studioradiomedia.fr:1080/stream?n=7a09223b8ecc08a947c3
 #EXTINF:-1,Irulegiko Irratia
 https://hosting.studioradiomedia.fr:1365/stream?n=f9c61d92ff6104f55791
-#EXTINF:-1,Islam-webradio 
+#EXTINF:-1,Islam-webradio
 http://79.137.32.10:8000/?n=90a0b0ff1d5da055880c
 #EXTINF:-1,Italo Radio FM
 http://danceradio1.shoutcaststream.com:8102/?n=bcee130d1e208a134641
 #EXTINF:-1,Jazz
-https://jazz-wr18.ice.infomaniak.ch/jazz-wr18-128.mp3?n=800e48bbc69ae7e79119
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr18-128.mp3?n=800e48bbc69ae7e79119
 #EXTINF:-1,Jazz Afro
 http://jazz-radio-afro.ice.infomaniak.ch/jazz-radio-afro.mp3?n=c7be590b35f0b230ef03
 #EXTINF:-1,Jazz Blues
 https://jazzblues.ice.infomaniak.ch/jazzblues-high.mp3?n=9096d81f34802c48777b
 #EXTINF:-1,Jazz Classic
-https://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3?n=b3c10470117ed8a01983
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr01-128.mp3?n=b3c10470117ed8a01983
 #EXTINF:-1,Jazz French
-https://jazz-wr18.ice.infomaniak.ch/jazz-wr18-128.mp3?n=02757ae59b8261a887ea
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr18-128.mp3?n=02757ae59b8261a887ea
 #EXTINF:-1,Jazz Latin
-https://jazz-wr09.ice.infomaniak.ch/jazz-wr09-128.mp3?n=152a336963c4187a5f6c
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr09-128.mp3?n=152a336963c4187a5f6c
 #EXTINF:-1,Jazz Manouche
-https://jazz-wr02.ice.infomaniak.ch/jazz-wr02-128.mp3?n=f07c407e366ebbf729b0
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr02-128.mp3?n=f07c407e366ebbf729b0
 #EXTINF:-1,Jazz Only Women
-https://jazz-wr16.ice.infomaniak.ch/jazz-wr16-128.mp3?n=d5ed20c69cc2681094e5
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr16-128.mp3?n=d5ed20c69cc2681094e5
 #EXTINF:-1,Jazz Piano
 https://jzr-piano.ice.infomaniak.ch/jzr-piano.mp3?n=12da31dae3f78768551f
 #EXTINF:-1,JAZZ RADIO - Jazz & Classique
-http://jazz-wr17.ice.infomaniak.ch/jazz-wr17-128.mp3?n=25a3153033695b6f217b
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr17-128.mp3?n=25a3153033695b6f217b
 #EXTINF:-1,Jazz Radio - La radio de tous les Jazz
 http://jazzradio.ice.infomaniak.ch/jazzradio-high.mp3?n=dc7c5af3b709e69da963
 #EXTINF:-1,Jazz Radio GroovUp
-http://jazz-wr13.ice.infomaniak.ch/jazz-wr13-128.mp3?n=3061f54d40234813fbe1
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr13-128.mp3?n=3061f54d40234813fbe1
 #EXTINF:-1,Jazz Radio Manouche
-http://jazz-wr02.ice.infomaniak.ch/jazz-wr02-128.mp3?n=617b0cc130b6d8dc0e94
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr02-128.mp3?n=617b0cc130b6d8dc0e94
 #EXTINF:-1,Jazz Radio Soul Food by DJ Philgood
-http://jazz-wr12.ice.infomaniak.ch/jazz-wr12-128.mp3?n=a506c64951422662259b
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr12-128.mp3?n=a506c64951422662259b
 #EXTINF:-1,Jazz Saxo
 https://jzr-saxo.ice.infomaniak.ch/jzr-saxo.mp3?n=baf202301409d602961f
 #EXTINF:-1,JazzRadio.fr Blues
 https://jazzblues.ice.infomaniak.ch/jazzblues-high.mp3?n=ea3999b5871fee2f5662
 #EXTINF:-1,JazzRadio.fr Funk
-https://jazz-wr06.ice.infomaniak.ch/jazz-wr06-128.mp3?n=43ef72f21ce1d04a292a
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr06-128.mp3?n=43ef72f21ce1d04a292a
 #EXTINF:-1,Jazzradio.fr Gospel
-https://jazz-wr07.ice.infomaniak.ch/jazz-wr07-64.aac?n=7e7fd22cff8980d31bb0
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr07-64.aac?n=7e7fd22cff8980d31bb0
 #EXTINF:-1,JazzRadio.fr Groove
-https://jazz-wr08.ice.infomaniak.ch/jazz-wr08-128.mp3?n=d59a20f8f5ef975cdd29
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr08-128.mp3?n=d59a20f8f5ef975cdd29
 #EXTINF:-1,Jazzradio.fr Jazz & Cinema
 https://jzr-wr20.ice.infomaniak.ch/jzr-wr20.mp3?n=afe8ed44f7d4800576a4
 #EXTINF:-1,Jazzradio.fr Jazz & Classique
-https://jazz-wr17.ice.infomaniak.ch/jazz-wr17-128.mp3?n=25bdf733f355cf51dd45
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr17-128.mp3?n=25bdf733f355cf51dd45
 #EXTINF:-1,Jazzradio.fr Jazz Manouche
-https://jazz-wr02.ice.infomaniak.ch/jazz-wr02-128.mp3?n=fc61e9785b8199463e80
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/jazz-wr02-128.mp3?n=fc61e9785b8199463e80
 #EXTINF:-1,JazzRadio.fr Nouveautés Soul
 http://jzr-wr19.ice.infomaniak.ch/jzr-wr19-128.mp3?n=1a853dc48c54f2b254d2
 #EXTINF:-1,Jecrois Radio
@@ -1695,9 +1973,9 @@ https://live-kto.akamaized.net/hls/live/2033284/KTO/master.m3u8?n=cadc5d5fb1586b
 https://live-radio-kto.akamaized.net/hls/live/2103303-b/KTO/03.m3u8?n=9d88bdc48fe619adb0b4
 #EXTINF:-1,KTORadio
 https://live-radio-kto.akamaized.net/hls/live/2103303-b/KTO/03.m3u8?n=798a6fcb930d794937e5
-#EXTINF:-1,KW ROCK !
+#EXTINF:-1,KW ROCK_!
 https://usa7.fastcast4u.com/tunein/jwmftosz.pls?n=62f1566b4926f00f7f4c
-#EXTINF:-1,Là La radio La Radio Plus 
+#EXTINF:-1,Là La radio La Radio Plus
 http://lalaradio.ice.infomaniak.ch/lalaradio-high.mp3?n=ac0c93edc4e8b1470c62
 #EXTINF:-1,La Patate Douce
 http://listen.radioking.com/radio/285742/stream/331753?n=722a5f2221d4a658cddb
@@ -1711,11 +1989,13 @@ https://listen.radioking.com/radio/109486/stream/148513?n=6f3be438db0798e28b70
 http://latinalove.ice.infomaniak.ch/latinalove.mp3?n=0e718c53a95feb2552ad
 #EXTINF:-1,Le Bon Mix Radio 97.9
 https://stream10.xdevel.com/audio13s976748-2017/stream/icecast.audio?n=d43092a03c47c8e4e55c
+#EXTINF:-1,Le Grand Studio RTL
+https://hls.rtl.fr/NmQ5M2Q2ZGU4MDU5NTM1YWEwNmI4ZDYyYmM0MDNhMWMuMTc2NjI0NzA2OA~~/radio/webOU6MESMYnoHzvZJe8ie5Mi/webradio/le-grand-studio-rtl/short/index.m3u8
 #EXTINF:-1,Le Grigri, radio porte-bonheur
 https://listen.radioking.com/radio/139090/stream/179170?n=a583f2bcfa5d265f81a2
-#EXTINF:-1,Le Mouv Classics
-http://icecast.radiofrance.fr/mouvclassics-midfi.mp3?n=34e246e33facd1938ce6
-#EXTINF:-1,Le poste parisien 
+#EXTINF:-1,Le Mouv
+http://icecast.radiofrance.fr/mouv-midfi.mp3?n=befd3cafac889f28d7e2
+#EXTINF:-1,Le poste parisien
 https://stream10.xdevel.com/audio12s976748-1798/stream/icecast.audio?n=a9cb09ea8f660e945760
 #EXTINF:-1,Le Son Parisien aac
 https://www.lesonparisien.com/stream/aac.m3u?n=7daa14c96ea23ee62b18
@@ -1765,7 +2045,7 @@ http://mfmwr-008.ice.infomaniak.ch/mfmwr-008.mp3?n=2c819e93febe8a98fbc2
 http://mfmwr-007.ice.infomaniak.ch/mfmwr-007.mp3?n=d730594fe2119077c84e
 #EXTINF:-1,M Radio 100% Québec
 http://mfmwr-004.ice.infomaniak.ch/mfmwr-004.mp3?n=788ad6e75f4b0a17b1f8
-#EXTINF:-1,m radio 2000 
+#EXTINF:-1,m radio 2000
 https://mfmwr-020.ice.infomaniak.ch/mfmwr-020.mp3?n=e847371b76335b6bf87a
 #EXTINF:-1,M Radio Années 80
 http://mfm-thema.ice.infomaniak.ch/mfm-thema.mp3?n=65d8f64c66d9a17a691b
@@ -1791,6 +2071,8 @@ https://mfmwr-008.ice.infomaniak.ch/mfmwr-008.mp3?n=723e07f3a1f3d95058fa
 http://mfmwr-007.ice.infomaniak.ch/mfmwr-007.mp3?n=fe214fb5651621537387
 #EXTINF:-1,M Radio Nouvelle Scène
 http://mfmwr-012.ice.infomaniak.ch/mfmwr-012.mp3?n=26929064553f53ac62aa
+#EXTINF:-1,M Radio Séducteurs
+http://mfmwr-017.ice.infomaniak.ch/mfmwr-017.mp3?n=bd34bf99266fc4bc54ac
 #EXTINF:-1,M Radio St Valentin
 http://mfm-thema.ice.infomaniak.ch/mfm-thema.mp3?n=a78662642fc466b32b2f
 #EXTINF:-1,M Radio Talents de la Télé
@@ -1817,6 +2099,8 @@ http://audio1.maxi80.com/?n=73dd3230c0f4e151b5f0
 https://mbs.ice.infomaniak.ch/mbs-128.mp3?n=2984c36b4d98f8e4fedf
 #EXTINF:-1,MBS Good AAC 96
 http://mbs.ice.infomaniak.ch/mbs-96.aac?n=d9f7405d9ed605f4a8f2
+#EXTINF:-1,MC doualiya
+https://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3?n=f5be7053c3c7aa4a312d
 #EXTINF:-1,Métis FM
 http://str0.creacast.com/metisfm?n=450aee857d5b941457f4
 #EXTINF:-1,mfm nouvelle scène
@@ -1829,7 +2113,7 @@ http://listen.radioking.com/radio/154186/stream/194791?n=39d9c1330883cf123050
 http://82.64.4.42:8000/live.mp3?n=a53ea698cc888cc62e61
 #EXTINF:-1,Mistral FM Marseille
 http://mistralfmaubagne.ice.infomaniak.ch/mistralfmaubagne-128.mp3?n=55656a21c27165b2490b
-#EXTINF:-1,Mix La radio Étudiante 
+#EXTINF:-1,Mix La radio Étudiante
 http://hosting.studioradiomedia.fr:1080/stream?n=b37b31c2e36e01e85184
 #EXTINF:-1,Modular-Station
 https://broadcast.modular-station.com/radio/8000/radio.aac?n=153c431e05367300e625
@@ -1837,20 +2121,8 @@ https://broadcast.modular-station.com/radio/8000/radio.aac?n=153c431e05367300e62
 http://france16.coollabel-productions.com:8276/?n=ef2f6d2aabc775d54004
 #EXTINF:-1,Mouv
 http://icecast.radiofrance.fr/mouv-hifi.aac?n=fea16ff531865cc7cdff
-#EXTINF:-1,Mouv - 100% Mix
-https://icecast.radiofrance.fr/mouv100p100mix-hifi.aac?n=5344ff81ea3d78fc687e
-#EXTINF:-1,Mouv - Rap US
-https://icecast.radiofrance.fr/mouvrapus-hifi.aac?n=12dc64e7ff3955255648
-#EXTINF:-1,Mouv Classics
-https://icecast.radiofrance.fr/mouvclassics-hifi.aac?n=89bdc413fcb550c3dd73
-#EXTINF:-1,Mouv DanceHall
-https://icecast.radiofrance.fr/mouvdancehall-hifi.aac?n=1a05cac571ef6c24215c
-#EXTINF:-1,Mouv Kids n Family
-https://icecast.radiofrance.fr/mouvkidsnfamily-hifi.aac?n=345e03cdb9f6bc48469d
-#EXTINF:-1,Mouv RnB & Soul
-https://icecast.radiofrance.fr/mouvrnb-hifi.aac?n=8a32b9c44d8a6c9091e5
-#EXTINF:-1,Mouv Rap Français
-https://icecast.radiofrance.fr/mouvrapfr-hifi.aac?n=941a3cf62a15a48d72dd
+#EXTINF:-1,Mouv LQ
+http://icecast.radiofrance.fr/mouv-lofi.mp3?n=5c53d2e4c50e5b55bf74
 #EXTINF:-1,MRadio Disney
 http://mfmwr-002.ice.infomaniak.ch/mfmwr-002.mp3?n=75cc5f7565682309892e
 #EXTINF:-1,MRADIO FRANCE
@@ -1895,47 +2167,11 @@ https://ouifmgaragerock.ice.infomaniak.ch/ouifmgaragerock-128.mp3?n=503e8269dfb7
 http://ouifmgaragerock.ice.infomaniak.ch/ouifmgaragerock-64.aac?n=2ecdd71b6e213f2665f9
 #EXTINF:-1,OUI FM Garage Rock [AAC]
 http://ouifmgaragerock.ice.infomaniak.ch/ouifmgaragerock-64.aac?n=94945d357b5a35453b07
-#EXTINF:-1,OUI FM GIRLS ROCK
-https://ouifmgirlsrock.ice.infomaniak.ch/ouifmgirlsrock.mp3?n=33b5578d2b4cb2f96a01
-#EXTINF:-1,OUI FM GIRLS ROCK [AAC 64k]
-https://ouifmgirlsrock.ice.infomaniak.ch/ouifmgirlsrock.aac?n=7bbe0b96f36119c7a223
-#EXTINF:-1,OUI FM LES SLOWS DU ROCK
-https://ouifmlesslowsdurock.ice.infomaniak.ch/ouifmslowrock.mp3?n=b35fb03a3e8596472f2c
-#EXTINF:-1,OUI FM REGGAE
-https://ouifmganja.ice.infomaniak.ch/ouifmganja-128.mp3?n=e11d14acf33ef0f60b47
-#EXTINF:-1,OUI FM ROCK 2000
-https://ouifmrock2000s.ice.infomaniak.ch/ouifmrock2000.mp3?n=839e7dcd665ab9a7c111
-#EXTINF:-1,OUI FM ROCK 60s
-https://ouifmrock60s.ice.infomaniak.ch/ouifmsixties.mp3?n=f0032b365064796763dd
-#EXTINF:-1,OUI FM ROCK 70s
-https://ouifmrock70s.ice.infomaniak.ch/ouifmseventies.mp3?n=40a6b4405271a96f4102
-#EXTINF:-1,OUI FM ROCK 80s
-https://ouifmrock80s.ice.infomaniak.ch/ouifmeighties.mp3?n=27fac8972db423d54c56
-#EXTINF:-1,OUI FM ROCK 90s
-https://ouifmrock90s.ice.infomaniak.ch/ouifmnineties.mp3?n=ecd6154bb25435376683
-#EXTINF:-1,OUI FM ROCK FRANCAIS
-https://ouifmrockfrancais.ice.infomaniak.ch/ouifmrockfrancais.mp3?n=6402094d8e409e46349f
-#EXTINF:-1,OUI FM ROCK INDÉ
-https://ouifm5.ice.infomaniak.ch/ouifm5.mp3?n=4fe891622c4193e88937
-#EXTINF:-1,OUI FM SUMMERTIME
-https://ouifmsummertime.ice.infomaniak.ch/ouifmsummertime.mp3?n=51fd0b7b58dd0eefaad1
-#EXTINF:-1,OUI FM TOP OF THE WEEK
-https://ouifmtopoftheweek.ice.infomaniak.ch/ouifmtopweek.mp3?n=b2ffff38ea3b1fe848b1
-#EXTINF:-1,OUI FM WOODSTOCK
-https://ouifmwoodstock.ice.infomaniak.ch/ouifmwoodstock.mp3?n=e50e8498a2b3ad798aec
-#EXTINF:-1,Oxygène Coulommiers
-http://str0.creacast.com/oxy-coulommiers?n=c2e5f330e2eb0f621c8f
-#EXTINF:-1,Oxygène Provins
-http://str0.creacast.com/oxy-provins?n=c749a95eee8eec2ef6dd
-#EXTINF:-1,Oxygène Sud 77
-http://str0.creacast.com/oxy-montereau?n=826065ea900681c05a32
 #EXTINF:-1,OZ FM
 https://ozfm.streamb.live/SB00174?ver=460097?n=5ca464badb925ea0b9a8
-#EXTINF:-1,Phare FM 
 https://str0.creacast.com/pharefm?n=c365d0fa23171a8eb2b4
 #EXTINF:-1,Phare FM Haguenau
 http://str0.creacast.com/pharefm_haguenau?n=4e8b2b62e9dd6a87eec7
-#EXTINF:-1,Phare FM Louange 
 https://str0.creacast.com/pharefm_louange?n=284beeb78c272a900002
 #EXTINF:-1,PHAUNE
 http://stream.phauneradio.com/phaune_256?n=67c1b6ca83e6af29cef7
@@ -1959,8 +2195,8 @@ http://radio6-dunkerque.ice.infomaniak.ch/radio6-dunkerque-128.mp3?n=65c7a2a1c60
 http://radio74.ice.infomaniak.ch/radio74-low.mp3?n=4a5f2e9053a1ca5917de
 #EXTINF:-1,Radio ACS
 https://listen.radioking.com/radio/33824/stream/199675?n=d1d0ff9c52e0c243adcc
-#EXTINF:-1,Radio Albigès
-https://live-albiges.radiom.fr/antenne.mp3?n=2877beaf922229ef5f06
+#EXTINF:-1,Radio Alzheimer
+https://keycloak.octopus.saooti.com/realms/catalogue/protocol/openid-connect/auth?response_type=code&client_id=catalogue-web&scope=openid%20profile%20email&state=Rme3HCL8U69a7OXOIodrJtZclWQ4bBcf3srGCHoXmss%3D&redirect_uri=https://radiofrancealzheimer.org/login/oauth2/code/keycloak&nonce=Dv1_A9juuOUeWCsiZQg4Km8HXn3La4d-NSiwu3AkaFg
 #EXTINF:-1,Radio Arc-en-Ciel
 http://str0.creacast.com/arcencielweb?n=a851ff2e0b7758df3628
 #EXTINF:-1,Radio Arpitania
@@ -1985,8 +2221,6 @@ http://ecmanager4.pro-fhi.net:2210/stream?n=823baa98c4dfdda62bf0
 https://listen.radioking.com/radio/22274/stream/63592?n=59f3661bfa95306eb330
 #EXTINF:-1,Radio Delta
 https://s4.radio.co/s2fcf9497b/listen?n=8e52a18d034d181e3060
-#EXTINF:-1,Radio Doum Doum
-https://listen.radioking.com/radio/3223/stream/9872?n=52b6d247c16405eaedea
 #EXTINF:-1,Radio Emotion
 http://radioemotion.ice.infomaniak.ch/radioemotion-128.mp3?n=a1cb68cfeccd5010aee6
 #EXTINF:-1,Radio En Construction
@@ -2007,8 +2241,13 @@ http://ecoutez.fajet.net:16600/?n=519fdab36d0d4efdf2c8
 https://hosting.studioradiomedia.fr:2495/stream?n=02abdea546deb23648ea
 #EXTINF:-1,Radio Flouka
 https://flouka.out.airtime.pro/flouka_a?n=7008236fd8decd3faf4a
+#EXTINF:-1,Radio Food
+#EXTINF:-1,RADIO FRANCIA INTERNACIONAL
+https://rfienespagnol64k.ice.infomaniak.ch/rfienespagnol-64.mp3?n=597af39c107951b17f29
 #EXTINF:-1,Radio Grand Brive
 https://hosting.studioradiomedia.fr:1420/stream.mp3?n=4330012c00703f3a8c81
+#EXTINF:-1,Radio Heavy Metal
+https://manager7.streamradio.fr:1435/stream?n=ae8623b2a7463f78f8f7
 #EXTINF:-1,Radio ISA Bourgoin
 http://radioisa.ice.infomaniak.ch/radioisa-32.aac?n=0299e8b1498b97cec18e
 #EXTINF:-1,Radio ISA Grenoble
@@ -2023,26 +2262,29 @@ http://radiojudaicastrasbourg.ice.infomaniak.ch/radiojudaicastrasbourg-128.mp3?n
 https://stream.radios.bzh/listen/rkb/radio.mp3?n=5006ab8ddf2d65b6be69
 #EXTINF:-1,Radio LAPURDI Irratia
 http://stric6.streamakaci.com/radiolapurdi.mp3?n=83370ef9f4b79c2746af
+#EXTINF:-1,Radio Lib - La plus cool des radios
+https://manager6.streamradio.fr:2355/stream?n=fb395f785782bfab6197
 #EXTINF:-1,Radio Micheline
 https://hosting.studioradiomedia.fr:2165/stream?n=a6bd3aa74762bfd06155
+#EXTINF:-1,radio mille pattes
+https://millepattes.ice.infomaniak.ch/millepattes-high.mp3?n=3b75ceda4c34fdaa3c49
+#EXTINF:-1,RADIO-MIX
+http://andromeda.shoutca.st:8427/stream?n=478c86a3844dad0e20cf
 #EXTINF:-1,Radio MODUL
 https://radiomodul.fr/player/modul.aac.m3u?n=18fd51baa8b772282660
 #EXTINF:-1,Radio Monaco Mix DJ
 http://streaming503.radionomy.com/radio-monaco-mixdj?n=dd3f163a408e7b873b65
-#EXTINF:-1,Radio Montmartre 
 http://montmartre.ice.infomaniak.ch/montmartre.aac?n=f1e506f7d602d20de6d0
 #EXTINF:-1,RADIO NOVA CLASSICS
 http://nova-vnt.ice.infomaniak.ch/nova-vnt-128.mp3?n=2cbb436975da0450ef29
 #EXTINF:-1,RADIO NOVA LA NUIT
 http://nova-ln.ice.infomaniak.ch/nova-ln-128.mp3?n=ec06c1fac1e34e2e9f36
-#EXTINF:-1,Radio Oméga 
+#EXTINF:-1,Radio Oméga
 http://www.radioomega.fr/stream/oo.m3u?n=2f8df2a866465302acd6
 #EXTINF:-1,Radio ONE
 http://radioone.ice.infomaniak.ch/radioone-96.mp3?n=cf4799e84050b515ddcc
 #EXTINF:-1,Radio Oxygène Isère
 https://streamingp.shoutcast.com/radio-oxygene-grenoble-aac?n=9f1a68056f219dae1e5b
-#EXTINF:-1,Radio Pacoul
-http://eu.publicssl.net:6000/live?n=a530c4f348b7d7808d1f
 #EXTINF:-1,Radio Paris Obscur
 http://rocket.streamradio.fr:8190/stream?n=1d3c70b0bb66f57ea005
 #EXTINF:-1,Radio Parole de Vie
@@ -2091,8 +2333,6 @@ http://radiostar.ice.infomaniak.ch/radiostar-128.mp3?n=4b4ea89701092d055a65
 http://radiostar.ice.infomaniak.ch/radiostar-128.mp3?n=db9bd35367728c475b0f
 #EXTINF:-1,Radio Sud Plus
 http://srv1.coollabel-productions.com:8040/?n=a4f800d3c6e1d140d097
-#EXTINF:-1,Radio supply chain
-http://radio-supply-chain.ice.infomaniak.ch/radio-supply-chain.mp3?n=9334fc068d28061acd21
 #EXTINF:-1,radio sympa
 https://radio11.pro-fhi.net:19095/stream?n=c5ba5a36d419a62289c7
 #EXTINF:-1,Radio Sympa
@@ -2115,11 +2355,9 @@ https://vibration.ice.infomaniak.ch/vibration-high.mp3?n=f3376c9f3a9a7bd94551
 http://str0.creacast.com/radio_vinci_autoroutes_3?n=798070eed1d540048b4d
 #EXTINF:-1,Radio Zaï Zaï
 https://listen.radioking.com/radio/204667/stream/247420?n=2688309b20da4a34acd6
-#EXTINF:-1,radio.proxlab.fr
-https://radio.proxlab.fr/radio/8000/radio.mp3?n=1fdfd811d35ef5ed66bb
 #EXTINF:-1,Radio74 88.8 MHz
 http://radio74.ice.infomaniak.ch/radio74.aac?n=417c6c4d941aa00133d5
-#EXTINF:-1,radiola Dieulefit 
+#EXTINF:-1,radiola Dieulefit
 https://hosting.studioradiomedia.fr:1305/stream?n=3650d0e699d68ad2516f
 #EXTINF:-1,RadioVino
 https://listen.radioking.com/radio/40700/stream/77213?n=c191bff5e1eb30a5fffd
@@ -2147,8 +2385,6 @@ http://rcf.streamakaci.com/rcf21.mp3?n=aa454ad8b65b218ad333
 http://rcf.streamakaci.com/rcf43.mp3?n=42748bd567c564a71837
 #EXTINF:-1,RCF Jerico Moselle
 http://rcf.streamakaci.com/rcf57.mp3?n=82bbb761f4f0b9f888b9
-#EXTINF:-1,RCF Lozère
-http://rcf.streamakaci.com/rcf48.mp3?n=857f1cc20a23195aa1ab
 #EXTINF:-1,RCF Méditerranée est-Var
 http://rcfing.streamakaci.com/rcf83ev.mp3?n=1b91f52052896c00f46e
 #EXTINF:-1,RCF Nice Côte dAzur
@@ -2165,6 +2401,8 @@ http://str0.creacast.com/radio-rcj?n=a0c5fe7561467daae28f
 http://str0.creacast.com/rcm?n=13bce10e0d8fe85ade8f
 #EXTINF:-1,Record Goa Psy
 https://radiorecord.hostingradio.ru/goa96.aacp?n=162976f84153330f8faf
+#EXTINF:-1,Redzing Radio
+https://onair.redzingradio.com/redzing-256
 #EXTINF:-1,Reggae.fr
 https://listen.radioking.com/radio/50473/stream/87415?n=317a6860e7dc86ea8f08
 #EXTINF:-1,RFI-Afrique
@@ -2175,12 +2413,12 @@ https://rfienportugais64k.ice.infomaniak.ch/rfienportugais-64.mp3?n=5edff32a05b3
 https://rfiukraine.ice.infomaniak.ch/rfiukraine-96.mp3?n=360d221b8c58b69ed383
 #EXTINF:-1,RFI Tieng Viet
 http://live02.rfi.fr/rfivietnamien-96k.mp3?n=3f0091b76f37cc486d5f
-#EXTINF:-1,RFM 100% Français
-https://wr.lmn.fm/rfm-wr11.aac?n=cbd061e3421e920e1e64
-#EXTINF:-1,RHT Guadeloupe Radio Haute Tension
-http://haute-tension.ice.infomaniak.ch/haute-tension-high.aac?n=3f8f2220e9200e1d120f
-#EXTINF:-1,Ringard Willycat
-https://listen.radioking.com/radio/441272/stream/495536?n=d5b07710968c24039a53
+#EXTINF:-1,RFI-Chinese
+https://rfienchinois64k.ice.infomaniak.ch/rfienchinois-64.mp3?n=0e05a7be0d1feae8a0b4
+#EXTINF:-1,RFM - 100% New Wave
+https://rfm.lmn.fm/rfm-wr12.aac/playlist.m3u8?n=2f778971cb004296d115
+#EXTINF:-1,RFM - La Radio Couleur
+https://rfm.lmn.fm/rfm-wr3.aac?n=a9747d36e6a932456f45
 #EXTINF:-1,rjfm
 http://listen.radioking.com/radio/563/stream/62872?n=b5139bf55843ec34cf49
 #EXTINF:-1,rjfm club 80
@@ -2193,11 +2431,11 @@ https://stream.radios.bzh/listen/rkb/radio.mp3?n=12459c4251b40fe5341d
 http://srv2.streaming-ingenierie.fr:8176/stream.mp3?n=28cc33d5ad43f10f1f6b
 #EXTINF:-1,RMC FR
 https://audio.bfmtv.com/rmcradio_128.mp3?n=3927717600a5444dea58
-#EXTINF:-1,RMC Info Talk Sport 
+#EXTINF:-1,RMC Info Talk Sport
 https://audio.bfmtv.com/rmcradio_128.mp3?aw_0_1st.playerId=RMC_audio_web&aggregator=RMC_audio_web?n=3660d64cb29ac4aae2a6
 #EXTINF:-1,Rock & Folk rock n folk
 https://rockfolk.ice.infomaniak.ch/rockfolk.mp3?n=6cda9c95b1342f4efc32
-#EXTINF:-1,Rock STation 
+#EXTINF:-1,Rock STation
 https://listen.radioking.com/radio/7551/stream/385141?n=4164bc854d17fe828b00
 #EXTINF:-1,Rock&Folk Radio
 https://rockfolk.ice.infomaniak.ch/rockfolk.mp3?t=1641651522250?n=70456648985ea94702f7
@@ -2207,6 +2445,15 @@ https://player.rockenfolie.com/?n=5afac0ba016cf6b80fee
 http://radiosofaia.ice.infomaniak.ch/radiosofaia-high.aac?n=af02c0d9a9a2b1bc9556
 #EXTINF:-1,RSB Radio Sainte Baume
 http://radiosaintebaume.ice.infomaniak.ch/radiosaintebaume-128.mp3?n=ff0d0f7ac312c1b2f8eb
+#EXTINF:-1,RTL 100% 80
+https://hls.rtl.fr/NDVhOWVlM2E4OTc4MGM4ZDgyMjE2Y2EwYWU3YjA1N2YuMTc2NjI4Nzk2Mw~~/radio/webOU6MESMYnoHzvZJe8ie5Mi/webradio/rtl-100-80/short/index.m3u8
+#EXTINF:-1,RTL 100% FRANCE
+#EXTINF:-1,RTL 100% Hits
+https://hls.rtl.fr/NDkyYjlmZDI5ZjZhOGM5MjRjODcyNjNjMjQyZDI0MjYuMTc2NjI4Nzk2Mw~~/radio/webOU6MESMYnoHzvZJe8ie5Mi/webradio/rtl-100pc-hits/short/index.m3u8
+#EXTINF:-1,RTS
+https://sc.creacast.com/rts-national.mp3?n=bd871e0d4d3b107c7502
+#EXTINF:-1,RTS programme Fréquence Plus
+https://statslive.infomaniak.ch/playlist/frequenceplus71/frequenceplus71-64.aac/playlist.pls?n=bd06960736d342a602fc
 #EXTINF:-1,RVA radio
 https://rva.ice.infomaniak.ch/rva-high.mp3?n=13c07090c1e579ff1955
 #EXTINF:-1,Salve Regina
@@ -2221,6 +2468,12 @@ http://sensationsnormandie.ice.infomaniak.ch/sensations-normandie.mp3?n=1eb63def
 http://sensations.ice.infomaniak.ch/sensations.aac?n=fb2289905a7cd2fea577
 #EXTINF:-1,SKYLEGEND
 https://webradiostream.eu:8170/stream?n=9c0898ee0d93e7658e6e
+#EXTINF:-1,Skyrock Klassics
+https://icecast.skyrock.net/s/klassiks_aac_64k?tvr_name=radiofr&tvr_section1=64aac?n=68126e10fb81b58d3c2d
+#EXTINF:-1,SOL FM
+http://stric6.streamakaci.com/solfm64.mp3?n=503d5b9495e73ccc7157
+#EXTINF:-1,SOS Radio
+https://stream.sosradio959.com/?n=47c33593fb61c8696669
 #EXTINF:-1,Soul Radio
 https://listen.soulradio.eu/eu?n=44f9c6b5ee9d9f6e3731
 #EXTINF:-1,Starsystem FM Gérard
@@ -2235,14 +2488,6 @@ http://radiosun.ice.infomaniak.ch/radiosun-high.aac?n=2d1830d044819f38f8fa
 http://funalpesradio.ice.infomaniak.ch/funalpes.mp3?n=44c6423373ff3c21ac08
 #EXTINF:-1,SUNSET JAZZ RADIO
 https://radio2.vip-radios.fm:18077/stream-mp3-SunsetJazz?n=bc7d13d993eeddaa65c3
-#EXTINF:-1,SWEET FM  SABLE SUR SARTHE
-http://sweetfm-sable-sur-sarthe.ice.infomaniak.ch/sweetfm-sable-sur-sarthe-192.mp3?n=458cd7965cdbb7f7f572
-#EXTINF:-1,Sweet FM Evreux
-https://sweetfm-evreux.ice.infomaniak.ch/sweetfm-evreux-64.aac?n=ba1a41abe8c9e9e40dbd
-#EXTINF:-1,SWEET FM LE MANS
-http://sweetfm-lemans.ice.infomaniak.ch/sweetfm-lemans-64.aac?n=b23d028b362685936c8f
-#EXTINF:-1,SWEET FM ST CALAIS 72
-http://sweetfm-perche72.ice.infomaniak.ch/sweetfm-perche72-192.mp3?n=5eaac7565cf548718518
 #EXTINF:-1,Swigg
 https://start-adofm.ice.infomaniak.ch/start-adofm-high.mp3?n=761eb13036a737949e86
 #EXTINF:-1,TEKNO1
@@ -2250,9 +2495,9 @@ http://cressida.shoutca.st:8591/stream/1/?n=58bd2174f967fc0e3387
 #EXTINF:-1,Tonic radio
 http://hit-sport.ice.infomaniak.ch/hit-sport-high.mp3?n=b3ea8b8220a02127eb25
 #EXTINF:-1,Tonic Radio Bourgoin
-http://tonicradiobourgoin.ice.infomaniak.ch/tonicradiobourgoin.mp3?n=9b23e1c62336ea8148a2
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/tonicradiobourgoin.mp3?n=9b23e1c62336ea8148a2
 #EXTINF:-1,Tonic Radio Villefranche
-http://tonicradiovillefranche.ice.infomaniak.ch/tonicradiovillefranche.mp3?n=a4c5a5558ec6c1d24092
+http://soundcast-master-c3.bcast.infomaniak.ch:8000/tonicradiovillefranche.mp3?n=a4c5a5558ec6c1d24092
 #EXTINF:-1,Top music
 http://str0.creacast.com/topmusic1?n=9fe00b16ffbab800ba87
 #EXTINF:-1,Totem Aveyron Hérault Lot Tarn
@@ -2265,6 +2510,8 @@ http://aratotem.ice.infomaniak.ch/gard.mp3?n=0b96f22cfc5ca2cdc16a
 http://aratotem.ice.infomaniak.ch/lozere.mp3?n=ec53d3410dab9117a54f
 #EXTINF:-1,Tout nouveau, tout FIP
 http://icecast.radiofrance.fr/fipnouveautes-hifi.aac?n=db1053f6ba6576a51b0f
+#EXTINF:-1,Tout Nouveau, Tout Fip
+http://icecast.radiofrance.fr/fipnouveautes-hifi.aac?n=2fb59a6def1a1d7d2d62
 #EXTINF:-1,TSFJazz
 https://tsfjazz.ice.infomaniak.ch/tsfjazz-high.mp3?n=a06a59429bc7cd3ae51e
 #EXTINF:-1,Urban afro
@@ -2299,8 +2546,6 @@ http://178.32.111.41:8045/stream-128kmp3-RelaxZone?n=09051a7a8d1d37db9d70
 https://virage-radio-legende-du-rock.ice.infomaniak.ch/virage-radio-legende-du-rock.mp3?n=33295a9396bce6fd6d2c
 #EXTINF:-1,Virage Radio Metal
 https://virage-radio-metal.ice.infomaniak.ch/virage-radio-metal.aac?i=65804?n=97d861a923a9f74ae3b0
-#EXTINF:-1,Virage Radio Musique de pub
-http://vir-wr02.ice.infomaniak.ch/vir-wr02.mp3?n=45084bf961edc00d33fa
 #EXTINF:-1,Virage Radio Rock 90
 http://vir-wr01.ice.infomaniak.ch/vir-wr01.mp3?n=c896c85273bd1ab306bf
 #EXTINF:-1,Voltage @Work
@@ -2323,6 +2568,8 @@ http://str0.creacast.com/vosgesfm-epinal?n=43a241a845c63fd441d5
 http://str0.creacast.com/vosgesfm-remiremont?n=ff35ef173ed72ea6a9d6
 #EXTINF:-1,Wave Radio
 https://s34.myradiostream.com/:12340/listen.mp3?n=a10bded1a983b83ff5bc
+#EXTINF:-1,WAVE RADIO 89.8 Hossegor
+https://s34.myradiostream.com/:12340/listen.mp3?n=57375779f09ba6e2e97c?nocache=1766200211
 #EXTINF:-1,Wit FM @Work
 http://witwork.ice.infomaniak.ch/witwork.mp3?n=cb9ceeb2edaff7cb15aa
 #EXTINF:-1,Wit FM 90s
@@ -2335,8 +2582,6 @@ http://witlounge.ice.infomaniak.ch/witlounge.mp3?n=2e862fb8245009156c07
 http://witlove.ice.infomaniak.ch/witlove.mp3?n=cd4ab5e3c3bfa303bc3b
 #EXTINF:-1,X-Move
 http://s26.myradiostream.com:11428/?n=6ef43c7fac9a6460013b
-#EXTINF:-1,Xiberoko Botza
-https://hosting.studioradiomedia.fr:2975/stream?n=ac9c270fe036226dc046
 #EXTINF:-1,Discover trance
 https://uk01.discovertrance.com/*.mp3?n=5b32c8c5f8d108afcb07
 #EXTINF:-1,FIP no pub
@@ -2351,14 +2596,8 @@ https://servidor15.brlogic.com:7292/live?n=d111b9f1ab18934d35bd
 http://wit2000.ice.infomaniak.ch/wit2000.mp3?n=673091fb2d72544d6d92
 #EXTINF:-1,La 1ère musique
 http://outremer.ice.infomaniak.ch/outremer-192.aac?aw_0_1st.rpfr=1?n=1f0ee22040b2e91cd8b3
-#EXTINF:-1,La 1ère musique CARAIBES
-https://musique1.ice.infomaniak.ch/musique1-128.mp3?aw_0_1st.rpfr=1?n=b610aa0c550d2f161077
-#EXTINF:-1,La 1ère musique MONDE
-https://musique1.ice.infomaniak.ch/musique5-128.mp3?n=0dfe537a039df8fbddb0
-#EXTINF:-1,La 1ère Musique OCEAN INDIEN
-https://musique1.ice.infomaniak.ch/musique4-128.mp3?n=fa288e6f4a1174569fa6
-#EXTINF:-1,La 1ère musique OCEAN PACIFIQUE
-https://musique1.ice.infomaniak.ch/musique2-128.mp3?n=9c3867894c39afad7e02
+#EXTINF:-1,Antenne d’Oc
+https://antennedoc.ice.infomaniak.ch/antennedoc-48.mp3?n=788c8d826f65b6a492c8
 #EXTINF:-1,franceinfo
 https://stream.radiofrance.fr/franceinfo/franceinfo_hifi.m3u8?id=radiofrance?n=d98ccfe3d97aabfaf7ff
 #EXTINF:-1,Radio Esperance
@@ -2371,6 +2610,8 @@ https://virageradio.ice.infomaniak.ch/virageradio-chambery.aac?i=47784?n=276dc69
 https://virage-radio-legende-du-rock.ice.infomaniak.ch/virage-radio-legende-du-rock.aac?n=1d2afd37d72801b0d7a2
 #EXTINF:-1,Espwaradyo97
 http://studio.simbacast.com:1780/stream?n=84f5b7906c9a56aef1a5
+#EXTINF:-1,Radio44
+http://eu.publicssl.net:7020/?n=950fd9c22970be75679f
 #EXTINF:-1,Europe 2 Mix / Rock, Electro, Pop
 https://europe2.lmn.fm/vr-wr6.mp3?aw_0_1st.playerid=lagardereappVirgin?n=ed49c88c972723d3ec6f
 #EXTINF:-1,ED92
