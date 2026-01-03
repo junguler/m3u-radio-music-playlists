@@ -471,6 +471,8 @@ since the traffic section of the insight tab is hidden to other viewers of this 
 
 ![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_2.jpg)
 
+![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_3.jpg)
+
 <br>
 
 <table align="center">
