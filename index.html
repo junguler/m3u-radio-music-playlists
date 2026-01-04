@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>File Viewer</title>
-    <!-- Added HLS.js for IPTV/M3U8 support -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
     <style>
+        /* Styles remain consistent */
         :root {
             --bg-primary: #0d1117;
             --bg-secondary: #161b22;
@@ -314,7 +314,8 @@
             currentFileName = "",
             isPlaylistFile = !1,
             currentFontSize = 14,
-            currentHls = null; // Store HLS instance
+            currentHls = null,
+            streamTimeout = null;
 
         const icons = {
             folder: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>`,
@@ -663,18 +664,15 @@
                     if (!line) continue;
                     
                     if (line.startsWith("#EXTINF:")) {
-                        // Extract title from EXTINF
-                        // Format #EXTINF:duration,Title
                         const commaIndex = line.indexOf(',');
                         if (commaIndex !== -1) {
                             currentTitle = line.substring(commaIndex + 1).trim();
                         }
                     } else if (!line.startsWith("#")) {
                         const url = (line.startsWith("http://") || line.startsWith("https://")) ? line : o + line;
-                        // Use extracted title or filename as fallback
                         const title = currentTitle || decodeURIComponent(url.split('/').pop());
                         playlistItems.push({ url, title });
-                        currentTitle = null; // Reset for next item
+                        currentTitle = null;
                     }
                 }
                 return playlistItems;
@@ -720,6 +718,10 @@
                 currentHls.destroy();
                 currentHls = null;
             }
+            if (streamTimeout) {
+                clearTimeout(streamTimeout);
+                streamTimeout = null;
+            }
             (currentPlaylist = []),
                 (currentPlaylistIndex = 0),
                 document.getElementById("playlistBar").classList.remove("active"),
@@ -747,35 +749,22 @@
             }
         }
 
-        /**
-         * Attempts to resolve a URL to a playable stream. 
-         * If the URL points to another M3U playlist (recursive), fetches it to get the final stream.
-         * NOTE: fetching external M3Us requires CORS support on the server.
-         */
         async function resolveStreamUrl(url) {
-            // Basic extension check first
             const lowerUrl = url.toLowerCase();
             const isM3u = lowerUrl.endsWith('.m3u') || lowerUrl.endsWith('.m3u8');
-            
-            // If it already looks like a stream (mp4, mkv) or we suspect it's a direct HLS stream, return
-            // We assume .m3u8 is HLS, but .m3u often points to a list of other .m3u or streams.
             if (!isM3u) return url;
 
             try {
-                // Try to fetch to see if it's a nested playlist
                 const response = await fetch(url);
                 const contentType = response.headers.get("content-type");
                 
-                // If it's a playlist format, read it to find the real stream
                 if (response.ok && (lowerUrl.endsWith('.m3u') || (contentType && (contentType.includes('mpegurl') || contentType.includes('text'))))) {
                     const text = await response.text();
-                    // If content is EXTINF, it's a playlist. 
                     if (text.includes("#EXTM3U")) {
                         const lines = text.split('\n');
                         for(let line of lines) {
                             line = line.trim();
                             if(line && !line.startsWith('#')) {
-                                // Recursively resolve the first entry
                                 const resolved = new URL(line, url).href;
                                 return resolveStreamUrl(resolved);
                             }
@@ -783,25 +772,45 @@
                     }
                 }
             } catch (e) {
-                // If CORS fails or fetch fails, return the original URL and let the player try to handle it
-                // (e.g. video tag handles redirects internally)
+                // Ignore errors here
             }
             return url;
+        }
+
+        function skipToNext() {
+            console.log("Stream invalid or timeout. Skipping...");
+            if (streamTimeout) {
+                clearTimeout(streamTimeout);
+                streamTimeout = null;
+            }
+            if (currentPlaylistIndex < currentPlaylist.length - 1) {
+                playPlaylistTrack(currentPlaylistIndex + 1);
+            } else {
+                console.log("End of playlist reached.");
+                stopPlaylist();
+            }
         }
 
         async function playPlaylistTrack(e) {
             if (e < 0 || e >= currentPlaylist.length) return;
             
-            // Cleanup previous HLS
+            // Cleanup
             if (currentHls) {
                 currentHls.destroy();
                 currentHls = null;
             }
+            if (streamTimeout) {
+                clearTimeout(streamTimeout);
+            }
+
+            // Start 3-second timeout immediately (works for both audio and video)
+            streamTimeout = setTimeout(() => {
+                skipToNext();
+            }, 3000);
 
             (currentPlaylistIndex = e), updatePlaylistUI();
             
             const item = currentPlaylist[currentPlaylistIndex];
-            // Resolve potentially nested playlists/redirects
             const rawUrl = item.url;
             const finalUrl = await resolveStreamUrl(rawUrl);
 
@@ -809,88 +818,89 @@
             const s = item.title;
             const o = finalUrl.toLowerCase();
             
-            // Detection logic
-            const isVideo = o.match(/\.(mp4|webm|mkv|avi|mov|m3u8|ts)$/) || o.includes("type=video");
-            const isAudio = o.match(/\.(mp3|wav|ogg|flac|m4a|aac)$/);
-            const isHls = o.includes('.m3u8') || o.includes('application/x-mpegurl');
-
+            // Explicitly detect video files. 
+            // NOTE: We treat .m3u8 without a specific indication as Video to be safe, 
+            // but for typical radio streams (no extension), we fall to Audio.
+            const isSpecificVideo = o.match(/\.(mp4|webm|mkv|avi|mov|ts)$/) || o.includes("type=video");
+            
             document.getElementById("modalTitle").textContent = s;
 
-            // Render container
-            if (isVideo || isHls) {
+            if (isSpecificVideo) {
+                // RENDER VIDEO PLAYER
                 n.innerHTML = `
                   <div class="preview-media-container">
-                    <video id="videoPlayer" class="preview-video" controls autoplay playsinline>
+                    <video id="videoPlayer" class="preview-video" controls autoplay playsinline muted>
                       Your browser does not support video playback.
                     </video>
                   </div>
                 `;
                 const video = document.getElementById("videoPlayer");
                 
-                // Handle HLS
-                if (Hls.isSupported() && isHls) {
+                video.onloadeddata = () => {
+                    if(streamTimeout) { clearTimeout(streamTimeout); streamTimeout = null; }
+                };
+                video.onerror = () => skipToNext();
+                
+                // Fallback for HLS in video container
+                if (Hls.isSupported() && (o.includes('.m3u8') || o.includes('application/x-mpegurl'))) {
                     currentHls = new Hls();
                     currentHls.loadSource(finalUrl);
                     currentHls.attachMedia(video);
-                    currentHls.on(Hls.Events.MANIFEST_PARSED, function() {
-                        video.play().catch(e => console.log("Autoplay prevented", e));
+                    currentHls.on(Hls.Events.FRAG_LOADED, function() {
+                        if(streamTimeout) { clearTimeout(streamTimeout); streamTimeout = null; }
                     });
                     currentHls.on(Hls.Events.ERROR, function(event, data) {
-                        if (data.fatal) {
-                            switch (data.type) {
-                                case Hls.ErrorTypes.NETWORK_ERROR:
-                                    console.log("fatal network error encountered, try to recover");
-                                    currentHls.startLoad();
-                                    break;
-                                case Hls.ErrorTypes.MEDIA_ERROR:
-                                    console.log("fatal media error encountered, try to recover");
-                                    currentHls.recoverMediaError();
-                                    break;
-                                default:
-                                    // Cannot recover
-                                    currentHls.destroy();
-                                    break;
-                            }
-                        }
-                    });
-                } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                    // Native HLS support (Safari)
-                    video.src = finalUrl;
-                    video.addEventListener('loadedmetadata', function() {
-                        video.play();
+                        if (data.fatal) skipToNext();
                     });
                 } else {
-                    // Standard video
                     video.src = finalUrl;
                 }
-
+                
                 video.onended = () => {
-                    currentPlaylistIndex < currentPlaylist.length - 1 && playPlaylistTrack(currentPlaylistIndex + 1);
+                    if (streamTimeout) clearTimeout(streamTimeout);
+                    if (currentPlaylistIndex < currentPlaylist.length - 1) playPlaylistTrack(currentPlaylistIndex + 1);
                 };
-            } else if (isAudio || (!isVideo && !isHls)) {
-                // Default to audio player for unknown streams (like shoutcast) or audio files
+
+            } else {
+                // RENDER AUDIO PLAYER (Default for Radio)
                 n.innerHTML = `
                   <div class="preview-audio-container">
                     <div class="audio-icon">${icons.audio}</div>
                     <div style="font-weight: 500; text-align: center;">${escapeHtml(s)}</div>
-                    <audio class="preview-audio" controls autoplay>
-                      <source src="${finalUrl}">
+                    <audio id="audioPlayer" class="preview-audio" controls autoplay>
                       Your browser does not support audio playback.
                     </audio>
                   </div>
                 `;
-                const audio = n.querySelector("audio");
-                audio.onended = () => {
-                    currentPlaylistIndex < currentPlaylist.length - 1 && playPlaylistTrack(currentPlaylistIndex + 1);
-                };
-                // Handle potential error in audio playback by showing download
-                audio.onerror = () => {
-                    n.innerHTML += `
-                        <div style="text-align:center; color: var(--danger); margin-top: 1rem;">
-                            Playback failed. <a href="${finalUrl}" class="download-btn">Download / Open Directly</a>
-                        </div>
-                    `;
+                const audio = document.getElementById("audioPlayer");
+                
+                // If it's HLS (m3u8) but being played in Audio mode (common for Radio)
+                if (Hls.isSupported() && (o.includes('.m3u8') || o.includes('application/x-mpegurl'))) {
+                    currentHls = new Hls();
+                    currentHls.loadSource(finalUrl);
+                    currentHls.attachMedia(audio);
+                    currentHls.on(Hls.Events.FRAG_LOADED, function() {
+                        if(streamTimeout) { clearTimeout(streamTimeout); streamTimeout = null; }
+                    });
+                    currentHls.on(Hls.Events.ERROR, function(event, data) {
+                        if (data.fatal) skipToNext();
+                    });
+                } else {
+                    // Standard MP3/AAC/Shoutcast Stream
+                    audio.src = finalUrl;
                 }
+
+                audio.onloadeddata = () => {
+                     if(streamTimeout) { clearTimeout(streamTimeout); streamTimeout = null; }
+                };
+                audio.onerror = () => skipToNext();
+
+                audio.onended = () => {
+                    if (streamTimeout) clearTimeout(streamTimeout);
+                    if (currentPlaylistIndex < currentPlaylist.length - 1) {
+                        playPlaylistTrack(currentPlaylistIndex + 1);
+                    }
+                };
             }
         }
 
@@ -1010,10 +1020,14 @@
             const e = document.getElementById("modal");
             e.classList.remove("active");
             
-            // Clean up HLS
+            // Clean up HLS and Timeouts
             if (currentHls) {
                 currentHls.destroy();
                 currentHls = null;
+            }
+            if (streamTimeout) {
+                clearTimeout(streamTimeout);
+                streamTimeout = null;
             }
 
             const t = e.querySelector("video"),
