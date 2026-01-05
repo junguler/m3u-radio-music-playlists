@@ -147,6 +147,7 @@
         .file-icon.playlist { color: #f778ba; background: rgba(247, 120, 186, 0.1); }
         .file-name { font-weight: 500; word-break: break-word; font-size: 0.8rem; max-width: 100%; line-height: 1.2; }
         .file-meta { font-size: 0.7rem; color: var(--text-muted); }
+        .file-path { display: block; font-size: 0.65rem; color: var(--text-muted); word-break: break-all; margin-top: 2px; }
         .file-thumbnail { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px; background: var(--bg-tertiary); }
         .file-thumbnail.lazy { opacity: 0; transition: opacity 0.2s; }
         .file-thumbnail.loaded { opacity: 1; }
@@ -315,11 +316,12 @@
             isPlaylistFile = !1,
             currentFontSize = 14,
             currentHls = null,
-            streamTimeout = null;
+            streamTimeout = null,
+            allFiles = []; // Optimization: Store flattened files
 
         const icons = {
             folder: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>`,
-            image: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>`,
+            image: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>`,
             video: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>`,
             audio: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></svg>`,
             code: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>`,
@@ -371,12 +373,39 @@
             const t = e.toLowerCase();
             return t.endsWith(".m3u") || t.endsWith(".m3u8");
         }
+
+        // Optimization: Recursively flatten file tree on init for O(n) search
+        function preprocessFiles(nodes, pathPrefix = "") {
+            for (const node of nodes) {
+                const currentPathStr = pathPrefix ? `${pathPrefix}/${node.name}` : node.name;
+                // Pre-calculate lower case string for faster searching
+                const searchKey = currentPathStr.toLowerCase();
+                
+                // Store navPath so search results can still be navigated to
+                const navPath = pathPrefix ? [...pathPrefix.split('/'), node.name] : [node.name];
+
+                allFiles.push({
+                    ...node,
+                    fullPath: currentPathStr,
+                    navPath: navPath,
+                    searchKey: searchKey
+                });
+
+                if (node.type === "directory" && node.children) {
+                    preprocessFiles(node.children, currentPathStr);
+                }
+            }
+        }
+
         async function init() {
             loadSettings();
             try {
                 const e = await fetch("./file_index.json");
                 if (!e.ok) throw new Error("Failed to load file index");
-                (fileIndex = await e.json()), setupEventListeners(), setupIntersectionObserver(), render();
+                (fileIndex = await e.json()), 
+                // Build the flat index immediately
+                preprocessFiles(fileIndex.root), 
+                setupEventListeners(), setupIntersectionObserver(), render();
             } catch (e) {
                 console.error(e),
                     (document.getElementById("main").innerHTML = `
@@ -487,16 +516,10 @@
             }
             return e;
         }
-        function filterItems(e, t) {
-            if (!t) return e;
-            const n = [],
-                s = (e, o = []) => {
-                    for (const i of e)
-                        i.name.toLowerCase().includes(t) && n.push({ ...i, searchPath: [...o, i.name] }),
-                            i.type === "directory" && i.children && s(i.children, [...o, i.name]);
-                };
-            return s(e), n;
-        }
+
+        // Replaced old filterItems with direct array filter in render()
+        // function filterItems(e, t) { ... } (Removed)
+
         function setView(e) {
             (currentView = e),
                 document.querySelectorAll(".view-btn").forEach((t) => {
@@ -579,7 +602,16 @@
         function render() {
             renderBreadcrumb(), currentView === "tree" && renderTree();
             const n = document.getElementById("main");
-            let e = searchQuery ? filterItems(fileIndex.root, searchQuery) : getCurrentItems();
+            
+            let e = [];
+            // Optimization: Filter the flat list instead of recursive tree walk
+            // Limit results to 100 to prevent DOM lag
+            if (searchQuery) {
+                e = allFiles.filter(item => item.searchKey.includes(searchQuery)).slice(0, 100);
+            } else {
+                e = getCurrentItems();
+            }
+
             if (e.length === 0) {
                 n.innerHTML = `
           <div class="empty-state">
@@ -593,51 +625,80 @@
                 return;
             }
             const s = currentView === "list" || currentView === "tree" ? "file-list" : "file-grid";
+            
+            // Calculate stats based on whether we are searching or browsing
+            let fileCount, folderCount;
+            if (searchQuery) {
+                 fileCount = e.filter(i => i.type === 'file').length;
+                 folderCount = e.filter(i => i.type === 'directory').length;
+            } else {
+                 fileCount = e.filter((e) => e.type === "file").length;
+                 folderCount = e.filter((e) => e.type === "directory").length;
+            }
+
             let t = `
         <div class="stats-bar">
           <span class="stat">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6z"/></svg>
-            ${e.filter((e) => e.type === "file").length} files
+            ${fileCount} files ${searchQuery && e.length >= 100 ? '(Showing top 100)' : ''}
           </span>
           <span class="stat">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
-            ${e.filter((e) => e.type === "directory").length} folders
+            ${folderCount} folders
           </span>
         </div>
         <div class="main-content">
           <div class="${s}">
       `;
-            for (const n of e) {
-                const s = n.type === "directory" ? "folder" : getFileIconType(n.name) || n.category || "other",
+            for (const item of e) {
+                const s = item.type === "directory" ? "folder" : getFileIconType(item.name) || item.category || "other",
                     o = icons[s] || icons.other;
-                if (n.type === "directory") {
-                    const e = n.searchPath ? n.searchPath.slice(0, -1).concat(n.name) : [...currentPath, n.name];
+                
+                // Determine logic based on search vs browse
+                let clickPath, fullDisplayPath, parentPathArr;
+                
+                if (searchQuery) {
+                    // Search mode: use pre-calculated paths
+                    clickPath = item.fullPath;
+                    fullDisplayPath = item.fullPath;
+                    parentPathArr = item.navPath; // Used for directory navigation
+                } else {
+                    // Browse mode: construct based on current path
+                    fullDisplayPath = (currentPath.length ? currentPath.join("/") + "/" : "") + item.name;
+                    clickPath = fullDisplayPath;
+                    parentPathArr = [...currentPath, item.name];
+                }
+
+                if (item.type === "directory") {
                     t += `
-            <div class="file-card directory" data-directory="true" data-path='${JSON.stringify(e)}'>
+            <div class="file-card directory" data-directory="true" data-path='${JSON.stringify(parentPathArr)}'>
               <div class="file-icon folder">${icons.folder}</div>
               <div class="file-info">
-                <span class="file-name">${escapeHtml(n.name)}</span>
-                <span class="file-meta">${n.children?.length || 0} items</span>
+                <span class="file-name">${escapeHtml(item.name)}</span>
+                <span class="file-meta">
+                    ${item.children?.length || 0} items
+                    ${searchQuery ? `<span class="file-path">${escapeHtml(fullDisplayPath)}</span>` : ''}
+                </span>
               </div>
             </div>
           `;
                 } else {
-                    const e = n.searchPath
-                        ? n.searchPath.join("/")
-                        : (currentPath.length ? currentPath.join("/") + "/" : "") + n.name;
                     let i = "";
                     currentView === "grid" &&
-                        n.category === "image" &&
-                        (i = `<img class="file-thumbnail lazy" data-src="./${e}" alt="" loading="lazy">`),
+                        item.category === "image" &&
+                        (i = `<img class="file-thumbnail lazy" data-src="./${clickPath}" alt="" loading="lazy">`),
                         (t += `
-            <div class="file-card" data-file="${escapeHtml(e)}" data-category="${n.category}" data-name="${escapeHtml(n.name)}">
+            <div class="file-card" data-file="${escapeHtml(clickPath)}" data-category="${item.category}" data-name="${escapeHtml(item.name)}">
               ${i}
               <div class="file-icon ${s}">${o}</div>
               <div class="file-info">
-                <span class="file-name">${escapeHtml(n.name)}</span>
-                <span class="file-meta">${n.sizeFormatted}</span>
+                <span class="file-name">${escapeHtml(item.name)}</span>
+                <span class="file-meta">
+                    ${item.sizeFormatted}
+                    ${searchQuery ? `<span class="file-path">${escapeHtml(fullDisplayPath)}</span>` : ''}
+                </span>
               </div>
-              ${currentView !== "grid" ? `<span class="file-size">${n.sizeFormatted}</span>` : ""}
+              ${currentView !== "grid" && !searchQuery ? `<span class="file-size">${item.sizeFormatted}</span>` : ""}
             </div>
           `);
                 }
@@ -803,7 +864,7 @@
                 clearTimeout(streamTimeout);
             }
 
-            // Start 3-second timeout immediately (works for both audio and video)
+            // Start 3-second timeout immediately
             streamTimeout = setTimeout(() => {
                 skipToNext();
             }, 5000);
@@ -818,15 +879,11 @@
             const s = item.title;
             const o = finalUrl.toLowerCase();
             
-            // Explicitly detect video files. 
-            // NOTE: We treat .m3u8 without a specific indication as Video to be safe, 
-            // but for typical radio streams (no extension), we fall to Audio.
             const isSpecificVideo = o.match(/\.(mp4|webm|mkv|avi|mov|ts)$/) || o.includes("type=video");
             
             document.getElementById("modalTitle").textContent = s;
 
             if (isSpecificVideo) {
-                // RENDER VIDEO PLAYER
                 n.innerHTML = `
                   <div class="preview-media-container">
                     <video id="videoPlayer" class="preview-video" controls autoplay playsinline muted>
@@ -841,7 +898,6 @@
                 };
                 video.onerror = () => skipToNext();
                 
-                // Fallback for HLS in video container
                 if (Hls.isSupported() && (o.includes('.m3u8') || o.includes('application/x-mpegurl'))) {
                     currentHls = new Hls();
                     currentHls.loadSource(finalUrl);
@@ -862,7 +918,6 @@
                 };
 
             } else {
-                // RENDER AUDIO PLAYER (Default for Radio)
                 n.innerHTML = `
                   <div class="preview-audio-container">
                     <div class="audio-icon">${icons.audio}</div>
@@ -874,7 +929,6 @@
                 `;
                 const audio = document.getElementById("audioPlayer");
                 
-                // If it's HLS (m3u8) but being played in Audio mode (common for Radio)
                 if (Hls.isSupported() && (o.includes('.m3u8') || o.includes('application/x-mpegurl'))) {
                     currentHls = new Hls();
                     currentHls.loadSource(finalUrl);
@@ -886,7 +940,6 @@
                         if (data.fatal) skipToNext();
                     });
                 } else {
-                    // Standard MP3/AAC/Shoutcast Stream
                     audio.src = finalUrl;
                 }
 
@@ -1020,7 +1073,6 @@
             const e = document.getElementById("modal");
             e.classList.remove("active");
             
-            // Clean up HLS and Timeouts
             if (currentHls) {
                 currentHls.destroy();
                 currentHls = null;
