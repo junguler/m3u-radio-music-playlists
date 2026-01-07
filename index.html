@@ -317,7 +317,10 @@
             currentFontSize = 14,
             currentHls = null,
             streamTimeout = null,
-            allFiles = []; // Optimization: Store flattened files
+            allFiles = [],
+            currentVolume = 0.5, // Default volume set to 50%
+            audioCtx = null,
+            compressor = null; 
 
         const icons = {
             folder: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>`,
@@ -373,27 +376,53 @@
             const t = e.toLowerCase();
             return t.endsWith(".m3u") || t.endsWith(".m3u8");
         }
-
-        // Optimization: Recursively flatten file tree on init for O(n) search
         function preprocessFiles(nodes, pathPrefix = "") {
             for (const node of nodes) {
                 const currentPathStr = pathPrefix ? `${pathPrefix}/${node.name}` : node.name;
-                // Pre-calculate lower case string for faster searching
                 const searchKey = currentPathStr.toLowerCase();
-                
-                // Store navPath so search results can still be navigated to
                 const navPath = pathPrefix ? [...pathPrefix.split('/'), node.name] : [node.name];
-
                 allFiles.push({
                     ...node,
                     fullPath: currentPathStr,
                     navPath: navPath,
                     searchKey: searchKey
                 });
-
                 if (node.type === "directory" && node.children) {
                     preprocessFiles(node.children, currentPathStr);
                 }
+            }
+        }
+        
+        // Initialize Web Audio API for Normalization
+        function setupAudioNormalization(mediaElement) {
+            try {
+                // Ensure CORS is handled for Web Audio
+                mediaElement.crossOrigin = "anonymous";
+                
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    // Settings for a "broadcast style" leveling
+                    compressor = audioCtx.createDynamicsCompressor();
+                    compressor.threshold.value = -24; // Start compressing early to catch peaks
+                    compressor.knee.value = 30;       // Soft knee for smooth transition
+                    compressor.ratio.value = 12;      // High ratio to act as a leveler
+                    compressor.attack.value = 0.003;  // Fast attack
+                    compressor.release.value = 0.25;  // Standard release
+                    compressor.connect(audioCtx.destination);
+                }
+
+                // Browser policy requires user interaction to resume audio context
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                // Connect source to compressor
+                // Note: creating a new source for a new element is standard
+                const source = audioCtx.createMediaElementSource(mediaElement);
+                source.connect(compressor);
+            } catch (e) {
+                // Fails quietly if CORS blocks it or AudioContext not supported
+                console.warn("Audio Normalization setup failed:", e);
             }
         }
 
@@ -403,7 +432,6 @@
                 const e = await fetch("./file_index.json");
                 if (!e.ok) throw new Error("Failed to load file index");
                 (fileIndex = await e.json()), 
-                // Build the flat index immediately
                 preprocessFiles(fileIndex.root), 
                 setupEventListeners(), setupIntersectionObserver(), render();
             } catch (e) {
@@ -517,9 +545,6 @@
             return e;
         }
 
-        // Replaced old filterItems with direct array filter in render()
-        // function filterItems(e, t) { ... } (Removed)
-
         function setView(e) {
             (currentView = e),
                 document.querySelectorAll(".view-btn").forEach((t) => {
@@ -604,8 +629,6 @@
             const n = document.getElementById("main");
             
             let e = [];
-            // Optimization: Filter the flat list instead of recursive tree walk
-            // Limit results to 100 to prevent DOM lag
             if (searchQuery) {
                 e = allFiles.filter(item => item.searchKey.includes(searchQuery)).slice(0, 100);
             } else {
@@ -626,7 +649,6 @@
             }
             const s = currentView === "list" || currentView === "tree" ? "file-list" : "file-grid";
             
-            // Calculate stats based on whether we are searching or browsing
             let fileCount, folderCount;
             if (searchQuery) {
                  fileCount = e.filter(i => i.type === 'file').length;
@@ -654,16 +676,13 @@
                 const s = item.type === "directory" ? "folder" : getFileIconType(item.name) || item.category || "other",
                     o = icons[s] || icons.other;
                 
-                // Determine logic based on search vs browse
                 let clickPath, fullDisplayPath, parentPathArr;
                 
                 if (searchQuery) {
-                    // Search mode: use pre-calculated paths
                     clickPath = item.fullPath;
                     fullDisplayPath = item.fullPath;
-                    parentPathArr = item.navPath; // Used for directory navigation
+                    parentPathArr = item.navPath;
                 } else {
-                    // Browse mode: construct based on current path
                     fullDisplayPath = (currentPath.length ? currentPath.join("/") + "/" : "") + item.name;
                     clickPath = fullDisplayPath;
                     parentPathArr = [...currentPath, item.name];
@@ -833,7 +852,6 @@
                     }
                 }
             } catch (e) {
-                // Ignore errors here
             }
             return url;
         }
@@ -855,7 +873,6 @@
         async function playPlaylistTrack(e) {
             if (e < 0 || e >= currentPlaylist.length) return;
             
-            // Cleanup
             if (currentHls) {
                 currentHls.destroy();
                 currentHls = null;
@@ -864,7 +881,6 @@
                 clearTimeout(streamTimeout);
             }
 
-            // Start 3-second timeout immediately
             streamTimeout = setTimeout(() => {
                 skipToNext();
             }, 5000);
@@ -886,13 +902,18 @@
             if (isSpecificVideo) {
                 n.innerHTML = `
                   <div class="preview-media-container">
-                    <video id="videoPlayer" class="preview-video" controls autoplay playsinline muted>
+                    <video id="videoPlayer" class="preview-video" controls autoplay playsinline muted crossOrigin="anonymous">
                       Your browser does not support video playback.
                     </video>
                   </div>
                 `;
                 const video = document.getElementById("videoPlayer");
                 
+                // Volume persistence and Audio Normalization
+                video.volume = currentVolume;
+                video.onvolumechange = (e) => currentVolume = e.target.volume;
+                setupAudioNormalization(video);
+
                 video.onloadeddata = () => {
                     if(streamTimeout) { clearTimeout(streamTimeout); streamTimeout = null; }
                 };
@@ -922,13 +943,18 @@
                   <div class="preview-audio-container">
                     <div class="audio-icon">${icons.audio}</div>
                     <div style="font-weight: 500; text-align: center;">${escapeHtml(s)}</div>
-                    <audio id="audioPlayer" class="preview-audio" controls autoplay>
+                    <audio id="audioPlayer" class="preview-audio" controls autoplay crossOrigin="anonymous">
                       Your browser does not support audio playback.
                     </audio>
                   </div>
                 `;
                 const audio = document.getElementById("audioPlayer");
                 
+                // Volume persistence and Audio Normalization
+                audio.volume = currentVolume;
+                audio.onvolumechange = (e) => currentVolume = e.target.volume;
+                setupAudioNormalization(audio);
+
                 if (Hls.isSupported() && (o.includes('.m3u8') || o.includes('application/x-mpegurl'))) {
                     currentHls = new Hls();
                     currentHls.loadSource(finalUrl);
@@ -987,24 +1013,38 @@
                     case "video":
                         s.innerHTML = `
               <div class="preview-media-container">
-                <video class="preview-video" controls autoplay controlsList="nodownload">
+                <video class="preview-video" controls autoplay controlsList="nodownload" crossOrigin="anonymous">
                   <source src="${o}">
                   Your browser does not support video playback.
                 </video>
               </div>
             `;
+                        // Apply volume and normalization to single files too
+                        const singleVideo = s.querySelector('video');
+                        if (singleVideo) {
+                            singleVideo.volume = currentVolume;
+                            singleVideo.onvolumechange = (e) => currentVolume = e.target.volume;
+                            setupAudioNormalization(singleVideo);
+                        }
                         break;
                     case "audio":
                         s.innerHTML = `
               <div class="preview-audio-container">
                 <div class="audio-icon">${icons.audio}</div>
                 <div style="font-weight: 500; text-align: center;">${escapeHtml(n)}</div>
-                <audio class="preview-audio" controls autoplay controlsList="nodownload">
+                <audio class="preview-audio" controls autoplay controlsList="nodownload" crossOrigin="anonymous">
                   <source src="${o}">
                   Your browser does not support audio playback.
                 </audio>
               </div>
             `;
+                        // Apply volume and normalization to single files too
+                        const singleAudio = s.querySelector('audio');
+                        if (singleAudio) {
+                            singleAudio.volume = currentVolume;
+                            singleAudio.onvolumechange = (e) => currentVolume = e.target.volume;
+                            setupAudioNormalization(singleAudio);
+                        }
                         break;
                     case "document":
                         n.toLowerCase().endsWith(".pdf")
