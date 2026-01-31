@@ -283,7 +283,8 @@ to listen to other m3u playlists in this repo click on the specific repo for eac
 <tr>
 <td><a href="https://github.com/junguler/listen_to_strea-m-itter">strea-m-itter</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio_spinner">radio_spinner</a></td>
-<td colspan="3"></td>
+<td><a href="https://github.com/junguler/listen_to_zin_music">zin_music</a></td>
+<td colspan="2"></td>
 </tr>
 </tbody></table>
 
