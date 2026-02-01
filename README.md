@@ -2,7 +2,7 @@
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/o-cassette_tape.gif"></td>
+<td><img align="right" src="stuff/p-cassette_tape.gif"></td>
 </tr>
 </table>
 
@@ -29,7 +29,7 @@
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/o-headphone.gif"></td>
+<td><img align="right" src="stuff/p-headphone.gif"></td>
 </tr>
 </table>
 
@@ -319,7 +319,7 @@ note: i need to investigate players for other devices, i will update this sectio
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/o-jukebox.gif"></td>
+<td><img align="right" src="stuff/p-jukebox.gif"></td>
 </tr>
 </table>
 
@@ -361,7 +361,7 @@ note: this method does not give you the stream title (tho most streams broadcast
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/o-disco_ball.gif"></td>
+<td><img align="right" src="stuff/p-disco_ball.gif"></td>
 </tr>
 </table>
 
@@ -433,7 +433,7 @@ this command will download this stream `http://51.89.148.171:8022/stream/1/` for
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/o-boombox.gif"></td>
+<td><img align="right" src="stuff/p-boombox.gif"></td>
 </tr>
 </table>
 
@@ -458,7 +458,7 @@ download the [auto-generated zip file](https://github.com/junguler/m3u-radio-mus
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/o-music_note.gif"></td>
+<td><img align="right" src="stuff/p-music_note.gif"></td>
 </tr>
 </table>
 
@@ -478,7 +478,7 @@ since the traffic section of the insight tab is hidden to other viewers of this 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/o-globe.gif"></td>
+<td><img align="right" src="stuff/p-globe.gif"></td>
 </tr>
 </table>
 
@@ -782,7 +782,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/o-guitar.gif"></td>
+<td><img align="right" src="stuff/p-guitar.gif"></td>
 </tr>
 </table>
 
@@ -804,7 +804,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/o-ipod.gif"></td>
+<td><img align="right" src="stuff/p-ipod.gif"></td>
 </tr>
 </table>
 
@@ -825,7 +825,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/o-sunglass.gif"></td>
+<td><img align="right" src="stuff/p-sunglass.gif"></td>
 </tr>
 </table>
 
@@ -843,7 +843,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/o-dj.gif"></td>
+<td><img align="right" src="stuff/p-dj.gif"></td>
 </tr>
 </table>
 
