@@ -478,7 +478,7 @@ since the traffic section of the insight tab is hidden to other viewers of this 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/p-globe.gif"></td>
+<td><img align="right" src="stuff/p-microphone.gif"></td>
 </tr>
 </table>
 
