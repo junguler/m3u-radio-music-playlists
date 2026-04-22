@@ -2,7 +2,7 @@
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/p-cassette_tape.gif"></td>
+<td><img align="right" src="stuff/cat.gif"></td>
 </tr>
 </table>
 
@@ -29,7 +29,7 @@
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/p-headphone.gif"></td>
+<td><img align="right" src="stuff/dog.gif"></td>
 </tr>
 </table>
 
@@ -321,7 +321,7 @@ note: i need to investigate players for other devices, i will update this sectio
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/p-jukebox.gif"></td>
+<td><img align="right" src="stuff/lion.gif"></td>
 </tr>
 </table>
 
@@ -363,7 +363,7 @@ note: this method does not give you the stream title (tho most streams broadcast
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/p-disco_ball.gif"></td>
+<td><img align="right" src="stuff/zebra.gif"></td>
 </tr>
 </table>
 
@@ -405,6 +405,14 @@ this command can also be stopped using `ctrl + c` shortcut or the timeout comman
 
 <br>
 
+<table align="center">
+<tr>
+<td><img align="right" src="stuff/rabbit.gif"></td>
+</tr>
+</table>
+
+<br>
+
 #### as individual songs
 
 i have been looking for a way to do this for a while, i found this program [streamwriter](https://streamwriter.org/en/downloads/) that does this but unfortunently it's only available on windows, this [winehq page](https://appdb.winehq.org/objectManager.php?sClass=application&iId=19745) lists the program as platinum and it should work with wine without any issues but i have not tested it myself as i'm not on linux at the moment and don't have a virtual machine ready either
@@ -435,7 +443,7 @@ this command will download this stream `http://51.89.148.171:8022/stream/1/` for
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/p-boombox.gif"></td>
+<td><img align="right" src="stuff/wolf.gif"></td>
 </tr>
 </table>
 
@@ -460,7 +468,7 @@ download the [auto-generated zip file](https://github.com/junguler/m3u-radio-mus
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/p-music_note.gif"></td>
+<td><img align="right" src="stuff/bear.gif"></td>
 </tr>
 </table>
 
@@ -480,7 +488,7 @@ since the traffic section of the insight tab is hidden to other viewers of this 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/p-microphone.gif"></td>
+<td><img align="right" src="stuff/monkey.gif"></td>
 </tr>
 </table>
 
@@ -789,7 +797,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/p-guitar.gif"></td>
+<td><img align="right" src="stuff/panda.gif"></td>
 </tr>
 </table>
 
@@ -811,7 +819,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/p-ipod.gif"></td>
+<td><img align="right" src="stuff/leopard.gif"></td>
 </tr>
 </table>
 
@@ -832,7 +840,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/p-sunglass.gif"></td>
+<td><img align="right" src="stuff/horse.gif"></td>
 </tr>
 </table>
 
@@ -850,7 +858,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/p-dj.gif"></td>
+<td><img align="right" src="stuff/fox.gif"></td>
 </tr>
 </table>
 
