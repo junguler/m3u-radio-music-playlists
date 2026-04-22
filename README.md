@@ -309,11 +309,11 @@ alternativly use this [M3U radio player](https://junguler.github.io/M3U-radio-pl
 
 ###### on windows, mac and linux
 
-*   kodi: a complete solution of all things iptv and much more
-*   mpv: for the tinkerer types, see my [config files](https://github.com/junguler/win_confs/tree/main/mpv/portable_config) for an example
-*   vlc: if you want an out of the box experience that just works
+*   KODI: a complete solution of all things iptv and much more
+*   MPV: for the tinkerer types, see my [config files](https://github.com/junguler/win_confs/tree/main/mpv/portable_config) for an example
+*   VLC: if you want an out of the box experience that just works
 *   AIMP: suggested by [@lux5am](https://github.com/lux5am) in [#23](https://github.com/junguler/m3u-radio-music-playlists/discussions/23), a winamp clone with everything you might need to listen and record radio
-*	Transistor: suggest by [@Mohammed-Lahboub](https://github.com/Mohammed-Lahboub) in [#63](https://github.com/junguler/m3u-radio-music-playlists/issues/63), a lightweight, open-source radio player available on F-Droid featuring a very clean interface with smooth radio listening experience
+*	Transistor: suggested by [@Mohammed-Lahboub](https://github.com/Mohammed-Lahboub) in [#63](https://github.com/junguler/m3u-radio-music-playlists/issues/63), a lightweight, open-source radio player available on F-Droid featuring a very clean interface with smooth radio listening experience
 
 note: i need to investigate players for other devices, i will update this section later, if you know of a good program to use please let me know
 
