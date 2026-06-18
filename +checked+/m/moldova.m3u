@@ -1,6 +1,8 @@
 #EXTM3U
 #EXTINF:-1,Radio Moldova Tineret
 https://radiolive.trm.md:8001/hls_rmt/tineret.m3u8
+#EXTINF:-1,Radio Moldova Muzical
+https://radiolive.trm.md:8001/hls_rmm/muzical.m3u8
 #EXTINF:-1,Jurnal FM
 https://audio.jurnalfm.md/lq
 #EXTINF:-1,Radio Moldova
@@ -11,8 +13,6 @@ http://ep128.hostingradio.ru:8030/ep128
 https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1,Radio RECORD Moldova
 https://air.radiorecord.md/RecordMD
-#EXTINF:-1,Pro Life FM
-http://streamingp.shoutcast.com/JamendoLounge?lang=*
 #EXTINF:-1,Muz FM
 http://live.muzfm.md:8000/muzfm
 #EXTINF:-1,Haliz Gagauz Radiosu
@@ -28,9 +28,9 @@ https://positivealtradio.streamguys1.com/positivegold
 #EXTINF:-1,Радио Ваня - Свежий бит Listen live
 https://icecast-radiovanya.cdnvideo.ru/rv_hit
 #EXTINF:-1,Latriperie Listen live
-https://latriperie.stream.laut.fm/latriperie?t302=2025-12-18_15-31-56&uuid=597acb7f-968f-447c-be14-22be3abefaf6
+https://latriperie.stream.laut.fm/latriperie?t302=2026-06-08_17-18-45&uuid=d5cc2060-dbbb-4ddb-94ff-44fd938e1dbd
 #EXTINF:-1,Enigmatic Station Listen live
-https://listen8.myradio24.com/8226
+https://listen2.myradio24.com/8226
 #EXTINF:-1,100% Weihnachts-Karaoke Listen live
 https://regiocast.streamabc.net/wmu-karaoke-mp3-192-7660118
 #EXTINF:-1,Ретро FM Кишинев 89,1 FM Listen live
@@ -47,8 +47,8 @@ https://streams.radiozum.md/listen/zum2/ZUM2
 https://hitfm.hostingradio.ru/hitfm96.aacp
 #EXTINF:-1,Radio Zum 1
 https://streams.radiozum.md/listen/zum1/ZUM1
-#EXTINF:-1,Авторадио
-https://pub0102.101.ru:8443/stream/air/mp3/256/100
+#EXTINF:-1,Radio Chișinău
+https://radiochisinau.md/hls/RChisinau.m3u8
 #EXTINF:-1,России
 https://icecast-vgtrk.cdnvideo.ru/rrzonam_mp3_64kbps
 #EXTINF:-1,Ретро FM
@@ -61,8 +61,12 @@ http://rusradio.hostingradio.ru/rusradio96.aacp
 http://air.radiorecord.md/recordmdhd
 #EXTINF:-1,Радио Дача Тирасполь
 http://online2.gkvr.ru:8000/dacha_nno_64.aac
+#EXTINF:-1,EcoFM
+http://188.138.204.98:8000/
 #EXTINF:-1,PRODj Radio
 http://live.prodjradio.net:8000
+#EXTINF:-1,Radio BEAT
+http://asculta.radiobeat.md:9998/stream.nsv
 #EXTINF:-1,Новое Радио
 https://live.muzfm.md/muzfm
 #EXTINF:-1,Love Radio
@@ -118,13 +122,11 @@ https://stream02.pcradio.biz/rad_rdrelxsis-med
 #EXTINF:-1,Radio Chanson
 http://chanson.hostingradio.ru:8041/chanson256.mp3
 #EXTINF:-1,Master Class FM
-https://listen3.myradio24.com/master1
+https://listen8.myradio24.com/master1
 #EXTINF:-1,Radio RFI R.
 https://asculta.radiorfi.ro/live.mp3
 #EXTINF:-1,Радио Амор
 https://listen7.myradio24.com/vitaxa
-#EXTINF:-1,Zdob si Zdub Радио
-https://stream02.pcradio.ru/Zdob_si_Zdub-med
 #EXTINF:-1,Radio Relax R&B
 https://radio1.dixi.md/listen/relax_rnb/relaxrnb128.aac
 #EXTINF:-1,Radio Relax Instrumental
@@ -139,12 +141,32 @@ https://stream.dixi.md:9443/Roks
 https://live.cityfm.md:8001/cityfm
 #EXTINF:-1,Muz FM - Pop Hits from Moldova
 https://live.muzfm.md:8000/muzfm
+#EXTINF:-1,Radio Studentus - Pop Hits from Moldova
+https://worldradio.online/proxy/?q=http://radiolive.studentus.md:8000/live
 #EXTINF:-1,HIT FM Best Hits - Pop Hits from Moldova
 https://radio3.dixi.md/listen/hit_fm_best_hits/hitfm_besthits128.aac
 #EXTINF:-1,HIT FM Hot Hits - Pop Hits from Moldova
 https://radio3.dixi.md/listen/hit_fm_hot_hits/hitfm_hothits128.aac
 #EXTINF:-1,HIT FM Tricolor de Hituri - Pop Hits from Moldova
 https://radio3.dixi.md/listen/hit_fm_tricolour/hitfmtricolor128.aac
+#EXTINF:-1,Radio Moldova - Muzical - Eclectic Mix from Moldova
+https://worldradio.online/proxy/?q=http://radiolive.trm.md:8000/RM-muzical-256
+#EXTINF:-1,PRO Dj Radio - Dance Beats from Moldova
+https://worldradio.online/proxy/?q=http://live.prodjradio.net:8000/?type=http
+#EXTINF:-1,OM Radio - Relaxing Tunes from Moldova
+https://worldradio.online/proxy/?q=http://188.138.251.192:8002/stream.nsv
+#EXTINF:-1,Radio Aquarelle - Pop Hits from Moldova
+https://worldradio.online/proxy/?q=http://live.aquarellefm.md:8000/Aquarellefm.aac
+#EXTINF:-1,Drive FM MD - Dance Beats from Moldova
+https://worldradio.online/proxy/?q=http://109.185.236.241:8000/DriveFM192
+#EXTINF:-1,GRT fm - Folk Tunes from Moldova
+https://worldradio.online/proxy/?q=https://a1.radioheart.ru:9001/gagauzradiosu
+#EXTINF:-1,Radio Vocea Sperantei - Spiritual Sounds from Moldova
+https://worldradio.online/proxy/?q=http://31.131.2.5:8000/rvs_mp3
+#EXTINF:-1,Vocal Trance FM - Dance Beats from Moldova
+https://worldradio.online/proxy/?q=https://stream02.pcradio.ru/rad_dfmnsmn-med
+#EXTINF:-1,Радио Алла - Pop Hits from Moldova
+https://worldradio.online/proxy/?q=https://pub0102.101.ru:8443/stream/personal/aacp/64/936421
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/130444.v1.png",RECORD Big Hits
 https://air.radiorecord.md/bighits.aacp
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/131352.v1.png",RFI Republica Moldova
@@ -159,8 +181,6 @@ http://188.138.251.192:8002/
 https://s5.radio.co/sfd9f42d1d/listen
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48337/logo_sS8v6CSo7t.png",Radio Retro FM
 https://radio5.dixi.md/listen/station3/radio_retro128.aac
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48322/logo_RoKT2Q5G32.png",Zdob si Zdub Радио
-https://stream03.pcradio.ru/Zdob_si_Zdub-hi
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48336/logo_rbnv1HcnBH.png",LOVE RADIO Bălţi
 https://stream.mmgmoldova.md:8443/love_balti
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48356/logo_DGezyVQQ8i.png",HIT FM Drive Mode Radio
@@ -171,8 +191,6 @@ http://188.138.251.192:8002/stream
 https://radio6.dixi.md/listen/rock_ballads/rockballads128.aac
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48338/logo_Ru8jzNNOiE.png",HIT FM Christmas Hits Radio
 https://radio4.dixi.md/listen/hit_fm_christmas_hits/hitfmchristmashits128.aac
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48286/logo_5qA4yjI1vD.png",PRO Dj Radio
-https://live.prodjradio.net/88
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48332/logo_o6USdAvjEY.png",HIT FM Dance Hits Radio
 https://radio4.dixi.md/listen/hit_fm_dance_hits/hitfmdancehits128.aac
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48341/logo_yMEkXLPjK3.png",Radio Relax Oasis
@@ -213,6 +231,8 @@ https://radio1.dixi.md/listen/relax_funk_soul/relaxfunkandsoul128.aac
 https://radio5.dixi.md/listen/roks_tricolor/roks_tricolor128.aac
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48355/logo_WnkKflfG14.png",Radio New Rock
 https://radio6.dixi.md/listen/new_rock/new_rock128.aac
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48275/logo_kuaJtugGMw.png",Kiss FM Radio
+https://dc.digi.live.kissfm.ro/kissfm.chisinau
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48339/logo_e1b7zsrLLL.png",xTream Dance Radio
 https://radio-srv1.11one.ru/xradio.mp3
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/48353/logo_V8Mz0zkSIH.png",HIT FM 90’s Hits Radio
@@ -237,5 +257,7 @@ https://cdn.cybercdn.live/Pervoia/Audio/icecast.audio
 https://sonicssl.namehost.ro/8050/
 #EXTINF:-1,Haliz Gagauz Radiosu - GRT
 http://s02.radio-tochka.com:8020/radio?type=.mp3
+#EXTINF:-1,Master Class FM (MD)
+https://listen3.myradio24.com/master1
 #EXTINF:-1,VibeFM
 https://stream.radio.co/s6a544f6c9/listen

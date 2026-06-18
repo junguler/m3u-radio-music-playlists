@@ -1,6 +1,8 @@
 #EXTM3U
 #EXTINF:-1,Radio Time FM
 https://s2.free-shoutcast.com/stream/18058
+#EXTINF:-1,Radio Hit Macedonia
+http://radio.shoutcast.mk/8062/stream
 #EXTINF:-1,Life Radio 89.1
 http://liferadio.ddns.net:8000/stream
 #EXTINF:-1,Sky Radio 102.5 FM
@@ -29,20 +31,26 @@ http://radio105.makbots.com:21010/
 http://stream.zemi.mk:8003/1
 #EXTINF:-1,Radio 5fm
 http://5fm.mk:8000/stream/1/
+#EXTINF:-1,Radio Bravo
+http://80.77.157.10:8000/
+#EXTINF:-1,Radio Galaxy 102.2 FM
+http://galaxy.mk:8000/
 #EXTINF:-1,Radio Jehona
 http://s26.myradiostream.com:10030/stream.nsv
 #EXTINF:-1,Star Boemi
-https://a2.asurahosting.com/listen/stil_radio/starboem
+https://usa19.fastcast4u.com/starkafanska
 #EXTINF:-1,Star Ex Yu Retro
-https://a2.asurahosting.com/listen/stil_radio/starexyuretro
+https://usa19.fastcast4u.com/starexyuretro
 #EXTINF:-1,Star Mk Narodna
 https://a2.asurahosting.com/listen/stil_radio/starmkfolk
 #EXTINF:-1,Star Narodna
-https://a2.asurahosting.com/listen/stil_radio/starpopfolk
+https://usa19.fastcast4u.com/urbanfolk
 #EXTINF:-1,Star Plus Radio
 https://eu10.fastcast4u.com/starplus
 #EXTINF:-1,Star Radio Live
-https://a2.asurahosting.com/listen/stil_radio/starglaven
+https://usa19.fastcast4u.com/starmain
+#EXTINF:-1,Star World Retro
+https://a2.asurahosting.com/listen/stil_radio/starworld
 #EXTINF:-1,Радио Марија Македонија
 http://dreamsiteradiocp.com:8118/stream.mp3
 #EXTINF:-1,Urban FM 90.8 Skopje radio
@@ -63,8 +71,8 @@ https://biserradioohrid.radioca.st/stream?type=http\u0026ampnocache=1573
 https://radio.shoutcast.mk:8046/
 #EXTINF:-1,Kiss Fm Radio
 https://kissfmradionet.radioca.st/stream.nsv
-#EXTINF:-1,Extra Radio
-https://eu10.fastcast4u.com/extralive
+#EXTINF:-1,Radio KISS FM radio
+https://radio.shoutcast.mk/8014/stream
 #EXTINF:-1,Planeta Mak Radio Macedonia
 https://fps4.listen2myradio.com:2199/listen.php?ip=109.169.23.123\u0026port=9343\u0026type=s1
 #EXTINF:-1,Planeta Radio Makedonija
@@ -107,6 +115,8 @@ https://fps4.listen2myradio.com:2199/listen.php?ip=109.169.23.123&ampampport=934
 https://biserradioohrid.radioca.st/stream?type=http&ampampampnocache=1573
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/13983.v8.png",Radio Rosa
 http://s3.free-shoutcast.com:18032/
+#EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/13643.v7.png",Radio 105 Bombarder
+https://radio105bombarder.com:21010/stream.mp3
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/13972.v2.png",Radio Jehona
 http://s26.myradiostream.com:10030/
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/96540.v5.png",Lider FM, Skopje
@@ -151,6 +161,7 @@ https://radiostream.neotel.mk/kanal103
 https://a2.asurahosting.com/listen/stil_radio/stilradioexyupop
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/35282/logo_UhldUraiHX.png",Radio Fortuna
 https://radiofortuna.ipradio.mk/stream
+#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/35374/logo_UmrJtjdS6h.png",Star Radio (Boemi)
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/35344/logo_IMNLwSXEn0.png",STIL EX YU TRAP Radio
 https://a2.asurahosting.com/listen/stil_radio/stilexyutrap
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/35297/logo_QitCa8ZR5Y.png",Radio Vmro
@@ -185,18 +196,21 @@ https://radio.shoutcast.mk:8016/
 https://s32.myradiostream.com:16040/?type=http&nocache=1688299470?0.591044522318551
 #EXTINF:-1,SKY FOLK
 https://eu.live.skyfolk.mk/live.m3u8
+http://s1.skyradio.com.mk:8000/
 #EXTINF:-1,Radio Bravo Smooth Jazz Mix Radio
 http://server.webnetradio.net:5490/stream?
 #EXTINF:-1,Sky Radio 102.5 Skopje, Macedonia
 https://s1.skyradio.com.mk/*.mp3
 #EXTINF:-1,=KECO=70s ROCK
 http://jfm1.hostingradio.ru:14536/rock70.mp3
+#EXTINF:-1,Samo MK
+https://radiostream.neotel.mk/samomk
 #EXTINF:-1,Radio Fortuna 96.8 Skopje, Macedonia
 https://radiofortuna.ipradio.mk/*.mp3%22
+#EXTINF:-1,SamoMK
+http://radiostream.neotel.mk/samomk
 #EXTINF:-1,Star Folk Radio - Skopje, Macedonia
 http://161.97.114.58:8010/radio.mp3
-#EXTINF:-1,Star Radio (World Hits) Skopje, Macedonia
-https://a2.asurahosting.com/listen/stil_radio/starworld
 #EXTINF:-1,RadioBar
 https://visual.shoutca.st:8122/stream
 #EXTINF:-1,Radio Fortuna 96.8 FM

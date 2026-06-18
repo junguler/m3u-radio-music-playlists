@@ -1,12 +1,10 @@
 #EXTM3U
-#EXTINF:-1,00000
-http://streamingp.shoutcast.com/JamendoLounge?lang=*
 #EXTINF:-1,2oceansFM
 http://s2.stationplaylist.com:7032/listen.aac
 #EXTINF:-1,ANTENNE BAYERN Event
-http://s8-webradio.webradio.de/event
+http://s3-webradio.webradio.de/event
 #EXTINF:-1,ANTENNE BAYERN Fresh
-http://s2-webradio.webradio.de/fresh
+http://s3-webradio.webradio.de/fresh
 #EXTINF:-1,BlazingStarRadio
 http://50.116.51.130:5003
 #EXTINF:-1,Cabin Radio
@@ -15,6 +13,8 @@ http://s2.stationplaylist.com:7072/listen.aac
 http://s2.stationplaylist.com:9240/listen.aac
 #EXTINF:-1,De Stemm Radio
 http://s2.stationplaylist.com:7044/listen.aac
+#EXTINF:-1,fmdesire
+http://144.217.30.219:8055/stream
 #EXTINF:-1,Jammin 92 - Clevelands Dance Music Sation
 http://s2.stationplaylist.com:7030/listen.aac
 #EXTINF:-1,KBBS1
@@ -27,12 +27,14 @@ http://220.73.45.65:8000
 http://220.73.45.73:8000
 #EXTINF:-1,KBBS5
 http://220.73.45.66:8000
+#EXTINF:-1,KBBS6
+http://220.73.45.72:8000
 #EXTINF:-1,OUI FM Acoustic
 http://ouifmacoustic.ice.infomaniak.ch:80/ouifmacoustic.mp3
 #EXTINF:-1,Radio Free JMT
 http://s2.stationplaylist.com:8300
 #EXTINF:-1,ROCK ANTENNE Coversongs
-http://s6-webradio.webradio.de/coversongs
+http://s1-webradio.webradio.de/coversongs
 #EXTINF:-1,WLOV
 http://s2.stationplaylist.com:7016/listen.aac
 #EXTINF:-1,WRFR-LP
@@ -40,7 +42,7 @@ http://s2.stationplaylist.com:7028/listen.mp3
 #EXTINF:-1,Radio Funky
 http://live.radiofunky.ro:8888/
 #EXTINF:-1,Radio stratford
-https://das-edge62-live365-dal03.cdnstream.com/a78846
+https://das-edge12-live365-dal02.cdnstream.com/a78846
 #EXTINF:-1,KBluesFMRadio
 https://das-edge13-live365-dal02.cdnstream.com/a89702
 #EXTINF:-1,WFMC Jams

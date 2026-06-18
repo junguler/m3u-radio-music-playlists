@@ -1,8 +1,6 @@
 #EXTM3U
 #EXTINF:-1,2town Radio
 http://streaming.radio.co:80/sd9d980ff0/listen
-#EXTINF:-1,Bingokanalen
-http://radioip.no:8000/stream/5/
 #EXTINF:-1,Det Rigtige Faaborg
 http://stream.wlmm.dk/detrigtigefaaborg
 #EXTINF:-1,Din Radio Fyn
@@ -53,6 +51,8 @@ http://stream.wlmm.dk:8000/guldmidt
 http://stream.wlmm.dk:8000/guldnord
 #EXTINF:-1,Globus Guld Syd
 http://stream.wlmm.dk:8000/guldsyd
+#EXTINF:-1,go!FM
+http://radioserver.dk/gofm
 #EXTINF:-1,Hvidovre Nærradio 95.2
 http://stream.probroadcast.dk/hnrmp3
 #EXTINF:-1,Jazzkanalen Radio Humleborg
@@ -67,8 +67,26 @@ http://radio.norea.dk:8080/
 http://live-bauerdk.sharp-stream.com/nova_dk_mp3
 #EXTINF:-1,Oest FM
 http://stream.wlmm.dk/oestfmmp3
+#EXTINF:-1,PartyFM
+http://stream1.partyfm.dk/Party256
 #EXTINF:-1,Radio Aadalen 96.4 FM
 http://185.143.254.165:8000/
+#EXTINF:-1,Radio ABC
+http://radioserver.dk/abc
+#EXTINF:-1,Radio Alfa
+https://radioserver.dk/alfa
+#EXTINF:-1,Radio Alfa - Silkeborg
+https://radioserver.dk/alfasilk
+#EXTINF:-1,Radio Alfa Aarhus
+https://radioserver.dk/alfaaarhus
+#EXTINF:-1,Radio Alfa Gold
+https://radioserver.dk/alfaevent
+#EXTINF:-1,Radio Alfa Midtjylland
+https://radioserver.dk/alfamidt
+#EXTINF:-1,Radio Alfa Skive
+http://radioserver.dk/alfaskive
+#EXTINF:-1,Radio Alfa Viborg
+https://radioserver.dk/alfaviborg
 #EXTINF:-1,Radio ALR FM 95.DK
 http://streamer.radio.co/s6a9beb92e/listen
 #EXTINF:-1,Radio Ballerup
@@ -89,8 +107,12 @@ http://87.116.35.221/broadwave.mp3
 http://stream02.radioplayback.dk:80/stream
 #EXTINF:-1,Radio Ringkøbing
 http://netradio.radioringkobing.dk:8000/
+#EXTINF:-1,Radio Skive
+http://radioserver.dk/skive
 #EXTINF:-1,Radio SLR 106.5 FM
 https://stream.probroadcast.dk/slagelsemp3
+#EXTINF:-1,Radio SNR
+http://10326.cloudrad.io:9056/
 #EXTINF:-1,Radio Soft Classic
 http://live-bauerdk.sharp-stream.com/radiosoft_dk_mp3
 #EXTINF:-1,Radio Sydhavsøerne 87.8 FM
@@ -106,7 +128,7 @@ http://stream.probroadcast.dk/victoriajulmp3
 #EXTINF:-1,Radio Viva
 http://stream.probroadcast.dk/radioviva
 #EXTINF:-1,Radio4
-http://29103.live.streamtheworld.com/RADIO4.mp3
+http://25443.live.streamtheworld.com/RADIO4.mp3
 #EXTINF:-1,Radioti
 http://195.215.168.146:9200/
 #EXTINF:-1,Retro Radio Danmark
@@ -125,3 +147,4 @@ http://media.wlmm.dk:80/djurs
 http://hyades.shoutca.st:8627/
 #EXTINF:-1,WEB fm
 https://webfm.dk/
+#EXTINF:-1,WebFM

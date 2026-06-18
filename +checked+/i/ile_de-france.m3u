@@ -1,6 +1,8 @@
 #EXTM3U
 #EXTINF:-1,France Inter
 https://icecast.radiofrance.fr/franceinter-midfi.mp3
+#EXTINF:-1,NRJ
+https://streaming.nrjaudio.fm/oumvmk8fnozc?origine=radiobox_rd_https_allnrj
 #EXTINF:-1,France Info
 https://icecast.radiofrance.fr/franceinfo-midfi.mp3
 #EXTINF:-1,France Culture
@@ -35,8 +37,6 @@ https://croonerradio_franksinatra.ice.infomaniak.ch/croonerradio-franksinatra-mi
 https://mfm.ice.infomaniak.ch/mfm-128.mp3
 #EXTINF:-1,Radio Nova
 https://novazz.ice.infomaniak.ch/novazz-128.mp3
-#EXTINF:-1,Powermaxx
-https://sr3.publicssl.net/srv/7016/stream
 #EXTINF:-1,M Radio - Disney
 https://mfmwr-002.ice.infomaniak.ch/mfmwr-002.aac?i=78504
 #EXTINF:-1,Latina Radio
@@ -83,8 +83,6 @@ https://latinareggaeton.ice.infomaniak.ch/latinareggaeton.mp3
 https://chantefrance70s.ice.infomaniak.ch/chantefrance70s-128.mp3
 #EXTINF:-1,Classik Radio
 https://stream3.vestaradio.com/ClassikRadio
-#EXTINF:-1,Douce France
-https://doucefrance.ice.infomaniak.ch/doucefrance-192.mp3
 #EXTINF:-1,Générations
 https://generationfm.ice.infomaniak.ch/generationfm-high.mp3
 #EXTINF:-1,M Radio - Voix Féminines
@@ -101,6 +99,8 @@ https://n15a-eu.rcs.revma.com/vb3b5749n98uv?rj-ttl=5&rj-tok=AAABiq29PloAl4ATXT5z
 https://generationfm-rap.ice.infomaniak.ch/generationfm-rap-high.mp3
 #EXTINF:-1,Generations - 90
 https://generations-90.ice.infomaniak.ch/generations-90.mp3
+#EXTINF:-1,Générations Reggae
+https://generations-caraibes.ice.infomaniak.ch/generations-caraibes-high.mp3
 #EXTINF:-1,Latina Bachata
 https://latinabachata.ice.infomaniak.ch/latinabachata.mp3
 #EXTINF:-1,BFM TV
@@ -113,8 +113,6 @@ https://chantefrance80s.ice.infomaniak.ch/chantefrance80s-128.mp3
 https://mfmwr-001.ice.infomaniak.ch/mfmwr-001.mp3
 #EXTINF:-1,Radio Brassens
 https://carina.streamerr.co/stream/8118
-#EXTINF:-1,PLAY ZOUK ANTILLES
-http://maevatropicale.com:8050/stream.mp3
 #EXTINF:-1,M Radio Culte Années 60 et 70
 https://mfmwr-022.ice.infomaniak.ch/mfmwr-022.mp3
 #EXTINF:-1,M Radio - Années 2000
@@ -125,6 +123,8 @@ https://croonerradio_elvispresley.ice.infomaniak.ch/croonerradio-elvispresley-mi
 https://mfmwr-003.ice.infomaniak.ch/mfmwr-003.mp3
 #EXTINF:-1,M Radio Années 80
 https://mfmwr-010.ice.infomaniak.ch/mfmwr-010.mp3
+#EXTINF:-1,Générations R&amp;B
+https://generationfm-slowjam.ice.infomaniak.ch/generationfm-slowjam-high.mp3
 #EXTINF:-1,Africa Radio
 https://african1paris.ice.infomaniak.ch/african1paris-128.mp3
 #EXTINF:-1,Crooner Radio Swing
@@ -145,6 +145,8 @@ https://mfmwr-016.ice.infomaniak.ch/mfmwr-016.mp3
 https://chantefranceemotion.ice.infomaniak.ch/chantefranceemotion-128.mp3
 #EXTINF:-1,Crooner Radio Julio Iglesias
 https://croonerradio_julioiglesias.ice.infomaniak.ch/croonerradio-julioiglesias-midfi.mp3
+#EXTINF:-1,Générations Rap US
+https://generationfm-underground.ice.infomaniak.ch/generationfm-underground-high.mp3
 #EXTINF:-1,Mylène Farmer Radio
 https://www.mylene.net/mylene/mylene-farmer_webradio.php
 #EXTINF:-1,Radio FG Chic
@@ -333,8 +335,6 @@ https://generation-rohff.ice.infomaniak.ch/generation-rohff.mp3
 https://croonerradio_inprivate.ice.infomaniak.ch/croonerradio-inprivate-midfi.mp3
 #EXTINF:-1,Radio Lovely
 https://lovely.ice.infomaniak.ch/lovely-128.mp3
-#EXTINF:-1,C9 Radio
-https://stream.c9.fr/c9.mp3
 #EXTINF:-1,Skyrock Klassiks
 https://icecast.skyrock.net/s/klassiks_aac_64k
 #EXTINF:-1,Crooner Radio Céline Dion
@@ -349,8 +349,14 @@ https://ouifmganja.ice.infomaniak.ch/ouifmganja-128.mp3
 https://europe2.lmn.fm/vr-wr5.mp3
 #EXTINF:-1,Radio Sud Est
 https://stream.vestaradio.com/RADIOSUDEST
+#EXTINF:-1,Crooner Radio Classic Gold
+https://croonerradio_classicgold.ice.infomaniak.ch/croonerradio-classicgold-midfi.mp3
+#EXTINF:-1,Fréquence 3 Dance
+https://frequence3.net-radio.fr/frequence3dance.mp3
 #EXTINF:-1,Studio Prysm 54
 https://n27a-eu.rcs.revma.com/bz84fq2a0mzuv?rj-ttl=5&rj-tok=AAABiq3PMs0Aw1ybgNekqMUxdw
+#EXTINF:-1,Urban Hit -  Funk
+https://urbanhitfunk.ice.infomaniak.ch/urbanhitfunk-128.mp3
 #EXTINF:-1,Générations TikTok
 https://generations-tiktok.ice.infomaniak.ch/generations-tiktok.aac
 #EXTINF:-1,Chansons Rouges Mosaik Radio
@@ -381,8 +387,6 @@ https://s7.yesstreaming.net:9000/stream
 https://ecmanager4.pro-fhi.net:1855/stream
 #EXTINF:-1,W1RS Blues &amp; Rock&#039;s Radio
 https://manager4.streamradio.fr:1780/stream
-#EXTINF:-1,Cerise FM 88.2
-https://n21a-eu.rcs.revma.com/q90fb3dwnwzuv?rj-ttl=5&rj-tok=AAABiLQDglIAkH2TAQDgZO4wbQ
 #EXTINF:-1,Reggae Mix Station
 http://163.172.96.134:8142/stream
 #EXTINF:-1,DJ Buzz Radio
@@ -439,8 +443,6 @@ http://cast.magicstreams.gr:9131/stream
 https://croonerradio_barbrastreisand.ice.infomaniak.ch/croonerradio-barbrastreisand-midfi.mp3
 #EXTINF:-1,Prysm Dance
 https://n03a-eu.rcs.revma.com/3rr59nnqyd0uv?rj-ttl=5&rj-tok=AAABiq3agfgAqrweOCfJP66BxA
-#EXTINF:-1,CapSao
-https://str0.creacast.com/capsao
 #EXTINF:-1,Voltage Club
 https://voltageclub.ice.infomaniak.ch/voltageclub-128.mp3
 #EXTINF:-1,Addict Radio
@@ -461,8 +463,6 @@ https://stream.phauneradio.com/phaune_256
 https://ouifmtopoftheweek.ice.infomaniak.ch/ouifmtopweek.mp3
 #EXTINF:-1,OneLuvFM
 https://streamer.radio.co:80/s34d8d1549/listen
-#EXTINF:-1,Ma Terrasse FM - Bleue
-http://149.56.234.138:9060/:
 #EXTINF:-1,Voltage @ Work
 https://voltagework.ice.infomaniak.ch/voltagework-128.mp3
 #EXTINF:-1,Addict Radio Lounge
@@ -513,6 +513,12 @@ https://urbanhitalancienne.ice.infomaniak.ch/urbanhitalancienne.mp3
 https://webradio1.ice.infomaniak.ch/webradio3-128.mp3
 #EXTINF:-1,VanavilHits Radio
 https://s7.yesstreaming.net:8094/stream
+#EXTINF:-1,Anboli Fm
+http://tachyon.shoutca.st:8643/;
+#EXTINF:-1,Lit&amp;Jazz
+https://servidor35-2.brlogic.com:7096/live
+#EXTINF:-1,Radio Puissance
+https://manager8.streamradio.fr:2365/stream
 #EXTINF:-1,KIF Cool
 http://cast.magicstreams.gr:9121/stream
 #EXTINF:-1,Bakthi Raga
@@ -533,10 +539,12 @@ http://stream8.addictradio.net/addictldg
 http://149.56.234.138:9140/:
 #EXTINF:-1,LA TERRASSE - BUZZ
 http://149.56.234.138:9130/:
+#EXTINF:-1,Radio FG Xtra
+https://n22a-eu.rcs.revma.com/w33p2cfap98uv?rj-ttl=5&rj-tok=AAABiq3jMakACODSo0w4n8JJtw
 #EXTINF:-1,Radio Sensations
 https://sensations.ice.infomaniak.ch/sensations.mp3
 #EXTINF:-1,CubeRadio
-https://ais-sa3.cdnstream1.com/2627_128.mp3
+https://delivery.onlyhitsradio.net/onlyhits
 #EXTINF:-1,Radio Divorce
 https://stream4.vestaradio.com/RadioDivorce
 #EXTINF:-1,Vertige Radio
@@ -551,6 +559,8 @@ https://n05a-eu.rcs.revma.com/vuumdncf368uv?rj-ttl=5&rj-tok=AAABiLQZP_sAGgchxgp7
 https://bienetreanimal.ice.infomaniak.ch/bienetreanimal-128.mp3
 #EXTINF:-1,Public Health Radio
 https://publichealthradio.ice.infomaniak.ch/publichealthradio-192.mp3
+#EXTINF:-1,NRJ RADIO STREAM
+https://streaming.nrjaudio.fm/oufdfatx4thg?origine=rd_https_allnrj
 #EXTINF:-1,Radio Nova Nouvo
 https://nova-nouvo.ice.infomaniak.ch/nova-nouvo-128.mp3
 #EXTINF:-1,Radio FG Chic French
@@ -571,8 +581,6 @@ https://sonic.servsonic.com:7020/;
 https://carina.streamerr.co:8116/stream
 #EXTINF:-1,Ado @Work
 https://adowork.ice.infomaniak.ch/adowork-128.mp3
-#EXTINF:-1,LA TERRASSE - BOUGE DE LÀ
-http://149.56.234.138:9070/:
 #EXTINF:-1,LA TERRASSE - LE JARDIN
 http://149.56.234.138:9110/:
 #EXTINF:-1,Radio Public Sante Loisirs Sports
@@ -629,8 +637,6 @@ http://webradiostream.eu:8170/stream
 https://evasion77n.ice.infomaniak.ch/evasion77n-128.mp3
 #EXTINF:-1,Evasion FM Essonne
 https://evasion91.ice.infomaniak.ch/evasion91-128.mp3
-#EXTINF:-1,Radio CapSao Paris
-http://str0.creacast.com/capsao_j
 #EXTINF:-1,Generations 2015
 http://generations-thema.ice.infomaniak.ch/generations-thema.aac
 #EXTINF:-1,Sensations Yvelines
@@ -672,7 +678,7 @@ http://generations-njs.ice.infomaniak.ch/generations-njs.aac
 #EXTINF:-1,France Bleu Paris
 http://icecast.radiofrance.fr/fb1071-midfi.mp3
 #EXTINF:-1,Bible Esperance
-http://esperance.streamakaci.com/parole-de-dieu.mp3
+https://esperance.streamakaci.com/parole-de-dieu.mp3
 #EXTINF:-1,Radio Vibration
 https://vibration.ice.infomaniak.ch/vibration-high.mp3
 #EXTINF:-1,Radio FG Non Stop
@@ -699,6 +705,8 @@ https://n17a-eu.rcs.revma.com/1grpmk88n98uv?rj-ttl=5&rj-tok=AAABiLP9lX0AVKZxrI-s
 http://mfm.ice.infomaniak.ch/mfm-64.aac
 #EXTINF:-1,Infiny Radio
 http://146.59.144.183:8000/stream.mp3
+#EXTINF:-1,Imagine Radio
+http://imagineradio.ice.infomaniak.ch/imagineradio-192.mp3
 #EXTINF:-1,Radio Public Sante Generation Senior
 https://publicsantegenerationsenior.ice.infomaniak.ch/publicsantegenerationsenior-192.mp3
 #EXTINF:-1,Alpes 1 - Années 90

@@ -17,6 +17,8 @@ http://bbstv.clouducs.com:1935/bbstv-live/livestream/playlist.m3u8
 http://btn.nowcdn.co.kr/btn/btnlive01/playlist.m3u8
 #EXTINF:-1,CPBC TV
 http://onair1.cpbc.co.kr:1935/tv/mp4:live720/playlist.m3u8
+#EXTINF:-1,ebs tune in
+https://ebsonair.ebs.co.kr/fmradiofamilypc/familypc1m/playlist.m3u8
 #EXTINF:-1,EBS TV-1
 http://ebsonair.ebs.co.kr/groundwavefamilypc/familypc1m/playlist.m3u8
 #EXTINF:-1,EBS TV-2
@@ -29,22 +31,62 @@ http://ebsonairios.ebs.co.kr/plus1familypc/familypc1m/playlist.m3u8
 http://ebsonairios.ebs.co.kr/ebsufamilypc/familypc1m/playlist.m3u8
 #EXTINF:-1,EBS TV-Plus 2
 http://ebsonairios.ebs.co.kr/plus2familypc/familypc1m/playlist.m3u8
+#EXTINF:-1,gukak
+http://mgugaklive.nowcdn.co.kr/gugakradio/gugakradio.stream/playlist.m3u8
 #EXTINF:-1,juka radio kpop
 https://juka-kpop.stream.laut.fm/juka-kpop?t302=2021-04-01_09-03-35\u0026uuid=6aa06ca0-9a01-407d-91af-155d24c5c405
+#EXTINF:-1,kbs
+http://serpent0.duckdns.org:8088/kbs1fm.pls
+#EXTINF:-1,KBS 1R
+http://serpent0.duckdns.org:8088/kbs1radio.pls
+#EXTINF:-1,KBS 1Radio
+http://serpent0.duckdns.org:8088/kbs2radio.pls
+#EXTINF:-1,KBS Classic FM
+http://serpent0.duckdns.org:8088/kbsfm.pls
+#EXTINF:-1,KBS Cool FM
+http://serpent0.duckdns.org:8088/kbs2fm.pls
+#EXTINF:-1,Listen.moe (K-Pop)
+https://listen.moe/kpop/fallback
+#EXTINF:-1,Listen.moe Kpop
+https://listen.moe/kpop/stream
+#EXTINF:-1,MBC FM
+http://serpent0.duckdns.org:8088/mbcsfm.pls
+#EXTINF:-1,MBC FM4U
+http://serpent0.duckdns.org:8088/mbcfm.pls
 #EXTINF:-1,MBC충북 FM4U
 http://211.33.246.4:32954/radio_fm/myStream.sdp/chunklist_w348337231.m3u8
 #EXTINF:-1,MBC충북 표준FM
 http://211.33.246.4:32954/radio_stfm/myStream.sdp/chunklist_w392819215.m3u8
+#EXTINF:-1,Oldpop Cafe
+http://cast.oldpopcafe.net:7080/
+#EXTINF:-1,SBS Love FM
+http://serpent0.duckdns.org:8088/sbs2fm.pls
+#EXTINF:-1,SBS PopAsia
+https://sbs-ice.streamguys1.com/sbs-popasia-sbs-web
+#EXTINF:-1,SBS Power FM
+http://serpent0.duckdns.org:8088/sbsfm.pls
+#EXTINF:-1,TBN 울산교통방송
+http://radio2.tbn.or.kr:1935/ulsan/myStream/playlist.m3u8
+#EXTINF:-1,WHRW Binghamton 90.5 FM -- Harpur Radio Workshop, the land of Moe
+http://stream.whrwfm.org/hi.m3u
+#EXTINF:-1,延边朝语文艺广播
+http://satellitepull.cnr.cn/live/wxybwyshgb/playlist.m3u8
 #EXTINF:-1,마포FM
 http://115.85.182.39/mapofm?type=.mp3
+#EXTINF:-1,안동MBC AM
+http://andong.webcasting.co.kr:1935/live/amlive/playlist.m3u8
+#EXTINF:-1,Bok Radio 989
+http://bokradio.lowquality.radiostream.co.za:80
+#EXTINF:-1,Newage Happyday Radio
+http://newage.kr:8080/
 #EXTINF:-1,Pyongyang FM
-https://listen7.myradio24.com/69366
+https://listen8.myradio24.com/69366
 #EXTINF:-1,DKNET 730 AM
 https://us1new.listen2myradio.com:2199/listen.php?port=10095&amptype=s2&ampmount=/stream
 #EXTINF:-1,113.FM Pop2K (Pop, Top 40)
 https://113fm.cdnstream1.com/1737_128?cb=746431.mp3
 #EXTINF:-1,OnlyHit K-Pop
-https://ais-sa3.cdnstream1.com/2630_128.mp3
+https://delivery.onlyhitsradio.net/kpop
 #EXTINF:-1,92.3 The Fox
 https://19273.live.streamtheworld.com/KOFXFMAAC.aac?dist=onlineradiobox
 #EXTINF:-1,KRB NY Radio Korea - WNYZ-LD
@@ -54,17 +96,21 @@ http://mlive2.febc.net:1935/live/cwlive/playlist.m3u8
 #EXTINF:-1,포항 MBC FM
 http://stream.yubinet.com:1935/live/_definst_/Radio_Am/playlist.m3u8
 #EXTINF:-1,OnlyHit - K-Pop
-http://ais-sa3.cdnstream1.com/2630_128.mp3
+http://delivery.onlyhitsradio.net/kpop
 #EXTINF:-1,BBN - Korean
-https://audio-edge-qse4n.yyz.g.radiomast.io/678de728-1691-4eb7-bf37-057bcc9b12f5
+https://audio-edge-tw2kt.yul.o.radiomast.io/678de728-1691-4eb7-bf37-057bcc9b12f5
+#EXTINF:-1,Vagalume.FM - K-Pop
+https://stream.vagalume.fm/hls/14660048951600695455/aac.m3u8
 #EXTINF:-1,113.fm - KPOP
 http://113fm.cdnstream1.com:80/1789_128
 #EXTINF:-1,City Pop Two
 http://65.21.61.215:8000/citypoptwo
-#EXTINF:-1,KMCRadio
-http://streamingp.shoutcast.com/JamendoLounge?lang=*
+#EXTINF:-1,BBS FM
+https://bbstv.clouducs.com/bbstv-live/livestream/playlist.m3u8
 #EXTINF:-1,Radio Korea
 https://onair.radiokorea.com
+#EXTINF:-1,Sky Lake Radio
+https://me.sayclub.com/bdcst/bdcst-home?bdcstDomainId=24sky
 #EXTINF:-1,Dreamcast
 https://me.sayclub.com/bdcst/bdcst-home?bdcstDomainId=dream
 #EXTINF:-1,Nanpasun Radio
@@ -73,6 +119,8 @@ https://me.sayclub.com/bdcst/bdcst-home?bdcstDomainId=nanpasun
 http://ebsonairiosaod.ebs.co.kr/fm_kt_ai_hls/bandiappaac/playlist.m3u8
 #EXTINF:-1,AM 1660 K-Radio
 https://streams.radio.co/s839c1142b/listen
+#EXTINF:-1,BBN Radio Korean
+https://us1new.listen2myradio.com:2199/listen.php?port=10095&type=s2&mount=/stream
 #EXTINF:-1,DiscoParty - Club
 https://s3.slotex.pl:7354/stream/1/?sid=1
 #EXTINF:-1,MBC 4 U FM
@@ -84,27 +132,17 @@ https://www.intervalsignals.net/sounds/kor-mbc_hlao-am_chungju_130304.mp3
 #EXTINF:-1,Febc 광주극동방송 93.1FM
 http://mlive2.febc.net:1935/live/gjlive/playlist.m3u8
 #EXTINF:-1,AFN Humphreys - The Eagle
-http://14943.live.streamtheworld.com/AFNP_OSN.mp3
+http://18243.live.streamtheworld.com/AFNP_OSN.mp3
 #EXTINF:-1,WOWCCM - 와우씨씨엠
 http://wowccm.iptime.org:8000/
 #EXTINF:-1,HLQQ - FEBC 부산극동방송 93.3 FM
 http://mlive2.febc.net:1935/live/bsfebc/playlist.m3u8
 #EXTINF:-1,Seongnam FM - 90.7
 http://115.85.182.39/seongnamfm
-#EXTINF:-1,AFN Kunsan-The Eagle
-http://25633.live.streamtheworld.com/AFNP_KSN.mp3
 #EXTINF:-1,HLAZ - FEBC 제주극동방송 1566 AM
 http://mlive2.febc.net:1935/live/jejuam/playlist.m3u8
-#EXTINF:-1,AFN Daegu-The Eagle
-http://18433.live.streamtheworld.com/AFNP_DGU.mp3
-#EXTINF:-1,HLAZ-FEBC Jeju Far East Broadcasting 104.7 AM
-http://mlive2.febc.net:1935/live/jejufm/playlist.m3u8
 #EXTINF:-1,Hyundai Mall
 http://123.111.139.103:1935/live/hmall.stream/playlist.m3u8
-#EXTINF:-1,AFN Casey(동두천)
-https://provisioning.streamtheworld.com/pls/AFNP_CSYAAC.pls
-#EXTINF:-1,BOX : K-POP 케이팝 live
-https://boxradio-edge-07.streamafrica.net/kpop
 #EXTINF:-1,Mapo FM
 http://115.85.182.39/mapofm
 #EXTINF:-1,TBN 강원교통방송 live
@@ -131,12 +169,18 @@ http://radio2.tbn.or.kr:1935/gwangju/myStream/playlist.m3u8
 http://115.85.182.39/scnfm
 #EXTINF:-1,DKNET 730 AM radio
 https://us1new.listen2myradio.com:2199/listen.php?port=10095\u0026type=s2\u0026mount=/stream
+#EXTINF:-1,Radio Korea New York radio
 #EXTINF:-1,Radio Korea radio
 https://onair.radiokorea.com/
+#EXTINF:-1,Mukulcast
+http://www.mukulcast.com
+#EXTINF:-1,Media Cooperative National TV
+http://stream.kukmin.tv/channel/gnnsc
 #EXTINF:-1,OkBS
 https://www.inlive.co.kr/
 #EXTINF:-1,OkBS RADIO
 https://me.sayclub.com/bdcst/bdcst-home?bdcstDomainId=okbs
+https://listen7.myradio24.com/69366
 #EXTINF:-1,CBS 표준FM
 https://sbs-ice.streamguys1.com/sbs-popasia
 #EXTINF:-1,KBS World Radio Korean
@@ -147,10 +191,12 @@ http://mini.imbc.com/v2/index.html?src=http://mini.imbc.com/&ref=http://www.imbc
 https://onair.kbs.co.kr/index.html?sname=onair&stype=live&ch_code=21&ch_type=radioList
 #EXTINF:-1,평양FM105.2
 http://listen7.myradio24.com/69366
+https://us3new.listen2myradio.com:2199/listen.php?port=8167&type=s1&mount=/stream
 #EXTINF:-1,GFN FM 98.7 - GFN 광주영어방송
 https://generationfm-underground.ice.infomaniak.ch/generationfm-underground-high.mp3
 #EXTINF:-1,Wild Radio 760 AM
 https://das-edge13-live365-dal02.cdnstream.com/a99103?listenerId=Live365-Widget-AdBlock&aw_0_1st.playerid=Live365-Widget&aw_0_1st.skey=1736158711
+#EXTINF:-1,BBS FM - FM 101.9
 #EXTINF:-1,tbs eFM - 101.3 FM
 https://cdnefm.tbs.seoul.kr/tbs/_definst_/tbs_efm_web_360.smil/playlist.m3u8
 #EXTINF:-1,수원공동체라디오 SoneFM

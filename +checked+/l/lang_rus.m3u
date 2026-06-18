@@ -187,8 +187,6 @@ http://pub0101.101.ru:8000/stream/pro/aac/64/47
 http://pub0302.101.ru:8000/stream/pro/aac/64/178
 #EXTINF:-1,101.ru Vladimir Vysotsky
 http://pub0202.101.ru:8000/stream/pro/aac/64/58
-#EXTINF:-1,1jazz.ru Guitar Jazz
-http://79.120.77.11:8002/guitarjazz
 #EXTINF:-1,1jazz.ru Latin Jazz
 http://jazz-wr09.ice.infomaniak.ch/jazz-wr09-128.mp3
 #EXTINF:-1,1jazz.ru Piano Jazz
@@ -238,7 +236,7 @@ http://amoris.sknt.ru/triphop.mp3
 #EXTINF:-1,Artem Radio
 http://listen2.myradio24.com/8118
 #EXTINF:-1,Atlantic Bay Radio
-http://das-edge13-live365-dal02.cdnstream.com/a90696
+http://das-edge17-live365-dal02.cdnstream.com/a90696
 #EXTINF:-1,Baranovichi FM 100.0
 http://radio.100fm.by:8000/100fm128
 #EXTINF:-1,Best FM 100.5 FM
@@ -249,6 +247,14 @@ http://stream.bfmradio.us:8070/radio
 http://149.13.0.80/bgradio128
 #EXTINF:-1,Big Radio Murmansk
 http://listen.myradio24.com:9000/8286
+#EXTINF:-1,BigTunesRadio - Bass
+http://bigtunesradio.com:8000/bass.mp3
+#EXTINF:-1,BigTunesRadio - House
+http://bigtunesradio.com:8000/house.mp3
+#EXTINF:-1,BigTunesRadio - Oldschool
+http://bigtunesradio.com:8000/oldschool.mp3
+#EXTINF:-1,BigTunesRadio - Trance
+http://bigtunesradio.com:8000/trance.mp3
 #EXTINF:-1,Business FM 87.5
 http://bfm.hostingradio.ru:8004/fm
 #EXTINF:-1,Classic Jazz
@@ -317,18 +323,16 @@ http://stream.keygen-fm.ru:8082
 http://kommersant77.hostingradio.ru:8016/kommersant128.mp3
 #EXTINF:-1,Komsomolskaya Pravda
 http://kpradio.hostingradio.ru:8000/russia.radiokp128.mp3
-#EXTINF:-1,Leproradio
-http://relay.leproradio.com/bender.ogg?db4a6c7449832ab824ffd45dddaed0f0c0cfec02
 #EXTINF:-1,Love Radio 106.6 FM
 http://stream.loveradio.ru:80/12_love_28?type=.aac&UID=1B6AF87B157BF702FDD6E15E94DE67CC
 #EXTINF:-1,Mega FM 106.4
 http://s0.radioheart.ru:8000/RH23554
+#EXTINF:-1,Melon Ambient
+http://stream.melonradio.com/ambient
+#EXTINF:-1,Melon Deep
+http://stream.melonradio.com/deeper
 #EXTINF:-1,Moscow FM 92.0
 http://icecast.vgtrk.cdnvideo.ru/moscowfm128
-#EXTINF:-1,Narodnoe Radio 100.0 FM
-http://le04.euddn.net/3f7ddd27d759b88d903b7e43726ff45c538546563a5e95a1030fac6214ad91952f632bb728ea9ddd40a4691126e64db57c26fa452bbdc57e20b788af3e6d304b90bc296fa4fed64ea8d911271884edce78f61ec6f2429ad0aafc05e0aae6de8e6983712a93f4b0efd4f165fd24e37e91f435a5b67580b1044ad9da6689ffb67011490ecc41fbc7fb8d2a6c7544fd82e0849008f8a5b9885096d16131e5bcd8cf4b7cfa69defa4eaa15fd8170f13a502d/narodnoe.mp3
-#EXTINF:-1,New Life Radio Russia
-http://nlradio.stream:8000/nlradio-hi.aac
 #EXTINF:-1,Nightwave Plaza
 http://radio.plaza.one/mp3
 #EXTINF:-1,Nostalgie 99 FM
@@ -349,8 +353,8 @@ http://icecast-piterfm.cdnvideo.ru/piterfm
 http://radio.powerfm.lv:8000
 #EXTINF:-1,Priboy FM
 http://77.232.167.247:1007/
-#EXTINF:-1,Radio 13 Russia
-http://play.radio13.ru/64
+#EXTINF:-1,Radio Bereg
+http://radio-tochka.com:6135
 #EXTINF:-1,Radio Blagovestie
 http://live.borneo.ru:8888/bv128
 #EXTINF:-1,Radio Borneo 107.2 FM
@@ -379,8 +383,6 @@ http://79.111.119.111:8000/jrock
 http://79.111.14.76:8000/electricblues
 #EXTINF:-1,Radio Caprice - Nu Jazz
 http://79.111.14.76:8000/nujazz
-#EXTINF:-1,Radio Caprice - Piano
-http://79.120.77.11:8002/piano
 #EXTINF:-1,Radio Caprice - Post Grunge
 http://79.111.119.111:8000/postgrunge
 #EXTINF:-1,Radio Caprice - Post-Bop
@@ -431,6 +433,8 @@ http://video.govoritmoskva.ru:8880/rufm_m.mp3
 http://hermitage.hostingradio.ru/hermitage128.mp3
 #EXTINF:-1,Radio Imagination Russia
 http://217.70.28.155:8002/
+#EXTINF:-1,Radio Iskatel
+http://iskatel.hostingradio.ru:8015/iskatel-128.mp3
 #EXTINF:-1,Radio Jazz
 http://jazz.streamr.ru/jazz-128.mp3
 #EXTINF:-1,Radio Jazz 89.1 FM
@@ -459,6 +463,8 @@ http://rockhits.hostingradio.ru/rockhits96.aacp
 http://maximum.hostingradio.ru/maximum96.aacp
 #EXTINF:-1,Radio Mayak
 http://icecast.vgtrk.cdnvideo.ru/mayakfm_mp3_192kbps
+#EXTINF:-1,Radio Melodia 91.1 FM
+http://stream64.melodiafm.spb.ru:8000/melodia64
 #EXTINF:-1,Radio Monte Carlo - Bossa
 http://mc-mcbossa.hostingradio.ru/mcbossa96.aacp
 #EXTINF:-1,Radio Monte Carlo - Golden Collection
@@ -571,8 +577,6 @@ http://radiorecord.hostingradio.ru/uplift96.aacp
 http://radiorecord.hostingradio.ru/rr_main96.aacp
 #EXTINF:-1,Radio RUSSKAYA REKLAMA
 http://s1.premium-streaming.com:9002/stream
-#EXTINF:-1,Radio Silver Rain 100.1 FM
-http://silverrain.hostingradio.ru/silver128.mp3
 #EXTINF:-1,Radio Trassa
 http://c2.radioboss.fm:8082/RadioTrassa
 #EXTINF:-1,Radio Ugra
@@ -583,26 +587,40 @@ http://nashe2.hostingradio.ru/ultra-192.mp3
 http://icecast-vgtrk.cdnvideo.ru/unost_mp3_192kbps
 #EXTINF:-1,Radio Vanya
 http://icecast-radiovanya.cdnvideo.ru/radiovanya
+#EXTINF:-1,Radio Vera
+http://radiovera.hostingradio.ru:8007/radiovera_128
 #EXTINF:-1,Radio ZapliN
 http://radiozaplin.com:8000/stream/1/
 #EXTINF:-1,RadioMv - Russian Christian Music Only
 http://dfw1.radiomv.live/slavic-music.mp3
 #EXTINF:-1,RadioMv - Russian Christian Radio
 http://dfw1.radiomv.live/slavic.mp3
+#EXTINF:-1,RadioMv - Russian Music Only
 #EXTINF:-1,RDD - Radio for two 90,6 FM
 http://icecast-radiofortwo.cdnvideo.ru/radiofortwo
 #EXTINF:-1,Rde laut.fm
 http://rde.stream.laut.fm/rde
 #EXTINF:-1,Real Music - Chanson & Author's Song
 https://www.realrocks.ru/music/
+#EXTINF:-1,Real Music - Classical
+#EXTINF:-1,Real Music - Electronic
+#EXTINF:-1,Real Music - Folk
+#EXTINF:-1,Real Music - Jazz & Blues
+#EXTINF:-1,Real Music - Popular
+#EXTINF:-1,Real Music - Rap & Hip-Hop
+#EXTINF:-1,Real Music - Rock
 #EXTINF:-1,Retro FM 70e
 http://retro70.hostingradio.ru:8025/retro70-128.mp3
+#EXTINF:-1,Retro FM 80e
+http://retro80.hostingradio.ru:8025/retro80-128.mp3
 #EXTINF:-1,Retro FM 88.3
 http://retroserver.streamr.ru:8043/retro128
 #EXTINF:-1,Retro FM 90e
 http://retro90.hostingradio.ru:8025/retro90-128.mp3
 #EXTINF:-1,RETRO FM Latvia
 http://live.retrofm.lv/retrofmlatvia
+#EXTINF:-1,Rise-FM 92.2
+http://5.19.139.83:9000/
 #EXTINF:-1,Rock FM - 00
 http://jfm1.hostingradio.ru:14536/rock00.mp3
 #EXTINF:-1,Rock FM - 70
@@ -616,7 +634,7 @@ http://jfm1.hostingradio.ru:14536/metal.mp3
 #EXTINF:-1,Rock FM - Prog
 http://jfm1.hostingradio.ru:14536/prog.mp3
 #EXTINF:-1,Roksana Radio
-http://listen8.myradio24.com/2761
+http://listen1.myradio24.com/2761
 #EXTINF:-1,RTFM.fm
 http://stream.rtfm.fm/
 #EXTINF:-1,Russian Radio - Bessmertnyi Polk
@@ -627,14 +645,6 @@ http://rr-detskijkanal.hostingradio.ru/detskijkanal96.aacp
 http://rr-zolotoigrammofon.hostingradio.ru/zolotoigrammofon96.aacp
 #EXTINF:-1,Russian Radio - Russian Cinema
 http://rr-russkoekino.hostingradio.ru/russkoekino96.aacp
-#EXTINF:-1,Russian Radio - Russian Rock
-http://rr-russkijrok.hostingradio.ru/russkijrok96.aacp
-#EXTINF:-1,Russian Radio - Sonya
-http://rr-sonya.hostingradio.ru/sonya96.aacp
-#EXTINF:-1,Russian Radio - Vysotsky
-http://rr-vysockij.hostingradio.ru/vysockij96.aacp
-#EXTINF:-1,Russian Radio Kostroma
-http://rusradio.hostingradio.ru/rusradio96.aacp
 #EXTINF:-1,Russian Songs
 http://listen.rusongs.ru/ru-mp3-128
 #EXTINF:-1,Russianradiograz FM laut.fm
