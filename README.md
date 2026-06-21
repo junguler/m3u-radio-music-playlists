@@ -794,6 +794,11 @@ here is a list of websites i've scraped from already and included m3u streams fo
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/pcradio_app">/pcradio_app</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/pcradio.app.sh">pcradio.app.sh</a></td>
 </tr>
+<tr>
+<td><a href="http://l.lixty.com/en">http://l.lixty.com/en</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/pcradio_app">/lixty</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/pcradio.app.sh">lixty.sh</a></td>
+</tr>
 </tbody></table>
 
 my future plans for this repo is to keep scraping online radio websites, if and when i found one or few that are easy enough for me to scrape or not overly complicated (websites that have a cipher system to hide stream link or use services like cloudflare to avoid being easily scraped)
