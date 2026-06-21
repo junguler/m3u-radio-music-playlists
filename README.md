@@ -285,9 +285,15 @@ to listen to other m3u playlists in this repo click on the specific repo for eac
 <td><a href="https://github.com/junguler/listen_to_radio_spinner">radio_spinner</a></td>
 <td><a href="https://github.com/junguler/listen_to_zin_music">zin_music</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio-world.fm">radio-world.fm</a></td>
-<td colspan="1"></td>
+<td><a href="https://github.com/junguler/listen_to_pcradio_app">pcradio_app</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/junguler/listen_to_lixty">lixty</a></td>
+<td colspan="4"></td>
 </tr>
 </tbody></table>
+
+
 
 if you are on a chromium based web browser (chrome, vivaldi, opera, edge etc …) you are not able to listen to the most of the streams, here is an explanation from [chrome support](https://support.google.com/chrome/thread/29505473?hl=en&msgid=29673696) which tells you why this happens and how to fix it
 
