@@ -290,7 +290,8 @@ to listen to other m3u playlists in this repo click on the specific repo for eac
 <tr>
 <td><a href="https://github.com/junguler/listen_to_lixty">lixty</a></td>
 <td><a href="https://github.com/junguler/listen_to_ting_fm">listen_fm</a></td>
-<td colspan="3"></td>
+<td><a href="https://github.com/junguler/listen_to_wavely_radio">wavely_radio</a></td>
+<td colspan="2"></td>
 </tr>
 </tbody></table>
 
