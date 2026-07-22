@@ -811,7 +811,7 @@ here is a list of websites i've scraped from already and included m3u streams fo
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/listen_fm.sh">listen_fm.sh</a></td>
 </tr>
 <tr>
-<td><a href="https://tingfm.com/">https://wavelyradio.cz/app</a></td>
+<td><a href="https://wavelyradio.cz/app">https://wavelyradio.cz/app</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/wavely_radio">/wavely_radio</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/wavely_radio.sh">wavely_radio.sh</a></td>
 </tr>
