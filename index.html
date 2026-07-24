@@ -1,11 +1,17 @@
 <!doctype html>
 <html lang="en">
-<script>(function(){try{var t=localStorage.getItem("theme");if(t&&t!=="auto")document.documentElement.setAttribute("data-theme",t);if(localStorage.getItem("flatDesign")==="1")document.documentElement.classList.add("flat");}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem("theme");if(t&&t!=="auto")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>File Viewer</title>
+    <meta name="description" content="Browse and preview files from this repository directly in your browser — code, images, audio, video, and playlists." />
+    <meta property="og:title" content="File Viewer" />
+    <meta property="og:description" content="Browse and preview files from this repository directly in your browser." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2358a6ff' d='M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z'/%3E%3C/svg%3E" />
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+    
     <style>
         /* Styles remain consistent */
         :root {
@@ -17,14 +23,19 @@
             --text-primary: #e6edf3;
             --text-secondary: #8b949e;
             --text-muted: #6e7681;
-            --accent: #58a6ff;
-            --accent-hover: #79b8ff;
+            --accent: #5858ff;
+            --accent-hover: #7979ff;
             --success: #3fb950;
             --warning: #d29922;
             --danger: #f85149;
             --radius: 6px;
-            --radius-lg: 8px;
+            --radius-sm: 4px;
+            --radius-lg: 10px;
+            --radius-full: 999px;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+            --accent-glow: rgba(88, 88, 255, 0.3);
             --transition: 0.15s ease;
             --font-size-base: 16px;
         }
@@ -37,9 +48,12 @@
             --text-primary: #1f2328;
             --text-secondary: #656d76;
             --text-muted: #8c959f;
-            --accent: #0969da;
-            --accent-hover: #0550ae;
+            --accent: #0909da;
+            --accent-hover: #0505ae;
             --shadow: 0 4px 12px rgba(140, 149, 159, 0.2);
+            --shadow-sm: 0 1px 3px rgba(140, 149, 159, 0.18);
+            --shadow-lg: 0 12px 32px rgba(140, 149, 159, 0.3);
+            --accent-glow: rgba(9, 9, 218, 0.25);
         }
         /* High contrast dark: based on the classic Windows high-contrast black scheme
            (black background, white text, cyan title accent, magenta hyperlinks, purple buttons) */
@@ -58,6 +72,9 @@
             --warning: #ff37cb;
             --danger: #ff4444;
             --shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+            --shadow-sm: 0 1px 3px rgba(255, 255, 255, 0.12);
+            --shadow-lg: 0 12px 32px rgba(255, 255, 255, 0.22);
+            --accent-glow: rgba(0, 255, 255, 0.35);
         }
         /* High contrast light: the hc-dark palette with every color inverted (per RGB channel) */
         html[data-theme="hc-light"] {
@@ -75,6 +92,9 @@
             --warning: #00c834;
             --danger: #00bbbb;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.22);
+            --accent-glow: rgba(255, 0, 0, 0.25);
         }
         @media (prefers-color-scheme: light) {
             :root:not([data-theme]) {
@@ -86,9 +106,12 @@
                 --text-primary: #1f2328;
                 --text-secondary: #656d76;
                 --text-muted: #8c959f;
-                --accent: #0969da;
-                --accent-hover: #0550ae;
+                --accent: #0909da;
+                --accent-hover: #0505ae;
                 --shadow: 0 4px 12px rgba(140, 149, 159, 0.2);
+                --shadow-sm: 0 1px 3px rgba(140, 149, 159, 0.18);
+                --shadow-lg: 0 12px 32px rgba(140, 149, 159, 0.3);
+                --accent-glow: rgba(9, 9, 218, 0.25);
             }
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -97,7 +120,7 @@
             font-family: -apple-system, BlinkMacSystemFont, segoe ui, noto sans, Helvetica, Arial, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.4;
+            line-height: 1;
             height: 100vh;
             height: 100dvh;
             display: flex;
@@ -106,7 +129,7 @@
         }
         .header { background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 0.5rem 1rem; flex-shrink: 0; }
         .header-content { max-width: 1600px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
-        .logo { display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; font-weight: 600; color: var(--text-primary); cursor: pointer; flex-shrink: 0; }
+        .logo { display: flex; align-items: center; gap: 0.5rem; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; color: var(--text-primary); cursor: pointer; flex-shrink: 0; }
         .logo svg { width: 20px; height: 20px; }
         .breadcrumb { display: flex; align-items: center; gap: 0.125rem; flex-wrap: wrap; font-size: 0.85rem; flex: 1; min-width: 0; }
         .breadcrumb-item { color: var(--accent); padding: 0.125rem 0.375rem; border-radius: var(--radius); cursor: pointer; white-space: nowrap; }
@@ -116,19 +139,23 @@
         .breadcrumb-separator { color: var(--text-muted); font-size: 0.75rem; }
         .header-actions { display: flex; gap: 0.375rem; align-items: center; }
         .search-container { position: relative; width: 200px; }
-        .search-input { width: 100%; padding: 0.375rem 0.5rem 0.375rem 1.75rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); font-size: 0.85rem; }
+        .search-input { width: 100%; padding: 0.375rem 1.75rem 0.375rem 1.75rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); font-size: 0.85rem; }
         .search-input:focus { outline: none; border-color: var(--accent); }
         .search-input::placeholder { color: var(--text-muted); }
         .search-icon { position: absolute; left: 0.5rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); width: 14px; height: 14px; }
+        .search-clear { position: absolute; right: 0.25rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; display: none; align-items: center; justify-content: center; padding: 0.25rem; border-radius: var(--radius); }
+        .search-clear.visible { display: flex; }
+        .search-clear:hover { color: var(--text-primary); background: var(--bg-hover); }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
         .settings-dropdown { position: relative; }
         .settings-btn { padding: 0.375rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .settings-btn:hover { color: var(--text-primary); border-color: var(--accent); }
         .settings-btn svg { width: 16px; height: 16px; }
-        .settings-menu { position: absolute; top: 100%; right: 0; margin-top: 0.25rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius); box-shadow: var(--shadow); min-width: 230px; z-index: 100; display: none; }
+        .settings-menu { position: absolute; top: 100%; right: 0; margin-top: 0.375rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); min-width: 230px; z-index: 100; display: none; }
         .settings-menu.active { display: block; }
-        .settings-section { padding: 0.5rem; }
-        .settings-section-title { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.375rem; }
-        .settings-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.25rem 0; }
+        .settings-section { padding: 0.65rem 0.7rem; }
+        .settings-section-title { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.375rem; }
+        .settings-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.35rem 0; }
         .switch { position: relative; display: inline-block; width: 38px; height: 22px; flex-shrink: 0; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .switch-slider { position: absolute; inset: 0; cursor: pointer; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 999px; transition: 0.2s; }
@@ -138,11 +165,11 @@
         .switch input:focus-visible + .switch-slider { outline: 2px solid var(--accent); outline-offset: 2px; }
         .settings-label { font-size: 0.85rem; color: var(--text-secondary); }
         .settings-control { display: flex; gap: 0.25rem; }
-        .settings-control button { padding: 0.25rem 0.5rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-secondary); cursor: pointer; font-size: 0.75rem; }
+        .settings-control button { padding: 0.25rem 0.5rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-secondary); cursor: pointer; font-size: 0.75rem; }
         .settings-control button:hover { color: var(--text-primary); border-color: var(--accent); }
         .settings-control button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
         .theme-toggle { display: flex; flex-wrap: wrap; background: var(--bg-tertiary); border-radius: var(--radius); padding: 2px; gap: 2px; }
-        .theme-btn { padding: 0.25rem 0.5rem; background: 0 0; border: none; color: var(--text-secondary); cursor: pointer; border-radius: 4px; font-size: 0.75rem; display: flex; align-items: center; gap: 0.25rem; }
+        .theme-btn { padding: 0.25rem 0.5rem; background: 0 0; border: none; color: var(--text-secondary); cursor: pointer; border-radius: var(--radius-sm); font-size: 0.75rem; display: flex; align-items: center; gap: 0.25rem; }
         .theme-btn:hover { background: var(--bg-hover); }
         .theme-btn.active { background: var(--bg-primary); }
         .theme-btn svg { width: 12px; height: 12px; }
@@ -162,18 +189,18 @@
         .theme-swatch:hover { transform: scale(1.1); }
         .theme-swatch.active { border-color: var(--text-primary); }
         .theme-custom-row { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
-        .theme-custom-row input[type="color"] { width: 32px; height: 28px; border: 1px solid var(--border-color); border-radius: 4px; background: 0 0; padding: 0; cursor: pointer; }
+        .theme-custom-row input[type="color"] { width: 32px; height: 28px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: 0 0; padding: 0; cursor: pointer; }
         .theme-reset-btn { flex: 1; border: 1px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-secondary); border-radius: var(--radius); padding: 0.3rem 0.5rem; cursor: pointer; font-size: 0.75rem; }
         .theme-reset-btn:hover { color: var(--text-primary); border-color: var(--accent); }
         .view-toggle { display: flex; background: var(--bg-tertiary); border-radius: var(--radius); padding: 2px; }
-        .view-btn { padding: 0.25rem 0.375rem; background: 0 0; border: none; color: var(--text-secondary); cursor: pointer; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
+        .view-btn { padding: 0.25rem 0.375rem; background: 0 0; border: none; color: var(--text-secondary); cursor: pointer; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
         .view-btn:hover { color: var(--text-primary); }
         .view-btn.active { background: var(--bg-primary); color: var(--text-primary); }
         .view-btn svg { width: 16px; height: 16px; }
         .app-container { flex: 1; display: flex; overflow: hidden; }
         .tree-panel { width: 240px; background: var(--bg-secondary); border-right: 1px solid var(--border-color); display: none; flex-shrink: 0; flex-direction: column; }
         .tree-panel.visible { display: flex; }
-        .tree-header { padding: 0.5rem 0.75rem; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
+        .tree-header { padding: 0.5rem 0.75rem; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
         .tree-content { padding: 0.25rem 0; overflow-y: auto; flex: 1; min-height: 0; }
         .tree-content:not(.needs-scroll) { overflow-y: visible; }
         .tree-item { display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.5rem; cursor: pointer; font-size: 0.85rem; color: var(--text-secondary); border-left: 2px solid transparent; }
@@ -194,11 +221,10 @@
         .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.5rem; }
         .file-list { display: flex; flex-direction: column; gap: 1px; }
         .file-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 0.625rem; cursor: pointer; transition: border-color var(--transition), box-shadow var(--transition); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.375rem; }
-        .file-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
-        .file-card.directory { background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%); }
-        html.flat .file-card.directory { background: var(--bg-secondary); }
+        .file-card:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); }
+        .file-card.directory { background: var(--bg-secondary); }
         .file-card.parent-dir .file-name { color: var(--text-secondary); }
-        .file-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 4px; background: var(--bg-tertiary); }
+        .file-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--bg-tertiary); }
         .file-icon svg { width: 20px; height: 20px; }
         .file-icon.folder { color: #8b949e; background: rgba(139, 148, 158, 0.1); }
         .file-icon.image { color: #a371f7; background: rgba(163, 113, 247, 0.1); }
@@ -210,14 +236,15 @@
         .file-icon.data { color: #d29922; background: rgba(210, 153, 34, 0.1); }
         .file-icon.archive { color: #a5d6ff; background: rgba(165, 214, 255, 0.1); }
         .file-icon.playlist { color: #f778ba; background: rgba(247, 120, 186, 0.1); }
+        .file-icon.other { color: #8b949e; background: rgba(139, 148, 158, 0.1); }
         .file-name { font-weight: 500; word-break: break-word; font-size: 0.8rem; max-width: 100%; line-height: 1.2; }
         .file-meta { font-size: 0.7rem; color: var(--text-muted); }
         .file-path { display: block; font-size: 0.65rem; color: var(--text-muted); word-break: break-all; margin-top: 2px; }
-        .file-thumbnail { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px; background: var(--bg-tertiary); }
+        .file-thumbnail { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-sm); background: var(--bg-tertiary); }
         .file-thumbnail.lazy { opacity: 0; transition: opacity 0.2s; }
         .file-thumbnail.loaded { opacity: 1; }
-        .file-list .file-card { flex-direction: row; text-align: left; padding: 0.375rem 0.5rem; gap: 0.5rem; border-radius: 4px; }
-        .file-list .file-card:hover { box-shadow: none; }
+        .file-list .file-card { flex-direction: row; text-align: left; padding: 0.5rem 0.75rem; gap: 0.5rem; border-radius: var(--radius); }
+        .file-list .file-card:hover { box-shadow: var(--shadow-sm); border-color: var(--accent); }
         .file-list .file-icon { width: 24px; height: 24px; }
         .file-list .file-icon svg { width: 14px; height: 14px; }
         .file-list .file-info { flex: 1; min-width: 0; }
@@ -226,7 +253,7 @@
         .file-list .file-size { color: var(--text-muted); font-size: 0.75rem; flex-shrink: 0; }
         .file-list .file-thumbnail { display: none; }
         .list-columns { --list-cols: 24px 1fr 70px 90px 100px 80px; }
-        .file-list-header { display: grid; grid-template-columns: var(--list-cols); gap: 0.5rem; padding: 0.4rem 0.5rem; margin-bottom: 2px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-muted); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; background: var(--bg-primary); z-index: 5; }
+        .file-list-header { display: grid; grid-template-columns: var(--list-cols); gap: 0.5rem; padding: 0.4rem 0.5rem; margin-bottom: 2px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; background: var(--bg-primary); z-index: 5; }
         .file-list-header .col-icon-spacer { width: 24px; }
         .file-list-header .col { display: flex; align-items: center; gap: 0.25rem; cursor: pointer; user-select: none; }
         .file-list-header .col:hover { color: var(--text-primary); }
@@ -241,16 +268,16 @@
             .file-list.list-columns .col-ext, .file-list.list-columns .col-date, .file-list.list-columns .col-time { display: none; }
         }
         .empty-state { text-align: center; padding: 2rem; color: var(--text-secondary); }
-        .empty-state svg { width: 40px; height: 40px; margin-bottom: 0.5rem; opacity: 0.5; }
-        .empty-state h2 { font-size: 1rem; margin-bottom: 0.25rem; color: var(--text-primary); }
+        .empty-state svg:not(.empty-state-illustration) { width: 40px; height: 40px; margin-bottom: 0.5rem; opacity: 0.5; }
+        .empty-state h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--text-primary); }
         .empty-state p { font-size: 0.85rem; }
         .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.2s; padding: 0.5rem; }
         .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal { background: var(--bg-secondary); border-radius: var(--radius-lg); max-width: 95vw; max-height: 95vh; max-height: 95dvh; width: 100%; display: flex; flex-direction: column; transform: scale(0.95); transition: transform 0.2s; overflow: hidden; border: 1px solid var(--border-color); }
+        .modal { background: var(--bg-secondary); border-radius: var(--radius-lg); max-width: 95vw; max-height: 95vh; max-height: 95dvh; width: 100%; display: flex; flex-direction: column; transform: scale(0.95); transition: transform 0.2s; overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--shadow-lg); border-top: 2px solid var(--accent); }
         .modal.video-modal { height: 95vh; height: 95dvh; }
         .modal-overlay.active .modal { transform: scale(1); }
-        .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border-color); gap: 0.5rem; flex-shrink: 0; }
-        .modal-title { font-size: 0.9rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+        .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color); gap: 0.5rem; flex-shrink: 0; }
+        .modal-title { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.005em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
         .modal-actions { display: flex; gap: 0.25rem; }
         .modal-btn { padding: 0.375rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.25rem; }
         .modal-btn:hover { background: var(--bg-hover); border-color: var(--accent); }
@@ -292,34 +319,36 @@
         .preview-video { flex: 1; min-height: 0; max-width: 100%; width: auto; object-fit: contain; background: #000; border-radius: var(--radius); }
         .preview-audio-container { width: 100%; max-width: 500px; padding: 1.25rem 1rem; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; position: relative; }
         .audio-icon { width: 80px; height: 80px; background: var(--bg-tertiary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); }
-        .audio-icon svg { width: 40px; height: 40px; }
+        .audio-icon svg { width: 54px; height: 54px; }
         .playlist-now-playing { font-weight: 500; text-align: center; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .preview-audio { width: 100%; height: 40px; display: none; }
         .preview-audio[controls] { display: block; }
-        .player-bar { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; width: 100%; max-width: 480px; margin: 0.15rem auto 0; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 0.6rem 0.75rem; }
+        .player-bar { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 100%; max-width: 480px; margin: 0.15rem auto 0; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 0.75rem 0.9rem; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), var(--shadow-sm); }
         .player-seek-row { display: flex; align-items: center; gap: 0.5rem; width: 100%; }
-        .player-seek { flex: 1; accent-color: var(--accent); cursor: pointer; height: 4px; }
+        .player-seek { flex: 1; accent-color: var(--accent); cursor: pointer; height: 6px; border-radius: var(--radius-full); }
         .player-seek:disabled { opacity: 0.4; cursor: not-allowed; }
         .player-controls-row { display: flex; align-items: center; justify-content: center; gap: 0.4rem; width: 100%; flex-wrap: nowrap; overflow-x: auto; }
-        .player-controls-row .playlist-btn { padding: 0.5rem; flex-shrink: 0; }
+        .player-controls-row .playlist-btn { padding: 0.5rem; flex-shrink: 0; border-radius: var(--radius-full); transition: transform var(--transition), background-color var(--transition), border-color var(--transition); }
+        .player-controls-row .playlist-btn:hover:not(:disabled) { transform: translateY(-1px); }
         .player-divider { width: 1px; height: 1.25rem; background: var(--border-color); flex-shrink: 0; }
-        .player-play-btn { background: var(--accent) !important; border-color: var(--accent) !important; color: #fff !important; border-radius: 50% !important; width: 2.35rem; height: 2.35rem; padding: 0 !important; }
-        .player-play-btn:hover { background: var(--accent-hover) !important; border-color: var(--accent-hover) !important; }
-        .player-play-btn svg { width: 18px; height: 18px; }
+        .player-play-btn { background: var(--accent) !important; border-color: var(--accent) !important; color: #fff !important; border-radius: 50% !important; width: 2.75rem; height: 2.75rem; padding: 0 !important; box-shadow: 0 2px 10px var(--accent-glow); transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition); }
+        .player-play-btn:hover { background: var(--accent-hover) !important; border-color: var(--accent-hover) !important; transform: translateY(-1px); box-shadow: 0 4px 14px var(--accent-glow); }
+        .player-play-btn:active { transform: translateY(0); }
+        .player-play-btn svg { width: 20px; height: 20px; }
         .player-time, .player-vol { font-size: 0.75rem; color: var(--text-secondary); min-width: 2.5rem; text-align: center; user-select: none; }
         .player-info-btn { position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.375rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
         .player-info-btn:hover { background: var(--bg-hover); border-color: var(--accent); }
         .player-info-btn svg { width: 16px; height: 16px; }
         .player-info-btn.copied { background: var(--accent); border-color: var(--accent); color: #fff; }
         .preview-code { width: 100%; min-height: 100%; padding: 0.5rem; background: var(--bg-primary); }
-        .preview-code pre { margin: 0; font-family: ui-monospace, SFMono-Regular, sf mono, Menlo, Consolas, monospace; font-size: 0.8rem; line-height: 0.9; white-space: pre-wrap; word-break: break-word; }
-        .preview-code.line-numbers pre { counter-reset: line; }
+        .preview-code.line-numbers pre { counter-reset: line; white-space: pre-wrap; word-break: break-all; }
         .preview-code.line-numbers pre .line { display: block; counter-increment: line; }
         .preview-code.line-numbers pre .line::before { content: counter(line); display: inline-block; width: 3em; margin-right: 1em; text-align: right; color: var(--text-muted); user-select: none; font-size: 0.75rem; }
+        .preview-code pre code.hljs { background: transparent !important; padding: 0 !important; }
         .preview-pdf { width: 100%; height: 90vh; border: none; }
         .preview-unavailable { text-align: center; padding: 2rem; color: var(--text-secondary); }
         .preview-unavailable svg { width: 40px; height: 40px; margin-bottom: 0.5rem; opacity: 0.5; }
-        .preview-unavailable h3 { margin-bottom: 0.25rem; color: var(--text-primary); font-size: 1rem; }
+        .preview-unavailable h3 { margin-bottom: 0.25rem; color: var(--text-primary); font-size: 1.05rem; font-weight: 700; }
         .download-btn { display: inline-flex; align-items: center; gap: 0.375rem; margin-top: 0.75rem; padding: 0.5rem 1rem; background: var(--accent); color: #fff; text-decoration: none; border-radius: var(--radius); font-weight: 500; font-size: 0.85rem; }
         .download-btn:hover { background: var(--accent-hover); }
         .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; color: var(--text-secondary); }
@@ -348,8 +377,8 @@
             .player-bar { padding: 0.5rem 0.5rem; max-width: 100%; gap: 0.25rem; }
             .player-bar .playlist-btn { padding: 0.4rem; }
             .player-bar .playlist-btn svg { width: 12px; height: 12px; }
-            .player-play-btn { width: 2rem !important; height: 2rem !important; }
-            .player-play-btn svg { width: 15px !important; height: 15px !important; }
+            .player-play-btn { width: 2.25rem !important; height: 2.25rem !important; }
+            .player-play-btn svg { width: 16px !important; height: 16px !important; }
             .player-time { min-width: 1.6rem; font-size: 0.65rem; }
             .player-vol { min-width: 1.9rem; font-size: 0.65rem; }
         }
@@ -362,11 +391,56 @@
         .file-card:focus-visible { outline-offset: -2px; }
         .breadcrumb { overflow-x: auto; scrollbar-width: thin; flex-wrap: nowrap; }
         .breadcrumb::-webkit-scrollbar { height: 4px; }
-        .sort-select { background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-secondary); font-size: 0.75rem; padding: 0.25rem 0.375rem; }
+        .sort-select { background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-secondary); font-size: 0.75rem; padding: 0.25rem 0.375rem; }
         .load-more-btn { display: block; margin: 0.75rem auto 0; padding: 0.375rem 1rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); cursor: pointer; font-size: 0.8rem; }
         .load-more-btn:hover { border-color: var(--accent); }
         .truncation-notice { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.75rem; }
         .modal-btn.copied { color: var(--success); border-color: var(--success); }
+        .shortcuts-modal { max-width: 440px; }
+        .shortcuts-body { padding: 0.75rem 1rem 1rem; }
+        .shortcuts-list { display: flex; flex-direction: column; gap: 0.6rem; }
+        .shortcut-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .shortcut-row dt { display: flex; gap: 0.25rem; flex-shrink: 0; flex-wrap: wrap; }
+        .shortcut-row dd { color: var(--text-secondary); font-size: 0.85rem; text-align: right; }
+        kbd { background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.1rem 0.45rem; font-size: 0.75rem; font-family: ui-monospace, SFMono-Regular, sf mono, Menlo, Consolas, monospace; color: var(--text-primary); }
+
+        /* --- Visual pass: thin scrollbars everywhere (Firefox) --- */
+        html { scrollbar-width: thin; scrollbar-color: var(--border-color) transparent; }
+
+        /* --- Search match highlighting --- */
+        mark.search-highlight { background: rgba(255, 208, 0, 0.35); color: inherit; font-weight: 700; border-radius: 2px; padding: 0 1px; }
+
+        /* --- List/tree view thumbnails for images (previously grid-only) --- */
+        .file-list .file-thumbnail:not(.file-thumbnail-inline) { display: none; }
+        .file-thumbnail-inline { width: 24px; height: 24px; border-radius: var(--radius-sm); object-fit: cover; flex-shrink: 0; }
+        .file-list .file-card:has(.file-thumbnail-inline.loaded) .file-icon { display: none; }
+
+        /* --- File card micro-interactions --- */
+        .file-card { transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition), background-color var(--transition); }
+        .file-card:hover { transform: translateY(-1px) scale(1.012); }
+        .file-list .file-card:hover { transform: translateX(1px); background: var(--bg-secondary); }
+        .file-card:active { transform: translateY(0) scale(0.995); }
+
+        /* --- Softer, theme-aware focus glow layered on top of the accessible outline --- */
+        .file-card:focus-visible, .playlist-btn:focus-visible, .modal-btn:focus-visible, .view-btn:focus-visible, .settings-btn:focus-visible {
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        /* --- Sticky header gains depth only once content is scrolled beneath it --- */
+        .header { box-shadow: 0 1px 0 rgba(0, 0, 0, 0); transition: box-shadow var(--transition); position: relative; z-index: 10; }
+        .header.scrolled { box-shadow: var(--shadow); }
+
+        /* --- Skeleton loading state (replaces spinner+text on initial load) --- */
+        .skeleton-list { display: flex; flex-direction: column; gap: 1px; padding-top: 0.25rem; }
+        .skeleton-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; border-radius: var(--radius-sm); }
+        .skeleton-block { border-radius: var(--radius-sm); background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-hover) 37%, var(--bg-tertiary) 63%); background-size: 400% 100%; animation: skeleton-shimmer 1.4s ease infinite; }
+        .skeleton-icon { width: 24px; height: 24px; flex-shrink: 0; }
+        .skeleton-name { height: 12px; width: 45%; }
+        .skeleton-meta { height: 10px; width: 15%; margin-left: auto; }
+        @keyframes skeleton-shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+
+        /* --- Empty state illustration --- */
+        .empty-state-illustration { width: 96px; height: 96px; margin: 0 auto 0.75rem; }
     </style>
 </head>
 <body>
@@ -381,7 +455,13 @@
                 <div class="search-container">
                     <svg class="search-icon" viewBox="0 0 24 24" fill="currentcolor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61.0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                     <input class="search-input" id="search" placeholder="Search..." autocomplete="off" aria-label="Search files" />
+                    <button class="search-clear" id="searchClearBtn" type="button" title="Clear search" aria-label="Clear search">
+                        <svg viewBox="0 0 24 24" fill="currentcolor" width="12" height="12"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                    </button>
                 </div>
+                <button class="settings-btn" id="shortcutsBtn" title="Keyboard shortcuts" aria-label="Show keyboard shortcuts">
+                    <svg viewBox="0 0 24 24" fill="currentcolor"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41.0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21.0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
+                </button>
                 <div class="settings-dropdown" id="settingsDropdown">
                     <button class="settings-btn" id="settingsBtn" title="Settings" aria-label="Settings" aria-haspopup="true" aria-expanded="false">
                         <svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19.14 12.94c.04-.31.06-.63.06-.94.0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24.0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47.0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24.0.44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47.0.59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98.0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
@@ -441,13 +521,6 @@
                                     <button class="theme-btn" data-theme="hc-light" title="High contrast light theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 2a10 10 0 000 20 10 10 0 000-20zm0 18V4a8 8 0 010 16z"/></svg><span class="theme-btn-label">HC Light</span></button>
                                 </div>
                             </div>
-                            <div class="settings-row" style="margin-top: 0.375rem">
-                                <span class="settings-label">Flat design</span>
-                                <label class="switch">
-                                    <input type="checkbox" id="flatDesignToggle" aria-label="Use flat design (remove gradients)" />
-                                    <span class="switch-slider"></span>
-                                </label>
-                            </div>
                         </div>
                         <div class="settings-section" style="border-top: 1px solid var(--border-color)">
                             <div class="settings-section-title">Base Color</div>
@@ -455,7 +528,7 @@
                                 <div class="theme-swatches" id="themeSwatches"></div>
                             </div>
                             <div class="theme-custom-row">
-                                <input type="color" id="themeColorInput" value="#58a6ff" title="Pick a custom color" />
+                                <input type="color" id="themeColorInput" value="#8080ff" title="Pick a custom color" />
                                 <button id="themeResetBtn" class="theme-reset-btn">Reset</button>
                             </div>
                         </div>
@@ -475,9 +548,13 @@
             <div class="tree-content" id="treeContent"></div>
         </aside>
         <main class="main" id="main">
-            <div class="loading">
-                <div class="spinner"></div>
-                <span>Loading...</span>
+            <div class="skeleton-list" aria-hidden="true">
+                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name"></div><div class="skeleton-block skeleton-meta"></div></div>
+                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:60%"></div><div class="skeleton-block skeleton-meta"></div></div>
+                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:35%"></div><div class="skeleton-block skeleton-meta"></div></div>
+                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:50%"></div><div class="skeleton-block skeleton-meta"></div></div>
+                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:40%"></div><div class="skeleton-block skeleton-meta"></div></div>
+                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:55%"></div><div class="skeleton-block skeleton-meta"></div></div>
             </div>
         </main>
     </div>
@@ -512,6 +589,31 @@
             <div class="modal-body" id="modalBody"></div>
         </div>
     </div>
+    <div class="modal-overlay" id="shortcutsModal" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle">
+        <div class="modal shortcuts-modal" id="shortcutsModalContent">
+            <div class="modal-header">
+                <span class="modal-title" id="shortcutsTitle">Keyboard Shortcuts</span>
+                <div class="modal-actions">
+                    <button class="modal-btn" id="shortcutsCloseBtn" title="Close" aria-label="Close keyboard shortcuts">
+                        <svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body shortcuts-body">
+                <dl class="shortcuts-list">
+                    <div class="shortcut-row"><dt><kbd>/</kbd></dt><dd>Focus search</dd></div>
+                    <div class="shortcut-row"><dt><kbd>?</kbd></dt><dd>Show this help</dd></div>
+                    <div class="shortcut-row"><dt><kbd>Esc</kbd></dt><dd>Close dialog</dd></div>
+                    <div class="shortcut-row"><dt><kbd>&uarr;</kbd><kbd>&darr;</kbd><kbd>&larr;</kbd><kbd>&rarr;</kbd></dt><dd>Navigate files &amp; folders</dd></div>
+                    <div class="shortcut-row"><dt><kbd>Enter</kbd> / <kbd>Space</kbd></dt><dd>Open selected file or folder</dd></div>
+                    <div class="shortcut-row"><dt><kbd>&larr;</kbd> / <kbd>&rarr;</kbd> (in preview)</dt><dd>Stop / play playlist track</dd></div>
+                    <div class="shortcut-row"><dt><kbd>&uarr;</kbd> / <kbd>&darr;</kbd> (in preview)</dt><dd>Scroll preview</dd></div>
+                    <div class="shortcut-row"><dt><kbd>Space</kbd> (in preview)</dt><dd>Play / pause media</dd></div>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div id="srAnnouncer" class="sr-only" aria-live="polite" role="status"></div>
     <script>
         let fileIndex = null,
             currentPath = [],
@@ -535,6 +637,7 @@
             sortBy = "name-asc",
             searchResultLimit = 100,
             lastFocusedElement = null,
+            lastFocusedElementShortcuts = null,
             fetchCache = new Map(),
             currentVolume = 0.5, // Default volume set to 50%
             audioCtx = null,
@@ -572,131 +675,174 @@
             info: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 7h2v2h-2V7zm0 4h2v6h-2v-6zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>`,
         };
 
-        // A handful of music-note glyphs for the big icon shown above the
-        // audio player. One is picked at random whenever the player first
-        // appears, and swapped for a different random one each time the
-        // station/track changes.
+        // Small two-tone illustrations for empty/no-results/error states, using
+        // currentColor for the outline and var(--accent) for the highlight so
+        // they follow the active theme automatically.
+        const emptyStateIllustrations = {
+            folder: `<svg class="empty-state-illustration" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 30c0-2.2 1.8-4 4-4h16l6 7h32c2.2 0 4 1.8 4 4v34c0 2.2-1.8 4-4 4H18c-2.2 0-4-1.8-4-4V30z" fill="currentColor" opacity="0.12"/>
+                <path d="M14 30c0-2.2 1.8-4 4-4h16l6 7h32c2.2 0 4 1.8 4 4v34c0 2.2-1.8 4-4 4H18c-2.2 0-4-1.8-4-4V30z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                <circle cx="48" cy="56" r="10" fill="var(--accent)" opacity="0.15"/>
+                <path d="M43 56h10M48 51v10" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>`,
+            search: `<svg class="empty-state-illustration" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 26c0-2.2 1.8-4 4-4h14l5 6h27c2.2 0 4 1.8 4 4v30c0 2.2-1.8 4-4 4H22c-2.2 0-4-1.8-4-4V26z" fill="currentColor" opacity="0.1"/>
+                <path d="M18 26c0-2.2 1.8-4 4-4h14l5 6h27c2.2 0 4 1.8 4 4v30c0 2.2-1.8 4-4 4H22c-2.2 0-4-1.8-4-4V26z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                <circle cx="56" cy="58" r="13" fill="var(--bg-primary)" stroke="var(--accent)" stroke-width="3"/>
+                <path d="M65.5 67.5 L76 78" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+            </svg>`,
+            error: `<svg class="empty-state-illustration" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 30c0-2.2 1.8-4 4-4h16l6 7h32c2.2 0 4 1.8 4 4v34c0 2.2-1.8 4-4 4H18c-2.2 0-4-1.8-4-4V30z" fill="currentColor" opacity="0.1"/>
+                <path d="M14 30c0-2.2 1.8-4 4-4h16l6 7h32c2.2 0 4 1.8 4 4v34c0 2.2-1.8 4-4 4H18c-2.2 0-4-1.8-4-4V30z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M48 44 L60 65 L36 65 Z" fill="var(--danger)" opacity="0.15" stroke="var(--danger)" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M48 53v5" stroke="var(--danger)" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="48" cy="61.5" r="1.4" fill="var(--danger)"/>
+            </svg>`,
+        };
+
+        // A big pool of music-gear glyphs for the icon shown above the audio
+        // player: cassette tapes, boomboxes, CDs/vinyl, portable players,
+        // headphones, microphones, guitars/strings, keys/wind/percussion,
+        // speakers/amps, radios, and a few odds and ends. One is picked at
+        // random whenever the player first appears, and swapped for a
+        // different random one each time the station/track changes.
         const playerNoteIcons = [
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q17.15,3.85 16.3,8.1 Q12.9,6.4 11.2,7.67 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q17.15,3.85 16.3,8.1 Q12.9,6.4 11.2,7.67 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q18.2,4.0 17.2,9.0 Q13.2,7.0 11.2,8.5 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q18.2,4.0 17.2,9.0 Q13.2,7.0 11.2,8.5 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q20.3,4.3 19.0,10.8 Q13.8,8.2 11.2,10.15 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q20.3,4.3 19.0,10.8 Q13.8,8.2 11.2,10.15 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q22.4,4.6 20.8,12.6 Q14.4,9.4 11.2,11.8 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q22.4,4.6 20.8,12.6 Q14.4,9.4 11.2,11.8 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q17.15,3.85 16.3,8.1 Q12.9,6.4 11.2,7.67 Z"/><path d="M11.2,7.5 Q17.15,8.35 16.3,12.6 Q12.9,10.9 11.2,12.18 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q17.15,3.85 16.3,8.1 Q12.9,6.4 11.2,7.67 Z"/><path d="M11.2,7.5 Q17.15,8.35 16.3,12.6 Q12.9,10.9 11.2,12.18 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q18.2,4.0 17.2,9.0 Q13.2,7.0 11.2,8.5 Z"/><path d="M11.2,7.5 Q18.2,8.5 17.2,13.5 Q13.2,11.5 11.2,13.0 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q18.2,4.0 17.2,9.0 Q13.2,7.0 11.2,8.5 Z"/><path d="M11.2,7.5 Q18.2,8.5 17.2,13.5 Q13.2,11.5 11.2,13.0 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q20.3,4.3 19.0,10.8 Q13.8,8.2 11.2,10.15 Z"/><path d="M11.2,7.5 Q20.3,8.8 19.0,15.3 Q13.8,12.7 11.2,14.65 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q20.3,4.3 19.0,10.8 Q13.8,8.2 11.2,10.15 Z"/><path d="M11.2,7.5 Q20.3,8.8 19.0,15.3 Q13.8,12.7 11.2,14.65 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q22.4,4.6 20.8,12.6 Q14.4,9.4 11.2,11.8 Z"/><path d="M11.2,7.5 Q22.4,9.1 20.8,17.1 Q14.4,13.9 11.2,16.3 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q22.4,4.6 20.8,12.6 Q14.4,9.4 11.2,11.8 Z"/><path d="M11.2,7.5 Q22.4,9.1 20.8,17.1 Q14.4,13.9 11.2,16.3 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q17.15,3.85 16.3,8.1 Q12.9,6.4 11.2,7.67 Z"/><path d="M11.2,7.5 Q17.15,8.35 16.3,12.6 Q12.9,10.9 11.2,12.18 Z"/><path d="M11.2,12.0 Q17.15,12.85 16.3,17.1 Q12.9,15.4 11.2,16.68 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q17.15,3.85 16.3,8.1 Q12.9,6.4 11.2,7.67 Z"/><path d="M11.2,7.5 Q17.15,8.35 16.3,12.6 Q12.9,10.9 11.2,12.18 Z"/><path d="M11.2,12.0 Q17.15,12.85 16.3,17.1 Q12.9,15.4 11.2,16.68 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q18.2,4.0 17.2,9.0 Q13.2,7.0 11.2,8.5 Z"/><path d="M11.2,7.5 Q18.2,8.5 17.2,13.5 Q13.2,11.5 11.2,13.0 Z"/><path d="M11.2,12.0 Q18.2,13.0 17.2,18.0 Q13.2,16.0 11.2,17.5 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q18.2,4.0 17.2,9.0 Q13.2,7.0 11.2,8.5 Z"/><path d="M11.2,7.5 Q18.2,8.5 17.2,13.5 Q13.2,11.5 11.2,13.0 Z"/><path d="M11.2,12.0 Q18.2,13.0 17.2,18.0 Q13.2,16.0 11.2,17.5 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q20.3,4.3 19.0,10.8 Q13.8,8.2 11.2,10.15 Z"/><path d="M11.2,7.5 Q20.3,8.8 19.0,15.3 Q13.8,12.7 11.2,14.65 Z"/><path d="M11.2,12.0 Q20.3,13.3 19.0,19.8 Q13.8,17.2 11.2,19.15 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q20.3,4.3 19.0,10.8 Q13.8,8.2 11.2,10.15 Z"/><path d="M11.2,7.5 Q20.3,8.8 19.0,15.3 Q13.8,12.7 11.2,14.65 Z"/><path d="M11.2,12.0 Q20.3,13.3 19.0,19.8 Q13.8,17.2 11.2,19.15 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q22.4,4.6 20.8,12.6 Q14.4,9.4 11.2,11.8 Z"/><path d="M11.2,7.5 Q22.4,9.1 20.8,17.1 Q14.4,13.9 11.2,16.3 Z"/><path d="M11.2,12.0 Q22.4,13.6 20.8,21.6 Q14.4,18.4 11.2,20.8 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q22.4,4.6 20.8,12.6 Q14.4,9.4 11.2,11.8 Z"/><path d="M11.2,7.5 Q22.4,9.1 20.8,17.1 Q14.4,13.9 11.2,16.3 Z"/><path d="M11.2,12.0 Q22.4,13.6 20.8,21.6 Q14.4,18.4 11.2,20.8 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q17.15,3.85 16.3,8.1 Q12.9,6.4 11.2,7.67 Z"/><path d="M11.2,7.5 Q17.15,8.35 16.3,12.6 Q12.9,10.9 11.2,12.18 Z"/><path d="M11.2,12.0 Q17.15,12.85 16.3,17.1 Q12.9,15.4 11.2,16.68 Z"/><path d="M11.2,16.5 Q17.15,17.35 16.3,21.6 Q12.9,19.9 11.2,21.18 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q17.15,3.85 16.3,8.1 Q12.9,6.4 11.2,7.67 Z"/><path d="M11.2,7.5 Q17.15,8.35 16.3,12.6 Q12.9,10.9 11.2,12.18 Z"/><path d="M11.2,12.0 Q17.15,12.85 16.3,17.1 Q12.9,15.4 11.2,16.68 Z"/><path d="M11.2,16.5 Q17.15,17.35 16.3,21.6 Q12.9,19.9 11.2,21.18 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q18.2,4.0 17.2,9.0 Q13.2,7.0 11.2,8.5 Z"/><path d="M11.2,7.5 Q18.2,8.5 17.2,13.5 Q13.2,11.5 11.2,13.0 Z"/><path d="M11.2,12.0 Q18.2,13.0 17.2,18.0 Q13.2,16.0 11.2,17.5 Z"/><path d="M11.2,16.5 Q18.2,17.5 17.2,22.5 Q13.2,20.5 11.2,22.0 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q18.2,4.0 17.2,9.0 Q13.2,7.0 11.2,8.5 Z"/><path d="M11.2,7.5 Q18.2,8.5 17.2,13.5 Q13.2,11.5 11.2,13.0 Z"/><path d="M11.2,12.0 Q18.2,13.0 17.2,18.0 Q13.2,16.0 11.2,17.5 Z"/><path d="M11.2,16.5 Q18.2,17.5 17.2,22.5 Q13.2,20.5 11.2,22.0 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q20.3,4.3 19.0,10.8 Q13.8,8.2 11.2,10.15 Z"/><path d="M11.2,7.5 Q20.3,8.8 19.0,15.3 Q13.8,12.7 11.2,14.65 Z"/><path d="M11.2,12.0 Q20.3,13.3 19.0,19.8 Q13.8,17.2 11.2,19.15 Z"/><path d="M11.2,16.5 Q20.3,17.8 19.0,24.3 Q13.8,21.7 11.2,23.65 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q20.3,4.3 19.0,10.8 Q13.8,8.2 11.2,10.15 Z"/><path d="M11.2,7.5 Q20.3,8.8 19.0,15.3 Q13.8,12.7 11.2,14.65 Z"/><path d="M11.2,12.0 Q20.3,13.3 19.0,19.8 Q13.8,17.2 11.2,19.15 Z"/><path d="M11.2,16.5 Q20.3,17.8 19.0,24.3 Q13.8,21.7 11.2,23.65 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q22.4,4.6 20.8,12.6 Q14.4,9.4 11.2,11.8 Z"/><path d="M11.2,7.5 Q22.4,9.1 20.8,17.1 Q14.4,13.9 11.2,16.3 Z"/><path d="M11.2,12.0 Q22.4,13.6 20.8,21.6 Q14.4,18.4 11.2,20.8 Z"/><path d="M11.2,16.5 Q22.4,18.1 20.8,26.1 Q14.4,22.9 11.2,25.3 Z"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="3" width="1.8" height="15"/><path d="M11.2,3.0 Q22.4,4.6 20.8,12.6 Q14.4,9.4 11.2,11.8 Z"/><path d="M11.2,7.5 Q22.4,9.1 20.8,17.1 Q14.4,13.9 11.2,16.3 Z"/><path d="M11.2,12.0 Q22.4,13.6 20.8,21.6 Q14.4,18.4 11.2,20.8 Z"/><path d="M11.2,16.5 Q22.4,18.1 20.8,26.1 Q14.4,22.9 11.2,25.3 Z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(-16 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(-16 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(-16 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(-16 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(-8 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(-8 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(-8 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(-8 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(8 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(8 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(8 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(8 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(16 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(16 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(16 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><ellipse cx="8" cy="17.5" rx="4" ry="3.2" transform="rotate(16 8 17.5)"/><rect x="11.3" y="4" width="2" height="13.7"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="4" width="1.8" height="14"/><circle cx="12" cy="18" r="1.1"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="4" width="1.8" height="14"/><circle cx="12" cy="18" r="1.1"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="4" width="1.8" height="14"/><circle cx="12" cy="18" r="1.1"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="4" width="1.8" height="14"/><circle cx="12" cy="18" r="1.1"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="4" width="1.8" height="14"/><circle cx="7" cy="22" r="1.0"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="4" width="1.8" height="14"/><circle cx="7" cy="22" r="1.0"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="4" width="1.8" height="14"/><circle cx="7" cy="22" r="1.0"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><rect x="9.4" y="4" width="1.8" height="14"/><circle cx="7" cy="22" r="1.0"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><circle cx="7.6" cy="11" r="3.2"/><rect x="9.4" y="7.8" width="1.8" height="10.2"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><circle cx="7" cy="18" r="3.2"/><circle cx="7.6" cy="11" r="3.2"/><rect x="9.4" y="7.8" width="1.8" height="10.2"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><circle cx="7" cy="18" r="3.2"/><circle cx="7.6" cy="11" r="3.2"/><rect x="9.4" y="7.8" width="1.8" height="10.2"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><circle cx="7.6" cy="11" r="3.2"/><rect x="9.4" y="7.8" width="1.8" height="10.2"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="18" r="3.2"/><circle cx="7.6" cy="11" r="3.2"/><circle cx="7.3" cy="7" r="3.0"/><rect x="9.4" y="3.8" width="1.8" height="14.2"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><circle cx="7" cy="18" r="3.2"/><circle cx="7.6" cy="11" r="3.2"/><circle cx="7.3" cy="7" r="3.0"/><rect x="9.4" y="3.8" width="1.8" height="14.2"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><circle cx="7" cy="18" r="3.2"/><circle cx="7.6" cy="11" r="3.2"/><circle cx="7.3" cy="7" r="3.0"/><rect x="9.4" y="3.8" width="1.8" height="14.2"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7" cy="18" r="3.2"/><circle cx="7.6" cy="11" r="3.2"/><circle cx="7.3" cy="7" r="3.0"/><rect x="9.4" y="3.8" width="1.8" height="14.2"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="20.0" cy="17" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="11.8"/><polygon points="6.2,4.0 22.2,5.2 22.2,7.7 6.2,6.5"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="20.0" cy="17" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="11.8"/><polygon points="6.2,4.0 22.2,5.2 22.2,7.7 6.2,6.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="20.0" cy="17" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="11.8"/><polygon points="6.2,4.0 22.2,5.2 22.2,7.7 6.2,6.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="20.0" cy="17" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="11.8"/><polygon points="6.2,4.0 22.2,5.2 22.2,7.7 6.2,6.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="20.0" cy="17" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="11.8"/><polygon points="6.2,4.0 22.2,5.2 22.2,7.7 6.2,6.5"/><polygon points="6.2,8.0 22.2,9.2 22.2,11.7 6.2,10.5"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="20.0" cy="17" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="11.8"/><polygon points="6.2,4.0 22.2,5.2 22.2,7.7 6.2,6.5"/><polygon points="6.2,8.0 22.2,9.2 22.2,11.7 6.2,10.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="20.0" cy="17" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="11.8"/><polygon points="6.2,4.0 22.2,5.2 22.2,7.7 6.2,6.5"/><polygon points="6.2,8.0 22.2,9.2 22.2,11.7 6.2,10.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="20.0" cy="17" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="11.8"/><polygon points="6.2,4.0 22.2,5.2 22.2,7.7 6.2,6.5"/><polygon points="6.2,8.0 22.2,9.2 22.2,11.7 6.2,10.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="12.0" cy="17" r="2.6"/><rect x="14.2" y="5.2" width="1.6" height="11.8"/><circle cx="20.0" cy="18.5" r="2.6"/><rect x="22.2" y="6.4" width="1.6" height="12.1"/><polygon points="6.2,4.0 14.2,5.2 22.2,6.4 22.2,8.9 14.2,7.7 6.2,6.5"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="12.0" cy="17" r="2.6"/><rect x="14.2" y="5.2" width="1.6" height="11.8"/><circle cx="20.0" cy="18.5" r="2.6"/><rect x="22.2" y="6.4" width="1.6" height="12.1"/><polygon points="6.2,4.0 14.2,5.2 22.2,6.4 22.2,8.9 14.2,7.7 6.2,6.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="12.0" cy="17" r="2.6"/><rect x="14.2" y="5.2" width="1.6" height="11.8"/><circle cx="20.0" cy="18.5" r="2.6"/><rect x="22.2" y="6.4" width="1.6" height="12.1"/><polygon points="6.2,4.0 14.2,5.2 22.2,6.4 22.2,8.9 14.2,7.7 6.2,6.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="12.0" cy="17" r="2.6"/><rect x="14.2" y="5.2" width="1.6" height="11.8"/><circle cx="20.0" cy="18.5" r="2.6"/><rect x="22.2" y="6.4" width="1.6" height="12.1"/><polygon points="6.2,4.0 14.2,5.2 22.2,6.4 22.2,8.9 14.2,7.7 6.2,6.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="12.0" cy="17" r="2.6"/><rect x="14.2" y="5.2" width="1.6" height="11.8"/><circle cx="20.0" cy="18.5" r="2.6"/><rect x="22.2" y="6.4" width="1.6" height="12.1"/><polygon points="6.2,4.0 14.2,5.2 22.2,6.4 22.2,8.9 14.2,7.7 6.2,6.5"/><polygon points="6.2,8.0 14.2,9.2 22.2,10.4 22.2,12.9 14.2,11.7 6.2,10.5"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="12.0" cy="17" r="2.6"/><rect x="14.2" y="5.2" width="1.6" height="11.8"/><circle cx="20.0" cy="18.5" r="2.6"/><rect x="22.2" y="6.4" width="1.6" height="12.1"/><polygon points="6.2,4.0 14.2,5.2 22.2,6.4 22.2,8.9 14.2,7.7 6.2,6.5"/><polygon points="6.2,8.0 14.2,9.2 22.2,10.4 22.2,12.9 14.2,11.7 6.2,10.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="12.0" cy="17" r="2.6"/><rect x="14.2" y="5.2" width="1.6" height="11.8"/><circle cx="20.0" cy="18.5" r="2.6"/><rect x="22.2" y="6.4" width="1.6" height="12.1"/><polygon points="6.2,4.0 14.2,5.2 22.2,6.4 22.2,8.9 14.2,7.7 6.2,6.5"/><polygon points="6.2,8.0 14.2,9.2 22.2,10.4 22.2,12.9 14.2,11.7 6.2,10.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="12.0" cy="17" r="2.6"/><rect x="14.2" y="5.2" width="1.6" height="11.8"/><circle cx="20.0" cy="18.5" r="2.6"/><rect x="22.2" y="6.4" width="1.6" height="12.1"/><polygon points="6.2,4.0 14.2,5.2 22.2,6.4 22.2,8.9 14.2,7.7 6.2,6.5"/><polygon points="6.2,8.0 14.2,9.2 22.2,10.4 22.2,12.9 14.2,11.7 6.2,10.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="9.333333333333332" cy="17" r="2.6"/><rect x="11.53" y="5.2" width="1.6" height="11.8"/><circle cx="14.666666666666666" cy="18.5" r="2.6"/><rect x="16.87" y="6.4" width="1.6" height="12.1"/><circle cx="20.0" cy="16" r="2.6"/><rect x="22.2" y="4.0" width="1.6" height="12.0"/><polygon points="6.2,4.0 11.53,5.2 16.87,6.4 22.2,4.0 22.2,6.5 16.87,8.9 11.53,7.7 6.2,6.5"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="9.333333333333332" cy="17" r="2.6"/><rect x="11.53" y="5.2" width="1.6" height="11.8"/><circle cx="14.666666666666666" cy="18.5" r="2.6"/><rect x="16.87" y="6.4" width="1.6" height="12.1"/><circle cx="20.0" cy="16" r="2.6"/><rect x="22.2" y="4.0" width="1.6" height="12.0"/><polygon points="6.2,4.0 11.53,5.2 16.87,6.4 22.2,4.0 22.2,6.5 16.87,8.9 11.53,7.7 6.2,6.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="9.333333333333332" cy="17" r="2.6"/><rect x="11.53" y="5.2" width="1.6" height="11.8"/><circle cx="14.666666666666666" cy="18.5" r="2.6"/><rect x="16.87" y="6.4" width="1.6" height="12.1"/><circle cx="20.0" cy="16" r="2.6"/><rect x="22.2" y="4.0" width="1.6" height="12.0"/><polygon points="6.2,4.0 11.53,5.2 16.87,6.4 22.2,4.0 22.2,6.5 16.87,8.9 11.53,7.7 6.2,6.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="9.333333333333332" cy="17" r="2.6"/><rect x="11.53" y="5.2" width="1.6" height="11.8"/><circle cx="14.666666666666666" cy="18.5" r="2.6"/><rect x="16.87" y="6.4" width="1.6" height="12.1"/><circle cx="20.0" cy="16" r="2.6"/><rect x="22.2" y="4.0" width="1.6" height="12.0"/><polygon points="6.2,4.0 11.53,5.2 16.87,6.4 22.2,4.0 22.2,6.5 16.87,8.9 11.53,7.7 6.2,6.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="9.333333333333332" cy="17" r="2.6"/><rect x="11.53" y="5.2" width="1.6" height="11.8"/><circle cx="14.666666666666666" cy="18.5" r="2.6"/><rect x="16.87" y="6.4" width="1.6" height="12.1"/><circle cx="20.0" cy="16" r="2.6"/><rect x="22.2" y="4.0" width="1.6" height="12.0"/><polygon points="6.2,4.0 11.53,5.2 16.87,6.4 22.2,4.0 22.2,6.5 16.87,8.9 11.53,7.7 6.2,6.5"/><polygon points="6.2,8.0 11.53,9.2 16.87,10.4 22.2,8.0 22.2,10.5 16.87,12.9 11.53,11.7 6.2,10.5"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="9.333333333333332" cy="17" r="2.6"/><rect x="11.53" y="5.2" width="1.6" height="11.8"/><circle cx="14.666666666666666" cy="18.5" r="2.6"/><rect x="16.87" y="6.4" width="1.6" height="12.1"/><circle cx="20.0" cy="16" r="2.6"/><rect x="22.2" y="4.0" width="1.6" height="12.0"/><polygon points="6.2,4.0 11.53,5.2 16.87,6.4 22.2,4.0 22.2,6.5 16.87,8.9 11.53,7.7 6.2,6.5"/><polygon points="6.2,8.0 11.53,9.2 16.87,10.4 22.2,8.0 22.2,10.5 16.87,12.9 11.53,11.7 6.2,10.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="9.333333333333332" cy="17" r="2.6"/><rect x="11.53" y="5.2" width="1.6" height="11.8"/><circle cx="14.666666666666666" cy="18.5" r="2.6"/><rect x="16.87" y="6.4" width="1.6" height="12.1"/><circle cx="20.0" cy="16" r="2.6"/><rect x="22.2" y="4.0" width="1.6" height="12.0"/><polygon points="6.2,4.0 11.53,5.2 16.87,6.4 22.2,4.0 22.2,6.5 16.87,8.9 11.53,7.7 6.2,6.5"/><polygon points="6.2,8.0 11.53,9.2 16.87,10.4 22.2,8.0 22.2,10.5 16.87,12.9 11.53,11.7 6.2,10.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="9.333333333333332" cy="17" r="2.6"/><rect x="11.53" y="5.2" width="1.6" height="11.8"/><circle cx="14.666666666666666" cy="18.5" r="2.6"/><rect x="16.87" y="6.4" width="1.6" height="12.1"/><circle cx="20.0" cy="16" r="2.6"/><rect x="22.2" y="4.0" width="1.6" height="12.0"/><polygon points="6.2,4.0 11.53,5.2 16.87,6.4 22.2,4.0 22.2,6.5 16.87,8.9 11.53,7.7 6.2,6.5"/><polygon points="6.2,8.0 11.53,9.2 16.87,10.4 22.2,8.0 22.2,10.5 16.87,12.9 11.53,11.7 6.2,10.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="8.0" cy="17" r="2.6"/><rect x="10.2" y="5.2" width="1.6" height="11.8"/><circle cx="12.0" cy="18.5" r="2.6"/><rect x="14.2" y="6.4" width="1.6" height="12.1"/><circle cx="16.0" cy="16" r="2.6"/><rect x="18.2" y="4.0" width="1.6" height="12.0"/><circle cx="20.0" cy="19" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="13.8"/><polygon points="6.2,4.0 10.2,5.2 14.2,6.4 18.2,4.0 22.2,5.2 22.2,7.7 18.2,6.5 14.2,8.9 10.2,7.7 6.2,6.5"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="8.0" cy="17" r="2.6"/><rect x="10.2" y="5.2" width="1.6" height="11.8"/><circle cx="12.0" cy="18.5" r="2.6"/><rect x="14.2" y="6.4" width="1.6" height="12.1"/><circle cx="16.0" cy="16" r="2.6"/><rect x="18.2" y="4.0" width="1.6" height="12.0"/><circle cx="20.0" cy="19" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="13.8"/><polygon points="6.2,4.0 10.2,5.2 14.2,6.4 18.2,4.0 22.2,5.2 22.2,7.7 18.2,6.5 14.2,8.9 10.2,7.7 6.2,6.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="8.0" cy="17" r="2.6"/><rect x="10.2" y="5.2" width="1.6" height="11.8"/><circle cx="12.0" cy="18.5" r="2.6"/><rect x="14.2" y="6.4" width="1.6" height="12.1"/><circle cx="16.0" cy="16" r="2.6"/><rect x="18.2" y="4.0" width="1.6" height="12.0"/><circle cx="20.0" cy="19" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="13.8"/><polygon points="6.2,4.0 10.2,5.2 14.2,6.4 18.2,4.0 22.2,5.2 22.2,7.7 18.2,6.5 14.2,8.9 10.2,7.7 6.2,6.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="8.0" cy="17" r="2.6"/><rect x="10.2" y="5.2" width="1.6" height="11.8"/><circle cx="12.0" cy="18.5" r="2.6"/><rect x="14.2" y="6.4" width="1.6" height="12.1"/><circle cx="16.0" cy="16" r="2.6"/><rect x="18.2" y="4.0" width="1.6" height="12.0"/><circle cx="20.0" cy="19" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="13.8"/><polygon points="6.2,4.0 10.2,5.2 14.2,6.4 18.2,4.0 22.2,5.2 22.2,7.7 18.2,6.5 14.2,8.9 10.2,7.7 6.2,6.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="8.0" cy="17" r="2.6"/><rect x="10.2" y="5.2" width="1.6" height="11.8"/><circle cx="12.0" cy="18.5" r="2.6"/><rect x="14.2" y="6.4" width="1.6" height="12.1"/><circle cx="16.0" cy="16" r="2.6"/><rect x="18.2" y="4.0" width="1.6" height="12.0"/><circle cx="20.0" cy="19" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="13.8"/><polygon points="6.2,4.0 10.2,5.2 14.2,6.4 18.2,4.0 22.2,5.2 22.2,7.7 18.2,6.5 14.2,8.9 10.2,7.7 6.2,6.5"/><polygon points="6.2,8.0 10.2,9.2 14.2,10.4 18.2,8.0 22.2,9.2 22.2,11.7 18.2,10.5 14.2,12.9 10.2,11.7 6.2,10.5"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="8.0" cy="17" r="2.6"/><rect x="10.2" y="5.2" width="1.6" height="11.8"/><circle cx="12.0" cy="18.5" r="2.6"/><rect x="14.2" y="6.4" width="1.6" height="12.1"/><circle cx="16.0" cy="16" r="2.6"/><rect x="18.2" y="4.0" width="1.6" height="12.0"/><circle cx="20.0" cy="19" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="13.8"/><polygon points="6.2,4.0 10.2,5.2 14.2,6.4 18.2,4.0 22.2,5.2 22.2,7.7 18.2,6.5 14.2,8.9 10.2,7.7 6.2,6.5"/><polygon points="6.2,8.0 10.2,9.2 14.2,10.4 18.2,8.0 22.2,9.2 22.2,11.7 18.2,10.5 14.2,12.9 10.2,11.7 6.2,10.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="8.0" cy="17" r="2.6"/><rect x="10.2" y="5.2" width="1.6" height="11.8"/><circle cx="12.0" cy="18.5" r="2.6"/><rect x="14.2" y="6.4" width="1.6" height="12.1"/><circle cx="16.0" cy="16" r="2.6"/><rect x="18.2" y="4.0" width="1.6" height="12.0"/><circle cx="20.0" cy="19" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="13.8"/><polygon points="6.2,4.0 10.2,5.2 14.2,6.4 18.2,4.0 22.2,5.2 22.2,7.7 18.2,6.5 14.2,8.9 10.2,7.7 6.2,6.5"/><polygon points="6.2,8.0 10.2,9.2 14.2,10.4 18.2,8.0 22.2,9.2 22.2,11.7 18.2,10.5 14.2,12.9 10.2,11.7 6.2,10.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="4.0" cy="19" r="2.6"/><rect x="6.2" y="4.0" width="1.6" height="15.0"/><circle cx="8.0" cy="17" r="2.6"/><rect x="10.2" y="5.2" width="1.6" height="11.8"/><circle cx="12.0" cy="18.5" r="2.6"/><rect x="14.2" y="6.4" width="1.6" height="12.1"/><circle cx="16.0" cy="16" r="2.6"/><rect x="18.2" y="4.0" width="1.6" height="12.0"/><circle cx="20.0" cy="19" r="2.6"/><rect x="22.2" y="5.2" width="1.6" height="13.8"/><polygon points="6.2,4.0 10.2,5.2 14.2,6.4 18.2,4.0 22.2,5.2 22.2,7.7 18.2,6.5 14.2,8.9 10.2,7.7 6.2,6.5"/><polygon points="6.2,8.0 10.2,9.2 14.2,10.4 18.2,8.0 22.2,9.2 22.2,11.7 18.2,10.5 14.2,12.9 10.2,11.7 6.2,10.5"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7.5" cy="18" r="3.3"/><line x1="10.6" y1="17" x2="10.6" y2="4"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><g transform="scale(1,-1) translate(0,-24)"><circle cx="7.5" cy="18" r="3.3"/><line x1="10.6" y1="17" x2="10.6" y2="4"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><g transform="scale(-1,1) translate(-24,0)"><circle cx="7.5" cy="18" r="3.3"/><line x1="10.6" y1="17" x2="10.6" y2="4"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="7.5" cy="18" r="3.3"/><line x1="10.6" y1="17" x2="10.6" y2="4"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="13" rx="5.2" ry="3.6" transform="rotate(-15 12 13)"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="13" rx="5.2" ry="3.6" transform="rotate(-8 12 13)"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="13" rx="5.2" ry="3.6" transform="rotate(0 12 13)"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="13" rx="5.2" ry="3.6" transform="rotate(8 12 13)"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="13" rx="5.2" ry="3.6" transform="rotate(15 12 13)"/></svg>`,
-            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><g transform="rotate(-10 10 13)"><ellipse cx="10" cy="13" rx="4" ry="3"/><line x1="4" y1="9" x2="4" y2="17"/><line x1="16" y1="9" x2="16" y2="17"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><g transform="rotate(0 10 13)"><ellipse cx="10" cy="13" rx="4" ry="3"/><line x1="4" y1="9" x2="4" y2="17"/><line x1="16" y1="9" x2="16" y2="17"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><g transform="rotate(10 10 13)"><ellipse cx="10" cy="13" rx="4" ry="3"/><line x1="4" y1="9" x2="4" y2="17"/><line x1="16" y1="9" x2="16" y2="17"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="translate(-1.5,-1) scale(0.82)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g><g transform="translate(6.5,1) scale(0.82)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><g transform="translate(-1.5,-1) scale(0.82)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g><g transform="translate(6.5,1) scale(0.82)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><g transform="translate(-1.5,-1) scale(0.82)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g><g transform="translate(6.5,1) scale(0.82)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><g transform="translate(-1.5,-1) scale(0.82)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g><g transform="translate(6.5,1) scale(0.82)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="translate(-2,-1) scale(0.62)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g><g transform="translate(4.5,0.5) scale(0.62)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g><g transform="translate(11,-0.5) scale(0.62)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><g transform="translate(-2,-1) scale(0.62)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g><g transform="translate(4.5,0.5) scale(0.62)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g><g transform="translate(11,-0.5) scale(0.62)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><g transform="translate(-2,-1) scale(0.62)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g><g transform="translate(4.5,0.5) scale(0.62)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g><g transform="translate(11,-0.5) scale(0.62)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><g transform="translate(-2,-1) scale(0.62)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g><g transform="translate(4.5,0.5) scale(0.62)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g><g transform="translate(11,-0.5) scale(0.62)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6.5" cy="18" r="3.2"/><rect x="8.9" y="4" width="1.8" height="14"/><g transform="translate(12.5,10) scale(0.55)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(1,-1) translate(0,-24)"><circle cx="6.5" cy="18" r="3.2"/><rect x="8.9" y="4" width="1.8" height="14"/><g transform="translate(12.5,10) scale(0.55)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,1) translate(-24,0)"><circle cx="6.5" cy="18" r="3.2"/><rect x="8.9" y="4" width="1.8" height="14"/><g transform="translate(12.5,10) scale(0.55)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g></g></svg>`,
-            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="scale(-1,-1) translate(-24,-24)"><circle cx="6.5" cy="18" r="3.2"/><rect x="8.9" y="4" width="1.8" height="14"/><g transform="translate(12.5,10) scale(0.55)"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></g></g></svg>`,
+            // --- Cassette tapes ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.90"/><circle cx="17" cy="12" r="0.90"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="3.4" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="1.8" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="1.09"/><circle cx="17" cy="12" r="0.75"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="1.8" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="3.4" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.75"/><circle cx="17" cy="12" r="1.09"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="rotate(-7 12 12)"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.90"/><circle cx="17" cy="12" r="0.90"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/></g></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="rotate(7 12 12)"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.90"/><circle cx="17" cy="12" r="0.90"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/></g></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.90"/><circle cx="17" cy="12" r="0.90"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/><circle cx="3.4" cy="6.2" r="0.55" fill="var(--bg-tertiary)"/><circle cx="20.6" cy="6.2" r="0.55" fill="var(--bg-tertiary)"/><circle cx="3.4" cy="17.8" r="0.55" fill="var(--bg-tertiary)"/><circle cx="20.6" cy="17.8" r="0.55" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="3.8" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="1.3" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="1.22"/><circle cx="17" cy="12" r="0.75"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="1.3" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="3.8" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.75"/><circle cx="17" cy="12" r="1.22"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.90"/><circle cx="17" cy="12" r="0.90"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/><path d="M9.8 12h4.4" stroke="var(--bg-tertiary)" stroke-width="1.1"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.90"/><circle cx="17" cy="12" r="0.90"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/><rect x="3.5" y="5.6" width="17" height="3.6" rx="0.6" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="3.1" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="3.1" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.99"/><circle cx="17" cy="12" r="0.99"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/><rect x="1.5" y="4" width="21" height="2.2" rx="1" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><g transform="rotate(-4 12 12)"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.90"/><circle cx="17" cy="12" r="0.90"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/><circle cx="12" cy="7" r="1.1" fill="var(--bg-tertiary)"/></g></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="5" width="22" height="14" rx="1.6"/><circle cx="7" cy="12" r="2.5" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="2.5" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.80"/><circle cx="17" cy="12" r="0.80"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="1.96" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="1.96" fill="var(--bg-tertiary)"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/><rect x="9" y="9.6" width="6" height="4.8" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            // --- Boomboxes ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="7" width="22" height="13" rx="1.6"/><path d="M3.5 7 L6 1.5 M20.5 7 L18 1.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="6.5" cy="14" r="3.6" fill="var(--bg-tertiary)"/><circle cx="17.5" cy="14" r="3.6" fill="var(--bg-tertiary)"/><circle cx="6.5" cy="14" r="1.4"/><circle cx="17.5" cy="14" r="1.4"/><rect x="10.3" y="8.4" width="3.4" height="1.5" rx="0.4" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="7" width="22" height="13" rx="1.6"/><path d="M3.5 7 L6 1.5 M20.5 7 L18 1.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="5.6" cy="14" r="2.9" fill="var(--bg-tertiary)"/><circle cx="18.4" cy="14" r="2.9" fill="var(--bg-tertiary)"/><circle cx="5.6" cy="14" r="1.1"/><circle cx="18.4" cy="14" r="1.1"/><rect x="9.4" y="11.6" width="5.2" height="4.5" rx="0.6" fill="var(--bg-tertiary)"/><circle cx="11.2" cy="13.9" r="1"/><circle cx="12.8" cy="13.9" r="1"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 1h7v3.4h-7z"/><rect x="2" y="5.5" width="20" height="17" rx="1.8"/><circle cx="7.5" cy="15" r="3.8" fill="var(--bg-tertiary)"/><circle cx="16.5" cy="15" r="3.8" fill="var(--bg-tertiary)"/><circle cx="7.5" cy="15" r="1.5"/><circle cx="16.5" cy="15" r="1.5"/><rect x="10" y="7.2" width="4" height="1.4" rx="0.4" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="6.5" width="22" height="14" rx="1.6"/><path d="M12 6.5 L12 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="5.8" cy="13.5" r="2.8" fill="var(--bg-tertiary)"/><circle cx="18.2" cy="13.5" r="2.8" fill="var(--bg-tertiary)"/><circle cx="5.8" cy="13.5" r="1.1"/><circle cx="18.2" cy="13.5" r="1.1"/><rect x="9.5" y="11.5" width="2.4" height="4" rx="0.4" fill="var(--bg-tertiary)"/><rect x="12.1" y="11.5" width="2.4" height="4" rx="0.4" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="7" width="22" height="13" rx="1.6"/><circle cx="12" cy="14" r="4" fill="var(--bg-tertiary)"/><circle cx="12" cy="14" r="1.5"/><circle cx="4.2" cy="10.3" r="1.1" fill="var(--bg-tertiary)"/><circle cx="19.8" cy="10.3" r="1.1" fill="var(--bg-tertiary)"/><rect x="3.5" y="17.2" width="6" height="1.3" rx="0.4" fill="var(--bg-tertiary)"/><rect x="14.5" y="17.2" width="6" height="1.3" rx="0.4" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="7" width="22" height="13" rx="1.6"/><path d="M4 7 L7 2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M20 7 L17 2" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="6.5" cy="14" r="3.4" fill="var(--bg-tertiary)"/><circle cx="17.5" cy="14" r="3.4" fill="var(--bg-tertiary)"/><rect x="10.4" y="12" width="3.2" height="4" rx="0.4" fill="var(--bg-tertiary)"/><rect x="2" y="18.6" width="3" height="0.9" fill="var(--bg-tertiary)"/><rect x="6" y="18.6" width="3" height="0.9" fill="var(--bg-tertiary)"/><rect x="10" y="18.6" width="3" height="0.9" fill="var(--bg-tertiary)"/><rect x="14" y="18.6" width="3" height="0.9" fill="var(--bg-tertiary)"/><rect x="18" y="18.6" width="3" height="0.9" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="8" width="20" height="12" rx="1.6"/><circle cx="7" cy="14" r="3.2" fill="var(--bg-tertiary)"/><circle cx="17" cy="14" r="3.2" fill="var(--bg-tertiary)"/><circle cx="7" cy="14" r="1.3"/><circle cx="17" cy="14" r="1.3"/><rect x="3" y="4" width="18" height="3.4" rx="1"/><circle cx="6" cy="5.7" r="0.7" fill="var(--bg-tertiary)"/><circle cx="18" cy="5.7" r="0.7" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="6" width="22" height="15" rx="1.6"/><path d="M18 6 L21.5 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="6" cy="13.6" r="3.4" fill="var(--bg-tertiary)"/><circle cx="6" cy="13.6" r="1.3"/><rect x="10.5" y="10" width="9" height="7" rx="0.7" fill="var(--bg-tertiary)"/><rect x="12" y="11.5" width="1.4" height="4" fill="currentColor"/><rect x="14.2" y="12.4" width="1.4" height="3.1" fill="currentColor"/><rect x="16.4" y="11" width="1.4" height="4.5" fill="currentColor"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="8.5" width="21" height="10.5" rx="1.5"/><path d="M3.5 8.5 L5.5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/><path d="M20.5 8.5 L18.5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/><circle cx="6.3" cy="13.7" r="2.6" fill="var(--bg-tertiary)"/><circle cx="17.7" cy="13.7" r="2.6" fill="var(--bg-tertiary)"/><rect x="10" y="11.7" width="4" height="3.8" rx="0.4" fill="var(--bg-tertiary)"/><rect x="2.5" y="1" width="6" height="1.6" rx="0.6"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="4.5" width="22" height="16.5" rx="1.8"/><circle cx="7" cy="14.5" r="4" fill="var(--bg-tertiary)"/><circle cx="17" cy="14.5" r="4" fill="var(--bg-tertiary)"/><circle cx="7" cy="14.5" r="1.6"/><circle cx="17" cy="14.5" r="1.6"/><rect x="2.4" y="6.4" width="19.2" height="4" rx="0.6" fill="var(--bg-tertiary)"/><rect x="4" y="7.6" width="1.2" height="1.6"/><rect x="6" y="7" width="1.2" height="2.2"/><rect x="8" y="7.9" width="1.2" height="1.3"/><rect x="10" y="7.3" width="1.2" height="1.9"/></svg>`,
+            // --- CDs / vinyl ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="11"/><circle cx="12" cy="12" r="3.2" fill="var(--bg-tertiary)"/><circle cx="12" cy="12" r="1"/><path d="M12 1A11 11 0 0 1 21.5 9" stroke="var(--bg-tertiary)" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="11"/><circle cx="12" cy="12" r="3.2" fill="var(--bg-tertiary)"/><circle cx="12" cy="12" r="1"/><path d="M3.5 6A11 11 0 0 1 8.5 2" stroke="var(--bg-tertiary)" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M16.5 22A11 11 0 0 0 22 17" stroke="var(--bg-tertiary)" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="11" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="8.6" stroke="var(--bg-tertiary)"/><circle cx="12" cy="12" r="6.5" stroke="var(--bg-tertiary)"/><circle cx="12" cy="12" r="4.4" stroke="var(--bg-tertiary)"/><circle cx="12" cy="12" r="2.4" fill="var(--bg-tertiary)" stroke="none"/><circle cx="12" cy="12" r="0.8" fill="currentColor" stroke="none"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="10.5" cy="14" r="9" fill="var(--bg-tertiary)" stroke="currentColor" stroke-width="1.6"/><circle cx="10.5" cy="14" r="2" fill="var(--bg-tertiary)" stroke="currentColor" stroke-width="1.2"/><circle cx="10.5" cy="14" r="0.6"/><path d="M18 6 L23 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="23" cy="2" r="1.2"/><path d="M18 6 L15.5 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/><rect x="1" y="20" width="22" height="2.4" rx="1"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="2" width="21" height="20" rx="1.6"/><circle cx="12" cy="12" r="6.2" fill="var(--bg-tertiary)"/><rect x="10.3" y="8.8" width="3.4" height="6.4" rx="0.4"/><circle cx="4" cy="4.4" r="0.5" fill="var(--bg-tertiary)"/><circle cx="20" cy="4.4" r="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 1h14l6 6v16H2z"/><circle cx="17" cy="15" r="7" fill="var(--bg-tertiary)" stroke="currentColor" stroke-width="1.4"/><circle cx="17" cy="15" r="1.7"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="9" r="8" opacity="0.55"/><circle cx="15" cy="15" r="8"/><circle cx="15" cy="15" r="2.4" fill="var(--bg-tertiary)"/><circle cx="15" cy="15" r="0.8"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="3" width="21" height="18" rx="2"/><circle cx="12" cy="12" r="7.2" fill="var(--bg-tertiary)"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="12" r="0.7" fill="var(--bg-tertiary)"/><rect x="2.5" y="18.8" width="6" height="1.2" rx="0.4" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="11"/><circle cx="12" cy="12" r="8.5" fill="none" stroke="var(--bg-tertiary)" stroke-width="0.6" stroke-dasharray="1.4 1.6"/><circle cx="12" cy="12" r="3" fill="var(--bg-tertiary)"/><circle cx="12" cy="12" r="0.9"/></svg>`,
+            // --- Portable players / walkman / MP3 / smart speaker ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="1" width="14" height="22" rx="2.8"/><rect x="6.8" y="3.2" width="10.4" height="8.6" rx="0.9" fill="var(--bg-tertiary)"/><circle cx="12" cy="18" r="4.5" fill="var(--bg-tertiary)"/><circle cx="12" cy="18" r="1.5"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="4.5" width="22" height="15" rx="2.2"/><rect x="5.5" y="7.3" width="13" height="7" rx="0.9" fill="var(--bg-tertiary)"/><circle cx="9.5" cy="10.8" r="1.9"/><circle cx="14.5" cy="10.8" r="1.9"/><rect x="3" y="16.6" width="3.4" height="1.6" rx="0.4" fill="var(--bg-tertiary)"/><rect x="7.4" y="16.6" width="3.4" height="1.6" rx="0.4" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="5.5" width="19" height="14" rx="2.2"/><rect x="4.5" y="8" width="12" height="6" rx="0.8" fill="var(--bg-tertiary)"/><circle cx="7.6" cy="11" r="1.5"/><circle cx="12.6" cy="11" r="1.5"/><rect x="20.4" y="10.4" width="3.4" height="2" rx="1"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="3" width="21" height="19" rx="2.2"/><circle cx="12" cy="11.5" r="7" fill="var(--bg-tertiary)"/><circle cx="12" cy="11.5" r="1.8"/><rect x="9.5" y="0.8" width="6.5" height="2.2" rx="0.6"/><circle cx="19.5" cy="19" r="1.2" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="1" width="18" height="22" rx="3"/><rect x="5.5" y="3.7" width="13" height="10.4" rx="1" fill="var(--bg-tertiary)"/><path d="M9.8 6.4 L15 9 L9.8 11.6Z"/><rect x="4.5" y="15.6" width="15" height="1.4" rx="0.5" fill="var(--bg-tertiary)"/><rect x="4.5" y="18" width="9" height="1.4" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4a6 6 0 0 1 12 0v14a6 6 0 0 1-12 0z"/><ellipse cx="12" cy="18" rx="6" ry="4" fill="var(--bg-tertiary)"/><circle cx="12" cy="6.2" r="1" fill="var(--bg-tertiary)"/><path d="M8 7.5a4 4 0 0 0 8 0" stroke="var(--bg-tertiary)" stroke-width="1" fill="none"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="2" width="10" height="20" rx="3.6"/><rect x="8.6" y="4" width="6.8" height="4.4" rx="0.7" fill="var(--bg-tertiary)"/><circle cx="12" cy="15" r="3.4" fill="var(--bg-tertiary)"/><circle cx="12" cy="15" r="1.1"/><circle cx="12" cy="19.5" r="0.9" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="6.5" width="20" height="12" rx="2"/><path d="M3.5 6.5 L4.5 2.5 M20.5 6.5 L19.5 2.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/><circle cx="7" cy="12.5" r="2.6" fill="var(--bg-tertiary)"/><rect x="11" y="10.2" width="9" height="4.6" rx="0.6" fill="var(--bg-tertiary)"/><rect x="12.4" y="11.4" width="1.2" height="2.2"/><rect x="14.4" y="11.9" width="1.2" height="1.7"/><rect x="16.4" y="11" width="1.2" height="2.6"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="2" width="16" height="20" rx="2.4"/><rect x="6" y="4.2" width="12" height="7.4" rx="0.8" fill="var(--bg-tertiary)"/><rect x="7.4" y="8.2" width="1.4" height="2.4" fill="currentColor"/><rect x="9.6" y="6.8" width="1.4" height="3.8" fill="currentColor"/><rect x="11.8" y="7.6" width="1.4" height="3" fill="currentColor"/><rect x="14" y="6" width="1.4" height="4.6" fill="currentColor"/><rect x="16.2" y="8.6" width="1.4" height="2" fill="currentColor"/><circle cx="12" cy="16.5" r="2.6" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="3" width="20" height="18" rx="2"/><rect x="4" y="5" width="16" height="9" rx="0.8" fill="var(--bg-tertiary)"/><path d="M6 12l2-3 2 2 3-4 2 3 3-2 2 4" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="9" y="16.5" width="6" height="2.2" rx="1" fill="var(--bg-tertiary)"/></svg>`,
+            // --- Headphones / earbuds ---
+            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 16v-4a9 9 0 0 1 18 0v4"/><rect x="1" y="15" width="4.6" height="7.4" rx="2.1" fill="currentColor" stroke="none"/><rect x="18.4" y="15" width="4.6" height="7.4" rx="2.1" fill="currentColor" stroke="none"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4.5 15v-2.5a7.5 7.5 0 0 1 15 0v2.5"/><circle cx="4" cy="17" r="3" fill="currentColor" stroke="none"/><circle cx="20" cy="17" r="3" fill="currentColor" stroke="none"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5.5" cy="5.5" r="3"/><circle cx="18.5" cy="5.5" r="3"/><path d="M5.5 8.5 C 5.5 16, 9.5 17, 9.5 22" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M18.5 8.5 C 18.5 16, 14 17, 12 18.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="16" width="10" height="7" rx="1.6" fill="var(--bg-tertiary)" stroke="currentColor" stroke-width="1.4"/><circle cx="9.5" cy="6" r="2.7"/><circle cx="14.5" cy="6" r="2.7"/><rect x="8.7" y="9" width="1.6" height="7" rx="0.6"/><rect x="13.7" y="9" width="1.6" height="7" rx="0.6"/></svg>`,
+            // --- Microphones ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="8.5" y="1.5" width="7" height="13" rx="3.5"/><path d="M7.5 6.5h9M7.5 9.5h9M7.5 12.5h9" stroke="var(--bg-tertiary)" stroke-width="1"/><path d="M5.5 12.5a6.5 6.5 0 0 0 13 0" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="1.8"/><line x1="7.5" y1="23" x2="16.5" y2="23" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="9" y="1" width="6" height="12" rx="3"/><path d="M6 12a6 6 0 0 0 12 0" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="12" y1="18" x2="12" y2="21" stroke="currentColor" stroke-width="1.8"/><path d="M17 5 L21.5 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M17 8 L22 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><rect x="6" y="21.5" width="12" height="1.8" rx="0.8"/></svg>`,
+            // --- Guitars / strings ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="9.5" cy="16" r="6.4"/><circle cx="11" cy="8.6" r="4.1"/><rect x="10" y="0.5" width="2.2" height="9.6" rx="0.7"/><circle cx="9.5" cy="16" r="2" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 17c0-2.4 1.2-4.2 3.6-4.8l1.2-1.2c1.8-1.8 4.8-1.8 6 0l1.2 1.2c1.9.7 3 2.4 2.4 4.6-.6 2.4-2.8 3.6-5 3.2-1.2 2.2-3.8 2.8-5.8 1.2-1.7-1.3-2.1-3.2-1.2-4.2z"/><rect x="10.8" y="0.4" width="2.2" height="11.6" rx="0.6"/><circle cx="7.5" cy="19.6" r="1.2" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c6 0 9.5 5 9.5 10.5 0 7-6 11.5-9.5 13-3.5-1.5-9.5-6-9.5-13C2.5 6 6 1 12 1z"/><circle cx="12" cy="11" r="1.7" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="17" r="6"/><rect x="8.8" y="0.6" width="2.4" height="16" rx="0.7"/><rect x="8.2" y="0.6" width="1.1" height="5" fill="var(--bg-tertiary)"/><rect x="10.5" y="0.6" width="1.1" height="5" fill="var(--bg-tertiary)"/><circle cx="7" cy="17" r="1.9" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="8.5" cy="16.5" r="5.3"/><rect x="7.4" y="2.4" width="2.2" height="14.4" rx="0.6"/><rect x="5.5" y="0.6" width="6" height="2.6" rx="0.7"/><circle cx="8.5" cy="16.5" r="1.6" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="9.5" y="9" width="3.4" height="15" rx="1"/><path d="M7.5 4c0-2 2-3.4 4.5-3.4S16.5 2 16.5 4v5H7.5z"/><circle cx="6.2" cy="2.8" r="1.3"/><circle cx="17.8" cy="2.8" r="1.3"/><circle cx="6.2" cy="7" r="1.3"/><circle cx="17.8" cy="7" r="1.3"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="8" cy="15" r="5.4"/><circle cx="8" cy="15" r="1.7" fill="var(--bg-tertiary)"/><ellipse cx="3.8" cy="12" rx="0.8" ry="2.2" fill="var(--bg-tertiary)"/><ellipse cx="12.2" cy="12" rx="0.8" ry="2.2" fill="var(--bg-tertiary)"/><rect x="9" y="1" width="2" height="14.5" rx="0.6"/><rect x="6" y="0.4" width="8" height="1.8" rx="0.6"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="15" r="8" fill="var(--bg-tertiary)" stroke="currentColor" stroke-width="2"/><rect x="7.8" y="8" width="2.4" height="14" rx="0.6"/><circle cx="9" cy="15" r="1.6"/><circle cx="15.4" cy="4.6" r="1.1"/><circle cx="17.6" cy="6.8" r="1.1"/><circle cx="18.4" cy="9.8" r="1.1"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 22V6c0-2.8 2.5-5 6-5"/><path d="M3 22h6"/><path d="M4.6 7v13M6.4 6v14M8.2 6.3v13.4"/><path d="M9 2v20" stroke-width="1.2"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 11.5c-2.7.6-4.3 3-3.9 5.7.5 2.8 3 4.7 5.6 4.2 2.2-.4 3.7-2.2 3.8-4.3.6.3 1.1.3 1.5-.1.7-.7.5-1.9-.3-2.6-.6-2.2-2.1-3.7-3.8-4.3.4-1.4-.3-2.8-1.7-3.2-1.4-.4-2.7.5-3 2-.3 1.1.3 2.1 1.3 2.6z"/><rect x="10.4" y="0.5" width="1.8" height="11.5" rx="0.5"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 13c-3.2.7-5.1 3.6-4.6 6.8.5 3.3 3.6 5.6 6.8 5 2.6-.5 4.4-2.6 4.6-5.2.7.3 1.3.3 1.8-.1.8-.8.6-2.3-.4-3.1-.6-2.6-2.5-4.4-4.6-5.1.5-1.7-.4-3.3-2-3.8-1.6-.4-3.2.6-3.6 2.4-.3 1.3.4 2.5 1.6 3.1z"/><rect x="8.7" y="0.6" width="2.1" height="14" rx="0.5"/><path d="M12 16v6" stroke="var(--bg-tertiary)" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+            // --- Keys / wind / percussion ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="5" width="22" height="15" rx="1.2"/><rect x="3.9" y="5" width="2" height="9.4"/><rect x="10" y="5" width="2" height="9.4"/><rect x="16.1" y="5" width="2" height="9.4"/><rect x="1.4" y="14.4" width="3" height="5.4" fill="var(--bg-tertiary)"/><rect x="7.5" y="14.4" width="3" height="5.4" fill="var(--bg-tertiary)"/><rect x="13.6" y="14.4" width="3" height="5.4" fill="var(--bg-tertiary)"/><rect x="19.7" y="14.4" width="2.3" height="5.4" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="8" rx="10.5" ry="3.5"/><path d="M1.5 8v9a10.5 3.5 0 0 0 21 0V8z"/><path d="M3 9.4l1.6 7.2M7.3 10.8l1 7.6M12 11.3v7.6M16.7 10.8l-1 7.6M21 9.4l-1.6 7.2" stroke="var(--bg-tertiary)" stroke-width="0.9"/><circle cx="12" cy="8" r="1" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="8" width="22" height="9" rx="4.5"/><circle cx="6.5" cy="12.5" r="2" fill="var(--bg-tertiary)"/><circle cx="12" cy="12.5" r="2" fill="var(--bg-tertiary)"/><circle cx="17.5" cy="12.5" r="2" fill="var(--bg-tertiary)"/><path d="M4 6.5h4M10 6.5h4M16 6.5h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h5l1.5-6 2 12 2-9 1.5 4h8"/><circle cx="4" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg>`,
+            // --- Speakers / amps ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="1" width="12" height="22" rx="1.6"/><circle cx="12" cy="7.5" r="3.2" fill="var(--bg-tertiary)"/><circle cx="12" cy="7.5" r="1.1"/><circle cx="12" cy="17" r="4.4" fill="var(--bg-tertiary)"/><circle cx="12" cy="17" r="1.6"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="9.5" height="20" rx="1.4"/><circle cx="6.7" cy="7" r="2.6" fill="var(--bg-tertiary)"/><circle cx="6.7" cy="15" r="3.2" fill="var(--bg-tertiary)"/><rect x="12.5" y="2" width="9.5" height="20" rx="1.4"/><circle cx="17.2" cy="7" r="2.6" fill="var(--bg-tertiary)"/><circle cx="17.2" cy="15" r="3.2" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="3" width="20" height="18" rx="1.6"/><rect x="4" y="5" width="16" height="7" rx="0.9" fill="var(--bg-tertiary)"/><path d="M6 10l1.4-2.4 1.6 3 1.6-4 1.6 3.4 1.6-2.4 1.6 2.4 1.6-1.6" stroke="currentColor" stroke-width="0.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="16.4" r="1.4"/><circle cx="10" cy="16.4" r="1.4"/><circle cx="14" cy="16.4" r="1.4"/><circle cx="18" cy="16.4" r="1.4"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="9" width="18" height="13" rx="1.4"/><rect x="3" y="1" width="18" height="7.4" rx="1.4"/><circle cx="7" cy="4.7" r="1.6" fill="var(--bg-tertiary)"/><circle cx="12" cy="4.7" r="1.6" fill="var(--bg-tertiary)"/><circle cx="17" cy="4.7" r="1.6" fill="var(--bg-tertiary)"/><circle cx="12" cy="15.5" r="5" fill="var(--bg-tertiary)"/><circle cx="12" cy="15.5" r="1.8"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.6"/><circle cx="12" cy="12" r="8.2" fill="var(--bg-tertiary)"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="12" cy="12" r="1.3"/></svg>`,
+            // --- Radios ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="7.5" width="22" height="14.5" rx="1.6"/><path d="M17.5 7.5 L21 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="7" cy="14.7" r="3.6" fill="var(--bg-tertiary)"/><circle cx="7" cy="14.7" r="1.2"/><rect x="12.5" y="11.6" width="8.5" height="2.2" rx="0.7" fill="var(--bg-tertiary)"/><rect x="12.5" y="16" width="8.5" height="2.2" rx="0.7" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="18" rx="1.4"/><rect x="6" y="1" width="1.2" height="4"/><circle cx="12" cy="10" r="4.4" fill="var(--bg-tertiary)"/><circle cx="12" cy="10" r="1.3"/><rect x="7" y="16.4" width="10" height="1.4" rx="0.5" fill="var(--bg-tertiary)"/><rect x="7" y="18.6" width="10" height="1.4" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="6" width="22" height="16" rx="1.6"/><circle cx="12" cy="13.6" r="6.4" fill="var(--bg-tertiary)"/><circle cx="12" cy="13.6" r="1.5"/><line x1="12" y1="13.6" x2="16" y2="10.4" stroke="currentColor" stroke-width="1.3"/><circle cx="4.8" cy="9" r="0.7" fill="var(--bg-tertiary)"/><circle cx="19.2" cy="9" r="0.7" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 10 L12 1 L20 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="10" width="20" height="12" rx="1.6"/><circle cx="7.5" cy="16" r="2.6" fill="var(--bg-tertiary)"/><circle cx="16.5" cy="16" r="2.6" fill="var(--bg-tertiary)"/><circle cx="7.5" cy="16" r="0.9"/><circle cx="16.5" cy="16" r="0.9"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="9" width="21" height="12" rx="1.5"/><rect x="6" y="9" width="12" height="6" rx="0.8" fill="var(--bg-tertiary)"/><path d="M4 9c0-4.5 3.5-8 8-8s8 3.5 8 8" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="6" cy="18" r="1.6" fill="var(--bg-tertiary)"/><circle cx="12" cy="18" r="1.6" fill="var(--bg-tertiary)"/><circle cx="18" cy="18" r="1.6" fill="var(--bg-tertiary)"/></svg>`,
+            // --- DJ / mixing ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="3" width="22" height="18" rx="1.4"/><rect x="3" y="5.5" width="3" height="13" rx="1" fill="var(--bg-tertiary)"/><rect x="7.4" y="5.5" width="3" height="13" rx="1" fill="var(--bg-tertiary)"/><rect x="11.8" y="5.5" width="3" height="13" rx="1" fill="var(--bg-tertiary)"/><rect x="16.2" y="5.5" width="3" height="13" rx="1" fill="var(--bg-tertiary)"/><rect x="2.4" y="9" width="2.2" height="1.6"/><rect x="6.8" y="13" width="2.2" height="1.6"/><rect x="11.2" y="7" width="2.2" height="1.6"/><rect x="15.6" y="15" width="2.2" height="1.6"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="1.6"/><circle cx="12" cy="11" r="7" fill="var(--bg-tertiary)"/><circle cx="12" cy="11" r="2.2"/><rect x="4" y="18.4" width="16" height="1.8" rx="0.6" fill="var(--bg-tertiary)"/></svg>`,
+            // --- Misc / accessories ---
+            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 1v11M18 1v11"/><path d="M6 12a6 6 0 0 0 12 0"/><line x1="12" y1="12" x2="12" y2="23"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="8" width="3.4" height="14" rx="1.2"/><rect x="6.7" y="2" width="3.4" height="20" rx="1.2"/><rect x="12.4" y="5.5" width="3.4" height="16.5" rx="1.2"/><rect x="18.1" y="0.5" width="3.4" height="21.5" rx="1.2"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M1 12h2.4M6 6v12M11 1.5v21M16 6v12M20.6 9v6M23 12h0"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 2h2v6a3 3 0 0 1-3 3v9a1 1 0 0 1-2 0v-9a3 3 0 0 1-3-3V2h2v5h1V2h1v5h1V2h1v5h1z"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2.5" y="4.5" width="19" height="15" rx="1.6"/><rect x="4.3" y="12.3" width="2.3" height="2.3" fill="var(--bg-tertiary)"/><rect x="4.3" y="9" width="2.3" height="2.3" fill="var(--bg-tertiary)"/><rect x="4.3" y="15.6" width="2.3" height="2.3" fill="var(--bg-tertiary)"/><rect x="9" y="7.5" width="10.5" height="1.4" rx="0.4" fill="var(--bg-tertiary)"/><rect x="9" y="10.3" width="10.5" height="1.4" rx="0.4" fill="var(--bg-tertiary)"/><rect x="9" y="13.1" width="10.5" height="1.4" rx="0.4" fill="var(--bg-tertiary)"/><rect x="9" y="15.9" width="7" height="1.4" rx="0.4" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 5a2 2 0 0 1 2-2h5l1.5 2H20a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/><circle cx="12" cy="13.5" r="4.6" fill="var(--bg-tertiary)"/><circle cx="12" cy="13.5" r="1.2"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 3h13l4 4v14H2z"/><path d="M13.5 3v4.5H18" fill="none" stroke="var(--bg-tertiary)" stroke-width="1"/><rect x="5" y="9" width="14" height="1.4" fill="var(--bg-tertiary)"/><rect x="5" y="12" width="14" height="1.4" fill="var(--bg-tertiary)"/><rect x="5" y="15" width="9" height="1.4" fill="var(--bg-tertiary)"/></svg>`,
+            // --- Cassette / boombox extras ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.9"/><circle cx="17" cy="12" r="0.9"/><rect x="3" y="6.4" width="6" height="2.4" rx="0.5" fill="var(--bg-tertiary)"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><path d="M4 4 L4 20 M20 4 L20 20" stroke="var(--bg-tertiary)" stroke-width="0.8"/><circle cx="7" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.9"/><circle cx="17" cy="12" r="0.9"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="7" width="22" height="13" rx="1.6"/><path d="M3.5 7 L6 1.5 M20.5 7 L18 1.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="4" y="10" width="6.5" height="7" rx="0.6" fill="var(--bg-tertiary)"/><rect x="13.5" y="10" width="6.5" height="7" rx="0.6" fill="var(--bg-tertiary)"/><circle cx="7.2" cy="13.5" r="1.5"/><circle cx="16.8" cy="13.5" r="1.5"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="9" width="20" height="12" rx="1.6"/><path d="M4.5 9V4.5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2V9" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="7.5" cy="15" r="3" fill="var(--bg-tertiary)"/><circle cx="16.5" cy="15" r="3" fill="var(--bg-tertiary)"/><circle cx="7.5" cy="15" r="1.1"/><circle cx="16.5" cy="15" r="1.1"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="6" width="22" height="15" rx="1.8"/><rect x="3" y="8" width="18" height="4.2" rx="0.6" fill="var(--bg-tertiary)"/><circle cx="7" cy="17" r="3" fill="var(--bg-tertiary)"/><circle cx="17" cy="17" r="3" fill="var(--bg-tertiary)"/><circle cx="7" cy="17" r="1.1"/><circle cx="17" cy="17" r="1.1"/></svg>`,
+            // --- CD / vinyl extras ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="11"/><circle cx="12" cy="12" r="7.5" fill="none" stroke="var(--bg-tertiary)" stroke-width="0.9"/><circle cx="12" cy="12" r="3" fill="var(--bg-tertiary)"/><circle cx="12" cy="12" r="1" /></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="1.6"/><circle cx="12" cy="12" r="7" fill="var(--bg-tertiary)"/><circle cx="12" cy="12" r="6.9" fill="none" stroke="currentColor" stroke-width="0.4"/><circle cx="12" cy="12" r="1.9"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M1.5 3h21v3h-21z"/><path d="M1.5 20h21v1a1.5 1.5 0 0 1-1.5 1.5h-18A1.5 1.5 0 0 1 1.5 21z"/><circle cx="12" cy="12" r="6.6" fill="var(--bg-tertiary)"/><circle cx="12" cy="12" r="1.7"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="11"/><path d="M4 8a9 9 0 0 1 8-5" stroke="var(--bg-tertiary)" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M4.5 16.5a9 9 0 0 0 13 3" stroke="var(--bg-tertiary)" stroke-width="1.2" fill="none" stroke-linecap="round"/><circle cx="12" cy="12" r="2.6" fill="var(--bg-tertiary)"/><circle cx="12" cy="12" r="0.8"/></svg>`,
+            // --- Portable player extras ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="1.5" width="16" height="21" rx="2.6"/><rect x="5.8" y="3.6" width="12.4" height="10" rx="0.9" fill="var(--bg-tertiary)"/><rect x="7.5" y="16.6" width="9" height="1.4" rx="0.5" fill="var(--bg-tertiary)"/><rect x="7.5" y="19" width="6" height="1.4" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="3" width="20" height="18" rx="2"/><circle cx="8" cy="12" r="4.4" fill="var(--bg-tertiary)"/><circle cx="8" cy="12" r="1.3"/><rect x="14.5" y="7" width="5.5" height="2" rx="0.5" fill="var(--bg-tertiary)"/><rect x="14.5" y="10.5" width="5.5" height="2" rx="0.5" fill="var(--bg-tertiary)"/><rect x="14.5" y="14" width="3.5" height="2" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            // --- Headphone extras ---
+            `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><path d="M4 20c-1 0-2-1-2-2v-3c0-1 1-2 2-2"/><path d="M20 20c1 0 2-1 2-2v-3c0-1-1-2-2-2"/><rect x="2" y="13" width="4" height="8" rx="1.6" fill="currentColor" stroke="none"/><rect x="18" y="13" width="4" height="8" rx="1.6" fill="currentColor" stroke="none"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="4" width="6" height="9" rx="3"/><rect x="15" y="4" width="6" height="9" rx="3"/><path d="M6 13v3a6 6 0 0 0 12 0v-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 12a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><rect x="2.5" y="11.5" width="4.2" height="7.5" rx="2.1"/><rect x="17.3" y="11.5" width="4.2" height="7.5" rx="2.1"/><circle cx="4.6" cy="10" r="1" fill="var(--bg-tertiary)"/></svg>`,
+            // --- Microphone extras ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 2a3 3 0 0 1 6 0v9a3 3 0 0 1-6 0z"/><path d="M6.5 10.5a5.5 5.5 0 0 0 11 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="16" x2="12" y2="21" stroke="currentColor" stroke-width="1.8"/><ellipse cx="12" cy="22" rx="4.5" ry="1" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="8.5" y="1" width="7" height="12.5" rx="3.5"/><path d="M6 12v1.5a6 6 0 0 0 12 0V12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><rect x="10.8" y="19" width="2.4" height="4" rx="0.6"/><path d="M2 3 L6.5 6.5 M22 3 L17.5 6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a4 4 0 0 1 4 4v3a4 4 0 0 1-8 0V7a4 4 0 0 1 4-4z"/><path d="M12 3V1M8.5 4l-1-1.6M15.5 4l1-1.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/><path d="M7.5 10v1a4.5 4.5 0 0 0 9 0v-1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="12" y1="15.5" x2="12" y2="20" stroke="currentColor" stroke-width="1.6"/><path d="M8 20h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="9" y="1.5" width="6" height="13" rx="3"/><path d="M6.5 13v1.5a5.5 5.5 0 0 0 11 0V13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><line x1="12" y1="20" x2="12" y2="23" stroke="currentColor" stroke-width="1.7"/><path d="M9 3.5a3 3 0 0 1 6 0" fill="none" stroke="var(--bg-tertiary)" stroke-width="1"/></svg>`,
+            // --- Keys / wind / percussion extras ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="6" rx="8.5" ry="3"/><path d="M3.5 6v10a8.5 3 0 0 0 17 0V6" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="3.5" cy="10.5" r="1.3" fill="var(--bg-tertiary)"/><circle cx="20.5" cy="10.5" r="1.3" fill="var(--bg-tertiary)"/><circle cx="12" cy="15" r="1.3" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 15c0-3 2-5 5-5h10c3 0 5 2 5 5v1c0 3-2 5-5 5H7c-3 0-5-2-5-5z"/><path d="M8 10V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.5" cy="16" r="1.6" fill="var(--bg-tertiary)"/><circle cx="15.5" cy="16" r="1.6" fill="var(--bg-tertiary)"/></svg>`,
+            // --- Speaker / amp extras ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="4" width="20" height="16" rx="1.6"/><circle cx="8" cy="12" r="4.4" fill="var(--bg-tertiary)"/><circle cx="8" cy="12" r="1.5"/><rect x="15" y="7" width="4.5" height="2" rx="0.6" fill="var(--bg-tertiary)"/><rect x="15" y="10.5" width="4.5" height="2" rx="0.6" fill="var(--bg-tertiary)"/><rect x="15" y="14" width="4.5" height="2" rx="0.6" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 1 10 10v6a2 2 0 0 1-2 2h-3v-8h3a8 8 0 0 0-16 0h3v8H4a2 2 0 0 1-2-2v-6A10 10 0 0 1 12 2z"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="5" width="16" height="14" rx="2"/><rect x="6" y="7" width="12" height="4" rx="0.7" fill="var(--bg-tertiary)"/><circle cx="8" cy="14.5" r="1.6"/><circle cx="12" cy="14.5" r="1.6"/><circle cx="16" cy="14.5" r="1.6"/></svg>`,
+            // --- Radio extras ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="8" width="22" height="12" rx="1.6"/><circle cx="6" cy="14" r="3" fill="var(--bg-tertiary)"/><circle cx="6" cy="14" r="1"/><path d="M11 11h9M11 14h9M11 17h5" stroke="var(--bg-tertiary)" stroke-width="1.4" stroke-linecap="round"/><path d="M18 8 L20 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="6" width="18" height="13" rx="1.5"/><rect x="3" y="6" width="18" height="13" rx="1.5" fill="none" stroke="var(--bg-tertiary)" stroke-width="0.5"/><rect x="5.5" y="8.3" width="8" height="4.4" rx="0.5" fill="var(--bg-tertiary)"/><line x1="9.5" y1="8.3" x2="9.5" y2="12.7" stroke="currentColor" stroke-width="0.8"/><circle cx="17.5" cy="10.5" r="2" fill="var(--bg-tertiary)"/><rect x="5.5" y="14.5" width="13" height="1.4" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1v3M8 2.5l1 3M16 2.5l-1 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><rect x="3" y="5" width="18" height="16" rx="1.8"/><circle cx="8.5" cy="13" r="3.4" fill="var(--bg-tertiary)"/><circle cx="8.5" cy="13" r="1.1"/><rect x="13.5" y="9.5" width="6" height="7" rx="0.6" fill="var(--bg-tertiary)"/></svg>`,
+            // --- DJ / mixing extras ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="4" width="22" height="16" rx="1.6"/><rect x="3" y="6.5" width="4" height="11" rx="1" fill="var(--bg-tertiary)"/><rect x="8.5" y="6.5" width="4" height="11" rx="1" fill="var(--bg-tertiary)"/><rect x="14" y="6.5" width="4" height="11" rx="1" fill="var(--bg-tertiary)"/><rect x="19.5" y="6.5" width="2.5" height="11" rx="1" fill="var(--bg-tertiary)"/><circle cx="5" cy="10" r="1.3"/><circle cx="10.5" cy="14" r="1.3"/><circle cx="16" cy="9" r="1.3"/></svg>`,
+            // --- Misc extras ---
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 15l2.5-6 2 4 2-8 2 6 2-2" fill="none" stroke="var(--bg-tertiary)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4a2 2 0 0 1 2 2v10.5a3.2 3.2 0 1 1-2-3V6a1 1 0 0 0-1-1H2V4z"/><path d="M14 4a2 2 0 0 1 2 2v10.5a3.2 3.2 0 1 1-2-3V6a1 1 0 0 0-1-1h-1V4z"/><path d="M8 3l8-1v3l-8 1z"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><circle cx="6.5" cy="6.5" r="1.3" fill="var(--bg-tertiary)"/><circle cx="17.5" cy="6.5" r="1.3" fill="var(--bg-tertiary)"/><circle cx="6.5" cy="17.5" r="1.3" fill="var(--bg-tertiary)"/><circle cx="17.5" cy="17.5" r="1.3" fill="var(--bg-tertiary)"/><path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4" stroke="currentColor" stroke-width="1.4"/></svg>`,
+            `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h5l1.5 2H18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><rect x="7" y="9" width="10" height="1.4" fill="var(--bg-tertiary)"/><rect x="7" y="12" width="10" height="1.4" fill="var(--bg-tertiary)"/><rect x="7" y="15" width="6" height="1.4" fill="var(--bg-tertiary)"/></svg>`,
         ];
         let currentPlayerNoteIndex = -1;
         function pickPlayerNoteIcon() {
@@ -731,19 +877,44 @@
             if (so) sortBy = so;
             const sortSel = document.getElementById("sortSelect");
             if (sortSel) sortSel.value = sortBy;
+            const savedVolume = parseFloat(localStorage.getItem("playerVolume"));
+            if (!isNaN(savedVolume) && savedVolume >= 0 && savedVolume <= 1) currentVolume = savedVolume;
             useNativePlayer = localStorage.getItem("useNativePlayer") === "1";
             const nativeToggle = document.getElementById("nativePlayerToggle");
             if (nativeToggle) nativeToggle.checked = useNativePlayer;
             document.body.classList.toggle("native-player-mode", useNativePlayer);
-            const flatOn = localStorage.getItem("flatDesign") === "1";
-            const flatToggle = document.getElementById("flatDesignToggle");
-            if (flatToggle) flatToggle.checked = flatOn;
-            document.documentElement.classList.toggle("flat", flatOn);
             initThemeColor();
+            syncHljsTheme();
         }
-        function setFlatDesign(on) {
-            document.documentElement.classList.toggle("flat", on);
-            localStorage.setItem("flatDesign", on ? "1" : "0");
+        // Picks a highlight.js theme (github-dark or github light) based on
+        // the effective theme so code previews don't clash with the app's
+        // own light/dark mode. Only the token colors come from hljs — the
+        // background is overridden by CSS to stay consistent with the app.
+        function isLightTheme() {
+            const t = document.documentElement.getAttribute("data-theme");
+            if (t === "light" || t === "hc-light") return true;
+            if (t === "dark" || t === "hc-dark") return false;
+            return !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches);
+        }
+        function syncHljsTheme() {
+            const link = document.getElementById("hljsTheme");
+            if (!link) return;
+            const href = isLightTheme()
+                ? "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+                : "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css";
+            if (link.href !== href) link.href = href;
+        }
+        // Announces a short message to screen readers via the hidden
+        // aria-live region, without visually changing anything. Clearing
+        // first forces re-announcement even if the same text is set twice
+        // in a row (e.g. repeated "Buffering..." on rapid track skips).
+        function announce(text) {
+            const el = document.getElementById("srAnnouncer");
+            if (!el) return;
+            el.textContent = "";
+            requestAnimationFrame(() => {
+                el.textContent = text;
+            });
         }
         function saveTheme(e) {
             e === "auto"
@@ -751,6 +922,7 @@
                 : (localStorage.setItem("theme", e), document.documentElement.setAttribute("data-theme", e)),
                 updateThemeButtons();
             if (themeHue != null) applyThemeHue(themeHue);
+            syncHljsTheme();
         }
         function setupDropdown(btnId, menuId, dropdownId) {
             const btn = document.getElementById(btnId),
@@ -788,14 +960,14 @@
             dark: {
                 "--bg-primary": "#0d1117", "--bg-secondary": "#161b22", "--bg-tertiary": "#21262d",
                 "--bg-hover": "#30363d", "--border-color": "#30363d", "--text-primary": "#e6edf3",
-                "--text-secondary": "#8b949e", "--text-muted": "#6e7681", "--accent": "#58a6ff",
-                "--accent-hover": "#79b8ff", "--success": "#3fb950", "--warning": "#d29922", "--danger": "#f85149"
+                "--text-secondary": "#8b949e", "--text-muted": "#6e7681", "--accent": "#5858ff",
+                "--accent-hover": "#7979ff", "--success": "#3fb950", "--warning": "#d29922", "--danger": "#f85149"
             },
             light: {
                 "--bg-primary": "#ffffff", "--bg-secondary": "#f6f8fa", "--bg-tertiary": "#eaeef2",
                 "--bg-hover": "#d0d7de", "--border-color": "#d0d7de", "--text-primary": "#1f2328",
-                "--text-secondary": "#656d76", "--text-muted": "#8c959f", "--accent": "#0969da",
-                "--accent-hover": "#0550ae"
+                "--text-secondary": "#656d76", "--text-muted": "#8c959f", "--accent": "#0909da",
+                "--accent-hover": "#0505ae"
             },
             "hc-dark": {
                 "--bg-primary": "#000000", "--bg-secondary": "#000000", "--bg-tertiary": "#000000",
@@ -1138,6 +1310,31 @@
             }
         }
 
+        // Media Session API: surfaces play/pause/prev/next on the lock screen,
+        // hardware media keys, and OS media overlays. Set up once per element
+        // (alongside setupAudioNormalization) regardless of whether the custom
+        // control bar or native controls are in use.
+        function setupMediaSession(mediaEl, title) {
+            if (!("mediaSession" in navigator)) return;
+            updateMediaSessionTitle(title);
+            navigator.mediaSession.setActionHandler("play", () => {
+                mediaEl.muted = false;
+                mediaEl.play().catch(() => {});
+            });
+            navigator.mediaSession.setActionHandler("pause", () => mediaEl.pause());
+            navigator.mediaSession.setActionHandler("previoustrack", goToPrevTrack);
+            navigator.mediaSession.setActionHandler("nexttrack", goToNextTrack);
+            const syncPlaybackState = () => {
+                navigator.mediaSession.playbackState = mediaEl.paused ? "paused" : "playing";
+            };
+            mediaEl.addEventListener("play", syncPlaybackState);
+            mediaEl.addEventListener("pause", syncPlaybackState);
+            syncPlaybackState();
+        }
+        function updateMediaSessionTitle(title) {
+            if (!("mediaSession" in navigator)) return;
+            navigator.mediaSession.metadata = new MediaMetadata({ title: title || "" });
+        }
         function formatTime(seconds) {
             if (!isFinite(seconds) || seconds < 0) return "--:--";
             const m = Math.floor(seconds / 60),
@@ -1163,7 +1360,7 @@
         <div class="player-bar">
           <div class="player-seek-row">
             <span class="player-time" id="playerCurTime">0:00</span>
-            <input type="range" class="player-seek" id="playerSeek" min="0" max="1000" value="0" step="1" aria-label="Seek" disabled />
+            <input type="range" class="player-seek" id="playerSeek" min="0" max="1000" value="0" step="1" aria-label="Seek" aria-valuetext="0:00" disabled />
             <span class="player-time" id="playerDurTime">--:--</span>
           </div>
           <div class="player-controls-row">
@@ -1173,7 +1370,7 @@
             <button class="playlist-btn shuffle-btn" id="playlistShuffle" title="Shuffle" aria-label="Toggle shuffle" aria-pressed="false" disabled>${icons.shuffleCtl}</button>
             <span class="player-divider"></span>
             <button class="playlist-btn" id="volDownBtn" title="Volume down" aria-label="Decrease volume">${icons.volDownCtl}</button>
-            <span class="player-vol" id="playerVolLabel">50%</span>
+            <span class="player-vol" id="playerVolLabel" aria-live="polite">50%</span>
             <button class="playlist-btn" id="volUpBtn" title="Volume up" aria-label="Increase volume">${icons.volUpCtl}</button>
           </div>
         </div>
@@ -1251,6 +1448,7 @@
                     seek.disabled = false;
                     durTimeEl.textContent = formatTime(dur);
                     seek.value = Math.round((mediaEl.currentTime / dur) * 1000);
+                    seek.setAttribute("aria-valuetext", `${formatTime(mediaEl.currentTime)} of ${formatTime(dur)}`);
                     return;
                 }
                 const range = getSeekableRange();
@@ -1259,10 +1457,12 @@
                     durTimeEl.textContent = "LIVE";
                     const ratio = (mediaEl.currentTime - range.start) / (range.end - range.start);
                     seek.value = Math.round(Math.max(0, Math.min(1, ratio)) * 1000);
+                    seek.setAttribute("aria-valuetext", `${formatTime(mediaEl.currentTime)}, live`);
                 } else {
                     seek.disabled = true;
                     seek.value = 1000;
                     durTimeEl.textContent = "LIVE";
+                    seek.setAttribute("aria-valuetext", "live");
                 }
             }
             mediaEl.addEventListener("loadedmetadata", syncSeekBar);
@@ -1275,7 +1475,9 @@
             syncSeekBar();
             seek.addEventListener("input", () => {
                 seeking = true;
-                curTimeEl.textContent = formatTime(getSeekTarget(seek.value));
+                const target = getSeekTarget(seek.value);
+                curTimeEl.textContent = formatTime(target);
+                seek.setAttribute("aria-valuetext", formatTime(target));
             });
             seek.addEventListener("change", () => {
                 mediaEl.currentTime = getSeekTarget(seek.value);
@@ -1285,12 +1487,16 @@
             const updateVolLabel = () => (volLabel.textContent = Math.round(mediaEl.volume * 100) + "%");
             volDownBtn.addEventListener("click", () => {
                 mediaEl.muted = false;
-                (mediaEl.volume = Math.max(0, +(mediaEl.volume - 0.1).toFixed(2))), (currentVolume = mediaEl.volume), updateVolLabel();
+                mediaEl.volume = Math.max(0, +(mediaEl.volume - 0.1).toFixed(2));
             });
             volUpBtn.addEventListener("click", () => {
                 mediaEl.muted = false;
-                (mediaEl.volume = Math.min(1, +(mediaEl.volume + 0.1).toFixed(2))), (currentVolume = mediaEl.volume), updateVolLabel();
+                mediaEl.volume = Math.min(1, +(mediaEl.volume + 0.1).toFixed(2));
             });
+            // Covers every path that can change volume (these buttons, the
+            // element's own onvolumechange set in openFile/playPlaylistTrack,
+            // or any future source) so the label can never drift out of sync.
+            mediaEl.addEventListener("volumechange", updateVolLabel);
             updateVolLabel();
 
             // Now that the buttons actually exist in the DOM, sync their
@@ -1300,7 +1506,7 @@
         async function init() {
             loadSettings();
             try {
-                const e = await fetch("./file_index.json");
+                const e = await fetch("./file_index.json", { cache: "no-store" });
                 if (!e.ok) throw new Error("Failed to load file index");
                 (fileIndex = await e.json()), 
                 preprocessFiles(fileIndex.root), 
@@ -1309,19 +1515,39 @@
                 console.error(e),
                     (document.getElementById("main").innerHTML = `
           <div class="empty-state">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-            </svg>
+            ${emptyStateIllustrations.error}
             <h2>Could not load files</h2>
             <p>Make sure file_index.json exists.</p>
           </div>
         `);
             }
         }
+        function updateSearchClearVisibility() {
+            const input = document.getElementById("search");
+            const btn = document.getElementById("searchClearBtn");
+            if (input && btn) btn.classList.toggle("visible", input.value.length > 0);
+        }
+        function clearSearch() {
+            const input = document.getElementById("search");
+            input.value = "";
+            input.focus();
+            searchQuery = "";
+            searchResultLimit = 100;
+            updateSearchClearVisibility();
+            render();
+            document.getElementById("main").scrollTop = 0;
+        }
         function setupEventListeners() {
+            const mainEl = document.getElementById("main");
+            const headerEl = document.querySelector(".header");
+            mainEl.addEventListener("scroll", () => {
+                headerEl.classList.toggle("scrolled", mainEl.scrollTop > 2);
+            }, { passive: true });
+
             const n = document.getElementById("search");
             let e;
             n.addEventListener("input", (t) => {
+                updateSearchClearVisibility();
                 clearTimeout(e),
                     (e = setTimeout(() => {
                         (searchQuery = t.target.value.toLowerCase().trim()),
@@ -1330,6 +1556,7 @@
                             (document.getElementById("main").scrollTop = 0);
                     }, 150));
             }),
+                document.getElementById("searchClearBtn").addEventListener("click", clearSearch),
                 document.getElementById("logoHome").addEventListener("click", () => navigateTo([])),
                 document.getElementById("logoHome").addEventListener("keydown", (e) => {
                     (e.key === "Enter" || e.key === " ") && (e.preventDefault(), navigateTo([]));
@@ -1343,11 +1570,39 @@
                 }),
                 document.getElementById("modalContent").addEventListener("click", (e) => e.stopPropagation()),
                 document.getElementById("modal").addEventListener("keydown", trapModalFocus),
+                document.getElementById("shortcutsBtn").addEventListener("click", openShortcutsModal),
+                document.getElementById("shortcutsCloseBtn").addEventListener("click", closeShortcutsModal),
+                document.getElementById("shortcutsModal").addEventListener("click", (e) => {
+                    e.target === e.currentTarget && closeShortcutsModal();
+                }),
+                document.getElementById("shortcutsModal").addEventListener("keydown", (e) => trapModalFocus(e, "shortcutsModalContent")),
                 document.addEventListener("keydown", (e) => {
-                    e.key === "Escape" && closeModal(),
-                        e.key === "/" &&
+                    const shortcutsOpen = document.getElementById("shortcutsModal").classList.contains("active");
+                    if (e.key === "Escape") {
+                        shortcutsOpen ? closeShortcutsModal() : closeModal();
+                        return;
+                    }
+                    if (e.key === "?" && !["INPUT", "SELECT", "TEXTAREA"].includes(document.activeElement.tagName) && !shortcutsOpen) {
+                        e.preventDefault();
+                        openShortcutsModal();
+                        return;
+                    }
+                    e.key === "/" &&
                             document.activeElement.tagName !== "INPUT" &&
                             (e.preventDefault(), document.getElementById("search").focus());
+                    if (e.key === " ") {
+                        const modalOpen = document.getElementById("modal").classList.contains("active");
+                        const activeEl = document.activeElement;
+                        // Skip when a button (e.g. the focused play button itself, or the
+                        // close button) or form field already owns the spacebar — letting
+                        // the browser's native activation fire avoids a double-toggle.
+                        const ownsSpace = ["INPUT", "SELECT", "TEXTAREA", "BUTTON"].includes(activeEl.tagName);
+                        if (modalOpen && !ownsSpace) {
+                            e.preventDefault();
+                            toggleModalPlayback();
+                            return;
+                        }
+                    }
                     if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
                         const modalOpen = document.getElementById("modal").classList.contains("active");
                         const activeEl = document.activeElement;
@@ -1386,7 +1641,6 @@
                         localStorage.setItem("useNativePlayer", useNativePlayer ? "1" : "0"),
                         document.body.classList.toggle("native-player-mode", useNativePlayer);
                 }),
-                document.getElementById("flatDesignToggle").addEventListener("change", (e) => setFlatDesign(e.target.checked)),
                 wireThemeColorPicker(),
                 document.getElementById("topPrevBtn").addEventListener("click", goToPrevTrack),
                 document.getElementById("topNextBtn").addEventListener("click", goToNextTrack),
@@ -1575,7 +1829,7 @@
                             t.dataset.src &&
                                 ((t.src = t.dataset.src),
                                 (t.onload = () => t.classList.add("loaded")),
-                                (t.onerror = () => (t.style.display = "none")),
+                                (t.onerror = () => t.remove()),
                                 delete t.dataset.src,
                                 intersectionObserver.unobserve(t));
                         }
@@ -1694,6 +1948,7 @@
         }
         function navigateTo(e) {
             (currentPath = e), (searchQuery = ""), (document.getElementById("search").value = "");
+            updateSearchClearVisibility();
             let t = "";
             for (const n of e) (t += (t ? "/" : "") + n), expandedFolders.add(t);
             render();
@@ -1779,12 +2034,14 @@
             }
             const e = searchQuery ? all.slice(0, searchResultLimit) : all;
 
+            if (searchQuery) {
+                announce(all.length === 0 ? `No results for "${searchQuery}"` : `${all.length} result${all.length === 1 ? "" : "s"} for "${searchQuery}"`);
+            }
+
             if (e.length === 0) {
                 n.innerHTML = `
           <div class="empty-state">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
-            </svg>
+            ${searchQuery ? emptyStateIllustrations.search : emptyStateIllustrations.folder}
             <h2>${searchQuery ? "No results" : "Empty folder"}</h2>
             <p>${searchQuery ? "Try different terms" : "No files here"}</p>
           </div>
@@ -1867,7 +2124,7 @@
             <div class="file-card directory" data-directory="true" data-path='${JSON.stringify(parentPathArr)}' tabindex="0" role="button" aria-label="Open folder ${escapeHtml(item.name)}">
               <div class="file-icon folder">${icons.folder}</div>
               <div class="file-info">
-                <span class="file-name">${escapeHtml(item.name)}</span>
+                <span class="file-name">${searchQuery ? highlightMatch(item.name, searchQuery) : escapeHtml(item.name)}</span>
                 <span class="file-meta">
                     ${isColumnView && !searchQuery ? "" : `${item.children?.length || 0} items`}
                     ${searchQuery ? `<span class="file-path">${escapeHtml(fullDisplayPath)}</span>` : ""}
@@ -1887,15 +2144,17 @@
           `;
                 } else {
                     let i = "";
-                    currentView === "grid" &&
-                        item.category === "image" &&
-                        (i = `<img class="file-thumbnail lazy" data-src="./${clickPath}" alt="" loading="lazy">`),
-                        (t += `
+                    if (item.category === "image") {
+                        i = currentView === "grid"
+                            ? `<img class="file-thumbnail lazy" data-src="./${clickPath}" alt="" loading="lazy">`
+                            : `<img class="file-thumbnail file-thumbnail-inline lazy" data-src="./${clickPath}" alt="" loading="lazy">`;
+                    }
+                    t += `
             <div class="file-card" data-file="${escapeHtml(clickPath)}" data-category="${item.category}" data-name="${escapeHtml(item.name)}" tabindex="0" role="button" aria-label="Open file ${escapeHtml(item.name)}">
               ${i}
               <div class="file-icon ${s}">${o}</div>
               <div class="file-info">
-                <span class="file-name">${escapeHtml(item.name)}</span>
+                <span class="file-name">${searchQuery ? highlightMatch(item.name, searchQuery) : escapeHtml(item.name)}</span>
                 <span class="file-meta">
                     ${isColumnView && !searchQuery ? "" : item.sizeFormatted}
                     ${searchQuery ? `<span class="file-path">${escapeHtml(fullDisplayPath)}</span>` : ""}
@@ -1914,7 +2173,7 @@
                         : ""
               }
             </div>
-          `);
+          `;
                 }
             }
             (t += "</div>"),
@@ -2180,16 +2439,80 @@
             fetchCache.set(url, text);
             return text;
         }
-        function renderTextPreview(container, text) {
+        // Maps common file extensions to highlight.js language aliases.
+        // Falls back to hljs's own auto-detection if the extension isn't
+        // recognized, and to plain escaped text if hljs isn't available at all.
+        const EXT_TO_HLJS_LANG = {
+            js: "javascript", mjs: "javascript", cjs: "javascript", jsx: "javascript",
+            ts: "typescript", tsx: "typescript",
+            py: "python", rb: "ruby", php: "php", go: "go", rs: "rust",
+            java: "java", kt: "kotlin", swift: "swift", c: "c", h: "c",
+            cpp: "cpp", cc: "cpp", hpp: "cpp", cs: "csharp",
+            sh: "bash", bash: "bash", zsh: "bash", ps1: "powershell",
+            html: "xml", htm: "xml", xml: "xml", svg: "xml",
+            css: "css", scss: "scss", less: "less",
+            json: "json", jsonc: "json", yml: "yaml", yaml: "yaml",
+            toml: "ini", ini: "ini", md: "markdown", markdown: "markdown",
+            sql: "sql", dockerfile: "dockerfile", makefile: "makefile",
+            lua: "lua", r: "r", pl: "perl", diff: "diff", patch: "diff",
+        };
+        function guessHljsLanguage(fileName) {
+            if (!window.hljs || !fileName) return null;
+            const base = fileName.toLowerCase();
+            const ext = base.includes(".") ? base.split(".").pop() : base;
+            const lang = EXT_TO_HLJS_LANG[ext];
+            return lang && hljs.getLanguage(lang) ? lang : null;
+        }
+        // highlight.js returns one HTML string for the whole file, with <span>
+        // tags that can freely span multiple lines (e.g. a multi-line block
+        // comment). Splitting that naively on "\n" would leave unclosed tags
+        // dangling on every line but the first. This walks the markup and
+        // reopens/closes span tags at each line boundary so every line is
+        // independently valid HTML, which lets us keep wrapping each line in
+        // its own <span class="line"> for the CSS-counter line numbers.
+        function splitHighlightedHtml(html) {
+            const rawLines = html.split("\n");
+            const tagRegex = /<span class="([^"]*)">|<\/span>/g;
+            let openTags = [];
+            const result = [];
+            for (const line of rawLines) {
+                const prefix = openTags.map((cls) => `<span class="${cls}">`).join("");
+                const stack = [...openTags];
+                tagRegex.lastIndex = 0;
+                let match;
+                while ((match = tagRegex.exec(line))) {
+                    if (match[0] === "</span>") stack.pop();
+                    else stack.push(match[1]);
+                }
+                result.push(prefix + line + "</span>".repeat(stack.length));
+                openTags = stack;
+            }
+            return result;
+        }
+        function renderTextPreview(container, text, fileName) {
             const MAX_LINES = 1e4;
             const allLines = text.split("\n");
             const lines = allLines.slice(0, MAX_LINES);
             const truncated = allLines.length > MAX_LINES;
-            const rendered = lines.map((e) => `<span class="line">${escapeHtml(e)}</span>`).join("\n");
+            const lang = guessHljsLanguage(fileName);
+
+            let highlightedLines;
+            if (lang) {
+                try {
+                    highlightedLines = lines.map(escapeHtml);
+                } catch (e) {
+                    console.warn("Syntax highlighting failed, falling back to plain text:", e);
+                    highlightedLines = lines.map(escapeHtml);
+                }
+            } else {
+                highlightedLines = lines.map(escapeHtml);
+            }
+
+            const rendered = highlightedLines.map((l) => `<span class="line">${l}</span>`).join("\n");
             container.innerHTML = `
         ${truncated ? `<div class="truncation-notice">Showing first ${MAX_LINES.toLocaleString()} of ${allLines.length.toLocaleString()} lines — download the file to see the rest.</div>` : ""}
-        <div class="preview-code line-numbers">
-          <pre>${rendered}</pre>
+        <div class="preview-code line-numbers${lang ? " hljs" : ""}">
+          <pre><code class="hljs">${rendered}</code></pre>
         </div>
       `;
         }
@@ -2197,7 +2520,7 @@
             const e = `./${currentFilePath}`;
             try {
                 const text = await fetchTextCached(e);
-                renderTextPreview(document.getElementById("modalBody"), text);
+                renderTextPreview(document.getElementById("modalBody"), text, currentFileName);
             } catch (err) {
                 showUnavailable(document.getElementById("modalBody"), currentFileName, e, err);
             }
@@ -2266,9 +2589,11 @@
             }
             if (currentPlaylist.length <= 1) {
                 console.log("End of playlist reached.");
+                announce("Stream unavailable. End of playlist.");
                 stopPlaylist();
                 return;
             }
+            announce("Stream unavailable, skipping to next track.");
             if (isShuffle) {
                 const nextIdx = getNextShuffleIndex();
                 shuffleHistory.push(nextIdx);
@@ -2281,6 +2606,40 @@
             }
         }
 
+        // Shared by both the video and audio branches of playPlaylistTrack:
+        // wires the "loaded/error/ended" handlers and picks HLS vs a plain
+        // src, since that logic is identical regardless of which kind of
+        // element is playing. Keeping it in one place means future playlist
+        // features (a new fallback, a new HLS event, etc.) only need to be
+        // written once.
+        function attachPlaylistStream(mediaEl, finalUrl, urlLower) {
+            mediaEl.onloadeddata = () => {
+                if (streamTimeout) { clearTimeout(streamTimeout); streamTimeout = null; }
+                setPlaylistBuffering(false);
+            };
+            mediaEl.onerror = () => skipToNext();
+            mediaEl.onended = () => {
+                if (streamTimeout) clearTimeout(streamTimeout);
+                goToNextTrack();
+            };
+
+            if (Hls.isSupported() && (urlLower.includes(".m3u8") || urlLower.includes("application/x-mpegurl"))) {
+                currentHls = new Hls();
+                currentHls.loadSource(finalUrl);
+                currentHls.attachMedia(mediaEl);
+                currentHls.on(Hls.Events.FRAG_LOADED, function () {
+                    if (streamTimeout) { clearTimeout(streamTimeout); streamTimeout = null; }
+                    setPlaylistBuffering(false);
+                });
+                currentHls.on(Hls.Events.ERROR, function (event, data) {
+                    if (data.fatal) skipToNext();
+                });
+            } else {
+                mediaEl.src = finalUrl;
+                mediaEl.load();
+                mediaEl.play().catch(() => {});
+            }
+        }
         async function playPlaylistTrack(e) {
             if (e < 0 || e >= currentPlaylist.length) return;
 
@@ -2296,6 +2655,7 @@
             const item = currentPlaylist[currentPlaylistIndex];
             const s = item.title;
             document.getElementById("modalTitle").textContent = s;
+            announce(`Loading: ${s}`);
             // New track: drop any in-flight metadata listener and clear
             // last track's live rows so nothing stale lingers in the panel.
 
@@ -2327,43 +2687,20 @@
                     `;
                     video = document.getElementById("videoPlayer");
                     video.volume = currentVolume;
-                    video.onvolumechange = (e) => currentVolume = e.target.volume;
+                    video.onvolumechange = (e) => { currentVolume = e.target.volume; localStorage.setItem("playerVolume", currentVolume); };
                     setupAudioNormalization(video);
+                    setupMediaSession(video, s);
                     maybeWireMediaControls(video);
                     document.getElementById("streamInfoBtn").addEventListener("click", copyStreamInfo);
                 } else if (currentHls) {
                     // Same element, but the previous track had its own HLS instance attached.
                     currentHls.destroy();
                     currentHls = null;
-                }
-
-                video.onloadeddata = () => {
-                    if (streamTimeout) { clearTimeout(streamTimeout); streamTimeout = null; }
-                    setPlaylistBuffering(false);
-                };
-                video.onerror = () => skipToNext();
-                video.onended = () => {
-                    if (streamTimeout) clearTimeout(streamTimeout);
-                    goToNextTrack();
-                };
-
-                if (Hls.isSupported() && (o.includes('.m3u8') || o.includes('application/x-mpegurl'))) {
-                    currentHls = new Hls();
-                    currentHls.loadSource(finalUrl);
-                    currentHls.attachMedia(video);
-                    currentHls.on(Hls.Events.FRAG_LOADED, function() {
-                        if (streamTimeout) { clearTimeout(streamTimeout); streamTimeout = null; }
-                        setPlaylistBuffering(false);
-                    });
-                    currentHls.on(Hls.Events.ERROR, function(event, data) {
-                        if (data.fatal) skipToNext();
-                    });
+                    updateMediaSessionTitle(s);
                 } else {
-                    video.src = finalUrl;
-                    video.load();
-                    video.play().catch(() => {});
+                    updateMediaSessionTitle(s);
                 }
-
+                attachPlaylistStream(video, finalUrl, o);
             } else {
                 let audio = n.querySelector("#audioPlayer");
                 if (!audio) {
@@ -2382,8 +2719,9 @@
                     `;
                     audio = document.getElementById("audioPlayer");
                     audio.volume = currentVolume;
-                    audio.onvolumechange = (e) => currentVolume = e.target.volume;
+                    audio.onvolumechange = (e) => { currentVolume = e.target.volume; localStorage.setItem("playerVolume", currentVolume); };
                     setupAudioNormalization(audio);
+                    setupMediaSession(audio, s);
                     maybeWireMediaControls(audio);
                     document.getElementById("streamInfoBtn").addEventListener("click", copyStreamInfo);
                 } else {
@@ -2392,34 +2730,9 @@
                     if (titleEl) titleEl.textContent = s;
                     const iconEl = n.querySelector(".audio-icon");
                     if (iconEl) iconEl.innerHTML = pickPlayerNoteIcon();
+                    updateMediaSessionTitle(s);
                 }
-
-                audio.onloadeddata = () => {
-                    if (streamTimeout) { clearTimeout(streamTimeout); streamTimeout = null; }
-                    setPlaylistBuffering(false);
-                };
-                audio.onerror = () => skipToNext();
-                audio.onended = () => {
-                    if (streamTimeout) clearTimeout(streamTimeout);
-                    goToNextTrack();
-                };
-
-                if (Hls.isSupported() && (o.includes('.m3u8') || o.includes('application/x-mpegurl'))) {
-                    currentHls = new Hls();
-                    currentHls.loadSource(finalUrl);
-                    currentHls.attachMedia(audio);
-                    currentHls.on(Hls.Events.FRAG_LOADED, function() {
-                        if (streamTimeout) { clearTimeout(streamTimeout); streamTimeout = null; }
-                        setPlaylistBuffering(false);
-                    });
-                    currentHls.on(Hls.Events.ERROR, function(event, data) {
-                        if (data.fatal) skipToNext();
-                    });
-                } else {
-                    audio.src = finalUrl;
-                    audio.load();
-                    audio.play().catch(() => {});
-                }
+                attachPlaylistStream(audio, finalUrl, o);
             }
         }
 
@@ -2472,8 +2785,9 @@
                         const singleVideo = s.querySelector('video');
                         if (singleVideo) {
                             singleVideo.volume = currentVolume;
-                            singleVideo.onvolumechange = (e) => currentVolume = e.target.volume;
+                            singleVideo.onvolumechange = (e) => { currentVolume = e.target.volume; localStorage.setItem("playerVolume", currentVolume); };
                             setupAudioNormalization(singleVideo);
+                            setupMediaSession(singleVideo, n);
                             maybeWireMediaControls(singleVideo);
                         }
                         document.getElementById("streamInfoBtn").addEventListener("click", copyStreamInfo);
@@ -2495,8 +2809,9 @@
                         const singleAudio = s.querySelector('audio');
                         if (singleAudio) {
                             singleAudio.volume = currentVolume;
-                            singleAudio.onvolumechange = (e) => currentVolume = e.target.volume;
+                            singleAudio.onvolumechange = (e) => { currentVolume = e.target.volume; localStorage.setItem("playerVolume", currentVolume); };
                             setupAudioNormalization(singleAudio);
+                            setupMediaSession(singleAudio, n);
                             maybeWireMediaControls(singleAudio);
                         }
                         document.getElementById("streamInfoBtn").addEventListener("click", copyStreamInfo);
@@ -2518,7 +2833,7 @@
                     case "text":
                         try {
                             const text = await fetchTextCached(o);
-                            renderTextPreview(s, text);
+                            renderTextPreview(s, text, n);
                         } catch (err) {
                             showUnavailable(s, n, o, err);
                         }
@@ -2565,14 +2880,23 @@
         </div>
       `;
         }
+        // Spacebar play/pause for the currently open preview, mirroring what
+        // native <video>/<audio> controls give you for free — needed now that
+        // the custom control bar replaces them.
+        function toggleModalPlayback() {
+            const media = document.getElementById("modalBody").querySelector("audio, video");
+            if (!media) return;
+            media.muted = false;
+            media.paused ? media.play().catch(() => {}) : media.pause();
+        }
         function handleModalKeydown(key) {
             const modalBody = document.getElementById("modalBody");
             switch (key) {
                 case "ArrowUp":
-                    modalBody.scrollBy({ top: -120, behavior: "smooth" });
+                    modalBody.scrollBy({ top: -120, behavior: "auto" });
                     break;
                 case "ArrowDown":
-                    modalBody.scrollBy({ top: 120, behavior: "smooth" });
+                    modalBody.scrollBy({ top: 120, behavior: "auto" });
                     break;
                 case "ArrowLeft":
                     // If a playlist is actively playing, stop it and drop back
@@ -2622,9 +2946,9 @@
             }
             lastFocusedElement = null;
         }
-        function trapModalFocus(e) {
+        function trapModalFocus(e, containerId = "modalContent") {
             if (e.key !== "Tab") return;
-            const modal = document.getElementById("modalContent");
+            const modal = document.getElementById(containerId);
             const focusable = modal.querySelectorAll(
                 'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
             );
@@ -2639,9 +2963,83 @@
                 first.focus();
             }
         }
+        function openShortcutsModal() {
+            lastFocusedElementShortcuts = document.activeElement;
+            document.getElementById("shortcutsModal").classList.add("active");
+            document.getElementById("shortcutsCloseBtn").focus();
+        }
+        function closeShortcutsModal() {
+            document.getElementById("shortcutsModal").classList.remove("active");
+            if (lastFocusedElementShortcuts && typeof lastFocusedElementShortcuts.focus === "function") {
+                lastFocusedElementShortcuts.focus();
+            }
+            lastFocusedElementShortcuts = null;
+        }
         function escapeHtml(e) {
             const t = document.createElement("div");
             return (t.textContent = e), t.innerHTML;
+        }
+
+        // Wraps the parts of `name` that matched `rawQuery` in <mark> tags for
+        // display in search results. Mirrors scoreSearchItem's own match tiers
+        // (exact substring -> per-token substrings -> fuzzy subsequence) purely
+        // for highlighting purposes; it doesn't affect ranking.
+        function highlightMatch(name, rawQuery) {
+            if (!rawQuery) return escapeHtml(name);
+            const query = rawQuery.toLowerCase();
+            const lowerName = name.toLowerCase();
+
+            const buildFromMask = (mask) => {
+                let out = "", i = 0;
+                while (i < name.length) {
+                    let j = i;
+                    if (mask[i]) {
+                        while (j < name.length && mask[j]) j++;
+                        out += `<mark class="search-highlight">${escapeHtml(name.slice(i, j))}</mark>`;
+                    } else {
+                        while (j < name.length && !mask[j]) j++;
+                        out += escapeHtml(name.slice(i, j));
+                    }
+                    i = j;
+                }
+                return out;
+            };
+
+            const exactIdx = lowerName.indexOf(query);
+            if (exactIdx !== -1) {
+                const mask = new Array(name.length).fill(false);
+                for (let k = exactIdx; k < exactIdx + query.length; k++) mask[k] = true;
+                return buildFromMask(mask);
+            }
+
+            const tokens = query.split(/[\s/]+/).filter(Boolean);
+            if (tokens.length > 1) {
+                const mask = new Array(name.length).fill(false);
+                let any = false;
+                for (const tok of tokens) {
+                    const idx = lowerName.indexOf(tok);
+                    if (idx !== -1) {
+                        any = true;
+                        for (let k = idx; k < idx + tok.length; k++) mask[k] = true;
+                    }
+                }
+                if (any) return buildFromMask(mask);
+            }
+
+            const compact = query.replace(/[^a-z0-9]/g, "");
+            if (compact) {
+                const mask = new Array(name.length).fill(false);
+                let qi = 0;
+                for (let i = 0; i < name.length && qi < compact.length; i++) {
+                    if (lowerName[i] === compact[qi]) {
+                        mask[i] = true;
+                        qi++;
+                    }
+                }
+                if (qi === compact.length) return buildFromMask(mask);
+            }
+
+            return escapeHtml(name);
         }
         init();
     </script>
