@@ -3,7 +3,7 @@
 <script>(function(){try{var t=localStorage.getItem("theme");if(t&&t!=="auto")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
     <title>File Viewer</title>
     <meta name="description" content="Browse and preview files from this repository directly in your browser — code, images, audio, video, and playlists." />
     <meta property="og:title" content="File Viewer" />
@@ -126,6 +126,7 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            touch-action: manipulation;
         }
         .header { background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 0.5rem 1rem; flex-shrink: 0; }
         .header-content { max-width: 1600px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
@@ -271,7 +272,7 @@
         .empty-state svg:not(.empty-state-illustration) { width: 40px; height: 40px; margin-bottom: 0.5rem; opacity: 0.5; }
         .empty-state h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--text-primary); }
         .empty-state p { font-size: 0.85rem; }
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.2s; padding: 0.5rem; }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.2s; padding: 0.5rem; overscroll-behavior: contain; touch-action: pan-y; }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal { background: var(--bg-secondary); border-radius: var(--radius-lg); max-width: 95vw; max-height: 95vh; max-height: 95dvh; width: 100%; display: flex; flex-direction: column; transform: scale(0.95); transition: transform 0.2s; overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--shadow-lg); border-top: 2px solid var(--accent); }
         .modal.video-modal { height: 95vh; height: 95dvh; }
