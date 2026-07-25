@@ -120,7 +120,7 @@
             font-family: -apple-system, BlinkMacSystemFont, segoe ui, noto sans, Helvetica, Arial, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1;
+            line-height: 0.8;
             height: 100vh;
             height: 100dvh;
             display: flex;
@@ -302,17 +302,21 @@
         .playlist-stop-btn { padding: 0.375rem 0.5rem; background: var(--danger); border: 1px solid var(--danger); border-radius: var(--radius); color: #fff; cursor: pointer; font-size: 0.75rem; }
         .playlist-stop-btn:hover { opacity: 0.9; }
         .goto-quick { display: flex; align-items: center; gap: 0.35rem; }
-        .goto-input { width: 3.4rem; text-align: center; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); font-size: 0.8rem; padding: 0.35rem 0.2rem; -moz-appearance: textfield; }
+        .goto-input { width: 3.4rem; height: 2.25rem; box-sizing: border-box; text-align: center; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); font-size: 0.8rem; padding: 0.35rem 0.2rem; -moz-appearance: textfield; }
         .goto-input::-webkit-outer-spin-button, .goto-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .goto-input:focus { outline: none; border-color: var(--accent); }
         .goto-input:disabled { opacity: 0.4; cursor: not-allowed; }
-        .goto-stepper { display: flex; flex-direction: column; }
-        .goto-step-btn { width: 1.5rem; height: 1rem; display: flex; align-items: center; justify-content: center; background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary); cursor: pointer; padding: 0; line-height: 0; }
-        .goto-step-btn svg { width: 10px; height: 10px; }
-        .goto-step-btn:first-child { border-radius: var(--radius) var(--radius) 0 0; border-bottom: none; }
-        .goto-step-btn:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+        .goto-stepper { display: flex; flex-direction: row; gap: 0.3rem; }
+        .goto-step-btn { width: 2.25rem; height: 2.25rem; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); cursor: pointer; padding: 0; line-height: 0; }
+        .goto-step-btn svg { width: 22px; height: 22px; }
         .goto-step-btn:hover:not(:disabled) { background: var(--bg-hover); }
         .goto-step-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        @media (max-width: 640px) {
+            .goto-input { width: 2.75rem; height: 2.5rem; font-size: 0.9rem; }
+            .goto-stepper { gap: 0.35rem; }
+            .goto-step-btn { width: 2.5rem; height: 2.5rem; }
+            .goto-step-btn svg { width: 24px; height: 24px; }
+        }
         .modal-body { flex: 1; overflow: auto; background: var(--bg-primary); display: flex; flex-direction: column; min-height: 0; }
         .preview-image { max-width: 100%; max-height: 90vh; object-fit: contain; display: block; margin: auto; }
         .preview-media-container { width: 100%; max-width: 900px; height: 100%; min-height: 0; padding: 1rem; margin: 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; position: relative; }
@@ -578,8 +582,8 @@
                     <div class="goto-quick" id="gotoQuick" title="Go to track">
                         <input type="number" class="goto-input" id="gotoInput" min="1" step="1" inputmode="numeric" aria-label="Go to track number" />
                         <div class="goto-stepper">
-                            <button type="button" class="goto-step-btn" id="gotoUpBtn" aria-label="Next track number" title="Hold to skip faster"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 14l5-5 5 5z" /></svg></button>
                             <button type="button" class="goto-step-btn" id="gotoDownBtn" aria-label="Previous track number" title="Hold to skip faster"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 10l5 5 5-5z" /></svg></button>
+                            <button type="button" class="goto-step-btn" id="gotoUpBtn" aria-label="Next track number" title="Hold to skip faster"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 14l5-5 5 5z" /></svg></button>
                         </div>
                     </div>
                 </div>
