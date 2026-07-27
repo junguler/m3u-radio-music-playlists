@@ -25,6 +25,7 @@
             --text-muted: #6e7681;
             --accent: #5858ff;
             --accent-hover: #7979ff;
+            --on-accent: #ffffff;
             --success: #3fb950;
             --warning: #d29922;
             --danger: #f85149;
@@ -175,7 +176,7 @@
         .settings-control { display: flex; gap: 0.25rem; }
         .settings-control button { padding: 0.25rem 0.5rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-secondary); cursor: pointer; font-size: 0.75rem; }
         .settings-control button:hover { color: var(--text-primary); border-color: var(--accent); }
-        .settings-control button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .settings-control button.active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
         .theme-toggle { display: flex; flex-wrap: wrap; background: var(--bg-tertiary); border-radius: var(--radius); padding: 2px; gap: 2px; }
         .theme-btn { padding: 0.25rem 0.5rem; background: 0 0; border: none; color: var(--text-secondary); cursor: pointer; border-radius: var(--radius-sm); font-size: 0.75rem; display: flex; align-items: center; gap: 0.25rem; }
         .theme-btn:hover { background: var(--bg-hover); }
@@ -304,7 +305,7 @@
         .playlist-btn:hover { background: var(--bg-hover); border-color: var(--accent); }
         .playlist-btn:disabled { opacity: 0.4; cursor: not-allowed; }
         .playlist-btn svg { width: 14px; height: 14px; }
-        .playlist-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .playlist-btn.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
         .playlist-info { flex: 1; font-size: 0.8rem; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .playlist-track { color: var(--text-primary); font-weight: 500; }
         .playlist-stop-btn { padding: 0.375rem 0.5rem; background: var(--danger); border: 1px solid var(--danger); border-radius: var(--radius); color: #fff; cursor: pointer; font-size: 0.75rem; }
@@ -344,7 +345,7 @@
         .player-controls-row .playlist-btn { padding: 0.5rem; flex-shrink: 0; border-radius: var(--radius-full); transition: transform var(--transition), background-color var(--transition), border-color var(--transition); }
         .player-controls-row .playlist-btn:hover:not(:disabled) { transform: translateY(-1px); }
         .player-divider { width: 1px; height: 1.25rem; background: var(--border-color); flex-shrink: 0; }
-        .player-play-btn { background: var(--accent) !important; border-color: var(--accent) !important; color: #fff !important; border-radius: 50% !important; width: 2.75rem; height: 2.75rem; padding: 0 !important; box-shadow: 0 2px 10px var(--accent-glow); transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition); }
+        .player-play-btn { background: var(--accent) !important; border-color: var(--accent) !important; color: var(--on-accent) !important; border-radius: 50% !important; width: 2.75rem; height: 2.75rem; padding: 0 !important; box-shadow: 0 2px 10px var(--accent-glow); transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition); }
         .player-play-btn:hover { background: var(--accent-hover) !important; border-color: var(--accent-hover) !important; transform: translateY(-1px); box-shadow: 0 4px 14px var(--accent-glow); }
         .player-play-btn:active { transform: translateY(0); }
         .player-play-btn svg { width: 20px; height: 20px; }
@@ -352,7 +353,7 @@
         .player-info-btn { position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.375rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
         .player-info-btn:hover { background: var(--bg-hover); border-color: var(--accent); }
         .player-info-btn svg { width: 16px; height: 16px; }
-        .player-info-btn.copied { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .player-info-btn.copied { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
         .preview-code { width: 100%; min-height: 100%; padding: 0.5rem; background: var(--bg-primary); }
         .preview-code.line-numbers pre { counter-reset: line; white-space: pre-wrap; word-break: break-all; }
         .preview-code.line-numbers pre .line { display: block; counter-increment: line; }
@@ -362,7 +363,7 @@
         .preview-unavailable { text-align: center; padding: 2rem; color: var(--text-secondary); }
         .preview-unavailable svg { width: 40px; height: 40px; margin-bottom: 0.5rem; opacity: 0.5; }
         .preview-unavailable h3 { margin-bottom: 0.25rem; color: var(--text-primary); font-size: 1.05rem; font-weight: 700; }
-        .download-btn { display: inline-flex; align-items: center; gap: 0.375rem; margin-top: 0.75rem; padding: 0.5rem 1rem; background: var(--accent); color: #fff; text-decoration: none; border-radius: var(--radius); font-weight: 500; font-size: 0.85rem; }
+        .download-btn { display: inline-flex; align-items: center; gap: 0.375rem; margin-top: 0.75rem; padding: 0.5rem 1rem; background: var(--accent); color: var(--on-accent); text-decoration: none; border-radius: var(--radius); font-weight: 500; font-size: 0.85rem; }
         .download-btn:hover { background: var(--accent-hover); }
         .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; color: var(--text-secondary); }
         .spinner { width: 28px; height: 28px; border: 2px solid var(--border-color); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 0.5rem; }
@@ -662,7 +663,7 @@
             currentFileName = "",
             isPlaylistFile = !1,
             currentFontSize = 16,
-            themeHue = null,
+            vividColor = null,
             currentHls = null,
             streamTimeout = null,
             allFiles = [],
@@ -965,7 +966,7 @@
                 ? (localStorage.removeItem("theme"), document.documentElement.removeAttribute("data-theme"))
                 : (localStorage.setItem("theme", e), document.documentElement.setAttribute("data-theme", e)),
                 updateThemeButtons();
-            if (themeHue != null) applyThemeHue(themeHue);
+            if (vividColor) applyCustomColor();
             syncHljsTheme();
         }
         function setupDropdown(btnId, menuId, dropdownId) {
@@ -998,13 +999,21 @@
 
         /* ---------------------------------------------------------------
            Base Color engine
-           Lets the user pick a new "base driving color" that re-tints every
-           theme preset (Light, Dark, Auto, HC Dark, HC Light). Each themed
-           variable keeps its own original saturation & lightness so the
-           preset's brightness/contrast balance stays exactly as designed —
-           only the hue shifts to match whatever color the user picks.
+           Lets the user pick a color that re-colors the whole active theme
+           preset (backgrounds, borders, accent). Total control: your picked
+           color is used exactly as chosen — its own real hue AND
+           saturation, no reshaping toward a "safer" range — on every
+           surface, including the accent itself. Only each role's original
+           lightness is kept, purely so panels/hover states stay
+           distinguishable from one another.
+
+           The only accessibility intervention is reactive, not
+           preventative: a theme's own text color is left alone unless it
+           would actually fail contrast against the new background, in
+           which case it's simply inverted (light <-> dark) rather than
+           recomputed into something else.
            --------------------------------------------------------------- */
-        const THEME_HUE_KEY = "themeHue";
+        const CUSTOM_COLOR_KEY = "themeCustomColor";
         const THEME_BASE = {
             dark: {
                 "--bg-primary": "#0d1117", "--bg-secondary": "#161b22", "--bg-tertiary": "#21262d",
@@ -1037,6 +1046,9 @@
             { name: "Yellow", hue: 48 }, { name: "Green", hue: 142 }, { name: "Teal", hue: 174 },
             { name: "Cyan", hue: 191 }, { name: "Sky", hue: 199 }, { name: "Rose", hue: 350 }
         ];
+        function clampNum(v, min, max) {
+            return Math.max(min, Math.min(max, v));
+        }
         function hexToHsl(hex) {
             hex = hex.replace("#", "");
             if (hex.length === 3) hex = hex.split("").map((c) => c + c).join("");
@@ -1075,6 +1087,39 @@
             };
             return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
         }
+        function hexToRgb(hex) {
+            hex = hex.replace("#", "");
+            if (hex.length === 3) hex = hex.split("").map((c) => c + c).join("");
+            return {
+                r: parseInt(hex.substr(0, 2), 16),
+                g: parseInt(hex.substr(2, 2), 16),
+                b: parseInt(hex.substr(4, 2), 16),
+            };
+        }
+        // WCAG 2.x relative luminance: https://www.w3.org/TR/WCAG21/#dfn-relative-luminance
+        function relLuminance(hex) {
+            const { r, g, b } = hexToRgb(hex);
+            const chan = (c) => {
+                c /= 255;
+                return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+            };
+            return 0.2126 * chan(r) + 0.7152 * chan(g) + 0.0722 * chan(b);
+        }
+        function contrastRatio(hexA, hexB) {
+            const l1 = relLuminance(hexA), l2 = relLuminance(hexB);
+            const lighter = Math.max(l1, l2), darker = Math.min(l1, l2);
+            return (lighter + 0.05) / (darker + 0.05);
+        }
+        function invertHex(hex) {
+            const { r, g, b } = hexToRgb(hex);
+            const inv = (n) => clampNum(255 - n, 0, 255).toString(16).padStart(2, "0");
+            return `#${inv(r)}${inv(g)}${inv(b)}`;
+        }
+        // Leaves a theme's own text color alone unless it would actually fail
+        // contrast against the new background, in which case it's inverted.
+        function textColorFor(baseHex, bgHex, minRatio) {
+            return contrastRatio(baseHex, bgHex) >= minRatio ? baseHex : invertHex(baseHex);
+        }
         function getActivePaletteKey() {
             const attr = document.documentElement.getAttribute("data-theme");
             if (attr === "light" || attr === "hc-dark" || attr === "hc-light") return attr;
@@ -1082,30 +1127,59 @@
             const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
             return dark ? "dark" : "light";
         }
-        function applyThemeHue(hue) {
+        function applyCustomColor() {
+            if (!vividColor) return;
             const root = document.documentElement.style;
             const base = THEME_BASE[getActivePaletteKey()];
-            for (const [varName, baseHex] of Object.entries(base)) {
-                const { s, l } = hexToHsl(baseHex);
-                root.setProperty(varName, hslToHex(hue, s, l));
+            const { h, s: userS } = hexToHsl(vividColor);
+            const bgKeys = ["--bg-primary", "--bg-secondary", "--bg-tertiary", "--bg-hover", "--border-color"];
+            const newVals = {};
+            // Total control: your exact color, full stop. Every surface uses
+            // your pick's real hue AND saturation — nothing gets reshaped
+            // toward a "safer" range. Only each role's original lightness is
+            // kept, purely so panels/hover states remain distinguishable
+            // from one another.
+            for (const key of bgKeys) {
+                if (!base[key]) continue;
+                const { l } = hexToHsl(base[key]);
+                newVals[key] = hslToHex(h, userS, l);
             }
-            markActiveSwatch(hue);
+            newVals["--accent"] = vividColor;
+            const { l: accentL } = hexToHsl(base["--accent"]);
+            newVals["--accent-hover"] = hslToHex(h, userS, clampNum(accentL + (accentL > 55 ? -10 : 10), 4, 96));
+            for (const key of Object.keys(base)) {
+                if (!(key in newVals)) newVals[key] = base[key];
+            }
+            for (const [textKey, minRatio] of [["--text-primary", 4.5], ["--text-secondary", 4.5], ["--text-muted", 3]]) {
+                if (!base[textKey]) continue;
+                newVals[textKey] = textColorFor(base[textKey], newVals["--bg-primary"], minRatio);
+            }
+            let onAccent = "#ffffff";
+            if (contrastRatio(onAccent, newVals["--accent"]) < 4.5) onAccent = invertHex(onAccent);
+            for (const [varName, value] of Object.entries(newVals)) root.setProperty(varName, value);
+            root.setProperty("--on-accent", onAccent);
+            const rgb = hexToRgb(newVals["--accent"]);
+            root.setProperty("--accent-glow", `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.35)`);
+            markActiveSwatch(h);
         }
-        function clearThemeHueVars() {
+        function setCustomColor(hex) {
+            vividColor = hex;
+            localStorage.setItem(CUSTOM_COLOR_KEY, hex);
+            applyCustomColor();
+        }
+        function clearCustomVars() {
             const root = document.documentElement.style;
-            for (const key of ["dark", "light", "hc-dark", "hc-light"]) {
-                for (const varName of Object.keys(THEME_BASE[key])) root.removeProperty(varName);
-            }
+            const keys = [
+                "--bg-primary", "--bg-secondary", "--bg-tertiary", "--bg-hover", "--border-color",
+                "--text-primary", "--text-secondary", "--text-muted",
+                "--accent", "--accent-hover", "--on-accent", "--accent-glow",
+            ];
+            for (const key of keys) root.removeProperty(key);
         }
-        function setThemeHue(hue) {
-            themeHue = hue;
-            localStorage.setItem(THEME_HUE_KEY, String(hue));
-            applyThemeHue(hue);
-        }
-        function resetThemeHue() {
-            themeHue = null;
-            localStorage.removeItem(THEME_HUE_KEY);
-            clearThemeHueVars();
+        function resetCustomColor() {
+            vividColor = null;
+            localStorage.removeItem(CUSTOM_COLOR_KEY);
+            clearCustomVars();
             markActiveSwatch(null);
         }
         function markActiveSwatch(hue) {
@@ -1120,7 +1194,7 @@
             const wrap = document.getElementById("themeSwatches");
             if (!wrap) return;
             wrap.innerHTML = THEME_PRESETS.map((p) => {
-                const swatchColor = hslToHex(p.hue, 80, 60);
+                const swatchColor = hslToHex(p.hue, 100, 55);
                 return `<button type="button" class="theme-swatch" data-hue="${p.hue}" title="${p.name}" style="background:${swatchColor}"></button>`;
             }).join("");
         }
@@ -1128,30 +1202,31 @@
             const input = document.getElementById("themeColorInput"),
                 resetBtn = document.getElementById("themeResetBtn"),
                 swatches = document.getElementById("themeSwatches");
-            if (input) input.addEventListener("input", (e) => setThemeHue(hexToHsl(e.target.value).h));
-            if (resetBtn) resetBtn.addEventListener("click", () => resetThemeHue());
+            if (input) input.addEventListener("input", (e) => setCustomColor(e.target.value));
+            if (resetBtn) resetBtn.addEventListener("click", () => resetCustomColor());
             if (swatches) swatches.addEventListener("click", (e) => {
                 const sw = e.target.closest(".theme-swatch");
-                if (sw) setThemeHue(parseFloat(sw.dataset.hue));
+                if (!sw) return;
+                const hue = parseFloat(sw.dataset.hue);
+                const hex = hslToHex(hue, 100, 55);
+                setCustomColor(hex);
+                if (input) input.value = hex;
             });
             if (window.matchMedia) {
                 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-                    if (themeHue != null) applyThemeHue(themeHue);
+                    if (vividColor) applyCustomColor();
                 });
             }
         }
         function initThemeColor() {
             renderThemeSwatches();
-            const stored = localStorage.getItem(THEME_HUE_KEY);
-            if (stored !== null && stored !== "") {
-                const hue = parseFloat(stored);
-                if (!Number.isNaN(hue)) {
-                    themeHue = hue;
-                    applyThemeHue(hue);
-                    const input = document.getElementById("themeColorInput");
-                    if (input) input.value = hslToHex(hue, 100, 60);
-                    return;
-                }
+            const input = document.getElementById("themeColorInput");
+            const storedColor = localStorage.getItem(CUSTOM_COLOR_KEY);
+            if (storedColor) {
+                vividColor = storedColor;
+                applyCustomColor();
+                if (input) input.value = storedColor;
+                return;
             }
             markActiveSwatch(null);
         }
