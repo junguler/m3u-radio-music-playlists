@@ -202,6 +202,14 @@
         .theme-btn[data-theme="auto"] svg { color: #14b8a6; }
         .theme-btn[data-theme="hc-dark"] svg { color: #22d3ee; }
         .theme-btn[data-theme="hc-light"] svg { color: #c026d3; }
+        .theme-btn[data-theme="custom"] svg { color: var(--custom-theme-swatch, #8b5cf6); }
+        /* While a custom color is active, the light/dark/HC theme buttons no longer
+           produce visually distinct results (the custom color overrides them all), so
+           they're dimmed to signal that only the underlying (invisible) base has
+           changed, not the look of the app. The Custom button itself stays full
+           strength since it's the one actually driving what's on screen. */
+        .theme-toggle.custom-color-active .theme-btn:not(.theme-btn-custom) { opacity: 0.45; }
+        .theme-toggle.custom-color-active .theme-btn:not(.theme-btn-custom):hover { opacity: 0.8; }
         .theme-swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.4rem; width: 100%; }
         .theme-swatch { width: 22px; height: 22px; border-radius: 0px; border: 2px solid transparent; cursor: pointer; padding: 0; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15); }
         .theme-swatch:hover { transform: scale(1.1); }
@@ -272,6 +280,7 @@
         .file-list .file-thumbnail { display: none; }
         .list-columns { --list-cols: 24px 1fr 70px 90px 100px 80px; }
         .file-list-header { display: grid; grid-template-columns: var(--list-cols); gap: 0.5rem; padding: 0.4rem 0.5rem; margin-bottom: 2px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; background: var(--bg-primary); z-index: 5; }
+        .file-list-header.stuck { margin-top: -0.75rem; padding-top: calc(0.4rem + 0.75rem); top: -0.75rem; }
         .file-list-header .col-icon-spacer { width: 24px; }
         .file-list-header .col { display: flex; align-items: center; gap: 0.25rem; cursor: pointer; user-select: none; }
         .file-list-header .col:hover { color: var(--text-primary); }
@@ -562,6 +571,7 @@
                                             <button class="theme-btn" data-theme="auto" title="System theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28.0-.5.22-.5.5.0.12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5.0 0112 22zm0-18c-4.41.0-8 3.59-8 8s3.59 8 8 8c.28.0.5-.22.5-.5a.54.54.0 00-.14-.35c-.41-.46-.63-1.05-.63-1.65a2.5 2.5.0 012.5-2.5H16c2.21.0 4-1.79 4-4 0-3.86-3.59-7-8-7z"/><circle cx="6.5" cy="11.5" r="1.5"/><circle cx="9.5" cy="7.5" r="1.5"/><circle cx="14.5" cy="7.5" r="1.5"/><circle cx="17.5" cy="11.5" r="1.5"/></svg><span class="theme-btn-label">Auto</span></button>
                                             <button class="theme-btn" data-theme="hc-dark" title="High contrast dark theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 2a10 10 0 000 20 10 10 0 000-20zm0 2v16a8 8 0 010-16z"/></svg><span class="theme-btn-label">HC Dark</span></button>
                                             <button class="theme-btn" data-theme="hc-light" title="High contrast light theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 2a10 10 0 000 20 10 10 0 000-20zm0 18V4a8 8 0 010 16z"/></svg><span class="theme-btn-label">HC Light</span></button>
+                                            <button class="theme-btn theme-btn-custom" data-theme="custom" title="Custom color theme — active whenever a custom color is set"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.1 0 2-.9 2-2 0-.52-.2-.99-.53-1.34-.32-.34-.52-.8-.52-1.32.0-1.1.9-2 2-2H17c2.76.0 5-2.24 5-5C22 6.13 17.5 2 12 2zm-5.5 9c-.83.0-1.5-.67-1.5-1.5S5.67 8 6.5 8 8 8.67 8 9.5 7.33 11 6.5 11zm3-4C8.67 7 8 6.33 8 5.5S8.67 4 9.5 4s1.5.67 1.5 1.5S10.33 7 9.5 7zm5 0c-.83.0-1.5-.67-1.5-1.5S13.67 4 14.5 4s1.5.67 1.5 1.5S15.33 7 14.5 7zm3 4c-.83.0-1.5-.67-1.5-1.5S16.67 8 17.5 8s1.5.67 1.5 1.5S18.33 11 17.5 11z"/></svg><span class="theme-btn-label">Custom</span></button>
                                         </div>
                                     </div>
                                 </div>
@@ -958,6 +968,7 @@
             if (nativeToggle) nativeToggle.checked = useNativePlayer;
             document.body.classList.toggle("native-player-mode", useNativePlayer);
             initThemeColor();
+            updateThemeButtons();
             syncHljsTheme();
         }
         // Picks a highlight.js theme (github-dark or github light) based on
@@ -1258,8 +1269,10 @@
         function setCustomColor(hex) {
             vividColor = hex;
             localStorage.setItem(CUSTOM_COLOR_KEY, hex);
+            document.documentElement.style.setProperty("--custom-theme-swatch", hex);
             applyCustomColor();
             renderIntensityBar();
+            updateThemeButtons();
         }
         function clearCustomVars() {
             const root = document.documentElement.style;
@@ -1275,8 +1288,10 @@
             vividColor = null;
             localStorage.removeItem(CUSTOM_COLOR_KEY);
             clearCustomVars();
+            document.documentElement.style.removeProperty("--custom-theme-swatch");
             markActiveSwatch(null);
             renderIntensityBar();
+            updateThemeButtons();
         }
         // Paints each segment of the intensity bar with what that step
         // actually looks like for the currently picked color (or a neutral
@@ -1371,9 +1386,12 @@
         }
         function updateThemeButtons() {
             const e = localStorage.getItem("theme") || "auto";
+            const customActive = !!vividColor;
             document.querySelectorAll(".theme-btn").forEach((t) => {
-                t.classList.toggle("active", t.dataset.theme === e);
+                t.classList.toggle("active", t.dataset.theme === "custom" ? customActive : !customActive && t.dataset.theme === e);
             });
+            const toggle = document.getElementById("themeToggle");
+            if (toggle) toggle.classList.toggle("custom-color-active", customActive);
         }
         function updateFontSizeLabel() {
             document.getElementById("fontSizeLabel").textContent = currentFontSize + "px";
@@ -1800,11 +1818,24 @@
             render();
             document.getElementById("main").scrollTop = 0;
         }
+        function updateListHeaderStuck() {
+            const mainEl = document.getElementById("main");
+            const listHeader = document.querySelector(".file-list-header");
+            if (!mainEl || !listHeader) return;
+            const mainTop = mainEl.getBoundingClientRect().top;
+            const padTop = parseFloat(getComputedStyle(mainEl).paddingTop) || 0;
+            if (listHeader.classList.contains("stuck")) {
+                if (mainEl.scrollTop < padTop) listHeader.classList.remove("stuck");
+            } else {
+                if (listHeader.getBoundingClientRect().top <= mainTop + padTop) listHeader.classList.add("stuck");
+            }
+        }
         function setupEventListeners() {
             const mainEl = document.getElementById("main");
             const headerEl = document.querySelector(".header");
             mainEl.addEventListener("scroll", () => {
                 headerEl.classList.toggle("scrolled", mainEl.scrollTop > 2);
+                updateListHeaderStuck();
             }, { passive: true });
 
             const n = document.getElementById("search");
@@ -1906,7 +1937,16 @@
             setupDropdown("settingsBtn", "settingsMenu", "settingsDropdown");
             setupDropdown("themeColorBtn", "themeColorMenu", "themeColorDropdown");
             document.querySelectorAll(".theme-btn").forEach((e) => {
-                    e.addEventListener("click", () => saveTheme(e.dataset.theme));
+                    e.addEventListener("click", () => {
+                        if (e.dataset.theme === "custom") {
+                            if (vividColor) return; // already the active look, nothing to do
+                            const input = document.getElementById("themeColorInput");
+                            setCustomColor((input && input.value) || "#8080ff");
+                        } else {
+                            if (vividColor) resetCustomColor(); // switching to a stock theme drops the custom color
+                            saveTheme(e.dataset.theme);
+                        }
+                    });
                 }),
                 document.getElementById("fontDecrease").addEventListener("click", () => changeFontSize(-1)),
                 document.getElementById("fontIncrease").addEventListener("click", () => changeFontSize(1)),
@@ -1950,6 +1990,7 @@
             } else {
                 return;
             }
+            text += "\n";
             const done = () => {
                 if (btn) {
                     btn.classList.add("copied");
@@ -2465,6 +2506,7 @@
                     (searchResultLimit += 100), render();
                 });
             syncSortUI();
+            updateListHeaderStuck();
         }
         async function parsePlaylist(e, t) {
             try {
