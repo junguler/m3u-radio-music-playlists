@@ -26,6 +26,9 @@
             --accent: #5858ff;
             --accent-hover: #7979ff;
             --on-accent: #ffffff;
+            --control-surface: var(--bg-tertiary);
+            --control-surface-hover: var(--bg-hover);
+            --on-control: var(--text-primary);
             --success: #3fb950;
             --warning: #d29922;
             --danger: #f85149;
@@ -150,8 +153,8 @@
         .search-clear:hover { color: var(--text-primary); background: var(--bg-hover); }
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
         .settings-dropdown { position: relative; }
-        .settings-btn { padding: 0.375rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .settings-btn:hover { color: var(--text-primary); border-color: var(--accent); }
+        .settings-btn { padding: 0.375rem; background: var(--control-surface); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--on-control) !important; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .settings-btn:hover { background: var(--control-surface-hover); border-color: var(--accent); }
         .settings-btn svg { width: 16px; height: 16px; }
         .settings-menu { position: absolute; top: 100%; right: 0; margin-top: 0.375rem; min-width: 230px; z-index: 100; display: none; }
         .settings-menu.active { display: block; }
@@ -176,7 +179,13 @@
         .settings-control { display: flex; gap: 0.25rem; }
         .settings-control button { padding: 0.25rem 0.5rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-secondary); cursor: pointer; font-size: 0.75rem; }
         .settings-control button:hover { color: var(--text-primary); border-color: var(--accent); }
-        .settings-control button.active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+        .intensity-bar-wrap { display: flex; align-items: center; gap: 0.5rem; width: 100%; }
+        .intensity-bar-label { font-size: 0.62rem; color: var(--text-muted); flex-shrink: 0; text-transform: uppercase; letter-spacing: 0.05em; }
+        .intensity-bar { display: flex; flex: 1; height: 1.6rem; border-radius: var(--radius-full); overflow: hidden; border: 1px solid var(--border-color); }
+        .intensity-seg { flex: 1; border: none; border-right: 1px solid rgba(0, 0, 0, 0.15); cursor: pointer; padding: 0; position: relative; }
+        .intensity-seg:last-child { border-right: none; }
+        .intensity-seg:hover { filter: brightness(1.12); }
+        .intensity-seg.active { box-shadow: inset 0 0 0 2px var(--on-control); }
         .theme-toggle { display: flex; flex-wrap: wrap; background: var(--bg-tertiary); border-radius: var(--radius); padding: 2px; gap: 2px; }
         .theme-btn { padding: 0.25rem 0.5rem; background: 0 0; border: none; color: var(--text-secondary); cursor: pointer; border-radius: var(--radius-sm); font-size: 0.75rem; display: flex; align-items: center; gap: 0.25rem; }
         .theme-btn:hover { background: var(--bg-hover); }
@@ -266,7 +275,7 @@
         .file-list-header .col-icon-spacer { width: 24px; }
         .file-list-header .col { display: flex; align-items: center; gap: 0.25rem; cursor: pointer; user-select: none; }
         .file-list-header .col:hover { color: var(--text-primary); }
-        .file-list-header .col.active { color: var(--accent); }
+        .file-list-header .col.active { color: var(--text-primary); font-weight: 800; }
         .file-list-header .sort-arrow { font-size: 0.6rem; width: 0.7em; display: inline-block; }
         .file-list-header .col-ext, .file-list-header .col-size, .file-list-header .col-date, .file-list-header .col-time { justify-content: flex-end; }
         .file-list.list-columns .file-card { display: grid; grid-template-columns: var(--list-cols); align-items: center; }
@@ -288,37 +297,40 @@
         .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color); gap: 0.5rem; flex-shrink: 0; }
         .modal-title { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.005em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
         .modal-actions { display: flex; gap: 0.25rem; }
-        .modal-btn { padding: 0.375rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.25rem; }
-        .modal-btn:hover { background: var(--bg-hover); border-color: var(--accent); }
+        .modal-btn { padding: 0.375rem; background: var(--control-surface); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--on-control) !important; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.25rem; }
+        .modal-btn:hover { background: var(--control-surface-hover); border-color: var(--accent); }
         .modal-btn:disabled { opacity: 0.4; cursor: not-allowed; }
         .modal-btn:disabled:hover { background: var(--bg-tertiary); border-color: var(--border-color); }
         .modal-btn svg { width: 16px; height: 16px; }
-        .modal-btn.play-playlist-btn { padding: 0.375rem 0.5rem; font-size: 0.75rem; color: var(--accent); }
-        .modal-btn.play-playlist-btn:hover { color: var(--text-primary); }
+        .playlist-btn svg, .player-play-btn svg, .player-info-btn svg, .modal-btn svg, .settings-btn svg, .goto-step-btn svg {
+            filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+        }
+        .modal-btn.play-playlist-btn { padding: 0.375rem 0.5rem; font-size: 0.75rem; color: var(--accent) !important; }
+        .modal-btn.play-playlist-btn:hover { color: var(--text-primary) !important; }
         .modal-btn.hidden { display: none; }
         .playlist-bar { display: none; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color); position: relative; }
         .playlist-bar.active { display: flex; }
         .playlist-controls { display: flex; gap: 0.25rem; align-items: center; }
         .playlist-btn.top-native-btn { display: none; }
         body.native-player-mode .playlist-btn.top-native-btn { display: inline-flex; }
-        .playlist-btn { padding: 0.375rem 0.5rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.25rem; font-size: 0.75rem; }
-        .playlist-btn:hover { background: var(--bg-hover); border-color: var(--accent); }
+        .playlist-btn { padding: 0.375rem 0.5rem; background: var(--control-surface); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--on-control) !important; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.25rem; font-size: 0.75rem; }
+        .playlist-btn:hover { background: var(--control-surface-hover); border-color: var(--accent); }
         .playlist-btn:disabled { opacity: 0.4; cursor: not-allowed; }
         .playlist-btn svg { width: 14px; height: 14px; }
-        .playlist-btn.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+        .playlist-btn.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent) !important; }
         .playlist-info { flex: 1; font-size: 0.8rem; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .playlist-track { color: var(--text-primary); font-weight: 500; }
         .playlist-stop-btn { padding: 0.375rem 0.5rem; background: var(--danger); border: 1px solid var(--danger); border-radius: var(--radius); color: #fff; cursor: pointer; font-size: 0.75rem; }
         .playlist-stop-btn:hover { opacity: 0.9; }
         .goto-quick { display: flex; align-items: center; gap: 0.35rem; }
-        .goto-input { width: 3.4rem; height: 2.25rem; box-sizing: border-box; text-align: center; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); font-size: 0.8rem; padding: 0.35rem 0.2rem; -moz-appearance: textfield; }
+        .goto-input { width: 3.4rem; height: 2.25rem; box-sizing: border-box; text-align: center; background: var(--control-surface); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--on-control) !important; font-size: 0.8rem; padding: 0.35rem 0.2rem; -moz-appearance: textfield; }
         .goto-input::-webkit-outer-spin-button, .goto-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .goto-input:focus { outline: none; border-color: var(--accent); }
         .goto-input:disabled { opacity: 0.4; cursor: not-allowed; }
         .goto-stepper { display: flex; flex-direction: row; gap: 0.3rem; }
-        .goto-step-btn { width: 2.25rem; height: 2.25rem; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); cursor: pointer; padding: 0; line-height: 0; }
+        .goto-step-btn { width: 2.25rem; height: 2.25rem; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: var(--control-surface); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--on-control) !important; cursor: pointer; padding: 0; line-height: 0; }
         .goto-step-btn svg { width: 22px; height: 22px; }
-        .goto-step-btn:hover:not(:disabled) { background: var(--bg-hover); }
+        .goto-step-btn:hover:not(:disabled) { background: var(--control-surface-hover); }
         .goto-step-btn:disabled { opacity: 0.4; cursor: not-allowed; }
         @media (max-width: 640px) {
             .goto-input { width: 2.75rem; height: 2.5rem; font-size: 0.9rem; }
@@ -332,8 +344,8 @@
         .preview-media-container { width: 100%; max-width: 900px; height: 100%; min-height: 0; padding: 1rem; margin: 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; position: relative; }
         .preview-video { flex: 1; min-height: 0; max-width: 100%; width: auto; object-fit: contain; background: #000; border-radius: var(--radius); }
         .preview-audio-container { width: 100%; max-width: 500px; padding: 1.25rem 1rem; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; position: relative; }
-        .audio-icon { width: 80px; height: 80px; background: var(--bg-tertiary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); }
-        .audio-icon svg { width: 54px; height: 54px; }
+        .audio-icon { width: 80px; height: 80px; background: var(--control-surface); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--on-control); --bg-tertiary: var(--control-surface); }
+        .audio-icon svg { width: 54px; height: 54px; filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.3)); }
         .playlist-now-playing { font-weight: 500; text-align: center; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .preview-audio { width: 100%; height: 40px; display: none; }
         .preview-audio[controls] { display: block; }
@@ -345,15 +357,15 @@
         .player-controls-row .playlist-btn { padding: 0.5rem; flex-shrink: 0; border-radius: var(--radius-full); transition: transform var(--transition), background-color var(--transition), border-color var(--transition); }
         .player-controls-row .playlist-btn:hover:not(:disabled) { transform: translateY(-1px); }
         .player-divider { width: 1px; height: 1.25rem; background: var(--border-color); flex-shrink: 0; }
-        .player-play-btn { background: var(--accent) !important; border-color: var(--accent) !important; color: var(--on-accent) !important; border-radius: 50% !important; width: 2.75rem; height: 2.75rem; padding: 0 !important; box-shadow: 0 2px 10px var(--accent-glow); transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition); }
-        .player-play-btn:hover { background: var(--accent-hover) !important; border-color: var(--accent-hover) !important; transform: translateY(-1px); box-shadow: 0 4px 14px var(--accent-glow); }
+        .player-play-btn { background: var(--control-surface) !important; border-color: var(--control-surface) !important; color: var(--on-control) !important; border-radius: 50% !important; width: 2.75rem; height: 2.75rem; padding: 0 !important; box-shadow: 0 2px 10px var(--accent-glow); transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition); }
+        .player-play-btn:hover { background: var(--control-surface-hover) !important; border-color: var(--control-surface-hover) !important; transform: translateY(-1px); box-shadow: 0 4px 14px var(--accent-glow); }
         .player-play-btn:active { transform: translateY(0); }
         .player-play-btn svg { width: 20px; height: 20px; }
         .player-time, .player-vol { font-size: 0.75rem; color: var(--text-secondary); min-width: 2.5rem; text-align: center; user-select: none; }
-        .player-info-btn { position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.375rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
-        .player-info-btn:hover { background: var(--bg-hover); border-color: var(--accent); }
+        .player-info-btn { position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.375rem; background: var(--control-surface); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--on-control) !important; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
+        .player-info-btn:hover { background: var(--control-surface-hover); border-color: var(--accent); }
         .player-info-btn svg { width: 16px; height: 16px; }
-        .player-info-btn.copied { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+        .player-info-btn.copied { background: var(--accent); border-color: var(--accent); color: var(--on-accent) !important; }
         .preview-code { width: 100%; min-height: 100%; padding: 0.5rem; background: var(--bg-primary); }
         .preview-code.line-numbers pre { counter-reset: line; white-space: pre-wrap; word-break: break-all; }
         .preview-code.line-numbers pre .line { display: block; counter-increment: line; }
@@ -412,7 +424,7 @@
         .load-more-btn { display: block; margin: 0.75rem auto 0; padding: 0.375rem 1rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); cursor: pointer; font-size: 0.8rem; }
         .load-more-btn:hover { border-color: var(--accent); }
         .truncation-notice { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.75rem; }
-        .modal-btn.copied { color: var(--success); border-color: var(--success); }
+        .modal-btn.copied { color: var(--success) !important; border-color: var(--success); }
         .shortcuts-modal { max-width: 440px; }
         .shortcuts-body { padding: 0.75rem 1rem 1rem; }
         .shortcuts-list { display: flex; flex-direction: column; gap: 0.6rem; }
@@ -556,6 +568,22 @@
                                 <div class="settings-section" style="border-top: 1px solid var(--border-color)">
                                     <div class="settings-section-title">Base Color</div>
                                     <div class="settings-row">
+                                        <span class="settings-label">Color intensity</span>
+                                    </div>
+                                    <div class="settings-row">
+                                        <div class="intensity-bar-wrap">
+                                            <span class="intensity-bar-label">Vivid</span>
+                                            <div class="intensity-bar" id="colorIntensityControl" role="group" aria-label="Color intensity: vivid on the left, muted on the right">
+                                                <button type="button" class="intensity-seg" data-intensity="100" title="Vivid (100%)" aria-label="Vivid"></button>
+                                                <button type="button" class="intensity-seg" data-intensity="80" title="80%" aria-label="80%"></button>
+                                                <button type="button" class="intensity-seg" data-intensity="60" title="60% (default)" aria-label="60%, default"></button>
+                                                <button type="button" class="intensity-seg" data-intensity="40" title="40%" aria-label="40%"></button>
+                                                <button type="button" class="intensity-seg" data-intensity="20" title="Muted (20%)" aria-label="Muted"></button>
+                                            </div>
+                                            <span class="intensity-bar-label">Muted</span>
+                                        </div>
+                                    </div>
+                                    <div class="settings-row">
                                         <div class="theme-swatches" id="themeSwatches"></div>
                                     </div>
                                     <div class="theme-custom-row">
@@ -664,6 +692,7 @@
             isPlaylistFile = !1,
             currentFontSize = 16,
             vividColor = null,
+            colorIntensity = 60,
             currentHls = null,
             streamTimeout = null,
             allFiles = [],
@@ -999,21 +1028,29 @@
 
         /* ---------------------------------------------------------------
            Base Color engine
-           Lets the user pick a color that re-colors the whole active theme
-           preset (backgrounds, borders, accent). Total control: your picked
-           color is used exactly as chosen — its own real hue AND
-           saturation, no reshaping toward a "safer" range — on every
-           surface, including the accent itself. Only each role's original
-           lightness is kept, purely so panels/hover states stay
-           distinguishable from one another.
+           Whatever color you pick, its exact hue and saturation are used
+           everywhere — untouched, no clamping, no reshaping. Each surface
+           (main panel, secondary panel, hover state, border) keeps its own
+           original lightness so the app still has visible depth/layering;
+           the accent itself is your picked color exactly, byte-for-byte.
 
-           The only accessibility intervention is reactive, not
-           preventative: a theme's own text color is left alone unless it
-           would actually fail contrast against the new background, in
-           which case it's simply inverted (light <-> dark) rather than
-           recomputed into something else.
+           The only intervention is on TEXT, and only when it's reactive:
+           a theme's own text color is left alone unless it would actually
+           fail contrast against the new background, in which case it's
+           inverted; if inverting still isn't enough, it falls back to
+           plain black/white so text is never actually unreadable.
+
+           "Color intensity" is a 5-step bar (100/80/60/40/20%) for people
+           who find fully-saturated colors hard to look at. 100% is your
+           picked color exactly, byte-for-byte. Each step down blends more
+           of a calmer, desaturated, lightness-settled version of the same
+           hue in, until 20% is almost entirely that calmer version — just
+           a tint of your original color remains. Defaults to 60%.
            --------------------------------------------------------------- */
         const CUSTOM_COLOR_KEY = "themeCustomColor";
+        const MUTED_COLORS_KEY = "themeMutedColors";
+        const COLOR_INTENSITY_KEY = "themeColorIntensity";
+        const DEFAULT_COLOR_INTENSITY = 60;
         const THEME_BASE = {
             dark: {
                 "--bg-primary": "#0d1117", "--bg-secondary": "#161b22", "--bg-tertiary": "#21262d",
@@ -1115,10 +1152,49 @@
             const inv = (n) => clampNum(255 - n, 0, 255).toString(16).padStart(2, "0");
             return `#${inv(r)}${inv(g)}${inv(b)}`;
         }
-        // Leaves a theme's own text color alone unless it would actually fail
-        // contrast against the new background, in which case it's inverted.
-        function textColorFor(baseHex, bgHex, minRatio) {
-            return contrastRatio(baseHex, bgHex) >= minRatio ? baseHex : invertHex(baseHex);
+        // Leaves baseHex alone unless it fails contrast against bgHex. If so,
+        // try inverting it first; if even that isn't enough (a genuinely
+        // awkward pairing), fall back to whichever of pure black/white is
+        // more visible, guaranteeing text is never actually unreadable.
+        function readableTextColor(baseHex, bgHex, minRatio) {
+            if (contrastRatio(baseHex, bgHex) >= minRatio) return baseHex;
+            const inverted = invertHex(baseHex);
+            if (contrastRatio(inverted, bgHex) >= minRatio) return inverted;
+            return contrastRatio("#ffffff", bgHex) >= contrastRatio("#000000", bgHex) ? "#ffffff" : "#000000";
+        }
+        // Nudges hex's LIGHTNESS ONLY (hue & saturation untouched — still
+        // unmistakably the same color) just far enough that it's visible
+        // against bgHex. Used only for borders/hover states, which are
+        // useless if they're literally identical to the flat fill behind
+        // them.
+        function visibleVariant(hex, bgHex, targetRatio, maxShift) {
+            if (contrastRatio(hex, bgHex) >= targetRatio) return hex;
+            const { h, s, l } = hexToHsl(hex);
+            const dir = relLuminance(bgHex) < 0.5 ? 1 : -1;
+            let best = hex, bestRatio = contrastRatio(hex, bgHex);
+            for (let step = 1; step <= (maxShift || 40); step++) {
+                const nl = clampNum(l + dir * step, 0, 100);
+                const candidate = hslToHex(h, s, nl);
+                const ratio = contrastRatio(candidate, bgHex);
+                if (ratio > bestRatio) { bestRatio = ratio; best = candidate; }
+                if (ratio >= targetRatio) return candidate;
+                if (nl <= 0 || nl >= 100) break;
+            }
+            return best;
+        }
+        // Blends the picked color toward a calm, desaturated, settled-
+        // lightness target as intensity is lowered. hue never moves.
+        // intensityPct is one of 100/80/60/40/20 — at 100 this returns hex
+        // completely unchanged (blend 0); at 20 it's mostly the muted
+        // target (blend 1), leaving just a tint of the original color.
+        function muteColorAtIntensity(hex, intensityPct) {
+            const { h, s, l } = hexToHsl(hex);
+            const mutedS = clampNum(s * 0.12, 3, 15);
+            const mutedL = clampNum(l + (l < 50 ? 22 : -22), 12, 88);
+            const blend = clampNum((100 - intensityPct) / 80, 0, 1);
+            const newS = s + (mutedS - s) * blend;
+            const newL = l + (mutedL - l) * blend;
+            return hslToHex(h, newS, newL);
         }
         function getActivePaletteKey() {
             const attr = document.documentElement.getAttribute("data-theme");
@@ -1131,41 +1207,59 @@
             if (!vividColor) return;
             const root = document.documentElement.style;
             const base = THEME_BASE[getActivePaletteKey()];
-            const { h, s: userS } = hexToHsl(vividColor);
-            const bgKeys = ["--bg-primary", "--bg-secondary", "--bg-tertiary", "--bg-hover", "--border-color"];
             const newVals = {};
-            // Total control: your exact color, full stop. Every surface uses
-            // your pick's real hue AND saturation — nothing gets reshaped
-            // toward a "safer" range. Only each role's original lightness is
-            // kept, purely so panels/hover states remain distinguishable
-            // from one another.
-            for (const key of bgKeys) {
-                if (!base[key]) continue;
-                const { l } = hexToHsl(base[key]);
-                newVals[key] = hslToHex(h, userS, l);
-            }
-            newVals["--accent"] = vividColor;
-            const { l: accentL } = hexToHsl(base["--accent"]);
-            newVals["--accent-hover"] = hslToHex(h, userS, clampNum(accentL + (accentL > 55 ? -10 : 10), 4, 96));
+            // At 100% intensity: your color exactly as picked, no changes.
+            // Below that: the one deliberate exception — your color is
+            // blended toward a calmer, desaturated version of itself first,
+            // then applied the exact same way below.
+            const activeColor = muteColorAtIntensity(vividColor, colorIntensity);
+            // Every surface is your color, byte-for-byte — no hue shift, no
+            // saturation change, no lightness substitution. Backgrounds,
+            // hover fill, and the accent are all the literal same hex.
+            newVals["--bg-primary"] = activeColor;
+            newVals["--bg-secondary"] = activeColor;
+            newVals["--bg-tertiary"] = activeColor;
+            newVals["--bg-hover"] = activeColor;
+            newVals["--accent"] = activeColor;
+            // Borders and the hover state are the ONE necessary exception:
+            // if they were literally identical to the fill behind them,
+            // they'd be invisible. Each gets the smallest possible lightness
+            // nudge (hue & saturation still untouched) needed to be seeable.
+            newVals["--border-color"] = visibleVariant(activeColor, activeColor, 2.2, 50);
+            newVals["--accent-hover"] = visibleVariant(activeColor, activeColor, 1.6, 30);
+            // Guaranteed-visible surface for icon-only interactive controls
+            // (play button, player controls, info/copy buttons). Flattening
+            // every panel to the exact picked color (by design, above)
+            // means a button whose fill is also that exact color can vanish
+            // into the panel behind it. This shifts far enough in lightness
+            // (hue & saturation untouched) to always read as a distinct,
+            // clickable surface, then guarantees a genuinely legible icon
+            // color on top of it.
+            const { h: ctrlH, s: ctrlS, l: ctrlL } = hexToHsl(activeColor);
+            const shiftedL = clampNum(ctrlL + (ctrlL < 55 ? 22 : -22), 6, 94);
+            const controlSurface = visibleVariant(hslToHex(ctrlH, ctrlS, shiftedL), activeColor, 2.5, 70);
+            newVals["--control-surface"] = controlSurface;
+            newVals["--control-surface-hover"] = visibleVariant(controlSurface, controlSurface, 1.3, 25);
+            newVals["--on-control"] = contrastRatio("#ffffff", controlSurface) >= contrastRatio("#000000", controlSurface) ? "#ffffff" : "#000000";
             for (const key of Object.keys(base)) {
                 if (!(key in newVals)) newVals[key] = base[key];
             }
             for (const [textKey, minRatio] of [["--text-primary", 4.5], ["--text-secondary", 4.5], ["--text-muted", 3]]) {
                 if (!base[textKey]) continue;
-                newVals[textKey] = textColorFor(base[textKey], newVals["--bg-primary"], minRatio);
+                newVals[textKey] = readableTextColor(base[textKey], newVals["--bg-primary"], minRatio);
             }
-            let onAccent = "#ffffff";
-            if (contrastRatio(onAccent, newVals["--accent"]) < 4.5) onAccent = invertHex(onAccent);
             for (const [varName, value] of Object.entries(newVals)) root.setProperty(varName, value);
+            const onAccent = contrastRatio("#ffffff", newVals["--accent"]) >= contrastRatio("#000000", newVals["--accent"]) ? "#ffffff" : "#000000";
             root.setProperty("--on-accent", onAccent);
             const rgb = hexToRgb(newVals["--accent"]);
             root.setProperty("--accent-glow", `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.35)`);
-            markActiveSwatch(h);
+            markActiveSwatch(hexToHsl(activeColor).h);
         }
         function setCustomColor(hex) {
             vividColor = hex;
             localStorage.setItem(CUSTOM_COLOR_KEY, hex);
             applyCustomColor();
+            renderIntensityBar();
         }
         function clearCustomVars() {
             const root = document.documentElement.style;
@@ -1173,6 +1267,7 @@
                 "--bg-primary", "--bg-secondary", "--bg-tertiary", "--bg-hover", "--border-color",
                 "--text-primary", "--text-secondary", "--text-muted",
                 "--accent", "--accent-hover", "--on-accent", "--accent-glow",
+                "--control-surface", "--control-surface-hover", "--on-control",
             ];
             for (const key of keys) root.removeProperty(key);
         }
@@ -1181,6 +1276,34 @@
             localStorage.removeItem(CUSTOM_COLOR_KEY);
             clearCustomVars();
             markActiveSwatch(null);
+            renderIntensityBar();
+        }
+        // Paints each segment of the intensity bar with what that step
+        // actually looks like for the currently picked color (or a neutral
+        // default hue if none is picked yet), so the bar always shows a
+        // real vivid-on-the-left, muted-on-the-right gradient rather than
+        // a plain slider.
+        function renderIntensityBar() {
+            const wrap = document.getElementById("colorIntensityControl");
+            if (!wrap) return;
+            const baseHex = vividColor || "#5858ff";
+            wrap.querySelectorAll(".intensity-seg").forEach((seg) => {
+                const pct = parseInt(seg.dataset.intensity, 10);
+                seg.style.background = muteColorAtIntensity(baseHex, pct);
+            });
+        }
+        function setColorIntensity(pct) {
+            colorIntensity = pct;
+            localStorage.setItem(COLOR_INTENSITY_KEY, String(pct));
+            updateColorIntensityUI();
+            if (vividColor) applyCustomColor();
+        }
+        function updateColorIntensityUI() {
+            const wrap = document.getElementById("colorIntensityControl");
+            if (!wrap) return;
+            wrap.querySelectorAll("button[data-intensity]").forEach((btn) => {
+                btn.classList.toggle("active", parseInt(btn.dataset.intensity, 10) === colorIntensity);
+            });
         }
         function markActiveSwatch(hue) {
             const wrap = document.getElementById("themeSwatches");
@@ -1201,7 +1324,8 @@
         function wireThemeColorPicker() {
             const input = document.getElementById("themeColorInput"),
                 resetBtn = document.getElementById("themeResetBtn"),
-                swatches = document.getElementById("themeSwatches");
+                swatches = document.getElementById("themeSwatches"),
+                intensityControl = document.getElementById("colorIntensityControl");
             if (input) input.addEventListener("input", (e) => setCustomColor(e.target.value));
             if (resetBtn) resetBtn.addEventListener("click", () => resetCustomColor());
             if (swatches) swatches.addEventListener("click", (e) => {
@@ -1212,6 +1336,11 @@
                 setCustomColor(hex);
                 if (input) input.value = hex;
             });
+            if (intensityControl) intensityControl.addEventListener("click", (e) => {
+                const btn = e.target.closest("button[data-intensity]");
+                if (!btn) return;
+                setColorIntensity(parseInt(btn.dataset.intensity, 10));
+            });
             if (window.matchMedia) {
                 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
                     if (vividColor) applyCustomColor();
@@ -1221,6 +1350,16 @@
         function initThemeColor() {
             renderThemeSwatches();
             const input = document.getElementById("themeColorInput");
+            let storedIntensity = localStorage.getItem(COLOR_INTENSITY_KEY);
+            if (storedIntensity == null) {
+                // Migrate the old binary "Muted colors" toggle if it was set;
+                // otherwise fall back to the new default of 60%.
+                storedIntensity = localStorage.getItem(MUTED_COLORS_KEY) === "1" ? "20" : String(DEFAULT_COLOR_INTENSITY);
+            }
+            const parsedIntensity = parseInt(storedIntensity, 10);
+            colorIntensity = [20, 40, 60, 80, 100].includes(parsedIntensity) ? parsedIntensity : DEFAULT_COLOR_INTENSITY;
+            updateColorIntensityUI();
+            renderIntensityBar();
             const storedColor = localStorage.getItem(CUSTOM_COLOR_KEY);
             if (storedColor) {
                 vividColor = storedColor;
