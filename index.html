@@ -253,9 +253,11 @@
         .tree-pinned-item.active { background: var(--bg-tertiary); color: var(--text-primary); border-left-color: var(--accent); }
         .tree-pinned-item svg { width: 14px; height: 14px; flex-shrink: 0; }
         .tree-pinned-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.3; flex: 1; }
-        .tree-pinned-name-stack { display: flex; flex-direction: column; overflow: hidden; flex: 1; line-height: 1.3; }
-        .tree-pinned-filename { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .tree-pinned-folder { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.7rem; color: var(--text-muted); }
+        /* Single-line label for pinned/favorite entries. Truncates from the
+           *start* of the string (keeping the tail, e.g. "…9/00.m3u" visible)
+           via the direction:rtl + text-align:left trick, since the end of
+           a path is usually more distinguishing than the start. */
+        .tree-pinned-name-stack { display: block; overflow: hidden; flex: 1; min-width: 0; line-height: 1.3; white-space: nowrap; }
         .tree-pinned-unpin { flex-shrink: 0; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; padding: 0; background: none; border: none; opacity: 1; color: var(--accent-text, var(--accent)); cursor: pointer; }
         .tree-pinned-unpin svg { width: 12px; height: 12px; }
         .tree-pinned-unpin:hover, .tree-pinned-unpin:focus-visible { color: var(--danger); }
@@ -470,6 +472,13 @@
             }
             .tree-panel .tree-header, .tree-panel .tree-content { display: none; }
             .search-container { width: 120px; }
+            /* The pinned/favorites strip previously stacked each entry's
+               filename and parent folder on two lines, wasting vertical
+               space on small screens. Both are now a single truncated line,
+               and the header + row chrome is tightened up to match. */
+            .tree-pinned { padding-bottom: 0.15rem; }
+            .tree-pinned-header { padding: 0.3rem 0.5rem 0.1rem; font-size: 0.65rem; }
+            .tree-pinned-item { padding: 0.2rem 0.5rem; font-size: 0.8rem; }
         }
         @media (max-width: 640px) {
             .breadcrumb { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
@@ -2422,6 +2431,9 @@
                     t.classList.toggle("active", t.dataset.view === e);
                 }),
                 document.getElementById("treePanel").classList.toggle("visible", e === "tree"),
+                e === "tree" &&
+                    (truncatePinnedLabels(document.getElementById("treePinned")),
+                    truncatePinnedLabels(document.getElementById("treeFavorites"))),
                 render();
         }
         function setSortBy(e) {
@@ -2602,6 +2614,56 @@
             renderPinnedFolders();
             renderBreadcrumb();
         }
+        // Truncates long pinned/favorite labels from the *start* (keeping the
+        // tail, e.g. "…9/00s.m3u", visible) so the more distinguishing end of
+        // a path/filename stays readable. This is done with real text
+        // measurement rather than a CSS direction:rtl trick, because that
+        // trick corrupts strings with symmetric punctuation at the edges
+        // (e.g. "+checked+") and can shuffle a trailing file extension.
+        function measurePinnedTextWidth(text, font) {
+            const canvas = measurePinnedTextWidth._canvas || (measurePinnedTextWidth._canvas = document.createElement("canvas"));
+            const ctx = canvas.getContext("2d");
+            ctx.font = font;
+            return ctx.measureText(text).width;
+        }
+        function truncatePinnedLabels(container) {
+            if (!container) return;
+            const els = container.querySelectorAll(".tree-pinned-name-stack[data-full]");
+            els.forEach((el) => {
+                const fullText = el.dataset.full;
+                const availWidth = el.clientWidth;
+                if (!availWidth) {
+                    el.textContent = fullText;
+                    return;
+                }
+                const style = getComputedStyle(el);
+                const font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+                if (measurePinnedTextWidth(fullText, font) <= availWidth) {
+                    el.textContent = fullText;
+                    return;
+                }
+                const ellipsis = "\u2026";
+                let lo = 0, hi = fullText.length;
+                while (lo < hi) {
+                    const mid = Math.ceil((lo + hi) / 2);
+                    const candidate = ellipsis + fullText.slice(fullText.length - mid);
+                    if (measurePinnedTextWidth(candidate, font) <= availWidth) {
+                        lo = mid;
+                    } else {
+                        hi = mid - 1;
+                    }
+                }
+                el.textContent = lo > 0 ? ellipsis + fullText.slice(fullText.length - lo) : ellipsis;
+            });
+        }
+        let pinnedTruncateResizeTimer = null;
+        window.addEventListener("resize", () => {
+            clearTimeout(pinnedTruncateResizeTimer);
+            pinnedTruncateResizeTimer = setTimeout(() => {
+                truncatePinnedLabels(document.getElementById("treePinned"));
+                truncatePinnedLabels(document.getElementById("treeFavorites"));
+            }, 150);
+        });
         function renderPinnedFolders() {
             const container = document.getElementById("treePinned");
             if (!container) return;
@@ -2615,18 +2677,17 @@
                 const label = pathArr.length ? pathArr.join(" / ") : "Home";
                 const name = pathArr.length ? pathArr[pathArr.length - 1] : "Home";
                 const folderLabel = pathArr.length > 1 ? pathArr[pathArr.length - 2] : "";
+                const displayLabel = folderLabel ? `${folderLabel}/${name}` : name;
                 return `
             <div class="tree-pinned-item${isActive ? " active" : ""}" data-path="${pathAttr}" tabindex="0" role="button" aria-label="Go to pinned folder ${escapeHtml(label)}" title="${escapeHtml(label)}">
               ${icons.folder}
-              <span class="tree-pinned-name-stack">
-                <span class="tree-pinned-filename">${escapeHtml(name)}</span>
-                ${folderLabel ? `<span class="tree-pinned-folder">${escapeHtml(folderLabel)}</span>` : ""}
-              </span>
+              <span class="tree-pinned-name-stack" data-full="${escapeHtml(displayLabel)}"></span>
               <button type="button" class="tree-pinned-unpin" data-unpin-path="${pathAttr}" title="Unpin" aria-label="Unpin ${escapeHtml(label)}">${icons.starFilled}</button>
             </div>
           `;
             }).join("");
             container.innerHTML = `<div class="tree-pinned-header">Pinned</div>${rows}`;
+            truncatePinnedLabels(container);
         }
         // Individual file favorites/stars, toggled from the top-right of the
         // preview window. Unlike pinned folders (which need a path array),
@@ -2689,18 +2750,17 @@
                 const pathAttr = escapeHtml(path);
                 const parentSegments = path.split("/").slice(0, -1);
                 const folderLabel = parentSegments.length ? parentSegments[parentSegments.length - 1] : "";
+                const displayLabel = folderLabel ? `${folderLabel}/${name}` : name;
                 return `
             <div class="tree-pinned-item" data-file-path="${pathAttr}" tabindex="0" role="button" aria-label="Open favorite file ${escapeHtml(name)}${folderLabel ? ` in ${escapeHtml(folderLabel)}` : ""}" title="${escapeHtml(path)}">
               ${icons[iconType] || icons.other}
-              <span class="tree-pinned-name-stack">
-                <span class="tree-pinned-filename">${escapeHtml(name)}</span>
-                ${folderLabel ? `<span class="tree-pinned-folder">${escapeHtml(folderLabel)}</span>` : ""}
-              </span>
+              <span class="tree-pinned-name-stack" data-full="${escapeHtml(displayLabel)}"></span>
               <button type="button" class="tree-pinned-unpin" data-unfavorite-path="${pathAttr}" title="Remove from favorites" aria-label="Remove ${escapeHtml(name)} from favorites">${icons.starFilled}</button>
             </div>
           `;
             }).join("");
             container.innerHTML = `<div class="tree-pinned-header">Favorites</div>${rows}`;
+            truncatePinnedLabels(container);
         }
         // Pinned folders and favorite files render as visually identical
         // "tree-pinned" strips (see renderPinnedFolders/renderFavoriteFiles)
