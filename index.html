@@ -9,57 +9,58 @@
     <meta property="og:title" content="File Viewer" />
     <meta property="og:description" content="Browse and preview files from this repository directly in your browser." />
     <meta property="og:type" content="website" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2358a6ff' d='M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z'/%3E%3C/svg%3E" />
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect fill='%23121212' width='24' height='24'/%3E%3Crect fill='%239b5de5' x='2' y='5' width='20' height='14'/%3E%3Ccircle fill='%23121212' cx='8' cy='12' r='2.4'/%3E%3Ccircle fill='%23121212' cx='16' cy='12' r='2.4'/%3E%3Ccircle fill='%239b5de5' cx='8' cy='12' r='0.8'/%3E%3Ccircle fill='%239b5de5' cx='16' cy='12' r='0.8'/%3E%3Crect fill='%23121212' x='10' y='15.6' width='4' height='1.6'/%3E%3C/svg%3E" />
+    <script src="./hls.min.js"></script>
     
     <style>
         /* Styles remain consistent */
         :root {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-tertiary: #21262d;
-            --bg-hover: #30363d;
-            --border-color: #30363d;
-            --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --text-muted: #6e7681;
-            --accent: #5858ff;
-            --accent-hover: #7979ff;
+            --bg-primary: #121212;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #242424;
+            --bg-hover: #343434;
+            --border-color: #3a3a3a;
+            --text-primary: #f0f0f0;
+            --text-secondary: #adadad;
+            --text-muted: #797979;
+            --accent: #9b5de5;
+            --accent-hover: #b280ea;
             --on-accent: #ffffff;
             --control-surface: var(--bg-tertiary);
             --control-surface-hover: var(--bg-hover);
             --on-control: var(--text-primary);
             --skeleton-base: var(--bg-tertiary);
             --skeleton-shine: var(--bg-hover);
-            --success: #3fb950;
-            --warning: #d29922;
-            --danger: #f85149;
+            --success: #6bbf6b;
+            --warning: #d4a24c;
+            --danger: #d9564a;
             --radius: 0px;
             --radius-sm: 0px;
             --radius-lg: 0px;
             --radius-full: 0px;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
-            --accent-glow: rgba(88, 88, 255, 0.3);
+            --shadow: 0 3px 0 rgba(0, 0, 0, 0.5);
+            --shadow-sm: 0 2px 0 rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 6px 0 rgba(0, 0, 0, 0.55);
+            --accent-glow: rgba(155, 93, 229, 0.3);
             --transition: 0.15s ease;
             --font-size-base: 16px;
+            --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Consolas, monospace;
         }
         html[data-theme="light"] {
             --bg-primary: #ffffff;
-            --bg-secondary: #f6f8fa;
-            --bg-tertiary: #eaeef2;
-            --bg-hover: #d0d7de;
-            --border-color: #d0d7de;
-            --text-primary: #1f2328;
-            --text-secondary: #656d76;
-            --text-muted: #8c959f;
-            --accent: #0909da;
-            --accent-hover: #0505ae;
-            --shadow: 0 4px 12px rgba(140, 149, 159, 0.2);
-            --shadow-sm: 0 1px 3px rgba(140, 149, 159, 0.18);
-            --shadow-lg: 0 12px 32px rgba(140, 149, 159, 0.3);
-            --accent-glow: rgba(9, 9, 218, 0.25);
+            --bg-secondary: #f5f5f5;
+            --bg-tertiary: #ececec;
+            --bg-hover: #dddddd;
+            --border-color: #d6d6d6;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4d4d4d;
+            --text-muted: #7a7a7a;
+            --accent: #5b21b6;
+            --accent-hover: #4c1a99;
+            --shadow: 0 3px 0 rgba(0, 0, 0, 0.15);
+            --shadow-sm: 0 2px 0 rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 6px 0 rgba(0, 0, 0, 0.18);
+            --accent-glow: rgba(91, 33, 182, 0.22);
         }
         /* High contrast dark: based on the classic Windows high-contrast black scheme
            (black background, white text, cyan title accent, magenta hyperlinks, purple buttons) */
@@ -105,19 +106,19 @@
         @media (prefers-color-scheme: light) {
             :root:not([data-theme]) {
                 --bg-primary: #ffffff;
-                --bg-secondary: #f6f8fa;
-                --bg-tertiary: #eaeef2;
-                --bg-hover: #d0d7de;
-                --border-color: #d0d7de;
-                --text-primary: #1f2328;
-                --text-secondary: #656d76;
-                --text-muted: #8c959f;
-                --accent: #0909da;
-                --accent-hover: #0505ae;
-                --shadow: 0 4px 12px rgba(140, 149, 159, 0.2);
-                --shadow-sm: 0 1px 3px rgba(140, 149, 159, 0.18);
-                --shadow-lg: 0 12px 32px rgba(140, 149, 159, 0.3);
-                --accent-glow: rgba(9, 9, 218, 0.25);
+                --bg-secondary: #f5f5f5;
+                --bg-tertiary: #ececec;
+                --bg-hover: #dddddd;
+                --border-color: #d6d6d6;
+                --text-primary: #1a1a1a;
+                --text-secondary: #4d4d4d;
+                --text-muted: #7a7a7a;
+                --accent: #5b21b6;
+                --accent-hover: #4c1a99;
+                --shadow: 0 3px 0 rgba(0, 0, 0, 0.15);
+                --shadow-sm: 0 2px 0 rgba(0, 0, 0, 0.12);
+                --shadow-lg: 0 6px 0 rgba(0, 0, 0, 0.18);
+                --accent-glow: rgba(91, 33, 182, 0.22);
             }
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -149,6 +150,7 @@
         .breadcrumb-pin-btn:hover { color: var(--accent-text, var(--accent)); background: var(--bg-hover); }
         .breadcrumb-pin-btn.pinned { color: var(--accent-text, var(--accent)); }
         .header-actions { display: flex; gap: 0.375rem; align-items: center; }
+        .header-divider { width: 1px; height: 20px; background: var(--border-color); flex-shrink: 0; margin: 0 0.125rem; }
         .search-container { position: relative; width: 200px; }
         .search-input { width: 100%; padding: 0.375rem 1.75rem 0.375rem 1.75rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); font-size: 0.85rem; }
         .search-input:focus { outline: none; border-color: var(--accent); }
@@ -172,7 +174,7 @@
         .settings-menu-close svg { width: 14px; height: 14px; }
         .settings-menu-body { max-height: 70vh; overflow-y: auto; }
         .settings-section { padding: 0.65rem 0.7rem; }
-        .settings-section-title { font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.375rem; }
+        .settings-section-title { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.375rem; }
         .settings-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.35rem 0; }
         .switch { position: relative; display: inline-block; width: 38px; height: 22px; flex-shrink: 0; }
         .switch input { opacity: 0; width: 0; height: 0; }
@@ -216,8 +218,8 @@
            strength since it's the one actually driving what's on screen. */
         .theme-toggle.custom-color-active .theme-btn:not(.theme-btn-custom) { opacity: 0.45; }
         .theme-toggle.custom-color-active .theme-btn:not(.theme-btn-custom):hover { opacity: 0.8; }
-        .theme-swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.4rem; width: 100%; }
-        .theme-swatch { width: 22px; height: 22px; border-radius: 0px; border: 2px solid transparent; cursor: pointer; padding: 0; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15); }
+        .theme-swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.55rem; width: 100%; padding: 0.15rem 0; }
+        .theme-swatch { width: 28px; height: 28px; border-radius: 0px; border: 2px solid transparent; cursor: pointer; padding: 0; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15); }
         .theme-swatch:hover { transform: scale(1.1); }
         .theme-swatch.active { border-color: var(--text-primary); }
         .theme-custom-row { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
@@ -232,7 +234,7 @@
         .app-container { flex: 1; display: flex; overflow: hidden; }
         .tree-panel { width: 240px; background: var(--bg-secondary); border-right: 1px solid var(--border-color); display: none; flex-shrink: 0; flex-direction: column; }
         .tree-panel.visible { display: flex; }
-        .tree-header { padding: 0.5rem 0.75rem; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
+        .tree-header { padding: 0.5rem 0.75rem; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
         .tree-content { padding: 0.25rem 0; overflow-y: auto; flex: 1; min-height: 0; }
         .tree-content:not(.needs-scroll) { overflow-y: visible; }
         .tree-item { display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.5rem; cursor: pointer; font-size: 0.85rem; color: var(--text-secondary); border-left: 2px solid transparent; }
@@ -263,7 +265,7 @@
         .tree-pinned-unpin:hover, .tree-pinned-unpin:focus-visible { color: var(--danger); }
         .main { flex: 1; overflow: auto; padding: 0.75rem; display: flex; flex-direction: column; }
         .main-content { flex: 1; }
-        .stats-bar { display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.75rem; line-height: 1.4; color: var(--text-muted); }
+        .stats-bar { display: flex; gap: 1rem; margin-bottom: 0.5rem; font-family: var(--font-mono); font-size: 0.72rem; line-height: 1.4; color: var(--text-muted); }
         .stat { display: flex; align-items: center; gap: 0.25rem; }
         .stat svg { width: 12px; height: 12px; }
         .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.5rem; }
@@ -283,22 +285,22 @@
         .file-card.parent-dir .file-name { color: var(--text-secondary); }
         .file-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--bg-tertiary); }
         .file-icon svg { width: 20px; height: 20px; }
-        .file-icon.folder { color: #8b949e; background: rgba(139, 148, 158, 0.1); }
-        .file-icon.image { color: #a371f7; background: rgba(163, 113, 247, 0.1); }
-        .file-icon.video { color: #f85149; background: rgba(248, 81, 73, 0.1); }
-        .file-icon.audio { color: #3fb950; background: rgba(63, 185, 80, 0.1); }
-        .file-icon.code { color: #58a6ff; background: rgba(88, 166, 255, 0.1); }
-        .file-icon.document { color: #f0883e; background: rgba(240, 136, 62, 0.1); }
-        .file-icon.text { color: #8b949e; background: rgba(139, 148, 158, 0.1); }
-        .file-icon.data { color: #d29922; background: rgba(210, 153, 34, 0.1); }
-        .file-icon.archive { color: #a5d6ff; background: rgba(165, 214, 255, 0.1); }
-        .file-icon.markup { color: #7ee787; background: rgba(126, 231, 135, 0.1); }
-        .file-icon.style { color: #79c0ff; background: rgba(121, 192, 255, 0.1); }
-        .file-icon.font { color: #ffa657; background: rgba(255, 166, 87, 0.1); }
-        .file-icon.playlist { color: #f778ba; background: rgba(247, 120, 186, 0.1); }
-        .file-icon.other { color: #8b949e; background: rgba(139, 148, 158, 0.1); }
+        .file-icon.folder { color: #9a9a9a; background: rgba(154, 154, 154, 0.14); }
+        .file-icon.image { color: #c58ce0; background: rgba(197, 140, 224, 0.16); }
+        .file-icon.video { color: #e2765c; background: rgba(226, 118, 92, 0.16); }
+        .file-icon.audio { color: #8fc25a; background: rgba(143, 194, 90, 0.2); }
+        .file-icon.code { color: #6fa8dc; background: rgba(111, 168, 220, 0.16); }
+        .file-icon.document { color: #e0994f; background: rgba(224, 153, 79, 0.16); }
+        .file-icon.text { color: #9a9a9a; background: rgba(154, 154, 154, 0.14); }
+        .file-icon.data { color: #dcae4e; background: rgba(220, 174, 78, 0.16); }
+        .file-icon.archive { color: #b8cfe0; background: rgba(184, 207, 224, 0.16); }
+        .file-icon.markup { color: #9bd88a; background: rgba(155, 216, 138, 0.16); }
+        .file-icon.style { color: #7fb8dc; background: rgba(127, 184, 220, 0.16); }
+        .file-icon.font { color: #e0a85f; background: rgba(224, 168, 95, 0.16); }
+        .file-icon.playlist { color: #e08fb0; background: rgba(224, 143, 176, 0.2); }
+        .file-icon.other { color: #9a9a9a; background: rgba(154, 154, 154, 0.14); }
         .file-name { font-weight: 500; word-break: break-word; font-size: 0.8rem; max-width: 100%; line-height: 1.2; }
-        .file-meta { font-size: 0.7rem; color: var(--text-muted); }
+        .file-meta { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); }
         .file-path { display: block; font-size: 0.65rem; color: var(--text-muted); word-break: break-all; margin-top: 2px; }
         .file-thumbnail { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-sm); background: var(--bg-tertiary); }
         .file-thumbnail.lazy { opacity: 0; transition: opacity 0.2s; }
@@ -313,7 +315,7 @@
         .file-list .file-size { color: var(--text-muted); font-size: 0.75rem; flex-shrink: 0; }
         .file-list .file-thumbnail { display: none; }
         .list-columns { --list-cols: 22px 24px 1fr 70px 90px 100px 80px; }
-        .file-list-header { display: grid; grid-template-columns: var(--list-cols); gap: 0.5rem; padding: 0.4rem 0.5rem; margin-bottom: 2px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; background: var(--bg-primary); z-index: 5; }
+        .file-list-header { display: grid; grid-template-columns: var(--list-cols); gap: 0.5rem; padding: 0.4rem 0.5rem; margin-bottom: 2px; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; background: var(--bg-primary); z-index: 5; }
         .file-list-header.stuck { margin-top: -0.75rem; padding-top: calc(0.4rem + 0.75rem); top: -0.75rem; }
         .file-list-header .col-star-spacer { width: 22px; }
         .file-list-header .col-icon-spacer { width: 24px; }
@@ -323,7 +325,7 @@
         .file-list-header .sort-arrow { font-size: 0.6rem; width: 0.7em; display: inline-block; }
         .file-list-header .col-ext, .file-list-header .col-size, .file-list-header .col-date, .file-list-header .col-time { justify-content: flex-end; }
         .file-list.list-columns .file-card { display: grid; grid-template-columns: var(--list-cols); align-items: center; }
-        .file-list.list-columns .col-ext, .file-list.list-columns .col-size, .file-list.list-columns .col-date, .file-list.list-columns .col-time { text-align: right; font-size: 0.75rem; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .file-list.list-columns .col-ext, .file-list.list-columns .col-size, .file-list.list-columns .col-date, .file-list.list-columns .col-time { text-align: right; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         /* In list/tree mode the star sits inline as its own grid column
            rather than floating over the card content. */
         .file-list.list-columns .card-star-btn { position: static; opacity: 0.55; background: none; border: none; width: 20px; height: 20px; }
@@ -429,8 +431,8 @@
         .player-controls-row .playlist-btn { padding: 0.5rem; flex-shrink: 0; border-radius: var(--radius-full); transition: transform var(--transition), background-color var(--transition), border-color var(--transition); }
         .player-controls-row .playlist-btn:hover:not(:disabled) { transform: translateY(-1px); }
         .player-divider { width: 1px; height: 1.25rem; background: var(--border-color); flex-shrink: 0; }
-        .player-play-btn { background: var(--control-surface) !important; border-color: var(--control-surface) !important; color: var(--on-control) !important; border-radius: 0px !important; width: 2.75rem; height: 2.75rem; padding: 0 !important; box-shadow: 0 2px 10px var(--accent-glow); transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition); }
-        .player-play-btn:hover { background: var(--control-surface-hover) !important; border-color: var(--control-surface-hover) !important; transform: translateY(-1px); box-shadow: 0 4px 14px var(--accent-glow); }
+        .player-play-btn { background: var(--control-surface) !important; border-color: var(--control-surface) !important; color: var(--on-control) !important; border-radius: 0px !important; width: 2.75rem; height: 2.75rem; padding: 0 !important; box-shadow: 0 3px 0 var(--accent); transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition); }
+        .player-play-btn:hover { background: var(--control-surface-hover) !important; border-color: var(--control-surface-hover) !important; transform: translateY(-1px); box-shadow: 0 4px 0 var(--accent); }
         .player-play-btn:active { transform: translateY(0); }
         .player-play-btn svg { width: 20px; height: 20px; }
         .player-time, .player-vol { font-size: 0.75rem; color: var(--text-secondary); min-width: 2.5rem; text-align: center; user-select: none; }
@@ -606,7 +608,7 @@
     <header class="header">
         <div class="header-content">
             <div class="logo" id="logoHome" role="button" tabindex="0" aria-label="Go to home folder">
-                <svg viewBox="0 0 24 24" fill="currentcolor"><path d="M20 6h-8l-2-2H4c-1.1.0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1.0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentcolor"><rect x="2" y="5" width="20" height="14"/><circle cx="8" cy="12" r="2.4" fill="var(--bg-secondary)"/><circle cx="16" cy="12" r="2.4" fill="var(--bg-secondary)"/><circle cx="8" cy="12" r="0.8"/><circle cx="16" cy="12" r="0.8"/><rect x="10" y="15.6" width="4" height="1.6" fill="var(--bg-secondary)"/></svg>
                 <span>File Viewer</span>
             </div>
             <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb"></nav>
@@ -618,12 +620,14 @@
                         <svg viewBox="0 0 24 24" fill="currentcolor" width="12" height="12"><use href="#icon-x"/></svg>
                     </button>
                 </div>
+                <div class="header-divider"></div>
                 <button class="settings-btn" id="shortcutsBtn" title="Keyboard shortcuts" aria-label="Show keyboard shortcuts">
                     <svg viewBox="0 0 24 24" fill="currentcolor"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41.0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21.0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
                 </button>
                 <button class="settings-btn" id="statsBtn" title="Library stats" aria-label="Show library stats">
                     <svg viewBox="0 0 24 24" fill="currentcolor"><path d="M5 9.2h3.2V19H5V9.2zm5.4-4.4h3.2V19h-3.2V4.8zm5.4 8h3.2V19h-3.2v-6.2z"/></svg>
                 </button>
+                <div class="header-divider"></div>
                 <div class="settings-dropdown" id="settingsDropdown">
                     <button class="settings-btn" id="settingsBtn" title="Settings" aria-label="Settings" aria-haspopup="true" aria-expanded="false">
                         <svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19.14 12.94c.04-.31.06-.63.06-.94.0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24.0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47.0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24.0.44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47.0.59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98.0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
@@ -739,6 +743,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="header-divider"></div>
                 <div class="view-toggle" role="group" aria-label="View mode">
                     <button class="view-btn" data-view="grid" title="Grid" aria-label="Grid view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg></button>
                     <button class="view-btn" data-view="list" title="List" aria-label="List view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"/></svg></button>
@@ -891,7 +896,7 @@
             folder: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>`,
             image: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>`,
             video: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>`,
-            audio: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></svg>`,
+            audio: `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="5" width="20" height="14"/><circle cx="8" cy="12" r="2.4" fill="var(--bg-tertiary)"/><circle cx="16" cy="12" r="2.4" fill="var(--bg-tertiary)"/><circle cx="8" cy="12" r="0.8"/><circle cx="16" cy="12" r="0.8"/><rect x="10" y="15.6" width="4" height="1.6" fill="var(--bg-tertiary)"/></svg>`,
             code: iconCodeBrackets,
             document: iconDocPage,
             text: iconDocPage,
@@ -900,7 +905,7 @@
             font: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.93 13.5h4.14L12 7.98zM20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-4.05 16.5l-1.14-3H9.17l-1.12 3H5.96l5.11-13h1.86l5.11 13h-2.09z"/></svg>`,
             markup: iconCodeBrackets,
             style: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.53 19.65l1.34.56v-9.03l-2.43 5.86c-.41 1.02.08 2.19 1.09 2.61zm19.5-3.7L17.07 3.98c-.31-.75-1.04-1.21-1.81-1.23-.26 0-.53.04-.79.15L7.1 5.95c-.75.31-1.21 1.03-1.23 1.8-.01.27.04.54.15.8l4.96 11.97c.31.76 1.05 1.22 1.83 1.23.26 0 .52-.05.77-.15l7.36-3.05c1.02-.42 1.51-1.59 1.09-2.6zm-9.2 3.8L7.87 7.79l7.35-3.04h.01l4.95 11.95-7.35 3.05z"/></svg>`,
-            playlist: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"/></svg>`,
+            playlist: `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2" fill="var(--bg-tertiary)"/><circle cx="12" cy="6.4" r="1.3" fill="var(--bg-tertiary)"/><circle cx="7" cy="15.2" r="1.3" fill="var(--bg-tertiary)"/><circle cx="17" cy="15.2" r="1.3" fill="var(--bg-tertiary)"/></svg>`,
             starOutline: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`,
             starFilled: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`,
             playCtl: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`,
