@@ -819,7 +819,7 @@ here is a list of websites i've scraped from already and included m3u streams fo
 <tr>
 <td><a href="https://www.worldsradio.com/">https://www.worldsradio.com/</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/world-s_radio">/world-s_radio</a></td>
-<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/world-s_radio">world-s_radio.sh</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/world-s_radio.sh">world-s_radio.sh</a></td>
 </tr>
 </tbody></table>
 
