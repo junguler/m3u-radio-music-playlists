@@ -10,7 +10,7 @@
     <meta property="og:description" content="Browse and preview files from this repository directly in your browser." />
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect fill='%23121212' width='24' height='24'/%3E%3Crect fill='%239b5de5' x='2' y='5' width='20' height='14'/%3E%3Ccircle fill='%23121212' cx='8' cy='12' r='2.4'/%3E%3Ccircle fill='%23121212' cx='16' cy='12' r='2.4'/%3E%3Ccircle fill='%239b5de5' cx='8' cy='12' r='0.8'/%3E%3Ccircle fill='%239b5de5' cx='16' cy='12' r='0.8'/%3E%3Crect fill='%23121212' x='10' y='15.6' width='4' height='1.6'/%3E%3C/svg%3E" />
-    <script src="./hls.min.js"></script>
+    <script src="./hls.min.js" defer></script>
     
     <style>
         /* Styles remain consistent */
@@ -41,6 +41,12 @@
             --shadow: 0 3px 0 rgba(0, 0, 0, 0.5);
             --shadow-sm: 0 2px 0 rgba(0, 0, 0, 0.4);
             --shadow-lg: 0 6px 0 rgba(0, 0, 0, 0.55);
+            /* The depth control below only ever changes corner radius
+               (--radius*); shadows always come from the base strings above
+               and never change with depth. --shadow-color/--shadow-color-strong
+               are kept as theme-aware shadow tints for any future use. */
+            --shadow-color: rgba(0, 0, 0, 0.45);
+            --shadow-color-strong: rgba(0, 0, 0, 0.6);
             --accent-glow: rgba(155, 93, 229, 0.3);
             --transition: 0.15s ease;
             --font-size-base: 16px;
@@ -60,6 +66,8 @@
             --shadow: 0 3px 0 rgba(0, 0, 0, 0.15);
             --shadow-sm: 0 2px 0 rgba(0, 0, 0, 0.12);
             --shadow-lg: 0 6px 0 rgba(0, 0, 0, 0.18);
+            --shadow-color: rgba(0, 0, 0, 0.15);
+            --shadow-color-strong: rgba(0, 0, 0, 0.24);
             --accent-glow: rgba(91, 33, 182, 0.22);
         }
         /* High contrast dark: based on the classic Windows high-contrast black scheme
@@ -81,6 +89,8 @@
             --shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
             --shadow-sm: 0 1px 3px rgba(255, 255, 255, 0.12);
             --shadow-lg: 0 12px 32px rgba(255, 255, 255, 0.22);
+            --shadow-color: rgba(255, 255, 255, 0.18);
+            --shadow-color-strong: rgba(255, 255, 255, 0.28);
             --accent-glow: rgba(0, 255, 255, 0.35);
         }
         /* High contrast light: the hc-dark palette with every color inverted (per RGB channel) */
@@ -101,6 +111,8 @@
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
             --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.22);
+            --shadow-color: rgba(0, 0, 0, 0.18);
+            --shadow-color-strong: rgba(0, 0, 0, 0.28);
             --accent-glow: rgba(255, 0, 0, 0.25);
         }
         @media (prefers-color-scheme: light) {
@@ -118,8 +130,28 @@
                 --shadow: 0 3px 0 rgba(0, 0, 0, 0.15);
                 --shadow-sm: 0 2px 0 rgba(0, 0, 0, 0.12);
                 --shadow-lg: 0 6px 0 rgba(0, 0, 0, 0.18);
+                --shadow-color: rgba(0, 0, 0, 0.15);
+                --shadow-color-strong: rgba(0, 0, 0, 0.24);
                 --accent-glow: rgba(91, 33, 182, 0.22);
             }
+        }
+        /* --- Interface corner rounding: one smooth axis from the flat,
+           hard-edged default (level 1, "square", no attribute) up to a
+           comfortably rounded "round" surface (level 5). Levels 2-4 are
+           simply in-betweens. Only the corner radius changes — the base
+           shadow strings from :root (and each theme) are never altered, so
+           this axis is fully independent of light/dark/HC/custom. */
+        html[data-depth="2"] {
+            --radius: 4px; --radius-sm: 3px; --radius-lg: 7px; --radius-full: 10px;
+        }
+        html[data-depth="3"] {
+            --radius: 8px; --radius-sm: 5px; --radius-lg: 12px; --radius-full: 999px;
+        }
+        html[data-depth="4"] {
+            --radius: 12px; --radius-sm: 7px; --radius-lg: 16px; --radius-full: 999px;
+        }
+        html[data-depth="5"] {
+            --radius: 16px; --radius-sm: 10px; --radius-lg: 22px; --radius-full: 999px;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { font-size: var(--font-size-base); }
@@ -134,6 +166,7 @@
             flex-direction: column;
             overflow: hidden;
             touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
         .header { background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 0.5rem 1rem; flex-shrink: 0; }
         .header-content { max-width: 1600px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
@@ -177,8 +210,8 @@
         .settings-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.35rem 0; }
         .switch { position: relative; display: inline-block; width: 38px; height: 22px; flex-shrink: 0; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .switch-slider { position: absolute; inset: 0; cursor: pointer; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 0px; transition: 0.2s; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3); }
-        .switch-slider::before { content: ""; position: absolute; height: 14px; width: 14px; left: 3px; top: 3px; background: var(--text-secondary); border-radius: 0px; transition: 0.2s; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
+        .switch-slider { position: absolute; inset: 0; cursor: pointer; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-full); transition: 0.2s; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3); }
+        .switch-slider::before { content: ""; position: absolute; height: 14px; width: 14px; left: 3px; top: 3px; background: var(--text-secondary); border-radius: var(--radius-full); transition: 0.2s; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
         .switch input:checked + .switch-slider { background: var(--accent); border-color: var(--accent); }
         .switch input:checked + .switch-slider::before { transform: translateX(16px); background: #fff; }
         .switch input:focus-visible + .switch-slider { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -193,6 +226,16 @@
         .intensity-seg:last-child { border-right: none; }
         .intensity-seg:hover { filter: brightness(1.12); }
         .intensity-seg.active { box-shadow: inset 0 0 0 2px var(--on-control); }
+        /* Depth control reuses the same segmented-bar shell as the color
+           intensity bar (consistent control language), but each segment
+           shows a live radius+shadow preview instead of a color swatch. */
+        .depth-seg { background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; }
+        .depth-seg-preview { display: block; width: 15px; height: 15px; background: var(--on-control); opacity: 0.55; }
+        .depth-seg[data-depth="1"] .depth-seg-preview { border-radius: 0; }
+        .depth-seg[data-depth="2"] .depth-seg-preview { border-radius: 4px; }
+        .depth-seg[data-depth="3"] .depth-seg-preview { border-radius: 8px; }
+        .depth-seg[data-depth="4"] .depth-seg-preview { border-radius: 12px; }
+        .depth-seg[data-depth="5"] .depth-seg-preview { border-radius: 16px; }
         .theme-toggle { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--bg-tertiary); border-radius: var(--radius); padding: 2px; gap: 2px; }
         .theme-btn { padding: 0.25rem 0.5rem; background: 0 0; border: none; color: var(--text-secondary); cursor: pointer; border-radius: var(--radius-sm); font-size: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.25rem; }
         .theme-btn:hover { background: var(--bg-hover); }
@@ -218,7 +261,7 @@
         .theme-toggle.custom-color-active .theme-btn:not(.theme-btn-custom) { opacity: 0.45; }
         .theme-toggle.custom-color-active .theme-btn:not(.theme-btn-custom):hover { opacity: 0.8; }
         .theme-swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.55rem; width: 100%; padding: 0.15rem 0; }
-        .theme-swatch { width: 28px; height: 28px; border-radius: 0px; border: 2px solid transparent; cursor: pointer; padding: 0; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15); }
+        .theme-swatch { width: 28px; height: 28px; border-radius: var(--radius-sm); border: 2px solid transparent; cursor: pointer; padding: 0; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15); }
         .theme-swatch:hover { transform: scale(1.1); }
         .theme-swatch.active { border-color: var(--text-primary); }
         .theme-custom-row { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
@@ -267,9 +310,19 @@
         .stats-bar { display: flex; gap: 1rem; margin-bottom: 0.5rem; font-family: var(--font-mono); font-size: 0.72rem; line-height: 1.4; color: var(--text-muted); }
         .stat { display: flex; align-items: center; gap: 0.25rem; }
         .stat svg { width: 12px; height: 12px; color: var(--accent-text, var(--accent)); }
-        .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.5rem; }
-        .file-list { display: flex; flex-direction: column; gap: 1px; }
-        .file-card { position: relative; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 0.625rem; cursor: pointer; transition: border-color var(--transition), box-shadow var(--transition); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.375rem; }
+        .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.5rem; contain: layout style; }
+        .file-list { display: flex; flex-direction: column; gap: 1px; contain: layout style; }
+        /* content-visibility lets the browser skip layout/paint/style work for
+           off-screen cards entirely (similar benefit to list virtualization,
+           without rewriting the render pipeline). contain-intrinsic-size gives
+           it a placeholder size to reserve so scrollbar/scroll position stay
+           stable before a card has ever been measured; the browser remembers
+           the real size after each card's first layout ("auto"), so this is
+           just a one-time fallback, not a fixed height. Big win for scroll
+           smoothness on mobile once folders have a few hundred entries. */
+        .file-card { position: relative; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 0.625rem; cursor: pointer; transition: border-color var(--transition), box-shadow var(--transition); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.375rem; content-visibility: auto; contain-intrinsic-size: auto 160px; }
+        .file-list .file-card { content-visibility: auto; contain-intrinsic-size: auto 46px; }
+        body.compact-density .file-list .file-card { contain-intrinsic-size: auto 34px; }
         /* Star/pin toggle shown directly on each card so favoriting files and
            pinning folders doesn't require opening the preview modal or
            navigating in first. Always visible (not hover-only) so it's
@@ -299,6 +352,14 @@
            rather than plain horizontal stripes. */
         .file-card:nth-child(odd) { --card-bg: color-mix(in srgb, var(--bg-secondary) 100%, white 5%); background: var(--card-bg); }
         .file-card:nth-child(even) { --card-bg: color-mix(in srgb, var(--bg-secondary) 100%, black 7%); background: var(--card-bg); }
+        /* Zebra striping is optional (default on) — this flattens every
+           card back to the plain panel color when disabled, from the
+           settings menu. --card-bg still gets set (rather than left alone)
+           so hover/other states that blend from --card-bg fall back to the
+           right flat tone instead of whatever the last theme's zig-zag left
+           behind. */
+        html.no-zebra .file-card:nth-child(odd),
+        html.no-zebra .file-card:nth-child(even) { --card-bg: var(--bg-secondary); background: var(--bg-secondary); }
         .file-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--bg-tertiary); }
         .file-icon svg { width: 20px; height: 20px; }
         .file-icon.folder { color: #9a9a9a; background: rgba(154, 154, 154, 0.14); }
@@ -316,19 +377,25 @@
         .file-icon.playlist { color: #e08fb0; background: rgba(224, 143, 176, 0.2); }
         .file-icon.other { color: #9a9a9a; background: rgba(154, 154, 154, 0.14); }
         /* --- Per-position icon hue drift: several same-category files sitting
-           beside each other (three .mp3s in a row, a folder full of .jpgs,
-           etc.) otherwise render as visually identical icons. A small cyclical
-           hue-rotate keeps each icon's own category color language intact but
-           nudges it a bit differently across 6 rotating positions, so
-           neighboring same-type icons stay tellable apart at a glance. This is
-           a plain filter on top of whatever color the icon already has, so it
-           applies unchanged across every theme, including the flattened custom
-           theme. Position 6n+1 is left at the unrotated base color. */
-        .file-card:nth-child(6n+2) .file-icon { filter: hue-rotate(15deg); }
-        .file-card:nth-child(6n+3) .file-icon { filter: hue-rotate(-15deg); }
-        .file-card:nth-child(6n+4) .file-icon { filter: hue-rotate(30deg) saturate(1.08); }
-        .file-card:nth-child(6n+5) .file-icon { filter: hue-rotate(-30deg) saturate(1.08); }
-        .file-card:nth-child(6n) .file-icon { filter: hue-rotate(45deg); }
+            beside each other (three .mp3s in a row, a folder full of .jpgs,
+             etc.) otherwise render as visually identical icons. A cyclical
+             hue-rotate keeps each icon's own category color language intact but
+             swings it around a full 8-step cycle, so neighboring same-type
+             icons stay clearly tellable apart at a glance. Every consecutive
+             position jumps a full ~135deg around the color wheel (360/8*3), so
+             no two neighbors ever land on a similar hue, and the later
+             rotations carry a touch more saturation so they stay vivid instead
+             of muddying. This is a plain filter on top of whatever color the
+             icon already has, so it applies unchanged across every theme,
+             including the flattened custom theme. Position 8n+1 is left at the
+             unrotated base color. */
+        .file-card:nth-child(8n+2) .file-icon { filter: hue-rotate(135deg) saturate(1.1); }
+        .file-card:nth-child(8n+3) .file-icon { filter: hue-rotate(270deg) saturate(1.15); }
+        .file-card:nth-child(8n+4) .file-icon { filter: hue-rotate(45deg) saturate(1.05); }
+        .file-card:nth-child(8n+5) .file-icon { filter: hue-rotate(180deg) saturate(1.1); }
+        .file-card:nth-child(8n+6) .file-icon { filter: hue-rotate(315deg) saturate(1.15); }
+        .file-card:nth-child(8n+7) .file-icon { filter: hue-rotate(90deg) saturate(1.1); }
+        .file-card:nth-child(8n) .file-icon { filter: hue-rotate(225deg) saturate(1.15); }
         .file-name { font-weight: 500; word-break: break-word; font-size: 0.8rem; max-width: 100%; line-height: 1.2; }
         .file-meta { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); }
         .file-path { display: block; font-size: 0.65rem; color: var(--text-muted); word-break: break-all; margin-top: 2px; }
@@ -394,10 +461,15 @@
         .empty-state svg:not(.empty-state-illustration) { width: 40px; height: 40px; margin-bottom: 0.5rem; opacity: 0.5; }
         .empty-state h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--text-primary); }
         .empty-state p { font-size: 0.85rem; }
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.2s; padding: 0.5rem; overscroll-behavior: contain; touch-action: pan-y; }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; padding: 0.5rem; overscroll-behavior: contain; touch-action: pan-y; }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal { background: var(--bg-secondary); border-radius: var(--radius-lg); max-width: 95vw; max-height: 95vh; max-height: 95dvh; width: 100%; display: flex; flex-direction: column; transform: scale(0.95); transition: transform 0.2s; overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--shadow-lg); border-top: 2px solid var(--accent); }
         .modal.video-modal { height: 95vh; height: 95dvh; }
+        /* Audio preview content tops out at 500px (.preview-audio-container's
+           own max-width), but the modal defaults to 95vw regardless of
+           content type — on a wide screen that leaves large empty gutters
+           on either side of the player. Cap the modal itself to match. */
+        .modal.compact-modal { max-width: 560px; }
         .modal-overlay.active .modal { transform: scale(1); }
         .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color); gap: 0.5rem; flex-shrink: 0; }
         .modal-title { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.005em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
@@ -449,7 +521,7 @@
         .preview-media-container { width: 100%; max-width: 900px; height: 100%; min-height: 0; padding: 1rem; margin: 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; position: relative; }
         .preview-video { flex: 1; min-height: 0; max-width: 100%; width: auto; object-fit: contain; background: #000; border-radius: var(--radius); }
         .preview-audio-container { width: 100%; max-width: 500px; padding: 1.25rem 1rem; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; position: relative; }
-        .audio-icon { width: 80px; height: 80px; background: var(--control-surface); border-radius: 0px; display: flex; align-items: center; justify-content: center; color: var(--on-control); --bg-tertiary: var(--control-surface); }
+        .audio-icon { width: 80px; height: 80px; background: var(--control-surface); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--on-control); --bg-tertiary: var(--control-surface); }
         .audio-icon svg { width: 54px; height: 54px; filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.3)); }
         .playlist-now-playing { font-weight: 500; text-align: center; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .preview-audio { width: 100%; height: 40px; display: none; }
@@ -462,7 +534,7 @@
         .player-controls-row .playlist-btn { padding: 0.5rem; flex-shrink: 0; border-radius: var(--radius-full); transition: transform var(--transition), background-color var(--transition), border-color var(--transition); }
         .player-controls-row .playlist-btn:hover:not(:disabled) { transform: translateY(-1px); }
         .player-divider { width: 1px; height: 1.25rem; background: var(--border-color); flex-shrink: 0; }
-        .player-play-btn { background: var(--control-surface) !important; border-color: var(--control-surface) !important; color: var(--on-control) !important; border-radius: 0px !important; width: 2.75rem; height: 2.75rem; padding: 0 !important; box-shadow: 0 3px 0 var(--accent); transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition); }
+        .player-play-btn { background: var(--control-surface) !important; border-color: var(--control-surface) !important; color: var(--on-control) !important; border-radius: var(--radius-full) !important; width: 2.75rem; height: 2.75rem; padding: 0 !important; box-shadow: 0 3px 0 var(--accent); transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition); }
         .player-play-btn:hover { background: var(--control-surface-hover) !important; border-color: var(--control-surface-hover) !important; transform: translateY(-1px); box-shadow: 0 4px 0 var(--accent); }
         .player-play-btn:active { transform: translateY(0); }
         .player-play-btn svg { width: 20px; height: 20px; }
@@ -483,7 +555,7 @@
         .download-btn { display: inline-flex; align-items: center; gap: 0.375rem; margin-top: 0.75rem; padding: 0.5rem 1rem; background: var(--accent); color: var(--on-accent); text-decoration: none; border-radius: var(--radius); font-weight: 500; font-size: 0.85rem; }
         .download-btn:hover { background: var(--accent-hover); }
         .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; color: var(--text-secondary); }
-        .spinner { width: 28px; height: 28px; border: 2px solid var(--border-color); border-top-color: var(--accent); border-radius: 0px; animation: spin 0.8s linear infinite; margin-bottom: 0.5rem; }
+        .spinner { width: 28px; height: 28px; border: 2px solid var(--border-color); border-top-color: var(--accent); border-radius: var(--radius-full); animation: spin 0.8s linear infinite; margin-bottom: 0.5rem; }
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
         .playlist-track.buffering::after { content: " \00b7 Buffering\2026"; color: var(--text-muted); font-weight: 400; animation: pulse 1s ease-in-out infinite; }
@@ -527,7 +599,15 @@
             .breadcrumb::-webkit-scrollbar { display: none; }
             .breadcrumb-item, .breadcrumb-separator { flex-shrink: 0; }
             .modal-overlay { padding: 0; }
-            .modal { width: 100vw; height: 100vh; height: 100dvh; max-width: 100vw; max-height: 100vh; max-height: 100dvh; border-radius: 0; }
+            /* Was: height: 100vh forced on every modal, which made short
+               content (audio player, stats, keyboard shortcuts) stretch to
+               fill the whole screen with a big blank void below the card.
+               Video still gets full height from the existing
+               .modal.video-modal rule above (it applies at all viewport
+               widths, not just desktop), and image/pdf/text previews size
+               themselves via their own max-height rules, so nothing else
+               needs a forced height here. */
+            .modal { width: 100vw; max-width: 100vw; max-height: 100vh; max-height: 100dvh; border-radius: 0; }
             .modal-header { padding: 0.5rem 0.5rem; gap: 0.375rem; }
             .modal-title { font-size: 0.8rem; }
             .modal-actions { gap: 0.15rem; flex-shrink: 0; }
@@ -553,7 +633,7 @@
         }
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: 0 0; }
-        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 0px; }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: var(--radius-full); }
         ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
         :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
         .search-input:focus-visible { outline-offset: 0; }
@@ -575,7 +655,7 @@
         .stats-modal { max-width: 420px; }
         .stats-body { padding: 0.85rem 1rem 1rem; overflow-y: auto; }
         .stats-summary-grid { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
-        .stats-summary-item { flex: 1; background: var(--bg-tertiary); border: 1px solid var(--border-color); padding: 0.65rem 0.5rem; text-align: center; }
+        .stats-summary-item { flex: 1; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 0.65rem 0.5rem; text-align: center; }
         .stats-summary-value { display: block; font-size: 1.25rem; font-weight: 700; color: var(--text-primary); line-height: 1.2; }
         .stats-summary-label { display: block; font-size: 0.65rem; line-height: 1.5; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
         .stats-breakdown-title { font-size: 0.7rem; line-height: 1.5; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
@@ -583,7 +663,7 @@
         .stats-row-icon { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-shrink: 0; }
         .stats-row-icon svg { width: 14px; height: 14px; }
         .stats-row-label { width: 88px; flex-shrink: 0; font-size: 0.8rem; line-height: 1.4; color: var(--text-secondary); text-transform: capitalize; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .stats-row-bar-track { flex: 1; height: 8px; background: var(--control-surface); border: 1px solid var(--border-color); overflow: hidden; }
+        .stats-row-bar-track { flex: 1; height: 8px; background: var(--control-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); overflow: hidden; }
         .stats-row-bar-fill { display: block; height: 100%; min-width: 2px; background: var(--stat-fill, var(--accent)); }
         .stats-row-count { width: 44px; flex-shrink: 0; text-align: right; font-size: 0.75rem; line-height: 1.4; color: var(--text-muted); }
         /* Compact density: tightens grid/list/tree spacing for people who'd
@@ -606,7 +686,7 @@
         html { scrollbar-width: thin; scrollbar-color: var(--border-color) transparent; }
 
         /* --- Search match highlighting --- */
-        mark.search-highlight { background: rgba(255, 208, 0, 0.35); color: inherit; font-weight: 700; border-radius: 0px; padding: 0 1px; }
+        mark.search-highlight { background: rgba(255, 208, 0, 0.35); color: inherit; font-weight: 700; border-radius: var(--radius-sm); padding: 0 1px; }
 
         /* --- List/tree view thumbnails for images (previously grid-only) --- */
         .file-list .file-thumbnail:not(.file-thumbnail-inline) { display: none; }
@@ -714,6 +794,16 @@
                                     </div>
                                 </div>
                                 <div class="settings-section" style="border-top: 1px solid var(--border-color)">
+                                    <div class="settings-section-title">Appearance</div>
+                                    <div class="settings-row">
+                                        <span class="settings-label">Zebra striping</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="zebraStripingToggle" checked aria-label="Alternate card/row background shading in grid and list view" />
+                                            <span class="switch-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="settings-section" style="border-top: 1px solid var(--border-color)">
                                     <div class="settings-section-title">Media Player</div>
                                     <div class="settings-row">
                                         <span class="settings-label">Use native player</span>
@@ -775,6 +865,22 @@
                                     <div class="theme-custom-row">
                                         <input type="color" id="themeColorInput" value="#8080ff" title="Pick a custom color" />
                                         <button id="themeResetBtn" class="theme-reset-btn">Reset</button>
+                                    </div>
+                                </div>
+                                <div class="settings-section" style="border-top: 1px solid var(--border-color)">
+                                    <div class="settings-section-title">Corners</div>
+                                    <div class="settings-row">
+                                        <div class="intensity-bar-wrap">
+                                            <span class="intensity-bar-label">Square</span>
+                                            <div class="intensity-bar depth-bar" id="depthControl" role="group" aria-label="Corner rounding: square on the left, round on the right">
+                                                <button type="button" class="intensity-seg depth-seg" data-depth="1" title="Square" aria-label="Square"><span class="depth-seg-preview"></span></button>
+                                                <button type="button" class="intensity-seg depth-seg" data-depth="2" title="Mild" aria-label="Mild"><span class="depth-seg-preview"></span></button>
+                                                <button type="button" class="intensity-seg depth-seg" data-depth="3" title="Moderate" aria-label="Moderate"><span class="depth-seg-preview"></span></button>
+                                                <button type="button" class="intensity-seg depth-seg" data-depth="4" title="Rounded" aria-label="Rounded"><span class="depth-seg-preview"></span></button>
+                                                <button type="button" class="intensity-seg depth-seg" data-depth="5" title="Round" aria-label="Round"><span class="depth-seg-preview"></span></button>
+                                            </div>
+                                            <span class="intensity-bar-label">Round</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -920,7 +1026,8 @@
         // -- Theming / UI preference state --
         let currentFontSize = 16,
             vividColor = null,
-            colorIntensity = 60;
+            colorIntensity = 60,
+            uiDepth = 1;
 
         // -- Pins / favorites --
         let pinnedFolders = [],
@@ -1196,6 +1303,13 @@
             document.body.classList.toggle("compact-density", compactDensity);
             const compactToggle = document.getElementById("compactDensityToggle");
             if (compactToggle) compactToggle.checked = compactDensity;
+            const zebraOn = localStorage.getItem("zebraStriping") !== "0";
+            document.documentElement.classList.toggle("no-zebra", !zebraOn);
+            const zebraToggle = document.getElementById("zebraStripingToggle");
+            if (zebraToggle) zebraToggle.checked = zebraOn;
+            const storedDepth = parseInt(localStorage.getItem(DEPTH_KEY), 10);
+            uiDepth = [1, 2, 3, 4, 5].includes(storedDepth) ? storedDepth : 1;
+            applyDepth(uiDepth, false);
             loadPinnedFolders();
             loadFavoriteFiles();
             initThemeColor();
@@ -1293,6 +1407,7 @@
         const MUTED_COLORS_KEY = "themeMutedColors";
         const COLOR_INTENSITY_KEY = "themeColorIntensity";
         const DEFAULT_COLOR_INTENSITY = 60;
+        const DEPTH_KEY = "uiDepth";
         const THEME_BASE = {
             dark: {
                 "--bg-primary": "#0d1117", "--bg-secondary": "#161b22", "--bg-tertiary": "#21262d",
@@ -1578,6 +1693,24 @@
             if (!wrap) return;
             wrap.querySelectorAll("button[data-intensity]").forEach((btn) => {
                 btn.classList.toggle("active", parseInt(btn.dataset.intensity, 10) === colorIntensity);
+            });
+        }
+        // Interface corner rounding: square (1, default) through round (5).
+        // Purely a data-depth attribute on <html> — every visual consequence
+        // lives in CSS (corner radius variables only), this just persists the
+        // choice and keeps the segmented bar's active state in sync.
+        function applyDepth(level, persist) {
+            uiDepth = level;
+            if (level === 1) document.documentElement.removeAttribute("data-depth");
+            else document.documentElement.setAttribute("data-depth", String(level));
+            if (persist !== false) localStorage.setItem(DEPTH_KEY, String(level));
+            updateDepthUI();
+        }
+        function updateDepthUI() {
+            const wrap = document.getElementById("depthControl");
+            if (!wrap) return;
+            wrap.querySelectorAll("button[data-depth]").forEach((btn) => {
+                btn.classList.toggle("active", parseInt(btn.dataset.depth, 10) === uiDepth);
             });
         }
         function markActiveSwatch(hue) {
@@ -2080,25 +2213,42 @@
             render();
             document.getElementById("main").scrollTop = 0;
         }
+        // Cached so updateListHeaderStuck (called on every scroll frame) doesn't
+        // force a synchronous style/layout read each time — padding only
+        // changes on resize/density toggle, both of which invalidate it below.
+        let cachedMainPadTop = null;
+        function invalidateMainPadTopCache() {
+            cachedMainPadTop = null;
+        }
         function updateListHeaderStuck() {
             const mainEl = document.getElementById("main");
             const listHeader = document.querySelector(".file-list-header");
             if (!mainEl || !listHeader) return;
-            const mainTop = mainEl.getBoundingClientRect().top;
-            const padTop = parseFloat(getComputedStyle(mainEl).paddingTop) || 0;
+            if (cachedMainPadTop === null) {
+                cachedMainPadTop = parseFloat(getComputedStyle(mainEl).paddingTop) || 0;
+            }
+            const padTop = cachedMainPadTop;
             if (listHeader.classList.contains("stuck")) {
                 if (mainEl.scrollTop < padTop) listHeader.classList.remove("stuck");
             } else {
+                const mainTop = mainEl.getBoundingClientRect().top;
                 if (listHeader.getBoundingClientRect().top <= mainTop + padTop) listHeader.classList.add("stuck");
             }
         }
         function setupEventListeners() {
             const mainEl = document.getElementById("main");
             const headerEl = document.querySelector(".header");
+            let scrollRafPending = false;
             mainEl.addEventListener("scroll", () => {
-                headerEl.classList.toggle("scrolled", mainEl.scrollTop > 2);
-                updateListHeaderStuck();
+                if (scrollRafPending) return;
+                scrollRafPending = true;
+                requestAnimationFrame(() => {
+                    scrollRafPending = false;
+                    headerEl.classList.toggle("scrolled", mainEl.scrollTop > 2);
+                    updateListHeaderStuck();
+                });
             }, { passive: true });
+            window.addEventListener("resize", invalidateMainPadTopCache, { passive: true });
 
             const searchInput = document.getElementById("search");
             let searchDebounceTimer;
@@ -2240,6 +2390,16 @@
             document.getElementById("compactDensityToggle").addEventListener("change", (e) => {
                 document.body.classList.toggle("compact-density", e.target.checked);
                 localStorage.setItem("compactDensity", e.target.checked ? "1" : "0");
+            });
+            document.getElementById("zebraStripingToggle").addEventListener("change", (e) => {
+                document.documentElement.classList.toggle("no-zebra", !e.target.checked);
+                localStorage.setItem("zebraStriping", e.target.checked ? "1" : "0");
+            });
+            const depthControl = document.getElementById("depthControl");
+            if (depthControl) depthControl.addEventListener("click", (e) => {
+                const btn = e.target.closest("button[data-depth]");
+                if (!btn) return;
+                applyDepth(parseInt(btn.dataset.depth, 10));
             });
             wireThemeColorPicker();
             document.getElementById("topPrevBtn").addEventListener("click", goToPrevTrack);
@@ -3736,7 +3896,7 @@
             playlistBarEl.classList.remove("active");
             if (isPlaylistFile) playPlaylistBtn.classList.remove("hidden");
             else playPlaylistBtn.classList.add("hidden");
-            document.getElementById("modalContent").classList.remove("video-modal");
+            document.getElementById("modalContent").classList.remove("video-modal", "compact-modal");
             modalEl.classList.add("active");
             requestAnimationFrame(() => document.getElementById("closeBtn").focus());
             const o = fileUrlAttr;
@@ -3769,6 +3929,7 @@
                         document.getElementById("streamInfoBtn").addEventListener("click", copyStreamInfo);
                         break;
                     case "audio":
+                        document.getElementById("modalContent").classList.add("compact-modal");
                         bodyEl.innerHTML = `
               <div class="preview-audio-container">
                 <button class="player-info-btn" id="streamInfoBtn" title="Copy stream link" aria-label="Copy stream link">${icons.info}</button>
