@@ -1,3 +1,7 @@
 #EXTM3U
-#EXTINF:-1,Radio Navahang
-https://navairan.com/;stream.nsv
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-sedaye-zandegi-174049-logo.jpg",Radio Sedaye Zandegi
+http://sadayezindagi.com:8000/;.mp3
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/jbc-radio-582065-logo.jpg",JBC Radio
+http://stream.arabiacell.biz:1935/JBCLive/audio/playlist.m3u8
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/calm-radio-persia-595377-logo.jpg",Calm Radio - Persia
+http://streams.calmradio.com:5528/stream

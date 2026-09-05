@@ -11,6 +11,8 @@ http://liferadio.ddns.net:8000/stream
 http://s1.skyradio.com.mk:8002/
 #EXTINF:-1,Radio 105 Aktuel Bombarder
 http://radio105.makbots.com:21010/*.mp3
+#EXTINF:-1,Radio Vati
+http://radiostream.neotel.mk:8000/radiovati
 #EXTINF:-1,Kanal 103
 http://radiostream.neotel.mk/kanal103
 #EXTINF:-1,Lider FM 107,4
@@ -47,6 +49,8 @@ http://cast1.asurahosting.com:8573/
 http://5.39.82.219:10030/
 #EXTINF:-1,I LOVE HEAVY METAL
 https://streaming.brol.tech/rtfmlounge
+#EXTINF:-1,WAQE Star 97.7
+https://ice23.securenetsystems.net/WAQE
 #EXTINF:-1,Radio Kanal 1
 http://www.gofm.se/sound/flyttas_till_kanal_x.mp3
 #EXTINF:-1,SuperRadio
@@ -62,8 +66,6 @@ https://biserradioohrid.radioca.st/stream?type=http&ampampnocache=1573
 http://176.9.117.123:9996/
 #EXTINF:-1,Radio 5fm
 http://5fm.mk:8000/stream/1/?type=http/?d=
-#EXTINF:-1,Radio Bravo
-http://92.60.230.200:5010/stream.mp3
 #EXTINF:-1,Vink Radio
 https://eu10.fastcast4u.com/vinkradio
 #EXTINF:-1,City Radio
@@ -83,15 +85,15 @@ http://radio105.makbots.com:21010/
 #EXTINF:-1,Radio TIM 24h Bitola
 http://hydra.shoutca.st:8108/
 #EXTINF:-1,Star Radio (Live)
-https://usa19.fastcast4u.com/starmain
+https://eu11.fastcast4u.com/starmain
 #EXTINF:-1,Radio Vmro Makeodnija
 https://radiovmro.radioca.st/
 #EXTINF:-1,Star Narodna
-https://usa19.fastcast4u.com/urbanfolk
+https://eu11.fastcast4u.com/urbanfolk
 #EXTINF:-1,Star Mk Narodna
-https://a2.asurahosting.com/listen/stil_radio/starmkfolk
+https://usa19.fastcast4u.com/starmknarodna
 #EXTINF:-1,Star Boemi
-https://usa19.fastcast4u.com/starkafanska
+https://eu11.fastcast4u.com/starkafanska
 #EXTINF:-1,STIL MKD NARODNA
 http://s1.skyradio.com.mk:8002/;?1461419091351.mp3
 #EXTINF:-1,Radio Mundial Am Rj
@@ -112,16 +114,16 @@ http://5fm.mk:8000/stream/1/?type=http/;?d=
 https://kissfmradionet.radioca.st/;stream.nsv
 #EXTINF:-1,City Radio 94.7
 http://176.9.117.123:9998/stream/
-#EXTINF:-1,Radio 2 MRT
-https://radio.shoutcast.mk:8064/stream
 #EXTINF:-1,Radio TIM
 https://radiotim.radioca.st/
 #EXTINF:-1,Radio Jehona
 http://s26.myradiostream.com:10030/stream.nsv
+#EXTINF:-1,Radio Vati 88.4
+http://radiostream.neotel.mk:8000/radiovati?type=.mp3
 #EXTINF:-1,Radio Bitola
 http://hydra.shoutca.st:8108/stream.nsv
 #EXTINF:-1,Star Radio (Ex Yu Retro)
-https://usa19.fastcast4u.com/starexyuretro
+https://eu11.fastcast4u.com/starexyuretro
 #EXTINF:-1,Urban FM 90.8 Skopje
 https://securestreams4.autopo.st:1668/stream
 #EXTINF:-1,Accord Radio Live
@@ -155,3 +157,50 @@ https://bravo-bobanex.radioca.st/
 https://eu10.fastcast4u.com/vinkboem
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/16696127.png",vink exyu retro radio
 https://eu10.fastcast4u.com:10490/stream/3/
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-radio-vmro-logo.jpg",Radio Vmro
+https://radiovmro.radioca.st/;
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-meff-173728-logo.jpg",Radio MEFF
+https://s32.myradiostream.com:16040/;
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-radio-aleksandar-makedonski-logo.jpg",Radio Aleksandar Makedonski
+https://s2.free-shoutcast.com/stream/18138;
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-moe-radio-skopje-logo.jpg",Moe Radio Skopje
+https://radio.shoutcast.mk:8016/;
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-antenna-web-skopje-logo.jpg",Radio Antenna Web Skopje
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-radio22-logo.jpg",radio22
+https://radio.server14.kariha.net:8008/;
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-biser-radio-orovnik-logo.jpg",Biser Radio Orovnik
+https://biserradioohrid.radioca.st/stream?type=httpu0026amp;nocache=1573
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-stil-mkd-narodna-logo.jpg",Radio STIL MKD NARODNA
+https://a2.asurahosting.com/listen/stil_radio/stilradiomkd
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-radio-tim-bitola-logo.jpg",Radio TIM Bitola
+http://hydra.shoutca.st:8108/;stream.nsv
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-105-bombarder-161051-logo.jpg",Radio 105 Bombarder
+https://radio105bombarder.com:21010/;stream.mp3
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/city-radio-179716-logo.jpg",City Radio
+http://176.9.117.123:9998/live
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-fortuna-157501-logo.jpg",Radio Fortuna
+https://radiofortuna.ipradio.mk/;stream.nsv
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-star-radio-world-hits-logo.jpg",Star Radio (World Hits)
+https://usa19.fastcast4u.com/starworldhits
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-planeta-radio-makedonija-logo.jpg",Planeta Radio Makedonija
+https://fps2.listen2myradio.com:2199/listen.php?ip=109.169.23.17u0026port=10933u0026type=s1
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-radio-kiss-fm-logo.jpg",Radio KISS FM
+https://radio.shoutcast.mk/8014/stream
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-radio-balkan-music-macedonia-logo.jpg",Radio Balkan Music (Macedonia)
+https://media.radioexs.com/stream/radiobalkanmusic
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-life-radio-logo.jpg",Life Radio
+http://liferadio.ddns.net:8000/;
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mk-favor-radio-north-macedonia-logo.jpg",Favor Radio (North Macedonia)
+https://a10.asurahosting.com:7660/macedonia.mp3
+#EXTINF:-1,Star Radio (ExYu Pop Folk)
+#EXTINF:-1,Star Radio (ExYu Boem)
+#EXTINF:-1,Star Radio (Mk Folk)
+https://eu10.fastcast4u.com:10490/stream
+#EXTINF:-1,Gora Radio
+https://a2.asurahosting.com/listen/stil_radio/goraradio
+#EXTINF:-1,Star Radio (ExYu Covers)
+https://usa19.fastcast4u.com/starcovers
+#EXTINF:-1,Star Radio (Mk Pop)
+https://eu10.fastcast4u.com/starmkpop
+#EXTINF:-1,Impact Radio
+https://listen.radioking.com/radio/547646/stream/606824

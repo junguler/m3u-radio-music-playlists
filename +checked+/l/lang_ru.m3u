@@ -35,8 +35,6 @@ http://icecast.vgtrk.cdnvideo.ru/mayakfm_mp3_192kbps
 http://listen.rusongs.ru/ru-mp3-128
 #EXTINF:-1,Шансон без цензуры (Shanson bez cenzury)
 http://chanson.hostingradio.ru:8041/chanson-uncensored128.mp3
-#EXTINF:-1,Relax Nature
-http://ic6.101.ru:8000/stream/trust/mp3/128/263?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpcCI6IjM3LjE4OS4xNTkuMTM5IiwidXNlcmFnZW50IjoiTW96aWxsYVwvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwLjEzOyBydjo3MS4wKSBHZWNrb1wvMjAxMDAxMDEgRmlyZWZveFwvNzEuMCIs
 #EXTINF:-1,Радио Монте Карло (Monte Carlo) 102.1 FM
 https://montecarlo.hostingradio.ru/montecarlo96.aacp
 #EXTINF:-1,XRadio
@@ -56,11 +54,9 @@ http://choco.hostingradio.ru:10010/fm
 #EXTINF:-1,DFM Deep
 https://dfm-dfmdeep.hostingradio.ru/dfmdeep96.aacp
 #EXTINF:-1,Маруся ФМ
-https://spb3.radio-holding.ru/marusya_default
+https://spb1.radio-holding.ru/marusya_default
 #EXTINF:-1,РУССКАЯ ВОЛНА - Russian Wave
 http://ru2.volna.top/RuWave48
-#EXTINF:-1,Радио Классик (Radio Classic)
-http://jfm1.hostingradio.ru:14536/rcstream.mp3
 #EXTINF:-1,90s Eurodance
 https://listen1.myradio24.com/5967
 #EXTINF:-1,Радио Джаз (Radio Jazz - Smooth Jazz)
@@ -107,12 +103,12 @@ https://hitfm-hit2000.hostingradio.ru/hit200096.aacp
 http://cafe.volna.top/Cafe
 #EXTINF:-1,Детский Хит
 http://deti.volna.top/Deti
+#EXTINF:-1,Radio Caprice Piano
+http://79.120.77.11:8002/piano
 #EXTINF:-1,Радио Искатель
 http://iskatel.hostingradio.ru:8015/iskatel-128.mp3
 #EXTINF:-1,NRJ Radio Irkutsk
 http://91.185.32.165:8988/Energy_irk
-#EXTINF:-1,Радио Мелодия - Москва
-http://stream128.melodiafm.spb.ru:8000/melodia128
 #EXTINF:-1,DEEP ONE - deep house radio
 https://stream.deep1.ru/deep1aac
 #EXTINF:-1,Радио Джаз (Radio Jazz)
@@ -121,8 +117,6 @@ http://nashe1.hostingradio.ru/jazz-128.mp3
 https://mc-mcnight.hostingradio.ru/mcnight96.aacp
 #EXTINF:-1,Москва FM
 http://icecast.vgtrk.cdnvideo.ru/moscowfm128
-#EXTINF:-1,Свое ФМ Deep Radio
-https://h.getradio.me/svoefm/hls.m3u8
 #EXTINF:-1,Maximum Rock Hits (Максимум)
 https://rockhits.hostingradio.ru/rockhits96.aacp
 #EXTINF:-1,Радио Орфей 99.2 (Radio Orpheus)
@@ -136,17 +130,23 @@ http://icecast-studio21.cdnvideo.ru/S21_1
 #EXTINF:-1,Максимум ‘90 (Maximum 90s)
 https://maximum90.hostingradio.ru/maximum9096.aacp
 #EXTINF:-1,Радио Странствий
-https://listen8.myradio24.com/4156
+https://listen9.myradio24.com/4156
 #EXTINF:-1,Вера 100.9 FM (Vera)
 http://radiovera.hostingradio.ru:8007/radiovera_128
 #EXTINF:-1,Rock Станция (Rock Station)
 http://rockstation.radiostream.pro/mp3
 #EXTINF:-1,DFM Club
 https://dfm-dfmclub.hostingradio.ru/dfmclub96.aacp
+#EXTINF:-1,ЗвукоКнига Литературное Радио (ZvukoKniga Literaturnoe Radio)
+http://94.181.45.104:8005/
 #EXTINF:-1,Радио Рокс (Radio ROKS 102 FM)
 http://icecast.radiorocks.cdnvideo.ru/roks.stream
+#EXTINF:-1,Radio Caprice - Gothic Metal
+http://79.120.77.11:8002/gothicmetal
 #EXTINF:-1,Радио Культура (Radio Culture)
 http://icecast.vgtrk.cdnvideo.ru/kulturafm_mp3_192kbps
+#EXTINF:-1,Radio Caprice Guitar Jazz
+http://79.120.77.11:8002/guitarjazz
 #EXTINF:-1,ХАЙП FM - Hype FM
 http://hfm.volna.top/HypeFM
 #EXTINF:-1,Спорт FM 93.2 (Sport FM)
@@ -162,15 +162,21 @@ https://radio.kamchatkalive.ru:8103/chillout
 #EXTINF:-1,Радио Джаз (Radio Jazz - Jazz Legends)
 http://jfm1.hostingradio.ru:14536/jlstream.mp3
 #EXTINF:-1,Радио Ангелов
-http://listen1.myradio24.com/8162?redirect=1
+http://listen2.myradio24.com:9000/8162
 #EXTINF:-1,DFM Trap
 https://dfm-dfmtrap.hostingradio.ru/dfmtrap96.aacp
 #EXTINF:-1,RockTime Radio
 http://a9.radioheart.ru:8049/rocktime
 #EXTINF:-1,Noise FM
 http://play.sas-media.ru/play_256
+#EXTINF:-1,CBOE FM
+https://h.getradio.me/svoefm/hls.m3u8
 #EXTINF:-1,Radio Caprice Drone Ambient
 http://79.111.119.111:8000/droneambient
+#EXTINF:-1,Anison FM (Анисон ФМ)
+http://pool.anison.fm:9000/AniSonFM(320)
+#EXTINF:-1,Chillout FM
+https://listen2.myradio24.com/8795
 #EXTINF:-1,Radio Caprice Indie Rock
 http://79.120.39.202:8002/indierock
 #EXTINF:-1,Anima Amoris - Dub Techno Mix
@@ -182,7 +188,7 @@ http://c2.radioboss.fm:8082/RadioTrassa
 #EXTINF:-1,Радонеж (Radonezh)
 http://icecast.radonezh.cdnvideo.ru:8000/rad
 #EXTINF:-1,Power Hit Radio
-https://drh-node-02.dline-media.com/powerhit128
+https://drh-node-01.dline-media.com/powerhit128
 #EXTINF:-1,Radio Caprice Stoner Rock
 http://79.111.119.111:8000/stonerrock
 #EXTINF:-1,Anima Amoris - Techno
@@ -209,6 +215,8 @@ http://79.111.14.76:8002/dreampop
 https://kpradio.hostingradio.ru:8000/novosibirsk.radiokp64.mp3?radiostatistica=mytuner-radio
 #EXTINF:-1,Радио Пассаж | Radio Passazh
 http://listen.radiopassazh.ru/mp3-128
+#EXTINF:-1,Radio Caprice Pop Rock
+http://79.120.77.11:8002/poprock
 #EXTINF:-1,MegaNight Radio
 https://a4.radioheart.ru:9042/MegaNightRadio
 #EXTINF:-1,Radio Caprice Dancehall
@@ -218,7 +226,7 @@ http://rbs.volna.top/rbs
 #EXTINF:-1,Радио Premium
 http://89.175.27.162:9000/aacp48
 #EXTINF:-1,NEON channel by Sochi Lounge
-https://listen1.myradio24.com/5790
+https://listen9.myradio24.com/5790
 #EXTINF:-1,Радио Россия - Алания | Alaniya
 http://vgtrk15.hostingradio.ru:8011/vgtrk15128.mp3
 #EXTINF:-1,Radio Caprice Piano Rock
@@ -233,6 +241,8 @@ http://ugra.cdnradio.ru/radiougra
 http://79.111.14.76:8000/orthodox
 #EXTINF:-1,Anima Amoris - Electro
 https://amoris.sknt.ru/electro.mp3
+#EXTINF:-1,Радио Камчатка Rock (Radio Kamchatka Live)
+https://radio.kamchatkalive.ru:8103/rock
 #EXTINF:-1,Moscow Boogie
 https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1,L I G H T R A D I O
@@ -275,10 +285,10 @@ http://radio-tochka.com:6135/
 http://79.120.39.202:8002/artrock
 #EXTINF:-1,Радио Дача 92.4 FM (Radio Dacha)
 http://stream.radiodacha.ru/14_dacha_64?UID=D9E44B3023A0470A9C206198E6567599&type=.aac
-#EXTINF:-1,Радио Борнео 107.2 (Radio Borneo)
-http://live.borneo.ru:8888/128
 #EXTINF:-1,Radio Free Music
 https://spb3.radio-holding.ru/rfm
+#EXTINF:-1,Radio Caprice Grindcore
+http://79.120.77.11:8002/grindcore
 #EXTINF:-1,Радио Голос Бирмы
 https://listen4.myradio24.com/39982
 #EXTINF:-1,FreshRock Internet Radio Station
@@ -322,27 +332,15 @@ https://smotrim.ru/channel/199
 #EXTINF:-1,Русское вещание BBN
 https://audio-edge-vqwx4.yyz.g.radiomast.io/1f7e18dd-42dc-4869-9785-a9800456b9e3
 #EXTINF:-1,BrooklynFM (BFM Radio)
-http://s8.nexuscast.com:8102/stream
+https://fr1.nexuscast.com:8036/stream
+#EXTINF:-1, Russian Punk rock
+http://79.120.77.11:8000/punkru?n=f22e7247ddeee2815714
 #EXTINF:-1,??????? ????? RUSSIAN WAVE
 http://ru1.volna.top/RuWave48?n=08d64de6854773f54a52
-#EXTINF:-1,101.ru - Deep House
-https://pub0202.101.ru:8000/stream/trust/mp3/128/173?n=4a10c03c91c64f0be08f
-#EXTINF:-1,101.ru Bard songs - Авторская Песня
-http://ic6.101.ru:8000/stream/pro/aac/64/35?n=dd8bd5a5f536bbb92d34
-#EXTINF:-1,101.ru Italo Disco
-http://pub0202.101.ru:8000/stream/pro/aac/64/161?n=e489a52033e8fb97e9ed
-#EXTINF:-1,101.ru Techno
-https://pub0302.101.ru:8000/stream/trust/mp3/128/18?n=c8dcbee744a9dff7fde3
-#EXTINF:-1,101.ru Victory Day - День Победы
-https://pub0302.101.ru:8443/stream/pro/aac/64/178?n=5d0d709743814b72eb0e
 #EXTINF:-1,101.ru ДДТ
 https://pub0101.101.ru/stream/pro/aac/64/112?n=97bab757fce91177b818
 #EXTINF:-1,101.ru Любэ
 https://pub0101.101.ru/stream/pro/aac/64/158?n=5e27b7298d4f7907c96b
-#EXTINF:-1,101.ru СССР 30-50
-http://pub0302.101.ru:8000/stream/pro/aac/64/46?n=3489a9a5e5632ecae464
-#EXTINF:-1,101.ru СССР 50-70
-http://pub0302.101.ru:8000/stream/pro/aac/64/47?n=30f0980e566cbdf278df
 #EXTINF:-1,AIST TV
 http://live2-aisttv.cdnvideo.ru/aisttv2/aisttv.sdp/playlist.m3u8?n=9595568b58567c0f9fe6
 #EXTINF:-1,Alise Plus
@@ -352,7 +350,7 @@ http://anima.sknt.ru/trance.mp3?n=333b4eed24c239ae306a
 #EXTINF:-1,Anima Amoris Bible
 https://amoris.sknt.ru/bible.mp3?n=91482e3436163e910151
 #EXTINF:-1,ART City Radio
-https://listen2.myradio24.com/artcity
+https://listen9.myradio24.com/artcity
 #EXTINF:-1,AutoLife Radio Azerbaijan
 http://radio.autoliferadio.com:8090/radio?n=6c90ac3212cc8ab0f44b
 #EXTINF:-1,Baltiyskiy Bereg
@@ -361,14 +359,10 @@ http://91.203.171.138:8080/stream?n=bb55c3843791ac1dccfa
 http://nashe.streamr.ru/best-128.mp3?n=dd4d3af5b9a287b86197
 #EXTINF:-1,BFM.ru
 https://bfm.hostingradio.ru:9075/fm?n=d9c580ba300e475b30ec
-#EXTINF:-1,Big Room
-https://pub0302.101.ru:8443/stream/trust/mp3/128/220?n=3abc55a54c69645e6b20
 #EXTINF:-1,Biker FM
 https://listen4.myradio24.com/69846?n=7630d2900121278ac57a
 #EXTINF:-1,Bolshoe Radio
 https://listen2.myradio24.com/8286?n=acbae7ad7328ab3eb232
-#EXTINF:-1,Bolshoye Radio
-http://listen.myradio24.com:9000/8286?n=2d720f6444728ddf5966
 #EXTINF:-1,Borneo
 http://live.borneo.ru:8888/128?n=f56ff99c0f5209dce196
 #EXTINF:-1,Brooklyn FM
@@ -380,7 +374,7 @@ https://stream.cassiopeia-station.ru:1095/stream?n=116fc110c5b1d12f757a
 #EXTINF:-1,CHKG-FM 96.1 Fairchild Radio Vancouver, BC
 https://5b2959fe11444.streamlock.net/radio/fm961.stream/playlist.m3u8?n=d76650968e892cb04992
 #EXTINF:-1,Christian Radio City of Eden
-https://listen2.myradio24.com/cityeden
+https://listen7.myradio24.com/cityeden
 #EXTINF:-1,Dance Fm Moldova
 http://37.233.41.76:8000/dancefm?n=d49d4002df81fabb6913
 #EXTINF:-1,DFM - Breakbeat
@@ -431,12 +425,8 @@ https://air.dnbfm.ru/listen/player/play?n=1fb97ab4ad932768552d
 http://dorognoe.hostingradio.ru:8000/radio?n=3802d1e19ea18b77f2f9
 #EXTINF:-1,DWG Radio ru
 https://server32349.streamplus.de/stream.mp3?n=e44aae04e3faa12720da
-#EXTINF:-1,East of Russia Восток России
-http://109.70.24.182:8000/stream/1/?n=82cb2897357c57463b3e
 #EXTINF:-1,Eldoradio
 http://emgspb.hostingradio.ru/eldoradio64.mp3?n=38562bcc8c93caf96e3c
-#EXTINF:-1,Enigma
-https://pub0302.101.ru:8443/stream/pro/aac/64/175
 #EXTINF:-1,Enigmatic Station 1
 http://listen2.myradio24.com:9000/8226?n=293c02a2101607e126d1
 #EXTINF:-1,Europa Plus
@@ -476,8 +466,6 @@ http://radiokchr.ru/kchrfm.aac?n=7d58217ba15fd8569151
 http://listen6.myradio24.com:9000/4171?n=c3adc2e835948008cae5
 #EXTINF:-1,KEXXX.Rocks
 http://listen6.myradio24.com:9000/51020?n=79af49e56af452987a8c
-#EXTINF:-1,lofi
-https://pub0202.101.ru:8443/stream/pro/aac/64/358??n=6b348077276c7c3631c8
 #EXTINF:-1,Love Is Radio Belarus
 https://listen8.myradio24.com/3355
 #EXTINF:-1,love radio
@@ -519,13 +507,13 @@ https://icecast.ns.kz/radions?n=982dec014026231121f6
 #EXTINF:-1,Nui Radio
 https://a2.radioheart.ru:9003/nuiradio?n=f20120c5fccd40565615
 #EXTINF:-1,OTO Radio
-https://listen1.myradio24.com/7859
+https://listen7.myradio24.com/7859
 #EXTINF:-1,Pervoesetevoe FM
 http://streamer.radiovseti.ru:8000/320?n=e985de0f2ededc8b74c9
-#EXTINF:-1,Pi FM Moskow
-https://cdn.pifm.ru/mp3?n=f931f1620314d3d03c45
 #EXTINF:-1,Pump
 https://radiorecord.hostingradio.ru/pump96.aacp?n=42a7c392dfaa4ded1ab1
+#EXTINF:-1,radcap
+http://79.120.77.11:8000/hardrock?n=83d1056c412b8d75ccd2
 #EXTINF:-1,Radio 2 Komsomolsk-na-Amure
 http://212.19.18.133:8000/stream?n=b3da6b913f4f938d1a94
 #EXTINF:-1,Radio 2000x
@@ -535,9 +523,11 @@ http://84.242.241.66:8000/?n=52f488b04af4e82355e2
 #EXTINF:-1,Radio 7
 http://europaplus.hostingradio.ru:8014/radiosept320.mp3?n=7fcacc7b5ba4b87fd718
 #EXTINF:-1,Radio AnimKLATU
-https://animklatu.stream.laut.fm/animklatu?n=4a70ec15cc71f49dcdef&t302=2026-06-09_13-52-51&uuid=61d76160-0d4c-45fb-97e0-fea26bbb72d3
+https://animklatu.stream.laut.fm/animklatu?n=4a70ec15cc71f49dcdef&t302=2026-08-25_10-37-33&uuid=9ea2767f-3b9f-45f9-9dc5-84cb7245fbd7
 #EXTINF:-1,Radio Azamat
 https://listen4.myradio24.com/8162?n=7cee3b6b70e272ceeb83
+#EXTINF:-1,Radio Blago
+https://live.radioblago.ru/live-1.mp3?n=186ae8ffabc690f22ee8
 #EXTINF:-1,Radio Caprice - Avant-Garde Jazz / Free Improvisation [2]
 http://79.111.119.111:8000/avantgardejazz?n=61ba0e23760d81db476a
 #EXTINF:-1,Radio Caprice - Cyberpunk [1]
@@ -590,10 +580,18 @@ http://79.111.119.111:8000/mintechhouse?n=f909226c4751c2248d4b
 http://79.120.39.202:8002/mintechno?n=a09ba8ea2124a2980f1f
 #EXTINF:-1,Radio Caprice - Minimal Techno [2]
 http://79.120.39.202:8000/mintechno?n=9221efc12da2f10bcf96
+#EXTINF:-1,Radio Caprice - Organ Music
+http://79.120.77.11:8002/organ?n=c4ebd2a17ec9a3dfe0f9
 #EXTINF:-1,Radio Caprice - Orthodox Spiritual Music
 http://79.111.14.76:8002/orthodox?n=da75f59aa156fbceeda4
+#EXTINF:-1,Radio Caprice - Progressive Metal
+http://79.120.77.11:8000/progmetal?n=478c2e67664206624080
 #EXTINF:-1,Radio Caprice - Renaissance Music
 http://213.141.131.10:8000/renaissance?n=4d81afb6a15cf3b7d897
+#EXTINF:-1,Radio Caprice - Russian Club Dance Music [1]
+http://79.120.77.11:8002/clubru?n=195780c2e8536831cecc
+#EXTINF:-1,Radio Caprice - Russian Club Dance Music [2]
+http://79.120.77.11:8000/clubru?n=f7d9e738fef06a742e15
 #EXTINF:-1,Radio Caprice - Russian Folk Rock
 http://79.111.14.76:8000/folkrockru?n=c818cf5041624bf982fb
 #EXTINF:-1,Radio Caprice - Sonatas
@@ -604,12 +602,14 @@ http://79.111.119.111:8000/surfrock?n=db1a796543dce87b9c9c
 http://79.111.14.76:8002/tradelectronic?n=2bd3c2493c6e9d9cf691
 #EXTINF:-1,radio caprice dark Techno HQ
 http://79.111.14.76:8000/darktechno?n=fd66e0d0035e14617ff3
+#EXTINF:-1,Radio Caprice Delta Blues
+http://79.120.77.11:8002/deltablues?n=8a2fbeb697e0b93a108c
 #EXTINF:-1,Radio Caprice Indie Electronic
 http://79.111.119.111:8002/indieelectronic?n=344fd45447207c4bf0f6
+#EXTINF:-1,Radio Caprice WITCH HOUSE
+http://79.120.77.11:8002/witchhouse?n=01cfbe057a03d58a2465
 #EXTINF:-1,Radio Caprice-Gregorian Chant
 http://213.141.131.10:8002/chants?n=f2e73476f46889edae7f
-#EXTINF:-1,Radio Fantastiki
-http://fantasyradioru.no-ip.biz:8008/?n=a72ad98b6f21e883a423
 #EXTINF:-1,Radio Fish
 https://listen1.myradio24.com/8317?n=75781ae884e8625ef261
 #EXTINF:-1,Radio Jazz 89.1 - Classic JAZZ
@@ -629,7 +629,7 @@ http://dreamsiteradiocp4.com:8002/stream?n=131af3890e82d88c8abe
 #EXTINF:-1,Radio Maska
 http://radio.lovecity3d.com:4010/stream?n=1abdf640fa5dabdf6116
 #EXTINF:-1,Radio Mast Russian
-https://audio-edge-n9hx8.yul.o.radiomast.io/1f7e18dd-42dc-4869-9785-a9800456b9e3?n=31a32e2520b4a64310eb
+https://audio-edge-qse4n.yyz.g.radiomast.io/1f7e18dd-42dc-4869-9785-a9800456b9e3?n=31a32e2520b4a64310eb
 #EXTINF:-1,Радио Maximum
 https://maximum.hostingradio.ru/maximum128.mp3?n=960f0a8becb3d996c085
 #EXTINF:-1,Radio Maximum - Beats & Riffs
@@ -679,17 +679,15 @@ http://icecast.mediaalliance.cdnvideo.ru:8000/mediaalliance?n=06214bfb7db22e8a6f
 #EXTINF:-1,Radio Monte Carlo Golf Club
 http://montecarlo.hostingradio.ru/golfcup96.aacp?n=f59a2fd273af8f0074f6
 #EXTINF:-1,Радио Мята
-https://drh-node-02.dline-media.com/myata?n=253ca508463ffa160a2d
+https://drh-node-01.dline-media.com/myata?n=253ca508463ffa160a2d
 #EXTINF:-1,Radio Myata XTRA
-https://drh-node-02.dline-media.com/myata_hits?n=b1e677859a9e060d32bb
+https://drh-node-01.dline-media.com/myata_hits?n=b1e677859a9e060d32bb
 #EXTINF:-1,Radio Nostalgie Kazakhstan
 https://listen7.myradio24.com/alexx333?n=75f9fb4d6d2c42dd9b8b
 #EXTINF:-1,Радио Пассаж
 http://listen.radiopassazh.ru/aac-48?n=11c0298a28cbac2b5c7b
 #EXTINF:-1,Radio Piramida
 http://www.nazarovo-online.ru:8080/piramida/nazarovo?n=acd23f1dce9c77fe2eb0
-#EXTINF:-1,Radio Posad
-http://a1.radioheart.ru:8001/RH4122?n=fb1c89ec6c1633cfe8cb
 #EXTINF:-1,Radio Protasy
 https://skycaster.ru:7002/?n=0d2427cb2685e29b5107
 #EXTINF:-1,Radio Record  - Disco Funk
@@ -792,8 +790,6 @@ https://radiorecord.hostingradio.ru/197096.aacp?n=a011b1ba77317b45cb5a
 https://radiorecord.hostingradio.ru/rock96.aacp?n=cd51e4f58888f5e1b463
 #EXTINF:-1,Record Trancemission
 https://radiorecord.hostingradio.ru/tm96.aacp?n=33000f8129b8a2e42cf6
-#EXTINF:-1,Relax FM Latino
-https://pub0302.101.ru:8443/stream/trust/mp3/128/265?n=f5a4c424eb441175920d
 #EXTINF:-1,Remix FM
 http://air4.amgradio.ru/RemixFM?n=8acb7bc5220703f53020
 #EXTINF:-1,Ретро ФМ
@@ -851,7 +847,7 @@ https://sfm.amgradio.ru/SFM?n=9367100e3bed34d696b2
 #EXTINF:-1,shocolate 98fm
 https://choco.hostingradio.ru:10010/fm?n=94468fea7e5dd20eeae0
 #EXTINF:-1,Sky-Radio
-https://edge05.cdn.bitflip.ee:8888/SKY?_i=4af94e26&n=b9f5de8b77efed5a3af4
+https://edge01.cdn.bitflip.ee:8888/SKY?_i=14a13ae0&n=b9f5de8b77efed5a3af4
 #EXTINF:-1,Solikamsk FM
 http://solikamskfm.ru:8000/?n=cb9d94abe4ee8c7ec70d
 #EXTINF:-1,Soloviev FM
@@ -870,12 +866,14 @@ http://91.189.162.134:8008/?n=fad75d1bbeb18644c32a
 http://icecast.stranafm.cdnvideo.ru/stranafm?n=54be4605c51fb53623ad
 #EXTINF:-1,Studio 21 Хабаровск
 https://stream.studio21.ru/studio2196.aacp?n=31b20ec53001d6157c47
+#EXTINF:-1,Three Angels TV
+http://hls.tv.3angels.ru/stream/HQ.m3u8?n=75ccda17378e1c47b6c1
 #EXTINF:-1,THT Music Radio
 http://tntradio.hostingradio.ru:8027/tntradio128.mp3?n=ac7f54c31ec0ae468c7e
 #EXTINF:-1,Tomskiy Blagovest
 http://176.65.38.3:8000/blagovest?n=9378407f0295ceb5c05a
 #EXTINF:-1,TRANCE IS STAR RADIO
-https://listen1.myradio24.com/tisradio
+https://listen2.myradio24.com/tisradio
 #EXTINF:-1,UK Garage Радио Рекорд
 https://radiorecord.hostingradio.ru/ukgarage96.aacp?n=03223c400596470847d8
 #EXTINF:-1,ULTRA
@@ -889,20 +887,18 @@ https://icecast-trc33.cdnvideo.ru/stream?n=35c9e1835658111a9747
 #EXTINF:-1,VostokFM-MSK
 https://air2.volna.top/VostokFM-MSK?n=9f52d9bd0981ec37a08f
 #EXTINF:-1,WalсonFM
-https://listen3.myradio24.com/walcon
+https://listen7.myradio24.com/walcon
 #EXTINF:-1,WRN Rus
 http://shoutcast.wrn.org:8025/WRN-R?n=bbcd75dd8ade685fd9fd
 #EXTINF:-1,Xezer FM
 https://s40.myradiostream.com/:22546/listen.mp3??n=5f3e833dc8e2ed269a24
 #EXTINF:-1,XIT FM
 https://hitfm.hostingradio.ru/hitfm96.aacp?n=4ef0e49a55d9915512f5
-#EXTINF:-1,Авторская песня.101
-https://pub0101.101.ru:8000/stream/pro/aac/64/35?n=5dc6eb0a9c69c74c7535
-#EXTINF:-1,анекдот фм
-http://ic6.101.ru:8000/stream/trust/mp3/128/20?n=f7256a720f21de70c82d
 #EXTINF:-1,Бард-Радио
 #EXTINF:-1,Бизнес FM
 https://bfm.hostingradio.ru:9075/fm?n=6a9d9f4b73400e6fb066
+#EXTINF:-1,Благо
+https://live.radioblago.ru/live-2.ogg?n=b8be4ee8ae46ae060bb4
 #EXTINF:-1,Вести ФМ
 https://icecast-vgtrk.cdnvideo.ru/vestifm_mp3_64kbps?n=d14b6541399a9a685b2c
 #EXTINF:-1,Вести FM AAC
@@ -927,12 +923,26 @@ http://91.218.212.67:8000/stream?n=5fe932451b9a4825249f
 https://rr-detskijkanal.hostingradio.ru/detskijkanal96.aacp?n=ea1e2ed4c47fcbdd0a78
 #EXTINF:-1,Детский Хит - Kids Hit
 http://deti.volna.top/Deti?n=876066e672e9a9e20691
+#EXTINF:-1,Детское радио ДетиFM - Detskoye Radio
+https://gpm.hostingradio.ru/gpm-detifm495.aacp
 #EXTINF:-1,Дискач 90s Мегахит ДНР
-http://radio90s.stream.laut.fm/radio90s?n=b1084429c083a3096281&t302=2026-06-09_13-53-41&uuid=210165fd-9104-48c5-a32b-44f263e9dc50
+http://radio90s.stream.laut.fm/radio90s?n=b1084429c083a3096281&t302=2026-08-25_10-38-19&uuid=e2c15fad-b141-4885-ab77-03366a96ee2a
 #EXTINF:-1,дорожное радио Dorognoe Radio
 http://dorognoe.hostingradio.ru:8000/dorognoe?n=b87638c06173a61833e5
 #EXTINF:-1,Европа плюс
 http://ep128server.streamr.ru:8030/ep128?n=4cfbf5f46be40141e9bd
+#EXTINF:-1,Звезда ТВ🌟ТВЧ📺
+https://tvchannelstream1.tvzvezda.ru/cdn/tvzvezda/playlist.m3u8?n=c1a815d5bc460ff33ba3
+#EXTINF:-1,Звезда ТВ🌟ТСЧ
+https://tvchannelstream1.tvzvezda.ru/cdn/tvzvezda/playlist_sdhigh.m3u8?n=40ff3a0cf533be4f8fa5
+#EXTINF:-1,Известия ТВ звук
+https://hls-igi.cdnvideo.ru/igi/radio1/tracks-a1/mono.m3u8?n=62f5b61f519f1d40d33c
+#EXTINF:-1,Искатель
+http://iskatel.hostingradio.ru:8015/iskatel-128.mp3?n=02113481fd93abdb3ee8
+#EXTINF:-1,источник
+http://s0.radioheart.ru:8000/VM73179?n=b5ffe0efc03839623a7b
+#EXTINF:-1,КЕКС FM
+http://emg02.hostingradio.ru/keksfm64.aac?n=f03391827e29a22d4676
 #EXTINF:-1,комерсант Kommersant FM 93.6 Moscow
 http://kommersant77.hostingradio.ru:8016/kommersant64.mp3?n=5cb6bb8d1c9c5f59180a
 #EXTINF:-1,коммерсант
@@ -944,7 +954,7 @@ https://kpradio.hostingradio.ru:8000/64?n=53673c3fede1478dea29
 #EXTINF:-1,Крым.Реалии
 https://rferl-ingest.akamaized.net/hls/live/2121745/axia19/playlist.m3u8?n=a2024cdf0e41b86553bf
 #EXTINF:-1,Межзвёздное радио
-https://listen1.myradio24.com/97557
+https://listen9.myradio24.com/97557
 #EXTINF:-1,Наше радио 2.0
 https://nashe1.hostingradio.ru:18000/nashe20-128.mp3?n=53d3ce820bdc96c2eba4
 #EXTINF:-1,НАШЕ Радио Екб
@@ -959,8 +969,6 @@ https://nashe1.hostingradio.ru:80/nashespb128.mp3?n=16f6cd1a73842cd55c87
 http://nashe1.hostingradio.ru/nashe-256?n=94f9c96c2524d6a58cd5
 #EXTINF:-1,НАШЕ Радио, Щас спою
 http://nashe1.hostingradio.ru/nashesongs.mp3?n=460b7bb19c137626e6df
-#EXTINF:-1,Неслучайное Радио
-http://aska.ru-hoster.com:8006/stream?n=2eaf1d090fe14baef39b
 #EXTINF:-1,Новое Радио 91.1 СПб
 http://emgspb.hostingradio.ru/novoespb128.mp3?n=b37291b3904a965f8fe0
 #EXTINF:-1,Ностальгия - Дорожное радио
@@ -1053,36 +1061,18 @@ https://mc-mcjazz.hostingradio.ru/mcjazz96.aacp?n=8f2dae9b32abe9dafad5
 https://mc-pesniolyubvi.hostingradio.ru/pesniolyubvi96.aacp?95a0?n=adf5f3d87e6597d02897
 #EXTINF:-1,Радио Монте-Карло
 https://mc-mcgold.hostingradio.ru/mcgold96.aacp?n=672c6646e1d100cd76ac
-#EXTINF:-1,Радио НОД
-https://s05.volnorez.com/live-app/855343?n=e149935e9e4f34c8198d
+#EXTINF:-1,Радио Новая Жизнь
+https://nlradio.stream:8000/nlradio-hi.aac
 #EXTINF:-1,Радио Ностальжи Россия
 http://listen7.myradio24.com:9000/alexx333.m3u?n=b5a20ba34a546e1bee50
 #EXTINF:-1,Радио Ночной Мегаполис
 http://listen5.myradio24.com:9000/meganight?n=faa0c5247f19e7467e6e
-#EXTINF:-1,Радио Олдхит
-http://radio.oldxit.ru:8030/radio?n=29700cb826868de2cd01
 #EXTINF:-1,Радио Орфей - Классика без границ 192kbps
 https://orfeyfm.hostingradio.ru:8034/orpheuscwb192.mp3?n=e2dbdd27c538e2de3c24
 #EXTINF:-1,Радио Орфей Radio Orpheus
 https://orfeyfm.hostingradio.ru:8034/orfeyfm192.mp3?n=df798b2e791679959050
 #EXTINF:-1,Радио Орфей 99.2 FM
 http://orfeyfm.hostingradio.ru:8034/orfeyfm192.mp3?n=48e9e303ea91b3fbe733
-#EXTINF:-1,Радио Радонеж
-http://icecast.radonezh.cdnvideo.ru:8000/rad128?n=904b4c06c95f17b108a6
-#EXTINF:-1,Радио Рекорд основной канал
-http://radiorecord.hostingradio.ru/rr_main96.aacp?n=90baf63b533fb9d2268b
-#EXTINF:-1,Радио Рекорд 2step
-http://radiorecord.hostingradio.ru/2step96.aacp?n=f2a62b4f28929ea1414c
-#EXTINF:-1,Радио Рекорд 80-х
-http://radiorecord.hostingradio.ru/198096.aacp?n=bc1be712e8e5e5707815
-#EXTINF:-1,Радио Рекорд Black Rap
-http://radiorecord.hostingradio.ru/yo96.aacp?n=fc2f3e1017ea83b4d96c
-#EXTINF:-1,Радио Рекорд Breaks
-http://radiorecord.hostingradio.ru/brks96.aacp?n=5c2adf279cb198741660
-#EXTINF:-1,Радио Рекорд Christmas
-http://radiorecord.hostingradio.ru/christmas96.aacp?n=91de34fe0642e042b7eb
-#EXTINF:-1,Радио Рекорд Christmas Chill
-http://radiorecord.hostingradio.ru/christmaschill96.aacp?n=850eb2d9519430922c6f
 #EXTINF:-1,Радио Рекорд Dancecore
 http://radiorecord.hostingradio.ru/dc96.aacp?n=7445febd4f9c5866646f
 #EXTINF:-1,Радио Рекорд Dubstep
@@ -1196,7 +1186,7 @@ http://emgspb.hostingradio.ru/retrofmspb128.mp3?n=dc0d83077742b360b776
 #EXTINF:-1,РЕТРО ХИТ - RETRO HIT
 http://retro.volna.top/Retro?n=5db9bc96103726c68edc
 #EXTINF:-1,Рок-Атака
-https://listen2.myradio24.com/rockataka
+https://listen7.myradio24.com/rockataka
 #EXTINF:-1,Романтический шансон
 http://chanson.hostingradio.ru:8041/chanson-romantic256.mp3?n=0ae0cb88d43a9c601e24
 #EXTINF:-1,Рояль
@@ -1213,6 +1203,8 @@ https://stream.salyutfm.ru:8005/stream?x=1702122341752?n=e6c44188bb2358c7d4ac
 https://rferl-ingest.akamaized.net/hls/live/2121658/axia04/playlist.m3u8?n=ccc4725f344b90b247ef
 #EXTINF:-1,Своё Радио
 http://svoeradiofm.hostingradio.ru:8032/svoe-320.mp3?n=b7a78e4fb120c9962ed9
+#EXTINF:-1,Серебряный дождь
+http://silverrain.hostingradio.ru/silver128.mp3?n=b09ea5ca82100f3d0581
 #EXTINF:-1,Серебряный Дождь Ставрополь
 https://silverrainreg.hostingradio.ru/stavropol.silver128.mp3?n=0d66fe6a80df5be19dee
 #EXTINF:-1,Сказка FM
@@ -1238,9 +1230,9 @@ http://chanson.hostingradio.ru:8041/chanson128.mp3?n=041a16c7b851e3e3e613
 #EXTINF:-1,эльдорадио Eldo Radio 101.4 St. Petersburg
 http://emgspb.hostingradio.ru/eldoradio128.mp3?n=59eed431b5c55597870b
 #EXTINF:-1,ЯН-ФМ Anime
-http://animklatu.stream.laut.fm/animklatu?n=105bbaf84ab7ea1b62c5&t302=2026-06-09_13-54-29&uuid=c79c15e8-cb61-412e-a994-252e14991fe9
+http://animklatu.stream.laut.fm/animklatu?n=105bbaf84ab7ea1b62c5&t302=2026-08-25_10-39-12&uuid=2a1ea4a6-fb50-4bb3-8ea4-c65c4f4d70d9
 #EXTINF:-1,ЯН.ФМ Диско 90х РФ
-https://radio90s.stream.laut.fm/radio90s?n=59e5f8d571af5512724c&t302=2026-06-09_13-54-29&uuid=d63aa3ac-7573-4348-855c-f171b00bda0c
+https://radio90s.stream.laut.fm/radio90s?n=59e5f8d571af5512724c&t302=2026-08-25_10-39-12&uuid=ca699f0c-e92b-4b02-a07c-d28f77fda520
 #EXTINF:-1,קבלה לעם רוסית - Kabbalah rus
 https://icecast.kab.tv/live1-rus-574bcfd5.mp3?n=29cfabcfc2d1700d2c97?n=29cfabcfc2d1700d2c97
 #EXTINF:-1,Murka FM
@@ -1254,15 +1246,15 @@ https://rr-sovclass.hostingradio.ru/sovclass96.aacp?n=b58706865c8d75c19e48
 #EXTINF:-1,Radio Chocolate
 http://choco.hostingradio.ru:10010/fm?n=6be54a99b49e41113b5d
 #EXTINF:-1,50f.ru - Festival radio uzel
-https://listen1.myradio24.com/paradise
-#EXTINF:-1,MADFM
-https://azuracast.mad.pub/listen/madfm/live.mp3?n=4dd7c73529dc6f807649
+https://listen7.myradio24.com/paradise
 #EXTINF:-1,Radio Maximum - Linkin Park
 https://rusradio.hostingradio.ru/linkinpark96.aacp?n=7d0d0d793c44e075a718
 #EXTINF:-1,Radio Maximum - RHCP
 https://rusradio.hostingradio.ru/maxrhcp96.aacp?n=8da8ae22ddfa31c0afdc
 #EXTINF:-1,Caspian Business Radio BOSS
-https://listen3.myradio24.com/bosscomaz
+https://listen7.myradio24.com/bosscomaz
+#EXTINF:-1,NRJ Russia
+https://gpm.hostingradio.ru/gpm-energyfm495.aacp
 #EXTINF:-1,Radio Record - Russian Gold
 https://radiorecord.hostingradio.ru/russiangold96.aacp?n=1364c1c33e77d511e58c
 #EXTINF:-1,Radio Record - Russian Hits
@@ -1275,7 +1267,5 @@ https://pub0102.101.ru:8443/stream/personal/aacp/64/1785788?n=80de1f298d56f6d776
 https://stream.studio21.ru/studio2196.aacp?n=c4c08922bc0d01168e90
 #EXTINF:-1,За!Радио Мелитополь
 https://listen9.myradio24.com/86040
-#EXTINF:-1,KEYGEN FM
-http://stream.keygen-fm.ru:8082/listen.mp3?n=e2d1dcd2d39cae8ce4e6
 #EXTINF:-1,DFM Дискач 90-х
 https://dfm-disc90.hostingradio.ru/disc9096.aacp?n=9f89345ba431db3efcc0

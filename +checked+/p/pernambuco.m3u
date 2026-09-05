@@ -21,6 +21,12 @@ http://agrestehost.agrestehost.com.br:8008/;
 https://cloud.cdnseguro.com:2387/;stream.nsv
 #EXTINF:-1,Painel de Controle Web Radio
 https://cloud.cdnseguro.com:2363/stream
+#EXTINF:-1,Rádio Itapuama FM
+https://www.appradio.app:8035/live
+#EXTINF:-1,Sertânia FM
+http://hd4.matutos.com.br:8092/;
+#EXTINF:-1,Rádio Cultura dos Palmares
+https://03.painelstreaming.com.br:27080/;;
 #EXTINF:-1,Rádio Gospel Net Brasil
 http://centova2.euroti.com.br:8419/;
 #EXTINF:-1,Rádio Top Music FM
@@ -29,8 +35,6 @@ https://servidor38-3.brlogic.com:8014/live
 http://stm6.conectastreaming.com:8886/stream
 #EXTINF:-1,Rádio Ponte FM
 https://stm1.matutos.com.br:8552/stream
-#EXTINF:-1,Radio Relogio AM
-https://s45.maxcast.com.br:8060/live
 #EXTINF:-1,Rádio Bitury
 https://servidor21-1.brlogic.com:7694/live
 #EXTINF:-1,Cultural FM
@@ -41,16 +45,12 @@ http://stm2.srvif.com:8330/stream
 https://s18.maxcast.com.br:8545/live
 #EXTINF:-1,Rádio Florescer FM
 http://euroticast5.euroti.com.br:8492/;
-#EXTINF:-1,Rádio Integracao
-https://stm11.painelvox.com:8742/stream
 #EXTINF:-1,Rádio Cultura Nordestina
 http://stm4.srvif.com:8352/stream
 #EXTINF:-1,Rádio Liberal FM
 https://casthttps.suaradionanet.net/10818/stream
 #EXTINF:-1,Rádio Projeção FM
 https://player.transmissaodigital.com/proxy/7644
-#EXTINF:-1,Rádio Repentistas
-http://stm3.srvif.com:8346/stream
 #EXTINF:-1,Rádio Super Pajeú
 https://server3.webradios.com.br:19434/9434
 #EXTINF:-1,Rádio Nova FM
@@ -67,6 +67,8 @@ http://10.stmip.net:10544/stream
 https://stm1.matutos.com.br:10636/stream
 #EXTINF:-1,Rádio Goiana FM
 http://s02.transmissaodigital.com:6718/;
+#EXTINF:-1,Rádio Papacaça
+https://ssl.conectastreaming.com:9248/stream
 #EXTINF:-1,Rádio Aroeira
 https://s41.maxcast.com.br:8166/live
 #EXTINF:-1,Cidade FM 99.7
@@ -99,8 +101,6 @@ https://stm26.srvaudio.com.br:9266/stream
 https://stm1.matutos.com.br:9272/stream
 #EXTINF:-1,Rádio Jurema FM
 https://stm26.srvaudio.com.br:9282/stream
-#EXTINF:-1,Rádio Princesa do Capibaribe FM
-https://stm8.painelvox.com:6748/stream
 #EXTINF:-1,Rádio Ide Anunciar
 https://s03.transmissaodigital.com:6680/stream
 #EXTINF:-1,Rádio Cultura Viva Web
@@ -111,14 +111,14 @@ https://ssl.xcast.com.br:12576/mountpoint;stream.nsv
 https://stm22.srvaudio.com.br:10934/stream
 #EXTINF:-1,Livre FM 87.9
 https://player.srvsh.com.br/proxy/6876
+#EXTINF:-1,Acauã FM 88.5
+https://stm1.matutos.com.br:10356/stream
 #EXTINF:-1,Rádio Sertão FM 104.9
 http://s2.free-shoutcast.com:18428/;stream.nsv
 #EXTINF:-1,Rádio One
 http://euroticast5.euroti.com.br:8022/;
 #EXTINF:-1,Rádio Resgatando Vidas
 http://sv11.hdradios.net:7874/;
-#EXTINF:-1,Rádio Riacho FM
-https://stm23.srvaudio.com.br:10974/stream
 #EXTINF:-1,Rádio Santana FM
 https://cast2.hoost.com.br:20102/stream
 #EXTINF:-1,Rádio Aprendiz
@@ -141,6 +141,16 @@ https://play.braudio.com.br/ssl.php?p=7094&s=srv1
 http://centova.apslogic.com.br:8204/;
 #EXTINF:-1,Rádio Madruga FM
 http://06.stmip.in:27180/stream
+#EXTINF:-1,Agreste 4 Radio
+https://ssl.conectastreaming.com:8658/;stream.nsv
+#EXTINF:-1,Radio Alianca
+https://player-ssl.painelstream.net:8518/live
+#EXTINF:-1,Rádio Bless
+https://player.xcast.com.br/proxy/6692
+#EXTINF:-1,Webrádio Visão Mix
+https://player.srvsh.com.br/proxy/7610
+#EXTINF:-1,Radio Nova Onda
+https://ssl.xcast.com.br:12906//;stream.mp3
 #EXTINF:-1,Web Rádio Jataúba
 https://player.painelcast.com/proxy/7210/;
 #EXTINF:-1,Webrádio Super Jovem
@@ -167,12 +177,14 @@ http://stm2.srvif.com:8424/;
 http://stm7.xcast.com.br:10734/;/stream
 #EXTINF:-1,Rádio A Voz da Liberdade FM (ZYX812, 98,5 MHz FM, Jaboatão dos Guararapes, PE)
 http://104.238.205.19:8669/stream
-#EXTINF:-1,Rádio Petrolina FM (ZYX802, 98,3 MHz FM, Petronila, PE)
-http://hd4.matutos.com.br:8324/;stream.mp3
-#EXTINF:-1,Rádio Machados FM
-http://stm5.painelvox.com:8002/stream
+#EXTINF:-1,Rádio Aliança FM 98.5
+https://player.srvstm.com/proxy/9222
+#EXTINF:-1,Rádio Cambuca FM
+https://sonicpanel.oficialserver.com/8038/stream
 #EXTINF:-1,Rádio Olho D&#039;Água FM
 https://sonicpanel.oficialserver.com/8046/stream;
+#EXTINF:-1,Rádio RCM FM
+http://stm3.painelvox.com:8130/stream
 #EXTINF:-1,Rádio Associativa FM
 http://stm2.voxhd.com.br:7648/stream
 #EXTINF:-1,Rádio Lima
@@ -183,16 +195,18 @@ https://player.stms.live/proxy/8664
 http://hd4.matutos.com.br:8524/;stream.mp3
 #EXTINF:-1,Rádio Paulista Fm Web.com
 https://servidor33-2.brlogic.com:8116/live
+#EXTINF:-1,Rádio Canhotinho Sem Fronteiras
+http://srv1.braudio.com.br:7040/;stream.nsv
 #EXTINF:-1,Radio Cordel
 http://stm1.srvif.com:8324/stream
 #EXTINF:-1,Rádio Líder FM
 https://sonicpanel.oficialserver.com/8040/stream
 #EXTINF:-1,Rádio Maria FM
 https://stm3.xcast.com.br:8876/;
+#EXTINF:-1,São Joaquim FM 104,7
+http://stm1.xcast.com.br:10952/;
 #EXTINF:-1,Rádio Ação FM
 https://livecasthd.com.br/play.php?porta=27284
-#EXTINF:-1,Radio Doce Rio
-https://stm20.srvaudio.com.br:9658/stream
 #EXTINF:-1,Tupanatinga FM
 https://stm1.voxplayer.com.br:7052/stream
 #EXTINF:-1,Web Radio Expresso Music

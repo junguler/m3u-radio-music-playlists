@@ -1,8 +1,6 @@
 #EXTM3U
 #EXTINF:-1,Panorama FM
 https://shls-panoramafm-prod-dub.shahid.net/out/v1/66262e420d824475aaae794dc2d69f14/index.m3u8
-#EXTINF:-1,Radio Ataa Alkhayer
-http://www.alijaber.net/aj_q2/089S_AlFajr.mp3
 #EXTINF:-1,Rotana FM
 http://curiosity.shoutca.st:6035/
 #EXTINF:-1,Addokali Mohammad Alalim
@@ -41,8 +39,6 @@ http://live.mp3quran.net:9970/
 http://ny.mysonicserver.com:8044/stream
 #EXTINF:-1,راديو الشرق مع بلومبرغ
 https://svs.itworkscdn.net/asharqradioalive/asharqradioa/playlist.m3u8
-#EXTINF:-1,اذاعة القرآن الكريم
-http://m.live.net.sa:1935/live/quransa/playlist.m3u8
 #EXTINF:-1,Tafsir Radio
 http://206.72.199.179:9992/stream
 #EXTINF:-1,MP3Quran - Fares Abbad Radio
@@ -301,8 +297,6 @@ http://live.mp3quran.net:9770
 http://live.mp3quran.net:9768
 #EXTINF:-1,MP3 Quran - E'zat Zaki Daghistani
 http://live.mp3quran.net:9890
-#EXTINF:-1,MP3 Quran - Eid Takbeer
-http://live.mp3quran.net:9728
 #EXTINF:-1,MP3 Quran - Islamic Chinese Radio
 http://live.mp3quran.net:9942
 #EXTINF:-1,MP3 Quran - Islamic Tagalog Radio
@@ -336,7 +330,7 @@ https://ny.mysonicserver.com/8044/stream
 #EXTINF:-1,Miraath - ميراث الأنبياء Listen live
 https://radio.al7eah.net/8010/server
 #EXTINF:-1,schlager-radio-de-fleech Listen live
-https://schlager-radio-de-fleech.stream.laut.fm/schlager-radio-de-fleech?ref=radiode&t302=2026-06-08_18-01-14&uuid=de7ad2eb-defa-4907-8025-df58bbf7b8f6
+https://schlager-radio-de-fleech.stream.laut.fm/schlager-radio-de-fleech?ref=radiode&t302=2026-08-24_14-23-25&uuid=bec9ce7a-6117-4b75-a2c2-b94c2ada4934
 #EXTINF:-1,One Fm - Scène française Listen live
 https://webradio0002.ice.infomaniak.ch/webradio0005-128.mp3
 #EXTINF:-1,Radio Asharq with Bloomberg / راديو الشرق مع بلومبرغ
@@ -369,6 +363,8 @@ https://qurango.net/radio/yasser_aldosari
 http://live.mp3quran.net:9996/stream.mp3
 #EXTINF:-1,إذاعة نور على نور مباشر عربي – Mecca – Mecca Region – SA
 http://104.7.66.64:8011/?icy=http
+#EXTINF:-1,POR FM – SA
+https://ny.mysonicserver.com/8098/stream
 #EXTINF:-1,84.7 Bee Cool FM – Riyadh – SA-O1
 https://ny.mysonicserver.com/8054/stream
 #EXTINF:-1,RD FM RADIO – SA
@@ -395,8 +391,6 @@ https://stream.ufmradio.com:8003/
 https://radio.hhost.host/8010/stream
 #EXTINF:-1,Miraath’s Holy Quraan Radio
 https://stream.hornhost.com/8109/stream
-#EXTINF:-1,SUA Radio na NET
-http://suaradio1.dyndns.ws:10032/stream
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/128405.v1.png",rdg البرازيل
 https://stream2.svrdedicado.org/8354/stream
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/X5Z0TU.png",Abdulbasit Abdulsamad - MJAWOAD Radio
@@ -440,8 +434,6 @@ http://live.mp3quran.net:9834/
 http://npr-ice.streamguys1.com/live.aac
 #EXTINF:-1,Radio Disney KSA 1170 AM
 https://listen.radioking.com/radio/453221/stream/508076
-#EXTINF:-1,OFW Kabayan Radio 91.5 FM
-https://c2.radioboss.fm:18478/stream
 #EXTINF:-1,إذاعة الأخبار كل 5 دقائق   REPLAY NEWS - العربية
 https://replaynewsar.ice.infomaniak.ch/replaynewsar-128.mp3
 #EXTINF:-1,Favradio FM 101.5
@@ -450,3 +442,26 @@ http://stream.hornhost.com:8109/
 https://qp-pldt-live-grp-05-prod.akamaized.net/out/u/radyo5_qp.m3u8
 #EXTINF:-1,TFC Middle East HD
 https://tfcguam-abscbn-ono.amagi.tv/index.m3u8
+#EXTINF:-1,Radio UFM 90.0 - Saudi Arabia - Riyadh
+https://stream.ufmradio.com:8003/;
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/sa-favradio-logo.jpg",Favradio
+http://stream.hornhost.com:8109/;stream.mp3
+#EXTINF:-1 tv-logo="",Radio TV Quran
+https://www.tvquran.com/ar/scholar/44/profile/%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D9%86-%D8%A7%D9%84%D8%B3%D8%AF%D9%8A%D8%B3
+#EXTINF:-1,MBC Mood
+https://radio-mbc-mood.mbc.net/radio-mbc-mood.m3u8
+#EXTINF:-1,SBA Jeddah Radio 96.2 FM
+https://live.kwikmotion.com/sbrksajeddahradiolive/ksajeddahradio/chunks.m3u8
+#EXTINF:-1,UFM 95.5
+https://assets.wireless.radio/audio/georestriction-barkers/onic.mp3
+http://104.7.66.64:8010/;?icy=http
+#EXTINF:-1,Star KSA 99.9 FM
+https://eu10.fastcast4u.com:6300/;?type=httpu0026fbclid=IwY2xjawFqDntleHRuA2FlbQIxMQABHTTxwatDLaI3zkRXdSFYydXbOIRIvpABKZ_UJtqR3_vuCOvdsqzoeP80-Q_aem_slP_LtUYWwu6xNl3wmsesA
+#EXTINF:-1,Jeddah
+https://media.base44.com/files/public/6a1fdf6444e437e5f3a701be/cee738f00_WithoutLoveWhatsLife_.mp3
+#EXTINF:-1,Khuzama Radio 95.3 FM
+https://live.kwikmotion.com/sbrksakhuzamaradiolive/khuzama/chunks.m3u8
+#EXTINF:-1,105.5 AFN RADIO ONE
+https://28563.live.streamtheworld.com/AFNE_BHNAAC.aac
+https://securestreams5.reliastream.com:1820/;
+http://live.mp3quran.net:9878/;stream.mp3

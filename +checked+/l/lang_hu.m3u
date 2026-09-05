@@ -81,8 +81,6 @@ http://onair7.xdevel.com:7102/1
 http://civilradio.hu:8000/
 #EXTINF:-1,Radio 7
 http://netradio.radio7.hu:8300/stream.mp3
-#EXTINF:-1,Sirius Rádió
-http://siriusradio.hu:8500/relay_911.mp3
 #EXTINF:-1,Coofm ChistmaX
 http://mediagw.e-tiger.net/stream/zc27
 #EXTINF:-1,Power Party FM
@@ -99,8 +97,6 @@ http://sztrim.periszkopradio.hu:8088/
 http://stream.diazol.hu:35080/live.mp3
 #EXTINF:-1,Mustarhaz FM
 http://193.138.125.14:8500/
-#EXTINF:-1,N-music online radio
-http://stream.n-music.tk:8000/1
 #EXTINF:-1,Base FM
 https://icast.connectmedia.hu/5401/live.mp3?n=38b7cf5eb7049ae87982
 #EXTINF:-1,BDPST ROCK
@@ -127,8 +123,6 @@ http://icast.connectmedia.hu/5113/live.mp3?n=892bb0ccc5fb3a1f1858
 http://icast.connectmedia.hu/5112/live.mp3/?n=cade0fca6654df3efa8d
 #EXTINF:-1,Best FM - Zalaegerszeg
 http://icast.connectmedia.hu/5111/live.mp3/?n=e6c0a20afa29c216c84b
-#EXTINF:-1,Campus Rádió FM90
-https://stream.fm90.hu:8000/?n=ec348613211d7bb279c3
 #EXTINF:-1,City Rádió
 http://live.city-radio.ro:8800/?n=5262937952094ff9eb93
 #EXTINF:-1,Cool FM
@@ -168,7 +162,7 @@ https://stream.funradio.sk:8000/funpgm256.mp3?n=ef73229f2081688a3a7e
 #EXTINF:-1,insane
 https://newinsane.info/ochi/insane.m3u?n=35321b075a8f349877ba
 #EXTINF:-1,Klasszik Rádió 92.1
-http://s04.diazol.hu:9600/live.mp3
+https://radio.musorok.org/listen/klasszik/radio.mp3
 #EXTINF:-1,Mária Rádió Szerbia
 http://dreamsiteradiocp.com:8014/?n=0debc56531b264d9a7fa
 #EXTINF:-1,MR1 - Kossuth Rádió
@@ -189,22 +183,26 @@ https://mr-stream.connectmedia.hu/4761/dwr.mp3?n=4e06364fc64aa8d7ba81
 http://193.138.125.14:8500/?n=6d9a16f325c8ecc619aa
 #EXTINF:-1,Oxygen Magyar Zene
 https://oxygenmusic.hu:8443/oxygenmagyarzene?n=dad2dcd0d80aa391c5c5
-#EXTINF:-1,Pannónia Rádió
-http://kft.kesintisizyayin.com:8130/stream?n=5ead34056b339bdfb270
 #EXTINF:-1,Parlamenti adások
 http://mr-stream.mediaconnect.hu/4745/mr5.aac?n=b62fefc2e92f726e4c79
+#EXTINF:-1,Rádió 1 - Békéscsaba
+https://icast.connectmedia.hu/5233/live.mp3?n=b24ca9c9349640a3d135
+#EXTINF:-1,Rádió 7
+http://netradio.radio7.hu:8300/stream.mp3?n=388d8c123f04e7888b82
+#EXTINF:-1,Rádió 88
+http://stream.radio88.hu:8000/?n=ceed0b31861f3e567a63
 #EXTINF:-1,Rádió 88 Club
 http://stream2.radio88.hu:8400/stream?n=889521decccab6b94804
 #EXTINF:-1,Rádió 88 Retro
 http://stream1.radio88.hu:8300/stream?n=0eaacd8c0530b5402230
+#EXTINF:-1,Rádió 88 Top
+http://stream3.radio88.hu:8500/stream?n=501324bbb56d264eba79
 #EXTINF:-1,Radio Blaj 96.2
 https://ssl.radios.show/8016/stream?n=5ef3b56668f1edaa07bb
 #EXTINF:-1,Radio Brand
 https://radiobrand.es:8084/RadioBrand?n=eba8c9816922040088a0
 #EXTINF:-1,Rádió Dikh
 http://icast.connectmedia.hu/6121/live.mp3?n=b87cb0dd30cfb1800e7f
-#EXTINF:-1,Rádió GaGa Csíkszék
-https://a3.my-control-panel.com:6700/radio.mp3?n=46bc66330643dac8d194
 #EXTINF:-1,RADIO MARIA HUNGARY
 http://dreamsiteradiocp.com:8032/stream?n=20fbad2d2a6175cff6a0
 #EXTINF:-1,RADIO MARIA ROMANIA HUNG.
@@ -216,7 +214,7 @@ https://icast.connectmedia.hu/5001/live.mp3?n=5d18a4a25a712017c5c8
 #EXTINF:-1,RTV - Radio Novi Sad 2 Újvidéki Rádió
 http://212.200.230.50:1935/rns2/drugiprogram/livestream/stream.m3u8?n=bcd2a0dc3a1b9db26967
 #EXTINF:-1,Schwendermarkt
-http://schwendermarkt.stream.laut.fm/schwendermarkt?n=be99072b4d08e751dd41&t302=2026-06-08_12-42-18&uuid=d045d9d0-7d20-4860-b901-27a8ee08e6e1
+http://schwendermarkt.stream.laut.fm/schwendermarkt?n=be99072b4d08e751dd41&t302=2026-08-24_08-53-01&uuid=e081b2c1-2cd8-4f4e-8234-1e00d85fd5cb
 #EXTINF:-1,Super DJ Radio
 http://s03.diazol.hu:35150/live?n=3f39c36469446c3cf807
 #EXTINF:-1,SuperDj Radio
@@ -225,10 +223,6 @@ http://stream.diazol.hu:35150/autodj?n=772e3bcbee0e095e3dd9
 http://stream.voxfm.ro:8000/listen.pls?n=bd25efaf6a50f3f95da2
 #EXTINF:-1,Youventus Rádió
 http://s2.audiostream.hu/juventus_192k?n=5cec705ba2de2e8919f2
-#EXTINF:-1,Rádió GaGa Gyergyószék
-https://a3.my-control-panel.com:6690/radio.mp3?n=46e6cc61f02fad89e809
-#EXTINF:-1,Rádió GaGa Háromszék
-https://a3.my-control-panel.com:6670/radio.mp3?n=3b7823ddd831c7b1cfe1
 #EXTINF:-1,Roxy Rádió
 https://s2.audiostream.hu/roxy_192k?n=ae010c3f98a87326feb1
 #EXTINF:-1,Українське Радіо. Ужгород

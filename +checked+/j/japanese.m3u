@@ -4,9 +4,11 @@ http://radio.kahoku.net:8000/
 #EXTINF:-1,ADBT Radio
 http://217.79.181.61:8000/listen.pls
 #EXTINF:-1,Anime Radio
-http://animefm.stream.laut.fm/animefm?t302=2026-06-09_08-56-16&uuid=3688785a-bfd3-45ac-8cb8-677c227be545
+http://animefm.stream.laut.fm/animefm?t302=2026-08-24_23-25-56&uuid=28a13b77-9237-407b-97bf-5a210e1a5b4a
 #EXTINF:-1,Anison动漫音乐台
 http://pool.anison.fm:9000/AniSonFM(320)?
+#EXTINF:-1,Culture Failure
+http://culturefailure.com:8000/listen.pls
 #EXTINF:-1,Doujinstyle Radio
 https://streams.radio.co/s5ff57669c/listen.m3u
 #EXTINF:-1,Eden Radio
@@ -51,8 +53,6 @@ https://www.internet-radio.com/
 http://kathy.torontocast.com:2880/listen.pls?sid=1
 #EXTINF:-1,Ottava
 http://ottava2.out.airtime.pro:8000/ottava2_a
-#EXTINF:-1,Radio Doki
-https://kuronegai.radioca.st/stream
 #EXTINF:-1,Radio Mast Japanese
 https://audio-edge-qse4n.yyz.g.radiomast.io/a622d414-52a6-4426-b3b8-ed2a4dbb704b
 #EXTINF:-1,SBS PopAsia
@@ -61,8 +61,6 @@ https://sbs-ice.streamguys1.com/sbs-popasia-sbs-web
 http://shonanbeachfm.out.airtime.pro:8000/shonanbeachfm_a
 #EXTINF:-1,Smuglo.li r/a/dio
 https://smuglo.li/stream.m3u
-#EXTINF:-1,Split Infinity Radio 128kbps mp3
-http://listen.siradio.fm/listen.pls
 #EXTINF:-1,WREP
 http://c13.radioboss.fm:8200/stream
 #EXTINF:-1,幻想乡电台Gensokyo Radio
@@ -86,15 +84,17 @@ http://uk5.internet-radio.com:8306/;
 #EXTINF:-1,Otaku Music Radio
 https://kathy.torontocast.com:2880/1.mp3
 #EXTINF:-1,92.3 The Fox
-https://19273.live.streamtheworld.com/KOFXFMAAC.aac?dist=onlineradiobox
+https://17843.live.streamtheworld.com/KOFXFMAAC.aac?dist=onlineradiobox
 #EXTINF:-1,J-pop Project Radio
 https://15113.live.streamtheworld.com/SAM10AAC139.mp3?dist=onlineradiobox
+#EXTINF:-1,J1 HD
+https://maggie.torontocast.com:2000/stream/J1HD
 #EXTINF:-1,TJS Japanese Radio Station
 http://s8.citrus3.com:8200/stream
 #EXTINF:-1,FM One
 https://www.jcbasimul.com/fmkashima
 #EXTINF:-1,J-pop Idols Project Radio
-https://15113.live.streamtheworld.com/SAM05AAC121.mp3?dist=onlineradiobox
+https://26343.live.streamtheworld.com/SAM05AAC121.mp3?dist=onlineradiobox
 #EXTINF:-1,JapaneseMusicID
 https://stream.japanesemusicid.com/live/1/;
 #EXTINF:-1,OnlyHit Japan
@@ -183,23 +183,21 @@ http://delivery.onlyhitsradio.net/japan
 http://centova4.transmissaodigital.com:8049/principal/
 #EXTINF:-1,asiaDREAMradio - Jazz Sakura
 http://kathy.torontocast.com:3330/
+#EXTINF:-1,Rádio AMC
+http://stm16.painelcast.com:6728/
 #EXTINF:-1,Greek Otaku Radio
 http://usa2.fastcast4u.com:3684/stream2
 #EXTINF:-1,Vagalume.FM - J-Pop
 https://stream.vagalume.fm/hls/1475776167864381/aac.m3u8
 #EXTINF:-1,TJS Radio
-#EXTINF:-1,Curry Bun Radio
-http://streaming.shoutcast.com/curry-bun-radio
 #EXTINF:-1,Blast Radio
 https://centova4.transmissaodigital.com:20143/principal
 #EXTINF:-1,Kawaii Anime Radio - Otaku
 https://azura12.instainternet.com/radio/8030/radio.mp3
 #EXTINF:-1,FM Nack5 795
-https://radio.talksport.com/stream?awparams=platform:ts-web
+https://talksport.live.stream.broadcasting.news/stream?awparams=platform:ts-web
 #EXTINF:-1,Data Fruits FM
 https://streampusher-relay.club/datafruits.mp3
-#EXTINF:-1,HappyHardcorecom radio
-https://audio-edge-vqwx4.yyz.g.radiomast.io/73055724-1141-41e2-a69b-24a6ca96c8e7
 #EXTINF:-1,Minoh FM
 http://uk5.internet-radio.com:8306/
 #EXTINF:-1,Nightwave Plaza
@@ -213,8 +211,6 @@ https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1,J Rock
 #EXTINF:-1,Ashiya Radio
 https://s3.radio.co/sc8d895604/listen
-#EXTINF:-1,FM Nack5 79.5
-http://radio.talksport.com/stream?awparams=platform:ts-web
 #EXTINF:-1,Aegyo Radio KPOP
 #EXTINF:-1,Asian Wave Radio
 http://listen1.myradio24.com:9000/7934
@@ -251,13 +247,14 @@ https://kathy.torontocast.com:2600/stream
 #EXTINF:-1,REC-FM
 https://jenny.torontocast.com:2000/stream/Delmarva
 #EXTINF:-1,BOX : Weeb Anime Radio
-https://boxradio-edge-01.streamafrica.net/anime
+https://edge01.streamafrica.net/fee126e2-ab7c-47a2-8952-7ba254b7fb59
 #EXTINF:-1,Asia Dream Radio - Jazz Sakura
 https://kathy.torontocast.com/jazzsakura/stream/
 #EXTINF:-1,J-Club asia DREAM
 https://kathy.torontocast.com:3350/stream/1/
 #EXTINF:-1,Kyoto Living FM
 https://www.jcbasimul.com/kyotoribingufm
+https://streaming.radio.co/se4a8e6a93/listen
 #EXTINF:-1,Leblon Gospel
 https://sonicpanel.oficialserver.com/8254/stream
 #EXTINF:-1,Radio Sud Est
@@ -273,7 +270,7 @@ http://shonanbeachfm.out.airtime.pro:8000/shonanbeachfm_c
 #EXTINF:-1,A Chan
 http://jenny.torontocast.com:8066/stream.nsv
 #EXTINF:-1,AFN Tokyo Eagle 810
-http://13743.live.streamtheworld.com/AFNP_TKO.mp3
+http://18433.live.streamtheworld.com/AFNP_TKO.mp3
 #EXTINF:-1,AFN Okinawa-Surf 648
 http://18373.live.streamtheworld.com/AFNP_OKN.mp3
 #EXTINF:-1,FM Otaru FM - 76.3 ( FMおたる )
@@ -285,7 +282,7 @@ https://play.streamafrica.net/JapanCityPop
 #EXTINF:-1,Vocaloid Radio
 https://fmplapla.com/fmnishitokyo
 #EXTINF:-1,AFN Iwakuni
-http://29312.live.streamtheworld.com/AFNP_IWAAAC.aac
+http://18253.live.streamtheworld.com/AFNP_IWAAAC.aac
 #EXTINF:-1,FMいしがき (FM Ishigaki)
 https://c12280-live01.videog.jp/live/_definst_/hiDL-lMqLU13/playlist.m3u8?videog_playlist_index=0
 #EXTINF:-1,Free Fm
@@ -319,8 +316,8 @@ http://live.japanesemusicid.com:8000/japanesemusic
 https://www.jcbasimul.com/radiosanq
 #EXTINF:-1,Nippon Cultural Broadcasting radio
 https://radiko.jp/#!/live/QRR
-#EXTINF:-1,FM Nack 5 radio
-https://a1.asurahosting.com:8420/radio.mp3
+#EXTINF:-1,FM OZE radio
+http://www.fm-oze.co.jp/simul/player.html
 #EXTINF:-1,SBC Radio
 https://radiko.jp/#!/live/SBC
 #EXTINF:-1,K-MIX radio
@@ -335,8 +332,6 @@ https://listen.openstream.co/6083/audio
 https://das-edge12-live365-dal02.cdnstream.com/a80708
 #EXTINF:-1,raste.live
 https://das-edge11-live365-dal03.cdnstream.com/a39214
-#EXTINF:-1,Neko-Network Radio: Vision Anime & Japanese Music
-https://free.rcast.net/244291
 #EXTINF:-1,The Official Broadcasting Service of Amami Haruka Dictatorship
 https://kathy.torontocast.com:3560/;
 #EXTINF:-1,J-Club Powerplay Hip-Hop
@@ -346,8 +341,6 @@ https://kathy.torontocast.com:3350/;
 https://animefm.stream.laut.fm/animefm?t302=2023-04-25_19-35-23&uuid=296243c6-9347-46d0-a5c2-0e3a623f9993
 #EXTINF:-1,BBN Radio Japanese
 https://audio-edge-3mayu.fra.h.radiomast.io/a622d414-52a6-4426-b3b8-ed2a4dbb704b
-#EXTINF:-1,RCVFM
-http://centova.svdns.com.br:25286/stream
 #EXTINF:-1,RADIO wonderstorage
 https://live.776.fm/
 #EXTINF:-1,Вокалоид радио (Vocaloid Radio on mikupa.ru)
@@ -387,15 +380,97 @@ https://cast1.torontocast.com:2060/
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/115521374.jpg",Shonan BeachFM
 https://shonanbeachfm.out.airtime.pro:8000/shonanbeachfm_c?listening-from-radio-garden=1666159433
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/50467/logo_wfcjDopsSM.png",J-pop Project Radio
-https://26343.live.streamtheworld.com/SAM10AAC139.mp3
+https://15113.live.streamtheworld.com/SAM10AAC139.mp3
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80064/logo_hp2X7YbVse.png",J1 HITS Radio
 https://jenny.torontocast.com:8056/stream
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80103/logo_B6yZV9rhzI.png",J1 Gold Radio
 https://jenny.torontocast.com:8062/stream
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/50481/logo_8pgROYQXga.png",J-pop Idols Project Radio
-https://15113.live.streamtheworld.com/SAM05AAC121.mp3
+https://26343.live.streamtheworld.com/SAM05AAC121.mp3
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/99052/logo_mgJhGRyfbg.png",TJS Japanese Radio Station
 https://s8.citrus3.com:8200/stream
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/99476/logo_WCaz4gXNpY.png",TJS 音楽チャンネル Radio
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/45634/logo_2EL5dWJbBQ.png",Hotmixradio Japan
 https://streaming.hotmixradio.com/hotmix-japan-en-mp3?
+#EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/80049/logo_0lo9jhKbzE.jpg?v=20260529-media-restore",J-Pop Sakura 懐かしい
+https://quincy.torontocast.com:2070/;?type=http&nocache=1759329245
+#EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/1004321/logo_93s1N2Y4Uc.jpg?v=20260529-media-restore",Asia Dream Japan
+https://quincy.torontocast.com:2020/;
+#EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/80048/logo_FaJ0qopPoI.jpg?v=20260529-media-restore",J-Pop Powerplay Kawaii
+https://kathy.torontocast.com:3060/;
+#EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/80058/logo_P03p7A5oWD.jpg?v=20260529-media-restore",Jazz Sakura - asia DREAM Radio
+https://kathy.torontocast.com:3330/;
+#EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/103784/logo_DoqATGwU2P.jpg?v=20260529-media-restore",J-Pop Sakura - asia DREAM Radio
+https://quincy.torontocast.com:2070/;
+#EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/42472/logo_lLzExbkpi4.jpg?v=20260529-media-restore",Otaku Music Radio
+https://kathy.torontocast.com:2880/;?type=http&nocache=1606748882
+#EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/103785/logo_C4scXQjNOL.jpg?v=20260529-media-restore",J-Rock Powerplay - asia DREAM Radio
+https://kathy.torontocast.com:3340/;
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/jp-moon-mission-logo.jpg",Radio Moon Mission
+http://uk5.internet-radio.com:8306/;stream.nsv
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/jp-free-fm-rock-logo.jpg",Radio Free FM Rock
+https://freefmrock.radioca.st/stream
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/jp-free-fm-0-1-logo.jpg",Radio Free Fm
+https://rocafmadrid.radioca.st/;
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/jp-j1-hits-logo.jpg",Radio J1 HITS
+http://jenny.torontocast.com:8056/;stream.nsv
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/fm-yamato-568454-logo.jpg",Radio FM Yamato
+https://www.jcbasimul.com/fmyamato
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/kappa-fm-568449-logo.jpg",Radio Kappa FM
+https://www.jcbasimul.com/fmyatsushiro
+#EXTINF:-1,stereo anime
+https://radio.stereoanime.com/listen/stereoanime/128
+#EXTINF:-1,BOX : Japan City Pop - 日本のシティポップ
+https://edge01.streamafrica.net/5ce98f28-6eb6-4e6f-95a9-0e9e48d51796
+#EXTINF:-1,NHKワールド・ラジオ日本
+https://masterpl.hls.nhkworld.jp/hls/r1/live/master.m3u8
+#EXTINF:-1,J-Pop Sakura (asia DREAM radio)
+https://quincy.torontocast.com:2070/stream.mp3
+#EXTINF:-1,Gotanno FM 89.2
+https://radio.gotanno.love/;
+#EXTINF:-1,FM Kahoku 78.7 (FMかほく, JOZZ5AM-FM, 78.7 MHz, Kahoku City, Ishikawa)
+http://radio.kahoku.net:8000/;
+#EXTINF:-1,REPLAY NEWS - 日本語 5分ごとのニュースラジオ
+https://replaynewsja.ice.infomaniak.ch/replaynewsja-128.mp3
+#EXTINF:-1,Neuro 21 Station
+https://radio.twinskaraoke.com/listen/neuro_21/radio.mp3
+#EXTINF:-1,IA Music & News - Japanese
+https://ianewsja.ice.infomaniak.ch/ianewsja-128.mp3
+#EXTINF:-1,VRC放送局
+https://vrc.gate.vrtv.jp/live?p=gu0026u=d
+#EXTINF:-1,Radio Caprice - J-Pop
+http://79.111.119.111:8000/jpop
+#EXTINF:-1,ARA FM
+http://141.164.38.238/listen/ara_fm/radio.mp3
+#EXTINF:-1,Radio AnimKLATU
+https://animklatu.stream.laut.fm/animklatu?t302=2026-01-15_03-06-18u0026uuid=83763dab-adb7-4922-8071-74e8c595673b
+#EXTINF:-1,RADIO CLUB DJ
+http://4stream.pl:18272/stream
+#EXTINF:-1,Radio Anime Nexus
+https://cast.animenexusla.com/radio/8000/animenexus
+#EXTINF:-1,NFRS Radio
+https://securestreams.autopo.st:2592/stream?t=1769818665235
+#EXTINF:-1,DankFM
+http://internetradio.dankassassin368.com/DankFM.mp3
+#EXTINF:-1,shadowfr69 Radio
+https://radio.shadowfr69.eu/mp3
+#EXTINF:-1,Radio Linguas
+https://radiolinguas.eu:8001/radiolinguas
+#EXTINF:-1,Free FM Madrid
+https://streams.radio.co:80/s5ff57669c/listen
+#EXTINF:-1,MILCpod
+https://radio.milradio.info:9000/milcpod.m3u8
+#EXTINF:-1,RadiCro (レディクロ)
+https://radicrojapan.out.airtime.pro/radicrojapan_a
+#EXTINF:-1,85.1 WAHH
+https://radio.coolbirds.cc/listen/85.1_wahh/radio.mp3
+#EXTINF:-1,ЯН-ФМ Anime
+http://animklatu.stream.laut.fm/animklatu?t302=2026-01-15_01-17-49u0026uuid=a0537ef2-3c79-4122-a8bc-70c2eb06601c
+#EXTINF:-1,AFN 360 Tokyo
+https://13743.live.streamtheworld.com/AFNP_TKO_SC
+#EXTINF:-1,Antenna Web Tokyo
+https://mars.streamerr.co/8066/stream
+#EXTINF:-1,てんしのはしご発信局
+https://listen.radioking.com/radio/552224/stream/611507
+#EXTINF:-1,j pop tunner
+https://stream3.svrdedicado.org/8064/stream
