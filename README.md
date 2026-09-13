@@ -382,7 +382,7 @@ note: this method does not give you the stream title (tho most streams broadcast
 <br>
 
 ### How to add metadata
-these playlists lack file type (mp3, aac etc) and bitrate (128kb, 360kb etc) metadata, there are a few reasons for this, firstly i didn't know how to scrape them initially, secondly many websites don't expose these to scrape and finally i think they being there makes people skip "low quality" streams and miss out on potentially great radio stations, but that doesn't mean nobody wants them, so with the help of calude and chatgpt i've made a [m3u metadata embedder](https://junguler.github.io/M3U-Metadata-embedder/) page, it's set up in a very similar way to the m3u link checker and there is relative feature parity between them
+these playlists lack file type (mp3, aac etc) and bitrate (128kb, 360kb etc) metadata, there are a few reasons for this, firstly i didn't know how to scrape them initially, secondly many websites don't expose these to scrape and finally i think they being there makes people skip "low quality" streams and miss out on potentially great radio stations, but that doesn't mean nobody wants them, so with the help of claude and chatgpt i've made a [m3u metadata embedder](https://junguler.github.io/M3U-Metadata-embedder/) page, it's set up in a very similar way to the m3u link checker and there is relative feature parity between them
 
 <br>
 
