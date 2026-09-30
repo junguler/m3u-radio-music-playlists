@@ -298,7 +298,8 @@ to listen to other m3u playlists in this repo click on the specific repo for eac
 </tr>
 <tr>
 <td><a href="https://github.com/junguler/listen_to_my.world_tuner">my.world_tuner</a></td>
-<td colspan="4"></td>
+<td><a href="https://github.com/junguler/listen_to_cue_tree">cue_tree</a></td>
+<td colspan="3"></td>
 </tr>
 </tbody></table>
 
