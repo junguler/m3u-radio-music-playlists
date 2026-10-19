@@ -1,16 +1,10 @@
 #EXTM3U
-#EXTINF:-1,מוזיקה מזרחית ים תיכונית
-https://mzr.mediacast.co.il/mzradio
 #EXTINF:-1,صـوت لبنــان (VDL)
 http://audiostreaming.itworkscdn.com:9054/stream
-#EXTINF:-1,Mega FM 92.7
-http://nebula.shoutca.st:8211/stream
 #EXTINF:-1,Radio Dahab
 https://dahab.ice.infomaniak.ch/dahab-192.mp3
 #EXTINF:-1,مزاج اف ام
 https://mazajfm.ice.infomaniak.ch/mazajfm-192.mp3
-#EXTINF:-1,Radio Ifm
-http://live.ifm.tn:8000/ifmlive
 #EXTINF:-1,Delta Radio
 http://198.100.145.187:18408/
 #EXTINF:-1,Radio Mars
@@ -19,6 +13,8 @@ http://radiomars.ice.infomaniak.ch/radiomars-128.mp3
 http://178.33.135.244:20095/stream
 #EXTINF:-1,اف ام شعبي
 http://radio95.radioca.st:9010/stream
+#EXTINF:-1,وتر ف.م
+http://stream-287.surfernetwork.com/8t0947m00f8uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiI4dDA5NDdtMDBmOHV2IiwiaG9zdCI6InN0cmVhbS0yODcuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IkIxc3EzWm5yU19lZUhBdjFWSHB1bVEiLCJpYXQiOjE3OTIyNjkzNDUsImV4cCI6MTc5MjI2OTQwNX0.tEVb8aN7brFR0Mc_cIVpT0bHCcmP23Snrkwpd8MWCK8
 #EXTINF:-1,قناة اﻟﺠﺰﻳﺮﺓ اﻟﻌﺮﺑﻴﺔ
 https://live-hls-audio-web-aja.getaj.net/VOICE-AJA/01.m3u8
 #EXTINF:-1,Al Rabia 107.8 FM
@@ -27,12 +23,8 @@ https://s2.radio.co/s770fa24b6/listen
 http://svs.itworkscdn.net/smcquranlive/quranradiolive/icecast.audio
 #EXTINF:-1,Sawt el Mada 92.5
 http://audiostreaming.itworkscdn.com:9018/stream
-#EXTINF:-1,حبايب اف ام
-http://188.166.95.19:8000/stream/
 #EXTINF:-1,Radio France Maghreb 2
 http://francemaghreb2.ice.infomaniak.ch/francemaghreb2-high.mp3
-#EXTINF:-1,Radio Avol
-http://s3.streammonster.com:8045/stream
 #EXTINF:-1,Radio Sada
 http://192.99.8.192:3054/stream
 #EXTINF:-1,الاذاعة اللبنانية الدولية
@@ -41,20 +33,14 @@ http://andromeda.shoutca.st:8192/stream
 http://uk6.internet-radio.com:8103/stream
 #EXTINF:-1,راديو عالبال
 http://albal-lbnet2.radioca.st:8218/stream
-#EXTINF:-1,Radio Algérienne - Chaine 1
-http://webradio.tda.dz:8001/Chaine1_64K.mp3
 #EXTINF:-1,Radio Jordan [English Channel]
 http://jrtv-live.ercdn.net/jrradio/englishradiovideo.m3u8
-#EXTINF:-1,IRIB Radio Farhang
-http://s1.cdn1.iranseda.ir:1935/liveedge/radio-farhang/playlist.m3u8
-#EXTINF:-1,رادیو جوان
-http://s2.cdn1.iranseda.ir:1935/liveedge/radio-javan/playlist.m3u8
-#EXTINF:-1,Radio Sawa
-https://mbnv-audio-ingest.akamaized.net/hls/live/2038905/MBNV_SAWA_LEVANT_AUDIO_HLS/merge.m3u8
+#EXTINF:-1,Radio Soleil
+http://radiosoleil.ice.infomaniak.ch/radiosoleil-128.mp3
 #EXTINF:-1,Sawtelghad FM
 https://streams.radio.co/sd1bcd1376/listen
-#EXTINF:-1,إذاعة الجزائرية - إذاعة البهجة
-http://webradio.tda.dz:8001/ElBahdja_64K.mp3
+#EXTINF:-1,Radio France Maghreb 2
+https://francemaghreb2.ice.infomaniak.ch/francemaghreb2-high.mp3
 #EXTINF:-1,Radio Al-Bilad
 https://streamer.radio.co/sb38bf6e66/listen
 #EXTINF:-1,Turkmeneli FM
@@ -63,24 +49,28 @@ http://radyo1.radyo-dinle.tc:8284/stream
 http://185.105.4.106:1935/live/radio-93-3/playlist.m3u8
 #EXTINF:-1,Shafaaq Radio
 http://radio.shafaq.com/radio
-#EXTINF:-1,إذاعة الجزائرية - إذاعة تلمسان
-http://webradio.tda.dz:8001/Tlemcen_64K.mp3
 #EXTINF:-1,Istanbul FM
-https://yayin.istanbulfm.com.tr/istanbulfm
+https://yayin.istanbulfm.com.tr/istanbulfm/playlist.m3u8
 #EXTINF:-1,Sumer FM
 http://audiostreaming.itworkscdn.com:9012/stream
 #EXTINF:-1,Hala FM
 http://listen-halafm.sharp-stream.com/halafmmid.mp3
+#EXTINF:-1,Radio Soleil
+http://radiosoleil.ice.infomaniak.ch/radiosoleil-128.mp3
 #EXTINF:-1,LibyanaHITS FM
 http://proxima.shoutca.st:8946/stream.mp3
+#EXTINF:-1,صـوت لبنــان (VDL)
+http://audiostreaming.itworkscdn.com:9054/stream
 #EXTINF:-1,Rotana FM - KSA
+http://curiosity.shoutca.st:6035/stream
+#EXTINF:-1,روتانا إف إم
 http://curiosity.shoutca.st:6035/stream
 #EXTINF:-1,Sawt Al Farah
 http://audiostreaming.itworkscdn.com:9036/stream/
 #EXTINF:-1,إذاعة النور
 http://audiostreaming.itworkscdn.com:9066/stream/
-#EXTINF:-1,رادیو نمایش
-http://s1.cdn1.iranseda.ir:1935/liveedge/radio-namayesh/playlist.m3u8
+#EXTINF:-1,إذاعة مدينة إف إم المغرب
+https://medinafm.ice.infomaniak.ch/medinafm-64.mp3
 #EXTINF:-1,True Life In God Radio Arabic
 https://stream.tligradio.org/listen/arabic/radio.mp3
 #EXTINF:-1,רדיו ב.ב. ווסטוק - הרדיו הבוכרי
@@ -90,7 +80,7 @@ http://206.72.199.179:9992/stream
 #EXTINF:-1,OpenLab
 http://ice04.fluidstream.net/openlab.mp3
 #EXTINF:-1,JU FM 94.9
-http://jufmstreaming.ju.edu.jo:80/
+https://jufmstreaming.ju.edu.jo/
 #EXTINF:-1,إذاعة ميراث الأنبياء للقران
 http://radio.al7eah.net:8010/stream
 #EXTINF:-1,إذاعة نعيم حلاوي
@@ -101,8 +91,8 @@ http://radio.farah.fm:8000/
 https://listen.radioking.com/radio/1743/stream/125
 #EXTINF:-1,راديو الحياة الجديدة
 https://s2.radio.co/sd3c7f8539/listen
-#EXTINF:-1,زين بلادي
-https://asmaki.ma:8000/radio.mp3
+#EXTINF:-1,صوت إل شاب
+http://vps1.osina.cloud:9320/
 #EXTINF:-1,Jawanan 97.5 FM
 http://s3.radio.co/s3a13a855f/listen
 #EXTINF:-1,زمان الوصل راديو
@@ -111,36 +101,46 @@ https://zamanalwaslradio.out.airtime.pro/zamanalwaslradio_a
 http://live.mp3quran.net:9868/
 #EXTINF:-1,Khaled Al-Qahtani Radio
 http://live.mp3quran.net:9970/
+#EXTINF:-1,إذاعة صوت الوفاق
+http://eu8.fastcast4u.com:5737/stream
 #EXTINF:-1,Ramadan Radio Wolves
 https://streaming.radio.co/sdc1941ff2/listen
 #EXTINF:-1,Alarabiya FM
 https://fm.alarabiya.net/fm/myStream/master.m3u8
 #EXTINF:-1,راديو الرجاء
 http://i7.streams.ovh:17000/stream
-#EXTINF:-1,سلام وطندار
-http://s10.myradiostream.com:12238/
+#EXTINF:-1,راديو فنون طرابلس
+http://stream-288.surfernetwork.com/p2f0xdpmgg0uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJwMmYweGRwbWdnMHV2IiwiaG9zdCI6InN0cmVhbS0yODguc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IjVheV95djU0VHZXOEt6NzZQaVZjb0EiLCJpYXQiOjE3OTIyNzU2MjMsImV4cCI6MTc5MjI3NTY4M30.NFpdl_mAfBq35Sh2ogdIGxazy5ClZYbR0ThOb8Y3ds4
+#EXTINF:-1,Days Old Radio
+http://stream-282.surfernetwork.com/aqx3usbtsg0uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJhcXgzdXNidHNnMHV2IiwiaG9zdCI6InN0cmVhbS0yODIuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6Im9rbGdza1F1Uk11UG1MV3JzQ1JSQ1EiLCJpYXQiOjE3OTIyNzU2MjQsImV4cCI6MTc5MjI3NTY4NH0.DBrvJ-j0c5Yb3QuPZbRXPoKmEjvMl4R90v3BY9ko8ro
+#EXTINF:-1,أضواء إف إم - أضواء إف إم2
+http://stream-283.surfernetwork.com/vrrtqsh0x1zuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ2cnJ0cXNoMHgxenV2IiwiaG9zdCI6InN0cmVhbS0yODMuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6ImhMb3N5bzA5UmdPd05ETWNoTVZUQUEiLCJpYXQiOjE3OTIyNzU2MjQsImV4cCI6MTc5MjI3NTY4NH0.o3I885gdHOiUc6cMOhR2c-eNbwjJ1edPJje9QPRVSN4
+#EXTINF:-1,أضواء إف إم - أضواء إف إم6
+http://stream-281.surfernetwork.com/tvxvud2kpm0uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ0dnh2dWQya3BtMHV2IiwiaG9zdCI6InN0cmVhbS0yODEuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6InpubzNtdVd0Ul9PSEF5dFZNcU9VTEEiLCJpYXQiOjE3OTIyNzU2MjQsImV4cCI6MTc5MjI3NTY4NH0.3ee4rQWmk_-NIqTbgvZ4cGhaw5aEAb7WaeK7OFFp0x4
+#EXTINF:-1,Radio Yan Plus
+http://stream-280.surfernetwork.com/7nqu31p6xg0uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiI3bnF1MzFwNnhnMHV2IiwiaG9zdCI6InN0cmVhbS0yODAuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IjZNc01ZdklHUktHRWNlMTJsYmFrWUEiLCJpYXQiOjE3OTIyNzU2MjQsImV4cCI6MTc5MjI3NTY4NH0.IyW2yuPi4MkvdFWgpBilFv-TDaY2pOQd8UImiXhCMn0
+#EXTINF:-1,هلا صبراتة FM
+http://stream-289.surfernetwork.com/1dy2395z3k8uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiIxZHkyMzk1ejNrOHV2IiwiaG9zdCI6InN0cmVhbS0yODkuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IjVEVzNmNGxWVEllYnRYVGZCY2ZTcUEiLCJpYXQiOjE3OTIyNzU2MjUsImV4cCI6MTc5MjI3NTY4NX0.m9Jn5aYv5C4MqrmnkyWjLGfrA5YN9Ke5_BJqEhzuh7w
 #EXTINF:-1,إذاعة صوت الغد - راديو وطني
 https://sawtelghad.org:7005/stream.mp3/
-#EXTINF:-1,INTA FM 103.7
-http://s4.radio.co/s907eaefbe/listen
+#EXTINF:-1,Arab Mix FM
+https://stream-283.surfernetwork.com/qb1zvsykm98uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJxYjF6dnN5a205OHV2IiwiaG9zdCI6InN0cmVhbS0yODMuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IlA5cnJqTXE4VDU2OGI2QWdDOHhhT0EiLCJpYXQiOjE3OTIyNzU2MjUsImV4cCI6MTc5MjI3NTY4NX0.w68Fzq9GjdizE5s81AkcOhxrW2BpQnRehGQ-BmVhxKs
+#EXTINF:-1,Shurooq Islamic Mix
+http://stream-284.surfernetwork.com/7yc6z3b3dkhvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiI3eWM2ejNiM2RraHZ2IiwiaG9zdCI6InN0cmVhbS0yODQuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6ImpHUFFPNVZvU1d1bFVNd1pval9CMUEiLCJpYXQiOjE3OTIyNzU2MjUsImV4cCI6MTc5MjI3NTY4NX0.yzRlFgIJXQse3zlI2mz5H5blxnI3W199rTBcT1XfLkE
 #EXTINF:-1,Radio Reve Lebanon
 http://eu9.fastcast4u.com:5072/stream
-#EXTINF:-1,بورجل راډیو
-http://s49.radiolize.com:8180/radio.mp3
+#EXTINF:-1,إذاعة الرشد
+https://stream-178.surfernetwork.com/kk4c4a1eunhvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJrazRjNGExZXVuaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzguc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IkpSaG4zZ2xIUmFhc01rRzRuREpVMmciLCJpYXQiOjE3OTIyNzU2MjUsImV4cCI6MTc5MjI3NTY4NX0.FI1wJizSmU_3jVPRn3wQxU2uSrKlDWwLzxnYlJSnYmE
 #EXTINF:-1,FM 93 Karachi
 https://whmsonic.radio.gov.pk:7022/stream.mp3/
 #EXTINF:-1,FM 93 Chitral
 http://whmsonic.radio.gov.pk:8066/stream
 #EXTINF:-1,Monte Carlo Doualiya Music - MCD Music
 http://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3
-#EXTINF:-1,إذاعة الجزائرية - إذاعة تبسة
-http://webradio.tda.dz:8001/Tamanrasset_64K.mp3
 #EXTINF:-1,Jesus Coming FM - Arabic
 http://live.jesuscomingfm.com:8218/stream/
-#EXTINF:-1,Radio Biskra
-http://webradio.tda.dz:8001/Biskra_64K.mp3
 #EXTINF:-1,RauteMusik - Oriental
-https://rautemusik.stream43.radiohost.de/oriental?ref=streema&upd-meta=0&upd-scheme=https&_art=dD0xNzU3MTc2MzgyJmQ9ODkwMWVkYTk0Y2Y4NTE5ODQ3MDQ
+https://rautemusik.stream48.radiohost.de/oriental?ref=streema&upd-meta&upd-scheme=https&_art=dD0xNzkyMjc3MzU4JmQ9NjNkM2MwYTgzYmUxNzNkNGY3Y2Q
 #EXTINF:-1,HayalFm
 http://yayin.radyohayalfm.net:8050/
 #EXTINF:-1,SBS Radio - Arabic24
@@ -161,3 +161,5 @@ http://radio-zemra.eu:8000/zemra
 https://icecast-rian.cdnvideo.ru/voicearb
 #EXTINF:-1,World Fusion Radio - Global Chillout
 http://51.255.235.165:5160/stream
+#EXTINF:-1,Radio TunisiaMed
+http://stream-282.surfernetwork.com/v7v98w9vhchvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ2N3Y5OHc5dmhjaHZ2IiwiaG9zdCI6InN0cmVhbS0yODIuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6ImNZRmZjN1YtUUxDWDZUNGlrWjRIQVEiLCJpYXQiOjE3OTIyNzgxNDksImV4cCI6MTc5MjI3ODIwOX0.BgffxZhgTXSHpo3hFiHJVjaHQ5M97oVFbj8abfUhWYs

@@ -1,10 +1,4 @@
 #EXTM3U
-#EXTINF:-1,LolliRadio Italia
-https://stream.lolliradio.net/lolli_italia.mp3?FLID=D
-#EXTINF:-1,R101 - Made in Italy
-https://icy.unitedradio.it/R101MadeInItaly.aac
-#EXTINF:-1,RAI Filodiffusione 5 Auditorium - RAI FD5 Auditorium
-http://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S53422322/bTdUFhYMnnra/icecast
 #EXTINF:-1,Antenna Bruzia
 http://onair20.xdevel.com:8334/stream/
 #EXTINF:-1,Radio Balla Balla
@@ -15,6 +9,8 @@ https://icy.unitedradio.it/Suby.mp3
 https://stream10.xdevel.com/audio6s977886-2320/stream/icecast.audio
 #EXTINF:-1,Radio Bruno
 https://stream6.xdevel.com/audio4s975355-395/stream/icecast.audio
+#EXTINF:-1,Radio Bari
+http://s6.mediastreaming.it:9062/
 #EXTINF:-1,FM Italia
 http://stream5.xdevel.com/audio1s975817-360/stream/icecast.audio
 #EXTINF:-1,Radio Fermo 1
@@ -43,10 +39,14 @@ http://108.59.11.81:10101/stream
 http://stream15.top-ix.org/antennauno
 #EXTINF:-1,Radio Etna Espresso
 http://stream5.xdevel.com/audio0s976557-1317/stream/icecast.audio
+#EXTINF:-1,Radio Gran Paradiso
+http://radiogranparadiso2.ice.infomaniak.ch/radiogranparadiso-64.aac
 #EXTINF:-1,Radio Lombardia
 https://stream6.xdevel.com/audio0s976574-1328/stream/icecast.audio
 #EXTINF:-1,Radio Beckwith
 http://icecast.top-ix.org:80/radiobeckwith
+#EXTINF:-1,Radio2000
+http://159.69.217.78:8000/stream
 #EXTINF:-1,Radio Studio Emme
 http://ice09.fluidstream.net:80/fluid0901.aac
 #EXTINF:-1,Radio Spazio
@@ -63,6 +63,8 @@ http://188.138.102.50:8190/
 http://live.streamingmedia.it:7158/stream/
 #EXTINF:-1,Life Gate Sound Radio
 https://stream6.xdevel.com/audio0s975809-425/stream/icecast.audio
+#EXTINF:-1,Radio RCS
+http://ssl2.azotosolutions.com:8022/stream/
 #EXTINF:-1,BMradio
 http://bmradio.radioca.st:8933/stream/
 #EXTINF:-1,Radio Enne Lamezia
@@ -86,13 +88,9 @@ http://stream9.xdevel.com/audio0s976541-1299/stream/icecast.audio
 #EXTINF:-1,Radio Amore - Dance Catania
 https://stream10.xdevel.com/audio5s977886-2319/stream/icecast.audio
 #EXTINF:-1,Pleyer Music Radio
-http://playermusicradio.stream.laut.fm/playermusicradio?t302=2025-09-06_17-22-21&uuid=ff4f75d8-5367-4b3c-8d5b-b84bde3e1b49
-#EXTINF:-1,Radio Campania
-http://stream.radiocampania.eu:8000/radio.mp3
+http://playermusicradio.stream.laut.fm/playermusicradio?uuid=469b33f3-8dab-51ef-86f5-65a7b6eac3ec&t302=2026-10-17_23-29-51
 #EXTINF:-1,Radio Camaldoli Stereo
 http://ice04.fluidstream.net/fluid0401.mp3
-#EXTINF:-1,Radio Madre Terra
-http://cast.server89.com:8070/live
 #EXTINF:-1,Radio Onde Furlane
 http://37.117.65.249:8000/
 #EXTINF:-1,Radio Parma
@@ -105,32 +103,32 @@ http://nr6.newradio.it:9249/stream?1480370060123.aac/
 https://icy.unitedradio.it/Virgin_06.mp3
 #EXTINF:-1,Radio Latte Miele
 http://ice02.fluidstream.net:80/fluid016.aac
-#EXTINF:-1,radio41.it
-http://95.110.225.107:8041/
 #EXTINF:-1,Radio Gold
 http://ice09.fluidstream.net/fluid0901.mp3?FLID=6
 #EXTINF:-1,Radio LatteMiele - Veneto
 http://ice04.fluidstream.net:80//fluid7100.aac
+#EXTINF:-1,BSO Channel
+http://sr2.inmystream.it:8153/stream/
 #EXTINF:-1,Radio 70 80 90 - Dance
 https://rblive.it:8060/radio.mp3
 #EXTINF:-1,001 Italia
-http://001italia.stream.laut.fm/001italia?t302=2025-09-06_17-22-30&uuid=be35a460-c6b7-491e-a857-9ad412b615bf
+http://001italia.stream.laut.fm/001italia?uuid=96267676-d3f6-4079-63c4-7ab76673c90c&t302=2026-10-17_23-59-53
 #EXTINF:-1,רדיו חולמים מזרחית
 http://liveradio.co.il:8070/
 #EXTINF:-1,Rádio italianSong
-http://italiansong.stream.laut.fm/italiansong?t302=2025-09-06_17-22-31&uuid=4e471ece-4670-4928-8e74-a6b6c472a7a3
-#EXTINF:-1,WebRadio Levi
-http://46.28.2.24:9308/live/
+http://italiansong.stream.laut.fm/italiansong?uuid=80f66b76-b0a9-3733-9a35-9a1031dbc8ab&t302=2026-10-17_23-59-53
+#EXTINF:-1,Radio Atalaias Soft
+http://stream-178.surfernetwork.com/2gc616ztpc9uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiIyZ2M2MTZ6dHBjOXV2IiwiaG9zdCI6InN0cmVhbS0xNzguc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6Ikd6TkhIN0ZQVFVpam9Yd05nMG9RVnciLCJpYXQiOjE3OTIyNzQzOTQsImV4cCI6MTc5MjI3NDQ1NH0.ZK4DffETsOmjOFcggJVrFLOaMK7MLZqoTvILqWZk3KM
 #EXTINF:-1,R101 - La Banda Di R101
 https://icy.unitedradio.it/R101LaBanda.aac
 #EXTINF:-1,R101 - Your Love
 https://icy.unitedradio.it/R101YourLove.aac
 #EXTINF:-1,R101 - Today's Hits
 https://icy.unitedradio.it/101SpecialArtist.aac
-#EXTINF:-1,RTL 102.5 - RadioVisione
-https://streamingv2.shoutcast.com/rtl-1025
 #EXTINF:-1,DeeGay Italia
 https://stream.deegay.fm/deegay3.mp3
+#EXTINF:-1,Radio Vasco
+https://stream.radioromantica.net/
 #EXTINF:-1,Radio Tirreno Centrale
 http://nr9.newradio.it:9532/listen&ampext=.mp3
 #EXTINF:-1,Radio Sherwood
@@ -139,8 +137,6 @@ https://radiosherwood.ice.infomaniak.ch/radiosherwood-96.mp3
 http://167.86.86.4:8520/stream
 #EXTINF:-1,Radio C1-inBlu
 http://nr5.newradio.it:8659/stream/
-#EXTINF:-1,Erreti Radio Tadino
-http://erretidabstl.phon.in:6330/
 #EXTINF:-1,Radio Nova Sorso
 http://nrf1.newradio.it:9872/stream
 #EXTINF:-1,Primarete FM
@@ -167,8 +163,10 @@ http://cuneocro-danidi01.radioca.st:8009/stream
 https://ice09.fluidstream.net/fluid0903.mp3
 #EXTINF:-1,Radio Gela Express
 http://sp3.server89.com:9330/stream/
-#EXTINF:-1,Italianaradio
-http://italianaradio.radioca.st/stream
+#EXTINF:-1,Radio Nord Castrovillari
+http://178.32.138.88:8063/stream.mp3
+#EXTINF:-1,Radio Citta Fujiko
+http://comodino.org:8001/rcf.mp3
 #EXTINF:-1,Radio Diocesana Concordia
 http://nrf1.newradio.it:10012/stream
 #EXTINF:-1,Radio Zenith Messina
@@ -177,14 +175,16 @@ http://stream1.xdevel.com/audio0s975884-460/stream/icecast.audio
 http://ice09.fluidstream.net:80/fluid0909.mp3
 #EXTINF:-1,Radio Onda Libera (ROL 103)
 http://ice04.fluidstream.net/fluid0409.mp3
+#EXTINF:-1,Radio RDF 102.7
+https://stream9.xdevel.com/audio1s977583-3053/stream/icecast.audio
 #EXTINF:-1,Radio Serra 98
 http://nr9.newradio.it:9432/stream/
 #EXTINF:-1,Radio Café Padova
 http://79.8.227.117:8000/8/
 #EXTINF:-1,Radio Fiemme
 http://dreamsiteradiocp3.com:8040/stream/
-#EXTINF:-1,Onda Libera-inBlu
-http://212.7.194.63:9064/
+#EXTINF:-1,Antenna Radio Esse
+http://s8.mediastreaming.it:7580/
 #EXTINF:-1,1 Station Radio
 https://stream5.xdevel.com/audio1s975854-414/stream/icecast.audio
 #EXTINF:-1,Radio Quinta Rete
@@ -205,6 +205,8 @@ https://radiortm.radioca.st/
 http://ssl.audio1.meway.tv:8002/stream
 #EXTINF:-1,Radio Libertà
 https://stream1.xdevel.com/audio0s975360-306/stream/icecast.audio
+#EXTINF:-1,Radio Alfa
+http://s3.mediastreaming.it:7060/
 #EXTINF:-1,Radio Oreb
 https://stream10.xdevel.com/audio0s978098-2473/stream/icecast.audio
 #EXTINF:-1,Radio Intemelia

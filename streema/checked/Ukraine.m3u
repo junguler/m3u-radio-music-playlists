@@ -1,30 +1,40 @@
 #EXTM3U
-#EXTINF:-1,odessa
-http://odessa.stream.laut.fm/odessa?t302=2025-09-06_18-17-58&uuid=06098580-9413-4af7-8042-ba31f14aa679
-#EXTINF:-1,Радио ЛюксFM
-http://lux.radio.tvstitch.com/kyiv/lux_adv_hd
-#EXTINF:-1,Radiolla Volta
-http://air.radiolla.com/radiolla.32k.mp3
+#EXTINF:-1,Радио ЛюксFM Львів
+http://icecastlv.luxnet.ua:80/luxlviv
+#EXTINF:-1,UR1
+http://91.218.213.49:8000/ur1-mp3-m
 #EXTINF:-1,Coma.Fm
 https://stream.radio.co/s4360dbc20/listen
-#EXTINF:-1,ХАЙП РАДИО
-http://hfm.amgradio.ru/HypeFM
-#EXTINF:-1,Europa Plus Ukraine
-https://s5.radioforge.com:7908/live
-#EXTINF:-1,Радіо Незалежність
-http://rad.radio-n.com:8000/
+#EXTINF:-1,odessa
+http://odessa.stream.laut.fm/odessa?uuid=ff221996-a500-597f-79c9-e7ba36e27212&t302=2026-10-17_23-01-59
+#EXTINF:-1,Українське радіо Харків
+https://radio.ukr.radio/ur1-kh-aacplus
+#EXTINF:-1,odessa
+http://odessa.stream.laut.fm/odessa?uuid=05ac00fd-3eb2-d3de-d0c8-4638573b4166&t302=2026-10-17_23-37-22
 #EXTINF:-1,Радио ВЕЖА
 https://listen6.myradio24.com/69829
+#EXTINF:-1,Українське радіо Карпати
+http://radio.ukr.radio:8000/ur1-if-aacplus
+#EXTINF:-1,Українське радіо Чернівці
+http://radio.ukr.radio:8000/ur1-cv-aacplus
 #EXTINF:-1,Закарпаття FM
 http://195.234.148.51:8000/
+#EXTINF:-1,Українське радіо. Дніпро (Кривий Ріг)
+http://radio.ukr.radio:8000/ur1-krr-aacplus
 #EXTINF:-1,Radiolla
 http://air.radiolla.com/radiolla.128k.mp3
+#EXTINF:-1,Radiolla Equalyza
+http://air.radiolla.com/radiolla.32k.mp3
+#EXTINF:-1,Radiolla
+http://air.radiolla.com/radiolla.32k.mp3
+#EXTINF:-1,Radiolla Jiraffe
+http://air.radiolla.com/radiolla.32k.mp3
 #EXTINF:-1,Radiolla Mantra
-http://odessa.stream.laut.fm/odessa?t302=2025-09-06_18-18-13&uuid=4f144f9a-8290-41ca-82a8-8f7990c94cd6
-#EXTINF:-1,Radiolla - Ilma
-http://77.120.102.77/ilma.128k.mp3
-#EXTINF:-1,UAFM Radio
-http://live.uafm.org:9001/uafm
+http://air.radiolla.com/radiolla.32k.mp3
+#EXTINF:-1,odessa
+http://odessa.stream.laut.fm/odessa?uuid=e9081f00-c490-2da4-41da-c2ef53ce477f&t302=2026-10-17_23-37-24
+#EXTINF:-1,Happy Radio
+http://stream-285.surfernetwork.com/nkeaps48xg0uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJua2VhcHM0OHhnMHV2IiwiaG9zdCI6InN0cmVhbS0yODUuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6Ii1KUkRNTy02UnV1Sk0wWXBtSllKMlEiLCJpYXQiOjE3OTIyNzMwNDcsImV4cCI6MTc5MjI3MzEwN30.6lVqz2R0W_zdWXHhQLTG8rAWlII7j3mgbMwMU4z5KD4
 #EXTINF:-1,KEKS Radio
 https://listen6.myradio24.com/5390
 #EXTINF:-1,Orra Meu Radio
@@ -37,6 +47,16 @@ https://stream.sunfmua.com:8000/liveplus
 https://ec5.yesstreaming.net:2590/stream
 #EXTINF:-1,Background Dance Radio
 http://listen4.myradio24.com/84802
+#EXTINF:-1,Українське радіо - Голос Києва
+http://radio.ukr.radio:8000/ur1-kyiv-mp3
+#EXTINF:-1,Українське радіо - Крим
+http://radio.ukr.radio:8000/ur1-cr-aacplus-l
+#EXTINF:-1,Радіо Промінь
+http://radio.ukr.radio:8000/ur2-aacplus-l
+#EXTINF:-1,Радіо Культура
+https://radio.ukr.radio/ur3-aacplus-l
+#EXTINF:-1,odessa
+http://odessa.stream.laut.fm/odessa?uuid=791455eb-a10a-72cb-a30c-58c7d8377e5b&t302=2026-10-18_00-06-47
 #EXTINF:-1,Nostalgie 99 FM
 https://lux.radio.tvstitch.com/kyiv/nst_adv_sd
 #EXTINF:-1,Радіо Голос надії
@@ -45,29 +65,59 @@ http://stream.hope.ua:8000/golos/256
 https://listen1.myradio24.com/rybalkafm
 #EXTINF:-1,Радіо MAXIMUM
 https://lux.radio.tvstitch.com/kyiv/max_adv_sd
+#EXTINF:-1,ABN Radio
+http://stream-178.surfernetwork.com/ilibzonk6hotv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJpbGliem9uazZob3R2IiwiaG9zdCI6InN0cmVhbS0xNzguc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IlFIVV9RWmVxVGh5MUJ6OWlCNnQwTVEiLCJpYXQiOjE3OTIyNzQ4MTIsImV4cCI6MTc5MjI3NDg3Mn0.2FXaAQJroGGC2YqjkljeLhmtgrAz2jAYuaAg25xMLCo&abn128
+#EXTINF:-1,Українське радіо Львів
+http://radio.ukr.radio:8000/ur1-lv-aacplus
+#EXTINF:-1,Українське радіо Тернопіль
+https://radio.ukr.radio/ur1-te-aacplus
+#EXTINF:-1,Українське радіо Рівне
+http://radio.nrcu.gov.ua:8000/ur1-rv-mp3
 #EXTINF:-1,Radio Nevermind
 http://listen7.myradio24.com/nevermind
+#EXTINF:-1,MFM Station
+https://globalic.stream:1305/stream
+#EXTINF:-1,Hard Blues
+https://stream-176.surfernetwork.com/wsz4ts5efseuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ3c3o0dHM1ZWZzZXV2IiwiaG9zdCI6InN0cmVhbS0xNzYuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6Im5yMWU1Vnk4VEZDR1BKS1E3NVlraHciLCJpYXQiOjE3OTIyNzQ4MTMsImV4cCI6MTc5MjI3NDg3M30.9sUP7j8XYLPC0zt0NkW7I1MceZXWC6l8tRL5E0pEsvk
+#EXTINF:-1,Surf Rock Music
+http://stream-178.surfernetwork.com/td4yedynbwzuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ0ZDR5ZWR5bmJ3enV2IiwiaG9zdCI6InN0cmVhbS0xNzguc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6Ik4tZTEtd0VXUXFXU1ZBYWhSbjhTQlEiLCJpYXQiOjE3OTIyNzQ4MTQsImV4cCI6MTc5MjI3NDg3NH0.CU3OlqMD985mFx_V_EN3s3uFCZYh1KcTEiscScnDH_s
+#EXTINF:-1,odessa
+http://odessa.stream.laut.fm/odessa?uuid=b5190d24-a63c-2fea-b3f1-59c941bed90f&t302=2026-10-18_00-06-55
 #EXTINF:-1,Umpako Radio
 https://listen7.myradio24.com/listen
 #EXTINF:-1,Информатор FM
 http://main.inf.fm:9101/
 #EXTINF:-1,Радио Вечерний Бриз
 http://listen6.myradio24.com/82666
+#EXTINF:-1,odessa
+http://odessa.stream.laut.fm/odessa?uuid=98c70635-1161-2d70-61fb-e3066ffb535d&t302=2026-10-18_00-32-32
 #EXTINF:-1,Радіо МАКСИМУМ
 https://765211.live.tvstitch.com/stream.m3u8?&m=aHR0cHM6Ly9zdHJlYW12aWRlby5sdXhuZXQudWEvbWF4aW11bV9hZHYvbWFzdGVyLm0zdTg=&u=&channel=maximum
+#EXTINF:-1,odessa
+http://odessa.stream.laut.fm/odessa?uuid=acb917e4-3f46-69eb-cbb7-6e76d37bab49&t302=2026-10-18_00-53-34
+#EXTINF:-1,Українське радіо Житомирська хвиля
+http://radio.ukr.radio:8000/ur1-zt-aacplus
+#EXTINF:-1,Українське радіо Одеса
+http://radio.ukr.radio:8000/ur1-od-aacplus
 #EXTINF:-1,Radio Respect
 https://listen6.myradio24.com/95451
+#EXTINF:-1,Радіо ТАКТ
+https://play.radiotakt.com.ua/
+#EXTINF:-1,Radio Deep Underground
+https://radio.radiodeepunderground.com/listen/radio_deep_underground/rdu.mp3
+#EXTINF:-1,Liqui Radio
+http://stream-289.surfernetwork.com/ug59eq099yzuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ1ZzU5ZXEwOTl5enV2IiwiaG9zdCI6InN0cmVhbS0yODkuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IlpSNWlDR0dBU1MyYmhCNHFWeEp6NVEiLCJpYXQiOjE3OTIyNzc2MTgsImV4cCI6MTc5MjI3NzY3OH0.8p25HTi4g5_xOAPlh_xluQFErOuUt-pjIxzxZm37vUw
+#EXTINF:-1,odessa
+http://odessa.stream.laut.fm/odessa?uuid=7f827bee-1acb-3c66-eb02-e7c728cc2316&t302=2026-10-18_00-53-38
 #EXTINF:-1,Trance is Star Radio
-http://listen7.myradio24.com/tisradio
-#EXTINF:-1,Radio Прищепкін
-http://radio.ukraudio.com:8000/channel4
+http://listen2.myradio24.com/tisradio
+#EXTINF:-1,Радіо Вільної України
+http://stream-179.surfernetwork.com/vn4r1hp339duv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ2bjRyMWhwMzM5ZHV2IiwiaG9zdCI6InN0cmVhbS0xNzkuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6Illvb2ZOUlAwUkZPTkNVbjBGMWc2QlEiLCJpYXQiOjE3OTIyNzc2MTksImV4cCI6MTc5MjI3NzY3OX0.cY6LVblJRiAK5lY-8Mq7XlW3eIxYRN0g8-JIjvv9pLE
+#EXTINF:-1,Українське радіо Голос Донбасу
+http://radio.ukr.radio:8000/golosdonbasu-aacplus
 #EXTINF:-1,Radio Metal
 https://listen7.myradio24.com/radiometal
 #EXTINF:-1,Radio Arsi
 https://listen6.myradio24.com/radioarsi
-#EXTINF:-1,Радіо Сяйво
-http://stream.ntktv.ua/syaivo.mp3
-#EXTINF:-1,Рекорд FM
-https://nrf1.newradio.it:10058/stream
-#EXTINF:-1,ПТРК
-https://radio.ptrk.tv/PTRK
+#EXTINF:-1,odessa
+http://odessa.stream.laut.fm/odessa?uuid=884fbaf5-c86e-37b9-8b76-4c8c6a9309a7&t302=2026-10-18_01-05-51
