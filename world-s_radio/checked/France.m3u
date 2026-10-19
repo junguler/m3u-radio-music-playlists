@@ -2,7 +2,7 @@
 #EXTINF:-1,France Info
 http://icecast.radiofrance.fr/franceinfo-midfi.mp3
 #EXTINF:-1,RTL
-https://hls.rtl.fr/ZTg1NTM1ZGU5YmRiYjdkY2JjMzM5OTc3M2M5NTA2MmIuMTc4NTkzOTgxMg~~/radio/webOU6MESMYnoHzvZJe8ie5Mi/national/rtl/short/index.m3u8
+https://hls.rtl.fr/NWRmZTk4MWI1ZjRjYmZmMjlhYjZjOTBkMjY3YWU5NzYuMTc5MjM1NDUwMw~~/radio/webOU6MESMYnoHzvZJe8ie5Mi/national/rtl/short/index.m3u8
 #EXTINF:-1,Europe 1
 https://europe1.lmn.fm/europe1.aac
 #EXTINF:-1,Nostalgie HQ
@@ -35,6 +35,8 @@ https://stream-eurodance90.fr/radio/8000/128.mp3?1627933323
 http://jazzradio.ice.infomaniak.ch/jazzradio-high.mp3
 #EXTINF:-1,Europe 2
 http://europe2.lmn.fm/europe2.mp3
+#EXTINF:-1,RMC
+https://hls-rmc.nextradiotv.com/no_ssai/128k/media.m3u8
 #EXTINF:-1,100% Radio 80
 http://100radio-80.ice.infomaniak.ch/100radio-80-128.mp3
 #EXTINF:-1,RFI Afrique
@@ -51,6 +53,8 @@ http://icecast.radiofrance.fr/francemusique-midfi.mp3
 https://listen.radioking.com/radio/467555/stream/523739
 #EXTINF:-1,Chérie FM
 https://cdnradio.streamakaci.com/cheriefm1.mp3
+#EXTINF:-1,RFI Monde
+http://live02.rfi.fr/rfimonde-64.mp3
 #EXTINF:-1,Sud Radio
 https://ice.creacast.com/sudradio
 #EXTINF:-1,Chante France 80's
@@ -72,8 +76,9 @@ https://icecast.skyrock.net/s/klassiks_aac_64k?tvr_name=radiofru0026tvr_section1
 #EXTINF:-1,Jazz Radio Classic Jazz
 http://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3
 #EXTINF:-1,法国国际广播电台
+https://rfienchinois64k.ice.infomaniak.ch/rfienchinois-64.mp3
 #EXTINF:-1,RTL 100% 80
-https://hls.rtl.fr/NTBlY2M5MDU3YTA5MDFlMDljZjA0YmM5NWRkZTExOGYuMTc4NTkzOTc1NA~~/radio/webOU6MESMYnoHzvZJe8ie5Mi/webradio/rtl-100-80/short/index.m3u8
+https://hls.rtl.fr/NjZlM2ZhOGZmYzNhYjIzZmZkNTU4YTU1MmY1M2E1ZGMuMTc5MjQyNTE1MA~~/radio/webOU6MESMYnoHzvZJe8ie5Mi/webradio/rtl-100-80/short/index.m3u8
 #EXTINF:-1,FIP Reggae
 http://icecast.radiofrance.fr/fipreggae-hifi.aac
 #EXTINF:-1,Radio Classique
@@ -83,12 +88,15 @@ https://stream.radiofrance.fr/fip/fip_hifi.m3u8
 #EXTINF:-1,FIP Jazz
 http://icecast.radiofrance.fr/fipjazz-hifi.aac
 #EXTINF:-1,FM 80
+https://listen.radioking.com/radio/467555/stream/523739
 #EXTINF:-1,Made in 80
 https://madein80.leswebradios.fr/
 #EXTINF:-1,Nostalgie Dance 90
 https://stream.rcs.revma.com/54xm7543ehuvv
 #EXTINF:-1,Radio Méga
 https://stream.ferarock.org:8020/radio-mega
+#EXTINF:-1,Alternative Radio
+https://listen.radioking.com/radio/182263/stream/224140
 #EXTINF:-1,FG Classics
 https://stream.rcs.revma.com/wknqhm4yuchvv?CAID=202605180046506038991434
 #EXTINF:-1,RFI-Afrique
@@ -100,6 +108,7 @@ http://stream.rcs.revma.com/2v1zz979n98uv
 #EXTINF:-1,Nostalgie
 https://streaming.nrjaudio.fm/ouwgwqsk6j4d
 #EXTINF:-1,BFM Radio (128.mp3)
+https://audio.bfmtv.com/bfmradio_128.mp3
 #EXTINF:-1,RTL France (MP3 128 kbps)
 http://streaming-ice.audiomeans.fr/rtl/feed-rtl-mp3-128?aw_0_1st.broadcast_type=streaming&aw_0_1st.source_type=external&aw_0_1st.platform=external&aw_0_1st.media_category=fm&aw_0_1st.station=rtl&aw_0_1st.program=rtl
 #EXTINF:-1,Chante France
@@ -136,8 +145,6 @@ https://streaming.nrjaudio.fm/ouwgjmsk6j4d?aw_0_1st.station=Rire-Chansons-CANULA
 https://streaming.nrjaudio.fm/oudjby2h9r57?origine=playernostalgieu0026aw_0_req.userConsentV2=CQkCxgAQkCxgAAHABBENCdFsAP_gAEPgAAqIJ2tR_G_fbWlj-TZ1YbpkeYwP99gj7sQxBgSJk24FyJvW7JwCx2ExJAzapqIKmRIAu3TBAQNlGIDURUAAIIgFqSDMaESUgTNKJ6BEiFMRI2JQCFxvm4FDeQCY4kp_9kcxmB-t7dr8yNzgAgAAAUCAIAAgAIABAACIAAAgAAAAAQAAAiwACAAAAAAAAEAAAFAAAABAAAEAAAACAAAABAAAIJ2gAmGhUQQlgQCBAoCAECAAQVhABQIAgAASBggIASBgQ5AwAXWEyAAAKAAYIAQAAgwABAAAJAAhEAEABAIAQIBAIAAQAAAAIACBAADABQiAQAAgOgYBAQQCBYAJEZUBpgQgAJBASyFCAAAAgAACAAAAAAIAAAAAAAAAgAAAAAAAAggAAAAAAAAAAAEAAAAAAEABAAAAAAAAAAAAABAAAIAA.IJ2tR_G_fbWlj-TZ14bpkeYwf99gj7sQxBgSJk24FyJvW7JwC32EzJAzapqYKmRIAu3TBAQNtGIjURUABIIgVqTDMaESUgTNKJ6BEiHMRY2JQCFxvm4FDeQCZ4kp_90d5mR-t7dr-yNzgAgAgAUCAIAAgAIABAACIAAAgAAAAAQAAgiwACAAAAAAAAEAAAFAAEABAAAEAAAACAAAABAAAIAA.f_wACHwAAAAAu0026aw_0_1st.station=Nostalgie-Les-Plus-Grands-Slows
 #EXTINF:-1,Radio FG 98.2
 https://stream.rcs.revma.com/7081n2b6p98uv
-#EXTINF:-1,Latina Reggaeton
-http://latinareggaeton.ice.infomaniak.ch/latinareggaeton.mp3
 #EXTINF:-1,Radio FG Underground
 https://stream.rcs.revma.com/vb3b5749n98uv
 #EXTINF:-1,Radio Orient
@@ -156,6 +163,8 @@ https://chantefrance70s.ice.infomaniak.ch/chantefrance70s-128.mp3
 http://start-latina.ice.infomaniak.ch/start-latina-high.mp3
 #EXTINF:-1,King Dub Radio
 http://london-dedicated.myautodj.com:8862/stream
+#EXTINF:-1,radio brume
+https://listen.radioking.com/radio/489875/stream/546695
 #EXTINF:-1,Hotmix 90
 https://streaming.hotmixradio.com/hotmix-90-en-mp3?provider=radiobrowser
 #EXTINF:-1,FIP Musiques du monde
@@ -178,8 +187,6 @@ http://dreamsiteradiocp4.com:8056/
 https://gestream.fr/g-radio-hd.mp3
 #EXTINF:-1,RFM Lounge
 https://rfm.lmn.fm/rfm-wr6.mp3
-#EXTINF:-1,Latina Salsa
-http://latinasalsa.ice.infomaniak.ch/latinasalsa.mp3
 #EXTINF:-1,RFM - La Radio Couleur
 https://rfm.lmn.fm/rfm-wr3.aac
 #EXTINF:-1,Platine 45 Radio
@@ -202,6 +209,8 @@ https://icecast.radiofrance.fr/fbprovence-midfi.mp3?ID=radiofrance
 https://listen.radioking.com/radio/50473/stream/87415
 #EXTINF:-1,Jazz Radio Latin Jazz
 http://jazz-wr09.ice.infomaniak.ch/jazz-wr09-128.mp3
+#EXTINF:-1,Frequence 3
+http://hd.stream.frequence3.net/frequence3-256.mp3
 #EXTINF:-1,Hotmix Lounge
 https://streaming.hotmixradio.com/hotmix-lounge-en-mp3?provider=radiobrowser
 #EXTINF:-1,FIP Pop
