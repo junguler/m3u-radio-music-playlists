@@ -6,15 +6,23 @@ http://live02.rfi.fr/rfiafrique-96k.mp3
 #EXTINF:-1,France Culture
 https://icecast.radiofrance.fr/franceculture-hifi.aac
 #EXTINF:-1,1LIVE
-https://d111.rndfnk.com/ard/wdr/1live/live/mp3/128/stream.mp3?cid=01FBRZTS1K1TCD4KA2YZ1ND8X3&sid=3HzeqqU0L7EacyaRzXkB5FyUtE9&token=It-PavkxAQfZWm2Z3xRMuGDM2QOeQ8GsWhrFOaJbQX4&tvf=9cRbDHZVzBhkMTExLnJuZGZuay5jb20
+https://f121.rndfnk.com/ard/wdr/1live/live/mp3/128/stream.mp3?cid=01FBRZTS1K1TCD4KA2YZ1ND8X3&sid=3KozAOuR05xBuwIlIls6baKiDsk&token=iJ0nYm8YGHpQrurr9Wiw9Zy5Vh0b_qUVZ2i7Ki7SKns&tvf=Tq4olx9j3xhmMTIxLnJuZGZuay5jb20
 #EXTINF:-1,Rai Radio 2
-https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S35942484/yp5F67151K92/icecast
+https://icestr-9511ff7r45b03c2.rai.it/2.mp3
+#EXTINF:-1,Radio Swiss Jazz
+https://livestreaming-node-1.srg-ssr.ch/srgssr/rsj/mp3/128
 #EXTINF:-1,Kossuth Rádió
 http://mr-stream.mediaconnect.hu/4734/mr1.aac
+#EXTINF:-1,Smooth Chill
+https://media-ssl.musicradio.com/ChillMP3
 #EXTINF:-1,FIP Jazz
 https://icecast.radiofrance.fr/fipjazz-hifi.aac
+#EXTINF:-1,Radio Swiss Classic German
+http://livestreaming-node-2.srg-ssr.ch/srgssr/rsc_de/mp3/128
 #EXTINF:-1,France Musique La Baroque
 https://icecast.radiofrance.fr/francemusiquebaroque-hifi.aac
+#EXTINF:-1,SRF 3
+http://livestreaming-node-2.srg-ssr.ch/srgssr/srf3/mp3/128
 #EXTINF:-1,CBC Radio 1 Toronto
 https://cbcradiolive.akamaized.net/hls/live/2041036/ES_R1ETR/master.m3u8
 #EXTINF:-1,FIP Reggae
@@ -23,20 +31,20 @@ https://icecast.radiofrance.fr/fipreggae-hifi.aac
 https://streams.kqed.org/kqedradio.m3u
 #EXTINF:-1,Latvijas Radio 2
 https://muste.latvijasradio.lv/shoutcast/mp4:lr2a.stream/playlist.m3u8
-#EXTINF:-1,ABC Country (MP3)
-https://abc.streamguys1.com/live/abccountry/icecast.audio
+#EXTINF:-1,SRF 4 News
+http://livestreaming-node-4.srg-ssr.ch/srgssr/srf4news/mp3/128
+#EXTINF:-1,Ethio FM 107.8
+https://stream-282.surfernetwork.com/72y045deqeruv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiI3MnkwNDVkZXFlcnV2IiwiaG9zdCI6InN0cmVhbS0yODIuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IkRrRnpUaDJkUjR1QTYxMUdrTlMtWUEiLCJpYXQiOjE3OTIyMzg1NjQsImV4cCI6MTc5MjIzODYyNH0.7U6N-_c-NnbgGxOWlSOkreTc5fb_ZP_8VhZv5WObSsg
 #EXTINF:-1,ERA Deftero Programma
 https://radiostreaming.ert.gr/ert-deftero
 #EXTINF:-1,Fritz
-https://f131.rndfnk.com/ard/rbb/fritz/live/mp3/128/stream.mp3?cid=01FC1WK1H1KDC5EBKW5Z191BW4&sid=3Hzer0AWoHNla3cJ6YRtZgmOH5o&token=kH41FobECkti1vVZLFpdFy8Im0iOvOgES24Eb_ByIJY&tvf=LO94cnZVzBhmMTMxLnJuZGZuay5jb20
+https://f131.rndfnk.com/ard/rbb/fritz/live/mp3/128/stream.mp3?cid=01FC1WK1H1KDC5EBKW5Z191BW4&sid=3KozAWAcz49sgJaB5xShMLjLbKK&token=IT3P8XTB918FNH8j5LYCqthJMdzoqB6DWW-cGIWVdZE&tvf=sR260x9j3xhmMTMxLnJuZGZuay5jb20
 #EXTINF:-1,Rai Radio 1 Sport
-http://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S74167340/mmNY37FME5Zl/icecast
+https://icestr-9511ff7r45b03c2.rai.it/13.mp3
 #EXTINF:-1,FIP Electro
 https://icecast.radiofrance.fr/fipelectro-hifi.aac
-#EXTINF:-1,ABC Jazz (AAC)
-https://abc.streamguys1.com/live/abcjazz/icecast.audio
 #EXTINF:-1,Sveriges Radio - P1
-https://edge1.sr.se/p1-aac-320
+https://edge2.sr.se/p1-aac-320
 #EXTINF:-1,FIP Rock
 https://icecast.radiofrance.fr/fiprock-hifi.aac
 #EXTINF:-1,ERA Proto Programma
@@ -53,27 +61,30 @@ http://stream3.radiocenter.si:8064/;stream/1
 https://icecast.radiofrance.fr/fipgroove-hifi.aac
 #EXTINF:-1,Hitradio Center
 http://stream3.radiocenter.si:8000/center
-#EXTINF:-1,ABC Grandstand (AAC)
-https://abc.streamguys1.com/live/sport/icecast.audio
-#EXTINF:-1,ABC Classic FM (MP3)
-https://abc.streamguys1.com/live/classicfmnsw/icecast.audio
+#EXTINF:-1,FM ADDIS 97-1
+https://stream-282.surfernetwork.com/rb6wbrap7yzuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJyYjZ3YnJhcDd5enV2IiwiaG9zdCI6InN0cmVhbS0yODIuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IlNvdm9wS0dhU0xpbHRhcWxXLVp2TEEiLCJpYXQiOjE3OTIyMzg1NjUsImV4cCI6MTc5MjIzODYyNX0.atdlqzL4P8SlH7tXQvoZCcb5xGruYGMvGM6n0anMDHk
 #EXTINF:-1,France Bleu Paris
 https://icecast.radiofrance.fr/fb1071-midfi.mp3
 #EXTINF:-1,FIP Musiques du monde
 https://icecast.radiofrance.fr/fipworld-hifi.aac
 #EXTINF:-1,Mayotte La 1ère
 https://mayotte.ice.infomaniak.ch/mayotte-128.mp3
-#EXTINF:-1,ABC Jazz (MP3)
-#EXTINF:-1,ABC Country (AAC)
+#EXTINF:-1,Heart
+https://media-the.musicradio.com/HeartNorthLancsCumbria
+#EXTINF:-1,ČRo Plus
+https://rozhlas.stream/plus_mp3_128.mp3
 #EXTINF:-1,ERA Trito Programma
 https://radiostreaming.ert.gr/ert-trito
+#EXTINF:-1,SRF 2
+https://livestreaming-node-1.srg-ssr.ch/srgssr/srf2/mp3/128
 #EXTINF:-1,Indiana Public Radio WBST
 https://ipr.streamguys1.com/aac
 #EXTINF:-1,France Musique Opéra
 https://icecast.radiofrance.fr/francemusiqueopera-hifi.aac
 #EXTINF:-1,France Musique Classique Easy
 https://icecast.radiofrance.fr/francemusiqueeasyclassique-hifi.aac
-#EXTINF:-1,ABC Grandstand (MP3)
+#EXTINF:-1,Radio SRF Virus - Indie Rock
+http://livestreaming-node-2.srg-ssr.ch/srgssr/srfvirus/mp3/128
 #EXTINF:-1,France Musique Concerts Radio France
 https://icecast.radiofrance.fr/francemusiqueconcertsradiofrance-hifi.aac
 #EXTINF:-1,KRCB 91.1 "North Bay Public Media" Windsor, CA
@@ -81,11 +92,15 @@ http://amber.streamguys.com:5540/live
 #EXTINF:-1,KSDS "Jazz 88.3" San Diego, CA
 http://listen.jazz88.org/ksds.mp3
 #EXTINF:-1,Rai Radio Live
-https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S37263178/NDUDX4zRfi1K/icecast
-#EXTINF:-1,MPR The Current
-https://current.stream.publicradio.org/kcmp.mp3
+https://icestr-9511ff7r45b03c2.rai.it/10.mp3
+#EXTINF:-1,SRF Virus
+https://livestreaming-node-4.srg-ssr.ch/srgssr/srfvirus/mp3/128
+#EXTINF:-1,Radio Swiss Classic French
+https://livestreaming-node-2.srg-ssr.ch/srgssr/rsc_fr/aac/96
 #EXTINF:-1,CBC Radio 1 Toronto 99.1 FM
 https://cbcradiolive.akamaized.net/hls/live/2041036/ES_R1ETR/adaptive_128/chunklist_ao.m3u8
+#EXTINF:-1,RTS Espace 2
+https://livestreaming-node-4.srg-ssr.ch/srgssr/espace-2/mp3/128
 #EXTINF:-1,Hitradio center yu
 http://stream3.radiocenter.si:8100/;stream/1
 #EXTINF:-1,CBC Radio 1 Vancouver
@@ -94,8 +109,12 @@ https://cbcradiolive.akamaized.net/hls/live/2041050/ES_R1PVC/master.m3u8
 https://wxpnhi.xpn.org/xpnhi
 #EXTINF:-1,France Musique La B.O.
 https://icecast.radiofrance.fr/francemusiquelabo-hifi.aac
-#EXTINF:-1,ABC Classic 2 Stream (MP3)
-https://abc.streamguys1.com/live/classic2/icecast.audio
+#EXTINF:-1,Radio Hamrah رادیو همراه
+https://stream-290.surfernetwork.com/gxdq0awu30duv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJneGRxMGF3dTMwZHV2IiwiaG9zdCI6InN0cmVhbS0yOTAuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IkNTS1ZJbTFmU2RlOGsxbnZTaHBTVlEiLCJpYXQiOjE3OTIyNDIwMzUsImV4cCI6MTc5MjI0MjA5NX0.EtnCUCpEuF0wZy8cvXTBWJje-XVqmGCb5IPcZjzXB9s
+#EXTINF:-1,All India Radio Neighbourhood Service 1
+https://airhlspush.pc.cdn.bitgravity.com/httppush/hlspbaudio233/hlspbaudio233_Auto.m3u8
+#EXTINF:-1,KCSM 91.1  "Jazz 91" San Mateo, CA (AAC+)
+https://ice5.securenetsystems.net/KCSM
 #EXTINF:-1,Hitradio center megamix
 http://stream3.radiocenter.si:8066/;stream/1
 #EXTINF:-1,CBC Radio One Montréal
@@ -104,30 +123,36 @@ https://cbcradiolive.akamaized.net/hls/live/2041030/ES_R1EMT/master.m3u8
 https://ors-sn02.ors-shoutcast.at/ktn-q1a
 #EXTINF:-1,RFI Russe
 https://rfienrusse64k.ice.infomaniak.ch/rfienrusse-64.mp3
+#EXTINF:-1,RSI Rete Uno
+http://livestreaming-node-4.srg-ssr.ch/srgssr/reteuno/mp3/128
+#EXTINF:-1,Radio SRF 1 Regionaljournal Ostschweiz
+http://livestreaming-node-4.srg-ssr.ch/srgssr/regi_ost/mp3/128
 #EXTINF:-1,ERT3 102 FM
 https://radiostreaming.ert.gr/ert-102fm
 #EXTINF:-1,SR 3 Saarlandwelle (56 kbit/s)
-https://f121.rndfnk.com/ard/sr/sr3/mp3/64/stream.mp3?aggregator=audiostreamio&cid=01FG95X9JRJHXCEANS1RCEPCNS&sid=3Hzes3wuP6n1zvUxfCwpS3Q1Hny&token=ivasjNX7QjRWbBSoRQdDuek5acMy2YCGmoT_x2sOti0&tvf=yjqVU3hVzBhmMTIxLnJuZGZuay5jb20
+https://f121.rndfnk.com/ard/sr/sr3/mp3/64/ct/stream.mp3?aggregator=audiostreamio&cid=01FG95X9JRJHXCEANS1RCEPCNS&sid=3Kp6D4ZGbVg0h7cQFEVYdupz8YH&token=EqnbB6akhIxcAZvBYWR5xIBO3g16MBCPOwDBV-C4Kpg&tvf=ndtaskhm3xhmMTIxLnJuZGZuay5jb20
+#EXTINF:-1,Radio SRF 1 Zentralschweiz
+http://livestreaming-node-1.srg-ssr.ch/srgssr/regi_zentr/mp3/128
 #EXTINF:-1,RTHK Radio 8 央廣粵港澳大灣區之聲
 https://rthkradiocmgrgb-live.akamaized.net/hls/live/2046112/radiocmgrgb/master.m3u8
 #EXTINF:-1,ABC Country HLS
 https://streaming.abc-cdn.net.au/audio/hls/abccountry.m3u8
+#EXTINF:-1,ČRO Radiožurnál Sport
+https://rozhlas.stream/radiozurnal_sport_high.aac
 #EXTINF:-1,Duna World Rádió
 http://mr-stream.mediaconnect.hu/4760/dwr.aac
 #EXTINF:-1,Lider FM 107,4
 https://liderfm.ipradio.mk/
 #EXTINF:-1,KUVO Denver, CO (AAC, 128)
 http://kuvo-ice.streamguys.org/kuvo-aac-128
-#EXTINF:-1,ABC A-League Live (MP3)
-https://abc.streamguys1.com/live/aflextra/icecast.audio
 #EXTINF:-1,WVPE HD3 - Blues
 http://live.str3am.com:2240/live
-#EXTINF:-1,ABC Triple J Unearthed  (MP3)
-https://abc.streamguys1.com/live/triplejunearthed/icecast.audio
 #EXTINF:-1,Radio Ostrowiec 95.2 FM
 https://s1.slotex.pl:7050/stream/1/;?type=http
 #EXTINF:-1,FM 101 Sargodha
 https://whmsonic.radio.gov.pk:8040/relay
+#EXTINF:-1,Radio SRF 1 Regionaljournal Zürich, Schaffhausen
+http://livestreaming-node-3.srg-ssr.ch/srgssr/regi_zh_sh/mp3/128
 #EXTINF:-1,Hitradio center rock
 http://stream.rockradio.si:9034/;stream/1
 #EXTINF:-1,WFUV "24-7 Music" New York, NY
@@ -146,7 +171,11 @@ http://stream3.radiocenter.si:8200/;stream/1
 https://icecast.radiofrance.fr/fipmetal-hifi.aac
 #EXTINF:-1,RTHK Radio 6 央廣香港之聲
 https://rthkradiocnrhk-live.akamaized.net/hls/live/2046111/radiocnrhk/master.m3u8
+#EXTINF:-1,БНР – Радио Кърджали
+http://stream.bnr.bg:8038/radio-kardzhali.aac
 #EXTINF:-1,KBAQ 89.5 "K-Bach" Classical - Phoenix, AZ
 http://stream.kbaq.org/kbaq_mp3_128
+#EXTINF:-1,RSI Rete Due
+http://livestreaming-node-2.srg-ssr.ch/srgssr/retedue/mp3/128
 #EXTINF:-1,Needs Radio 全球華語廣播網
 https://cdn280.ccdntech.com/live-http/_definst_/vod280_Live/needs/chunklist.m3u8

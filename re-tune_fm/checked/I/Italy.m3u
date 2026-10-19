@@ -8,7 +8,7 @@ http://shoutcast2.radio24.it:8000/;
 #EXTINF:-1,Radio 105 Network
 https://icecast.unitedradio.it/Radio105.mp3
 #EXTINF:-1,Rai Radio 2
-https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S35942484/yp5F67151K92/icecast
+https://icestr-9511ff7r45b03c2.rai.it/2.mp3
 #EXTINF:-1,Rai Radio 3
 https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S56630579/yEbkcBtIoSwd/icecast
 #EXTINF:-1,Radio Armisa
@@ -19,8 +19,6 @@ https://icecast.unitedradio.it/RMC.mp3
 https://icecast.unitedradio.it/Virgin.mp3
 #EXTINF:-1,Radio 105 - Dance 90
 https://icy.unitedradio.it/105Dance90.mp3
-#EXTINF:-1,Radio 80
-https://sphera.fluidstream.eu/radio80.aac?FLID=1
 #EXTINF:-1,Virgin Radio Rock '70
 https://icy.unitedradio.it/VirginRock70.mp3
 #EXTINF:-1,Virgin Radio Rock '80
@@ -58,7 +56,7 @@ https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S3822289/
 #EXTINF:-1,Italia Dance Music
 https://sr2.inmystream.it:18032/stream2
 #EXTINF:-1,Rai Radio Classica Filodiffusione
-https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S53422322/bTdUFhYMnnra/icecast
+https://icestr-9511ff7r45b03c2.rai.it/5.mp3
 #EXTINF:-1,ITALIA Italia 80
 https://icy.unitedradio.it/um016.mp3
 #EXTINF:-1,Radio 105 - Zoo Radio
@@ -74,7 +72,7 @@ https://newhitsradio.streamingmedia.it/play
 #EXTINF:-1,R101 Made in Italy
 https://icy.unitedradio.it/R101MadeInItaly.aac
 #EXTINF:-1,Rai Radio 1 Sport
-http://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S74167340/mmNY37FME5Zl/icecast
+https://icestr-9511ff7r45b03c2.rai.it/13.mp3
 #EXTINF:-1,Virgin Radio Rock '90
 https://icy.unitedradio.it/Virgin_03.mp3
 #EXTINF:-1,RMC Disco Funk
@@ -86,8 +84,9 @@ http://edge.radiomontecarlo.net/rmcweb020
 #EXTINF:-1,Virgin Radio Rock Party
 https://icy.unitedradio.it/VirginRockParty.mp3
 #EXTINF:-1,RAI 2
+https://icestr-9511ff7r45b03c2.rai.it/2.mp3
 #EXTINF:-1,RTL 102.5
-https://streamcdnl2-dd782ed59e2a4e86aabf6fc508674b59.msvdn.net/live/S97044836/tbbP8T1ZRPBL/playlist_audio.m3u8
+https://streamcdnb4-dd782ed59e2a4e86aabf6fc508674b59.msvdn.net/live/S97044836/tbbP8T1ZRPBL/playlist_audio.m3u8
 #EXTINF:-1,RDS 100% Grandi Successi
 https://stream.rds.radio/audio/rds.stream_aac64/chunklist.m3u8
 #EXTINF:-1,Subasio Per un'ora d'amore
@@ -104,10 +103,12 @@ https://icy.unitedradio.it/Vasco.mp3
 https://italianradio.streamingmedia.it/play
 #EXTINF:-1,Radio Subasio
 https://icy.unitedradio.it/Subasio.mp3
+#EXTINF:-1,Radio Subasio
+https://icy.unitedradio.it/Subasio.mp3
 #EXTINF:-1,RMC Italia
 http://edge.radiomontecarlo.net/rmcweb005
 #EXTINF:-1,Radio M2O
-https://streamcdnl2-4c4b867c89244861ac216426883d1ad0.msvdn.net/radiom2o/radiom2o/master_ma.m3u8
+https://streamcdng11-4c4b867c89244861ac216426883d1ad0.msvdn.net/radiom2o/radiom2o/master_ma.m3u8
 #EXTINF:-1,Virgin Radio Rockstar: Rolling Stones
 https://icy.unitedradio.it/VirginSpecialEvent.mp3
 #EXTINF:-1,RMC 90
@@ -144,6 +145,8 @@ http://edge.radiomontecarlo.net/rmcweb015
 http://edge.radiomontecarlo.net/rmcweb018
 #EXTINF:-1,Radio Balla Balla
 https://ice09.fluidstream.net/ballaballa.mp3?FLID=6
+#EXTINF:-1,RADIO NOSTALGIA PIEMONTE
+https://rn1.fluidstream.eu/nostalgia_pv.mp3?FLID=1
 #EXTINF:-1,Virgin Radio Rock Alternative
 https://icy.unitedradio.it/VirginRockAlternative.mp3
 #EXTINF:-1,Virgin Radio Rockstar: Aerosmith
@@ -162,10 +165,14 @@ http://onair15.xdevel.com:7064/1/;
 https://streamcdng11-4c4b867c89244861ac216426883d1ad0.msvdn.net/radiocapitalfunkytown/radiocapitalfunkytown/master_ma.m3u8
 #EXTINF:-1,RMC Jazz
 http://edge.radiomontecarlo.net/rmcweb019
+#EXTINF:-1,Radio Città Fujiko
+https://streaming.radiocittafujiko.it:8000/rcf.ogg
 #EXTINF:-1,Virgin Radio Rockstar: Queen
 https://icy.unitedradio.it/Virgin_05.mp3
 #EXTINF:-1,RMC Music Star George Michael
 https://icy.unitedradio.it/MusicStarPrince.mp3
+#EXTINF:-1,50s 60s RETRO HITS
+https://stream-289.surfernetwork.com/pxzwykxbluitv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJweHp3eWt4Ymx1aXR2IiwiaG9zdCI6InN0cmVhbS0yODkuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IjVpY1oxVE01U2w2bGdUMXNjQkpnd1EiLCJpYXQiOjE3OTIyNDMzMzEsImV4cCI6MTc5MjI0MzM5MX0.mucqe9lA9_ytjAnIBUwDkOj-hjg-6r57QAFKzNdnxxI
 #EXTINF:-1,Radio Sabbia
 http://sr2.inmystream.info:8104/stream
 #EXTINF:-1,Lolli Radio Oldies
@@ -177,6 +184,7 @@ https://stream10.xdevel.com/audio7s977886-2321/stream/icecast.audio
 #EXTINF:-1,Radio CRC
 https://stream9.xdevel.com/audio2s975936-745/stream/icecast.audio
 #EXTINF:-1,MUSIC STAR George Michael
+https://icy.unitedradio.it/MusicStarPrince.mp3
 #EXTINF:-1,Radio 105 - Hits
 https://icy.unitedradio.it/105Hits.mp3
 #EXTINF:-1,Play Emotions
@@ -197,22 +205,20 @@ https://rn2.fluidstream.eu/gammaradio.mp3?FLID=1
 https://stream5.xdevel.com/audio0s976542-1302/stream/icecast.audio
 #EXTINF:-1,MUSIC STAR Pino Daniele
 https://icy.unitedradio.it/Daniele.mp3
-#EXTINF:-1,Rai News 24
-https://streamcdnb3-8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/rainews1/hls/rainews_2400/chunklist.m3u8
 #EXTINF:-1,Radio RaiSport
 https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S74167340/mmNY37FME5Zl/icecast
 #EXTINF:-1,Rai Radio Live
-https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S37263178/NDUDX4zRfi1K/icecast
+https://icestr-9511ff7r45b03c2.rai.it/10.mp3
 #EXTINF:-1,Virgin Radio Rockstar: AC/DC
 https://icy.unitedradio.it/um1026.mp3
 #EXTINF:-1,Gym Radio
 http://edge.radiomontecarlo.net/rmcweb023
 #EXTINF:-1,LifeGate Radio
-https://stream2.xdevel.com/audio0s975809-423/stream/icecast.audio
+https://stream3.xdevel.com/audio0s975809-424/stream/icecast.audio
 #EXTINF:-1,ITALIA Italia 60
 https://icy.unitedradio.it/um014.mp3
 #EXTINF:-1,FOREVER 80
-https://forever80.stream.laut.fm/forever80?t302=2026-08-16_10-02-39&uuid=0779f903-ae9e-4b3c-a857-5e6d17b6046a
+https://forever80.stream.laut.fm/forever80?uuid=10368b90-ce1a-43d6-483a-ced2e0f31fa2&t302=2026-10-17_15-39-04
 #EXTINF:-1,RMC Sport Network
 https://stream17.tmwradio.com/tmw.mp3
 #EXTINF:-1,Radio 105 - Classics
@@ -230,7 +236,7 @@ https://ice09.fluidstream.net/fluid0902.aac?FLID=6
 #EXTINF:-1,ITALIA Millenials Italy
 https://icy.unitedradio.it/um021.mp3
 #EXTINF:-1,LifeGate Radio HD
-https://stream2.xdevel.com/audio1s975809-428/stream/icecast.audio
+https://stream3.xdevel.com/audio1s975809-429/stream/icecast.audio
 #EXTINF:-1,RTR 99 Canzoni e parole fuori dal coro
 https://rtr99.fluidstream.eu/rtr99.mp3?FLID=3
 #EXTINF:-1,Radio Kiss Kiss Latina
@@ -240,6 +246,7 @@ http://s3.mediastreaming.it:7568/;
 #EXTINF:-1,ITALIA Viva Napoli
 https://icy.unitedradio.it/um017.mp3
 #EXTINF:-1,RMC Music Star Pino Daniele
+https://icy.unitedradio.it/Daniele.mp3
 #EXTINF:-1,Virgin Radio Rock 2K
 https://icy.unitedradio.it/Virgin_02.mp3
 #EXTINF:-1,Radio 105 - Trap
@@ -277,11 +284,13 @@ http://www.shoutcastitalia.com:8016/stream
 #EXTINF:-1,Deejay 80
 https://streamcdnr3-4c4b867c89244861ac216426883d1ad0.msvdn.net/webradio/deejay80/live.m3u8
 #EXTINF:-1,Station Italy
-https://stationitaly.stream.laut.fm/stationitaly?t302=2026-08-16_10-02-43&uuid=2402b256-bf58-4375-9944-f0994b7fd476
+https://stationitaly.stream.laut.fm/stationitaly?uuid=07b8a936-8554-fbba-ae8f-01c2fb16e86a&t302=2026-10-17_15-39-09
 #EXTINF:-1,Virgin Radio Rockstar: Bon Jovi
 https://icy.unitedradio.it/um1027.mp3
 #EXTINF:-1,NATURE RADIO SLEEP
 https://az1.mediacp.eu/listen/natureradiosleep/radio.mp3
+#EXTINF:-1,# 100 NU-DISCO CENTRAL RADIO
+https://stream-283.surfernetwork.com/jqhhzffjynbuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJqcWhoemZmanluYnV2IiwiaG9zdCI6InN0cmVhbS0yODMuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6Ijd0X2ZucG1HVEZhcHJQVHlPU1hhR0EiLCJpYXQiOjE3OTIyNDQzNDksImV4cCI6MTc5MjI0NDQwOX0.i4eKHK67-G16GFxuXAkzmEEQmI58ULkIyyDtgh7iov0
 #EXTINF:-1,Radio Manila
 https://stream15.top-ix.org:8000/radiomanila
 #EXTINF:-1,Country Power Station
@@ -307,20 +316,25 @@ http://stream9.xdevel.com/audio2s975968-808/stream/icecast.audio
 #EXTINF:-1,DeeGay Classic
 https://stream.deegay.fm/deegay2.mp3
 #EXTINF:-1,Rai RadioDue
+https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S35942484/yp5F67151K92/icecast
 #EXTINF:-1,Radio Italia Uno
 https://stream15.top-ix.org/radioitaliauno
 #EXTINF:-1,MUSIC STAR Mina
 http://edge.radiomontecarlo.net/rmcweb014
 #EXTINF:-1,Radio Azzurra
-https://radioazzurra.stream.laut.fm/radioazzurra?t302=2026-08-16_10-02-45&uuid=d2c571e6-3d1a-4703-8974-e7bd9afafac3
+https://radioazzurra.stream.laut.fm/radioazzurra?uuid=8bd1d5c6-f858-61a4-54ef-8d04ad3ca60b&t302=2026-10-17_15-52-54
 #EXTINF:-1,Radio Subasio+
 https://icy.unitedradio.it/SubasioPiu.mp3
+#EXTINF:-1,Radio Subasio+
+https://icy.unitedradio.it/SubasioPiu.mp3
+#EXTINF:-1,Radio Easy Rock
+https://sphera.fluidstream.eu/easyrock.aac
 #EXTINF:-1,Today Dance Radio
 http://protostar.shoutca.st:8390/;
 #EXTINF:-1,Deejay Suona Italia
 https://streamcdnp5-4c4b867c89244861ac216426883d1ad0.msvdn.net/webradio/deejaysuonaitalia/playlist.m3u8
 #EXTINF:-1,FOREVER 70
-https://forever70.stream.laut.fm/forever70?t302=2026-08-16_10-02-45&uuid=f5145a07-7d1f-416e-8b41-bc0386dd4dac
+https://forever70.stream.laut.fm/forever70?uuid=fd359a63-c38e-1877-8af9-7cf828eb704a&t302=2026-10-17_15-52-55
 #EXTINF:-1,Lolli Radio Soft
 https://stream.lolliradio.net/lolli_soft.mp3
 #EXTINF:-1,Radio Cuore Trapani
@@ -336,16 +350,17 @@ https://icy.unitedradio.it/um030.mp3
 #EXTINF:-1,Radio 105 - InDaKlubb
 https://icy.unitedradio.it/105InDaKlubb.mp3
 #EXTINF:-1,Radio Capital Music
-https://streamcdnp8-4c4b867c89244861ac216426883d1ad0.msvdn.net/webradio/capitalmusic/playlist.m3u8
+https://streamcdng20-4c4b867c89244861ac216426883d1ad0.msvdn.net/webradio/capitalmusic/playlist.m3u8
 #EXTINF:-1,MUSIC STAR Elisa
 https://icy.unitedradio.it/Elisa.mp3
 #EXTINF:-1,Deejay 30 Songs
-https://streamcdng11-4c4b867c89244861ac216426883d1ad0.msvdn.net/radiodeejay30songs/radiodeejay30songs/master_ma.m3u8
+https://streamcdnl2-4c4b867c89244861ac216426883d1ad0.msvdn.net/radiodeejay30songs/radiodeejay30songs/master_ma.m3u8
 #EXTINF:-1,R101 '00
 https://icy.unitedradio.it/R1012000.aac
 #EXTINF:-1,Radio Capital W L'Italia
-https://streamcdng6-4c4b867c89244861ac216426883d1ad0.msvdn.net/webradio/capitalwitalia/playlist.m3u8
+https://streamcdng13-4c4b867c89244861ac216426883d1ad0.msvdn.net/webradio/capitalwitalia/playlist.m3u8
 #EXTINF:-1,RMC Music Star Tiziano Ferro
+https://icy.unitedradio.it/Ferro.mp3
 #EXTINF:-1,RTL 102.5 Best
 https://streamingv2.shoutcast.com/rtl-1025-best
 #EXTINF:-1,RMC Music Star Coldplay
@@ -368,8 +383,6 @@ https://icy.unitedradio.it/R10190.aac
 https://stream15.top-ix.org/radiojukebox
 #EXTINF:-1,OperaRadio-MRG.Fm
 http://listen.mrg.fm:8110/;
-#EXTINF:-1,Easy Network Jazz & Soul
-https://sphera.fluidstream.eu/easy_jazz.mp3
 #EXTINF:-1,R101 '70
 https://icy.unitedradio.it/R10170.aac
 #EXTINF:-1,Radio Web Italia - Only Italian Music

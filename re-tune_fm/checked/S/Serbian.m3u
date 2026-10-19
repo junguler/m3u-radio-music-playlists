@@ -1,6 +1,8 @@
 #EXTM3U
 #EXTINF:-1,OK radio
 https://sslstream.okradio.net/;?type=http
+#EXTINF:-1,Play
+http://stream.playradio.rs:8001/play.aac
 #EXTINF:-1,Radio S3 Južni
 https://stream.radios.rs:9038/;*.mp3
 #EXTINF:-1,Radio Beograd 1
@@ -9,6 +11,8 @@ https://rtsradio-live.morescreens.com/RTS_2_001/audio/chunklist.m3u8
 https://stream.radios.rs:9016/stream
 #EXTINF:-1,Radio Studio B
 http://radio.studiob.rs:8004/
+#EXTINF:-1,Srce Krajine
+https://srv.mediastriming.com/8330/stream
 #EXTINF:-1,iFM Narodni Radio
 http://91.228.254.72:7000/;stream.nsv
 #EXTINF:-1,Radio S1
@@ -35,6 +39,10 @@ http://svetigoralive.com:8879/;
 http://158.69.119.6:8095/;
 #EXTINF:-1,Radio Kosova 2
 http://82.114.72.2:8098/
+#EXTINF:-1,Play Radio Party
+https://stream.playradio.rs:8443/party.mp3
+#EXTINF:-1,UnderGRAND Radio
+https://stream-286.surfernetwork.com/rp1swb5pgzzuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJycDFzd2I1cGd6enV2IiwiaG9zdCI6InN0cmVhbS0yODYuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6Im9tbEMxTm9wUkVxVVlucjZoSUZCZlEiLCJpYXQiOjE3OTIyMzg2NDUsImV4cCI6MTc5MjIzODcwNX0.lJyrlOsztfjaWfJuUXKXX952Z7CDyghxEhlGxnpf5TQ
 #EXTINF:-1,Radio S4
 https://stream.radios.rs:9006/;
 #EXTINF:-1,РТС - Радио Београд - 202
