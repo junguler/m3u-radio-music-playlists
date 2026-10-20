@@ -3,8 +3,14 @@
 http://91.232.4.33:7028/
 #EXTINF:-1,Polskie Radio  24
 https://stream15.polskieradio.pl/pr24/pr24.sdp/playlist.m3u8
+#EXTINF:-1,Castle Party
+http://radio.alternation.pl:616/stream.mp3
+#EXTINF:-1,Castle Party
+http://radio.alternation.pl:616/
 #EXTINF:-1,Chillizet Warszava
 https://n-6-1.dcs.redcdn.pl/sc/o2/Eurozet/live/chillizet.livx?audio=5
+#EXTINF:-1,DobraStacja Disco Polo
+http://s3.slotex.pl:7344/
 #EXTINF:-1,Flash FM
 http://91.201.235.225:8017/stream
 #EXTINF:-1,Gdynia Radio
@@ -13,18 +19,16 @@ http://51.255.8.139:8064/
 http://s1.slotex.pl:7430/type=mp3
 #EXTINF:-1,Hitradio
 http://51.255.8.139:9090/stream
-#EXTINF:-1,Index 96 FM
-http://shoutcast2.index.uz.zgora.pl:8000/
+#EXTINF:-1,Hitradio
+http://51.255.8.139:9090/stream
 #EXTINF:-1,KRDP Ciechanow
 http://s1.slotex.pl:7762/
 #EXTINF:-1,Meloradio
-https://n-11-25.dcs.redcdn.pl/sc/o2/Eurozet/live/meloradio.livx?audio=5
+https://n-11-24.dcs.redcdn.pl/sc/o2/Eurozet/live/meloradio.livx?audio=5
 #EXTINF:-1,Metal Live Radio
 http://51.255.8.139:8738/stream
 #EXTINF:-1,Nasze Radio
 http://s1.slotex.pl:7146/
-#EXTINF:-1,NOISE fm
-http://noisefm.ru:8000/play
 #EXTINF:-1,Norda FM
 http://ls.tkchopin.pl:1935/norda/nordafm_aac_128/playlist.m3u8
 #EXTINF:-1,Polskie Radio  Chopin
@@ -37,19 +41,14 @@ https://stream12.polskieradio.pl/pr2/pr2.sdp/playlist.m3u8
 https://stream11.polskieradio.pl/pr1/pr1.sdp/playlist.m3u8
 #EXTINF:-1,Polskie Radio  Trojka
 https://stream13.polskieradio.pl/pr3/pr3.sdp/playlist.m3u8
-#EXTINF:-1,Polskie Radio Led Zeppelin
-https://stream85.polskieradio.pl/omniaaxe/k45.stream/playlist.m3u8
-#EXTINF:-1,Radio 5 Elk
-http://stream2.nadaje.com:8056/
 #EXTINF:-1,Radio 7 Poland
 https://stream.radio7.pl:8002/radio7.mp3
+#EXTINF:-1,Radio Anime 24
 http://91.232.4.33:7028/stream/
 #EXTINF:-1,Radio Bercik Silesia
 http://s3.slotex.pl:7770/listen.xtl?sid=1
 #EXTINF:-1,Radio Chrzescijanin
 http://s1.slotex.pl:7002/mountpoint
-#EXTINF:-1,Radio Club Party
-http://s1.cmp3.eu:8555/
 #EXTINF:-1,Radio DiscoPartypl
 http://s1.discoparty.pl:7432/
 #EXTINF:-1,Radio Fama
@@ -66,6 +65,7 @@ http://s1.slotex.pl:7856/
 http://play.radioftb.net:8000/stream.mp3
 #EXTINF:-1,Radio FTB Disco Polo
 http://play.radioftb.net:8022/
+#EXTINF:-1,Radio FTB Disco Polo
 http://play.radioftb.net:8022/stream.mp3
 #EXTINF:-1,Radio FTB POLSKIE PRZEBOJE
 http://play.radioftb.net:8008/stream.mp3
@@ -93,14 +93,13 @@ http://193.0.98.66:8002/
 http://stream3.nadaje.com:8048/
 #EXTINF:-1,Radio Kolobrzeg
 http://graj.radiokolobrzeg.pl:8000/
-#EXTINF:-1,Radio Koszalin
-http://91.232.4.33:9680/stream
 #EXTINF:-1,Radio Kultura
 http://51.255.8.139:9772
 #EXTINF:-1,Radio LagoonFM
 http://s1.slotex.pl:7828/
 #EXTINF:-1,Radio Manhattan
 http://s1.slotex.pl:7780/
+#EXTINF:-1,Radio Manhattan
 http://s1.slotex.pl:7780/stream.mp3
 #EXTINF:-1,Radio Margo
 http://51.255.8.139:8638/stream
@@ -110,12 +109,9 @@ http://91.232.4.33:9569/stream
 http://s1.slotex.pl:7592/stream
 #EXTINF:-1,Radio MRS Polska
 http://play.radiomrs.com:7494/
-#EXTINF:-1,Radio Naklo
-https://sluchaj.107i5.fm/
-#EXTINF:-1,Radio Niepokalanow
-http://88.199.169.10:8000/
 #EXTINF:-1,Radio One Live
 http://91.232.4.33:8198/stream
+#EXTINF:-1,Radio One Live
 http://91.232.4.33:8198/
 #EXTINF:-1,Radio Orbit
 http://s1.slotex.pl:7390/
@@ -125,8 +121,14 @@ http://s1.slotex.pl:7050/stream/1/
 https://shoutcast.paranormalium.pl:8000/1
 #EXTINF:-1,Radio Party
 https://s2.radioparty.pl:8015/stream
+#EXTINF:-1,Radio Party Energy 2000
+https://energy2000.radioparty.pl:8005/
 #EXTINF:-1,Radio Party Kanal Chillout
 https://s2.radioparty.pl:8005/
+#EXTINF:-1,Radio Party Kanal Dj Mixes
+https://djmixes.radioparty.pl:8035/
+#EXTINF:-1,Radio Party Kanal House
+https://house.radioparty.pl:8010/
 #EXTINF:-1,Radio PASJA chilout
 http://91.232.4.33:8108/stream2
 #EXTINF:-1,Radio PASJA Dance
@@ -139,6 +141,7 @@ http://91.232.4.33:8084/stream2
 http://91.232.4.33:8102/stream2
 #EXTINF:-1,Radio Podlasie
 http://s1.slotex.pl:7038/stream.mp3
+#EXTINF:-1,Radio Podlasie
 http://s1.slotex.pl:7038/
 #EXTINF:-1,Radio Pryzmat
 http://51.255.8.139:8822/stream
@@ -170,16 +173,16 @@ https://rs202-krk.rmfstream.pl/RMFFM48
 http://51.255.235.165:5696/stream
 #EXTINF:-1,Radio Silesia
 http://s1.slotex.pl:7926/?
-#EXTINF:-1,Radio Slupsk
-http://91.232.4.33:8240/stream
-#EXTINF:-1,Radio Supsk
-http://91.232.4.33:8240/stream?type=.mp3/stream.mp3
 #EXTINF:-1,Radio Spioch
 http://s1.slotex.pl:7138/
 #EXTINF:-1,Radio Via
 http://62.133.128.18:8040/
 #EXTINF:-1,Radio Wesole Slonzoki
 http://51.255.8.139:8380/stream
+#EXTINF:-1,Radio Zachd
+http://stream02.zachod.pl:10113/
+#EXTINF:-1,Radio ZET
+https://n-11-23.dcs.redcdn.pl/sc/o2/Eurozet/live/audio.livx?audio=5
 #EXTINF:-1,Radio nin FM
 http://stream4.nadaje.com:8052/
 #EXTINF:-1,Radio17
@@ -212,8 +215,6 @@ http://195.150.20.244:8000/rmf_club
 http://217.74.72.11:8000/rmf_club
 #EXTINF:-1,RMF Dance
 http://195.150.20.5:8000/rmf_dance
-#EXTINF:-1,RMF Depeche Mode
-http://31.192.216.7:8000/rmf_depeche_mode
 #EXTINF:-1,RMF Hard N Heavy
 http://195.150.20.244:8000/rmf_hard_heavy
 #EXTINF:-1,RMF Hip Hop
@@ -226,10 +227,6 @@ http://195.150.20.244:8000/rmf_maxxx
 http://217.74.72.11:8000/rmf_muzyka_filmowa
 #EXTINF:-1,RMF Poplista
 http://195.150.20.242:8000/rmf_poplista
-#EXTINF:-1,RMF Reggae
-http://217.74.72.11:8000/rmf_reggae
-#EXTINF:-1,RMF RNB
-http://195.150.20.9:8000/rmf_rnb
 #EXTINF:-1,RMF Rock
 http://31.192.216.7:8000/rmf_rock
 #EXTINF:-1,RMF Sloneczne Przeboje
