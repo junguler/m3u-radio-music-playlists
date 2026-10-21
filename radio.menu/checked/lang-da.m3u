@@ -3,24 +3,20 @@
 https://canli.arabeskinmerkezi.com/9180/stream?n=d86305ae55fbff437cca
 #EXTINF:-1,2town Radio
 http://streaming.radio.co/sd9d980ff0/listen?n=4543f5cd9078b71aad60
+#EXTINF:-1,ANR
+http://stream.anr.dk/anr?n=8854e0310894d740b241
 #EXTINF:-1,Danmarks Radio P4; Trekanten
 http://live-icy.gss.dr.dk/A/A13H.mp3.m3u?n=a213243b4a50a5175eda
 #EXTINF:-1,Danmarks Radio P6
 https://live-icy.dr.dk/A/A29H.mp3?n=81566ce407c866577389
 #EXTINF:-1,DR P1 AAC
 https://drliveradio1.akamaized.net/hls/live/2097651/p1/masterab.m3u8?n=f4eb2f0caba31ca6b110
-#EXTINF:-1,DR P1 HLS 96
-https://drliveradio1.akamaized.net/hls/live/2097651/p1/playlist-96000.m3u8?n=3850a1ff3e3de1327737
 #EXTINF:-1,DR P2 AAC
 https://drliveradio1.akamaized.net/hls/live/2097651/p2/masterab.m3u8?n=98295994d383e8d2f9f5
-#EXTINF:-1,DR P2 HLS 96
-https://drliveradio1.akamaized.net/hls/live/2097651/p2/playlist-96000.m3u8?n=36c47985f92dde4f6338
 #EXTINF:-1,DR P3
 http://live-icy.gss.dr.dk/A/A05H.mp3.m3u?n=9088ab2e4b5f652edbb4
 #EXTINF:-1,DR P3 AAC
 https://drliveradio1.akamaized.net/hls/live/2097651/p3/masterab.m3u8?n=34ffa4e9c7c72d730caf
-#EXTINF:-1,DR P3 HLS 96
-https://drliveradio1.akamaized.net/hls/live/2097651/p3/playlist-96000.m3u8?n=41378f400bc050931b37
 #EXTINF:-1,DR P4 Bornholm
 http://live-icy.gss.dr.dk/A/A06H.mp3.m3u?n=1d748ca47703a3dc4188
 #EXTINF:-1,DR P4 Bornholm AAC
@@ -39,8 +35,6 @@ http://live-icy.gss.dr.dk/A/A08H.mp3.m3u?n=8b18ef7900f921d1b8ad
 https://drliveradio1.akamaized.net/hls/live/2097651/p4kobenhavn/masterab.m3u8?n=f6b6899a5ca760e10fd1
 #EXTINF:-1,DR P4 København MP3
 http://live-icy.dr.dk/A/A08H.mp3?n=81b0826913f1715d2e18
-#EXTINF:-1,DR P4 København HLS 96
-https://drliveradio1.akamaized.net/hls/live/2097651/p4kobenhavn/playlist-96000.m3u8?n=25b7efd3b6f23d45c1d9
 #EXTINF:-1,DR P4 Midt-Vest AAC
 https://drliveradio1.akamaized.net/hls/live/2097651/p4midtvest/masterab.m3u8?n=248484e9ef14db678897
 #EXTINF:-1,DR P4 Nordjylland
@@ -87,18 +81,16 @@ https://drliveradio1.akamaized.net/hls/live/2097651/p5trekanten/masterab.m3u8?n=
 http://live-icy.gss.dr.dk/A/A29H.mp3.m3u?n=810ab2d1c91820024390
 #EXTINF:-1,DR P6 BEAT AAC
 https://drliveradio1.akamaized.net/hls/live/2097651/p6beat/masterab.m3u8?n=1a88d3e12b7e39b09310
-#EXTINF:-1,DR P6 Beat HLS 96
-https://drliveradio1.akamaized.net/hls/live/2097651/p6beat/playlist-96000.m3u8?n=8113d5efd5cd507dfc06
 #EXTINF:-1,DR P8 JAZZ AAC
 https://drliveradio1.akamaized.net/hls/live/2097651/p8jazz/masterab.m3u8?n=97d3e44bef84648885b1
-#EXTINF:-1,DR P8 Jazz HLS 96
-https://drliveradio1.akamaized.net/hls/live/2097651/p8jazz/playlist-96000.m3u8?n=a068e33f646a61b03af1
 #EXTINF:-1,DR Ramasjang/Ultra Radio
 http://live-icy.gss.dr.dk/A/A24H.mp3?n=c393ff5a96dd9493697f
 #EXTINF:-1,Globus Guld
 http://stream.wlmm.dk/listen.pls?sid=1?n=fd87cd41df1457d282c6
 #EXTINF:-1,Globus Guld Jul
 https://stream.probroadcast.dk/guldjul?n=22016ec8d56951a39de5
+#EXTINF:-1,go!FM
+https://radioserver.dk/gofm?n=36d9a6e62b7e15cdfdd0
 #EXTINF:-1,Kalaallit Nunaata Radioa KNR Nuuk 16 kbps MP3
 https://i2.cdn.jetstre.am:8000/sz=knr=audio16?n=d2232b0e2f4372268a47
 #EXTINF:-1,Kalaallit Nunaata Radioa KNR Nuuk 192 kbps MP3
@@ -106,23 +98,31 @@ https://i2.cdn.jetstre.am:8000/sz=knr=audio192?n=4703182e20d067c2aaa4
 #EXTINF:-1,Kalaallit Nunaata Radioa KNR Nuuk 24 kbps MP3
 https://i1.cdn.jetstre.am:8000/sz=knr=audio24?n=24560d839ff91f6fa348
 #EXTINF:-1,Kalaallit Nunaata Radioa KNR 90.3 Nuuk
-https://i2.cdn.jetstre.am:8000/sz=knr=audio192?token=3c0d5970304eabcc480b94a524cc79be&time=68b3e330&n=9bcf40fbbdc72a9a192a
+https://i1.cdn.jetstre.am:8000/sz=knr=audio192?token=03fb8b1ee22a1720457ea05be98626e6&time=6ad7585f&n=9bcf40fbbdc72a9a192a
 #EXTINF:-1,KNR Radio, Nuuk, 192 kbit/s Stereo
-https://i1.cdn.jetstre.am:8000/sz=knr=audio192?token=8d251b750c0fed6c95626b4c5e367734&time=68b3e32e&n=b68c84b2a48967a16099
+https://i2.cdn.jetstre.am:8000/sz=knr=audio192?token=8fe3a093f4598563cefb0431d08df8db&time=6ad7585c&n=b68c84b2a48967a16099
 #EXTINF:-1,myROCK
 https://live-bauerdk.sharp-stream.com/myrock_dk_mp3?n=5098d5ebdaa795d6f8cc
 #EXTINF:-1,Nova 100% Dansk
 https://live-bauerdk.sharp-stream.com/DK_HQ_RP11.aac?n=2d945e43522638812037
+#EXTINF:-1,Party Fm
+http://stream1.partyfm.dk/Party320?n=9df17deb72ff2187f50e
+#EXTINF:-1,PartyFM
+http://stream1.partyfm.dk/Party320
 #EXTINF:-1,POP FM DK
 http://live-bauerdk.sharp-stream.com/popfm128.mp3?n=7d3876330fc0a2c5cad4
 #EXTINF:-1,Radio 100
 https://live-bauerdk.sharp-stream.com/radio100_dk_mp3?n=7199e6e65fdeaf859db0
+#EXTINF:-1,Radio ABC
+https://radioserver.dk/abc?n=32d955efba7b93db0e06
 #EXTINF:-1,Radio ALR
 http://streamer.radio.co/s6a9beb92e/listen?n=d208011bfd247364e53c
 #EXTINF:-1,Radio Playback
 http://stream02.radioplayback.dk/stream?n=565ce0e69b1f0c1f5613
 #EXTINF:-1,Radio SydhavsØerne
-https://sydhavsradio.dk/netradio//?n=931a5242e92a6dd38f90
+https://netradio.dk/?n=931a5242e92a6dd38f90
+#EXTINF:-1,Radio4
+http://29053.live.streamtheworld.com/RADIO4_ABR.mp3?n=ab245558da4cfe0e92f1
 #EXTINF:-1,Retro-Radio Jul
 http://isstream.kanalplus.fm/TX-1?n=05729a3cad01760b4dd8
 #EXTINF:-1,Retro-Radio Millennium
@@ -131,3 +131,5 @@ http://tx-2.retro-radio.dk/TX-2?n=435e9192bca148f76668
 http://streammp3.retro-radio.dk/retro-mp3?n=decdd9ec3970471b9a48
 #EXTINF:-1,The Voice - Danmarks Hitstation
 https://live-bauerdk.sharp-stream.com/thevoice_dk_mp3?n=a6aa844295ac67ceafbb
+#EXTINF:-1,Vinylhits.dk
+http://stream.vinylhits.dk/vinylmp3?n=defb968ccca6a161b3a8
