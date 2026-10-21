@@ -9,10 +9,10 @@ http://playerservices.streamtheworld.com/pls/FM947AAC.pls
 http://playerservices.streamtheworld.com/m3u/FM947.m3u
 #EXTINF:-1,947 80s
 http://playerservices.streamtheworld.com/m3u/947_80S.m3u
-#EXTINF:-1,Al-Ansaar Radio
-https://al-ansaar.simplestreaming.co.za/listen/al-ansaar_radio/radio.mp3
 #EXTINF:-1,Algoa FM
 http://edge.iono.fm/xice/54_high.mp3
+#EXTINF:-1,Bokradio
+https://bokradio.highquality.radiostream.co.za/
 #EXTINF:-1,Bosveld Stereo
 http://capeant.antfarm.co.za:8000/Bosveld
 #EXTINF:-1,Cape Talk
@@ -35,10 +35,16 @@ http://edge.iono.fm/xhls/fmr_live_medium.m3u8
 https://edge.iono.fm/xice/57_high.aac
 #EXTINF:-1,HOT 91.9
 http://edge.iono.fm/xice/57_medium.mp3
+#EXTINF:-1,Izwi LoMzansi
+https://streaming.fabrik.fm/izwi/echocast/audio/index.m3u8
 #EXTINF:-1,Jacaranda FM
 https://live.jacarandafm.com/jacarandahigh.mp3
+#EXTINF:-1,Jacaranda FM
 https://live.jacarandafm.com/jacarandalow.aac
 #EXTINF:-1,Jakaranda FM
+https://live.jacarandafm.com/jacarandahigh.mp3
+#EXTINF:-1,JOY GOSPEL RADIO
+https://servidor17.brlogic.com:7012/live
 #EXTINF:-1,JOY GOSPEL RADIO
 https://servidor17.brlogic.com:7012/live
 #EXTINF:-1,Jozi FM
@@ -46,13 +52,17 @@ https://edge.iono.fm/xice/51_medium.aac
 #EXTINF:-1,Jozi FM (HiFi aac)
 https://edge.iono.fm/xice/51_high.aac
 #EXTINF:-1,Katlego Fm
-https://das-edge15-live365-dal02.cdnstream.com/a26642
+https://das-edge93-live365-dal05.cdnstream.com/a26642
+#EXTINF:-1,Katlego Fm
+https://das-edge93-live365-dal05.cdnstream.com/a26642
 #EXTINF:-1,Kaya FM
 https://edge.iono.fm/xice/82_medium.aac
 #EXTINF:-1,KFM 80s Cape Town
 http://playerservices.streamtheworld.com/m3u/KFM_80SAAC.m3u
-#EXTINF:-1,LIVE MENDING RADIO
-http://s7.citrus3.com:8348/stream
+#EXTINF:-1,Magic 828
+http://cast.fabrik.fm:8106/
+#EXTINF:-1,Magic 828
+https://streaming.fabrik.fm/magic828/echocast/audio/low/index.m3u8
 #EXTINF:-1,MFM
 https://edge.iono.fm/xice/46_medium.aac
 #EXTINF:-1,Mix 93.8 FM
@@ -69,6 +79,8 @@ https://edge.iono.fm/xice/65_medium.aac
 http://stream.krypton.co.za:8040/stream/
 #EXTINF:-1,Radio sonder grense
 http://22183.live.streamtheworld.com/RSGAAC.aac
+#EXTINF:-1,SAFFA OnAir World Radio
+http://stream-179.surfernetwork.com/k8cqvwu2za0uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJrOGNxdnd1MnphMHV2IiwiaG9zdCI6InN0cmVhbS0xNzkuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6InAtcU1VRVhRUmZPMlUwV01rSmNUVHciLCJpYXQiOjE3OTI1MzQ1MjMsImV4cCI6MTc5MjUzNDU4M30.YthRbW2xw8u6jTuJ9pqR4J-DGpZAGhieXujxXXHoFm8
 #EXTINF:-1,Salaam Media
 http://capeant.antfarm.co.za:1935/salaam/salaam.stream/chunklist_w1196116988.m3u8
 #EXTINF:-1,salaammedia
@@ -77,6 +89,8 @@ https://iceant.antfarm.co.za/Salaam
 https://22183.live.streamtheworld.com/THOBELA.mp3
 #EXTINF:-1,Tuks FM
 http://edge.iono.fm/xice/tuksfm_live_medium.aac
+#EXTINF:-1,UbuntuFM
+https://streaming.coollective.nl:8443/UbuntuFM
 #EXTINF:-1,YFM
 http://streaming.fabrik.fm/yfm/echocast/audio/index.m3u8
 #EXTINF:-1,ZoeLive Radio
