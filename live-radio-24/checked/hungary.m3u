@@ -5,12 +5,14 @@ https://icast.connectmedia.hu/5001/live.mp3
 https://icast.connectmedia.hu/5201/live.mp3
 #EXTINF:-1,Petőfi Rádió radio
 https://mr-stream.connectmedia.hu/4738/mr2.mp3
-#EXTINF:-1,Dance Wave! radio
-http://onair.dancewave.online:8080/dance.mp3
 #EXTINF:-1,Jazzy radio
 https://radio.musorok.org/listen/jazzy/jazzy.mp3
 #EXTINF:-1,Rocker Rádió radio
 http://fast.citrus3.com:8796/stream
+#EXTINF:-1,InfoRádió radio
+https://stream.infostart.hu/lejatszo/index.html?sid=1
+#EXTINF:-1,Dankó Rádió radio
+https://mr-stream.connectmedia.hu/4748/mr7.mp3
 #EXTINF:-1,Best FM, Budapest radio
 https://icast.connectmedia.hu/5101/live.mp3/
 #EXTINF:-1,Karc FM radio
@@ -21,8 +23,6 @@ http://stream.danubiusradio.hu/danubius_320k
 http://s2.audiostream.hu/bdpstrock_192k
 #EXTINF:-1,Bartók Rádió radio
 https://icast.connectmedia.hu/4741/mr3.mp3
-#EXTINF:-1,Klasszik radio
-https://s04.diazol.hu:9600/live.mp3
 #EXTINF:-1,Cool FM 107.3 radio
 https://mediagw.viacomkft.hu/stream/coolfm
 #EXTINF:-1,Argentine Tango radio
@@ -39,8 +39,6 @@ https://s03.diazol.hu:35152/stream
 https://icast.connectmedia.hu/4780/live.mp3
 #EXTINF:-1,Folkrádió radio
 https://stream.folkradio.hu/folkradio.mp3
-#EXTINF:-1,Juventus Radio
-http://s2.audiostream.hu/juventus_320k
 #EXTINF:-1,Duna World Rádió radio
 https://mr-stream.connectmedia.hu/4761/dwr.mp3
 #EXTINF:-1,Parlamenti Rádió radio
@@ -53,14 +51,14 @@ https://szkrcast.ddns.net/radio/8000/radio.mp3
 https://icast.connectmedia.hu/5128/live.mp3
 #EXTINF:-1,Rádió Groove radio
 https://s03.diazol.hu:35112/live.mp3
-#EXTINF:-1,Speed FM radio
-https://a3.asurahosting.com:6430/radio.mp3
 #EXTINF:-1,Irénke Mulatós Rádiója radio
 https://s03.diazol.hu:10092/stream?
 #EXTINF:-1,Hit Rádió radio
 https://streamer.radio.co/s47952d7c4/listen
 #EXTINF:-1,Fm 103.9 A Rock radio
 https://icast.connectmedia.hu/5301/live.mp3/
+#EXTINF:-1,Mega Rádió radio
+https://megaradio.hu/megastream
 #EXTINF:-1,Base FM 96.4 radio
 https://icast.connectmedia.hu/5401/live.mp3/
 #EXTINF:-1,Sirius radio
@@ -74,27 +72,43 @@ https://stream.radio.co/s3fd8d173f/listen
 #EXTINF:-1,Nemzetiségi adások radio
 https://mr-stream.connectmedia.hu/4744/mr4.mp3
 #EXTINF:-1,Webradio Balaton radio
-https://balaton.stream.laut.fm/balaton?t302=2025-09-01_09-45-34&uuid=e9ae0b5c-debb-415a-a009-2b295d8a14f2
+https://balaton.stream.laut.fm/balaton?t302=2026-10-22_08-49-01&uuid=5cb2a0cf-579f-151b-c3e3-ba3c70d397b8
 #EXTINF:-1,Next FM radio
 https://stream.nextfm.hu/radio/8000/nextfmhu.mp3
 #EXTINF:-1,Roxy Rádió radio
 https://s2.audiostream.hu/roxy_320k
+#EXTINF:-1,HBC News radio
+https://stream-204.surfernetwork.com/m94d336hh5zuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJtOTRkMzM2aGg1enV2IiwiaG9zdCI6InN0cmVhbS0yMDQuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6ImFMdVo0TGNjUzhPeW1HanRvai11eEEiLCJpYXQiOjE3OTI2NTE3NDMsImV4cCI6MTc5MjY1MTgwM30.1dbdl1crFOGhQV59pL0NNM2w0aVto2Qxfs75YkHGdUg
+#EXTINF:-1,Kalóz Rádió radio
+https://stream-177.surfernetwork.com/s9gg29m2g18uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJzOWdnMjltMmcxOHV2IiwiaG9zdCI6InN0cmVhbS0xNzcuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IjFmMTJFNjl2UXFldERONTlaZlB1UkEiLCJpYXQiOjE3OTI2NTE3NDQsImV4cCI6MTc5MjY1MTgwNH0.b9uWudza9eI2GZG2ZjpAUadhFkb52NkMKEfrFhAUQuY
 #EXTINF:-1,Ez az a nap! Radio
 https://listen.radioking.com/radio/320174/stream/370600
 #EXTINF:-1,X Radio, Győr
 https://ip169.ozelip.com/7774/play.mp3
+#EXTINF:-1,NeonFM radio
+https://stream-177.surfernetwork.com/q52f6x75038uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJxNTJmNng3NTAzOHV2IiwiaG9zdCI6InN0cmVhbS0xNzcuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6Im1jZFE4cUtkUXZXbVVGSHNJbktzSVEiLCJpYXQiOjE3OTI2NTI1NjYsImV4cCI6MTc5MjY1MjYyNn0.vWrwjL_-GaGsqCQ_6VRGO9_5xlBk9ukOMwEBajhTcfk
 #EXTINF:-1,Radio Holy Doctor Hungary radio
 https://streaming.radioholydoctor.com/radio/8010/radio.mp3
+#EXTINF:-1,Dance One Radio, Vámosmikola
+https://s2.ssl-stream.com/radio/8280/radio.mp3
 #EXTINF:-1,Radio Bias - Bias Rádió radio
 https://admin.biasradio.com/radio/8000/live
 #EXTINF:-1,Rádió DIKH radio
 https://icast.connectmedia.hu/6121/live.mp3
-#EXTINF:-1,TC Rádió radio
-https://c15.radioboss.fm:8601/stream
-#EXTINF:-1,SzobRock-Rádió radio
-https://free.rcast.net/62268
-#EXTINF:-1,Mechanoid Muse Web Radio
-https://s45.radiolize.com/radio/8110/radio.mp3
+#EXTINF:-1,Menő FM radio
+https://stream-204.surfernetwork.com/skm3k46p7yzuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJza20zazQ2cDd5enV2IiwiaG9zdCI6InN0cmVhbS0yMDQuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6InhRX0xvM2h5VGhLZW5vb2VnZ3p4SFEiLCJpYXQiOjE3OTI2NTI1NjcsImV4cCI6MTc5MjY1MjYyN30.QP4HoieRF9l0pE6xij2CmXOUoSZp0vwdANDUR_LyVKo
+#EXTINF:-1,Nonstop Radio
+https://stream-177.surfernetwork.com/d3yzcvuetuhvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJkM3l6Y3Z1ZXR1aHZ2IiwiaG9zdCI6InN0cmVhbS0xNzcuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6IkVOd1VPaXR1VHhHaUd3X0FhZlN3ZWciLCJpYXQiOjE3OTI2NTI1NjgsImV4cCI6MTc5MjY1MjYyOH0.ZmLTIhuGvqUQkOgzFVTb9wORqKbjiFOuQM3plpX1YRw
+#EXTINF:-1,Underground FM radio
+https://stream-177.surfernetwork.com/bvq2abapyhhvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJidnEyYWJhcHloaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzcuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6ImFOUVlpaWhVVENpS1JTN2dsWWZNX2ciLCJpYXQiOjE3OTI2NTI1NjgsImV4cCI6MTc5MjY1MjYyOH0.q6NteOthLmKpUgxTzGJIq7Q8XBhGgV9XvGZX-cGP714
+#EXTINF:-1,RockNet Rádió radio
+https://stream-204.surfernetwork.com/0ucrqn442rhvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiIwdWNycW40NDJyaHZ2IiwiaG9zdCI6InN0cmVhbS0yMDQuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6InlLMGdJSE1rUjR1ZTBCWVNrcTZCZ1EiLCJpYXQiOjE3OTI2NTI1NjgsImV4cCI6MTc5MjY1MjYyOH0.WF6LQpCOngmw0oymG2Cbtmv82aA1jugunIhdG5XKpxY
+#EXTINF:-1,Mega-Live Rádió radio
+https://mega-live.net:2053/live.mp3
+#EXTINF:-1,MiamiFM radio
+https://stream-178.surfernetwork.com/udvtbum3238uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ1ZHZ0YnVtMzIzOHV2IiwiaG9zdCI6InN0cmVhbS0xNzguc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6ImE4ekx3cG44U3NtM29Cc0UwbkdVVVEiLCJpYXQiOjE3OTI2NTI1NjgsImV4cCI6MTc5MjY1MjYyOH0.sGNXYllnSQWZQycUFgO7KXkwFWM3pwmKRtNcfFZzm50
+#EXTINF:-1,Rádió Szeghalom radio
+https://stream-177.surfernetwork.com/eswhwwutkrhvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJlc3dod3d1dGtyaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzcuc3VyZmVybmV0d29yay5jb20iLCJ0bSI6ZmFsc2UsInJ0dGwiOjUsImp0aSI6Ikk0SDQtaVdmUlFtUngxd3N3NmpmM1EiLCJpYXQiOjE3OTI2NTI1NzAsImV4cCI6MTc5MjY1MjYzMH0.n2I0bwsY8Xf-_lmvNkdPg8-BpWwSBR-Fy-btW5U6jqA
 #EXTINF:-1,Deja Vu Rádió radio
 https://carina.streamerr.co/stream/dejavuradio/dejavuradio
 #EXTINF:-1,Kossuth Rádió radio
@@ -103,8 +117,12 @@ http://mr-stream.mediaconnect.hu/4734/mr1.aac
 http://radio.pestikabare.hu/
 #EXTINF:-1,Mix FM, Budapest radio
 http://radio.mixfm.hu/
+#EXTINF:-1,Radio 88 radio
+http://stream.radio88.hu:8000/
 #EXTINF:-1,POWER DANCE FM radio
 http://stream1.nexusradio.fm/nexusdance.mp3
+#EXTINF:-1,Tilos Rádió radio
+http://stream.tilos.hu:8000/tilos
 #EXTINF:-1,Sunshine FM 99.4 radio
 http://195.56.193.129:8100/
 #EXTINF:-1,Civil radio
@@ -115,20 +133,14 @@ http://stream.composeit.hu:8300/
 http://radio.telstar.hu/
 #EXTINF:-1,Hit FM, Budapest radio
 http://radio.hitfm.hu/
-#EXTINF:-1,Pannónia Rádió radio
-http://kft.kesintisizyayin.com:8130/stream
-#EXTINF:-1,Maxi radio
-https://a2.asurahosting.com:8060/radio.mp3
 #EXTINF:-1,Sztráda Rádió radio
 http://stream.diazol.hu:35080/live.mp3
 #EXTINF:-1,Mustar FM radio
 http://193.138.125.14:8500/
-#EXTINF:-1,Radio Sense Hungary radio
-http://s03.diazol.hu:7010/stream.mp3
+#EXTINF:-1,Tordas Rádió radio
+http://stream.tilos.hu/tordas_radio_online
 #EXTINF:-1,Periszkóp radio
 http://sztrim.periszkopradio.hu:8088/
-#EXTINF:-1,Happy Station Radio
-http://stream.happystation.hu:8050/live.mp3
 #EXTINF:-1,Vindornya FM radio
 http://stream.vindornyafm.tk:8000/live
 #EXTINF:-1,Jampec radio
