@@ -1,8 +1,8 @@
 #EXTM3U
-#EXTINF:-1,RTL 2 - 105.9 FM
-https://streamer-04.rtl.fr/rtl2-1-44-128?listen=webAwQMBgULAAQFAg8PBAEDBQ
 #EXTINF:-1,FIP - 105.1 FM
 https://icecast.radiofrance.fr/fip-midfi.mp3?ID=76zqey582k
+#EXTINF:-1,Web Radio RTL 2 - 105.9 FM
+https://streaming-ice.audiomeans.fr/rtl/feed-rtl2-mp3-128?aw_0_1st.broadcast_type=streaming&aw_0_1st.source_type=external&aw_0_1st.platform=external&aw_0_1st.media_category=fm&aw_0_1st.station=rtl2&aw_0_1st.program=rtl2&listen=webAwQMBgULAAQFAg8PBAEDBQ
 #EXTINF:-1,RFM - 94.1 FM
 https://rfm.lmn.fm/rfm-live/playlist.m3u8
 #EXTINF:-1,Radio France Maghreb - 99.5 FM
@@ -33,6 +33,8 @@ https://stream.rcs.revma.com/amrbkhqtkm0uv
 https://start-voltage.ice.infomaniak.ch/start-voltage-high.mp3
 #EXTINF:-1,Radio FG House Chic
 https://stream.rcs.revma.com/cgvrymb6p98uv
+#EXTINF:-1,Enjoy 33 - 92.6 FM
+http://radiotrg.ice.infomaniak.ch/radiotrg-high.mp3
 #EXTINF:-1,France Bleu Gascogne
 http://icecast.radiofrance.fr/fbgascogne-midfi.mp3
 #EXTINF:-1,France Bleu Pays d'Auvergne
@@ -49,8 +51,6 @@ http://icecast.radiofrance.fr/fbbearn-midfi.mp3
 https://stream.radiofrance.fr/fbauxerre/fbauxerre.m3u8
 #EXTINF:-1,FIP Strasbourg
 http://icecast.radiofrance.fr/fip-midfi.mp3?listening-from-radio-garden=1615179416440
-#EXTINF:-1,Maxi France
-https://sr3.publicssl.net/srv/8358/stream
 #EXTINF:-1,Est FM
 http://str0.creacast.com/estfm1
 #EXTINF:-1,Radio Maritima
@@ -70,17 +70,19 @@ http://sensations.ice.infomaniak.ch/sensations.mp3
 #EXTINF:-1,Radio FM 43 - FM43 105.7 FM
 http://fm43.ice.infomaniak.ch/fm43-128.mp3
 #EXTINF:-1,Radio Cote D'amour
-http://str4uice.streamakaci.com/4uclassicrock.mp3
+https://str4uice.streamakaci.com/4uclassicrock.mp3
 #EXTINF:-1,Oxygène FM - 106.6 FM
 http://str0.creacast.com/oxy-montereau
-#EXTINF:-1,CapSao
-http://str0.creacast.com/capsao
 #EXTINF:-1,Frequence Plus - 92.6 FM
 http://freqplus.ice.infomaniak.ch:80/freqplus-high
+#EXTINF:-1,Canal Sud 92.2 FM
+http://91.224.148.160:8000/canalsud-live
 #EXTINF:-1,Evasion FM Essonne
 https://evasion91.ice.infomaniak.ch/evasion91-128.mp3
 #EXTINF:-1,CHANTE FRANCE 80's
 https://chantefrance80s.ice.infomaniak.ch/chantefrance80s-96.aac
+#EXTINF:-1,Nova Sauvagine
+https://snb.ice.infomaniak.ch/snb-high.mp3
 #EXTINF:-1,Evasion FM Nord 77
 https://evasion77n.ice.infomaniak.ch/evasion77n-128.mp3
 #EXTINF:-1,Radio Top FM
@@ -89,6 +91,8 @@ http://str30.creacast.com:80/top_fm
 https://stream.vestaradio.com/DivaFm
 #EXTINF:-1,Radio Occitania
 https://www.comequip.eu/Radio-Occitania
+#EXTINF:-1,FIP Bordeaux - 96.7 FM
+https://icecast.radiofrance.fr/fip-midfi.mp3?ID=76zqey582k
 #EXTINF:-1,Radio Ellebore 105.9
 http://ellebore.ice.infomaniak.ch:80/ellebore-high.aac
 #EXTINF:-1,D!rect FM
@@ -105,12 +109,16 @@ http://str30.creacast.com/flotteurs_fm
 https://icecast.skyrock.net/s/francais_aac_128k?tvr_name=tunein&tvr_section1=64aac
 #EXTINF:-1,Radio Studio 1
 http://radiostudio1.ice.infomaniak.ch/radiostudio1-128
+#EXTINF:-1,Transat FM
+http://transatfm.ice.infomaniak.ch/transatfm-128.aac
 #EXTINF:-1,France Bleu Creuse
 http://icecast.radiofrance.fr/fbcreuse-midfi.mp3
 #EXTINF:-1,Perrine FM
 https://perrinefm.ice.infomaniak.ch/perrinefm-high.mp3
 #EXTINF:-1,Evasion FM Yvelines
 https://evasion78s.ice.infomaniak.ch/evasion78s-128.mp3
+#EXTINF:-1,Radio Qui Qu'en Grogne
+http://radioquiquengrogne.ice.infomaniak.ch/radioquiquengrogne-128.mp3
 #EXTINF:-1,Radio Voce Nustrale
 https://vocenustrale.ice.infomaniak.ch/vocenustrale-128.mp3
 #EXTINF:-1,Soleil FM
@@ -121,6 +129,8 @@ https://rajeavignon.ice.infomaniak.ch/rajeavignon-128.mp3
 https://aratotem.ice.infomaniak.ch/lozere.mp3?ua=InfomaniakPlayer
 #EXTINF:-1,Perrine - 98.4 FM
 http://broadcast.infomaniak.ch/perrinefm-high.mp3
+#EXTINF:-1,RJFM
+http://listen.radioking.com/radio/563/stream/2072
 #EXTINF:-1,RCM
 http://str20.creacast.com:80/rcm
 #EXTINF:-1,C2L
@@ -145,7 +155,7 @@ http://str30.creacast.com/top_fm
 http://srv2.streaming-ingenierie.fr:8172
 #EXTINF:-1,Melodie FM
 http://streammelodie.dgnet.be:8008
-#EXTINF:-1,Radio Cité Genève
-https://stream.core-prod.us-west-2.tunenet.io/listen.stream?streamId=1600842&rti=dEZzGgYzfxg4dhE2AxFRSGgyQE5Rdid8WFcFHQASHBMUTxMkflYCFVQZJSkFE0pkDBIYDQcSWT4UHAgaGBwLEAQWWB1pHwdE%7e%7e%7e&render=json&qs=
+#EXTINF:-1,RSI Rete Due
+http://livestreaming-node-1.srg-ssr.ch/srgssr/retedue/mp3/128
 #EXTINF:-1,ZOUK FM
 http://france16.coollabel-productions.com:8276/
