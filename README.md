@@ -2,7 +2,7 @@
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/cat.gif"></td>
+<td><img align="right" src="stuff/cat2.gif"></td>
 </tr>
 </table>
 
@@ -31,7 +31,7 @@
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/dog.gif"></td>
+<td><img align="right" src="stuff/dog2.gif"></td>
 </tr>
 </table>
 
@@ -338,7 +338,7 @@ note: i need to investigate players for other devices, i will update this sectio
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/lion.gif"></td>
+<td><img align="right" src="stuff/lion2.gif"></td>
 </tr>
 </table>
 
@@ -380,7 +380,7 @@ note: this method does not give you the stream title (tho most streams broadcast
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/zebra.gif"></td>
+<td><img align="right" src="stuff/zebra2.gif"></td>
 </tr>
 </table>
 
@@ -434,7 +434,7 @@ this command can also be stopped using `ctrl + c` shortcut or the timeout comman
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/rabbit.gif"></td>
+<td><img align="right" src="stuff/rabbit2.gif"></td>
 </tr>
 </table>
 
@@ -470,7 +470,7 @@ this command will download this stream `http://51.89.148.171:8022/stream/1/` for
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/wolf.gif"></td>
+<td><img align="right" src="stuff/wolf2.gif"></td>
 </tr>
 </table>
 
@@ -495,7 +495,7 @@ download the [auto-generated zip file](https://github.com/junguler/m3u-radio-mus
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/bear.gif"></td>
+<td><img align="right" src="stuff/bear2.gif"></td>
 </tr>
 </table>
 
@@ -515,7 +515,7 @@ since the traffic section of the insight tab is hidden to other viewers of this 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/monkey.gif"></td>
+<td><img align="right" src="stuff/monkey2.gif"></td>
 </tr>
 </table>
 
@@ -868,7 +868,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/panda.gif"></td>
+<td><img align="right" src="stuff/panda2.gif"></td>
 </tr>
 </table>
 
@@ -890,7 +890,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/leopard.gif"></td>
+<td><img align="right" src="stuff/leopard2.gif"></td>
 </tr>
 </table>
 
@@ -911,7 +911,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/horse.gif"></td>
+<td><img align="right" src="stuff/horse2.gif"></td>
 </tr>
 </table>
 
@@ -929,7 +929,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/fox.gif"></td>
+<td><img align="right" src="stuff/fox2.gif"></td>
 </tr>
 </table>
 
