@@ -2,7 +2,7 @@
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/cat2.gif"></td>
+<td><img align="right" src="stuff/drac.gif"></td>
 </tr>
 </table>
 
@@ -31,7 +31,7 @@
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/dog2.gif"></td>
+<td><img align="right" src="stuff/skel.gif"></td>
 </tr>
 </table>
 
@@ -338,7 +338,7 @@ note: i need to investigate players for other devices, i will update this sectio
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/lion2.gif"></td>
+<td><img align="right" src="stuff/jack.gif"></td>
 </tr>
 </table>
 
@@ -364,15 +364,15 @@ the first thing you need is the excellent [cat-catch](https://github.com/xifangc
 
 here i've used the `Trance` page of the `listen_to_icecast` repo, open it and wait for things to load, as you can see the cat icon in the toolbar has a number above it, these are the streams that are loaded to this point and are listenable in your region
 
-![1](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cat_catch1.jpg)
+![1](stuff/cat_catch1.jpg)
 
 click on the cat icon to open the extension's menu
 
-![2](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cat_catch2.jpg)
+![2](stuff/cat_catch2.jpg)
 
 now click on `Select All` then `Copy` and paste it to a txt editor, save it as a `.m3u` file and it's ready to be listend to, now every link works
 
-![3](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/cat_catch3.jpg)
+![3](stuff/cat_catch3.jpg)
 
 note: this method does not give you the stream title (tho most streams broadcast their names pretty regularly) and you have to wait for links to load so keep that in mind
 
@@ -380,7 +380,7 @@ note: this method does not give you the stream title (tho most streams broadcast
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/zebra2.gif"></td>
+<td><img align="right" src="stuff/mumm.gif"></td>
 </tr>
 </table>
 
@@ -434,7 +434,7 @@ this command can also be stopped using `ctrl + c` shortcut or the timeout comman
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/rabbit2.gif"></td>
+<td><img align="right" src="stuff/dumm.gif"></td>
 </tr>
 </table>
 
@@ -470,7 +470,7 @@ this command will download this stream `http://51.89.148.171:8022/stream/1/` for
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/wolf2.gif"></td>
+<td><img align="right" src="stuff/reap.gif"></td>
 </tr>
 </table>
 
@@ -495,7 +495,7 @@ download the [auto-generated zip file](https://github.com/junguler/m3u-radio-mus
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/bear2.gif"></td>
+<td><img align="right" src="stuff/wtch.gif"></td>
 </tr>
 </table>
 
@@ -505,17 +505,17 @@ download the [auto-generated zip file](https://github.com/junguler/m3u-radio-mus
 
 since the traffic section of the insight tab is hidden to other viewers of this repo i'm going to include and update them every two weeks so you can have a feel for how this repo is doing
 
-![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_1.jpg)
+![](stuff/stats_1.jpg)
 
-![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_2.jpg)
+![](stuff/stats_2.jpg)
 
-![](https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/stuff/stats_3.jpg)
+![](stuff/stats_3.jpg)
 
 <br>
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/monkey2.gif"></td>
+<td><img align="right" src="stuff/werv.gif"></td>
 </tr>
 </table>
 
@@ -868,7 +868,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/panda2.gif"></td>
+<td><img align="right" src="stuff/scar.gif"></td>
 </tr>
 </table>
 
@@ -890,7 +890,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/leopard2.gif"></td>
+<td><img align="right" src="stuff/zomb.gif"></td>
 </tr>
 </table>
 
@@ -911,7 +911,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/horse2.gif"></td>
+<td><img align="right" src="stuff/ghos.gif"></td>
 </tr>
 </table>
 
@@ -929,7 +929,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 <table align="center">
 <tr>
-<td><img align="right" src="stuff/fox2.gif"></td>
+<td><img align="right" src="stuff/fren.gif"></td>
 </tr>
 </table>
 
