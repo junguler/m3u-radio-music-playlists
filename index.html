@@ -281,6 +281,20 @@
         .intensity-bar-wrap > .intensity-bar-label:first-child { min-width: 3.5rem; }
         .intensity-bar-wrap > .intensity-bar-label:last-child { min-width: 3.5rem; text-align: right; }
         .intensity-bar { display: flex; flex: 1; height: 1.6rem; border-radius: var(--radius-full); overflow: hidden; border: 1px solid var(--border-color); }
+        /* The five color-intensity stops are fixed to square cells. Keep this
+           separate from the corner-rounding control, which should still stretch. */
+        .intensity-bar-wrap.color-intensity-wrap { gap: 0.4rem; justify-content: center; }
+        .color-intensity-wrap > .intensity-bar-label:first-child,
+        .color-intensity-wrap > .intensity-bar-label:last-child {
+            min-width: 0;
+            flex: 0 0 auto;
+        }
+        .color-intensity-wrap > .intensity-bar-label:first-child { text-align: right; }
+        .color-intensity-wrap > .intensity-bar-label:last-child { text-align: left; }
+        .color-intensity-wrap #colorIntensityControl {
+            flex: 0 0 calc(5 * 1.6rem + 2px);
+            width: calc(5 * 1.6rem + 2px);
+        }
         .intensity-seg { flex: 1; border: none; border-right: 1px solid rgba(0, 0, 0, 0.15); cursor: pointer; padding: 0; position: relative; }
         .intensity-seg:last-child { border-right: none; }
         .intensity-seg:hover { filter: brightness(1.12); }
@@ -313,10 +327,31 @@
            strength since it's the one actually driving what's on screen. */
         .theme-toggle.custom-color-active .theme-btn:not(.theme-btn-custom) { opacity: 0.7; }
         .theme-toggle.custom-color-active .theme-btn:not(.theme-btn-custom):hover { opacity: 1; }
-        .theme-swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.55rem; width: 100%; padding: 0.15rem 0; }
-        .theme-swatch { width: 28px; height: 28px; border-radius: var(--radius-sm); border: 2px solid transparent; cursor: pointer; padding: 0; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15); }
+        /* Eight compact columns keep the three-row preset palette centered without
+           making the theme menu wider. Every swatch remains a true square. */
+        .theme-swatches {
+            display: grid;
+            grid-template-columns: repeat(8, minmax(0, 1fr));
+            justify-items: center;
+            align-items: center;
+            column-gap: 0.1rem;
+            row-gap: 0.35rem;
+            width: 100%;
+            max-width: 256px;
+            margin-inline: auto;
+            padding: 0.2rem 0;
+        }
+        .theme-swatch {
+            width: 28px;
+            height: 28px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-strong);
+            cursor: pointer;
+            padding: 0;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+        }
         .theme-swatch:hover { border-color: var(--text-muted); }
-        .theme-swatch.active { border-color: var(--text-primary); }
+        .theme-swatch.active { border: 2px solid var(--text-primary); }
         .theme-custom-row { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
         .theme-custom-row input[type="color"] { width: 32px; height: 28px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: 0 0; padding: 0; cursor: pointer; }
         .theme-reset-btn { flex: 1; border: 1px solid var(--border-strong); background: var(--bg-tertiary); color: var(--text-secondary); border-radius: var(--radius); padding: 0.3rem 0.5rem; cursor: pointer; font-size: 0.75rem; }
@@ -1167,7 +1202,7 @@
                                         <span class="settings-label">Color intensity</span>
                                     </div>
                                     <div class="settings-row">
-                                        <div class="intensity-bar-wrap">
+                                        <div class="intensity-bar-wrap color-intensity-wrap">
                                             <span class="intensity-bar-label">Vivid</span>
                                             <div class="intensity-bar" id="colorIntensityControl" role="group" aria-label="Color intensity: vivid on the left, muted on the right">
                                                 <button type="button" class="intensity-seg" data-intensity="100" title="Vivid (100%)" aria-label="Vivid"></button>
@@ -2127,11 +2162,15 @@
                 "--accent-hover": "#002299", "--success": "#006b2d", "--warning": "#8a4b00", "--danger": "#b00020"
             }
         };
+        // Three rows of eight: twenty vivid colors around the hue wheel, then four
+        // grays to finish the grid. Presets are saturated on purpose; anyone who
+        // wants a calmer look can lower the Color intensity bar.
         const THEME_PRESETS = [
-            { name: "Blue", hue: 209.2 }, { name: "Indigo", hue: 243 }, { name: "Purple", hue: 262 },
-            { name: "Pink", hue: 330 }, { name: "Red", hue: 4 }, { name: "Orange", hue: 28 },
-            { name: "Yellow", hue: 48 }, { name: "Green", hue: 142 }, { name: "Teal", hue: 174 },
-            { name: "Cyan", hue: 191 }, { name: "Sky", hue: 199 }, { name: "Rose", hue: 350 }
+            { name: "Red", color: "#ff0a0a" }, { name: "Vermilion", color: "#ff430a" }, { name: "Orange", color: "#ff7c0a" }, { name: "Amber", color: "#ffb60a" }, { name: "Yellow", color: "#ffe70a" }, { name: "Lime", color: "#adff0a" }, { name: "Green", color: "#0aff1f" }, { name: "Emerald", color: "#0aff91" },
+
+            { name: "Teal", color: "#0affde" }, { name: "Turquoise", color: "#0aebff" }, { name: "Cyan", color: "#0ac2ff" }, { name: "Sky", color: "#0a99ff" }, { name: "Azure", color: "#0a70ff" }, { name: "Blue", color: "#0a43ff" }, { name: "Indigo", color: "#230aff" }, { name: "Violet", color: "#740aff" },
+
+            { name: "Purple", color: "#ca0aff" }, { name: "Magenta", color: "#ff0ac2" }, { name: "Pink", color: "#ff0a74" }, { name: "Rose", color: "#ff0a33" }, { name: "Black", color: "#171717" }, { name: "Gray", color: "#5c5c5c" }, { name: "Silver", color: "#a3a3a3" }, { name: "White", color: "#f2f2f2" }
         ];
         function clampNum(v, min, max) {
             return Math.max(min, Math.min(max, v));
@@ -2300,7 +2339,7 @@
             root.setProperty("--on-accent", onAccent);
             const rgb = hexToRgb(newVals["--accent"]);
             root.setProperty("--accent-glow", `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.35)`);
-            markActiveSwatch(hexToHsl(activeColor).h);
+            markActiveSwatch(vividColor);
             syncThemeColorMeta();
         }
         function setCustomColor(hex) {
@@ -2372,20 +2411,37 @@
                 btn.classList.toggle("active", parseInt(btn.dataset.depth, 10) === uiDepth);
             });
         }
-        function markActiveSwatch(hue) {
+        function markActiveSwatch(hex) {
             const wrap = document.getElementById("themeSwatches");
             if (!wrap) return;
-            wrap.querySelectorAll(".theme-swatch").forEach((sw) => {
-                const swHue = parseFloat(sw.dataset.hue);
-                sw.classList.toggle("active", hue != null && Math.abs(swHue - hue) < 0.5);
+            const swatches = wrap.querySelectorAll(".theme-swatch");
+            swatches.forEach((sw) => sw.classList.remove("active"));
+            if (!hex) return;
+
+            const target = hexToRgb(hex);
+            let closest = null;
+            let closestDistance = Infinity;
+            swatches.forEach((sw) => {
+                const rgb = hexToRgb(sw.dataset.color);
+                const distance = Math.sqrt(
+                    (rgb.r - target.r) ** 2 +
+                    (rgb.g - target.g) ** 2 +
+                    (rgb.b - target.b) ** 2
+                );
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closest = sw;
+                }
             });
+            // Only mark a preset when a custom-picked color is genuinely close
+            // to it. This also lets the gray presets highlight correctly.
+            if (closest && closestDistance <= 28) closest.classList.add("active");
         }
         function renderThemeSwatches() {
             const wrap = document.getElementById("themeSwatches");
             if (!wrap) return;
             wrap.innerHTML = THEME_PRESETS.map((p) => {
-                const swatchColor = hslToHex(p.hue, 100, 55);
-                return `<button type="button" class="theme-swatch" data-hue="${p.hue}" title="${p.name}" style="background:${swatchColor}"></button>`;
+                return `<button type="button" class="theme-swatch" data-color="${p.color}" aria-label="${p.name} preset" title="${p.name} — ${p.color}" style="background:${p.color}"></button>`;
             }).join("");
         }
         function wireThemeColorPicker() {
@@ -2398,8 +2454,7 @@
             if (swatches) swatches.addEventListener("click", (e) => {
                 const sw = e.target.closest(".theme-swatch");
                 if (!sw) return;
-                const hue = parseFloat(sw.dataset.hue);
-                const hex = hslToHex(hue, 100, 55);
+                const hex = sw.dataset.color;
                 setCustomColor(hex);
                 if (input) input.value = hex;
             });
