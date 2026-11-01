@@ -17,31 +17,42 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
+          # Full history is required: generate_index.js reads it to get each
+          # file's real last-modified date.
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Generate file index
         run: node generate_index.js
 
+      - name: Check file index
+        run: |
+          node -e '
+            const i = JSON.parse(require("fs").readFileSync("file_index.json", "utf8"));
+            if (!i.stats || i.stats.files < 1) { console.error("file_index.json has no files"); process.exit(1); }
+            console.log("file_index.json OK:", i.stats.files, "files,", i.stats.dirs, "folders");
+          '
+
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v6
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: "."
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

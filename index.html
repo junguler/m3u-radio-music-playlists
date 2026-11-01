@@ -12,7 +12,6 @@
     <meta property="og:description" content="Browse and preview files from this repository directly in your browser." />
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect fill='%23121212' width='24' height='24'/%3E%3Crect fill='%239b5de5' x='2' y='5' width='20' height='14'/%3E%3Ccircle fill='%23121212' cx='8' cy='12' r='2.4'/%3E%3Ccircle fill='%23121212' cx='16' cy='12' r='2.4'/%3E%3Ccircle fill='%239b5de5' cx='8' cy='12' r='0.8'/%3E%3Ccircle fill='%239b5de5' cx='16' cy='12' r='0.8'/%3E%3Crect fill='%23121212' x='10' y='15.6' width='4' height='1.6'/%3E%3C/svg%3E" />
-    <script src="./hls.min.js" defer></script>
     
     <style>
         :root {
@@ -250,7 +249,7 @@
         .settings-btn { padding: 0.375rem; background: var(--control-surface); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--on-control); cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .settings-btn:hover { background: var(--control-surface-hover); border-color: var(--accent); }
         .settings-btn svg { width: 16px; height: 16px; }
-        .settings-menu { position: absolute; top: 100%; right: 0; margin-top: 0.375rem; min-width: 280px; z-index: 100; display: none; }
+        .settings-menu { position: absolute; top: 100%; right: 0; margin-top: 0.75rem; min-width: 280px; z-index: 100; display: none; }
         .settings-menu.active { display: block; }
         .settings-menu-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; }
         .settings-menu-header { display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 0.7rem; background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color); gap: 0.5rem; }
@@ -273,11 +272,14 @@
         .settings-eg { font-size: var(--data-size); line-height: 1.4; color: var(--text-muted); padding: 0.1rem 0 0.35rem; overflow-wrap: anywhere; }
         .settings-eg[hidden] { display: none; }
         .settings-row .sort-select { width: 8.5rem; flex-shrink: 0; }
+        .settings-row #sortSelect { width: 100%; }
         .settings-control { display: flex; gap: 0.25rem; }
         .settings-control button { padding: 0.25rem 0.5rem; background: var(--bg-tertiary); border: 1px solid var(--border-strong); border-radius: var(--radius-sm); color: var(--text-secondary); cursor: pointer; font-size: 0.75rem; }
         .settings-control button:hover { color: var(--text-primary); border-color: var(--accent); }
         .intensity-bar-wrap { display: flex; align-items: center; gap: 0.5rem; width: 100%; }
         .intensity-bar-label { font-size: var(--label-size); font-weight: 600; color: var(--text-muted); flex-shrink: 0; text-transform: uppercase; letter-spacing: var(--label-track); }
+        .intensity-bar-wrap > .intensity-bar-label:first-child { min-width: 3.5rem; }
+        .intensity-bar-wrap > .intensity-bar-label:last-child { min-width: 3.5rem; text-align: right; }
         .intensity-bar { display: flex; flex: 1; height: 1.6rem; border-radius: var(--radius-full); overflow: hidden; border: 1px solid var(--border-color); }
         .intensity-seg { flex: 1; border: none; border-right: 1px solid rgba(0, 0, 0, 0.15); cursor: pointer; padding: 0; position: relative; }
         .intensity-seg:last-child { border-right: none; }
@@ -287,12 +289,12 @@
            intensity bar (consistent control language), but each segment
            shows a live radius+shadow preview instead of a color swatch. */
         .depth-seg { background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; }
-        .depth-seg-preview { display: block; width: 15px; height: 15px; background: var(--on-control); opacity: 0.55; }
+        .depth-seg-preview { display: block; width: 16px; height: 16px; background: var(--on-control); opacity: 0.55; }
         .depth-seg[data-depth="1"] .depth-seg-preview { border-radius: 0; }
-        .depth-seg[data-depth="2"] .depth-seg-preview { border-radius: 4px; }
-        .depth-seg[data-depth="3"] .depth-seg-preview { border-radius: 8px; }
-        .depth-seg[data-depth="4"] .depth-seg-preview { border-radius: 12px; }
-        .depth-seg[data-depth="5"] .depth-seg-preview { border-radius: 16px; }
+        .depth-seg[data-depth="2"] .depth-seg-preview { border-radius: 2px; }
+        .depth-seg[data-depth="3"] .depth-seg-preview { border-radius: 4px; }
+        .depth-seg[data-depth="4"] .depth-seg-preview { border-radius: 6px; }
+        .depth-seg[data-depth="5"] .depth-seg-preview { border-radius: 8px; }
         .theme-toggle { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--bg-tertiary); border-radius: var(--radius); padding: 2px; gap: 2px; }
         .theme-btn { padding: 0.25rem 0.5rem; background: 0 0; border: none; color: var(--text-secondary); cursor: pointer; border-radius: var(--radius-sm); font-size: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.25rem; }
         .theme-btn:hover { background: var(--bg-hover); }
@@ -444,7 +446,7 @@
         .file-list .file-size { color: var(--text-muted); font-size: var(--data-size); flex-shrink: 0; }
         .file-list .file-thumbnail { display: none; }
         .list-columns { --list-cols: 24px 24px 1fr 70px 90px 100px 80px; }
-        .file-list-header { display: grid; grid-template-columns: var(--list-cols); gap: 0.5rem; padding: 0.4rem 0.5rem; margin-bottom: 2px; font-size: var(--label-size); font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); color: var(--text-muted); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; background: var(--bg-secondary); z-index: 5; }
+        .file-list-header { display: grid; grid-template-columns: var(--list-cols); gap: 0.5rem; padding: 0.4rem calc(0.75rem + 1px); margin-bottom: 2px; font-size: var(--label-size); font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); color: var(--text-muted); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; background: var(--bg-secondary); z-index: 5; }
         .file-list-header.stuck { margin-top: -0.75rem; padding-top: calc(0.4rem + 0.75rem); top: -0.75rem; }
         .file-list-header .col-star-spacer { width: 24px; }
         .file-list-header .col-icon-spacer { width: 24px; }
@@ -458,7 +460,7 @@
         .file-list.list-columns .col-ext, .file-list.list-columns .col-size, .file-list.list-columns .col-date, .file-list.list-columns .col-time { text-align: right; font-size: var(--data-size); line-height: 1.4; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         /* In list/tree mode the star sits inline as its own grid column
            rather than floating over the card content. */
-        .file-list.list-columns .card-star-btn { position: relative; opacity: 0.55; background: none; border: none; width: 24px; height: 24px; }
+        .file-list.list-columns .card-star-btn { position: relative; top: 0; right: auto; opacity: 0.55; background: none; border: none; width: 24px; height: 24px; }
         .file-list.list-columns .file-card:hover .card-star-btn, .file-list.list-columns .file-card:focus-within .card-star-btn { opacity: 0.8; }
         .file-list.list-columns .card-star-btn:hover, .file-list.list-columns .card-star-btn:focus-visible, .file-list.list-columns .card-star-btn.starred { opacity: 1; background: none; border: none; }
         /* Progressive column thinning as the window narrows, so columns never
@@ -597,17 +599,22 @@
         .player-info-btn.copied { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); }
         .preview-code { width: 100%; min-height: 100%; padding: 0.5rem; background: var(--bg-primary); }
         /* Preview text has its own size (Settings > Font Size > Preview text), independent of the interface size. */
-        .preview-code pre { font-family: var(--font-mono); font-size: var(--preview-font-size, 0.8rem); line-height: 1.5; tab-size: 4; }
+        .preview-code pre { font-family: var(--font-mono); font-size: var(--preview-font-size, 0.8rem); line-height: 1.4; tab-size: 4; }
         .preview-code pre code { font-family: inherit; font-size: inherit; line-height: inherit; }
         .preview-code.line-numbers pre { counter-reset: line; white-space: pre-wrap; overflow-wrap: anywhere; word-break: normal; }
         .preview-code.line-numbers pre .line { display: block; counter-increment: line; }
         .preview-code.line-numbers pre .line::before { content: counter(line); display: inline-block; width: 3em; margin-right: 1em; text-align: right; color: var(--text-muted); user-select: none; font-size: 0.9em; }
-        .preview-code pre code.hljs { background: transparent !important; padding: 0 !important; }
         .preview-pdf { width: 100%; height: 90vh; border: none; }
+        /* Skip link: off-screen until a keyboard user tabs to it. */
+        .skip-link { position: fixed; top: 0; left: 0; z-index: 100000; padding: 0.5rem 0.75rem; background: var(--accent-solid); color: var(--on-accent); text-decoration: none; transform: translateY(-120%); }
+        .skip-link:focus { transform: none; }
+        #main:focus { outline: none; }
         .preview-unavailable { text-align: center; padding: 2rem; color: var(--text-secondary); }
         .preview-unavailable svg { width: 40px; height: 40px; margin-bottom: 0.5rem; opacity: 0.5; }
         .preview-unavailable h3 { margin-bottom: 0.25rem; color: var(--text-primary); font-size: 1.05rem; font-weight: 700; }
         .download-btn { display: inline-flex; align-items: center; gap: 0.375rem; margin-top: 0.75rem; padding: 0.5rem 1rem; background: var(--accent-solid, var(--accent)); color: var(--on-accent); text-decoration: none; border-radius: var(--radius); font-weight: 500; font-size: 0.85rem; }
+        /* The generic ".preview-unavailable svg" rule (big, faded glyph) must not reach the button's own icon. */
+        .preview-unavailable .download-btn svg { width: 16px; height: 16px; margin: 0; opacity: 1; flex-shrink: 0; }
         .download-btn:hover { background: var(--accent-solid-hover, var(--accent-hover)); }
         .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; color: var(--text-secondary); }
         .spinner { width: 28px; height: 28px; border: 2px solid var(--border-color); border-top-color: var(--accent); border-radius: var(--radius-full); animation: spin 0.8s linear infinite; margin-bottom: 0.5rem; }
@@ -706,7 +713,7 @@
         .shortcuts-body { padding: 0.75rem 1rem 1rem; }
         .shortcuts-list { display: flex; flex-direction: column; gap: 0.6rem; }
         .shortcut-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-        .shortcut-row dt { display: flex; gap: 0.25rem; flex-shrink: 0; flex-wrap: wrap; }
+        .shortcut-row dt { display: flex; align-items: center; gap: 0.25rem; flex-shrink: 0; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-secondary); }
         .shortcut-row dd { color: var(--text-secondary); font-size: 0.85rem; text-align: right; }
         .stats-modal { max-width: 420px; }
         .stats-body { padding: 0.85rem 1rem 1rem; overflow-y: auto; }
@@ -748,9 +755,15 @@
         @media (max-width: 640px) {
             .modal:has(.playlist-bar.active) .modal-title { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; flex: none; }
             .modal:has(.playlist-bar.active) .modal-actions { margin-left: auto; }
-            #playlistBar .playlist-info, #playlistBar .bar-break { display: none; }
+            /* The station name is already under the glyph, so the info row carries what is not: the track number out of the total
+               and the stream status (on air / format / start time). It is its own full-width row under the controls, and may wrap
+               to a second line instead of cutting the status off. */
+            #playlistBar .bar-break { display: none; }
+            #playlistBar .playlist-info { display: block; order: 2; flex: 0 0 100%; min-width: 0; overflow: visible; white-space: normal; font-size: 0.8rem; line-height: 1.4; }
+            #playlistBar .playlist-track { display: inline; overflow: visible; }
+            #playlistBar .playlist-track .pl-title { display: none; }
+            #playlistBar .playlist-health { display: inline; overflow: visible; padding-left: 0; }
             #playlistBar .playlist-controls { margin-right: auto; }
-            body:not([data-btn-style="labels"]) #playlistBar { flex-wrap: nowrap; }
         }
         /* Recording panel: same bar language as the playlist bar above it. Left = what is happening, right = what you can press. */
         .rec-panel { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem 0.75rem; padding: 0.45rem 0.75rem; min-height: 2.55rem; box-sizing: border-box; background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color); }
@@ -817,7 +830,7 @@
         body.compact-density .file-list .file-card { padding: 0.3rem 0.6rem; gap: 0.4rem; }
         body.compact-density .file-list .file-icon { width: 20px; height: 20px; }
         body.compact-density .file-list .file-icon svg { width: 12px; height: 12px; }
-        body.compact-density .file-list-header { padding: 0.25rem 0.5rem; }
+        body.compact-density .file-list-header { padding: 0.25rem calc(0.6rem + 1px); }
         body.compact-density .tree-item { padding: 0.15rem 0.5rem; }
         body.compact-density .tree-pinned-item { padding: 0.15rem 0.5rem; }
         body.compact-density .stats-bar { margin-bottom: 0.3rem; }
@@ -883,6 +896,7 @@
             .preview-audio-container .np-stack:has(.np-song:not(:empty)) .playlist-now-playing { opacity: 0; visibility: hidden; }
         }
         @media (max-width: 640px) {
+            .preview-audio-container .np-stack .playlist-now-playing { font-size: 1.05rem; font-weight: 600; line-height: 1.35; letter-spacing: normal; text-transform: none; color: var(--text-primary); padding: 0 0.25rem; }
             .preview-audio-container .np-song { margin-top: 0.1rem; }
             .preview-audio-container .np-song:empty { height: 0; margin-top: 0; padding-top: 0; padding-bottom: 0; opacity: 0; }
             .preview-audio-container .np-stack { transition: margin-top 0.18s ease; }
@@ -951,12 +965,32 @@
         @media (pointer: coarse) { :root { --ctl: 2.25rem; } }
         .player-controls-row .playlist-btn:not(.player-play-btn), .playlist-bar .playlist-controls .playlist-btn, #modalContent .modal-actions .modal-btn:not(.play-playlist-btn):not(.text-btn) { width: var(--ctl); height: var(--ctl); min-width: 0; min-height: 0; padding: 0; flex-shrink: 0; }
         .playlist-bar .playlist-btn .btn-txt { padding-right: 0.2rem; }
+
+        /* --- Mobile: previews are full-screen pages; the player keeps desktop sizes and a fixed layout ---
+           Station name in the header (as on desktop). The song replaces the station name in one fixed slot, the status line is one fixed line,
+           the glyph and every control keep their normal size, and any spare room is simply empty. */
+        @media (max-width: 640px) {
+            #modal .modal { width: 100vw; max-width: 100vw; height: 100vh; height: 100dvh; max-height: 100vh; max-height: 100dvh; border: 0; padding-bottom: env(safe-area-inset-bottom, 0px); transform: translateY(1.25rem); transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.3s ease; opacity: 0; }
+            #modal.active .modal { transform: none; opacity: 1; }
+            .modal:has(.playlist-bar.active) .modal-title { position: static; width: auto; height: auto; margin: 0; clip-path: none; overflow: hidden; white-space: nowrap; flex: 1 1 0; min-width: 0; }
+            .modal:has(.playlist-bar.active) .modal-actions { margin-left: 0; }
+            #playlistBar .playlist-info { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 1.4em; }
+            .rec-panel:not([hidden]) { animation: recSlide 0.3s ease-out; overflow: hidden; }
+            @keyframes recSlide { from { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; min-height: 0; } to { max-height: 4rem; opacity: 1; } }
+            .modal-body > .preview-audio-container { height: 100%; box-sizing: border-box; justify-content: center; align-items: center; overflow-y: auto; }
+            .preview-audio-container .audio-icon { width: 152px; height: 152px; flex-shrink: 0; }
+                        .preview-audio-container .np-song { max-height: 4.5rem; overflow: hidden; transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease; }
+            .preview-audio-container .np-song:empty { height: auto; max-height: 0; }
+            .header-actions { flex: 1 1 100%; }
+            .search-container { flex: 1 1 auto; width: auto; min-width: 0; }
+        }
 </style>
 </head>
 <body>
     <svg style="display:none" aria-hidden="true">
         <symbol id="icon-x" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></symbol>
     </svg>
+    <a class="skip-link" id="skipLink" href="#main">Skip to files</a>
     <header class="header">
         <div class="header-content">
             <div class="logo" id="logoHome" role="button" tabindex="0" aria-label="Go to home folder">
@@ -1188,7 +1222,7 @@
             <div class="tree-header">Folders</div>
             <div class="tree-content" id="treeContent"></div>
         </aside>
-        <main class="main" id="main">
+        <main class="main" id="main" tabindex="-1">
             <div class="skeleton-list" aria-hidden="true">
                 <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name"></div><div class="skeleton-block skeleton-meta"></div></div>
                 <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:60%"></div><div class="skeleton-block skeleton-meta"></div></div>
@@ -1305,21 +1339,42 @@
     </div>
     <div id="srAnnouncer" class="sr-only" aria-live="polite" role="status"></div>
     <script>
+        // Browser storage can throw just by being touched (blocked site data,
+        // hardened Firefox, some private modes). `store` is localStorage when it
+        // works and an in-memory stand-in when it does not, so the page still opens.
+        const store = (() => {
+            try {
+                const ls = window.localStorage;
+                ls.getItem("__probe");
+                return ls;
+            } catch (err) {
+                const mem = new Map();
+                return {
+                    getItem: (k) => (mem.has(k) ? mem.get(k) : null),
+                    setItem: (k, v) => { mem.set(k, String(v)); },
+                    removeItem: (k) => { mem.delete(k); },
+                    clear: () => mem.clear(),
+                    key: (i) => Array.from(mem.keys())[i] ?? null,
+                    get length() { return mem.size; },
+                };
+            }
+        })();
+
         // -- Navigation / browsing state --
         let fileIndex = null,
             currentPath = [],
             currentView = "tree",
             expandedFolders = new Set([""]),
             allFiles = [],
+            filesByPath = new Map(),
             sortBy = "name-asc",
             suppressHashSync = false;
 
         // -- Search / listing state --
         let searchQuery = "",
-            searchResultLimit = 100,
-            // Larger page size for plain folder browsing since it has no
-            // ranking to lean on, unlike search results.
-            folderResultLimit = 300;
+            // Search results are paged (the whole repo can match thousands of
+            // files). Folders are NOT paged: a folder always shows everything in it.
+            searchResultLimit = 100;
 
         // -- Open file / playback state --
         let currentFilePath = "",
@@ -1912,18 +1967,18 @@
             if (!audioEl.paused) startAutoSwap(audioEl);
         }
         function loadSettings() {
-            const e = localStorage.getItem("theme");
+            const e = store.getItem("theme");
             e && e !== "auto"
                 ? document.documentElement.setAttribute("data-theme", e)
                 : document.documentElement.removeAttribute("data-theme");
-            const t = localStorage.getItem("fontSize");
+            const t = store.getItem("fontSize");
             t &&
                 ((currentFontSize = Math.max(12, Math.min(20, parseInt(t) || 16))),
                 document.documentElement.style.setProperty("--font-size-base", currentFontSize + "px")),
                 updateThemeButtons(),
                 updateFontSizeLabel();
             initPreviewFontSize();
-            const v = localStorage.getItem("viewMode");
+            const v = store.getItem("viewMode");
             if (v === "grid" || v === "list" || v === "tree") {
                 currentView = v;
                 document.querySelectorAll(".view-btn").forEach((btn) => {
@@ -1931,49 +1986,39 @@
                 });
                 document.getElementById("treePanel").classList.toggle("visible", v === "tree");
             }
-            const so = localStorage.getItem("sortBy");
+            const so = store.getItem("sortBy");
             if (so) sortBy = so;
             const sortSel = document.getElementById("sortSelect");
             if (sortSel) sortSel.value = sortBy;
-            const savedVolume = parseFloat(localStorage.getItem(VOL_KEY));
+            const savedVolume = parseFloat(store.getItem(VOL_KEY));
             if (!isNaN(savedVolume) && savedVolume >= 0 && savedVolume <= 1) currentVolume = savedVolume;
-            useNativePlayer = localStorage.getItem("useNativePlayer") === "1";
+            useNativePlayer = store.getItem("useNativePlayer") === "1";
             const nativeToggle = document.getElementById("nativePlayerToggle");
             if (nativeToggle) nativeToggle.checked = useNativePlayer;
-            skipDeadStreams = localStorage.getItem(SKIPDEAD_KEY) !== "0";
-            const btnStyle = ["labels", "icons"].includes(localStorage.getItem(BTNSTYLE_KEY)) ? localStorage.getItem(BTNSTYLE_KEY) : "default";
+            skipDeadStreams = store.getItem(SKIPDEAD_KEY) !== "0";
+            const btnStyle = ["labels", "icons"].includes(store.getItem(BTNSTYLE_KEY)) ? store.getItem(BTNSTYLE_KEY) : "default";
             document.body.dataset.btnStyle = btnStyle;
             const btnStyleSel = document.getElementById("btnStyleSel");
             if (btnStyleSel) btnStyleSel.value = btnStyle;
             const skipDeadToggle = document.getElementById("skipDeadToggle");
             if (skipDeadToggle) skipDeadToggle.checked = skipDeadStreams;
             document.body.classList.toggle("native-player-mode", useNativePlayer);
-            const compactDensity = localStorage.getItem("compactDensity") === "1";
+            const compactDensity = store.getItem("compactDensity") === "1";
             document.body.classList.toggle("compact-density", compactDensity);
             const compactToggle = document.getElementById("compactDensityToggle");
             if (compactToggle) compactToggle.checked = compactDensity;
-            const zebraOn = localStorage.getItem("zebraStriping") !== "0";
+            const zebraOn = store.getItem("zebraStriping") !== "0";
             document.documentElement.classList.toggle("no-zebra", !zebraOn);
             const zebraToggle = document.getElementById("zebraStripingToggle");
             if (zebraToggle) zebraToggle.checked = zebraOn;
-            const storedDepth = parseInt(localStorage.getItem(DEPTH_KEY), 10);
+            const storedDepth = parseInt(store.getItem(DEPTH_KEY), 10);
             uiDepth = [1, 2, 3, 4, 5].includes(storedDepth) ? storedDepth : 1;
             applyDepth(uiDepth, false);
             loadPinnedFolders();
             loadFavoriteFiles();
             initThemeColor();
             updateThemeButtons();
-            syncHljsTheme();
-        }
-        // Picks a highlight.js theme (github-dark or github light) based on
-        // the effective theme so code previews don't clash with the app's
-        // own light/dark mode. Only the token colors come from hljs — the
-        // background is overridden by CSS to stay consistent with the app.
-        function isLightTheme() {
-            const t = document.documentElement.getAttribute("data-theme");
-            if (t === "light" || t === "hc-light") return true;
-            if (t === "dark" || t === "hc-dark") return false;
-            return !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches);
+            syncThemeColorMeta();
         }
         // Keeps the mobile browser bar the same color as the app header.
         function syncThemeColorMeta() {
@@ -1981,15 +2026,6 @@
             if (!meta) return;
             const v = getComputedStyle(document.documentElement).getPropertyValue("--bg-secondary").trim();
             if (v) meta.setAttribute("content", v);
-        }
-        function syncHljsTheme() {
-            syncThemeColorMeta();
-            const link = document.getElementById("hljsTheme");
-            if (!link) return;
-            const href = isLightTheme()
-                ? "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
-                : "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css";
-            if (link.href !== href) link.href = href;
         }
         // Announces a short message to screen readers via the hidden
         // aria-live region, without visually changing anything. Clearing
@@ -2005,11 +2041,11 @@
         }
         function saveTheme(e) {
             e === "auto"
-                ? (localStorage.removeItem("theme"), document.documentElement.removeAttribute("data-theme"))
-                : (localStorage.setItem("theme", e), document.documentElement.setAttribute("data-theme", e)),
+                ? (store.removeItem("theme"), document.documentElement.removeAttribute("data-theme"))
+                : (store.setItem("theme", e), document.documentElement.setAttribute("data-theme", e)),
                 updateThemeButtons();
             if (vividColor) applyCustomColor();
-            syncHljsTheme();
+            syncThemeColorMeta();
         }
         function setupDropdown(btnId, menuId, dropdownId) {
             const btn = document.getElementById(btnId),
@@ -2269,7 +2305,7 @@
         }
         function setCustomColor(hex) {
             vividColor = hex;
-            localStorage.setItem(CUSTOM_COLOR_KEY, hex);
+            store.setItem(CUSTOM_COLOR_KEY, hex);
             document.documentElement.style.setProperty("--custom-theme-swatch", hex);
             applyCustomColor();
             renderIntensityBar();
@@ -2288,7 +2324,7 @@
         }
         function resetCustomColor() {
             vividColor = null;
-            localStorage.removeItem(CUSTOM_COLOR_KEY);
+            store.removeItem(CUSTOM_COLOR_KEY);
             clearCustomVars();
             document.documentElement.style.removeProperty("--custom-theme-swatch");
             syncThemeColorMeta();
@@ -2309,7 +2345,7 @@
         }
         function setColorIntensity(pct) {
             colorIntensity = pct;
-            localStorage.setItem(COLOR_INTENSITY_KEY, String(pct));
+            store.setItem(COLOR_INTENSITY_KEY, String(pct));
             updateColorIntensityUI();
             if (vividColor) applyCustomColor();
         }
@@ -2326,7 +2362,7 @@
             uiDepth = level;
             if (level === 1) document.documentElement.removeAttribute("data-depth");
             else document.documentElement.setAttribute("data-depth", String(level));
-            if (persist !== false) localStorage.setItem(DEPTH_KEY, String(level));
+            if (persist !== false) store.setItem(DEPTH_KEY, String(level));
             updateDepthUI();
         }
         function updateDepthUI() {
@@ -2382,17 +2418,17 @@
         function initThemeColor() {
             renderThemeSwatches();
             const input = document.getElementById("themeColorInput");
-            let storedIntensity = localStorage.getItem(COLOR_INTENSITY_KEY);
+            let storedIntensity = store.getItem(COLOR_INTENSITY_KEY);
             if (storedIntensity == null) {
                 // Migrate the old binary "Muted colors" toggle if it was set;
                 // otherwise fall back to the new default of 60%.
-                storedIntensity = localStorage.getItem(MUTED_COLORS_KEY) === "1" ? "20" : String(DEFAULT_COLOR_INTENSITY);
+                storedIntensity = store.getItem(MUTED_COLORS_KEY) === "1" ? "20" : String(DEFAULT_COLOR_INTENSITY);
             }
             const parsedIntensity = parseInt(storedIntensity, 10);
             colorIntensity = [20, 40, 60, 80, 100].includes(parsedIntensity) ? parsedIntensity : DEFAULT_COLOR_INTENSITY;
             updateColorIntensityUI();
             renderIntensityBar();
-            const storedColor = localStorage.getItem(CUSTOM_COLOR_KEY);
+            const storedColor = store.getItem(CUSTOM_COLOR_KEY);
             if (storedColor) {
                 vividColor = storedColor;
                 applyCustomColor();
@@ -2402,7 +2438,7 @@
             markActiveSwatch(null);
         }
         function updateThemeButtons() {
-            const e = localStorage.getItem("theme") || "auto";
+            const e = store.getItem("theme") || "auto";
             const customActive = !!vividColor;
             document.querySelectorAll(".theme-btn").forEach((t) => {
                 t.classList.toggle("active", t.dataset.theme === "custom" ? customActive : !customActive && t.dataset.theme === e);
@@ -2416,7 +2452,7 @@
         function changeFontSize(e) {
             (currentFontSize = Math.max(12, Math.min(20, currentFontSize + e))),
                 document.documentElement.style.setProperty("--font-size-base", currentFontSize + "px"),
-                localStorage.setItem("fontSize", currentFontSize),
+                store.setItem("fontSize", currentFontSize),
                 updateFontSizeLabel();
         }
         // Preview text (code / text file previews) has its own size, in rem, so it can sit
@@ -2433,14 +2469,21 @@
         }
         function initPreviewFontSize() {
             let stored = NaN;
-            try { stored = parseFloat(localStorage.getItem("previewFontSize")); } catch (e) {}
+            try { stored = parseFloat(store.getItem("previewFontSize")); } catch (e) {}
             previewFontSize = Number.isFinite(stored) ? clampPreviewFont(stored) : PREVIEW_FONT_DEFAULT;
             applyPreviewFontSize();
         }
         function changePreviewFontSize(dir) {
             previewFontSize = clampPreviewFont(previewFontSize + dir * PREVIEW_FONT_STEP);
-            try { localStorage.setItem("previewFontSize", String(previewFontSize)); } catch (e) {}
+            try { store.setItem("previewFontSize", String(previewFontSize)); } catch (e) {}
             applyPreviewFontSize();
+        }
+        // "1536" -> "1.5 KB". Same format the index generator used to store.
+        function formatFileSize(bytes) {
+            if (!bytes || bytes < 0) return "0 B";
+            const k = 1024, units = ["B", "KB", "MB", "GB", "TB"];
+            const i = Math.min(Math.floor(Math.log(bytes) / Math.log(k)), units.length - 1);
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + units[i];
         }
         function isPlaylistExtension(e) {
             const t = e.toLowerCase();
@@ -2472,6 +2515,12 @@
                 let dateObj = null;
                 try { dateObj = getItemDate(node); } catch (err) { dateObj = null; }
                 node.dateObj = dateObj;
+                // The index no longer stores a ready-made "1.2 MB" string
+                // (the page can make it from the byte size), so fill it in
+                // here once, on the tree node and on the flattened copy.
+                if (node.type === "file" && node.sizeFormatted === undefined) {
+                    node.sizeFormatted = formatFileSize(node.size);
+                }
                 allFiles.push({
                     ...node,
                     fullPath: currentPathStr,
@@ -2483,6 +2532,7 @@
                     parentPath: pathPrefix.toLowerCase(),
                     dateObj: dateObj
                 });
+                if (node.type === "file") filesByPath.set(currentPathStr, allFiles[allFiles.length - 1]);
                 if (node.type === "directory" && node.children) {
                     preprocessFiles(node.children, currentPathStr);
                 }
@@ -2839,8 +2889,10 @@
                 fileIndex = await response.json();
                 preprocessFiles(fileIndex.root);
                 setupEventListeners();
+                setupSkipLink();
                 setupIntersectionObserver();
                 navigateTo(hashToPath());
+                resetTabStart();
             } catch (err) {
                 console.error(err);
                 document.getElementById("main").innerHTML = `
@@ -2851,6 +2903,35 @@
           </div>
         `;
             }
+        }
+        // The link's href="#main" is only there for no-script fallback; clicking
+        // would put "#main" in the URL and the hash router would treat it as a
+        // folder path, so the click is handled here instead.
+        // The router rewrites the URL hash on load, and Chrome responds by moving the
+        // "where does Tab start" position past the header. Briefly focusing <body> puts it
+        // back at the top so the first Tab stop is the skip link. Nothing visible changes.
+        function resetTabStart() {
+            if (document.activeElement && document.activeElement !== document.body) return;
+            document.body.tabIndex = -1;
+            document.body.focus({ preventScroll: true });
+            document.body.removeAttribute("tabindex");
+        }
+        function setupSkipLink() {
+            const link = document.getElementById("skipLink");
+            if (!link) return;
+            link.addEventListener("click", (e) => {
+                e.preventDefault();
+                const target = document.querySelector("#main .file-card, #main .tree-item") || document.getElementById("main");
+                if (target) target.focus();
+            });
+        }
+        // While any dialog is open, the page behind it can't be reached by Tab,
+        // screen-reader browsing or clicks. Called right after each dialog is
+        // opened or closed (not via an observer) so that focus can be handed
+        // back to the page the same instant the dialog closes.
+        function syncBackgroundInert() {
+            const open = !!document.querySelector(".modal-overlay.active");
+            document.querySelectorAll(".header, .app-container").forEach((el) => { el.inert = open; });
         }
         function updateSearchClearVisibility() {
             const input = document.getElementById("search");
@@ -3046,24 +3127,24 @@
             document.getElementById("sortSelect").addEventListener("change", (e) => setSortBy(e.target.value));
             document.getElementById("nativePlayerToggle").addEventListener("change", (e) => {
                 useNativePlayer = e.target.checked;
-                localStorage.setItem("useNativePlayer", useNativePlayer ? "1" : "0");
+                store.setItem("useNativePlayer", useNativePlayer ? "1" : "0");
                 document.body.classList.toggle("native-player-mode", useNativePlayer);
             });
             document.getElementById("btnStyleSel").addEventListener("change", (e) => {
                 document.body.dataset.btnStyle = e.target.value;
-                try { localStorage.setItem(BTNSTYLE_KEY, e.target.value); } catch (err) {}
+                try { store.setItem(BTNSTYLE_KEY, e.target.value); } catch (err) {}
             });
             document.getElementById("skipDeadToggle").addEventListener("change", (e) => {
                 skipDeadStreams = e.target.checked;
-                localStorage.setItem(SKIPDEAD_KEY, skipDeadStreams ? "1" : "0");
+                store.setItem(SKIPDEAD_KEY, skipDeadStreams ? "1" : "0");
             });
             document.getElementById("compactDensityToggle").addEventListener("change", (e) => {
                 document.body.classList.toggle("compact-density", e.target.checked);
-                localStorage.setItem("compactDensity", e.target.checked ? "1" : "0");
+                store.setItem("compactDensity", e.target.checked ? "1" : "0");
             });
             document.getElementById("zebraStripingToggle").addEventListener("change", (e) => {
                 document.documentElement.classList.toggle("no-zebra", !e.target.checked);
-                localStorage.setItem("zebraStriping", e.target.checked ? "1" : "0");
+                store.setItem("zebraStriping", e.target.checked ? "1" : "0");
             });
             const depthControl = document.getElementById("depthControl");
             if (depthControl) depthControl.addEventListener("click", (e) => {
@@ -3321,7 +3402,7 @@
 
         function setView(e) {
             (currentView = e),
-                localStorage.setItem("viewMode", e),
+                store.setItem("viewMode", e),
                 document.querySelectorAll(".view-btn").forEach((t) => {
                     t.classList.toggle("active", t.dataset.view === e);
                 }),
@@ -3332,7 +3413,7 @@
                 render();
         }
         function setSortBy(e) {
-            (sortBy = e), localStorage.setItem("sortBy", e), syncSortUI(), render();
+            (sortBy = e), store.setItem("sortBy", e), syncSortUI(), render();
         }
         function getItemSize(item) {
             if (typeof item.size === "number") return item.size;
@@ -3465,7 +3546,6 @@
             currentPath = pathArr;
             searchQuery = "";
             document.getElementById("search").value = "";
-            folderResultLimit = 300;
             updateSearchClearVisibility();
             let accumulated = "";
             for (const segment of pathArr) {
@@ -3484,14 +3564,14 @@
         const PINNED_FOLDERS_KEY = "pinnedFolders";
         function loadPinnedFolders() {
             try {
-                const stored = JSON.parse(localStorage.getItem(PINNED_FOLDERS_KEY) || "[]");
+                const stored = JSON.parse(store.getItem(PINNED_FOLDERS_KEY) || "[]");
                 pinnedFolders = Array.isArray(stored) ? stored : [];
             } catch {
                 pinnedFolders = [];
             }
         }
         function savePinnedFolders() {
-            localStorage.setItem(PINNED_FOLDERS_KEY, JSON.stringify(pinnedFolders));
+            store.setItem(PINNED_FOLDERS_KEY, JSON.stringify(pinnedFolders));
         }
         function isPinned(pathArr) {
             const target = JSON.stringify(pathArr);
@@ -3597,14 +3677,14 @@
         const FAVORITE_FILES_KEY = "favoriteFiles";
         function loadFavoriteFiles() {
             try {
-                const stored = JSON.parse(localStorage.getItem(FAVORITE_FILES_KEY) || "[]");
+                const stored = JSON.parse(store.getItem(FAVORITE_FILES_KEY) || "[]");
                 favoriteFiles = Array.isArray(stored) ? stored : [];
             } catch {
                 favoriteFiles = [];
             }
         }
         function saveFavoriteFiles() {
-            localStorage.setItem(FAVORITE_FILES_KEY, JSON.stringify(favoriteFiles));
+            store.setItem(FAVORITE_FILES_KEY, JSON.stringify(favoriteFiles));
         }
         function isFavoriteFile(path) {
             return favoriteFiles.includes(path);
@@ -3644,7 +3724,7 @@
                 return;
             }
             const rows = favoriteFiles.map((path) => {
-                const item = allFiles.find((f) => f.type === "file" && f.fullPath === path);
+                const item = filesByPath.get(path);
                 const name = item ? item.name : path.substring(path.lastIndexOf("/") + 1);
                 const iconType = item ? (getFileIconType(item.name) || item.category || "other") : "other";
                 const pathAttr = escapeHtml(path);
@@ -3693,7 +3773,7 @@
             return { onClick, onKeydown };
         }
         function openFavoriteFile(path) {
-            const fileItem = allFiles.find((f) => f.type === "file" && f.fullPath === path);
+            const fileItem = filesByPath.get(path);
             openFile(path, fileItem ? fileItem.category : "", fileItem ? fileItem.name : path.substring(path.lastIndexOf("/") + 1));
         }
         const favoriteFilesHandlers = makePinnedListHandlers({
@@ -3849,8 +3929,7 @@
             } else {
                 all = sortItems(getCurrentItems());
             }
-            const activeLimit = searchQuery ? searchResultLimit : folderResultLimit;
-            const visibleItems = all.slice(0, activeLimit);
+            const visibleItems = searchQuery ? all.slice(0, searchResultLimit) : all;
 
             if (searchQuery) {
                 announce(all.length === 0 ? `No results for "${searchQuery}"` : `${all.length} result${all.length === 1 ? "" : "s"} for "${searchQuery}"`);
@@ -3876,19 +3955,19 @@
         <div class="stats-bar">
           <span class="stat">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6z"/></svg>
-            ${fileCount} files ${all.length > visibleItems.length ? `(showing ${visibleItems.length} of ${all.length})` : ""}
+            ${fileCount} ${fileCount === 1 ? "file" : "files"} ${all.length > visibleItems.length ? `(showing ${visibleItems.length} of ${all.length})` : ""}
           </span>
           <span class="stat">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
-            ${folderCount} folders
+            ${folderCount} ${folderCount === 1 ? "folder" : "folders"}
           </span>
         </div>
         <div class="main-content">
-          <div class="${listClass}" id="fileItems" role="grid">
+          <div class="${listClass}" id="fileItems">
           ${
               isColumnView && !searchQuery
                   ? `
-            <div class="file-list-header" role="row">
+            <div class="file-list-header">
               <span class="col-star-spacer" aria-hidden="true"></span>
               <span class="col-icon-spacer" aria-hidden="true"></span>
               <span class="col col-name" data-sort="name">Name<span class="sort-arrow"></span></span>
@@ -3998,8 +4077,7 @@
             const loadMoreBtn = document.getElementById("loadMoreBtn");
             if (loadMoreBtn) {
                 loadMoreBtn.addEventListener("click", () => {
-                    if (searchQuery) searchResultLimit += 100;
-                    else folderResultLimit += 300;
+                    searchResultLimit += 100;
                     render();
                 });
             }
@@ -4062,7 +4140,14 @@
             if (currentPlaylist.length > 0) {
                 e.classList.add("active");
                 const item = currentPlaylist[currentPlaylistIndex];
-                t.textContent = `${currentPlaylistIndex + 1}/${currentPlaylist.length}: ${item.title}`;
+                t.textContent = "";
+                const plNum = document.createElement("span");
+                plNum.className = "pl-num";
+                plNum.textContent = `${currentPlaylistIndex + 1}/${currentPlaylist.length}`;
+                const plTitle = document.createElement("span");
+                plTitle.className = "pl-title";
+                plTitle.textContent = `: ${item.title}`;
+                t.append(plNum, plTitle);
                 let prevDisabled, nextDisabled;
                 if (isShuffle) {
                     (prevDisabled = shuffleHistory.length <= 1), (nextDisabled = currentPlaylist.length <= 1);
@@ -4254,8 +4339,31 @@
                 isPlaylistFile &&
                     (document.getElementById("playPlaylistBtn").classList.remove("hidden"), showPlaylistAsText());
         }
+        // Text fetched for playlists and previews is cached so reopening a file
+        // is instant, but the cache is bounded (entry count and total size) so a
+        // long session through big playlists can't grow memory without limit.
+        // Map iteration order is insertion order, so deleting the first key
+        // evicts the least recently used entry (hits re-insert their key).
+        const FETCH_CACHE_MAX_ENTRIES = 24;
+        const FETCH_CACHE_MAX_CHARS = 24 * 1024 * 1024;
+        let fetchCacheChars = 0;
+        function fetchCacheSet(url, text) {
+            if (fetchCache.has(url)) fetchCacheChars -= fetchCache.get(url).length;
+            fetchCache.delete(url);
+            fetchCache.set(url, text);
+            fetchCacheChars += text.length;
+            while (fetchCache.size > 1 && (fetchCache.size > FETCH_CACHE_MAX_ENTRIES || fetchCacheChars > FETCH_CACHE_MAX_CHARS)) {
+                const oldest = fetchCache.keys().next().value;
+                fetchCacheChars -= fetchCache.get(oldest).length;
+                fetchCache.delete(oldest);
+            }
+        }
         async function fetchTextCached(url) {
-            if (fetchCache.has(url)) return fetchCache.get(url);
+            if (fetchCache.has(url)) {
+                const hit = fetchCache.get(url);
+                fetchCacheSet(url, hit);
+                return hit;
+            }
             const response = await fetch(url);
             if (!response.ok) {
                 const err = new Error(`HTTP ${response.status}`);
@@ -4263,89 +4371,86 @@
                 throw err;
             }
             const text = await response.text();
-            fetchCache.set(url, text);
+            fetchCacheSet(url, text);
             return text;
         }
-        // Maps common file extensions to highlight.js language aliases.
-        // Falls back to hljs's own auto-detection if the extension isn't
-        // recognized, and to plain escaped text if hljs isn't available at all.
-        const EXT_TO_HLJS_LANG = {
-            js: "javascript", mjs: "javascript", cjs: "javascript", jsx: "javascript",
-            ts: "typescript", tsx: "typescript",
-            py: "python", rb: "ruby", php: "php", go: "go", rs: "rust",
-            java: "java", kt: "kotlin", swift: "swift", c: "c", h: "c",
-            cpp: "cpp", cc: "cpp", hpp: "cpp", cs: "csharp",
-            sh: "bash", bash: "bash", zsh: "bash", ps1: "powershell",
-            html: "xml", htm: "xml", xml: "xml", svg: "xml",
-            css: "css", scss: "scss", less: "less",
-            json: "json", jsonc: "json", yml: "yaml", yaml: "yaml",
-            toml: "ini", ini: "ini", md: "markdown", markdown: "markdown",
-            sql: "sql", dockerfile: "dockerfile", makefile: "makefile",
-            lua: "lua", r: "r", pl: "perl", diff: "diff", patch: "diff",
-        };
-        function guessHljsLanguage(fileName) {
-            if (!window.hljs || !fileName) return null;
-            const base = fileName.toLowerCase();
-            const ext = base.includes(".") ? base.split(".").pop() : base;
-            const lang = EXT_TO_HLJS_LANG[ext];
-            return lang && hljs.getLanguage(lang) ? lang : null;
-        }
-        // highlight.js returns one HTML string with <span> tags that can span
-        // multiple lines. Splitting naively on "\n" would leave unclosed tags
-        // dangling, so this walks the markup and reopens/closes spans at each
-        // line boundary, letting each line wrap in its own <span class="line">
-        // for the CSS-counter line numbers.
-        function splitHighlightedHtml(html) {
-            const rawLines = html.split("\n");
-            const tagRegex = /<span class="([^"]*)">|<\/span>/g;
-            let openTags = [];
-            const result = [];
-            for (const line of rawLines) {
-                const prefix = openTags.map((cls) => `<span class="${cls}">`).join("");
-                const stack = [...openTags];
-                tagRegex.lastIndex = 0;
-                let match;
-                while ((match = tagRegex.exec(line))) {
-                    if (match[0] === "</span>") stack.pop();
-                    else stack.push(match[1]);
-                }
-                result.push(prefix + line + "</span>".repeat(stack.length));
-                openTags = stack;
+        // Used only for on-screen previews. Playlists still go through
+        // fetchTextCached above, because parsing them needs every byte; a
+        // preview only needs the top of the file, so a huge file is cut off
+        // after MAX_PREVIEW_BYTES instead of being downloaded whole and then
+        // thrown away. Resolves to { text, truncated }.
+        const MAX_PREVIEW_BYTES = 2 * 1024 * 1024;
+        async function fetchTextPreview(url) {
+            if (fetchCache.has(url)) return { text: await fetchTextCached(url), truncated: false };
+            const response = await fetch(url);
+            if (!response.ok) {
+                const err = new Error(`HTTP ${response.status}`);
+                err.status = response.status;
+                throw err;
             }
-            return result;
-        }
-        function renderTextPreview(container, text, fileName) {
-            const MAX_LINES = 1e4;
-            const allLines = text.split("\n");
-            const lines = allLines.slice(0, MAX_LINES);
-            const truncated = allLines.length > MAX_LINES;
-            const lang = guessHljsLanguage(fileName);
-
-            let highlightedLines;
-            if (lang) {
-                try {
-                    highlightedLines = lines.map(escapeHtml);
-                } catch (e) {
-                    console.warn("Syntax highlighting failed, falling back to plain text:", e);
-                    highlightedLines = lines.map(escapeHtml);
-                }
+            if (!response.body || !response.body.getReader) {
+                const all = await response.text();
+                if (all.length <= MAX_PREVIEW_BYTES) { fetchCacheSet(url, all); return { text: all, truncated: false }; }
+                return { text: all.slice(0, MAX_PREVIEW_BYTES), truncated: true };
+            }
+            const reader = response.body.getReader();
+            const chunks = [];
+            let received = 0, truncated = false;
+            for (;;) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                chunks.push(value);
+                received += value.length;
+                if (received > MAX_PREVIEW_BYTES) { truncated = true; reader.cancel().catch(() => {}); break; }
+            }
+            const bytes = new Uint8Array(received);
+            let off = 0;
+            for (const c of chunks) { bytes.set(c, off); off += c.length; }
+            let text = new TextDecoder("utf-8").decode(truncated ? bytes.subarray(0, MAX_PREVIEW_BYTES) : bytes);
+            if (truncated) {
+                // Drop the last, probably half-cut, line.
+                const cut = text.lastIndexOf("\n");
+                if (cut > 0) text = text.slice(0, cut + 1);
             } else {
-                highlightedLines = lines.map(escapeHtml);
+                fetchCacheSet(url, text);
             }
-
-            const rendered = highlightedLines.map((l) => `<span class="line">${l}</span>`).join("\n");
+            return { text, truncated };
+        }
+        // Plain-text preview with line numbers. Each line is its own block
+        // <span> that carries its own trailing newline. The newline must live
+        // INSIDE the span: a bare "\n" text node between two block spans is
+        // laid out as an extra empty line box, which doubled the spacing
+        // between every line. Keeping it inside also means the preview's
+        // textContent (and so copy/paste) is still the original text.
+        const MAX_PREVIEW_LINES = 1e4;
+        function renderTextPreview(container, text, fileName, byteTruncated) {
+            let allLines = text.split("\n");
+            // A file that ends in a newline is not one line longer.
+            if (allLines.length > 1 && allLines[allLines.length - 1] === "") allLines.pop();
+            const lineTruncated = allLines.length > MAX_PREVIEW_LINES;
+            const lines = lineTruncated ? allLines.slice(0, MAX_PREVIEW_LINES) : allLines;
+            const rendered = lines
+                .map((l) => `<span class="line">${escapeHtml(l.endsWith("\r") ? l.slice(0, -1) : l)}\n</span>`)
+                .join("");
+            let notice = "";
+            if (byteTruncated) {
+                // The file itself is longer than what was downloaded, so an "of N lines" total would be wrong.
+                notice = `Showing the first ${lines.length.toLocaleString()} lines (previews stop at ${formatFileSize(MAX_PREVIEW_BYTES)})`;
+            } else if (lineTruncated) {
+                notice = `Showing first ${MAX_PREVIEW_LINES.toLocaleString()} of ${allLines.length.toLocaleString()} lines`;
+            }
             container.innerHTML = `
-        ${truncated ? `<div class="truncation-notice">Showing first ${MAX_LINES.toLocaleString()} of ${allLines.length.toLocaleString()} lines — download the file to see the rest.</div>` : ""}
-        <div class="preview-code line-numbers${lang ? " hljs" : ""}">
-          <pre><code class="hljs">${rendered}</code></pre>
+        ${notice ? `<div class="truncation-notice">${notice} \u2014 download the file to see the rest.</div>` : ""}
+        <div class="preview-code line-numbers">
+          <pre><code>${rendered}</code></pre>
         </div>
       `;
         }
         async function showPlaylistAsText() {
             const e = `./${encodePathForUrl(currentFilePath)}`;
             try {
-                const text = await fetchTextCached(e);
-                renderTextPreview(document.getElementById("modalBody"), text, currentFileName);
+                const { text, truncated } = await fetchTextPreview(e);
+                renderTextPreview(document.getElementById("modalBody"), text, currentFileName, truncated);
             } catch (err) {
                 showUnavailable(document.getElementById("modalBody"), currentFileName, e, err);
             }
@@ -4376,11 +4481,9 @@
         const NOCORS_KEY = "noCorsHosts";
         const SKIPDEAD_KEY = "skipDeadStreams";
         const BTNSTYLE_KEY = "playerBtnStyle";
-        const HEALTH_LABEL = { good: "On air", weak: "Weak", bad: "Off air", blocked: "Blocked" };
 
         let skipDeadStreams = true;
         let playSession = null; // state of the track that is playing right now
-        let playSeq = 0;
         let failStreak = 0; // consecutive tracks that failed to start
         let npJob = null; // now-playing poller for the current track
         let healthTest = null; // the running "test playlist" job, if any
@@ -5325,7 +5428,7 @@
         // ---- songs heard ---------------------------------------------------
         function loadSongs() {
             try {
-                const a = JSON.parse(localStorage.getItem(SONGS_KEY) || "[]");
+                const a = JSON.parse(store.getItem(SONGS_KEY) || "[]");
                 songsHeard = Array.isArray(a) ? a : [];
             } catch (e) {
                 songsHeard = [];
@@ -5333,7 +5436,7 @@
         }
         function saveSongs() {
             try {
-                localStorage.setItem(SONGS_KEY, JSON.stringify(songsHeard));
+                store.setItem(SONGS_KEY, JSON.stringify(songsHeard));
             } catch (e) {}
         }
         function recordSong(title, station) {
@@ -5366,11 +5469,13 @@
             rememberModalFocus("songsModal");
             renderSongsList();
             document.getElementById("songsModal").classList.add("active");
-            document.getElementById("songsCloseBtn").focus();
+            syncBackgroundInert();
+            focusWhenReady("songsCloseBtn", "songsModal");
         }
         function closeSongsModal() {
             disarmClearSongs();
             document.getElementById("songsModal").classList.remove("active");
+            syncBackgroundInert();
             restoreModalFocus("songsModal");
         }
         function saveSongsList() {
@@ -5806,14 +5911,16 @@
             rememberModalFocus("recModal");
             renderRecList();
             recEl("recModal").classList.add("active");
-            recEl("recCloseBtn").focus();
+            syncBackgroundInert();
+            focusWhenReady("recCloseBtn", "recModal");
         }
         function closeRecModal() {
             recEl("recModal").classList.remove("active");
+            syncBackgroundInert();
             restoreModalFocus("recModal");
         }
         function recInit() {
-            try { Object.assign(recOpt, JSON.parse(localStorage.getItem(RECOPT_KEY) || "{}")); } catch (e) {}
+            try { Object.assign(recOpt, JSON.parse(store.getItem(RECOPT_KEY) || "{}")); } catch (e) {}
             const ids = ["recSplitSel", "recMinSel", "recKeepToggle", "recTagsToggle", "recDirToggle", "recStampToggle", "recStampFmtSel", "recStampPosSel"];
             if (!REC_STAMP_FMTS.some((f) => f[0] === recOpt.stampFmt)) recOpt.stampFmt = "number";
             if (recOpt.stampPos !== "after") recOpt.stampPos = "before";
@@ -5840,7 +5947,7 @@
                 recOpt.keep = recEl("recKeepToggle").checked; recOpt.tags = recEl("recTagsToggle").checked; recOpt.dir = recEl("recDirToggle").checked;
                 recOpt.stamp = recEl("recStampToggle").checked; recOpt.stampFmt = recEl("recStampFmtSel").value; recOpt.stampPos = recEl("recStampPosSel").value;
                 stampUi();
-                try { localStorage.setItem(RECOPT_KEY, JSON.stringify(recOpt)); } catch (e) {}
+                try { store.setItem(RECOPT_KEY, JSON.stringify(recOpt)); } catch (e) {}
             }));
             recEl("playlistRec").addEventListener("click", recRecordClick);
             recEl("recPanel").addEventListener("click", (e) => {
@@ -5879,7 +5986,7 @@
         }
         function loadNoCorsHosts() {
             try {
-                const a = JSON.parse(localStorage.getItem(NOCORS_KEY) || "[]");
+                const a = JSON.parse(store.getItem(NOCORS_KEY) || "[]");
                 if (Array.isArray(a)) a.forEach((h) => noCorsHosts.add(h));
             } catch (e) {}
         }
@@ -5887,7 +5994,7 @@
             if (!host || noCorsHosts.has(host)) return;
             noCorsHosts.add(host);
             try {
-                localStorage.setItem(NOCORS_KEY, JSON.stringify(Array.from(noCorsHosts).slice(-500)));
+                store.setItem(NOCORS_KEY, JSON.stringify(Array.from(noCorsHosts).slice(-500)));
             } catch (e) {}
         }
         loadSongs();
@@ -6035,7 +6142,7 @@
                 el.volume = volToEl(currentVolume);
                 el.onvolumechange = (ev) => {
                     currentVolume = elToVol(ev.target.volume);
-                    localStorage.setItem(VOL_KEY, currentVolume);
+                    store.setItem(VOL_KEY, currentVolume);
                 };
                 if (cors) setupAudioNormalization(el);
                 setupMediaSession(el, title);
@@ -6233,7 +6340,7 @@
                     announce("Press play to start.");
                 }
             };
-            if (typeof Hls !== "undefined" && Hls.isSupported() && (lower.includes(".m3u8") || lower.includes("application/x-mpegurl"))) {
+            const startHls = () => {
                 session.usesHls = true;
                 const hls = new Hls();
                 currentHls = hls;
@@ -6266,13 +6373,36 @@
                         }
                     });
                 }
-            } else {
+            };
+            const startNative = () => {
                 session.usesHls = false;
                 el.src = url;
                 el.load();
                 const p = el.play();
                 if (p && p.catch) p.catch(onBlocked);
+            };
+            // hls.js (about 540 KB) is only fetched the first time an .m3u8 stream is played.
+            if (!lower.includes(".m3u8")) return startNative();
+            if (typeof Hls !== "undefined") return Hls.isSupported() ? startHls() : startNative();
+            loadHlsLib().then(() => {
+                if (playSession !== session) return; // moved on while the library was loading
+                if (typeof Hls !== "undefined" && Hls.isSupported()) startHls();
+                else startNative();
+            });
+        }
+        let hlsLibPromise = null;
+        function loadHlsLib() {
+            if (typeof Hls !== "undefined") return Promise.resolve();
+            if (!hlsLibPromise) {
+                hlsLibPromise = new Promise((resolve) => {
+                    const sc = document.createElement("script");
+                    sc.src = "./hls.min.js";
+                    sc.onload = resolve;
+                    sc.onerror = () => { hlsLibPromise = null; sc.remove(); resolve(); };
+                    document.head.appendChild(sc);
+                });
             }
+            return hlsLibPromise;
         }
         async function playPlaylistTrack(e) {
             if (e < 0 || e >= currentPlaylist.length) return;
@@ -6360,7 +6490,8 @@
             else playPlaylistBtn.classList.add("hidden");
             document.getElementById("modalContent").classList.remove("video-modal", "compact-modal");
             modalEl.classList.add("active");
-            requestAnimationFrame(() => document.getElementById("closeBtn").focus());
+            syncBackgroundInert();
+            focusWhenReady("closeBtn", "modal");
             const o = fileUrlAttr;
             try {
                 switch (fileType) {
@@ -6383,7 +6514,7 @@
                         const singleVideo = bodyEl.querySelector('video');
                         if (singleVideo) {
                             singleVideo.volume = volToEl(currentVolume);
-                            singleVideo.onvolumechange = (e) => { currentVolume = elToVol(e.target.volume); localStorage.setItem(VOL_KEY, currentVolume); };
+                            singleVideo.onvolumechange = (e) => { currentVolume = elToVol(e.target.volume); store.setItem(VOL_KEY, currentVolume); };
                             setupAudioNormalization(singleVideo);
                             setupMediaSession(singleVideo, fileName);
                             maybeWireMediaControls(singleVideo);
@@ -6408,7 +6539,7 @@
                         const singleAudio = bodyEl.querySelector('audio');
                         if (singleAudio) {
                             singleAudio.volume = volToEl(currentVolume);
-                            singleAudio.onvolumechange = (e) => { currentVolume = elToVol(e.target.volume); localStorage.setItem(VOL_KEY, currentVolume); };
+                            singleAudio.onvolumechange = (e) => { currentVolume = elToVol(e.target.volume); store.setItem(VOL_KEY, currentVolume); };
                             setupAudioNormalization(singleAudio);
                             setupMediaSession(singleAudio, fileName);
                             maybeWireMediaControls(singleAudio);
@@ -6435,8 +6566,8 @@
                     case "data":
                     case "text":
                         try {
-                            const text = await fetchTextCached(fileUrl);
-                            renderTextPreview(bodyEl, text, fileName);
+                            const { text, truncated } = await fetchTextPreview(fileUrl);
+                            renderTextPreview(bodyEl, text, fileName, truncated);
                             bodyEl.classList.add("scrollable");
                         } catch (err) {
                             showUnavailable(bodyEl, fileName, fileUrl, err);
@@ -6520,9 +6651,27 @@
                 }
             }
         }
+        // Moves keyboard focus onto a dialog's close button right after the dialog opens.
+        // A direct .focus() call (or one attempt on the next frame) silently fails because
+        // the dialog is still fading in and cannot take focus yet, which left keyboard focus
+        // on the page behind it. So the call is retried briefly until it sticks, and
+        // abandoned if the dialog gets closed first.
+        function focusWhenReady(buttonId, dialogId) {
+            const btn = document.getElementById(buttonId);
+            const dialog = document.getElementById(dialogId);
+            if (!btn || !dialog) return;
+            let tries = 0;
+            const attempt = () => {
+                if (!dialog.classList.contains("active")) return;
+                btn.focus();
+                if (document.activeElement !== btn && ++tries < 12) setTimeout(attempt, 50);
+            };
+            requestAnimationFrame(attempt);
+        }
         function closeModal() {
             const modalEl = document.getElementById("modal");
             modalEl.classList.remove("active");
+            syncBackgroundInert();
 
             endPlaySession();
             cancelHealthTest();
@@ -6575,10 +6724,12 @@
         function openShortcutsModal() {
             rememberModalFocus("shortcutsModal");
             document.getElementById("shortcutsModal").classList.add("active");
-            document.getElementById("shortcutsCloseBtn").focus();
+            syncBackgroundInert();
+            focusWhenReady("shortcutsCloseBtn", "shortcutsModal");
         }
         function closeShortcutsModal() {
             document.getElementById("shortcutsModal").classList.remove("active");
+            syncBackgroundInert();
             restoreModalFocus("shortcutsModal");
         }
         // Human-readable byte size, matching the units getItemSize() already
@@ -6661,10 +6812,12 @@
             rememberModalFocus("statsModal");
             renderLibraryStats();
             document.getElementById("statsModal").classList.add("active");
-            document.getElementById("statsCloseBtn").focus();
+            syncBackgroundInert();
+            focusWhenReady("statsCloseBtn", "statsModal");
         }
         function closeStatsModal() {
             document.getElementById("statsModal").classList.remove("active");
+            syncBackgroundInert();
             restoreModalFocus("statsModal");
         }
         // Percent-encodes a repo-relative path one segment at a time so "/" is
@@ -6675,13 +6828,13 @@
             return String(path).split("/").map(encodeURIComponent).join("/");
         }
         // Escapes a string for safe use in both HTML text and attribute
-        // values. The textContent/innerHTML round-trip alone only escapes
-        // &, <, > — quotes are escaped here too so callers are also safe to
-        // drop into a quoted attribute (e.g. a filename with a literal ' or ").
+        // values (&, <, >, " and '), so callers can also drop the result into
+        // a quoted attribute (e.g. a filename with a literal ' or "). A plain
+        // string replace: the old version built a DOM element on every call,
+        // which added up fast (one per line in a 10,000-line preview).
+        const HTML_ESCAPES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
         function escapeHtml(e) {
-            const t = document.createElement("div");
-            t.textContent = e;
-            return t.innerHTML.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+            return (e == null ? "" : String(e)).replace(/[&<>"']/g, (c) => HTML_ESCAPES[c]);
         }
 
         // Wraps the parts of `name` that matched `rawQuery` in <mark> tags for
