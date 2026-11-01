@@ -3,6 +3,10 @@
 http://radio-aadalen.no-ip.net:8000/
 #EXTINF:-1,Radio Midtsjælland
 http://player.radiomidt.dk/
+#EXTINF:-1,NM Radio
+http://5.56.158.246:8000/stream
+#EXTINF:-1,Bispebjerg Lokalradio
+https://netradio.blra.dk/
 #EXTINF:-1,Radio Victoria
 https://stream.probroadcast.dk/victoria
 #EXTINF:-1,Radio Mælkebøtten
@@ -15,20 +19,12 @@ http://live-bauerdk.sharp-stream.com/DK_HQ_RP17.aac
 http://live-bauerdk.sharp-stream.com/DK_HQ_RP15.aac
 #EXTINF:-1,Mix 7
 https://live-bauerdk.sharp-stream.com/Mix7.mp3
-#EXTINF:-1,myROCK
-http://edge-bauerdk-02-thn.sharp-stream.com/myrock_dk_mereradio_mp3?
 #EXTINF:-1,myROCK Legends Of Rock
 http://live-bauerdk.sharp-stream.com/DK_HQ_RP19.aac
-#EXTINF:-1,NOVA
-http://edge-bauerdk-05-gos2.sharp-stream.com/nova_dk_mereradio_mp3?
 #EXTINF:-1,NOVA 100% Dansk
 http://live-bauerdk.sharp-stream.com/DK_HQ_RP11.aac
 #EXTINF:-1,NOVA Top 40
 http://live-bauerdk.sharp-stream.com/DK_HQ_RP12.aac
-#EXTINF:-1,Pop FM Danmark
-http://edge-bauerdk-05-gos2.sharp-stream.com/popfm_dk_mereradio_mp3?
-#EXTINF:-1,Radio Soft
-http://edge-bauerdk-03-gos2.sharp-stream.com/radiosoft_dk_mereradio_mp3?
 #EXTINF:-1,Radio Soft Classic
 http://live-bauerdk.sharp-stream.com/DK_HQ_RP08.aac
 #EXTINF:-1,Radio SLR Holbæk
@@ -67,6 +63,8 @@ https://stream.probroadcast.dk/guldcountrymp3
 https://stream.probroadcast.dk/evergreensmp3
 #EXTINF:-1,Radio Helsingør
 https://stream.radiohelsingor.dk/rh
+#EXTINF:-1,Radio Odsherred
+http://87.104.40.139:88/broadwave.mp3?src=1
 #EXTINF:-1,Arctic Outpost
 https://radio.streemlion.com:3590/stream
 #EXTINF:-1,DR P1
@@ -103,6 +101,8 @@ https://live-bauerdk.sharp-stream.com/thevoice_dk_mp3
 https://live-bauerdk.sharp-stream.com/radio100_dk_mp3
 #EXTINF:-1,2town Radio
 http://streaming.radio.co/sd9d980ff0/listen
+#EXTINF:-1,ANR
+http://stream.anr.dk/anr
 #EXTINF:-1,Classic Rock København
 http://stream.wlmm.dk/classicrockkbhmp3
 #EXTINF:-1,Danmarks Radio P4; Trekanten
@@ -130,6 +130,7 @@ https://live-bauerdk.sharp-stream.com/DK_HQ_RP11.aac
 #EXTINF:-1,Party Fm
 http://stream1.partyfm.dk/Party320
 #EXTINF:-1,PartyFM
+http://stream1.partyfm.dk/Party320
 #EXTINF:-1,Radio ABC
 http://radioserver.dk/abc
 #EXTINF:-1,Radio ALR
@@ -137,7 +138,7 @@ http://streamer.radio.co/s6a9beb92e/listen
 #EXTINF:-1,Radio Playback
 http://stream02.radioplayback.dk/stream
 #EXTINF:-1,Radio4
-http://25453.live.streamtheworld.com/RADIO4.mp3
+http://25693.live.streamtheworld.com/RADIO4_ABR.mp3
 #EXTINF:-1,Retro Radio
 http://stream128.retro-radio.dk/retro
 #EXTINF:-1,Retro-Radio Millennium
@@ -153,13 +154,13 @@ https://tangocopenhagen.stream.laut.fm/tangocopenhagen?t302=2021-01-15_18-47-40\
 #EXTINF:-1,TechnoBase.FM - AACplus 96k
 http://listener1.aach.tb-group.fm/tb-high.aac
 #EXTINF:-1,TechnoBase.FM - MP3 192k
-http://listener3.mp3.tb-group.fm/tb.mp3
+http://listener1.mp3.tb-group.fm/tb.mp3
 #EXTINF:-1,The Lake Radio
 http://hyades.shoutca.st:8627/
+#EXTINF:-1,Vinylhits.dk
+http://stream.vinylhits.dk/vinylmp3
 #EXTINF:-1,VIPradio Christmas
 http://149.56.175.167:5505//stream.mp3
-#EXTINF:-1,WEBFM
-https://webfm.dk/
 #EXTINF:-1,WMR - World Music Radio
 https://stream.probroadcast.dk/wmr
 #EXTINF:-1,World Music Radio
@@ -170,13 +171,14 @@ http://radiojazzcopenhagen.out.airtime.pro:8000/radiojazzcopenhagen_a
 https://streaming.radio.co/sd9d980ff0/listen
 #EXTINF:-1,Radio Marlab
 https://marlab.radioca.st/
-#EXTINF:-1,Myrock
-http://live-bauerdk.sharp-stream.com/myrock.mp3
 #EXTINF:-1,Radio 100FM
 http://live-bauerdk.sharp-stream.com/100fm_live.mp3
 #EXTINF:-1,WEB fm
+https://webfm.dk/
 #EXTINF:-1,Radio Limfjord 107.8
 http://stream1.partyfm.dk/Party256
+#EXTINF:-1,Retro Radio Jul
+http://stream.anr.dk:80/anr
 #EXTINF:-1,Globus Guld - Juleradio
 http://media.wlmm.dk:80/julstream/1
 #EXTINF:-1,DR P7 Mix
@@ -205,23 +207,30 @@ https://energyzuerich.ice.infomaniak.ch/energyzuerich-high.mp3
 http://192.95.18.39:5352/
 #EXTINF:-1,Nova Fm
 https://live-bauerdk.sharp-stream.com/nova_dk_mp3
+#EXTINF:-1,VinylHits DK
+https://stream.vinylhits.dk/vinylmp3
 #EXTINF:-1,Go FM
 https://radioserver.dk/gofm
 #EXTINF:-1,Tango Copenhagen
 https://tangocopenhagen.stream.laut.fm/tangocopenhagen?ref=web-app&ampt302=2019-05-25_10-30-14&ampuuid=308ff919-984e-4b3d-b0df-48acbd73b4a1
 #EXTINF:-1,902FM Det Nye Radio Ballerup
-https://s25.myradiostream.com:15246/listen.mp3?nocache=1787610259
+https://s25.myradiostream.com:15246/listen.mp3?nocache=1793032476
 #EXTINF:-1,Rock kanalen
 https://stream.kanalplus.fm/kp128
 #EXTINF:-1,MYROCK
 https://live-bauerdk.sharp-stream.com/myrock_dk_mp3
 #EXTINF:-1,Party FM Denmark
 https://stream1.partyfm.dk/Party128
+#EXTINF:-1,ANR Demo
+https://stream.anr.dk/anr
 #EXTINF:-1,Music For Dreams
 https://s2.radio.co/s0f2948883/listen
 #EXTINF:-1,Fri Born
 https://s2.radio.co/s8367afdd8/listen
+#EXTINF:-1,Radio Schubert
+http://51.255.235.165:5128/:
 #EXTINF:-1,WEB FM
+https://webfm.dk/
 #EXTINF:-1,Radio RKHS
 https://rkhs.stream.laut.fm/rkhs?t302=2019-04-01_11-21-05&ampuuid=8324ebd9-962f-4bad-9fd1-05c7cac74f7c
 #EXTINF:-1,Radio Humleborg
@@ -229,13 +238,17 @@ http://ca6.rcast.net:4058/
 #EXTINF:-1,Radio Boost 104.5
 https://rbx2.hnux.com/http://149.202.22.75:8066/
 #EXTINF:-1,Team FM 104.7
-http://22323.live.streamtheworld.com/TEAMFMFRIESLAND.mp3
+http://28983.live.streamtheworld.com/TEAMFMFRIESLAND.mp3
 #EXTINF:-1,Radio Fonio
 https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1,Oest FM
 https://stream.probroadcast.dk/oestfmmp3
 #EXTINF:-1,Radio Alfa Ostjylland
 https://radioserver.dk/alfa
+#EXTINF:-1,Streamsound World
+http://51.255.235.165:5088/
+#EXTINF:-1,Streamsound Klassisk
+http://51.255.235.165:5400/stream/0/
 #EXTINF:-1,Radio Alfa Silkeborg
 http://radioserver.dk//silkeborg
 #EXTINF:-1,We Love Music Radio
@@ -255,7 +268,7 @@ http://10336.cloudrad.io:9010/live
 #EXTINF:-1,Radio Soft Modern
 https://live-bauerdk.sharp-stream.com/DK_HQ_RP09.aac
 #EXTINF:-1,Team FM 1047
-http://22723.live.streamtheworld.com/TEAMFMFRIESLAND.mp3
+http://22323.live.streamtheworld.com/TEAMFMFRIESLAND.mp3
 #EXTINF:-1,UCB MEDIA
 https://s2.radio.co/s6f04f551c/listen
 #EXTINF:-1,Universitetsradioen
@@ -277,21 +290,21 @@ https://s4.radio.co/s4902de73b/listen
 #EXTINF:-1,La Gente - Radio La Primerísima Listen live
 https://polaris.hostingnica.net/9000/server
 #EXTINF:-1,American Sixties Radio Listen live
-https://strw3.openstream.co/877?aw_0_1st.collectionid%3D3671%26stationId%3D3671%26publisherId%3D901%26k%3D1787610292
+https://strw3.openstream.co/877?aw_0_1st.collectionid%3D3671%26stationId%3D3671%26publisherId%3D901%26k%3D1793032538
 #EXTINF:-1,PartyFM Listen live
 https://stream1.partyfm.dk/Party128web
 #EXTINF:-1,Pop FM Listen live
 https://live-bauerdk.sharp-stream.com/popfm_dk_mp3
 #EXTINF:-1,Vaterstettener Welle Listen live
-https://vaterstettenerwelle.stream.laut.fm/vaterstettenerwelle?ref=radiode&t302=2026-08-24_22-24-52&uuid=dc820e3e-3148-412a-a4d4-97f93e365d7c
+https://vaterstettenerwelle.stream.laut.fm/vaterstettenerwelle?t302=2026-10-26_17-35-35&ref=radiode&uuid=1e026719-4f32-7639-0951-64e19892c3b7
 #EXTINF:-1,inspirationofsounds Listen live
-https://inspirationofsounds.stream.laut.fm/inspirationofsounds?ref=radiode&t302=2026-08-24_22-24-52&uuid=5676bd4f-aced-4322-b5de-88d6deb45c01
+https://inspirationofsounds.stream.laut.fm/inspirationofsounds?t302=2026-10-26_17-35-40&ref=radiode&uuid=d706d376-f8ae-baca-b702-1d3a1fbe3078
 #EXTINF:-1,365 Grad Listen live
-https://365grad.stream.laut.fm/365grad?t302=2026-08-24_22-24-52&uuid=77b97d4e-95a6-407b-b376-7ce8d19884a6
+https://365grad.stream.laut.fm/365grad?t302=2026-10-26_17-35-40&uuid=4d3fd9b2-8de3-2fe9-790a-043385133fb0
 #EXTINF:-1,Radio M Listen live
 https://radioserver.dk/radiom
 #EXTINF:-1,Kinderrockradio Listen live
-https://kinderrockradio.stream.laut.fm/kinderrockradio?ref=radiode&t302=2026-08-24_22-24-53&uuid=ccd845c6-b690-48ed-a798-d51c14bfec2f
+https://kinderrockradio.stream.laut.fm/kinderrockradio?t302=2026-10-26_17-35-43&ref=radiode&uuid=efdd9cf6-9d2f-76bb-1c53-3077f69b205b
 #EXTINF:-1,Radio Retro DK Listen live
 https://rbx2.hnux.com/http://149.202.22.75:9010/
 #EXTINF:-1,Radio Silkeborg Listen live
@@ -299,62 +312,43 @@ https://radioserver.dk/silkeborg
 #EXTINF:-1,Radio Skive Listen live
 https://radioserver.dk/skive
 #EXTINF:-1,ms2 Listen live
-https://ms2.stream.laut.fm/ms2?ref=radiode&t302=2026-08-24_22-24-54&uuid=4a0da9fb-cd12-4e77-9013-7ed0cb6dd5e6
+https://ms2.stream.laut.fm/ms2?t302=2026-10-26_17-35-44&ref=radiode&uuid=dd16c3dd-62df-f243-025f-b1145aed9dd1
 #EXTINF:-1,SAMS Radio 1 Listen live
 https://s2.radio.co/s418cc827e/listen
 #EXTINF:-1,Radio SOLO Listen live
 https://radioserver.dk/solo
 #EXTINF:-1,Radio4 Listen live
-https://28553.live.streamtheworld.com/RADIO4.mp3
+https://25703.live.streamtheworld.com/RADIO4_ABR.mp3
 #EXTINF:-1,Retro Radio Listen live
 https://streammp3.retro-radio.dk/retro-mp3?type=.mp3
 #EXTINF:-1,WEBfm Listen live
+https://webfm.dk/
 #EXTINF:-1,World Music Radio Listen live
 https://stream.probroadcast.dk/wmrmp3
 #EXTINF:-1,Radio Valle 90.7 Fm Listen live
-https://27403.live.streamtheworld.com/VALLEAAC.aac
+https://26573.live.streamtheworld.com/VALLEAAC.aac
 #EXTINF:-1,Velvet 96,8 fm Listen live
 https://metromedia.live24.gr/velvet968thess?ver=208945
 #EXTINF:-1,101FM - Oldies Listen live
 https://0-24oldiespoprock.stream.laut.fm/0-24_oldies_pop_rock
 #EXTINF:-1,RauteMusik - Karneval Listen live
-https://rautemusik.stream25.radiohost.de/rm-karneval_mp3-192?ref=rm5beta&upd-meta&upd-scheme=https&_art=dD0xNzg3NjEwNTk3JmQ9MTU0OTViMTMyMTBiYWI5OWUzMjc
+https://rautemusik.stream48.radiohost.de/rm-karneval_mp3-192?ref=rm5beta&upd-meta&upd-scheme=https&_art=dD0xNzkzMDMyODUwJmQ9ZWUwMzg3N2M5YmIxODEzYjA2MDI
 #EXTINF:-1,Rádio Feliz FM - Rio de Janeiro Listen live
 https://cloud1.cdnseguro.com:27436/
 #EXTINF:-1,remix-party Listen live
-https://remix-party.stream.laut.fm/remix-party?ref=radiode&t302=2026-08-24_22-24-58&uuid=e7dbb6f7-1b9e-4d0c-b851-6b02a4de8d2b
-#EXTINF:-1,BB RADIO - Deutsche Hits Listen live
-https://irmedia.streamabc.net/irm-bbrdeutsch-mp3-192-4502242?sABC=6n8pp4on%230%23r2r286202186250sqo54352r08195q5p%23jro&aw_0_1st.playerid=web&amsparams=playerid:web;skey:1787610298
+https://remix-party.stream.laut.fm/remix-party?t302=2026-10-26_17-35-51&ref=radiode&uuid=3a80bcae-bdd9-4ca1-6662-176cba8824bd
 #EXTINF:-1,Русские Песни - 101.ru Listen live
 https://pub0101.101.ru/stream/pro/aac/64/41
 #EXTINF:-1,Radio 870 UCR Listen live
 https://master.letio.com/io/?gs=8124&type=live.m3u8
-#EXTINF:-1,FAIL-RADIO Listen live
-https://failradio.stream.laut.fm/failradio?ref=radiode&t302=2026-08-24_22-25-00&uuid=2f814044-a72c-4c12-b779-05a34e854627
-#EXTINF:-1,the-world-wont-listen Listen live
-https://the-world-wont-listen.stream.laut.fm/the-world-wont-listen?ref=radiode&t302=2026-08-24_22-25-00&uuid=62a53bf8-08f6-4247-bf0d-2f194177bb3d
-#EXTINF:-1,Nova
-https://live-bauerdk.sharp-stream.com/popfm128.mp3
-#EXTINF:-1,MyRock
-https://live-bauerdk.sharp-stream.com/myrock.mp3
-#EXTINF:-1,Soft
-https://live-bauerdk.sharp-stream.com/soft_live.mp3
-#EXTINF:-1,Pop FM 80'er
-https://live-bauerdk.sharp-stream.com/popfm80.mp3
-#EXTINF:-1,Jazz
-https://radiojazzcopenhagen.out.airtime.pro/radiojazzcopenhagen_a
-#EXTINF:-1,Music For Dreams Radio
-http://s2.radio.co/s0f2948883/listen
-#EXTINF:-1,902FM - Det Nye Radio Ballerup
-http://s25.myradiostream.com:15246/
-#EXTINF:-1,Uniradioen
-http://uniradio.out.airtime.pro:8000/uniradio_a
+#EXTINF:-1,DR Ramasjang
+http://162.244.80.106:11332/stream
 #EXTINF:-1,UCB Media
 http://s2.radio.co/s6f04f551c/listen
 #EXTINF:-1,ClassicROCK København
 http://stream.wlmm.dk/classicrockkbhmp3/
 #EXTINF:-1,RADIO4
-http://22593.live.streamtheworld.com/RADIO4.mp3
+http://25553.live.streamtheworld.com/RADIO4.mp3
 #EXTINF:-1,ClassicROCK Østjylland
 http://stream.wlmm.dk/classicrockarhmp3/
 #EXTINF:-1,DR P4 Sjaelland
@@ -369,10 +363,6 @@ http://ss.norea.dk:8080/
 http://stream.wlmm.dk/skagafm/
 #EXTINF:-1,PartyRadio
 http://studio26.radiolize.com:8020/radio.mp3
-#EXTINF:-1,Nanoq FM
-https://getnanoq.retro-radio.dk/Nanoq-TX-1
-#EXTINF:-1,Classic Rock Oestjylland
-http://stream.wlmm.dk/classicrockarhmp3
 #EXTINF:-1,Det Rigtige Faaborg
 http://stream.wlmm.dk/detrigtigefaaborg
 #EXTINF:-1,DR P3 93.9 FM
@@ -407,6 +397,10 @@ https://radioserver.dk/alfaviborg
 http://stream.wlmm.dk:80/902fmmp3
 #EXTINF:-1,Radio F 97.7 FM
 http://c14.radioboss.fm:18228/stream
+#EXTINF:-1,Radio Nibenitten 90.9 FM
+http://87.104.40.139:88/broadwave.mp3
+#EXTINF:-1,Radio Ringkøbing
+http://51.255.235.165:5128/stream
 #EXTINF:-1,Radio SNR
 http://10326.cloudrad.io:9056/
 #EXTINF:-1,Radio Sydhavsøerne 87.8 FM
@@ -423,6 +417,8 @@ http://stream.probroadcast.dk/radioviva
 http://195.215.168.146:9200/
 #EXTINF:-1,RKHS laut.fm
 http://rkhs.stream.laut.fm/rkhs?ref=vtuner
+#EXTINF:-1,RødovreKanalen 105.9
+http://roedovrekanalen.dk:8000/stream.mp3
 #EXTINF:-1,Tango Copenhagen laut.fm
 http://tangocopenhagen.stream.laut.fm/tangocopenhagen?ref=vtuner
 #EXTINF:-1,NOVA FM
@@ -436,101 +432,27 @@ http://stream.wlmm.dk/radiokoege/
 #EXTINF:-1,Radio MidtSjælland
 http://87.116.35.221/broadwave.mp3
 #EXTINF:-1,Radio Tango Copenhagen
-http://tangocopenhagen.stream.laut.fm/tangocopenhagen?autoplay=1&t302=2026-08-24_22-25-21&uuid=6b541939-c3d2-427b-aa90-8ce577003e34
-#EXTINF:-1,SBS Discovery – Radio 100
-http://edge-bauerdk-03-gos2.sharp-stream.com/radio100_dk_mp3?
+http://tangocopenhagen.stream.laut.fm/tangocopenhagen?t302=2026-10-26_17-38-47&autoplay=1&uuid=240510fc-3831-2ce0-c28e-78d08238b8a3
+#EXTINF:-1,radio stoholm
+https://melissa.sissa.dk/radio/8010/RS320MP3.mp3
 #EXTINF:-1,80s Hits
 http://stream.wlmm.dk/902fmmp3
 #EXTINF:-1,ANR Radio
 https://sonicssl.namehost.ro/8520/stream.dk
-#EXTINF:-1,DRP4
-http://live-icy.gss.dr.dk/A/A08H.mp3
-#EXTINF:-1,Globus Guld - Nord
-http://stream.wlmm.dk:8000/stream/1/
-#EXTINF:-1,Globus Guld - Syd
-http://stream.wlmm.dk:8000/stream/3/
-#EXTINF:-1,Globus Guld Jul
-http://stream.wlmm.dk/jul
-#EXTINF:-1,Radio Alfa Elvis Radio
-https://radioserver.dk/alwayselvisradio
-#EXTINF:-1,Radio Happy DK
-http://ca6.rcast.net:4058/stream.mp3
-#EXTINF:-1,Radio M
-https://marlab.radioca.st/stream
-#EXTINF:-1,Radio Roende
-http://media.wlmm.dk:80/djurs
-#EXTINF:-1,SkagaFM
-http://stream.wlmm.dk/skagafm
-#EXTINF:-1,Radio Helsingor
-http://stream.radiohelsingor.dk/rh
-#EXTINF:-1,Club Riva Lounge Radio
-https://stream.rcs.revma.com/bzf2f8mpshruv
-#EXTINF:-1,Radio ALFA Juleradio
-http://radioserver.dk//alfaevent
-#EXTINF:-1,Radi Antena Shqip
-http://s38.myradiostream.com:8598/
-#EXTINF:-1,Globus Guld - Vejen/Billund
-http://stream.wlmm.dk:8000/stream/6/
-#EXTINF:-1,tangocopenhagen
-https://tangocopenhagen.stream.laut.fm/tangocopenhagen?ref=radiode&t302=2026-08-24_22-25-31&uuid=ef8b0385-b1cd-4e56-8ec1-708695c8602e
-#EXTINF:-1,Retro-Radio JUL
-https://tx-1.retro-radio.dk/TX-1
-https://tx-2.retro-radio.dk/TX-2
-#EXTINF:-1,Radio Soft - Modern
-https://live-bauerdk.sharp-stream.com/radiosoft_dk_mp3
-#EXTINF:-1,2TOWN RADIO
-https://streaming.radio.co:80/sd9d980ff0/listen
-#EXTINF:-1,Globus Guld - Aabenraa 106.7 FM
-#EXTINF:-1,Radio 100 Kalundborg 106.2 FM
-https://live-bauerdk.sharp-stream.com/radio100_dk_mp3?
-https://stream02.radioplayback.dk/stream
-#EXTINF:-1,Radio Alfa Juleradio
-https://radioserver.dk/alfaevent
-#EXTINF:-1,Radio24syv
-#EXTINF:-1,Radio Alfa Østjylland
-https://radioserver.dk/abc
-#EXTINF:-1,Globus Guld – Haderslev – South Denmark – DK
-http://stream.wlmm.dk/globusguld.m3u
-#EXTINF:-1,Nordic Lodge Copenhagen – Aalborg – North Denmark – DK
-http://radio.streemlion.com:1160/stream
-#EXTINF:-1,Radio Vesterbo – Copenhagen – Capital Region – DK
-https://www.radiovesterbro.dk/images/vesterbro.m3u
-#EXTINF:-1,Partyradio – Sønderborg – South Denmark – DK
-https://studio26.radiolize.com/radio/8020/radio.mp3
-#EXTINF:-1,Globus Guld Country – DK
-http://stream.probroadcast.dk/guldcountrymp3
+#EXTINF:-1,Radio Klassisk Dansk
+http://51.255.235.165:5400/
+#EXTINF:-1,Radio-Langeland
+http://195.215.168.146:9200/live
 #EXTINF:-1,Radio Kultur – 97.7 FM – DK-147
 http://198.7.62.157:8278/
-#EXTINF:-1,Retro-Radio – Copenhagen – Capital Region – DK
-https://streammp3.retro-radio.dk/retro-mp3
-#EXTINF:-1,Nanoq FM – Nuuk – Sermersooq – DK
-http://getnanoq.retro-radio.dk/Nanoq-TX-1
-#EXTINF:-1,Radio Øst FM – 107.2 FM – Nordby – South Denmark – DK
-http://stream.wlmm.dk:80/oestfmmp3
 #EXTINF:-1,ABINAYAM FM – Copenhagen – Capital Region – DK
 http://192.99.170.8:5756/
-#EXTINF:-1,Din Radio Fyn – 103.5 FM – Odense – South Denmark – DK
-http://stream.wlmm.dk:80/DinRadioOdense
-#EXTINF:-1,Humleborg Online – Fredensborg – Capital Region – DK
-http://stream.wlmm.dk/humleborg.m3u
-#EXTINF:-1,Globus Gold Tønder – Tønder – South Denmark – DK
-http://stream.wlmm.dk:8000/guldtoendermp3
-#EXTINF:-1,Danmark Vågner Radio 432Hz.dk – Royalty Free Music – DK
-https://radio.danmarkvaagner.dk:8000/radio.mp3
-#EXTINF:-1,Radio Soft Classic – Copenhagen – Capital Region – DK
-https://live-bauerdk.sharp-stream.com/DK_HQ_RP08.aac
-#EXTINF:-1,Radio Skive – Skive – Central Jutland – DK
-http://radioserver.dk/skive
-#EXTINF:-1,Radio Viva – 98.0 FM – Fredericia – South Denmark – DK
-http://stream.wlmm.dk/radiovivaaac
 #EXTINF:-1,DR P4 Midt & Vest – Holstebro – Central Jutland – DK
 http://live-icy.gss.dr.dk/A/A09L.mp3
 #EXTINF:-1,DR P4 Bornholm – Rønne – Capital Region – DK
 http://live-icy.gss.dr.dk/A/A06L.mp3
 #EXTINF:-1,DR P4 Østjyllands – Aarhus – Central Jutland – DK
 http://live-icy.gss.dr.dk/A/A14H.mp3
-#EXTINF:-1,Radio Kolding – 103.8 FM – Kolding – South Denmark – DK
-https://s4.radio.co/sf3f766dec/listen
 #EXTINF:-1,Radio ALR – 95.0 FM – Aarhus – Central Jutland – DK
 https://streamer.radio.co/s6a9beb92e/listen
 #EXTINF:-1,DR P4 Esbjerg – Esbjerg – South Denmark – DK
@@ -558,6 +480,7 @@ http://stream.wlmm.dk:80/DinRadioKBH
 #EXTINF:-1,Victoria Christmas – DK
 https://stream.probroadcast.dk/victoriajulmp3
 #EXTINF:-1,WEB FM – Copenhagen – Capital Region – DK
+https://webfm.dk/
 #EXTINF:-1,The Voice Throwback – Copenhagen – Capital Region – DK
 https://live-bauerdk.sharp-stream.com/DK_HQ_RP17.aac
 #EXTINF:-1,LUMI Radio Aalborg – Nørresundby – North Denmark – DK
@@ -590,10 +513,14 @@ https://northernsounds.stream.laut.fm/northernsounds
 https://stream.probroadcast.dk/hnrmp3
 #EXTINF:-1,Funny Radio
 https://my3.radiolize.com:8030/radio.mp3
+#EXTINF:-1,Radio Schubert radio
+http://51.255.235.165:5128/stream/0/
 #EXTINF:-1,DR P3 radio
 http://live-icy.gss.dr.dk/A/A05L.mp3
 #EXTINF:-1,Det Rigtige Faaborg radio
 http://stream.wlmm.dk/detrigtigefaaborgaac
+#EXTINF:-1,Streamsound World radio
+http://51.255.235.165:5088/stream/0/
 #EXTINF:-1,Radio Humleborg Jazzkanalen
 http://stream.wlmm.dk/humleborg
 #EXTINF:-1,Radio Soft - Classic
@@ -605,19 +532,15 @@ http://media.wlmm.dk:80/jul
 #EXTINF:-1,Easy FM
 https://lumiradio.dk/LRAAL.m3u
 #EXTINF:-1,Aqua Radio
-https://stream02.pcradio.app/Aqua-med
+https://stream06.pcradio.app/Aqua-med
 #EXTINF:-1,Radio Alfa
 http://radioserver.dk//alfa
-#EXTINF:-1,Radio Alborz , Persian
-http://edge-bauerdk-06-thn.sharp-stream.com/myrock_dk_tunein_mp3?
 #EXTINF:-1,Global FM
 http://media.wlmm.dk:80/skagafm
 #EXTINF:-1,Funky Vibes FM
 http://149.202.22.75:8066/;
 #EXTINF:-1,Classic Pop
 http://live2.rcast.net:8722/;stream
-#EXTINF:-1,Radio Strax
-https://playoutonestreaming.com/proxy/strax?mp=/stream
 #EXTINF:-1,Vinylhits
 http://198.7.62.157:8278/;
 #EXTINF:-1,DR P4 Midt &amp; Vest
@@ -632,42 +555,22 @@ https://c14.radioboss.fm:18228/stream
 https://www.dr.dk/newsweek-quiz/transcoded/Nyhedsquizzen_dbf837a4-8e79-4b7c-ac83-91b0b8fe03a2-high.mp4
 #EXTINF:-1,Radio S FM
 http://media.wlmm.dk/sfm?type=.mp3
-#EXTINF:-1,Lost in the 80s
-https://ec2.yesstreaming.net:2840/stream
-#EXTINF:-1,The Voice K-Pop
-https://live-bauerdk.sharp-stream.com/RP36_premium_96.aac
 #EXTINF:-1,Radio4 - R4DIO
 https://thelakeradio.radioca.st/stream/1/
 #EXTINF:-1,Radio Nord FM 98,6
 https://stream1.partyfm.dk/Party256
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/2AJ4J.png",Aalborg Senior Radio
 http://live-icy.gslb01.dr.dk:80/A/A03H.mp3
-#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/AQU8X.png",DR P4 Nordjylland
-http://live-icy.gss.dr.dk/A/A10L.mp3
-#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/O2HHIT.png",DR P5
-http://live-icy.gss.dr.dk:80/A/A25H.mp3
-#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/SC9KT.png",Globus Guld
-http://media.wlmm.dk:80/globus.aac
-#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/7QGKYH.png",go!FM
-http://radioserver.dk/gofm
-#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/7SNNBH.png",Kanal Plus
-http://stream.dbmedia.se/kp128
-#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/2S6WK3.png",NOVA
-http://edge-bauerdk-02-thn.sharp-stream.com/nova_dk_tunein_mp3?
-#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/9X813.png",Øst FM
-http://stream.wlmm.dk/oestfmmp3
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/Z9GN1N.png",Kringvarp Føroya
+http://netvarp.kringvarp.fo:443/uvhm
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/S1P34S.png",Radio ABC
+http://radioserver.dk/abc
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/09OKJS.png",Radio Limfjord
 http://media.wlmm.dk/limfjord
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/MXW94.png",Radio SydhavsØerne
 https://netradio.dk/
-#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/YXCQNP.png",Radio Tango Copenhagen
-https://tangocopenhagen.stream.laut.fm/tangocopenhagen?t302=2026-08-24_22-26-38&uuid=567ef19a-ce38-4646-a9aa-266185efa643
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/RZ6EXJ.png",Skaga FM
 http://media.wlmm.dk/skagafm
-#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/AGGQP8.png",SN.dk
-#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/station-logo-no.png",The Voice
-http://edge-bauerdk-05-gos2.sharp-stream.com/thevoice_dk_tunein_mp3?
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/42116/logo_WuPgXCQ57P.png",Meditation Radio
 https://live-bauerdk.sharp-stream.com/RP12_premium_96.aac
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41904/logo_Dl93lt6ROu.png",Radio 100 - Premium
@@ -706,36 +609,8 @@ https://str01.fluidstream.net/Fluid01_7210.aac
 https://live-bauerdk.sharp-stream.com/RP20_premium_96.aac
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41906/logo_QKD3HrdPI5.png",R&amp;B Modern Radio
 https://live-bauerdk.sharp-stream.com/DK_HQ_RP34.aac
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/42015/logo_zxs0vsEhQv.png",DR P4 Sjælland Radio
-https://drliveradio1.akamaized.net/hls/live/2097651/p4sjaelland/masterab.m3u8
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/42032/logo_nsQ8HjpuaE.png",Radio Alfa Midtjylland
 https://radioserver.dk/alfamidt
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/42052/logo_0HThU16f4H.png",Solo FM Radio
-https://radioserver.dk/solosilk
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41952/logo_sbF1JjTE4Q.png",XERS Radio
-https://cheetah.streemlion.com:3940/stream
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41953/logo_WgugOQo7l1.png",Radio Fløde
-https://radio2.digidi.net/listen/radio_flode/radio.mp3
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/42043/logo_IxfnZTGnd2.png",Solo FM Radio
-https://radioserver.dk/solohern
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41944/logo_wOOtr6joX0.png",Vox Radio International - Danmark
-https://quincy.torontocast.com:2640/stream
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41922/logo_ZcP3Mi3dje.png",Minradio - HIT
-http://11429.cloudrad.io:9162/live
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/42105/logo_sZiOea5T2c.png",902FM - Kanal 2 Radio
-https://s25.myradiostream.com/:15246/listen.mp3
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41928/logo_piHEGmzGns.png",Aura Feel Good Radio
-https://c32.radioboss.fm:8351/autodj
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41934/logo_trKrS9rQYx.png",VIP Bodega radio
-https://vipradio20-radiohosting.radioca.st/stream
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41939/logo_92Va3VuUkd.png",Aura 80s Radio
-https://c32.radioboss.fm:8340/autodj
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41929/logo_RSSofo5ReQ.png",Jukebox - Nonstop Music Radio
-https://kreuzbergswiss.spcast.eu/stream
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41930/logo_yKJgSc3VRw.png",Valentines Radio
-https://live-bauerdk.sharp-stream.com/RP18_premium_96.aac
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41920/logo_eG6UwCF5NL.png",Partyshaker.dk Radio
-https://partyshaker.dk/?psmp_stream=1
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41932/logo_Gkj3XGEosk.png",Aura Good Vibes Radio
 https://c32.radioboss.fm:8349/autodj
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41905/logo_EQt24H3xkl.png",NM Server Radio
@@ -746,20 +621,24 @@ https://live-bauerdk.sharp-stream.com/RP02_premium_96.aac
 http://185.156.96.217:10022/detrigtigefaaborgaac
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/42011/logo_l5BD12wY2S.png",Radio Alfa Skive
 https://radioserver.dk/alfaskive
+#EXTINF:-1,DR P1
 http://live-icy.gss.dr.dk/A/A03H.mp3
 #EXTINF:-1,DR P4 København
 http://live-icy.gslb01.dr.dk/A/A08H.mp3
-http://edge-bauerdk-06-thn.sharp-stream.com/radiosoft_dk_mp3?
+#EXTINF:-1,Tango Copenhagen Radio
 https://tangocopenhagen.stream.laut.fm/tangocopenhagen?t302=2021-01-15_18-47-40&uuid=64db9a91-4a6e-4bc8-ba24-26a2fa7f24d0
 #EXTINF:-1,DR P8 JAZZ (AAC)
 https://drliveradio1.akamaized.net/hls/live/2097651/p8jazz/masterab.m3u8
+#EXTINF:-1,DR Nyheder
 http://live-icy.gslb01.dr.dk/A/A02L.mp3
+#EXTINF:-1,Always Elvis Radio
 http://radioserver.dk/alwayselvisradio
 #EXTINF:-1,DR P3 (AAC)
 https://drliveradio1.akamaized.net/hls/live/2097651/p3/masterab.m3u8
 #EXTINF:-1,POP FM DK
 http://live-bauerdk.sharp-stream.com/popfm128.mp3
 #EXTINF:-1,DR P4 København (AAC)
+https://drliveradio1.akamaized.net/hls/live/2097651/p4kobenhavn/masterab.m3u8
 #EXTINF:-1,Psyradio - Chillout
 http://komplex2.psyradio.org:8020/chillout/
 #EXTINF:-1,DR P4 Østjylland (AAC)
@@ -767,18 +646,22 @@ https://drliveradio1.akamaized.net/hls/live/2097651/p4ostjylland/masterab.m3u8
 #EXTINF:-1,DR P5 København (AAC)
 https://drliveradio1.akamaized.net/hls/live/2097651/p5kobenhavn/masterab.m3u8
 #EXTINF:-1,DR P1 (AAC)
+https://drliveradio1.akamaized.net/hls/live/2097651/p1/masterab.m3u8
+#EXTINF:-1,DR P6 Beat
 http://live-icy.gss.dr.dk/A/A29H.mp3
+#EXTINF:-1,Globus Guld
 http://stream.wlmm.dk/
+#EXTINF:-1,Danmarks Radio P4; Trekanten
 http://live-icy.gslb01.dr.dk/A/A13H.mp3
 #EXTINF:-1,DR P6 BEAT (AAC)
 https://drliveradio1.akamaized.net/hls/live/2097651/p6beat/masterab.m3u8
-http://stream.wlmm.dk/NyRadiomp3
 #EXTINF:-1,DR P4 Syd
 http://live-icy.gslb01.dr.dk/A/A12H.mp3
 #EXTINF:-1,100% Kim Larsen
 http://stream2.wlmm.dk/kimlarsenmp3
 #EXTINF:-1,DR P2 (AAC)
 https://drliveradio1.akamaized.net/hls/live/2097651/p2/masterab.m3u8
+#EXTINF:-1,Nova
 http://live-bauerdk.sharp-stream.com/nova128.mp3
 #EXTINF:-1,Radio Viva - Kolding
 https://stream.probroadcast.dk/radioviva
@@ -787,7 +670,11 @@ http://live-bauerdk.sharp-stream.com/voice128.mp3
 #EXTINF:-1,DR P4 Nordjylland (AAC)
 https://drliveradio1.akamaized.net/hls/live/2097651/p4nordjylland/masterab.m3u8
 #EXTINF:-1,DR P4 Sjælland (AAC)
+https://drliveradio1.akamaized.net/hls/live/2097651/p4sjaelland/masterab.m3u8
+#EXTINF:-1,Radio Viva
 http://stream.wlmm.dk/radioviva
+#EXTINF:-1,Vinyl Hits
+http://stream.vinylhits.dk/vinylaac
 #EXTINF:-1,København Jazz Radio
 https://asima.out.airtime.pro:8000/radiojazzcopenhagen_a
 #EXTINF:-1,Radio Soft - Københavns NR - Bispebjerg LR - Bella Chr
@@ -800,6 +687,7 @@ http://fluo.muzaiko.saluton.dk:8000/radio.mp3
 https://ondemand-mp3.dradio.de/file/dradio/presseschau/presseschau.mp3
 #EXTINF:-1,DR P5 Sjælland (AAC)
 https://drliveradio1.akamaized.net/hls/live/2097651/p5sjaelland/masterab.m3u8
+#EXTINF:-1,Tango Copenhagen
 https://tangocopenhagen.stream.laut.fm/tangocopenhagen?pl=m3u&t302=2026-01-15_07-29-52&uuid=2ce4484f-6ce9-4c5b-893f-fae1c3a7de8c
 #EXTINF:-1,Globus Guld Tonder
 http://media.wlmm.dk:8000/guldtoender
@@ -819,9 +707,10 @@ http://media.wlmm.dk/radiohaderslevmp3
 https://drliveradio1.akamaized.net/hls/live/2097651/p5midtvest/masterab.m3u8
 #EXTINF:-1,Danmarks Radio P2
 https://live-icy.dr.dk/A/A27L.mp3
+#EXTINF:-1,Radio Boost
 http://6434.cloudrad.io:8066/
 #EXTINF:-1,Rar
-http://rautemusik.stream37.radiohost.de/rautemusik-techno_aac-48?upd-meta&upd-scheme=http&_art=dD0xNzg3NjEwNzExJmQ9YjZlNjgxZjk1NzIxNDA2MTcwYTc
+http://rautemusik.stream17.radiohost.de/rautemusik-techno_aac-48?upd-meta&upd-scheme=http&_art=dD0xNzkzMDMzNDI2JmQ9Zjg0OTY0OTY1ZWRlNWJiMzM4NTc
 #EXTINF:-1,Jazzkanalen
 http://ca6.rcast.net:4058/stream
 #EXTINF:-1,DR P5 Østjylland (AAC)
@@ -830,11 +719,16 @@ https://drliveradio1.akamaized.net/hls/live/2097651/p5ostjylland/masterab.m3u8
 http://stream.wlmm.dk/DinRadiomp3
 #EXTINF:-1,DR P4 Midt/Vest
 http://live-icy.gss.dr.dk/A/A09H.mp3
+#EXTINF:-1,Radio Midtsjælland
+http://player.radiomidt.dk/broadwave.mp3
 #EXTINF:-1,DR P5 Trekanten (AAC)
 https://drliveradio1.akamaized.net/hls/live/2097651/p5trekanten/masterab.m3u8
+#EXTINF:-1,DR P5 Trekanten
 http://live-icy.gslb01.dr.dk/A/A23H.mp3
+#EXTINF:-1,Det Rigtige Faaborg
 http://stream2.wlmm.dk/detrigtigefaaborg
 #EXTINF:-1,DRR
+http://radioserver.dk/abc
 #EXTINF:-1,DR P5 Esbjerg
 https://live-icy.dr.dk/A/A26H.mp3
 #EXTINF:-1,DR P4 Bornholm (AAC)
@@ -850,7 +744,10 @@ https://drliveradio1.akamaized.net/hls/live/2097651/p5esbjerg/masterab.m3u8
 #EXTINF:-1,DR P4 Esbjerg (AAC)
 https://drliveradio1.akamaized.net/hls/live/2097651/p4esbjerg/masterab.m3u8
 #EXTINF:-1,DR P5 Syd (AAC)
+https://drliveradio1.akamaized.net/hls/live/2097651/p5syd/masterab.m3u8
+#EXTINF:-1,Skaga FM
 http://stream.wlmm.dk/skagafm.m3u
+#EXTINF:-1,SkagaFM
 https://stream.probroadcast.dk/skagafm
 #EXTINF:-1,Radio Panini
 https://radi-panini.radiocult.fm/stream
@@ -884,14 +781,14 @@ https://28513.live.streamtheworld.com:443/RADIO4.mp3
 https://stream.kanalplus.fm/kp96
 #EXTINF:-1,The Lake Radio - Denmark - Copenhagen
 https://thelakeradio.radioca.st/stream
+#EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/102821/logo_CPXt3f5W0o.jpg?v=20260529-media-restore",East Meditation
+https://tower.hayva.ru/1pb8r-96
 #EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/1002579/logo_vBB4gqxgjt.jpg?v=20260529-media-restore",ABINAYAM FM
 http://192.99.170.8:5756/;
 #EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/1002585/logo_ZGCHqLiqwB.jpg?v=20260529-media-restore",MG RADIO
 https://listen.radioking.com/radio/769001/stream/836240
 #EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/42092/logo_YzZQskuwFK.jpg?v=20260529-media-restore",Radio S.N.R
 http://10326.cloudrad.io:9056/;
-#EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/1002580/logo_3SvYhKmoyN.jpg?v=20260529-media-restore",AllJazz.eu
-https://phoebe.streamerr.co:5250/;?nocache=1756326084&type=http
 #EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/1002583/logo_ZaOC74paCi.jpg?v=20260529-media-restore",Ghost Radio
 https://a5.asurahosting.com:6750/radio.mp3?refresh=1715963425252
 #EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/1002582/logo_tf6gVyx6EL.jpg?v=20260529-media-restore",Funny Radio
@@ -900,10 +797,10 @@ https://a8.asurahosting.com:7310/radio.mp3
 http://ca6.rcast.net:4058/;stream.mp3
 #EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/1002559/logo_kHjshU4vmw.jpg?v=20260529-media-restore",Silkeborg Nærradio
 http://radioserver.dk/silkeborgnr
-#EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/41920/logo_4C855SWgFE.jpg?v=20260529-media-restore",Partyshaker.dk
-https://az13.yesstreaming.net:8350/radio.mp3
 #EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/1002590/logo_78Yey7oyD8.jpg?v=20260529-media-restore",Radio LNR
 https://a9.asurahosting.com:8210/radio.mp3
+#EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/1002558/logo_AVr3XpCcdn.jpg?v=20260529-media-restore",RodovreKanalen
+https://roedovrekanalen.dk:8001/stream.mp3
 #EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/1002556/logo_pa4TXOVrmR.jpg?v=20260529-media-restore",r8Dio
 https://s3.radio.co/s7cd1ffe2f/listen
 #EXTINF:-1 tv-logo="https://media.pcradio.app/media/logos/180/1002589/logo_ujNSVYYAfK.jpg?v=20260529-media-restore",Radio Halsnæs
@@ -918,16 +815,14 @@ https://stream.probroadcast.dk/sendesamvirke
 https://s25.myradiostream.com/:15246/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/dk-norea-radio-logo.jpg",Norea Radio
 http://radio.norea.dk:8080/;
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/dk-radio-i-ringkobing-logo.jpg",Radio i Ringkøbing
-http://netradio.radioringkobing.dk:8000/;
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/uniradioen-567564-logo.jpg",Uniradioen
-http://uniradio.out.airtime.pro:8000/uniradio_c
 #EXTINF:-1 tv-logo="",Radio Aadalen
 http://radio-aadalen.no-ip.net:8000/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/thozhafm-639000-logo.jpg",Radio Thozhafm
 http://192.95.18.39:5352/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/dk-radio-alfa-always-elvis-logo.jpg",Radio Alfa - Always Elvis
 http://radioserver.dk//alwayselvisradio
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/dk-radio-klassisk-dansk-logo.jpg",Radio Klassisk Dansk
+http://51.255.235.165:5400/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/dk-the-lake-radio-logo.jpg",The Lake Radio
 http://hyades.shoutca.st:8627/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/dk-favor-radio-denmark-logo.jpg",Favor Radio (Denmark)
@@ -936,11 +831,13 @@ https://a10.asurahosting.com:7660/denmark.mp3
 http://live-icy.gslb01.dr.dk/A/A21L.mp3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-s-fm-185490-logo.jpg",Radio S-FM
 http://media.wlmm.dk/sfm
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/web-fm-590429-logo.jpg",Radio WEB fm
+#EXTINF:-1,DR P4 Østjylland (AAC)
 https://tangocopenhagen.stream.laut.fm/tangocopenhagen?pl=m3uu0026t302=2026-01-15_07-29-52u0026uuid=2ce4484f-6ce9-4c5b-893f-fae1c3a7de8c
+#EXTINF:-1,DR P4 Midt/Vest
 http://live-icy.gss.dr.dk/A/A06H.mp3
 #EXTINF:-1,Charlie Tourist (Sydvest)
 https://ec6.yesstreaming.net:4385/stream
+#EXTINF:-1,DR P4 Fyn (AAC)
 http://stream.wlmm.dk/;
 #EXTINF:-1,DR P8 Jazz HLS 96
 http://6434.cloudrad.io:8066/;
@@ -950,6 +847,8 @@ http://stream.wlmm.dk:8010/wmrmp3
 https://live-icy.dr.dk/A/A09L.mp3
 #EXTINF:-1,M-Jazz Radio
 https://fra-pioneer01.dedicateware.com:1465/stream
+#EXTINF:-1,Jazzkanalen
+http://ca6.rcast.net:4058/;stream
 #EXTINF:-1,Charlie Classical
 https://ec6.yesstreaming.net:4365/stream
 #EXTINF:-1,DANCE100
@@ -960,3 +859,55 @@ https://stream.probroadcast.dk/detrigtigefaaborgmp3
 https://listen.radioking.com/radio/741628/stream/808090
 #EXTINF:-1,Pop FM 90er
 https://live-bauerdk.sharp-stream.com/popfm90_prem_aac
+#EXTINF:-1,Classic Rock Danmark
+http://live-icy.dr.dk/A/A05H.mp3
+#EXTINF:-1,DR p4 København
+http://live-icy.dr.dk/A/A14H.mp3
+#EXTINF:-1,POP FM 80er
+https://live-bauerdk.sharp-stream.com//popfm80.mp3
+#EXTINF:-1,POP FM DK
+http://live-icy.dr.dk/A/A13H.mp3
+#EXTINF:-1,nordic lodge copenhagen
+http://live-icy.dr.dk/A/A25H.mp3
+#EXTINF:-1,100% Kim Larsen
+http://live-icy.dr.dk/A/A11H.mp3
+#EXTINF:-1,NOVA - Horsens 103.6 FM
+http://live-icy.dr.dk/A/A02L.mp3
+#EXTINF:-1,Free FM World
+https://rocafmadrid.radioca.st/stream
+#EXTINF:-1,Free FM Gaita Venezuela
+https://gaita.radioca.st/stream
+#EXTINF:-1,Free FM Rock
+https://freefmrock.radioca.st/stream
+#EXTINF:-1,Kalaallit Nunaata Radioa
+https://i1.cdn.jetstre.am:8000/sz=knr=audio192?token=15ef55d4b28ea7acb92f027608391701&time=6adf8547
+#EXTINF:-1,DR P5 Bornholm
+http://live-icy.gss.dr.dk/A/A15H.mp3
+#EXTINF:-1,Psyradio - Chillout
+http://komplex2.psyradio.org:8020/chillout/;
+#EXTINF:-1,Retro-Radio Jul
+http://live-icy.gss.dr.dk/A/A22H.mp3
+#EXTINF:-1,Always ELVIS Radio
+http://live-icy.dr.dk/A/A06H.mp3
+#EXTINF:-1,Free FM 80s
+https://freefm80.radioca.st/stream?sid=1
+#EXTINF:-1,r8Dio
+http://live-icy.dr.dk/A/A23H.mp3
+#EXTINF:-1,Radio Alfa - Gold
+http://live-icy.dr.dk/A/A15H.mp3
+#EXTINF:-1,Lumi Radio
+http://live-icy.dr.dk/A/A12H.mp3
+#EXTINF:-1,DR P5 Esbjerg (AAC)
+https://tangocopenhagen.stream.laut.fm/tangocopenhagen?pl=m3u&t302=2026-09-11_07-23-28&uuid=e20404f1-77aa-442e-8f9c-934a8977d529
+#EXTINF:-1,Plantland Radio
+https://radio.plantlandradio.com/listen/plantland_radio/radio.mp3
+#EXTINF:-1,DR P5 Fyn
+https://live-icy.dr.dk/A/A02H.mp3
+#EXTINF:-1,Partyradio.pro
+https://stream.partyradio.pro/listen/partyradio/stream
+#EXTINF:-1,Radio 7 Ravensburg
+https://radio7.streamabc.net/87-radio7rv-mp3-192-7507425?sABC=6nqs841n%230%237s9nor35sqs26922qn82156pn20n2o24%23jro&aw_0_1st.playerid=web&amsparams=playerid:web;skey:1793033242
+#EXTINF:-1,Free FM Classics
+https://xxdelgado.radioca.st/stream
+#EXTINF:-1,Radio Koge
+http://stream.wlmm.dk/stream/53/;

@@ -15,6 +15,8 @@ https://c13.radioboss.fm:18190/stream
 https://stream12.polskieradio.pl/pr2/pr2.sdp/chunklist.m3u8
 #EXTINF:-1,Polskie Radio Chopin
 https://stream85.polskieradio.pl/live/rytm.sdp/chunklist.m3u8
+#EXTINF:-1,Radio Scorpio
+https://stream.radioscorpio.be/stream
 #EXTINF:-1,RTS Radio Beograd 2
 https://rtsradio-live.morescreens.com/RTS_2_002/audio/chunklist.m3u8
 #EXTINF:-1,Antena 2
@@ -25,6 +27,8 @@ https://mawoua.ice.infomaniak.ch/mawoua-32.aac
 https://stunnel2.cyber-streaming.com:9100/stream?type=mp3
 #EXTINF:-1,R.I.L FM
 http://91.121.29.128:8068/
+#EXTINF:-1,S.M.A FM
+http://192.99.170.8:5034/listen.mp3
 #EXTINF:-1,EiTB Musika
 https://multimedia.eitb.eus/live-content/eitbmusika-hls/master.m3u8
 #EXTINF:-1,Dakar Musique
@@ -42,37 +46,37 @@ https://ice.creacast.com/radio-courtoisie
 #EXTINF:-1,Radiónica
 https://streaming.rtvc.gov.co/Radio_Radionica/Radionica.stream/playlist.m3u8
 #EXTINF:-1,WDR 3
-https://d111.rndfnk.com/ard/wdr/wdr3/live/mp3/128/stream.mp3?cid=01FBS0C9GMJJE2D5WXZHFQY7HG&sid=3IKs9NUI4vaFPE06BznFzJZwJM0&token=Tkd9EsaaioNN_g6POoPvAb0aSrpKft1RupwdOGkud3s&tvf=xpQIZ6ejzhhkMTExLnJuZGZuay5jb20
+https://f121.rndfnk.com/ard/wdr/wdr3/live/mp3/128/stream.mp3?cid=01FBS0C9GMJJE2D5WXZHFQY7HG&sid=3LCN9Opk9xAC4dLT8NA9VvZ1CoI&token=XfI9DgzWUqqjW9WPx1CNqKNkyQeDJw0kLJCe7CuRzYM&tvf=QWKZYMDt4RhmMTIxLnJuZGZuay5jb20
 #EXTINF:-1,WDR Cosmo
-https://d141.rndfnk.com/ard/wdr/cosmo/live/mp3/128/stream.mp3?cid=01FC1T8CET1M6TA2P4PQ2YA5NC&sid=3IKs9MLOnyDYroI7jEz5vCMAqoH&token=YDmEL1-8vxwQ3TYCWhUCwgtqiidCtK25hf0Y9Ku3-0c&tvf=-EBrdaejzhhkMTQxLnJuZGZuay5jb20
+https://d111.rndfnk.com/ard/wdr/cosmo/live/mp3/128/stream.mp3?cid=01FC1T8CET1M6TA2P4PQ2YA5NC&sid=3LCN9QkWHUW9bmzhSK2CqlfHgZf&token=ikUPGnVgUzBnemRDfX0GQ-2WdlA7blrd9_7foo9Tuw8&tvf=4pYWWMDt4RhkMTExLnJuZGZuay5jb20
 #EXTINF:-1,NDR Kultur
-https://f121.rndfnk.com/ard/ndr/ndrkultur/live/mp3/128/stream.mp3?cid=01FBQ2EJ6T7QK3WENQ5KT9S2FB&sid=3IKs9LN447EqSCZdPkMhPwx1Rkr&token=9qf17IAeN_LCGNxBTW9eq0mh7dAe21oY-EZ_j_d1RIw&tvf=nsiecKejzhhmMTIxLnJuZGZuay5jb20
+https://f131.rndfnk.com/ard/ndr/ndrkultur/live/mp3/128/stream.mp3?cid=01FBQ2EJ6T7QK3WENQ5KT9S2FB&sid=3LCN9SCXjvBxykgnMTEo6X0eYwI&token=bua6rg3HDwp7CyirJeTyN5vBvSAVu9844WzON1f0-44&tvf=158zY8Dt4RhmMTMxLnJuZGZuay5jb20
 #EXTINF:-1,SWR2
-https://f131.rndfnk.com/ard/swr/swr2/live/mp3/256/stream.mp3?aggregator=web&cid=01FC1X4J91VJW1CVH6588MZEE3&sid=3IKs9WUHguAVR4U5JMMDJNl2lW8&token=2-pyMVV82AWgRX6vTfBPoZvGBrAPJb89mBClHaTH0VI&tvf=cBHdzqejzhhmMTMxLnJuZGZuay5jb20
+https://d121.rndfnk.com/ard/swr/swr2/live/mp3/256/stream.mp3?aggregator=web&cid=01FC1X4J91VJW1CVH6588MZEE3&sid=3LCNA0vLiH1LhTvZwMZfsHpfqIw&token=ISdE0zEJp5xz3ziRfx46-30Ue1rDT4_a2Rm4HvuI6Fs&tvf=4aDwpsHt4RhkMTIxLnJuZGZuay5jb20
 #EXTINF:-1,Deutschlandfunk Kultur
-https://f121.rndfnk.com/ard/dlf/02/aac/96/stream.aac?aggregator=web&cid=01FBPXKD7AYM1NKT2H60NVGHEQ&sid=3IKs9dX3eqmpCo2xyfzN1lbc0wt&token=4ysnRB6Uq8aHnVRjX7GXUxwXvKtkDA0u9aPm_smrAHA&tvf=tfqN5KejzhhmMTIxLnJuZGZuay5jb20
+https://f111.rndfnk.com/ard/dlf/02/aac/96/stream.aac?aggregator=web&cid=01FBPXKD7AYM1NKT2H60NVGHEQ&sid=3LCN9Waj6k7CzSjZeF1Zaz95vpf&token=UOKtNtfYOgDYljUtWzGoatFK7yYGP6cEvbq3mifKlU8&tvf=5QQ8psDt4RhmMTExLnJuZGZuay5jb20
 #EXTINF:-1,Rai Radio 3
 https://icecdn-19d24861e90342cc8decb03c24c8a419.msvdn.net/icecastRelay/S56630579/yEbkcBtIoSwd/icecast
 #EXTINF:-1,France Culture
 https://stream.radiofrance.fr/franceculture/franceculture.m3u8?id=radiofrance
 #EXTINF:-1,rbb Kultur
-https://f131.rndfnk.com/ard/rbb/rbbkultur/live/mp3/128/stream.mp3?cid=01FC1WQSDQZNQA4Y6DYGBH7A64&sid=3IKs9U5LEjNqH7KEsjmt3nqlVWv&token=9nIV6OWqIIJDIejfmDZuRzDuFe3cRX0xSSUlV__t9-0&tvf=TdSsraejzhhmMTMxLnJuZGZuay5jb20
+https://f121.rndfnk.com/ard/rbb/rbbkultur/live/mp3/128/stream.mp3?cid=01FC1WQSDQZNQA4Y6DYGBH7A64&sid=3LCN9czdqK1TlUKZd74ZJzeESQs&token=3MxM0fw7prp7ivT1OW5XCnIA9-hqMGj7fEWBmsNuHCw&tvf=u3Mx1sDt4RhmMTIxLnJuZGZuay5jb20
 #EXTINF:-1,Traditional FM Music 95.0
 http://185.105.4.106:1935/live/radio-95-0/playlist.m3u8
 #EXTINF:-1,SR 2 Kulturradio
-https://f111.rndfnk.com/ard/sr/sr2/mp3/128/stream.mp3?aggregator=audiostreamio&cid=01FG95TMYZ3N0HCMPKM951EA9X&sid=3IKs9nOo7C34q6T8g0acJVx7SZX&token=DpbvGPhMwNq_Nk-iPnH6kCh0fb7F0HEM__gbz27wOYA&tvf=c5ZVQqijzhhmMTExLnJuZGZuay5jb20
+https://d131.rndfnk.com/ard/sr/sr2/mp3/128/ct/stream.mp3?aggregator=audiostreamio&cid=01FG95TMYZ3N0HCMPKM951EA9X&sid=3LCNAI5DqvXGdagAT4KQvBE28B1&token=2TBjP95GMLtEI81n52S_4L957giOYAzSKHPpXWd2oaA&tvf=FbfgD8Lt4RhkMTMxLnJuZGZuay5jb20
 #EXTINF:-1,Fritz
-https://f121.rndfnk.com/ard/rbb/fritz/live/mp3/128/stream.mp3?cid=01FC1WK1H1KDC5EBKW5Z191BW4&sid=3IKs9WzPNKsyacEZpdwAodJcIUs&token=ml2g6ZWZVk5SvTFslJduWLFpyTlfnUiorR-enVWOuXY&tvf=daU18aejzhhmMTIxLnJuZGZuay5jb20
+https://d141.rndfnk.com/ard/rbb/fritz/live/mp3/128/stream.mp3?cid=01FC1WK1H1KDC5EBKW5Z191BW4&sid=3LCN9l0ajcRIfcdAISEP62n1RVq&token=VB_VnPUwlh5Z800sCBz9ShvV22ima5uzzwp2Zam1enU&tvf=69xVIsHt4RhkMTQxLnJuZGZuay5jb20
 #EXTINF:-1,Pilihan FM
 https://d2kziuzkf9oizb.cloudfront.net/rd003/chunklist.m3u8
 #EXTINF:-1,Bremen Zwei
-https://f111.rndfnk.com/ard/rb/bremenzwei/live/mp3/128/stream.mp3?cid=01FC1W5VF6FKTYZ6QVPEDGQZYJ&sid=3IKs9lNkfmMG3wtCN2h8Ewx8Uxz&token=a6FXyj6cA_OVwZ4gNzkbHMYLEEyYA954iiHR4x1A2Sk&tvf=5FslAKijzhhmMTExLnJuZGZuay5jb20
+https://d131.rndfnk.com/ard/rb/bremenzwei/live/mp3/128/stream.mp3?cid=01FC1W5VF6FKTYZ6QVPEDGQZYJ&sid=3LCN9r7uljt7kdKT39o8WJZ5QZg&token=AEobedLWRYRcWLNTsYIhJG_Yxx0dDh2YrxSGL1W6osk&tvf=WYkUQcHt4RhkMTMxLnJuZGZuay5jb20
 #EXTINF:-1,Radio Città Aperta
-https://be.server89.com/8020/stream
+https://sp3.server89.com/8100/stream
 #EXTINF:-1,Africa Radio
 https://african1paris.ice.infomaniak.ch/african1paris-128.mp3
 #EXTINF:-1,radio 100,7
-http://100komma7.stream39.radiohost.de/100komma7-100komma7_mp3-128?addradio&agend=true&upd-meta&upd-scheme=http&_art=dD0xNzg3NTI0NzQ3JmQ9OTM5YmRkOTAwNGY4MWJhMzYxM2U
+http://100komma7.stream11.radiohost.de/100komma7-100komma7_mp3-128?addradio&agend=true&upd-meta&upd-scheme=http&_art=dD0xNzkyOTU0MjQ3JmQ9MDc0YTVjODU2MzUzN2EzOWFkN2E
 #EXTINF:-1,East FM
 https://eastfm-atunwadigital.streamguys1.com/eastfm
 #EXTINF:-1,Tropiques Culture
@@ -83,16 +87,10 @@ http://listen.radioking.com/radio/8922/stream/19100
 https://streaming.radio.co/s662abb673/listen
 #EXTINF:-1,Radio Rural
 https://radiolatina.live:10959/stream?type=http&ampnocache=6
-#EXTINF:-1,ERT Trito
-https://radiostreaming.ert.gr/ert-trito
-#EXTINF:-1,ERT 958 FM
-https://radiostreaming.ert.gr/ert-958fm
 #EXTINF:-1,CHIN-FM
 http://ice7.securenetsystems.net/CHINAM
 #EXTINF:-1,Nemzetiségi
 http://mr-stream.mediaconnect.hu/4744/mr4.mp3
-#EXTINF:-1,Kan Tarbut
-https://kanlivep2event-i.akamaihd.net/hls/live/749634/749634/master.m3u8
 #EXTINF:-1,Fine Music Radio
 https://edge.iono.fm/xice/fmr_live_medium.aac?p=embed
 #EXTINF:-1,DR P2
@@ -103,6 +101,10 @@ http://sztrim.periszkopradio.hu:8088/
 https://rthkradio5-live.akamaized.net/hls/live/2040081/radio5/master.m3u8
 #EXTINF:-1,Al Oula Radio
 http://uk6.internet-radio.com:8103/stream
+#EXTINF:-1,Radio Espiritrompa
+https://radiobot.radioslibres.info/listen/radio_espiritrompa/radio.mp3
+#EXTINF:-1,ACIR39_S01
+https://15263.live.streamtheworld.com/ACIR39_S01AAC.aac
 #EXTINF:-1,ERA Deytero
 http://radiostreaming.ert.gr/ert-deftero
 #EXTINF:-1,King Movements Radio
@@ -121,3 +123,129 @@ https://stm4.audiplushd.com.br:7370/stream
 https://s25.myradiostream.com:15172/?type=http&ampnocache=1608962687?0.3198317771003969
 #EXTINF:-1,Radio Ici & Maintenant - 64 - France - cultural - culture - talk & speech
 https://cast.youngtech.radio.br/listen/fundacaoculturaljlle/radio
+#EXTINF:-1,Cadena SER Radio MADRID
+http://server7.20comunicacion.com:8040/
+#EXTINF:-1,Bartók Rádió
+http://mr-stream.mediaconnect.hu/4742/mr3hq.mp3
+#EXTINF:-1,Klara
+https://vrt.streamabc.net/vrt-klara-mp3-128-1558567?sABC=6nqr4r96%230%237s00sr71s506532pp64o899956o6326q%23&aw_0_1st.playerid=&amsparams=playerid:;skey:1792954006
+#EXTINF:-1,Jurnal FM
+https://ssl.radios.show:7009/stream
+#EXTINF:-1,Радио Орфей - Русская классика 256kbps
+https://channels.fonotron.ru:8000/Chan_73_256.mp3
+#EXTINF:-1,Радио Орфей (Radio Orpheus)
+https://orfeyfm.hostingradio.ru:8034/orfeyfm192.mp3
+#EXTINF:-1,Радио Орфей - Популярная классика 256kbps
+https://channels.fonotron.ru:8000/Chan_72_256.mp3
+#EXTINF:-1,RAC1 +1
+https://20043.live.streamtheworld.com/RAC_MES_1.mp3
+#EXTINF:-1,Cadena SER - Radio Zamora
+https://29332.live.streamtheworld.com/SER_ASO_ZAMORA.mp3
+#EXTINF:-1,Radio Ici & Maintenant
+https://s64.radiolize.com/radio/8090/radio.mp3
+#EXTINF:-1,FRECUENCIA 🆕: Radio Comunitaria
+https://radio.streamexico.com/listen/frecuencia/radio.aac
+#EXTINF:-1,Magyar Evangéliumi Rádió
+http://stream.radio.co/s3fd8d173f/listen
+#EXTINF:-1,Free FM 80s
+https://freefm80.radioca.st/stream?sid=1
+#EXTINF:-1,CULTURA 1060 AM: La radio de las culturas de México
+https://securestreams7.autopo.st/?uri=https://s2.mexside.net/8172/stream
+#EXTINF:-1,La FM- Barranquilla
+https://cl-a3-p-e-av11-audio.cdn.mdstrm.com/live-audio-aw/632cbdb5202d6801a31785b0
+#EXTINF:-1,860 Radio UNAM (CDMX) - 860 AM - XEUN-AM - UNAM (Universidad Autónoma de México) - Ciudad de México
+https://tv.radiohosting.online:9486/stream
+#EXTINF:-1,MR3 - Bartók Rádió
+https://mr-stream.connectmedia.hu/4741/mr3.mp3
+#EXTINF:-1,Universitaria Estéreo 88.2
+https://www.utp.edu.co/stream/
+#EXTINF:-1,Radio Rojc
+https://cf.widecastcdn.live/Z07ww1NUNl/live.m3u8
+#EXTINF:-1,DW TV
+https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/index.m3u8
+#EXTINF:-1,radiorara
+https://sonicpanel.chileservidores.cl/8004/stream
+#EXTINF:-1,La Troja Radio
+https://streaming01.shockmedia.com.ar:8034/stream
+#EXTINF:-1,CULTURA 96.5 FM: La Radio Cultural de México
+https://securestreams7.autopo.st/?uri=https://s2.mexside.net/8174/stream
+#EXTINF:-1,Radio UNAM FM (Ciudad de México) - 96.1 FM - XEUN-FM - UNAM (Universidad Autónoma de México) - Ciudad de México
+https://tv.radiohosting.online:9484/stream
+#EXTINF:-1,Радио Орфей - Классика джаза
+https://channels.fonotron.ru:8000/Chan_12_192.mp3
+#EXTINF:-1,UAM RADIO: Abierta Al Tiempo
+https://stream5.mexiserver.com:1124/
+#EXTINF:-1,UC Radio Beethoven
+https://unlimited5-us.dps.live/beethovenfm/aac/icecast.audio
+#EXTINF:-1,RADIOTEC 100.1 (Saltillo) - 100.1 FM - XHINS-FM - Instituto Tecnológico de Saltillo - Saltillo, Coahuila
+http://104.238.144.165:8022/;
+#EXTINF:-1,Free FM Classics
+https://xxdelgado.radioca.st/stream
+#EXTINF:-1,La Voz del Pitic - 88.1 FM - XHRMO-FM - Democracia y Deliberación Desértica, A.C. - Hermosillo, SO
+https://s5.mexside.net:8080/stream
+#EXTINF:-1,Radio Sinaloa 94.5, 93.9 y 92.5
+https://stream20.usastreams.com/8156/stream
+#EXTINF:-1,RADIO ZACATECAS 97.9 (Zacatecas) - 97.9 FM - XHZH-FM - SIZART (Sistema Zacatecano de Radio y Televisión) - Zacatecas, Zacatecas
+https://streamingcwsradio30.com/8102/stream
+#EXTINF:-1,Радио Орфей (Radio Orpheus) 64
+http://orfeyfm.hostingradio.ru:8034/orfeyfm64.mp3
+#EXTINF:-1,La Diaria Radio
+https://radiolatina.live/8156/stream
+#EXTINF:-1,100.3 RTQ Radio (Querétaro) - 100.3 FM - XHQUE-FM - RTQ (Radio Televisión Querétaro) - Querétaro, Querétaro
+https://59d39900ebfb8.streamlock.net/rytqroradio2/rytqroradio2/playlist.m3u8
+#EXTINF:-1,Радио Орфей - Хоры из опер 256kbps
+https://channels.fonotron.ru:8000/Chan_62_256.mp3
+#EXTINF:-1,Radio UAdeO (Los Mochis) - 89.3 FM - XHUDO-FM - Universidad Autónoma de Occidente - Los Mochis, Sinaloa
+https://xhudo-megacaster.radioca.st/stream
+#EXTINF:-1,Uninorte FM 103.1 Barranquilla
+https://cactus2.uninorte.edu.co/stream.mp3
+#EXTINF:-1,Radio UAS 96.1 Culiacán
+https://stream9.mexiserver.com/8410/stream
+#EXTINF:-1,Radio Universidad (Hermosillo) - 107.5 FM - XHUSH-FM - Universidad de Sonora - Hermosillo, SO
+http://148.225.54.10/broadwavehigh.mp3
+#EXTINF:-1,KFUO Christ for You. Anytime. Anywhere
+https://kfuo.streamguys1.com/kfuo
+#EXTINF:-1,94.1 Uam Radio (CDMX) - 94.1 FM - XHUAM-FM - UAM (Universidad Autónoma Metropolitana) - Ciudad de México
+https://stream5.mexiserver.com:1124/stream
+#EXTINF:-1,Радио Орфей - Классика музыкального кроссовера
+https://channels.fonotron.ru:8000/Chan_6_192.mp3
+#EXTINF:-1,Frecuencia U 940 AM
+https://radiolatina.info/9988/stream
+#EXTINF:-1,Радио Орфей - Бельканто 256kbps
+https://channels.fonotron.ru:8000/Chan_75_256.mp3
+#EXTINF:-1,RADIO ACACIO
+http://sonic.portalfoxmix.cl:9986/;
+#EXTINF:-1,Crystal 107.4 FM
+https://crystalfm-radiohosting2.radioca.st/stream
+#EXTINF:-1,Kulturalkanal-Laut.fm
+http://kulturkanal.stream.laut.fm/kulturkanal?t302=2026-09-11_05-59-02&uuid=b28d128a-e9ee-48ed-9ef9-b6f005bc8300
+#EXTINF:-1,KUVO 89.3 Denver, CO (AAC)
+http://kuvo-ice.streamguys.org/kuvo-aac-64
+#EXTINF:-1,Radio Chiapas 93.9 FM Tuxtla Gutiérrez
+http://streamingcwsradio10.com:9340/;
+#EXTINF:-1,Radio Zacatecas - 97.9 FM - XHZH-FM - SIZART (Sistema Zacatecano de Radio y Televisión) - Zacatecas, ZA
+https://streamingcwsradio30.com:7051/;
+#EXTINF:-1,Радио Орфей - Русская хоровая 256kbps
+https://channels.fonotron.ru:8000/Chan_64_256.mp3
+#EXTINF:-1,88.9 Altavoz Radio (La Paz) - 88.9 FM - XHCPBV-FM - Sistema Público de Radiodifusión del Estado Mexicano (SPR) - La Paz, Baja California Sur
+https://securestreams7.autopo.st/?uri=https://s2.mexside.net/8088/lapaz
+#EXTINF:-1,Радио Орфей - Камерата 256kbps
+https://channels.fonotron.ru:8000/Chan_76_256.mp3
+#EXTINF:-1,Free FM Gaita Venezuela
+https://gaita.radioca.st/stream
+#EXTINF:-1,Радио Орфей - Классика крупных форм
+https://channels.fonotron.ru:8000/Chan_8_192.mp3
+#EXTINF:-1,Радио Орфей - Симфоническая музыка 256kbps
+https://channels.fonotron.ru:8000/Chan_74_256.mp3
+#EXTINF:-1,España FM 92.9
+https://sh4.radioonlinehd.com:8526/stream
+#EXTINF:-1,CULTURAL ONLINE RADIO | CHUVASHIA RADIO
+https://stream1.radiord.ru:8000/live96.aac
+#EXTINF:-1,CULTURAL ONLINE RADIO | RADIO GAMAYUN
+https://gamaun.online:8020/radio
+#EXTINF:-1,CULTURAL ONLINE RADIO | 889 FM KULTUR
+https://889fmkultur.stream.laut.fm/889fmkultur
+#EXTINF:-1,CULTURAL ONLINE RADIO | RADIO SRF 2 KULTUR
+https://rjb.ice.infomaniak.ch/rjb-high.mp3
+#EXTINF:-1,CULTURAL ONLINE RADIO | CULTUREADDICT WEBRADIO
+https://listen.radioking.com/radio/345235/stream/393970

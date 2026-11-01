@@ -3,6 +3,8 @@
 https://ice24.securenetsystems.net/KSOU
 #EXTINF:-1,Athens Deejay 95.2
 http://netradio.live24.gr/athensdeejay
+#EXTINF:-1,Capital FM South Coast 103.2
+http://media-ice.musicradio.com/CapitalSouthCoastMP3
 #EXTINF:-1,CFAN "99.3 The River" Miramichi, NB
 http://mbsradio.leanstream.co/CFANFM-MP3
 #EXTINF:-1,CFAX 1070 (Victoria, BC)
@@ -23,8 +25,8 @@ http://ais-sa1.streamon.fm/7252_64k.aac
 http://live.leanstream.co/CFGXFM
 #EXTINF:-1,CFHK 103.1 "Fresh Radio" St. Thomas, ON
 http://live.leanstream.co/CFHKFM-MP3?args=web_02
-#EXTINF:-1,CFLG 104.5 "Fresh Radio" Cornwall, ON
-http://live.leanstream.co/CFLGFM-MP3
+#EXTINF:-1,CFJO "O 97.3" Thetford MInes, QC
+http://stream.statsradio.com:8012/stream
 #EXTINF:-1,CFLN 97.9 "Big Land - Labrador's FM" Happy Valley-Goose Bay, NL
 http://newcap.leanstream.co/CFLNFM
 #EXTINF:-1,CFMC 95.1 "C95" Saskatoon, SK  -AAC
@@ -205,6 +207,8 @@ http://ais-sa1.streamon.fm/7263_64k.aac
 http://mbsradio.leanstream.co/CKENFM-MP3
 #EXTINF:-1,CKGE 94.9 "The Rock" Oshawa, ON
 https://provisioning.streamtheworld.com/pls/CKGEFMAAC.pls
+#EXTINF:-1,CKIK "KRAZE 101.3" Red Deer, AB
+http://ais-sa1.streamon.fm/7265_64k.aac
 #EXTINF:-1,CKIX 99.1 "Hits FM" St. John's, NL
 http://newcap.leanstream.co/CKIXFM
 #EXTINF:-1,CKJR 1440 "W1440" Wetaskiwin, AB
@@ -233,8 +237,6 @@ http://live.leanstream.co/CKQBFM
 http://newcap.leanstream.co/CKQKFM
 #EXTINF:-1,CKRM 620 Regina, SK
 http://ais-sa1.streamon.fm/7267_64k.aac
-#EXTINF:-1,CKRU 100.5 "Fresh Radio" Peterborough, ON
-http://live.leanstream.co/CKRUFM-MP3
 #EXTINF:-1,CKRV "97.5 The River" Kamloops, BC
 http://newcap.leanstream.co/CKRVFM
 #EXTINF:-1,CKRY 105.1 "Country 105" Calgary, AB
@@ -269,12 +271,34 @@ http://newcap.leanstream.co/CKXXFM
 http://bayshore.leanstream.co/CKYCFM
 #EXTINF:-1,CKYL 610 "YL Country" Peace River, AB
 https://provisioning.streamtheworld.com/pls/CKYLFMAAC.pls
+#EXTINF:-1,Heart Dorset 102.3
+http://ice-sov.musicradio.com/HeartDorsetMP3
+#EXTINF:-1,Heart London 106.2 [MP3]
+http://ice-sov.musicradio.com/HeartLondonMP3
+#EXTINF:-1,Heart Norfolk 102.4
+http://ice-sov.musicradio.com/HeartNorfolkMP3
+#EXTINF:-1,Heart Northants 96.6
+http://ice-sov.musicradio.com/HeartNorthamptonshireMP3
+#EXTINF:-1,Heart Oxfordshire 102.6 && 97.4
+http://media-sov.musicradio.com/HeartOxfordshireMP3
+#EXTINF:-1,Heart South Hams
+http://media-sov.musicradio.com/HeartSouthHamsMP3
+#EXTINF:-1,Heart South West
+http://media-the.musicradio.com/HeartCornwall
+#EXTINF:-1,Heart Sussex 102.4 &&103.5
+http://media-ice.musicradio.com/HeartSussexMP3?.mp3
+#EXTINF:-1,Heart Torbay 96.4
+http://media-sov.musicradio.com/HeartTorbay
+#EXTINF:-1,Heart West Wales
+http://ice-sov.musicradio.com/HeartWestWalesMP3
 #EXTINF:-1,Hot 91.1
-https://22963.live.streamtheworld.com/MAR_HOT91AAC/HLS/playlist.m3u8
+https://17853.live.streamtheworld.com/MAR_HOT91AAC/HLS/playlist.m3u8
 #EXTINF:-1,KAYL 101.7
 https://ice23.securenetsystems.net/KAYL
 #EXTINF:-1,KCHE Classic Hits 92.1
 https://ice3.securenetsystems.net/KCHEFM
+#EXTINF:-1,KCHE-AM Unforgettable Favorites 1440
+https://ice23.securenetsystems.net/KCHEAM
 #EXTINF:-1,KIZN 92.3 "Kissin' 92" Boise, ID
 http://playerservices.streamtheworld.com/m3u/KIZNFM.m3u
 #EXTINF:-1,KMEZ "Old School 106.7" New Orleans, LA
@@ -294,7 +318,7 @@ https://provisioning.streamtheworld.com/pls/KXIXFM.pls
 #EXTINF:-1,KXKL 105.1 "Kool 105" Denver, CO
 https://provisioning.streamtheworld.com/pls/KXKLFMAAC.pls
 #EXTINF:-1,m2o
-https://streamcdng11-4c4b867c89244861ac216426883d1ad0.msvdn.net/radiom2o/radiom2o/master_ma.m3u8
+https://streamcdnp11-4c4b867c89244861ac216426883d1ad0.msvdn.net/radiom2o/radiom2o/master_ma.m3u8
 #EXTINF:-1,OFM 94 && 97 FM Bloemfontein
 http://edge.iono.fm/xice/ofm_live_medium.aac
 #EXTINF:-1,Shetland Islands Broadcasting Company (SIBC) 96.2 && 102.2
@@ -302,9 +326,7 @@ http://tx9.zetcast.net:8100/stream
 #EXTINF:-1,Smooth FM 91.5
 https://23153.live.streamtheworld.com/SMOOTH915_AAC48.aac
 #EXTINF:-1,Smooth FM 95.3
-http://28903.live.streamtheworld.com/SMOOTH953_AAC48.aac?src=neweb
-#EXTINF:-1,Star FM 98.3 && 104.7 Kingstown
-http://starradio.serverroom.net:6688/
+http://28853.live.streamtheworld.com/SMOOTH953_AAC48.aac?src=neweb
 #EXTINF:-1,VOCM-AM 590 St. John's, NL
 http://newcap.leanstream.co/VOCMAM
 #EXTINF:-1,WBAL "News Radio1090"  Baltimore, MD
@@ -333,14 +355,8 @@ https://26113.live.streamtheworld.com/MAR_ZINC96AAC/HLS/playlist.m3u8
 https://n20a-eu.rcs.revma.com/ypqt40u0x1zuv?rj-ttl=5&rj-tok=AAABiLP17U8AA4GbtWJVVdFFsQ
 #EXTINF:-1,Q107
 https://live.leanstream.co/CILQFM-MP3
-#EXTINF:-1,Country 104
-https://live.leanstream.co/CKDKFM-MP3?tunein
-#EXTINF:-1,WWOZ 90.7 FM
-https://wwoz-sc.streamguys1.com/wwoz-hi.mp3
-#EXTINF:-1,Country
-https://bayshore.leanstream.co/CKYCFM?args=web_01&uid=e4f7ef46-0897-4e53-8b5d-664e18091357
-#EXTINF:-1,Country 105 FM
-https://live.leanstream.co/CKRYFM
+#EXTINF:-1,Radio Sans Pub
+https://stream1.jupinfo.fr:8443/play
 #EXTINF:-1,Y108 Rocks
 https://live.leanstream.co/CJXYFM
 #EXTINF:-1,Rock 107
@@ -395,16 +411,12 @@ https://newcap.leanstream.co/CHNOFM
 https://newcap.leanstream.co/CKIXFM?args=3rdparty_02&uid=2f2ec1f5-f8de-46b2-81fb-c45b8a9632e4
 #EXTINF:-1,101.7 The One
 https://live.leanstream.co/CKNXFM-MP3?tunein
-#EXTINF:-1,Mix
-https://bayshore.leanstream.co/CIXKFM
 #EXTINF:-1,The Wolf
 https://ais-sa1.streamon.fm/7255_64k.aac
 #EXTINF:-1,The Fox
 https://live.leanstream.co/CFGXFM-MP3?tunein
 #EXTINF:-1,Traxx FM House
 https://traxx002.ice.infomaniak.ch/traxx002-low.mp3
-#EXTINF:-1,Star 98.3 FM
-http://starradio.serverroom.net:6688/;stream.nsv
 #EXTINF:-1,The Beat
 https://live.leanstream.co/CKBTFM-MP3
 #EXTINF:-1,94.3 CKSY
@@ -467,60 +479,12 @@ https://live.leanstream.co/CKCBFM-MP3
 https://mbsradio.leanstream.co/CFCYFM-MP3
 #EXTINF:-1,Real Country 97.9
 https://newcap.leanstream.co/CKWBFM
+#EXTINF:-1,KRAZE
+https://ais-sa1.streamon.fm/7265_64k.aac/playlist.m3u8
 #EXTINF:-1,The Beach
 https://bayshore.leanstream.co/CFPSFM
-#EXTINF:-1,Radio Contexto Ñuble
-https://streaming.viphosting.cl/8028/stream
 #EXTINF:-1,Mustar FM
 http://193.138.125.14:8500/;
-#EXTINF:-1,CJOY
-https://live.leanstream.co/CJOYAM
-#EXTINF:-1,89.5 The Lake
-https://ais-sa1.streamon.fm/7229_128k.aac/playlist.m3u8
-#EXTINF:-1,Traxx FM  Jazz
-https://traxx014.ice.infomaniak.ch/traxx014-low.mp3
-#EXTINF:-1,HOT 101.3
-https://newcap.leanstream.co/CJEGFM
-#EXTINF:-1,Hot 93.7
-https://newcap.leanstream.co/CKWYFM
-#EXTINF:-1,Country 104.7 - WKKY
-https://ice3.securenetsystems.net/WKKY
-#EXTINF:-1,Traxx FM Deluxe
-https://traxx001.ice.infomaniak.ch/traxx001-low.mp3
-#EXTINF:-1,Traxx FM Latino
-https://traxx008.ice.infomaniak.ch/traxx008-low.mp3
-#EXTINF:-1,GX94
-https://ais-sa1.streamon.fm/7259_64k.aac
-#EXTINF:-1,Real Country 93.3 FM
-https://newcap.leanstream.co/CKSQFM-MP3?args=tunein_01
-#EXTINF:-1,Traxx FM RnB
-https://traxx007.ice.infomaniak.ch/traxx007-low.mp3
-#EXTINF:-1,Real Country 93.5
-https://newcap.leanstream.co/CKVHFM-MP3
-#EXTINF:-1,Traxx FM  Pop
-https://traxx009.ice.infomaniak.ch/traxx009-low.mp3
-#EXTINF:-1,CKDR
-https://ais-sa1.streamon.fm/7231_128k.aac/playlist.m3u8
-#EXTINF:-1,Radio Reverb
-https://listen-radioreverb.sharp-stream.com/115_radio_reverb_mp3_128
-#EXTINF:-1,Traxx FM  Rap
-https://traxx015.ice.infomaniak.ch/traxx015-low.mp3
-#EXTINF:-1,Traxx FM Cool Jam
-https://traxx005.ice.infomaniak.ch/traxx005-low.mp3
-#EXTINF:-1,Cashmere Radio
-https://cashmereradio.out.airtime.pro/cashmereradio_a
-#EXTINF:-1,Real Country 95.9
-https://newcap.leanstream.co/CKSAFM?args=tunein_02
-#EXTINF:-1,Big Land
-https://newcap.leanstream.co/CFLNFM-MP3
-#EXTINF:-1,Traxx FM Soul
-https://traxx006.ice.infomaniak.ch/traxx006-low.mp3
-#EXTINF:-1,Real Country 94.9
-https://newcap.leanstream.co/CJPRFM-MP3
-#EXTINF:-1,104.7 Heart FM
-https://ais-sa1.streamon.fm/7135_48k.aac
-#EXTINF:-1,CKBW
-https://ais-sa1.streamon.fm/7239_128k.aac/playlist.m3u8
 #EXTINF:-1,Knixx.FM
 http://s1.knixx.fm/dein_webradio_128.mp3
 #EXTINF:-1,Rock 94
@@ -557,19 +521,26 @@ https://spoonradiomodernrock.ice.infomaniak.ch/spoon-modernrock-hd.aac
 https://spoonradioalternativerock.ice.infomaniak.ch/spoon-alternativerock-hd.aac
 #EXTINF:-1,Spoon Radio - Acoustic Rock
 https://spoonradioacousticrock.ice.infomaniak.ch/spoon-acousticrock-hd.aac
+#EXTINF:-1,TheRadio.CC [Ogg Vorbis]
+http://stream.theradio.cc:8000/trcc-stream.ogg
 #EXTINF:-1,Spoon Radio - Hard Rock
 https://spoonradiohardrock.ice.infomaniak.ch/spoon-hardrock-hd.aac
 #EXTINF:-1,CHFT &quot;100.5 CRUZ FM&quot; Fort McMurray, AB
+http://ais-sa1.streamon.fm/7256_64k.aac
 #EXTINF:-1,CJNW 107.1 &quot;Hot 107&quot; Edmonton, AB
+http://ais-sa1.streamon.fm/7260_64k.aac
 #EXTINF:-1,Radio Paradise [Mobile AAC+ 32k]
 http://stream.radioparadise.com/aac-32
 #EXTINF:-1,CKEA &quot;95.7 CRUZ FM&quot; Edmonton, AB
+http://ais-sa1.streamon.fm/7263_64k.aac
 #EXTINF:-1,Joy Hits UK
 http://stream.joyhits.online:8070/joyhitshq.mp3
+#EXTINF:-1,TheRadio.CC [Opus]
+http://stream.theradio.cc:8000/trcc-stream.opus
 #EXTINF:-1,Ohm Radio 96.3 FM (WOHM LP)
-https://das-edge15-live365-dal02.cdnstream.com/a92834
+https://das-edge93-live365-dal05.cdnstream.com/a92834
 #EXTINF:-1,ByteFM
-http://bytefm.stream39.radiohost.de/bytefm-mainhq_aac-64?addradio&_art=dD0xNzg3NTczMTE2JmQ9YTFiZDY0ZDUyNmQ5MTEwNTllOWI&upd-meta&upd-scheme=http
+http://bytefm.stream14.radiohost.de/bytefm-mainhq_aac-64?addradio&_art=dD0xNzkyOTY1MTQ3JmQ9YmRkNmZiYzQ1ZTdlMzIxYzliNTk&upd-meta&upd-scheme=http
 #EXTINF:-1,Radio Paradise (320k)
 http://stream-uk1.radioparadise.com/aac-320
 #EXTINF:-1,Radio Paradise [Main Mix 64k AAC+]
@@ -579,6 +550,7 @@ http://stream.wtsq.org:7118/;
 #EXTINF:-1,Radio Paradise [Mobile AAC+ 24k]
 http://stream.radioparadise.com/aac-24
 #EXTINF:-1,CFQK 104.5 &quot;Energy 103 &amp; 104&quot; Kaministiquia, ON
+http://ais-sa1.streamon.fm/7098_32k.aac
 #EXTINF:-1,Radio Free Americana [64kbps AAC+]
 http://janus.cdnstream.com:5140/live
 #EXTINF:-1,SomaFM DEF CON Radio 64k
@@ -593,6 +565,8 @@ http://hdradiopartymix-rfritschka.radioca.st/;
 http://hdradiohot100-rfritschka.radioca.st/;
 #EXTINF:-1,Hairband Rock (fadefm.com) 64k aac+
 http://ec4.yesstreaming.net:3100/stream
+#EXTINF:-1,maxFM – Emo Grunge (fadefm.com) 64k aac+
+http://ec4.yesstreaming.net:3070/stream
 #EXTINF:-1,Classical Music (fadefm.com) 64k aac+
 http://ec2.yesstreaming.net:1570/stream
 #EXTINF:-1,KFMG-LP 98.9/99.1 Des Moines, IA  (MP3)
@@ -605,9 +579,159 @@ https://edge.mixlr.com/channel/zwtuo
 https://ckut.out.airtime.pro/ckut_a
 #EXTINF:-1,WAPS 91.3 &quot;The Summit&quot; Akron, OH
 http://streamer2.legatocommunications.com/wapshq
+#EXTINF:-1,TheRadio.CC [MP3]
+http://stream.theradio.cc:8000/trcc-stream.mp3
 #EXTINF:-1,SomaFM Groove Salad Classic 128k
 https://ice2.somafm.com/gsclassic-128-mp3
 #EXTINF:-1,CHMX &quot;My 92.1&quot; Regina. SK
-#EXTINF:-1,ByteFM | HH-UKW
-http://bytefm.stream39.radiohost.de/bytefm-hamburg_mp3-128?addradio&_art=dD0xNzg3NTczMTE5JmQ9YmYyNWI5Y2FjZThjYmNiZDZlNzU&upd-meta&upd-scheme=http
+http://ais-sa1.streamon.fm/7257_64k.aac
 #EXTINF:-1,CFWD 96.3 &quot;CRUZ FM&quot; Saskatoon, SK
+http://ais-sa1.streamon.fm/7254_64k.aac
+#EXTINF:-1,CFCO "Country 92.9 & 630" - Chatham, ON
+https://live.leanstream.co/CFCOFM
+#EXTINF:-1,Free FM 80s
+https://freefm80.radioca.st/stream?sid=1
+#EXTINF:-1,Free FM Classics
+https://xxdelgado.radioca.st/stream
+#EXTINF:-1,Smooth FM 91.5 - Melbourne - 91.5 FM (AAC+ 128k)
+http://28793.live.streamtheworld.com/SMOOTH915_AAC128.aac
+#EXTINF:-1,Nova 100 - Melbourne - 100.3 FM (AAC+ 320k)
+http://23203.live.streamtheworld.com/NOVA_100_AAC320.aac
+#EXTINF:-1,Nova 106.9 - Brisbane - 106.9 FM (AAC+ 128k)
+http://23093.live.streamtheworld.com/NOVA_1069_AAC128.aac
+#EXTINF:-1,KYSR 98.7 FM Los Angeles, CA
+http://stream.revma.ihrhls.com/zc201/hls.m3u8
+#EXTINF:-1,Nova 919 - Adelaide - 91.9 FM (AAC+ 320k)
+http://28863.live.streamtheworld.com/NOVA_919_AAC320.aac
+#EXTINF:-1,Nova 106.9 - Brisbane - 106.9 FM (AAC+ 320k)
+http://28803.live.streamtheworld.com/NOVA_1069_AAC320.aac
+#EXTINF:-1,Nova 106.9 - Brisbane - 106.9 FM (MP3)
+http://23093.live.streamtheworld.com/NOVA_1069.mp3
+#EXTINF:-1,Smooth FM Perth (AAC+ 320k)
+http://23153.live.streamtheworld.com/SMOOTH_PERTH_AAC320.aac
+#EXTINF:-1,3GG - Warragul - 531 AM (AAC+)
+http://19273.live.streamtheworld.com/3GGAAC.aac
+#EXTINF:-1,Smooth FM Adelaide (AAC+ 320k)
+http://23093.live.streamtheworld.com/SMOOTH_ADELAIDE_AAC320.aac
+#EXTINF:-1,CFMC 95.1 "C95" Saskatoon, SK -AAC
+http://server.fantasyradio.co.uk:8300/;stream/1
+#EXTINF:-1,Nova 96.9 - Sydney - 96.9 FM (AAC+ 128k)
+http://23093.live.streamtheworld.com/NOVA_969_AAC128.aac
+#EXTINF:-1,Nova 93.7 - Perth - 93.7 FM (AAC+ 320k)
+http://28863.live.streamtheworld.com/NOVA_937_AAC320.aac
+#EXTINF:-1,Nova 100 - Melbourne - 100.3 FM (AAC+ 128k)
+http://23203.live.streamtheworld.com/NOVA_100_AAC128.aac
+#EXTINF:-1,Nova 100 - Melbourne - 100.3 FM (AAC+ 48k)
+http://23163.live.streamtheworld.com/NOVA_100_AAC48.aac
+#EXTINF:-1,4MK - Mackay - 1026 AM (AAC+)
+http://18433.live.streamtheworld.com/MAC_4MKAAC.aac
+#EXTINF:-1,3BA - Ballarat - 102.3 FM (MP3)
+http://16643.live.streamtheworld.com/BAL_3BA.mp3
+#EXTINF:-1,4CA - Cairns - 846 AM (AAC+)
+http://18433.live.streamtheworld.com/CAI_4CAAAC.aac
+#EXTINF:-1,Nova 96.9 - Sydney - 96.9 FM (AAC+ 48k)
+http://14533.live.streamtheworld.com/NOVA_969_AAC48.aac
+#EXTINF:-1,4CC - Gladstone - 927 AM (MP3)
+http://26113.live.streamtheworld.com/GLA_4CC.mp3
+#EXTINF:-1,Smooth FM 95.3 - Sydney - 95.3 FM (MP3)
+http://28863.live.streamtheworld.com/SMOOTH953.mp3
+#EXTINF:-1,Nova 100 - Melbourne - 100.3 FM (MP3)
+http://23153.live.streamtheworld.com/NOVA_100.mp3
+#EXTINF:-1,Star 106.3 - Townsville - 106.3 FM (MP3)
+http://17853.live.streamtheworld.com/TOW_STAR1063.mp3
+#EXTINF:-1,Nova 919 - Adelaide - 91.9 FM (AAC+ 128k)
+http://28853.live.streamtheworld.com/NOVA_919_AAC128.aac
+#EXTINF:-1,4RO - Rockhampton - 990 AM (AAC+)
+http://17853.live.streamtheworld.com/ROC_4ROAAC.aac
+#EXTINF:-1,Star 90.7 - The Whitsundays - 90.7 FM (MP3)
+http://18193.live.streamtheworld.com/MAC_STAR_907.mp3
+#EXTINF:-1,91.1 Hot FM - Maroochydore - 91.1 FM (MP3)
+http://26113.live.streamtheworld.com/MAR_HOT91.mp3
+#EXTINF:-1,Nova 93.7 - Perth - 93.7 FM (AAC+ 48k)
+http://23153.live.streamtheworld.com/NOVA_937_AAC48.aac
+#EXTINF:-1,Power100 - Townsville - 100.7 FM (MP3)
+http://18433.live.streamtheworld.com/TOW_POWER100.mp3
+#EXTINF:-1,Smooth FM 91.5 - Melbourne - 91.5 FM (MP3)
+http://14533.live.streamtheworld.com/SMOOTH915.mp3
+#EXTINF:-1,Nova 96.9 - Sydney - 96.9 FM (AAC+ 320k)
+http://23203.live.streamtheworld.com/NOVA_969_AAC320.aac
+#EXTINF:-1,Power100 - Townsville - 100.7 FM (AAC+)
+http://17633.live.streamtheworld.com/TOW_POWER100AAC.aac
+#EXTINF:-1,Nova 106.9 - Brisbane - 106.9 FM (AAC+ 48k)
+http://23093.live.streamtheworld.com/NOVA_1069_AAC48.aac
+#EXTINF:-1,Nova 93.7 - Perth - 93.7 FM (MP3)
+http://23093.live.streamtheworld.com/NOVA_937.mp3
+#EXTINF:-1,River 1467 - Mildura - 1467 AM (MP3)
+http://19273.live.streamtheworld.com/MIL_RIVER1467.mp3
+#EXTINF:-1,Nova 96.9 - Sydney - 96.9 FM (MP3)
+http://14533.live.streamtheworld.com/NOVA_969.mp3
+#EXTINF:-1,Flow FM Australia (MP3)
+http://uksoutha.streaming.broadcast.radio/flow-fm
+#EXTINF:-1,Gold Central Victoria - Bendigo / Central Victoria - 98.3 FM / 1071 AM (MP3)
+http://18193.live.streamtheworld.com/BEN_GOLD.mp3
+#EXTINF:-1,3BA - Ballarat - 102.3 FM (AAC+)
+http://18193.live.streamtheworld.com/BAL_3BAAAC.aac
+#EXTINF:-1,Star 90.7 - The Whitsundays - 90.7 FM (AAC+)
+http://18193.live.streamtheworld.com/MAC_STAR_907AAC.aac
+#EXTINF:-1,Gold Central Victoria - Bendigo / Central Victoria - 98.3 FM / 1071 AM (AAC+)
+http://18193.live.streamtheworld.com/BEN_GOLDAAC.aac
+#EXTINF:-1,Free FM Rock
+https://freefmrock.radioca.st/stream
+#EXTINF:-1,Star 101.9 - Mackay - 101.9 FM (MP3)
+http://17633.live.streamtheworld.com/MAC_STAR1019.mp3
+#EXTINF:-1,CHSP "Real Country 97.7" St. Paul, AB
+http://22983.live.streamtheworld.com:3690/CJWWAMAAC_SC
+#EXTINF:-1,Smooth FM Perth (AAC+ 48k)
+http://23203.live.streamtheworld.com/SMOOTH_PERTH_AAC48.aac
+#EXTINF:-1,Smooth FM 95.3 - Sydney - 95.3 FM (AAC+ 48k)
+http://23203.live.streamtheworld.com/SMOOTH953_AAC48.aac
+#EXTINF:-1,4MK - Mackay - 1026 AM (MP3)
+http://17853.live.streamtheworld.com/MAC_4MK.mp3
+#EXTINF:-1,4BU - Bundaberg - 1332 AM (AAC+)
+http://26303.live.streamtheworld.com/BUN_4BUAAC.aac
+#EXTINF:-1,Smooth FM Brisbane (AAC+ 320k)
+http://28853.live.streamtheworld.com/SMOOTH_BRISBANE_AAC320.aac
+#EXTINF:-1,91.1 Hot FM - Maroochydore - 91.1 FM (AAC+)
+http://17853.live.streamtheworld.com/MAR_HOT91AAC.aac
+#EXTINF:-1,4CA - Cairns - 846 AM (MP3)
+http://17633.live.streamtheworld.com/CAI_4CA.mp3
+#EXTINF:-1,Smooth FM 95.3 - Sydney - 95.3 FM (AAC+ 128k)
+http://14533.live.streamtheworld.com/SMOOTH953_AAC128.aac
+#EXTINF:-1,ChathotelRadio
+https://a5.asurahosting.com:7410/radio.mp3
+#EXTINF:-1,Smooth FM Adelaide (AAC+ 48k)
+http://28863.live.streamtheworld.com/SMOOTH_ADELAIDE_AAC48.aac
+#EXTINF:-1,FM Constelación 98.1
+http://streaming.radiosenlinea.com.ar:8412/;
+#EXTINF:-1,4BU - Bundaberg - 1332 AM (MP3)
+http://29321.live.streamtheworld.com/BUN_4BU.mp3
+#EXTINF:-1,Free FM World
+https://rocafmadrid.radioca.st/stream
+#EXTINF:-1,Smooth FM Adelaide (MP3)
+http://23203.live.streamtheworld.com/SMOOTH_ADELAIDE.mp3
+#EXTINF:-1,C91.3 FM - Macarthur's Radio Station
+https://ice9.securenetsystems.net/C913
+#EXTINF:-1,Star 102.7 - Cairns - 102.7 FM (AAC+)
+http://26303.live.streamtheworld.com/CAI_STAR1027AAC.aac
+#EXTINF:-1,River 1467 - Mildura - 1467 AM (AAC+)
+http://16643.live.streamtheworld.com/MIL_RIVER1467AAC.aac
+#EXTINF:-1,Smooth FM Perth (AAC+ 128k)
+http://23153.live.streamtheworld.com/SMOOTH_PERTH_AAC128.aac
+#EXTINF:-1,Smooth FM 91.5 - Melbourne - 91.5 FM (AAC+ 48k)
+http://23153.live.streamtheworld.com/SMOOTH915_AAC48.aac
+#EXTINF:-1,4RO - Rockhampton - 990 AM (MP3)
+http://17633.live.streamtheworld.com/ROC_4RO.mp3
+#EXTINF:-1,2EC - Bega / Batemans Bay - 94.5 FM / 105.9 FM (MP3)
+http://16643.live.streamtheworld.com/BEG_2EC.mp3
+#EXTINF:-1,Star 101.9 - Mackay - 101.9 FM (AAC+)
+http://13743.live.streamtheworld.com/MAC_STAR1019AAC.aac
+#EXTINF:-1,Smooth FM Adelaide (AAC+ 128k)
+http://23163.live.streamtheworld.com/SMOOTH_ADELAIDE_AAC128.aac
+#EXTINF:-1,Smooth FM Perth (MP3)
+http://23193.live.streamtheworld.com/SMOOTH_PERTH.mp3
+#EXTINF:-1,4CC - Gladstone - 927 AM (AAC+)
+http://29321.live.streamtheworld.com/GLA_4CCAAC.aac
+#EXTINF:-1,2EC - Bega / Batemans Bay - 94.5 FM / 105.9 FM (AAC+)
+http://18193.live.streamtheworld.com/BEG_2ECAAC.aac
+#EXTINF:-1,Free FM Gaita Venezuela
+https://gaita.radioca.st/stream

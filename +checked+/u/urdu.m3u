@@ -13,14 +13,8 @@ http://162.244.80.118:4900/stream/1/
 http://172.93.237.106:8000/
 #EXTINF:-1,Radio1 FM 91
 http://172.93.237.106:8147/
-#EXTINF:-1,Radio Awaz FM 107 Mandi Bahauddin
-http://fusion.shoutca.st:8096/stream
-#EXTINF:-1,92 News TV
-http://92news.vdn.dstreamone.net/92newshd/92hd/playlist.m3u8
 #EXTINF:-1,FM 100 Pakistan
 http://162.244.80.118:4900/stream.mp3
-#EXTINF:-1,Hamdosana Net Radio
-http://s43.myradiostream.com:22874/stream.mp3
 #EXTINF:-1,Hot FM 105
 http://172.93.237.106:8000/listen.mp3
 #EXTINF:-1,Lyca Radio
@@ -69,8 +63,6 @@ https://mediati.me/radio/8010/radio.mp3?1608014536
 https://s3.radio.co/s3b10a57ef/listen
 #EXTINF:-1,DC Naat Radio
 http://s33.myradiostream.com:13872/
-#EXTINF:-1,Urdu islamic Lectures[CH_02]
-http://144.91.121.54:27001/
 #EXTINF:-1,DostiPlace
 http://radio.dostiplace.com:9222/
 #EXTINF:-1,Radio Sangam
@@ -89,6 +81,8 @@ https://server.mediacast4u.stream/8010/stream
 https://server.mediacast4u.stream/8002/stream
 #EXTINF:-1,NCAC
 https://whmsonic.radio.gov.pk:7004/stream/;
+#EXTINF:-1,FM 97 Khanewal
+http://s7.reliastream.com:8218/Tune-In%20Links/
 #EXTINF:-1,Dhanak
 https://whmsonic.radio.gov.pk:7007/stream?type=http&nocache=12
 #EXTINF:-1,Power Radio
@@ -101,8 +95,6 @@ http://mmg.streamguys1.com/AsempaFM-mp3?key=93fe20a16f78c70991fa726b9ca9c19c49f7
 https://sonic.globalstreaming.net/8062/stream
 #EXTINF:-1,Hot FM 105 - Hyderabad
 http://172.93.237.106:8030/
-#EXTINF:-1,FM91 Pakistan - Gwadar
-http://172.93.237.106:8209/
 #EXTINF:-1,Saut Ul Quran
 https://whmsonic.radio.gov.pk:7002/stream?type=http&nocache=12
 #EXTINF:-1,MERA FM 107.4
@@ -113,10 +105,6 @@ https://whmsonic.radio.gov.pk:7005/stream
 https://whmsonic.radio.gov.pk:7003/stream
 #EXTINF:-1,External Services
 https://whmsonic.radio.gov.pk:7006/stream
-#EXTINF:-1,Pakistanlivefm
-https://sonic01.instainternet.com:7012/;
-#EXTINF:-1,Sindh Police FM 88.6
-https://sindhpolice-awazradionetwork.radioca.st/stream
 #EXTINF:-1,FM 100 Pakistan Islamabad
 http://162.244.80.118:4900/stream.mp3?ver=604498
 #EXTINF:-1,FM 100 Pakistan Karachi
@@ -137,8 +125,6 @@ https://whmsonic.radio.gov.pk:7041/stream?type=http&nocache=10
 http://s2.reliastream.com:8239/Tune-In%20Links/;
 #EXTINF:-1,Sangeet Radio FM 95.1 AM 1460 Houston, TX, US
 https://ice8.securenetsystems.net/SGTRADIO
-#EXTINF:-1,Radio Pakistan Karachi MW 639
-https://whmsonic.radio.gov.pk:7000/MW639khi?type=http&nocache=9
 #EXTINF:-1,Radio Pakistan NCAC
 https://whmsonic.radio.gov.pk:7004/stream?type=http&nocache=12
 #EXTINF:-1,VOA Urdu - 0 - Pakistan -
@@ -148,6 +134,7 @@ http://162.244.80.118:3024/
 #EXTINF:-1,FM Sunrise Pakistan
 https://generationfm-underground.ice.infomaniak.ch/generationfm-underground-high.mp3
 #EXTINF:-1,City FM 89 en Direct - Karâchi, Pakistan
+http://172.93.237.106:8000/
 #EXTINF:-1,SAMAA FM - 107.4 FM
 https://samaapew107-itelservices.radioca.st/stream
 #EXTINF:-1,PBC FM 93 - 93.0 FM
@@ -172,10 +159,12 @@ https://whmsonic.radio.gov.pk:8060/relay
 https://whmsonic.radio.gov.pk:7008/
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/71196189.jpg",Radio Pakistan Peshawar
 https://whmsonic.radio.gov.pk:8072/relay
-#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/59914432.jpg",Spice FM 107
-https://s5.myradiostream.com:42724/listen.mp3?0.9724205635133212?nocache=1787583450
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/34909952.jpg",Shopen Anime Radio
+https://s97.radiolize.com:8040/radio.mp3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/fm-101-182777-logo.jpg",Radio FM 101
 https://whmsonic.radio.gov.pk:7008/stream?type=httpu0026nocache=12
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/dk-radio-aap-ki-awaz-logo.jpg",Radio Aap ki Awaz
+http://162.244.80.106:11332/stream
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/hot-fm-105-599909-logo.jpg",Radio Hot FM 105
 http://172.93.237.106:8000/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-radio-pak-filmi-logo.jpg",Radio Pak Filmi
@@ -192,18 +181,14 @@ https://whmsonic.radio.gov.pk:7004/stream
 https://whmsonic.radio.gov.pk:8048/stream
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-fm-100-pakistan-0-logo.jpg",Radio Fm 100 Pakistan
 http://162.244.80.118:3024/;stream.mp3
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/hot-fm-105-badin-599917-logo.jpg",Radio Hot FM 105 Badin
-http://172.93.237.106:8038/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/hot-fm-105-hyderabad-599915-logo.jpg",Radio Hot FM 105 Hyderabad
 http://172.93.237.106:8030/;
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/pakistanlivefm-617440-logo.jpg",Radio Pakistanlivefm
-https://sonic01.instainternet.com:7012/;?
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/hot-fm-105-larkana-599918-logo.jpg",Radio Hot FM 105 Larkana
-http://172.93.237.106:8032/;
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/hot-fm-105-quetta-599921-logo.jpg",Radio Hot FM 105 Quetta
-http://172.93.237.106:8066/;
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-hot-fm-98-mirpurkhas-logo.jpg",Radio Hot FM 98 MirpurKhas
-http://172.93.237.106:8052/;
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-hot-fm-97-chitral-logo.jpg",Radio Hot FM 97 Chitral
+http://172.93.237.106:8042/;
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/dostiplace-588780-logo.jpg",Radio Dostiplace
+https://sonic.whitelabelservers.co.uk/9222/;
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-fm-97-khanewal-logo.jpg",Radio FM 97 Khanewal
+http://s7.reliastream.com:8218/Tune-In%20Links/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-fm-93-multan-logo.jpg",Radio FM 93 Multan
 https://whmsonic.radio.gov.pk:7014/stream
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-road-safety-fm-95-nhmp-national-highways-and-motorway-police-logo.jpg",Radio Road Safety FM 95 NHMP National Highways & Motorway Police
@@ -214,17 +199,14 @@ https://whmsonic.radio.gov.pk:7007/stream?type=httpu0026nocache=12
 https://whmsonic.radio.gov.pk:8022/relay
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-dunya-news-logo.jpg",Radio Dunya News
 https://imob.dunyanews.tv/live/rddaudrgn.sdp/playlist.m3u8
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-hot-fm-1052-sangar-logo.jpg",Radio Hot FM 105.2 Sangar
-http://172.93.237.106:8068/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-fm-93-rawalpindi-logo.jpg",Radio FM 93 Rawalpindi
 https://whmsonic.radio.gov.pk:8036/relay
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-fm-101-faisalabad-logo.jpg",Radio FM 101 Faisalabad
 https://whmsonic.radio.gov.pk:8024/relay?
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-radio-awaz-0-1-2-3-logo.jpg",Radio Awaz
-http://fusion.shoutca.st:8128/stream
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-samaa-fm-1074-logo.jpg",Radio Samaa FM 107.4
 https://samaabwp107-itelservices.radioca.st/stream
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-mera-fm-1074-0-logo.jpg",Radio MERA FM 107.4
+https://samaapew107-itelservices.radioca.st/stream
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-samaa-fm-1074-0-logo.jpg",Radio Samaa FM 107.4
 https://samaaisb107-itelservices.radioca.st/stream
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/pk-ncs-music-logo.jpg",Radio NCS Music
@@ -233,8 +215,6 @@ http://178.33.135.244:2528/stream
 https://whmsonic.radio.gov.pk:7004/stream?type=httpu0026nocache=12
 #EXTINF:-1,Radio Pakistan Multan
 https://whmsonic.radio.gov.pk:8034/stream?type=httpu0026nocache=12
-#EXTINF:-1,AIR Indore
-https://air.pc.cdn.bitgravity.com/air/live/pbaudio212/playlist.m3u8
 #EXTINF:-1,City FM 89 Islamabad
 https://whmsonic.radio.gov.pk:8026/relay?type=httpu0026nocache=9
 #EXTINF:-1,Radio Pakistan WS
@@ -255,7 +235,21 @@ https://taiyabahmbolton.radioca.st/stream
 https://whmsonic.radio.gov.pk:8070/relay?type=httpu0026nocache=9
 #EXTINF:-1,Hand Of Jesus - URDU
 https://whmsonic.radio.gov.pk:7008/stream?type=http&nocache=12
-#EXTINF:-1,Spice FM107
-https://s5.myradiostream.com:42724/listen.mp3?0_9724205635133212=?nocache=1787583463
-#EXTINF:-1,Radio Awaz
-https://gujratfm105-awazradionetwork.radioca.st/stream
+#EXTINF:-1,Fm 100 Pakistan
+https://cast4.servcast.net/proxy/fm100islamabad/stream?ver=614923
+#EXTINF:-1,HOT FM Karachi
+https://whmsonic.radio.gov.pk:8088/stream?type=http
+#EXTINF:-1,CKYE-FM 93.1 "Red FM" Vancouver, BC
+https://whmsonic.radio.gov.pk:8074/?type=http
+#EXTINF:-1,SOUTUL QURAN PBC FM 93.4 ISLAMABAD
+https://whmsonic.radio.gov.pk:8034/stream?type=http&nocache=12
+#EXTINF:-1,CKYR-FM 106.7 "Red FM" Calgary, AB
+https://whmsonic.radio.gov.pk:8088/stream?type=http&nocache=4
+#EXTINF:-1,Free FM Gaita Venezuela
+https://gaita.radioca.st/stream
+#EXTINF:-1,Mera FM 107.4 Lahore
+https://whmsonic.radio.gov.pk:8076/relay?type=http&nocache=9
+#EXTINF:-1,Free FM World
+https://rocafmadrid.radioca.st/stream
+#EXTINF:-1,Multan MW
+http://138.201.52.248:8459/stream

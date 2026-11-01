@@ -3,8 +3,6 @@
 http://stream.radio7.pl:443/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/schlager-time-radio-172097-logo.jpg",Schlager Time Radio
 http://schlagers.org:8760/;
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mike-170221-logo.jpg",Radio The Mike
-http://pvweb.smcvt.edu:8000/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/all-oldies-channel-161975-logo.jpg",Radio ALL OLDIES CHANNEL
 http://icecast01.loudcaster.com:80/395.32.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/rush-hour-smooth-jams-161989-logo.jpg",Radio Rush Hour Smooth Jams
@@ -34,7 +32,7 @@ http://icecast01.loudcaster.com:80/971.32.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/keizerstad-fm-162354-logo.jpg",Radio Keizerstad FM
 http://server-11.stream-server.nl:8800/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/wobo-570171-logo.jpg",Radio WOBO
-https://radio.securenetsystems.net/v5/index.cfm?CFID=b78d7c42-67dd-4e39-ad1c-c8da4f19cee3&CFTOKEN=0&stationCallSign=WOBO
+https://radio.securenetsystems.net/v5/index.cfm?CFID=8500be44-52e3-4378-8e6c-95e9cce2ae73&CFTOKEN=0&stationCallSign=WOBO
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-atlantide-162571-logo.jpg",Radio Atlantide
 http://icecast01.loudcaster.com:80/871.64.mp3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/keep-it-hood-wood-162579-logo.jpg",Radio Keep It Hood Wood
@@ -51,6 +49,8 @@ http://icecast01.loudcaster.com:80/989.32.aac
 http://icecast01.loudcaster.com:80/963.32.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/tenacity-radio-584714-logo.jpg",Tenacity Radio
 http://s2.nexuscast.com:8020/;
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/capital-manchester-569865-logo.jpg",Radio Capital Manchester
+http://media-ice.musicradio.com/CapitalManchesterMP3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/181fm-vibe-of-vegas-602819-logo.jpg",Radio 181.FM Vibe Of Vegas
 http://listen.181fm.com/181-vibe_128k.mp3?noPreRoll=true
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/wmnf-569978-logo.jpg",Radio WMNF
@@ -69,6 +69,8 @@ http://peace.str3am.com:6090
 http://icecast01.loudcaster.com:80/367.64.mp3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/sofakingradio-165867-logo.jpg",SofakingRadio
 http://icecast01.loudcaster.com:80/437.64.mp3
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/kwsb-167926-logo.jpg",Radio KWSB
+http://war.str3am.com:7860/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/rhythmandsoulradiocom-169276-logo.jpg",RhythmAndSoulRadio.com
 http://icecast01.loudcaster.com:80/815.32.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/01globalcom-174838-logo.jpg",Radio 01Global.com
@@ -100,7 +102,7 @@ http://ais-sa1.streamon.fm/7167_48k.aac?starttime=1568963553
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/global-funk-radio-581136-logo.jpg",Global Funk Radio
 https://securestreams2.autopo.st:1148/stream
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/thelex-585209-logo.jpg",Radio TheLex
-http://das-edge14-live365-dal02.cdnstream.com/a51813
+http://das-edge93-live365-dal05.cdnstream.com/a51813
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/40soulcom-162565-logo.jpg",Radio 40SOUL.com
 http://icecast01.loudcaster.com:80/846.32.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/bienvenue-en-louisiane-164367-logo.jpg",Radio Bienvenue en Louisiane
@@ -111,18 +113,20 @@ http://200.58.101.247:8140/;
 http://onair.coastlinefm.nl/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-mundial-stereo-173622-logo.jpg",Radio Mundial Stereo
 http://radiolatina.info:8548/;
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-voltrega-174210-logo.jpg",Radio Voltrega
-http://streaming.enantena.com:8000/radiovoltrega128.mp3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-powersound-174520-logo.jpg",Radio Powersound
-http://radio-powersound.stream.laut.fm/radio-powersound?t302=2026-08-26_11-24-11&uuid=17ba9a1f-d37c-4d6c-9086-c8e9b6c9a842
+http://radio-powersound.stream.laut.fm/radio-powersound?t302=2026-10-26_23-54-20&uuid=792113b9-21a6-55c7-117b-1b39e6888d56
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/soulfood-radio-175925-logo.jpg",Soulfood Radio
-http://soulfood.stream.laut.fm/soulfood?t302=2026-08-26_11-24-22&uuid=84544577-dce9-4832-94ba-1c49d94ff6f9
+http://soulfood.stream.laut.fm/soulfood?t302=2026-10-26_23-54-34&uuid=48cebabf-7f57-11bf-358c-4a19c63b6332
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/ben-fm-177293-logo.jpg",Radio Ben FM
-http://benfm.stream.laut.fm/benfm?t302=2026-08-26_11-24-43&uuid=444decee-4aa9-4e51-9952-991bf04e3118
+http://benfm.stream.laut.fm/benfm?t302=2026-10-26_23-54-57&uuid=86d8880a-6833-0075-81a3-3a10a8acf1ac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-energy22-177327-logo.jpg",Radio Energy22
-http://energy22.stream.laut.fm/energy22?t302=2026-08-26_11-24-43&uuid=09005b98-eb14-4532-91ee-ccfe61d4ed62
+http://energy22.stream.laut.fm/energy22?uuid=74638bca-fbd3-c1f3-5121-6c15ba7fbea0&t302=2026-10-26_23-54-59
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-deister-177337-logo.jpg",Radio Deister
-http://deister.stream.laut.fm/deister?t302=2026-08-26_11-24-43&uuid=8db0b0cb-0adc-4b19-b88d-57c284347bdd
+http://deister.stream.laut.fm/deister?t302=2026-10-26_23-54-59&uuid=0cdc67d9-4795-240a-a2e5-1fedc5ff83c8
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/dorf-radio-burghausen-177660-logo.jpg",Dorf Radio Burghausen
+http://dorfradio-burghausen.stream.laut.fm/dorfradio-burghausen?t302=2026-10-26_23-55-05&uuid=72fa13ba-a50b-c490-f2e5-435ff56dd701
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/all-music-radio-181364-logo.jpg",All Music Radio
+http://icecast01.loudcaster.com:80/444.64.mp3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-fortaleza-nas-ondas-da-web-593115-logo.jpg",Radio Rádio Fortaleza Nas Ondas da Web
 http://servidor28.brlogic.com:8460/live
 #EXTINF:-1 tv-logo="",MELODIA ENTEXNO RADIOFONO
@@ -136,17 +140,27 @@ http://stm3.painelvox.com:8066/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/tulu-radyo-159376-logo.jpg",Radio Tulu Radyo
 http://yayin1.canliyayin.org:8248
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/rautemusikfm-partyhits-619854-logo.jpg",Radio RauteMusik.FM PartyHits
-http://rautemusik.stream48.radiohost.de/partyhits?ref=tunein&upd-meta&upd-scheme=http&_art=dD0xNzg3NzQzNzk4JmQ9ZmM2ZGI2N2RkZmJhMGYxYWNjOTU
+http://rautemusik.stream48.radiohost.de/partyhits?ref=tunein&upd-meta&upd-scheme=http&_art=dD0xNzkzMDU1NjIyJmQ9ODU4YjU2NGI5OGU5N2U2NzRiNzU
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/elvis-hq-187633-logo.jpg",Radio Elvis HQ
+https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/jazz-wiesbaden-159535-logo.jpg",Radio The Jazz of Wiesbaden
-http://thejazzofwiesbaden.stream.laut.fm/thejazzofwiesbaden?t302=2026-08-26_11-24-59&uuid=5955823d-68ab-4235-b320-2b2df1eadc43
+http://thejazzofwiesbaden.stream.laut.fm/thejazzofwiesbaden?t302=2026-10-26_23-55-21&uuid=54372f50-c3ad-1069-5a31-dc6fc9a0646d
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-manganimema-187651-logo.jpg",Radio Manganime.ma
+https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/fresh-radio-585531-logo.jpg",Fresh Radio
 https://s2.radio.co/see52d8809/listen
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/cumbre-1470-166244-logo.jpg",Radio Cumbre 1470
+http://unoredradio.com:9822/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/mkk-web-radio-156232-logo.jpg",Radio MKK Web Rádio
 http://servidor34.brlogic.com:8096/live
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/rap-107-fm-171229-logo.jpg",Radio RAP 107 FM
+http://streaming.enantena.com:8000/rap56.mp3
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-chanson-568836-logo.jpg",Radio Chanson
+http://chanson.hostingradio.ru:8041/chanson256.mp3
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/i-republic-159108-logo.jpg",Radio I-Republic
+https://www.intervalsignals.net/sounds/aze-z-azr1_261001.mp3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/wmky-573775-logo.jpg",Radio WMKY
-https://18423.live.streamtheworld.com/WMKYFM.mp3
+https://18103.live.streamtheworld.com/WMKYFM.mp3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-padania-libera-164311-logo.jpg",Radio Padania Libera
 https://stream1.xdevel.com/audio0s975360-306/stream/icecast.audio
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/somafm-somafm-specials-649446-logo.jpg",Radio SomaFM: SomaFM Specials
@@ -158,15 +172,17 @@ http://51.255.235.165:5092/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/got-soul-sessions-radio-154300-logo.jpg",Got Soul Sessions  Radio
 http://96.31.83.86:8078/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/newton-radio-177375-logo.jpg",Newton Radio
-http://newton.stream.laut.fm/newton?t302=2026-08-26_11-25-22&uuid=636a72c3-111a-4f94-ae8d-7a72b1ec70ce
+http://newton.stream.laut.fm/newton?t302=2026-10-26_23-56-04&uuid=7ea821c3-22ee-aef6-daea-d752f1176b36
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/redwood-community-radio-183763-logo.jpg",Redwood Community Radio
 http://live.str3am.com:2470/live32
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/neon-radio-155922-logo.jpg",Neon Radio
-http://neon.stream.laut.fm/neon?t302=2026-08-26_11-25-32&uuid=37680639-13fe-4f49-809f-c5fab3a307cf
+http://neon.stream.laut.fm/neon?t302=2026-10-26_23-56-16&uuid=7e90dff5-2a5a-c089-6a88-b03b4dc9dfe3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-cultura-jaguarao-am-162983-logo.jpg",Radio Rádio Cultura Jaguarão AM
 http://suaradio2.dyndns.ws:10596/
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/wired-fm-158346-logo.jpg",Radio Wired FM
 https://s2.radio.co/sf0986595a/listen
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-fides-tarija-163177-logo.jpg",Radio Fides Tarija
+http://149.56.175.167:5415/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/futuro-fm-163219-logo.jpg",Radio Futuro FM
 http://server1.20comunicacion.com:8040/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-transamerica-hits-porto-velho-163241-logo.jpg",Radio Rádio Transamérica Hits (Porto Velho)
@@ -187,12 +203,12 @@ http://server2.20comunicacion.com:8014/;
 http://icecast01.loudcaster.com:80/370.64.mp3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/minimafm-186991-logo.jpg",Radio minima.fm
 http://stream.ouveai.com.br:7014/;
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-vimma-165260-logo.jpg",Radio Vimma
-http://radiovimma.turku.fi:8000/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/putumayo-estereo-165310-logo.jpg",Radio Putumayo Estereo
 http://62.210.38.137:8222/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/105-music-star-jovanotti-165422-logo.jpg",Radio 105 Music Star Jovanotti
 http://icy.unitedradio.it/Jovanotti.mp3
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/original-radio-165448-logo.jpg",Original Radio
+http://eco.onestreaming.com:8105/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-fandango-165456-logo.jpg",Radio Rádio Fandango
 http://s01.transmissaodigital.com:7112/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-planeta-vox-165629-logo.jpg",Radio Planeta VOX
@@ -200,7 +216,9 @@ https://streamdb3web.securenetsystems.net/v5/index.cfm?stationCallSign=VOXFM
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/kentro-kardias-fm-172346-logo.jpg",Radio Kentro Kardias FM
 http://s6.onweb.gr:8036/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/schlagerweihnacht-164992-logo.jpg",Radio Schlagerweihnacht
-http://schlagerweihnacht.stream.laut.fm/schlagerweihnacht?t302=2026-08-26_11-27-40&uuid=d3a3a871-a967-4ab6-b67e-8ba28f4f8249
+http://schlagerweihnacht.stream.laut.fm/schlagerweihnacht?t302=2026-10-26_23-59-29&uuid=11afccb9-4ea7-41d0-69cc-3ed2faf4b880
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/hotrod-radio-173139-logo.jpg",Hotrod Radio
+https://hotrodradio.nl/
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/ffh-digital-lovesongs-159695-logo.jpg",Radio FFH Digital - Lovesongs
 http://mp3.ffh.de/ffhchannels/spezial1.mp3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/wekonek-radio-165800-logo.jpg",WeKonek Radio
@@ -220,19 +238,25 @@ http://icecast01.loudcaster.com:80/660.32.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/madeline-island-internet-radio-165894-logo.jpg",Madeline Island Internet Radio
 http://icecast01.loudcaster.com:80/658.32.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-ennelm-1-177340-logo.jpg",Radio Ennelm 1
-http://ennelm1.stream.laut.fm/ennelm1?t302=2026-08-26_11-28-44&uuid=1c98b823-cbf5-4fe5-9a75-00917c752465
+http://ennelm1.stream.laut.fm/ennelm1?t302=2026-10-27_00-00-56&uuid=8a9c59b1-35b1-2ade-1735-8894aa5e280e
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/sound-world-radio-165902-logo.jpg",SOUND WORLD RADIO
 http://icecast01.loudcaster.com:80/655.32.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/layla-serbia-radio-165906-logo.jpg",Layla Serbia Radio
 http://icecast01.loudcaster.com:80/734.32.aac
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/after-work-program-165873-logo.jpg",Radio After Work Program
+http://icecast01.loudcaster.com:80/494.32.aac
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/newwebradio-165875-logo.jpg",NewWebRadio
+http://icecast01.loudcaster.com:80/514.32.aac
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/afm-aruba-159755-logo.jpg",Radio AFM Aruba
+https://radio.securenetsystems.net/v5/index.cfm?CFID=d591b90b-3e69-4b9d-b0ca-1d12d680e3d9&CFTOKEN=0&stationCallSign=AUA297
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/station-165916-logo.jpg",Radio The Station
 http://icecast01.loudcaster.com:80/774.32.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/frequence-grands-lacs-fm-178232-logo.jpg",Radio Frequence Grands Lacs FM
 http://str0.creacast.com/fgl
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/schwedenforumde-177766-logo.jpg",Radio SchwedenForum.De
-http://schweden.stream.laut.fm/schweden?t302=2026-08-26_11-29-16&uuid=f9e8ecbc-e873-42c3-b12c-997bdc84915e
+http://schweden.stream.laut.fm/schweden?t302=2026-10-27_00-01-39&uuid=eb4687f7-18aa-5e61-724a-b55e6d56517c
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/move-radio-166124-logo.jpg",Move On Radio
-http://moveon.stream.laut.fm/move_on?t302=2026-08-26_11-29-17&uuid=ca1a7559-0f64-492e-925d-645cf1c08021
+http://moveon.stream.laut.fm/move_on?t302=2026-10-27_00-01-45&uuid=2d44125f-bbbe-942b-1f39-517becb909cd
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/aventura-fm-166756-logo.jpg",Radio Aventura FM
 http://streaming.hdserver.biz:9424/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-star-166298-logo.jpg",Radio Star
@@ -240,7 +264,7 @@ http://streaming2.elitecomunicacion.es:8202/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/agrilinea-fm-179093-logo.jpg",Radio Agrilinea FM
 http://s3.viastreaming.net:7070/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/gothwriters-home-radio-179390-logo.jpg",Gothwriter´s Home Radio
-http://gothwritershome.stream.laut.fm/gothwritershome?t302=2026-08-26_11-30-02&uuid=fbf491d6-4b94-4e21-a250-acb7bfb203eb
+http://gothwritershome.stream.laut.fm/gothwritershome?t302=2026-10-27_00-02-47&uuid=6c19cab9-2a31-a0bc-9596-ad47bed8ff77
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-mlodie-180300-logo.jpg",Radio M?lodie
 http://str2.creacast.com/melodie
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/xs-929-fm-167207-logo.jpg",Radio XS 92.9 FM
@@ -275,11 +299,10 @@ http://www.ophanim.net:9010/;
 http://directradios.net:8021
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/radio-web-estampa-gaucha-168173-logo.jpg",Radio Rádio Web Estampa Gaúcha
 http://radio1.suaradionanet.net:8014
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/boogie-woogie-cafe-nagoya-167996-logo.jpg",Radio Boogie Woogie Cafe from Nagoya
 #EXTINF:-1 tv-logo="",Radio Classic Jamz
 http://icecast01.loudcaster.com:80/505.64.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/generationen-radio-183102-logo.jpg",Generationen Radio
-http://generationen.stream.laut.fm/generationen?t302=2026-08-26_11-31-45&uuid=4863d692-2c2b-4378-8fd0-7b31b3d16110
+http://generationen.stream.laut.fm/generationen?t302=2026-10-27_00-04-52&uuid=681aa5d9-e75a-d514-c2d7-f1648d93b76e
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/bellmeadstrongradio-168293-logo.jpg",bellmeadstrongradio
 http://icecast01.loudcaster.com:80/641.32.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/dr-p4-esbjerg-160906-logo.jpg",Radio DR P4 Esbjerg
@@ -291,7 +314,7 @@ http://radio.kahoku.net:8000/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/om-sai-radio-161222-logo.jpg",OM SAI RADIO
 http://icecast01.loudcaster.com:80/1034.32.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/jam-fm-new-music-radio-184244-logo.jpg",Jam FM New Music Radio
-http://rtlberlin.streamabc.net/rtlb-jamfmnmr-mp3-192-9624370?sABC=6n8rprns%230%2353qnsr8605q1nr7p4oo4378n568o03os%23gharva&aw_0_1st.playerid=tunein&amsparams=playerid:tunein;skey:1787743919
+http://rtlberlin.streamabc.net/rtlb-jamfmnmr-mp3-192-9624370?sABC=6nqsqpn3%230%233rp43s75p1s490q958qn160sqrrr8p73%23gharva&aw_0_1st.playerid=tunein&amsparams=playerid:tunein;skey:1793055907
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/jo-khool-smooth-jazz-soul-radio-168792-logo.jpg",Jo Khool Smooth JazZ Soul Radio
 http://icecast01.loudcaster.com:80/690.64.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/antena-stereo-184370-logo.jpg",Radio Antena Stereo
@@ -308,8 +331,6 @@ http://icecast01.loudcaster.com:80/645.32.aac
 http://icecast01.loudcaster.com:80/493.32.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/mb-azzurra-169069-logo.jpg",Radio MB Azzurra
 http://www.kemoniastreaming2.net:8026
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/tacoma-fm-172420-logo.jpg",Radio Tacoma FM
-http://ophanim.net:7250/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/wavr-572213-logo.jpg",Radio WAVR
 http://stream.datazang.net:8000/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/beloit-college-radio-572255-logo.jpg",Beloit College Radio
@@ -322,14 +343,6 @@ http://live-mp3-128.kexp.org/kexp128.mp3
 http://peace.str3am.com:6090/kdlg
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/kdnk-574295-logo.jpg",Radio KDNK
 https://kdnk.streamguys1.com/live
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/koky-575186-logo.jpg",Radio KOKY
-https://player.listenlive.co/35161
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/wvlp-lp-575987-logo.jpg",Radio WVLP-LP
-http://us5.internet-radio.com:8219/;
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/charleking-radio-161511-logo.jpg",Charleking Radio
-http://charlekingradio.ice.infomaniak.ch/charlekingradio
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/bruaysis-rdl-169716-logo.jpg",Radio Bruaysis RDL
-http://radiobruaysis.ice.infomaniak.ch:80/radiobruaysis-128.mp3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/fcum-radio-579634-logo.jpg",FCUM Radio
 https://s2.radio.co/s847c08ad4/listen
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/kstk-185411-logo.jpg",Radio KSTK

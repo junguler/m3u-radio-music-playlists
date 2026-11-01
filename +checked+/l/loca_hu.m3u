@@ -13,8 +13,6 @@ http://stream.diazol.hu:35150/mobil.mp3
 http://stream.radio88.hu:8000/
 #EXTINF:-1,Sunshine Rádió
 http://stream.composeit.hu:8100/sunshine
-#EXTINF:-1,Danubius Rádió
-http://stream.danubiusradio.hu/danubius_320k
 #EXTINF:-1,TelStar
 http://radio.telstar.hu
 #EXTINF:-1,Hit FM
@@ -25,6 +23,8 @@ https://mediagw.e-tiger.net/stream/coolfm.m3u
 https://icast.connectmedia.hu/4741/mr3.mp3
 #EXTINF:-1,Dankó Rádió
 https://icast.connectmedia.hu/4748/mr7.mp3
+#EXTINF:-1,Tilos Rádió
+http://stream.tilos.hu/tilos
 #EXTINF:-1,COOLFM
 http://mediagw.e-tiger.net:8000/stream/coolfm
 #EXTINF:-1,Argentine Tango Radio
@@ -71,6 +71,8 @@ https://stream.nextfm.hu/radio/8000/nextfmhu.mp3
 http://mediagw.e-tiger.net:8000/stream/goldhq
 #EXTINF:-1,FM 90 Campus Rádió
 http://stream.fm90.hu:8000/
+#EXTINF:-1,Ez az a nap
+https://listen.radioking.com/radio/320174/stream/367817
 #EXTINF:-1,Mega Rádió 98.4
 https://megaradio.hu/megastream
 #EXTINF:-1,Friss FM
@@ -81,14 +83,16 @@ http://onair7.xdevel.com:7102/1
 http://civilradio.hu:8000/
 #EXTINF:-1,Radio 7
 http://netradio.radio7.hu:8300/stream.mp3
+#EXTINF:-1,Tilos Mese Radio
+http://stream.tilos.hu:8000/mese
 #EXTINF:-1,Coofm ChistmaX
 http://mediagw.e-tiger.net/stream/zc27
+#EXTINF:-1,Tilos Szöveges Rádió
+http://stream.tilos.hu:8000/szoveg
 #EXTINF:-1,Power Party FM
 https://streaming.brol.tech/rtfmlounge
 #EXTINF:-1,Mustár FM
 http://193.138.125.14:8500/stream
-#EXTINF:-1,Szieszta radio
-http://users.atw.hu/szieszta2/zene.mp3
 #EXTINF:-1,COOLFM KULTX
 https://mediagw.e-tiger.net/stream/krehq
 #EXTINF:-1,Periszkop Radio 97.1 FM
@@ -97,6 +101,12 @@ http://sztrim.periszkopradio.hu:8088/
 http://stream.diazol.hu:35080/live.mp3
 #EXTINF:-1,Mustarhaz FM
 http://193.138.125.14:8500/
+#EXTINF:-1,N-music online radio
+http://stream.n-music.tk:8000/1
+#EXTINF:-1,Jazz is Dead?
+http://stream.tilos.hu:8000/jazzisdead
+#EXTINF:-1,Radio D JAZZ
+https://radio-d.hu/
 #EXTINF:-1,99,4 SunshineFM
 http://195.56.193.129:8100/sunshine?n=6c81b3a576d49485bef9
 #EXTINF:-1,Base FM
@@ -109,8 +119,6 @@ http://s2.audiostream.hu/bdpstrock_192k
 http://s2.audiostream.hu/bdpstrock_320k
 #EXTINF:-1,BDPST ROCK -  96 kbit/s;
 http://s2.audiostream.hu/bdpstrock_96k
-#EXTINF:-1,BDPST ROCK Rádió Hi-Fi / Lossless / FLAC
-http://s2.audiostream.hu:8091/bdpstrock_FLAC?n=3283e65d532f21203dc3
 #EXTINF:-1,Best FM - Budapest
 https://icast.connectmedia.hu/5101/live.mp3/?n=aefd65aafe0d7ae85bda
 #EXTINF:-1,Best FM - Eger
@@ -125,6 +133,8 @@ http://icast.connectmedia.hu/5113/live.mp3?n=892bb0ccc5fb3a1f1858
 http://icast.connectmedia.hu/5112/live.mp3/?n=cade0fca6654df3efa8d
 #EXTINF:-1,Best FM - Zalaegerszeg
 http://icast.connectmedia.hu/5111/live.mp3/?n=e6c0a20afa29c216c84b
+#EXTINF:-1,Campus Rádió FM90
+https://stream.fm90.hu:8000/?n=ec348613211d7bb279c3
 #EXTINF:-1,Cool FM
 http://mediagw.e-tiger.net/stream/cfmhq?n=bca4a122bdf899bcb012
 #EXTINF:-1,Cool FM - GoldieS
@@ -179,16 +189,12 @@ https://mediagw.e-tiger.net/stream/zc18?n=f574d45ca6e1d540c66e
 https://mediagw.e-tiger.net/stream/zc20?n=426da0b1c6741a1db23b
 #EXTINF:-1,COOLFM World Music
 https://mediagw.e-tiger.net/stream/zc26?n=e9e76ef927785e1cd9c5
-#EXTINF:-1,COOLFM YouTube HOT HITS!
-https://mediagw.e-tiger.net/stream/zc22?n=d115305c110d4e6cf551
 #EXTINF:-1,DANCE 90S
 https://mediagw.e-tiger.net/stream/zc06?ver=887687?n=e2bb25fbb595a072eee9
 #EXTINF:-1,DANCEable Radio
 http://s9.myradiostream.com:35944/listen.pls?sid=1?n=d5656d58c5f03432ae79
-#EXTINF:-1,Danubius
-http://stream.danubiusradio.hu/danubius_192k
-#EXTINF:-1,Danubius Radio
-https://danubiusradio.hu/danubius_HiFi.m3u?n=804d344d9778546dea28
+#EXTINF:-1,Ez az a nap! rádió
+https://listen.radioking.com/radio/320174/stream/367817?n=7965416907f64eab17d2
 #EXTINF:-1,FM 103.9 A Rock
 https://icast.connectmedia.hu/5301/live.mp3/?n=703e7f622803ee2a9736
 #EXTINF:-1,FM90 Campus Rádió
@@ -297,6 +303,10 @@ https://icast.connectmedia.hu/5001/live.mp3?n=5d18a4a25a712017c5c8
 http://s03.diazol.hu:35150/live?n=3f39c36469446c3cf807
 #EXTINF:-1,SuperDj Radio
 http://stream.diazol.hu:35150/autodj?n=772e3bcbee0e095e3dd9
+#EXTINF:-1,Tilos Rádió 32 kbit/sec
+http://stream.tilos.hu/tilos_32.mp3?n=7522795805654048904c
+#EXTINF:-1,Tilos Rádió FM 90.3
+http://stream.tilos.hu:8000/tilos?n=6ea231b6dc0525f2fc0d
 #EXTINF:-1,Youventus Rádió
 http://s2.audiostream.hu/juventus_192k?n=5cec705ba2de2e8919f2
 #EXTINF:-1,Roxy Rádió

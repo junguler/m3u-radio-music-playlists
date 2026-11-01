@@ -1,6 +1,4 @@
 #EXTM3U
-#EXTINF:-1,Mongolian Radio
-http://202.179.2.250:8002/stream1
 #EXTINF:-1,MGL Radio
 http://stream17.shoutcastsolutions.com:8096/
 #EXTINF:-1,Бизнес Радио ФМ 98.9 ( Улаанбаатар Монгол улс)
@@ -8,9 +6,9 @@ http://74.91.125.187:8096/stream
 #EXTINF:-1,Folkrádió Listen live
 https://stream.folkradio.hu/folkradio.mp3
 #EXTINF:-1,DJ Bernd Listen live
-https://djbernd.stream.laut.fm/dj_bernd?t302=2026-08-24_00-00-41&uuid=cf90fdfb-6bad-4748-a07d-88b337b6a4a0
+https://djbernd.stream.laut.fm/dj_bernd?t302=2026-10-25_17-33-55&uuid=23e4ed86-ca07-0358-c344-897556eddbe1
 #EXTINF:-1,retroelectronicmusic Listen live
-https://retroelectronicmusic.stream.laut.fm/retroelectronicmusic?ref=radiode&t302=2026-08-24_00-00-41&uuid=b03f5050-c4d0-4fa5-b453-3a813a46ab54
+https://retroelectronicmusic.stream.laut.fm/retroelectronicmusic?ref=radiode&uuid=7f7612c6-a5d0-e0c8-e89d-0b4e6f1d0da3&t302=2026-10-25_17-33-56
 #EXTINF:-1,Radio Love Live Listen live
 https://streaming.radiostreamlive.com/radiolovelive_devices
 #EXTINF:-1,Гэр бүлийн радио
@@ -26,6 +24,9 @@ https://fps2.listen2myradio.com:2199/listen.php?ip=109.169.23.17\u0026port=10762
 #EXTINF:-1,Эден хотын Христийн радио (на русском) radio
 https://listen7.myradio24.com/cityeden
 #EXTINF:-1,Эден хотын Христийн радио (на русском)
+https://listen7.myradio24.com/cityeden
+#EXTINF:-1,P3 FM 100.9
+https://live.mnb.mn/hls/radio2.stream.m3u8
 #EXTINF:-1,Wind FM 104.5
 http://www.vom.mn/uploads/audio/2024-08/2024_08_28-03_55_53.mp3
 #EXTINF:-1,Antenna Web Mongolia
@@ -38,11 +39,10 @@ http://74.91.125.187:8096/stream/
 https://halo.streamerr.co/listen/italiavera/stream.mp3
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/81125/logo_pBv3U607wv.png",Music Plus+ Radio
 https://fps2.listen2myradio.com:2199/listen.php?ip=109.169.23.17&ampport=10762&amptype=s1
+#EXTINF:-1,Mongolian Music Radio
 http://65.108.143.81:7700/1
 #EXTINF:-1,Abdulbasit Abdulsamad
 https://radio.mp3islam.com/listen/abdulbasit/radio.mp3
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/mnb-p3-fm-579425-logo.jpg",Radio MNB P3 FM
-https://www.mnb.mn/index.php
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/mn-mgl-radio-logo.jpg",MGL Radio
 http://74.91.125.187:8096/stream/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/mn-music-plus-logo.jpg",Radio Music Plus+
@@ -51,5 +51,17 @@ https://fps2.listen2myradio.com:2199/listen.php?ip=109.169.23.17u0026port=10762u
 http://stream17.shoutcastsolutions.com:8096/mountpoint
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/wind-fm-155215-logo.jpg",Radio Wind FM
 http://sh4.audio-stream.com/tunein.php/ojalov02/playlist.pls
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/tv5-581527-logo.jpg",Radio TV5
+https://ubs.mn/
 #EXTINF:-1,ЭЛГЭН НУТАГ FM-96.9
 https://live.mnb.mn/hls/radio1.stream.m3u8
+#EXTINF:-1,Free FM Classics
+https://xxdelgado.radioca.st/stream
+#EXTINF:-1,Free FM 80s
+https://freefm80.radioca.st/stream?sid=1
+#EXTINF:-1,Free FM Rock
+https://freefmrock.radioca.st/stream
+#EXTINF:-1,Free FM World
+https://rocafmadrid.radioca.st/stream
+#EXTINF:-1,Free FM Gaita Venezuela
+https://gaita.radioca.st/stream

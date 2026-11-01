@@ -3,8 +3,6 @@
 http://stream1.partyfm.dk/Party128
 #EXTINF:-1,Danmarks Radio P3
 https://drliveradio1.akamaized.net/hls/live/2097651/p3/masterab.m3u8?playerid=dr.drc-audio-player.1.5.8&portalid=DR
-#EXTINF:-1,Radio Skive
-http://radioserver.dk/skive
 #EXTINF:-1,psyradio
 http://streamer.psyradio.org:8020
 #EXTINF:-1,DR P3
@@ -18,12 +16,13 @@ http://radioserver.dk//silkeborg
 #EXTINF:-1,ABINAYAM FM
 http://192.99.170.8:5756
 #EXTINF:-1,Radio4
-http://25583.live.streamtheworld.com/RADIO4.mp3
+http://25653.live.streamtheworld.com/RADIO4_ABR.mp3
 #EXTINF:-1,Radio Sydhavsoerne
 https://netradio.dk/
 #EXTINF:-1,DR Ramasjang
 http://live-icy.gss.dr.dk:80/A/A24L.mp3
 #EXTINF:-1,Radio Sydhavsoerne- 90.4 FM
+https://netradio.dk/
 #EXTINF:-1,DR Ramasjang (Ultra Radio)
 http://live-icy.gss.dr.dk:80/A/A24H.mp3
 #EXTINF:-1,Folkets Radio
@@ -48,12 +47,16 @@ https://streamer.radio.co/s6a9beb92e/listen
 https://s2.radio.co/s6f04f551c/listen
 #EXTINF:-1,LUMI Radio
 http://stream.lumiradio.dk:8000/radio.mp3
+#EXTINF:-1,Kringvarp Føroya
+http://netvarp.kringvarp.fo:443/uvhm
 #EXTINF:-1,Radio Helsingør
 http://stream.radiohelsingor.dk/rh
 #EXTINF:-1,Det Rigtige Faaborg
 http://stream.wlmm.dk/detrigtigefaaborg
 #EXTINF:-1,Radio Humleborg / Jazzkanalen
 http://ca6.rcast.net:4058/stream.mp3
+#EXTINF:-1,ANR
+http://stream.anr.dk:80/anr
 #EXTINF:-1,Rockkanalen
 http://stream.kanalplus.fm/kp128
 #EXTINF:-1,Classic Rock
@@ -64,12 +67,16 @@ http://tx-2.retro-radio.dk/TX-2
 http://streammp3.retro-radio.dk/retro-mp3
 #EXTINF:-1,902 FM Det nye Radio Ballerup
 http://stream.wlmm.dk/902fmmp3
-#EXTINF:-1,BLK TV HD - Regionalfernsehen Burgenlandkreis - 2467 - Germany - blk tv - burgenlandkreis - iptv - lokalfernsehen - regionalfernsehen
-https://stream.zeno.fm/udk5orfzet5vv.m3u
 #EXTINF:-1,radio hbw Harz-Börde-Welle Aschersleben - 192 - Germany - aschersleben - börde - bürgerfunk - bürgerradio - freies radio - harz - harz-börde-welle - hbw - lokalfunk - lokalradio - lokalrundfunk - lokalsender - mansfeld-südharz - nkl - nkl asl - salzlandkreis
 https://stream.radiohelsingor.dk/rh
+#EXTINF:-1,Radio Nordkapp - 0 - Norway -
+http://audio.visto.no/radionordkapp.ogg
 #EXTINF:-1,RMF Pobudka - 128 - Poland -
 https://app.rmfon.pl/n/rmfpobudka.pls
+#EXTINF:-1,Vinylhits.dk - 128 - Denmark - 1980s - 1990s - hits - vinyl
+http://stream.vinylhits.dk/vinylmp3
+#EXTINF:-1,Wieczor-odkrywcow - 96 - Poland -
+http://3.231.50.144/goodkarma-wknrammp3-ibc2?session-id=ef1dd24afc85be83e29541e8cfdf2488
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/32977.png",Retro Radio
 https://streammp3.retro-radio.dk/retro-mp3
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/32983.png",Radio 100
@@ -78,6 +85,8 @@ https://live-bauerdk.sharp-stream.com/radio100_dk_mp3
 https://radioserver.dk/skive
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/33001.png",Radio Projekti 21
 https://www.radio-hitz.com/timeplr/un.mp3
+#EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/33002.png",ANR Radio
+https://stream.anr.dk/anr
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/33003.png",Radio SLR
 https://stream.probroadcast.dk/ringstedmp3
 #EXTINF:-1 tvg-logo="https://d371i8ihhgym7w.cloudfront.net/33004.png",Go! FM

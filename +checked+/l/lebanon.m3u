@@ -15,6 +15,8 @@ http://andromeda.shoutca.st:8192/
 http://streaming.radio.co/sa7e0251a2/listen
 #EXTINF:-1,Al Bal Radio
 https://albal-lbnet2.radioca.st/stream
+#EXTINF:-1,Arabica TV
+http://istream.binarywaves.com:8081/hls/arabica/playlist.m3u8
 #EXTINF:-1,Beirut Nights
 http://beirutnights.com/live.m3u
 #EXTINF:-1,Beirut Nights Radio (AAC)
@@ -53,8 +55,6 @@ http://audiostreaming.itworkscdn.com:9066/stream/
 http://byblosnights.com:8000/liveaac
 #EXTINF:-1,Ciel FM Lebanon
 https://l3.itworkscdn.net/itwaudio/9004/stream
-#EXTINF:-1,Aghani Aghani FM
-http://s2.byblosnights.com:80/
 #EXTINF:-1,WANT FM
 http://ice2.securenetsystems.net/WGNS
 #EXTINF:-1,Sawtlebnan FM
@@ -75,12 +75,6 @@ https://streaming.brol.tech/rtfmlounge
 https://lbihits-lbnet2.radioca.st/stream
 #EXTINF:-1,Sawtalhoda 92.1 FM
 https://l3.itworkscdn.net/itwaudio/9032/stream
-#EXTINF:-1,My Dusty Tapes Radio
-#EXTINF:-1,Just Hits Frenchy
-#EXTINF:-1,Fajr Radio
-http://vps1.osina.cloud:9306/
-#EXTINF:-1,Mix FM
-http://eco.onestreaming.com:8127/
 #EXTINF:-1,Radio Naim Halawi
 https://streamer.radio.co/sf2fa6ce9d/listen
 #EXTINF:-1,Radio OneLebanon
@@ -98,11 +92,13 @@ https://lbizaman-lbnet2.radioca.st/stream?type=http&ampnocache=91
 #EXTINF:-1,Rdmix Love Songs Listen live
 https://maggie.torontocast.com:2020/stream/rdmixlovesongs
 #EXTINF:-1,itsours Listen live
-https://itsours.stream.laut.fm/itsours?ref=radiode&t302=2026-08-24_13-07-42&uuid=206567b2-905d-4567-ba2a-d9dc1e2ea5dc
+https://itsours.stream.laut.fm/itsours?uuid=7e84a604-6f4d-13aa-d6f9-d48d0ca8288e&ref=radiode&t302=2026-10-26_08-55-08
 #EXTINF:-1,Jugendtreff FM Listen live
-https://jugendtrefffm.stream.laut.fm/jugendtrefffm?t302=2026-08-24_13-07-42&uuid=55a5c14d-0163-48e3-bb04-2b6dba7ec31c
+https://jugendtrefffm.stream.laut.fm/jugendtrefffm?t302=2026-10-26_08-55-09&uuid=681ea015-4291-bbda-6ca2-ec9ea0f25918
+#EXTINF:-1,Middle East Radio-International
+https://listen.radioking.com/radio/343456/stream/392077
 #EXTINF:-1,MIX FM
-https://23613.live.streamtheworld.com/MIXFM_LEBANONAAC_SC
+https://29083.live.streamtheworld.com/MIXFM_LEBANONAAC_SC
 #EXTINF:-1,VDL933 / La Voix Du Liban
 https://audio.osina.cloud:9323/stream
 #EXTINF:-1,صـوت لبنــان (VDL)
@@ -125,20 +121,20 @@ http://streamer.radio.co/sf2fa6ce9d/low
 http://eu9.fastcast4u.com:5072/stream
 #EXTINF:-1,True Life In God Radio Arabic
 https://stream.tligradio.org/listen/arabic/radio.mp3
+#EXTINF:-1,إذاعة صوت الوفاق
+http://eu8.fastcast4u.com:5737/stream
 #EXTINF:-1,Radio Charity
 http://byblosnights.com:70/relay
-#EXTINF:-1,إذاعة الإنجيل
-http://fast.citrus3.com:8420/stream
 #EXTINF:-1,Smash Hits Radio
 http://streams.radio.co/s3cee08f23/listen
-#EXTINF:-1,Aghani Aghani Radio 87.9 FM
-http://s2.byblosnights.com:80
+#EXTINF:-1,Middle East Radio International (MERI)
+http://listen.radioking.com/radio/343456/stream/392077
 #EXTINF:-1,Ibi Zaman
 http://lbizaman-lbnet2.radioca.st/stream
 #EXTINF:-1,Light FM 90.5
-http://23543.live.streamtheworld.com/LIGHTFM_SC
+http://25633.live.streamtheworld.com/LIGHTFM_SC
 #EXTINF:-1,Mix FM 104.4
-http://22193.live.streamtheworld.com/MIXFM_LEBANONAAC_SC
+http://29347.live.streamtheworld.com/MIXFM_LEBANONAAC_SC
 #EXTINF:-1,Radio Sahar
 http://europa.shoutca.st:8834/
 #EXTINF:-1,Radio Sawt El Noujoum
@@ -149,10 +145,10 @@ http://audiostreaming.itworkscdn.com:9036/
 http://byblosnights.com:443/
 #EXTINF:-1,Sawt el Mada 92.5
 http://audiostreaming.itworkscdn.com:9018/stream/
+#EXTINF:-1,إذاعة الشرق الأوسط – الدولية
+http://eu8.fastcast4u.com:5737/stream/
 #EXTINF:-1,Al-Nour FM
 https://l3.itworkscdn.net/itwaudio/9066/stream
-#EXTINF:-1,Ashohra FANN
-http://s2.byblosnights.com/stream.mp3
 #EXTINF:-1,Libano - Հայազգի Ձայն
 https://c7.radioboss.fm:18299/stream
 #EXTINF:-1,Radio One
@@ -162,9 +158,9 @@ https://securestreams5.reliastream.com:1820/listen.pls
 #EXTINF:-1,Nostalgie FM Chansons Francaises
 https://lbizaman-lbnet2.radioca.st/stream
 #EXTINF:-1,R1L
-http://23543.live.streamtheworld.com/LIGHTFM.mp3
+http://25633.live.streamtheworld.com/LIGHTFM.mp3
 #EXTINF:-1,Virgin Radio Stars
-http://25643.live.streamtheworld.com/MIXFM_LEBANONAAC.aac
+http://29345.live.streamtheworld.com/MIXFM_LEBANONAAC.aac
 #EXTINF:-1,lbi Radio - Lebanon
 https://lbigroup.radioca.st/stream
 #EXTINF:-1,Radio Delta Lebanon – Beirut – Beyrouth – LB
@@ -175,6 +171,8 @@ http://audiostreaming.itworkscdn.com:9014/stream*.nsv
 http://live.mp3quran.net:9974/stream.mp3&type=mp3&autostart=true
 #EXTINF:-1,Smash Hits Radio RETRO – LB
 https://s3.radio.co/s802363087/listen
+#EXTINF:-1,Middle East Radio-International – Beirut – Beyrouth – LB
+https://listen.radioking.com/radio/343456/stream/447619
 #EXTINF:-1,Mishary Alafasi (مشاري العفاسي) – Beirut – Beyrouth – LB
 http://live.mp3quran.net:9982/stream.mp3&type=mp3&autostart=true
 #EXTINF:-1,Click FM Lebanon – LB
@@ -198,23 +196,21 @@ https://lit-cast.com/proxy/voiceofgospel/stream.mp3
 #EXTINF:-1,Adeem Radio – Beirut – Beyrouth – LB
 http://usa19.fastcast4u.com:7800
 #EXTINF:-1,Light 90.5 FM – 90.5 FM – Beirut – Beyrouth – LB
-https://25633.live.streamtheworld.com/LIGHTFM_SC
+https://29345.live.streamtheworld.com/LIGHTFM_SC
 #EXTINF:-1,Beirut Nights – Beirut – Beyrouth – LB
 https://beirutnights.com/aac.asx
 #EXTINF:-1,SAWT EL NAGHAM
 http://streamer.radio.co/sf2fa6ce9d/listen
 #EXTINF:-1,Blacking
 http://blackingradio.listen2myradio.com
-#EXTINF:-1, BeirutNights.com Radio : Eurodance Trance Remixes Mediterranean Lebanese Arabic
-http://68.68.109.106:80/stream/1
 #EXTINF:-1,Sawtelghad Australia - Radio 2moro
 https://usa10.fastcast4u.com:2270/?type=http&ampnocache=1588699177
 #EXTINF:-1,صـوت لبنــان (VDL) radio
 https://usa19.fastcast4u.com/adeem
 #EXTINF:-1,MIX FM radio
-https://25683.live.streamtheworld.com/MIXFM_LEBANONAAC_SC?dist=onlineradiobox
+https://29344.live.streamtheworld.com/MIXFM_LEBANONAAC_SC?dist=onlineradiobox
 #EXTINF:-1,Light FM radio
-https://21633.live.streamtheworld.com/LIGHTFMAAC.aac?dist=onlineradiobox
+https://25703.live.streamtheworld.com/LIGHTFMAAC.aac?dist=onlineradiobox
 #EXTINF:-1,RaDio SaHaR radio
 https://fmsahar.radioca.st/?1636731096349
 #EXTINF:-1,Lob Anan Radio
@@ -222,7 +218,7 @@ https://listen.radioking.com/radio/152170/stream/192625
 #EXTINF:-1,Angamy radio
 https://radio.avazfarsi.com:8010/radio.mp3
 #EXTINF:-1,Nostalgie FM radio
-http://www.nostalgie.fm/
+https://nostalgie.fm/fr/
 #EXTINF:-1,Delta Radio 101.7-101.9 FM
 http://s45.myradiostream.com:18408/\u0026type=mp3
 #EXTINF:-1,Next Radio lb
@@ -235,10 +231,14 @@ https://a2.asurahosting.com:7380/radio.aac
 https://n06.rcs.revma.com/23yuem43ehuvv
 #EXTINF:-1,Libano Hayazki Tsayn
 https://streaming.shoutcast.com/sawtelwifak-radio-lebanon
+#EXTINF:-1,One FM 99.1
+https://media.mtv.com.lb/v1/broadcast/onefmaudio/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/39401.v11.png",Delta Radio
 http://s45.myradiostream.com:18408/&amptype=mp3
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/39276.v10.png",Light FM, Beirut
-https://28573.live.streamtheworld.com/LIGHTFMAAC.aac
+https://23613.live.streamtheworld.com/LIGHTFMAAC.aac
+#EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/483ZYT.png",Beirut Nights Radio
+https://beirutnights.com/backup32kbs.mp3?_=1455463820
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/5UK29.png",Smash Hits Radio
 http://streams.radio.co:80/s3cee08f23/listen
 #EXTINF:-1 tvg-logo="https://radio.streamitter.com/images/logos/1AZEZ.png",Smash Hits Radio RETRO
@@ -263,6 +263,7 @@ https://radiorama-lbnet2.radioca.st/rama
 https://securestreams5.reliastream.com:1820/
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/80639/logo_4YWA0vUopR.png",Jabal Lebnan Radio
 https://streaming.nrjaudio.fm/ousra9m4z85f
+#EXTINF:-1,lbi Radio
 http://andromeda.shoutca.st:8192/stream.mp3
 #EXTINF:-1,Radio Delta Lebanon
 http://cast3.my-control-panel.com:8501/
@@ -273,15 +274,19 @@ http://28573.live.streamtheworld.com/LIGHTFMAAC_SC
 #EXTINF:-1,Sawt El Ghad - FM 96.7
 https://l3.itworkscdn.net/itwaudio/9030/stream/
 #EXTINF:-1,Hit 90
-https://edge06.streamonkey.net/energy-90erhits/stream/mp3?aggregator=shorty
+https://edge08.streamonkey.net/energy-90erhits/stream/mp3?aggregator=shorty
+#EXTINF:-1,voice of Grace
 https://securestreams5.reliastream.com:1820/l
 #EXTINF:-1,.. مختصر التفسير
 https://qurango.net/radio/mukhtasartafsir
 #EXTINF:-1,montcarlo
 https://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3
+#EXTINF:-1,راديو عالبال
 https://albal-lbnet2.radioca.st/stream.mp3
 #EXTINF:-1,Sawt El Shaeb
 https://audio.osina.cloud:9320/stream
+#EXTINF:-1,One FM
+https://hms.pfs.gdn/v1/broadcast/onefmaudio/playlist.m3u8
 #EXTINF:-1,Abdulbasit Abdulsamad
 https://radio.mp3islam.com/listen/abdulbasit/radio.mp3
 #EXTINF:-1,voice of charity
@@ -320,10 +325,12 @@ https://securestreams5.reliastream.com:1820/;listen.pls
 http://andromeda.shoutca.st:8192/;stream.mp3
 #EXTINF:-1,Jabal Lebnan Radio Station
 http://andromeda.shoutca.st:8192/;
+#EXTINF:-1,mfm
+https://hms.pfs.gdn/hms/v1/broadcast/hlmvmp2jtth90njc1/playlist.m3u8
+#EXTINF:-1,Click FM Lebanon
+https://a12.my-control-panel.com:7530/radio.mp3
 #EXTINF:-1,Voice of Grace Radio
 https://securestreams5.reliastream.com:1820/;
-#EXTINF:-1,Radio Liban 96.2FM
-https://media2.streambrothers.com:8202/stream
 #EXTINF:-1,BeirutNights.com
 http://byblosnights.com:6190/;
 #EXTINF:-1,Matrix FM Lebanon
@@ -332,3 +339,19 @@ https://fmsahar.radioca.st/?1636731096349=
 https://visual.shoutca.st/stream/radiosourfm
 #EXTINF:-1,Radio joie
 https://charbyone.radioca.st/stream
+#EXTINF:-1,Light FM 90.5 & 90.7 Beirut
+https://28573.live.streamtheworld.com/LIGHTFMAAC_SC
+#EXTINF:-1,Aghani Aghani TV
+https://cdn.streamlane.tv/hls/aghanitv/master.m3u8
+#EXTINF:-1,montcarlo
+http://dione.shoutca.st:8165/;
+#EXTINF:-1,Free FM World
+https://rocafmadrid.radioca.st/stream
+#EXTINF:-1,Free FM Rock
+https://freefmrock.radioca.st/stream
+#EXTINF:-1,Free FM Gaita Venezuela
+https://gaita.radioca.st/stream
+#EXTINF:-1,Free FM Classics
+https://xxdelgado.radioca.st/stream
+#EXTINF:-1,Free FM 80s
+https://freefm80.radioca.st/stream?sid=1

@@ -1,30 +1,4 @@
 #EXTM3U
-#EXTINF:-1,DR P3
-http://live-icy.gss.dr.dk/A/A05L.mp3
-#EXTINF:-1,NOVA
-https://live-bauerdk.sharp-stream.com/nova_dk_mp3
-#EXTINF:-1,DR P4 København
-http://live-icy.gss.dr.dk/A/A08L.mp3
-#EXTINF:-1,80's Hits
-https://live-bauerdk.sharp-stream.com/DK_HQ_RP04.aac
-#EXTINF:-1,Radio Soft
-https://live-bauerdk.sharp-stream.com/radiosoft_dk_mp3
-#EXTINF:-1,Pop FM
-https://live-bauerdk.sharp-stream.com/popfm_dk_mp3
-#EXTINF:-1,Retro-Radio
-http://stream128.retro-radio.dk/retro
-#EXTINF:-1,90's Hits
-https://live-bauerdk.sharp-stream.com/DK_HQ_RP06.aac
-#EXTINF:-1,PartyFM
-http://stream1.partyfm.dk/Party256
-#EXTINF:-1,Radio 100
-https://live-bauerdk.sharp-stream.com/radio100_dk_mp3
-#EXTINF:-1,The Voice
-https://live-bauerdk.sharp-stream.com/thevoice_dk_mp3
-#EXTINF:-1,Danske 80'er Hits
-https://live-bauerdk.sharp-stream.com/DK_HQ_RP05.aac
-#EXTINF:-1,myRock
-https://live-bauerdk.sharp-stream.com/myrock_dk_mp3
 #EXTINF:-1,ClassicROCK - Kobenhavn
 http://stream.wlmm.dk/classicrockkbhmp3
 #EXTINF:-1,Radio Soft Classic
@@ -42,13 +16,17 @@ http://tx-2.retro-radio.dk/TX-2
 #EXTINF:-1,NOVA Top 40
 https://live-bauerdk.sharp-stream.com/DK_HQ_RP12.aac
 #EXTINF:-1,Radio4
-http://27863.live.streamtheworld.com/RADIO4.mp3
+http://27783.live.streamtheworld.com/RADIO4_ABR.mp3
 #EXTINF:-1,DR Nyheder
 http://live-icy.gss.dr.dk/A/A02L.mp3
 #EXTINF:-1,Radio Globus
 https://stream.probroadcast.dk/radioglobus
+#EXTINF:-1,VinylHits
+http://stream.vinylhits.dk/vinylmp3
 #EXTINF:-1,NOVA 100% Dansk
 https://live-bauerdk.sharp-stream.com/DK_HQ_RP11.aac
+#EXTINF:-1,ANR Hit FM
+http://stream.anr.dk/anr
 #EXTINF:-1,Radio SLR
 https://stream.probroadcast.dk/slagelsemp3
 #EXTINF:-1,Radio Soft Modern
@@ -71,8 +49,6 @@ http://stream.wlmm.dk/oestfmmp3
 http://10336.cloudrad.io:9010/live
 #EXTINF:-1,Globus Guld Jul
 http://stream.wlmm.dk/guldjulmp3
-#EXTINF:-1,Radio Skive
-http://radioserver.dk/skive
 #EXTINF:-1,The Voice Party People
 https://live-bauerdk.sharp-stream.com/DK_HQ_RP16.aac
 #EXTINF:-1,2017 Hits
@@ -119,20 +95,6 @@ https://stream.probroadcast.dk/guldtoender
 http://149.202.22.75:8066/
 #EXTINF:-1,Radio Ringkøbing
 http://netradio.radioringkobing.dk:8000/
-#EXTINF:-1,Radio Helsingør 92.8 FM
-https://stream.radiohelsingor.dk/rh
-#EXTINF:-1,Hvidovre Nær Radio 95.2 FM
-https://player.probroadcast.dk/hnr/
-#EXTINF:-1,Radio Viva
-http://stream.wlmm.dk/radioviva
-#EXTINF:-1,Radio ALR
-https://streamer.radio.co/s6a9beb92e/listen
-#EXTINF:-1,Globus Guld - Haderslev - Rødding
-https://stream.probroadcast.dk/guldmidt
-#EXTINF:-1,Radio Adalen
-http://radio-aadalen.no-ip.net:8000/
-#EXTINF:-1,WEB FM
-https://webfm.dk/
 #EXTINF:-1,Humleborg Online
 http://media.wlmm.dk/humleborg
 #EXTINF:-1,ABINAYAM FM
@@ -141,6 +103,8 @@ http://192.99.170.8:5756/
 http://rs29.stream24.net/stream.mp3
 #EXTINF:-1,LUMI Radio Aalborg
 http://stream.lumiradio.dk:8000/
+#EXTINF:-1,Aap ki Awaz
+http://162.244.80.106:11332/stream
 #EXTINF:-1,Uniradioen
 https://uniradio.out.airtime.pro/uniradio_a
 #EXTINF:-1,_ 101.3 KOPENHAG FM
@@ -155,6 +119,8 @@ http://s38.myradiostream.com:8598/.mp3?n=56026f5c9cb9ffbb4526
 https://radioserver.dk/alfaevent?n=41bb2dc9efa5e827cc8f
 #EXTINF:-1,Always ELVIS Radio
 https://radioserver.dk/alwayselvisradio?n=a0bd1b3aaeceb50c9369
+#EXTINF:-1,ANR
+http://stream.anr.dk/anr?n=973049ef6c9d47f1406e
 #EXTINF:-1,Danmarks Radio P4; Trekanten
 http://live-icy.gss.dr.dk/A/A13H.mp3.m3u?n=75126a9bd348dc6b0a18
 #EXTINF:-1,Danmarks Radio P6
@@ -271,6 +237,8 @@ http://stream1.partyfm.dk/Party320?n=469e3aed33e4ad216dfd
 http://live-bauerdk.sharp-stream.com/popfm128.mp3?n=8b5842a29ff06f6b4077
 #EXTINF:-1,Psyradio - Progressive
 http://ipx.psyradio.org:8010/?n=0916cc35ad29e1db0197
+#EXTINF:-1,Psyradio - Psytrance
+http://ipx.psyradio.org:8030/?n=015bfb1c87eaf947b677
 #EXTINF:-1,Radio Alfa Aarhus
 https://radioserver.dk/alfaaarhus?n=08db8ebadb5c03d61a7a
 #EXTINF:-1,Radio Alfa Silkeborg
@@ -304,7 +272,7 @@ https://live-bauerdk.sharp-stream.com/radiosoft_dk_tunein_mp3?n=e43ac700c7d69277
 #EXTINF:-1,Radio Varde
 http://stream.wlmm.dk/radiovardemp3?n=35db109b5086c919b72e
 #EXTINF:-1,Rar
-http://rautemusik.stream48.radiohost.de/rautemusik-techno_aac-48?upd-meta&upd-scheme=http&_art=dD0xNzg3NTYyODYyJmQ9NzVkYWZlYjRjNWRjZmVhNGRkMWE
+http://rautemusik.stream48.radiohost.de/rautemusik-techno_aac-48?upd-meta&upd-scheme=http&_art=dD0xNzkyOTU2Nzc0JmQ9Y2E0ODdmYmI4NjlhMzc0OGYwM2Q
 #EXTINF:-1,Retro Millennium
 https://tx-2.retro-radio.dk/TX-2?n=916301c53e9fb290a885
 #EXTINF:-1,Retro Radio
@@ -321,6 +289,8 @@ http://hyades.shoutca.st:8627/?n=460a5fd767e3d07c4303
 https://live-bauerdk.sharp-stream.com/thevoice_dk_mp3?n=755808a4fa9f1827cf93
 #EXTINF:-1,UMLANDO Radio
 https://a2.asurahosting.com:6520/radio.mp3?n=ab499275055d3dd7bbff
+#EXTINF:-1,Vinylhits.dk
+http://stream.vinylhits.dk/vinylmp3?n=7b7b773e0b5d3b836998
 #EXTINF:-1,VIPradio Christmas
 http://149.56.175.167:5505//stream.mp3?n=65a8254876ffe3a1714d
 #EXTINF:-1,World Music Radio

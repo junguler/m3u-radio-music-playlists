@@ -27,6 +27,8 @@ http://server.radioalba.eu:8000/stream?type=http&ampautoplay=yes
 http://radio.1dhe1.com:8555/stream.mp3
 #EXTINF:-1,Radio Prishtina
 https://stream.radio.co/sbe73908d2/listen
+#EXTINF:-1,GlamRADIO
+https://stream.glamradio.fm:8443/glamradio
 #EXTINF:-1,KLAN Kosova FM
 http://s4.radio.co/sd1d1904dc/listen.m3u
 #EXTINF:-1,RADIO MARIA KOSOVO
@@ -57,6 +59,8 @@ https://radio.dukahosting.com:7005/*.mp3
 https://listen8.myradio24.com/82666
 #EXTINF:-1,Radio Vicianum Vushtrri Listen live
 https://s3.free-shoutcast.com/stream/18218
+#EXTINF:-1,Exclusively James Taylor Listen live
+https://streaming.exclusive.radio/er/jamestaylor/icecast.audio
 #EXTINF:-1,Klan Kosova FM
 https://s4.radio.co/sd1d1904dc/listen
 #EXTINF:-1,Fontana
@@ -67,10 +71,6 @@ http://cp1.sednastream.com:8022/stream/
 http://46.4.104.253:8010/
 #EXTINF:-1,Radio Maria Kosovo
 http://dreamsiteradiocp2.com:8124/
-#EXTINF:-1,Radio 7 Kosova
-http://cp1.sednastream.com:8028/live
-#EXTINF:-1,Radio Zeri i Shtimes
-http://radio.1dhe1.com:8090/stream
 #EXTINF:-1,Radio Prishtina 89.8
 http://stream.radio.co/sbe73908d2/listen
 #EXTINF:-1,Radio Gora
@@ -97,6 +97,8 @@ http://82.114.72.2:8088/stream.mp3
 http://ca3.rcast.net:8024/
 #EXTINF:-1,Radio Maria Kosovo – Prizren – Kosovo
 http://dreamsiteradiocp.com:8110/
+#EXTINF:-1,Glam Radio – Coffee – Pristina – Kosovo
+https://stream.glamradio.fm:8443/glamcoffee
 #EXTINF:-1,Radio Pendimi Kanali 2 – Pristina – Kosovo
 http://rtvpendimi.com:8020/&type=mp3
 #EXTINF:-1,Antena 1 Radio
@@ -115,8 +117,6 @@ http://82.114.72.2:8098/;
 http://richmedia.lse.ac.uk/publicLecturesAndEvents/20090218_1830_kosovosIndependenceOneYearOn.mp3?type=.mp3
 #EXTINF:-1,Radio Vala 98.3
 http://185.82.109.71:8080/
-#EXTINF:-1,Kolektiv Radio
-https://studio28.radiolize.com/radio/8100/radio.mp3
 #EXTINF:-1,Antenna Web Pristina
 https://italiavera.radioca.st/stream
 #EXTINF:-1 tvg-logo="https://radiostationslive.com/uploads/2024/01/132999.v3.png",Pri Radio
@@ -127,8 +127,6 @@ https://halo.streamerr.co/listen/italiavera/stream.mp3
 http://radio.rtklive.com:8088/
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41386/logo_6rlyzj0x0j.png",Radio Kosova 2
 http://radio.rtklive.com:8098/
-#EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41391/logo_HgY8Yg2XYQ.png",Radio Nostalgjia
-https://radionos.radioca.st/radionostalgjia
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41397/logo_OhfE2oMzTO.png",Radio Kosv
 https://s38.radiolize.com/radio/8210/radio.mp3
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41388/logo_oQhhSOrB3p.png",Radio Kontakt Plus
@@ -139,8 +137,11 @@ https://a1.asurahosting.com:8780/radio.mp3
 https://kolektivstudio.com/listen/kolektiv_radio/radio.mp3
 #EXTINF:-1 tvg-logo="https://radiospinner.com/media/logos/180/41380/logo_Gf4welexNa.png",Radio Zeri i Shtimes
 https://radio.1dhe1.com:8090/stream
+#EXTINF:-1,KLAN Kosova FM
 http://s4.radio.co/sd1d1904dc/listen
+#EXTINF:-1,92.1 Capital FM
 http://cfm.albaservers.com:8010/
+#EXTINF:-1,Radio Zëri i Shtimes
 http://radio.1dhe1.com:8090/radio.mp3
 #EXTINF:-1,Oxygen Radio - Kosovo - Prishtina
 https://stream.radio.co/s6bb9533cb/listen
@@ -163,5 +164,18 @@ http://fm.radiokfor.com:8080/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/xk-radio-peja-logo.jpg",Radio Peja
 http://ns5.albaservers.com:8020/;?1516996701669.mp3
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/xk-antenna-web-pristina-logo.jpg",Radio Antenna Web Pristina
+https://halo.streamerr.co/listen/italiavera/stream.mp3
 #EXTINF:-1,Urban FM 103.5
 http://82.114.72.2:8098/;stream.mp3
+#EXTINF:-1,Radio Kosova 1
+https://radio.1dhe1.com:8090/radio.mp3
+#EXTINF:-1,Free FM Rock
+https://freefmrock.radioca.st/stream
+#EXTINF:-1,Glam Radio
+http://82.114.72.2:8088/;.mp3
+#EXTINF:-1,Free FM 80s
+https://freefm80.radioca.st/stream?sid=1
+#EXTINF:-1,Radyo Hisar
+https://a8.asurahosting.com:6920/radio.mp3
+#EXTINF:-1,Free FM Classics
+https://xxdelgado.radioca.st/stream

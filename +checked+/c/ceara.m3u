@@ -27,8 +27,6 @@ http://streaming10.hstbr.net:8052/live
 https://nos.radio.br/stream/11/;
 #EXTINF:-1,Rádio Apocalipse FM
 http://stm11.tecradio.com.br:15890/;
-#EXTINF:-1,Rádio Mução Top 100
-https://www.mucao.com.br/v2/
 #EXTINF:-1,Sobral Classe A
 https://stm18.xcast.com.br:12162/stream
 #EXTINF:-1,Web Rádio Bastiões
@@ -41,10 +39,12 @@ https://s35.maxcast.com.br:8610/live
 https://nos.radio.br/stream/15/;
 #EXTINF:-1,RadioNos Epic Channel
 https://nos.radio.br/stream/7/;
-#EXTINF:-1,Nativa FM
-https://ssl.painelcast.com:6868/;
+#EXTINF:-1,Radio Lider FM
+http://centova2.euroti.com.br:8089/;
 #EXTINF:-1,RadioNos Experimental Channel
 https://nos.radio.br/stream/9/;
+#EXTINF:-1,Aki FM
+https://s03.transmissaodigital.com:7544/
 #EXTINF:-1,Rádio Mar Azul FM
 https://servidor37-3.brlogic.com:8390/live
 #EXTINF:-1,Rádio Canoa FM
@@ -57,6 +57,10 @@ https://nos.radio.br/stream/6/;
 http://stm25.xcast.com.br:10386/stream
 #EXTINF:-1,Macavi FM Radio
 https://s43.maxcast.com.br:8008/live
+#EXTINF:-1,Atitude Popular
+https://s03.transmissaodigital.com:7550/
+#EXTINF:-1,Rádio Mandacaru FM
+http://euroticast5.euroti.com.br:8128/stream
 #EXTINF:-1,Rádio Web Voz da Cidade
 https://ssl.xcast.com.br:7754/;
 #EXTINF:-1,Rádio Serra Verde FM 87.9
@@ -65,6 +69,8 @@ https://ssl.xcast.com.br:10590//;
 http://stm38.sejaguia.com.br:28686/;
 #EXTINF:-1,Rádio Benção FM
 https://player.xcast.com.br/proxy/10274
+#EXTINF:-1,Rádio Difusora Cristal
+http://wz4.dnip.com.br/cristal/cristal.sdp/playlist.m3u8
 #EXTINF:-1,Gems FM
 http://143.208.11.100:7090/;
 #EXTINF:-1,Rádio Maracanaú Digital
@@ -77,8 +83,6 @@ https://ssl.xcast.com.br:9170/stream
 http://stm3.tecradio.com.br:7086/stream
 #EXTINF:-1,96 FM do Barro
 http://cast3.hoost.com.br:8732/stream
-#EXTINF:-1,iCast FM
-http://stm4.hostfive.com.br:10894/stream
 #EXTINF:-1,Rádio Iracema
 https://ssl.xcast.com.br:7942/stream
 #EXTINF:-1,LINS FM
@@ -93,6 +97,8 @@ https://stm27.srvaudio.com.br:11484/stream
 https://player.xcast.com.br/proxy/6752
 #EXTINF:-1,Rádio Cultura FM
 https://stm2.matutos.com.br:9712/stream
+#EXTINF:-1,Radio Maracanaú FM
+https://player-ssl.painelstream.net:8708/live
 #EXTINF:-1,Rádio Asa Branca
 https://5a57bda70564a.streamlock.net/asabranca128k/asabranca128k.stream/playlist.m3u8
 #EXTINF:-1,Rádio Djp Fm
@@ -101,22 +107,8 @@ https://ssl.srvstm.com:7596/;
 https://sonicpanel.oficialserver.com/9306/stream
 #EXTINF:-1,Rádio Nova Onda FM 104,9
 http://stm3.srvif.com:8318/stream
-#EXTINF:-1,Rádio Caná da Galiléia
-https://servidor28-5.brlogic.com:8336/live
-#EXTINF:-1,Web Rádio Passaré
-http://centova1.superhospedagens.com:8051/;
-#EXTINF:-1,Web Rádio Patacas Net
-https://centova3.transmissaodigital.com:20010/;
-#EXTINF:-1,Web Rádio do Bem
-https://stm12.pluscast.com.br:7020/;
-#EXTINF:-1,Rádio São Luis FM 98.7
-https://stream1.svrdedicado.org/8080/stream
-#EXTINF:-1,Rádio Canal Louvor
-http://stm3.srvvox.com.br:7178/stream
 #EXTINF:-1,Rádio Várzea Alegre FM 104.9
 http://wz5.dnip.com.br:1935/varzehd/varzehd.stream/playlist.m3u8
-#EXTINF:-1,Rádio Popular FM 104.9
-https://servidor31-2.brlogic.com:8158/live
 #EXTINF:-1,Papagaio FM
 http://stm1.jnbhost.com.br:7082/;
 #EXTINF:-1,Rádio Philadelphia
@@ -155,16 +147,12 @@ https://s33.maxcast.com.br:8016/live
 https://ssl.xcast.com.br:12962/;
 #EXTINF:-1,Rádio Jornal
 http://suaradio1.dyndns.ws:13385/stream?type=.mp3
-#EXTINF:-1,Rádio Gesso
-http://stm2.jnbhost.com.br:7090/;
 #EXTINF:-1,Minha Cidade Radio
 https://player.xcast.com.br/proxy/11200/;
 #EXTINF:-1,Fortaleza Nas Ondas na Web
 https://servidor28-3.brlogic.com:8460/live
 #EXTINF:-1,Rádio Quixelô FM 104.9
 https://player.xcast.com.br/proxy/8118/;
-#EXTINF:-1,Rádio Comunitária Salinas FM
-https://proxy.srvstr.com.br:7010/stream
 #EXTINF:-1,Rádio Vale do Jaguaribe
 http://suaradio1.dyndns.ws:10298/stream
 #EXTINF:-1,Rádio São Francisco
@@ -191,12 +179,14 @@ https://player.srvvox.com.br/proxy/7024
 http://servidor35.brlogic.com:8044/live?type=.m3u
 #EXTINF:-1,Rádio Dinâmica
 https://stm24.stmsrv.com:8050/;stream.nsv
+#EXTINF:-1,Radio Web Music Line
+https://ssl.xcast.com.br:10082/index
 #EXTINF:-1,Rádio Estação Da Benção
 https://ssl.xcast.com.br:12714/;
 #EXTINF:-1,Atos FM Fortaleza
 https://s.bul.tec.br:8020/128
-#EXTINF:-1,Rádio Web Santuário
-https://player.srvsh.com.br/proxy/7660
+#EXTINF:-1,Rádio Tempo FM 87.9
+https://stm1.streaminghd.net.br:7322/;
 #EXTINF:-1,Radio Brasil FM
 https://stm2.jnbhost.com.br:7058/stream
 #EXTINF:-1,Rádio Positiva Hits
@@ -217,14 +207,14 @@ https://ssl.xcast.com.br:12508/;
 https://player.xcast.com.br/proxy/7498/;?1603299879547
 #EXTINF:-1,Rádio Ousadia FM
 https://player.xcast.com.br/proxy/7474
-#EXTINF:-1,Rádio Líder Centro FM
-https://stm27.srvaudio.com.br:10046/stream
-#EXTINF:-1,União FM
-http://stm15.xcast.com.br:7898/stream
+#EXTINF:-1,Rádio Boa Semente
+http://stream4.notoris.com.br:8614/;stream
 #EXTINF:-1,Rádio Quiterianópolis 87.9 FM
 http://sv10.hdradios.net:13734/;
 #EXTINF:-1,Rádio Princesa do Vale FM
 https://servidor35-1.brlogic.com:8040/live
+#EXTINF:-1,Sol Nascente FM
+http://sv12.hdradios.net:7500/stream
 #EXTINF:-1,Radio fortaleza gospel
 https://sonicpanel.oficialserver.com/8290/stream
 #EXTINF:-1,Rádio Bíblica Boas Novas
@@ -241,8 +231,6 @@ https://stm7.voxhd.com.br:6966/;stream.nsv
 http://stm6.srvvox.com.br:7078/;stream.nsv
 #EXTINF:-1,Web Rádio Voz da Várzea
 https://ssl.xcast.com.br:11382/;stream.nsv
-#EXTINF:-1,webradioSiloé
-https://s1.bycast.com.br:8038/live
 #EXTINF:-1,Rádio Web Reta Grande
 http://stream1.svrdedicado.org/8264/stream
 #EXTINF:-1,Rádio Web Interativa

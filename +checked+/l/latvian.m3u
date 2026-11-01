@@ -1,34 +1,12 @@
 #EXTM3U
+#EXTINF:-1,Kurzemes Radio
+http://31.170.16.6:8000/?type=http&ampnocache=457
 #EXTINF:-1,RETRO FM Latvija
 https://live.retrofm.lv/retrofmlatvia
 #EXTINF:-1,Alise Plus
 http://fm2inet.aliseplus.lv:8000/
-#EXTINF:-1,Star FM Latvia
-https://live.advailo.com/starfm/hls/playlist.m3u8
-#EXTINF:-1,European Hit Radio - Dance
-http://stream.europeanhitradio.com:8000/Stream_24.aac
-#EXTINF:-1,European Hit Radio - Eurochart
-http://stream.europeanhitradio.com:8000/Stream_31.aac
-#EXTINF:-1,European Hit Radio - Fresh
-http://stream.europeanhitradio.com:8000/Stream_25.aac
-#EXTINF:-1,European Hit Radio - Latviešu Hiti
-http://stream.europeanhitradio.com:8000/Stream_22.aac
-#EXTINF:-1,European Hit Radio - Party Service
-http://stream.europeanhitradio.com:8000/Stream_12.aac
-#EXTINF:-1,European Hit Radio - Remixes
-http://stream.europeanhitradio.com:8000/Stream_32.aac
-#EXTINF:-1,European Hit Radio - RNB
-http://stream.europeanhitradio.com:8000/Stream_11.aac
-#EXTINF:-1,European Hit Radio - Rock
-http://stream.europeanhitradio.com:8000/Stream_37.aac
-#EXTINF:-1,European Hit Radio - SuperHits
-http://stream.europeanhitradio.com:8000/Stream_21.aac
-#EXTINF:-1,European Hit Radio - Top 40
-http://stream.europeanhitradio.com:8000/Stream_27.aac
-#EXTINF:-1,RADIO MARIA LATVIA
-http://dreamsiteradiocp2.com:8046/stream
-#EXTINF:-1,Radio Tulsi
-http://radio.kuums.lv:6555/
+#EXTINF:-1,Star Fm
+http://starfm.live.advailo.com/audio/mp3/icecast.audio
 #EXTINF:-1,Talsi Lounge
 http://radio.kuums.lv:5555/listen.pls
 #EXTINF:-1,Talsi Remix
@@ -39,6 +17,8 @@ http://stream.ehrhiti.lv:8000/khr.aac
 http://schlagers.org:8760/
 #EXTINF:-1,EHR SuperHits
 https://stream.ehrhiti.lv:8000/Stream_21.aac
+#EXTINF:-1,Pieci - 5 FM
+http://kurzemesradio.lv:8000/
 #EXTINF:-1,Latvijas Kristigais Radio
 http://shoutcast.lkr.lv:7007/
 #EXTINF:-1,EHR Superhits
@@ -53,6 +33,8 @@ http://stream.europeanhitradio.com:8000/Stream_35.aac
 https://streams.urdt.lv/gradio.mp4a
 #EXTINF:-1,Housemasters Radio
 https://everestcast-us.myautodj.com:1085/stream
+#EXTINF:-1,Radio Energy - Russian Radio
+http://radio1.radioenergy.lv:9000
 #EXTINF:-1,EHR Darbam
 https://stream.ehrhiti.lv:8000/Stream_23.aac
 #EXTINF:-1,EHR Eurochart
@@ -73,10 +55,12 @@ http://185.8.60.5:8000/listen.pls?sid=1
 http://stream.ehrhiti.lv:8000/Stream_14.aac
 #EXTINF:-1,Neverland Radio
 http://radio-neverland.stream.laut.fm/radio-neverland
+#EXTINF:-1,Dr Chill FM
+http://media-sov.musicradio.com/ChillMP3
 #EXTINF:-1,Baltupiu Radijas
 https://www.baltupiuprogimnazija.vilnius.lm.lt/wp-content/uploads/2014/04/Baltupi%C5%B3-progimnazijos-daina.mp3
 #EXTINF:-1,FUTURE BASS MIX
-https://strw3.openstream.co/463?aw_0_1st.collectionid%3D2941%26stationId%3D2941%26publisherId%3D283%26k%3D1787527881
+https://strw3.openstream.co/463?aw_0_1st.collectionid%3D2941%26stationId%3D2941%26publisherId%3D283%26k%3D1792951896
 #EXTINF:-1,Balerija radio
 http://listen.openstream.co/3945/audio
 #EXTINF:-1,OMH - Our Music History
@@ -115,20 +99,59 @@ https://stream.ehrhiti.lv:8000/Stream_36.aac
 https://live.advailo.com/topradio/hls/playlist.m3u8
 #EXTINF:-1,Hiti Rossii
 https://stream.appradiofm.com/stream?url=http://stream.europeanhitradio.com:8000/khr.mp3
+#EXTINF:-1,Star FM - FM 106.2
+https://stream.appradiofm.com/stream?url=http://starfm.live.advailo.com/audio/mp3/icecast.audio
 #EXTINF:-1,Latviešu hiti
 https://stream.ehrhiti.lv:8000/Stream_22.aac
 #EXTINF:-1,Gradio
 https://stream.appradiofm.com/stream?url=http://stream.newdanceradio.ru
-#EXTINF:-1 tv-logo="https://im1.lixty.com/images/lv-talsi-lounge-radio-logo.jpg",Talsi Lounge Radio
-http://kuums.lv:5555/?type=httpu0026nocache=170
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/kurzemes-radio-568856-logo.jpg",Kurzemes Radio
+http://31.170.16.6:8000/;
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/lv-flash-sound-lv-radio-logo.jpg",Flash Sound (LV) radio
+https://listen7.myradio24.com/65462
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/power-fm-175897-logo.jpg",Radio Power Fm
 https://radio.powerfm.lv:8075/stream
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/lv-talsi-lounge-radio-0-logo.jpg",Talsi Lounge Radio
 http://kuums.lv:5555/;stream.nsv
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/lv-nordic-chillout-radio-logo.jpg",Nordic Chillout Radio
+https://listen.radioking.com/radio/672094/stream/736489
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/lv-european-hit-radio-eurochart-logo.jpg",European Hit Radio - Eurochart
 https://stream.ehrhiti.lv:8000/Stream_31.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/lv-european-hit-radio-top-40-logo.jpg",European Hit Radio - Top 40
 https://stream.ehrhiti.lv:8000/Stream_27.aac
 #EXTINF:-1 tv-logo="https://im1.lixty.com/images/lv-european-hit-radio-party-service-logo.jpg",European Hit Radio - Party Service
 https://stream.ehrhiti.lv:8000/Stream_12.aac
+#EXTINF:-1 tv-logo="https://im1.lixty.com/images/lv-radio-star-fm-logo.jpg",Radio Star FM
+https://live.advailo.com/audio/mp3/icecast.audio
+#EXTINF:-1,TOP radio
+https://topradio.live.advailo.com/topradio/mp3/icecast.audio
+#EXTINF:-1,Free FM Gaita Venezuela
+https://gaita.radioca.st/stream
+#EXTINF:-1,True Life in God Latvian
+https://stream.tligradio.org/listen/latvian/radio.mp3
+#EXTINF:-1,Your City Padio
+http://radio1.radioenergy.lv:8000/
+#EXTINF:-1,gradio.lv ONE
+https://stream.gradio.lv/gradio-one.mp4a
+#EXTINF:-1,Radio Liepāja
+https://stream.radioliepaja.lv/live/playlist.m3u8
+#EXTINF:-1,Radio Viens
+https://radioviens.lv/live
+#EXTINF:-1,EHR Rise & Shine
+http://stream.ehrhiti.lv:8000/Stream_36.mp3
+#EXTINF:-1,EHR Party Service
+http://stream.ehrhiti.lv:8000/Stream_12.mp3
+#EXTINF:-1,EHR Festivālu Hiti
+http://stream.ehrhiti.lv:8000/Stream_73.mp3
+#EXTINF:-1,EHR TOP 40
+http://stream.europeanhitradio.com:8000/Stream_27.mp3
+#EXTINF:-1,EHR Gold
+http://stream.ehrhiti.lv:8000/Stream_64.mp3
+#EXTINF:-1,Free FM Rock
+https://freefmrock.radioca.st/stream
+#EXTINF:-1,Free FM World
+https://rocafmadrid.radioca.st/stream
+#EXTINF:-1,Free FM Classics
+https://xxdelgado.radioca.st/stream
+#EXTINF:-1,Free FM 80s
+https://freefm80.radioca.st/stream?sid=1

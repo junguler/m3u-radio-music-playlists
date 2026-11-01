@@ -27,6 +27,8 @@ http://icecast.365net.is:8000/orbApparatid.aac
 http://icecast.365net.is:8000/orbbylgjan.aac
 #EXTINF:-1,Gull Bylgjan 90.9 Reykjavik
 http://icecast.365net.is:8000/orbGullBylgjan.aac.m3u
+#EXTINF:-1,Radio Bodun 105.5 Reykjavik
+http://radio.bodun.is:8000/stream
 #EXTINF:-1,Visir "FM 957 Extra" Reykjavik
 http://icecast.365net.is:8000/orbFmExtra.aac
 #EXTINF:-1,Visir "FM957" 95.7 Reykjavik
@@ -41,9 +43,12 @@ https://assets.wireless.radio/audio/georestriction-barkers/onic.mp3
 http://falcon.shoutca.st:8516/
 #EXTINF:-1,Sudurland FM
 http://178.19.58.119:1818/
+#EXTINF:-1,Utvarp Bodun
+http://bodun.is:8000/stream
 #EXTINF:-1,Íslenska Bylgjan
 https://live.visir.is/hls-radio/fmx/playlist.m3u8
 #EXTINF:-1,C103 North
+https://assets.wireless.radio/audio/georestriction-barkers/onic.mp3
 #EXTINF:-1,FM957
 http://icecast.365net.is:8000/orbFm957.aac
 #EXTINF:-1,Bylgjan 80s
@@ -84,7 +89,17 @@ https://ruv-radio-live.akamaized.net/streymi/rondo/rondo.m3u8
 https://icecast.visir.is/orb80s.aac
 #EXTINF:-1,Létt Bylgjan 96.7 FM
 https://icecast.visir.is/orbLettBylgjan.aac
-#EXTINF:-1,Antenna Web Akureyri
-https://halo.streamerr.co/listen/italiavera/stream.mp3
 #EXTINF:-1,Seyðisfjörður Community Radio
 https://seyisfjorur-community-radio.radiocult.fm/stream
+#EXTINF:-1,Free FM World
+https://rocafmadrid.radioca.st/stream
+#EXTINF:-1,Country Bylgjan
+http://icecast.365net.is:8000/orbLettBylgjan.aac
+#EXTINF:-1,Free FM Gaita Venezuela
+https://gaita.radioca.st/stream
+#EXTINF:-1,Trolli FM 103.7 Siglufjordu
+http://icecast.365net.is:8000/orbXid.aac
+#EXTINF:-1,Free FM Rock
+https://freefmrock.radioca.st/stream
+#EXTINF:-1,Free FM 80s
+https://freefm80.radioca.st/stream?sid=1

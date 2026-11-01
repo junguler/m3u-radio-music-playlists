@@ -1,12 +1,8 @@
 #EXTM3U
-#EXTINF:-1,1 slowradio
-http://1slowradio.stream.laut.fm/1_slowradio?uuid=f657a84f-ca35-9b2c-457f-cac080d7fd49&t302=2026-08-24_12-36-32
 #EXTINF:-1,only romantic radio
 http://only-romantic-radio.stream.laut.fm/only-romantic-radio
 #EXTINF:-1,studio music station
 http://studio-music-station.stream.laut.fm/studio-music-station
-#EXTINF:-1,Milenium 106.7 FM
-http://62.171.148.111:8002/stream
 #EXTINF:-1,MelloFM
 http://peridot.streamguys.com:5660/live
 #EXTINF:-1,KISS FM Love Songs
@@ -14,7 +10,9 @@ https://kissfm.ice.infomaniak.ch/kissfm-128.mp3
 #EXTINF:-1,Calm Radio - Solo Piano
 http://streams.calmradio.com:1228/stream
 #EXTINF:-1,JoyTurk
-https://25693.live.streamtheworld.com/JOY_TURK.mp3
+https://25443.live.streamtheworld.com/JOY_TURK.mp3
+#EXTINF:-1,Calm Radio - Classical Guitar
+http://streams.calmradio.com:2728/stream/
 #EXTINF:-1,Calm Radio - Symphony
 http://streams.calmradio.com:1028/stream/
 #EXTINF:-1,Calm Radio - Harp
@@ -25,6 +23,8 @@ https://proxy.calmradio.com:30728/stream/
 http://streams.calmradio.com:2628/stream
 #EXTINF:-1,The Soul of London Radio
 https://londonsoulradio.out.airtime.pro/londonsoulradio_a
+#EXTINF:-1,Slowly Radio
+http://listen.radioking.com/radio/421816/stream/476449
 #EXTINF:-1,Loca FM - Ambient
 http://s02.fjperezdj.com:8036/live
 #EXTINF:-1,3 music Harmony
@@ -32,7 +32,7 @@ http://misato.ru-hoster.com:8057/stream
 #EXTINF:-1,Perindu FM
 http://167.114.131.90:5744/stream
 #EXTINF:-1,RauteMusik - Lounge
-https://rautemusik.stream43.radiohost.de/lounge?ref=streema&upd-meta&upd-scheme=https&_art=dD0xNzg3NTY4MDk3JmQ9Y2I4MzRhZTUzOGZjNGYwNGM3MDU
+https://rautemusik.stream25.radiohost.de/lounge?ref=streema&upd-meta&upd-scheme=https&_art=dD0xNzkyOTUzMjgwJmQ9NTRmZDVhMTM4ZjA3NDA4YjkwMTQ
 #EXTINF:-1,Dimensione Radio
 http://dimensioneradio.ice.infomaniak.ch/dimensioneradio-128.mp3
 #EXTINF:-1,Calm Radio - Cello
@@ -54,7 +54,7 @@ http://pub0101.101.ru:8000/stream/pro/aac/64/26
 #EXTINF:-1,Akro Radio
 http://stream.akroradio.com:10012/AkroRadio
 #EXTINF:-1,SlowRadio
-http://1slowradio.stream.laut.fm/1_slowradio?t302=2026-08-24_10-36-39&uuid=badc4497-ee4e-4761-893c-b809d67111d8
+http://1slowradio.stream.laut.fm/1_slowradio?t302=2026-10-25_19-30-00&uuid=6fe38047-16c5-c2f5-393c-fd73a39b273d
 #EXTINF:-1,RFM - RFM Slow
 https://rfm.lmn.fm/rfm-wr13.aac?aw_0_1st.playerid=lgrdrnwsSimpleRadio
 #EXTINF:-1,Genç Kral FM
@@ -63,14 +63,14 @@ http://anadolu.liderhost.com.tr:8090/stream
 http://mp3.ffh.de/ffhchannels/hqacoustichits.mp3
 #EXTINF:-1,Arabesk Aşkı
 http://yayin.arabeskfm.biz:8042/
+#EXTINF:-1,Positively Birdsong
+http://streaming.positivity.radio/pr/posibirdsong/icecast.audio
 #EXTINF:-1,Yeni Radyo
 https://radyo.yayin.com.tr:6191/stream/
-#EXTINF:-1,Soft Radyo
-http://radyo.softradyo.com:1140/stream
 #EXTINF:-1,RauteMusik - Study
-https://rautemusik.stream39.radiohost.de/study?ref=streema&upd-meta&upd-scheme=https&_art=dD0xNzg3NTY4MTA1JmQ9OGEyNmQ5MmRkZmNjNGI4MGM2ZGE
+https://rautemusik.stream25.radiohost.de/study?ref=streema&upd-meta&upd-scheme=https&_art=dD0xNzkyOTUzMzAzJmQ9N2FiMmY5ZWNmOGRlYWIzNmRhMjM
 #EXTINF:-1,RauteMusik - Traurig
-https://rautemusik.stream37.radiohost.de/traurig?ref=streema&upd-meta&upd-scheme=https&_art=dD0xNzg3NTY4MTA1JmQ9ZDZhYjBkMjI5NjA5YTdkN2MyMGQ
+https://rautemusik.stream48.radiohost.de/traurig?ref=streema&upd-meta&upd-scheme=https&_art=dD0xNzkyOTUzMzAzJmQ9YTRkM2FiMmY1MmMyMTI2MDY1MDU
 #EXTINF:-1,Radyo Hayat
 http://51.159.52.7:8024/stream/
 #EXTINF:-1,Noksanlar Kenti Radyo
@@ -90,13 +90,13 @@ https://stream.vagalume.fm/hls/1528731664462844/aac.m3u8
 #EXTINF:-1,Vagalume.FM - Surf & Relax
 https://stream.vagalume.fm/hls/1529016796595333/aac.m3u8
 #EXTINF:-1,Epic Lounge - Chillout Lounge
-http://0nlineradio.stream42.radiohost.de/lounge-chillout-lounge?ref=streema&upd-meta&upd-scheme=http&_art=dD0xNzg3NTY4MTA3JmQ9NDI3MjhmMzkzOGVjYmFjNmFjMjI
+http://0nlineradio.stream13.radiohost.de/lounge-chillout-lounge?ref=streema&upd-meta&upd-scheme=http&_art=dD0xNzkyOTUzMzA3JmQ9NzMwYjE0NWViMGU5MTllMTYyMmU
 #EXTINF:-1,Epic Lounge - Sleep & Meditation
-http://0nlineradio.stream42.radiohost.de/lounge-sleep-meditation?ref=streema&upd-meta&upd-scheme=http&_art=dD0xNzg3NTY4MTA3JmQ9ODliMjhjOTlhMTAxNzIwNTdjMmE
+http://0nlineradio.stream39.radiohost.de/lounge-sleep-meditation?ref=streema&upd-meta&upd-scheme=http&_art=dD0xNzkyOTUzMzA3JmQ9YTRhZDUzMTBlMWFjZTA3MjNmZGI
 #EXTINF:-1,Epic Lounge - Nature Sounds
-http://0nlineradio.stream42.radiohost.de/lounge-nature-sounds?ref=streema&upd-meta&upd-scheme=http&_art=dD0xNzg3NTY4MTA3JmQ9MGJjZmU2NWI2ZjAzNmNhMDFiZDk
+http://0nlineradio.stream39.radiohost.de/lounge-nature-sounds?ref=streema&upd-meta&upd-scheme=http&_art=dD0xNzkyOTUzMzA4JmQ9NmNkNzE1NGUyYjI4NzQzOTNiNWM
 #EXTINF:-1,Baden FM - Relax
-https://edge85.streams.baden.fm/badenfm-relax
+https://edge03.streams.baden.fm/badenfm-relax
 #EXTINF:-1,Calm Radio – Classical Guitar
 http://streams.calmradio.com:2728/stream
 #EXTINF:-1,Calm Radio – Eric Harry & Friends
@@ -106,6 +106,7 @@ http://streams.calmradio.com:30728/stream
 #EXTINF:-1,Calm Radio – Movieola
 http://streams.calmradio.com:3128/stream
 #EXTINF:-1,Calm Radio – Solo Guitar
+http://streams.calmradio.com:2628/stream
 #EXTINF:-1,Calm Radio – Symphony
 http://streams.calmradio.com:1028/stream
 #EXTINF:-1,Pine Net Radio
@@ -138,28 +139,18 @@ https://moondigitaledge2.radyotvonline.net/radyo7slow/playlist.m3u8
 http://37.247.98.8/stream/27/
 #EXTINF:-1,Slow Keyf
 http://yayin.radyomadyo.com:8004/stream
-#EXTINF:-1,Borusan Klasik
-https://25633.live.streamtheworld.com/BORUSAN_KLASIK_SC?/
 #EXTINF:-1,Fırtına Sesleri - Özel
 https://radiosapi.ams3.cdn.digitaloceanspaces.com/static/nature/thunder-1.mp3
 #EXTINF:-1,Radyo Soft
 https://trkvz-radyolar.ercdn.net/radyosoft/playlist.m3u8
-#EXTINF:-1,Orman Sesleri - Özel
-https://radiosapi.ams3.cdn.digitaloceanspaces.com/static/nature/forest-1.mp3
 #EXTINF:-1,Slow Karadeniz
 http://46.20.4.54/
-#EXTINF:-1,Sahil Sesleri - Özel
-https://radiosapi.ams3.cdn.digitaloceanspaces.com/static/nature/beach-1.mp3
-#EXTINF:-1,Yağmur Sesleri - Özel
-https://radiosapi.ams3.cdn.digitaloceanspaces.com/static/nature/rainy-1.mp3
 #EXTINF:-1,Radyo Şiir
 http://37.247.98.8/stream/32/
 #EXTINF:-1,Radio Caritas Tui Vigo
 https://srv7021.dns-lcinternet.com/8052/stream
 #EXTINF:-1,247 Mixing
 https://listen.radioking.com/radio/558131/stream/617633
-#EXTINF:-1,bigFM Slow Jamz
-https://audiotainment-sw.streamabc.net/atsw-2000er-mp3-128-7974655?sABC=6n8p1rpo%230%23027nr3r7s3s356n507q162216np2q97q%23enqvboebjfre&aw_0_1st.playerid=radiobrowser&amsparams=playerid:radiobrowser;skey:1787567819
 #EXTINF:-1,admin
 https://listen2.myradio24.com/8286
 #EXTINF:-1,Slows du Rock
@@ -168,8 +159,6 @@ https://ouifmlesslowsdurock.ice.infomaniak.ch/ouifmslowrock.mp3
 https://quincy.torontocast.com/slowradiogold
 #EXTINF:-1,NRJ Trance
 https://pub0101.101.ru/stream/trust/mp3/128/19
-#EXTINF:-1,1000 HITS Love
-https://ais-sa2.cdnstream1.com/2210_128.mp3
 #EXTINF:-1,London Soul Radio
 https://londonsoulradio.out.airtime.pro/londonsoulradio_b
 #EXTINF:-1,1.FM - Ambient Psychill
@@ -179,7 +168,7 @@ https://ais-sa2.cdnstream1.com/2345_128.mp3
 #EXTINF:-1,Kukuruz
 https://kukuruz.stream.laut.fm/kukuruz
 #EXTINF:-1,0nlineradio Chillout
-https://0nlineradio.stream13.radiohost.de/0r-chillout?upd-meta&upd-scheme=https&_art=dD0xNzg3NTY4MTIxJmQ9NGM5NzM5MDQ4M2IwODQzY2Q5NzA
+https://0nlineradio.stream13.radiohost.de/0r-chillout?upd-meta&upd-scheme=https&_art=dD0xNzkyOTUzMzc0JmQ9MWI0ZDg5MWYyYTRjZDdmYTBiNjA
 #EXTINF:-1,Generations SlowJam
 http://gene-wr11.ice.infomaniak.ch/gene-wr11.mp3
 #EXTINF:-1,Radiostorm - At Work 104
