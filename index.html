@@ -614,7 +614,7 @@
         .player-bar { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; width: 100%; max-width: 480px; margin: 0.1rem auto 0; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 0.4rem 0.75rem; }
         .player-seek-row { display: flex; align-items: center; gap: 0.5rem; width: 100%; }
         .player-seek { -webkit-appearance: none; appearance: none; flex: 1; min-width: 0; height: 10px; margin: 0; cursor: pointer; border: 1px solid var(--border-color); border-radius: var(--radius-full);
-            background: linear-gradient(to right, var(--seek-fill, var(--stat-fill, var(--accent))) var(--seek-pct, 0%), color-mix(in srgb, var(--seek-fill, var(--stat-fill, var(--accent))) 38%, var(--control-surface)) var(--seek-pct, 0%), color-mix(in srgb, var(--seek-fill, var(--stat-fill, var(--accent))) 38%, var(--control-surface)) var(--seek-cache, 0%), var(--control-surface) var(--seek-cache, 0%)); }
+            background: linear-gradient(to right, var(--seek-fill, var(--stat-fill, var(--accent))) var(--seek-pct, 0%), var(--control-surface) var(--seek-pct, 0%)); }
         .player-seek::-webkit-slider-runnable-track { background: transparent; height: 100%; }
         .player-seek::-moz-range-track { background: transparent; height: 100%; }
         .player-seek::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; margin-top: -3px; border-radius: var(--radius-full); background: var(--on-control); border: 1px solid var(--border-color); }
@@ -2882,39 +2882,17 @@
             // Some HLS live streams report seekable.end() far ahead of the
             // actual live edge, so we treat currentTime as the live edge and
             // only trust seekable.start() as the furthest-back rewind point.
-            // The cached window: the buffered range the playhead is in. For streams this is what can be moved around in
-            // (oldest cached audio on the left, newest on the right); for files it is drawn on the bar as the lighter part.
-            function getCacheRange() {
-                try {
-                    const b = mediaEl.buffered, t = mediaEl.currentTime;
-                    for (let i = 0; i < b.length; i++) {
-                        if (t >= b.start(i) - 0.3 && t <= b.end(i) + 0.05) return { start: b.start(i), end: b.end(i) };
-                    }
-                } catch (err) {}
-                return null;
-            }
             function getSeekableRange() {
-                let seekRange = null;
                 try {
                     const ranges = mediaEl.seekable;
                     if (ranges && ranges.length > 0) {
                         const last = ranges.length - 1;
-                        seekRange = { start: ranges.start(last), end: ranges.end(last) };
+                        const start = ranges.start(last);
+                        const reportedEnd = ranges.end(last);
+                        const end = Math.min(reportedEnd, mediaEl.currentTime + 5);
+                        if (end - start > 1) return { start, end };
                     }
                 } catch (err) {}
-                const cache = getCacheRange();
-                const hls = !!(playSession && playSession.usesHls);
-                // HLS keeps its own rewind window (some live streams report seekable.end() far ahead of the live edge,
-                // so the cached end or the playhead + 5 s is used instead). Everything else moves inside the cached window.
-                if (hls && seekRange) {
-                    const end = Math.min(seekRange.end, Math.max(mediaEl.currentTime + 5, cache ? cache.end : 0));
-                    if (end - seekRange.start > 1) return { start: seekRange.start, end };
-                }
-                if (cache && cache.end - cache.start > 1) return cache;
-                if (seekRange) {
-                    const end = Math.min(seekRange.end, mediaEl.currentTime + 5);
-                    if (end - seekRange.start > 1) return { start: seekRange.start, end };
-                }
                 return null;
             }
             function getSeekTarget(sliderValue) {
@@ -2924,15 +2902,10 @@
                 if (range) return range.start + (sliderValue / 1000) * (range.end - range.start);
                 return mediaEl.currentTime;
             }
-            function paintSeek(cachePct) {
-                seek.style.setProperty("--seek-pct", seek.value / 10 + "%");
-                if (cachePct != null) seek.style.setProperty("--seek-cache", Math.max(seek.value / 10, cachePct) + "%");
-                else seek.style.setProperty("--seek-cache", Math.max(seek.value / 10, parseFloat(seek.style.getPropertyValue("--seek-cache")) || 0) + "%");
-            }
-            let cachePctNow = 0;
+            function paintSeek() { seek.style.setProperty("--seek-pct", (seek.value / 10) + "%"); }
             function syncSeekBar() {
                 syncSeekBarInner();
-                paintSeek(cachePctNow);
+                paintSeek();
             }
             function syncSeekBarInner() {
                 if (seeking) return;
@@ -2942,28 +2915,18 @@
                     seek.disabled = false;
                     durTimeEl.textContent = formatTime(dur);
                     seek.value = Math.round((mediaEl.currentTime / dur) * 1000);
-                    const c = getCacheRange();
-                    cachePctNow = c ? Math.min(100, (c.end / dur) * 100) : 0;
                     seek.setAttribute("aria-valuetext", `${formatTime(mediaEl.currentTime)} of ${formatTime(dur)}`);
                     return;
                 }
                 const range = getSeekableRange();
                 if (range) {
                     seek.disabled = false;
-                    cachePctNow = 100; // the bar is the cached window, so everything right of the thumb is cached
-                    const span = range.end - range.start;
-                    const behind = Math.max(0, range.end - mediaEl.currentTime);
-                    if (behind < 2) {
-                        durTimeEl.textContent = "LIVE";
-                        durTimeEl.classList.add("is-live");
-                    } else {
-                        durTimeEl.textContent = "-" + formatTime(behind);
-                    }
-                    const ratio = (mediaEl.currentTime - range.start) / span;
+                    durTimeEl.textContent = "LIVE";
+                    durTimeEl.classList.add("is-live");
+                    const ratio = (mediaEl.currentTime - range.start) / (range.end - range.start);
                     seek.value = Math.round(Math.max(0, Math.min(1, ratio)) * 1000);
-                    seek.setAttribute("aria-valuetext", `${formatTime(mediaEl.currentTime)}, ${Math.round(span)} seconds cached, ${behind < 2 ? "live" : Math.round(behind) + " seconds behind live"}`);
+                    seek.setAttribute("aria-valuetext", `${formatTime(mediaEl.currentTime)}, live`);
                 } else {
-                    cachePctNow = 0;
                     seek.disabled = true;
                     seek.value = 1000;
                     durTimeEl.textContent = "LIVE";
@@ -2974,7 +2937,6 @@
             mediaEl.addEventListener("loadedmetadata", syncSeekBar);
             mediaEl.addEventListener("durationchange", syncSeekBar);
             mediaEl.addEventListener("progress", syncSeekBar);
-            mediaEl.addEventListener("seeked", syncSeekBar);
             mediaEl.addEventListener("timeupdate", () => {
                 curTimeEl.textContent = formatTime(mediaEl.currentTime);
                 syncSeekBar();
@@ -2982,7 +2944,7 @@
             syncSeekBar();
             seek.addEventListener("input", () => {
                 seeking = true;
-                paintSeek(cachePctNow);
+                paintSeek();
                 const target = getSeekTarget(seek.value);
                 curTimeEl.textContent = formatTime(target);
                 seek.setAttribute("aria-valuetext", formatTime(target));
