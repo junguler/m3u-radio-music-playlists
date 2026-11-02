@@ -614,7 +614,7 @@
         .player-bar { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; width: 100%; max-width: 480px; margin: 0.1rem auto 0; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 0.4rem 0.75rem; }
         .player-seek-row { display: flex; align-items: center; gap: 0.5rem; width: 100%; }
         .player-seek { -webkit-appearance: none; appearance: none; flex: 1; min-width: 0; height: 10px; margin: 0; cursor: pointer; border: 1px solid var(--border-color); border-radius: var(--radius-full);
-            background: linear-gradient(to right, var(--seek-fill, var(--stat-fill, var(--accent))) var(--seek-pct, 0%), var(--control-surface) var(--seek-pct, 0%)); }
+            background: linear-gradient(to right, var(--seek-fill, var(--stat-fill, var(--accent))) var(--seek-pct, 0%), color-mix(in srgb, var(--seek-fill, var(--stat-fill, var(--accent))) 38%, var(--control-surface)) var(--seek-pct, 0%), color-mix(in srgb, var(--seek-fill, var(--stat-fill, var(--accent))) 38%, var(--control-surface)) var(--seek-cache, 0%), var(--control-surface) var(--seek-cache, 0%)); }
         .player-seek::-webkit-slider-runnable-track { background: transparent; height: 100%; }
         .player-seek::-moz-range-track { background: transparent; height: 100%; }
         .player-seek::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; margin-top: -3px; border-radius: var(--radius-full); background: var(--on-control); border: 1px solid var(--border-color); }
@@ -627,6 +627,7 @@
         .playlist-btn.player-play-btn { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); border-radius: var(--radius-full); width: 2.4rem; height: 2.4rem; padding: 0; transition: background-color var(--transition), border-color var(--transition); }
         .playlist-btn.player-play-btn:hover { background: var(--accent-solid-hover, var(--accent-hover)); border-color: var(--accent-solid-hover, var(--accent-hover)); }
         .playlist-btn.player-play-btn svg { width: 20px; height: 20px; }
+        .player-time.is-behind { cursor: pointer; text-decoration: underline dotted; }
         .player-time, .player-vol { font-size: 0.75rem; color: var(--text-secondary); min-width: 2.5rem; text-align: center; user-select: none; }
         .player-info-btn { position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.375rem; background: var(--control-surface); border: 1px solid var(--border-color); border-radius: var(--radius); color: var(--on-control); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
         .player-info-btn:hover { background: var(--control-surface-hover); border-color: var(--accent); }
@@ -2882,17 +2883,39 @@
             // Some HLS live streams report seekable.end() far ahead of the
             // actual live edge, so we treat currentTime as the live edge and
             // only trust seekable.start() as the furthest-back rewind point.
+            // The cached window: the buffered range the playhead is in. For streams this is what can be moved around in
+            // (oldest cached audio on the left, newest on the right); for files it is drawn on the bar as the lighter part.
+            function getCacheRange() {
+                try {
+                    const b = mediaEl.buffered, t = mediaEl.currentTime;
+                    for (let i = 0; i < b.length; i++) {
+                        if (t >= b.start(i) - 0.3 && t <= b.end(i) + 0.05) return { start: b.start(i), end: b.end(i) };
+                    }
+                } catch (err) {}
+                return null;
+            }
             function getSeekableRange() {
+                let seekRange = null;
                 try {
                     const ranges = mediaEl.seekable;
                     if (ranges && ranges.length > 0) {
                         const last = ranges.length - 1;
-                        const start = ranges.start(last);
-                        const reportedEnd = ranges.end(last);
-                        const end = Math.min(reportedEnd, mediaEl.currentTime + 5);
-                        if (end - start > 1) return { start, end };
+                        seekRange = { start: ranges.start(last), end: ranges.end(last) };
                     }
                 } catch (err) {}
+                const cache = getCacheRange();
+                const hls = !!(playSession && playSession.usesHls);
+                // HLS keeps its own rewind window (some live streams report seekable.end() far ahead of the live edge,
+                // so the cached end or the playhead + 5 s is used instead). Everything else moves inside the cached window.
+                if (hls && seekRange) {
+                    const end = Math.min(seekRange.end, Math.max(mediaEl.currentTime + 5, cache ? cache.end : 0));
+                    if (end - seekRange.start > 1) return { start: seekRange.start, end };
+                }
+                if (cache && cache.end - cache.start > 1) return cache;
+                if (seekRange) {
+                    const end = Math.min(seekRange.end, mediaEl.currentTime + 5);
+                    if (end - seekRange.start > 1) return { start: seekRange.start, end };
+                }
                 return null;
             }
             function getSeekTarget(sliderValue) {
@@ -2902,31 +2925,51 @@
                 if (range) return range.start + (sliderValue / 1000) * (range.end - range.start);
                 return mediaEl.currentTime;
             }
-            function paintSeek() { seek.style.setProperty("--seek-pct", (seek.value / 10) + "%"); }
+            function paintSeek(cachePct) {
+                seek.style.setProperty("--seek-pct", seek.value / 10 + "%");
+                if (cachePct != null) seek.style.setProperty("--seek-cache", Math.max(seek.value / 10, cachePct) + "%");
+                else seek.style.setProperty("--seek-cache", Math.max(seek.value / 10, parseFloat(seek.style.getPropertyValue("--seek-cache")) || 0) + "%");
+            }
+            let cachePctNow = 0;
             function syncSeekBar() {
                 syncSeekBarInner();
-                paintSeek();
+                paintSeek(cachePctNow);
             }
             function syncSeekBarInner() {
                 if (seeking) return;
                 const dur = mediaEl.duration;
-                durTimeEl.classList.remove("is-live");
+                durTimeEl.classList.remove("is-live", "is-behind");
                 if (isFinite(dur) && dur > 0) {
+                    durTimeEl.removeAttribute("title");
                     seek.disabled = false;
                     durTimeEl.textContent = formatTime(dur);
                     seek.value = Math.round((mediaEl.currentTime / dur) * 1000);
+                    const c = getCacheRange();
+                    cachePctNow = c ? Math.min(100, (c.end / dur) * 100) : 0;
                     seek.setAttribute("aria-valuetext", `${formatTime(mediaEl.currentTime)} of ${formatTime(dur)}`);
                     return;
                 }
                 const range = getSeekableRange();
                 if (range) {
                     seek.disabled = false;
-                    durTimeEl.textContent = "LIVE";
-                    durTimeEl.classList.add("is-live");
-                    const ratio = (mediaEl.currentTime - range.start) / (range.end - range.start);
+                    cachePctNow = 100; // the bar is the cached window, so everything right of the thumb is cached
+                    const span = range.end - range.start;
+                    const behind = Math.max(0, range.end - mediaEl.currentTime);
+                    if (behind < 2) {
+                        durTimeEl.textContent = "LIVE";
+                        durTimeEl.classList.add("is-live");
+                        durTimeEl.classList.remove("is-behind");
+                        durTimeEl.removeAttribute("title");
+                    } else {
+                        durTimeEl.textContent = "-" + formatTime(behind);
+                        durTimeEl.classList.add("is-behind");
+                        durTimeEl.title = "Jump to live";
+                    }
+                    const ratio = (mediaEl.currentTime - range.start) / span;
                     seek.value = Math.round(Math.max(0, Math.min(1, ratio)) * 1000);
-                    seek.setAttribute("aria-valuetext", `${formatTime(mediaEl.currentTime)}, live`);
+                    seek.setAttribute("aria-valuetext", `${formatTime(mediaEl.currentTime)}, ${Math.round(span)} seconds cached, ${behind < 2 ? "live" : Math.round(behind) + " seconds behind live"}`);
                 } else {
+                    cachePctNow = 0;
                     seek.disabled = true;
                     seek.value = 1000;
                     durTimeEl.textContent = "LIVE";
@@ -2937,6 +2980,13 @@
             mediaEl.addEventListener("loadedmetadata", syncSeekBar);
             mediaEl.addEventListener("durationchange", syncSeekBar);
             mediaEl.addEventListener("progress", syncSeekBar);
+            mediaEl.addEventListener("seeked", syncSeekBar);
+            // Behind the live edge (after a pause or a rewind), the time label jumps back to the newest cached audio.
+            durTimeEl.addEventListener("click", () => {
+                if (!durTimeEl.classList.contains("is-behind")) return;
+                const r = getSeekableRange();
+                if (r) mediaEl.currentTime = Math.max(r.start, r.end - 1);
+            });
             mediaEl.addEventListener("timeupdate", () => {
                 curTimeEl.textContent = formatTime(mediaEl.currentTime);
                 syncSeekBar();
@@ -2944,7 +2994,7 @@
             syncSeekBar();
             seek.addEventListener("input", () => {
                 seeking = true;
-                paintSeek();
+                paintSeek(cachePctNow);
                 const target = getSeekTarget(seek.value);
                 curTimeEl.textContent = formatTime(target);
                 seek.setAttribute("aria-valuetext", formatTime(target));
@@ -4593,6 +4643,7 @@
         let songsHeard = [];
         const noCorsHosts = new Set(); // servers that only play without crossOrigin
         const npBad = new Set(); // "source|origin" pairs that never worked (this page load)
+        const npFails = new Map(); // "source|origin" -> failures in a row; a source is only given up on after 3
 
         // ---- small URL / fetch helpers ------------------------------------
         function urlPathExt(url) {
@@ -5448,7 +5499,9 @@
         }
         // Keeps the cached time ticking while a stream plays (the tab being hidden pauses the refresh).
         setInterval(() => {
-            if (document.hidden || !playSession) return;
+            if (!playSession) return;
+            flushTitles(playSession);
+            if (document.hidden) return;
             updateStreamTag();
         }, 1000);
         // The checking status at the top of the player carries this stream's format and start time.
@@ -5620,11 +5673,15 @@
                         try {
                             const title = await fn(url, job.ctl.signal);
                             if (job.stopped) return;
+                            npFails.delete(key);
                             if (title) npSetTitle(session, title);
                             break; // this source works; don't bother the others
                         } catch (e) {
                             if (job.stopped) return;
-                            npBad.add(key);
+                            // one dropped request must not end title updates for the whole page session
+                            const n = (npFails.get(key) || 0) + 1;
+                            npFails.set(key, n);
+                            if (n >= 3) npBad.add(key);
                         }
                     }
                 }
@@ -5633,12 +5690,35 @@
             };
             tick();
         }
+        // A title as the station reports it right now. The recording follows the live stream, so it gets it at once;
+        // what is shown under the glyph (and logged as heard) waits until the playhead reaches that point in the cached audio.
         function npSetTitle(session, raw) {
             if (playSession !== session) return;
             const title = cleanSongTitle(raw, session.item.title);
-            if (!title || title === session.song) return;
-            session.song = title;
+            if (!title) return;
             recTitle(title);
+            if (title === session.songLive) return;
+            session.songLive = title;
+            const el = session.el;
+            const ahead = el && session.everPlayed ? bufferedAheadSec(el) : 0;
+            if (ahead >= 3) {
+                (session.titleQ = session.titleQ || []).push({ title, at: el.currentTime + ahead });
+                return;
+            }
+            session.titleQ = [];
+            showSongTitle(session, title);
+        }
+        // Shows queued titles whose point in the audio has been reached.
+        function flushTitles(session) {
+            if (!session || playSession !== session || !session.titleQ || !session.titleQ.length || !session.el) return;
+            const t = session.el.currentTime;
+            let due = null;
+            while (session.titleQ.length && session.titleQ[0].at <= t + 0.3) due = session.titleQ.shift();
+            if (due) showSongTitle(session, due.title);
+        }
+        function showSongTitle(session, title) {
+            if (playSession !== session || !title || title === session.song) return;
+            session.song = title;
             syncSongsBtn();
             const el = document.getElementById("npSong");
             if (el) {
@@ -6000,7 +6080,7 @@
                 out.why = op.why || [];
                 if (op.res) {
                     const ct = (op.res.headers.get("content-type") || "").toLowerCase(), mi = parseInt(op.res.headers.get("icy-metaint"), 10) || 0;
-                    out = { ok: !/html/.test(ct), split: !/ogg|opus|flac/.test(ct) && (mi > 0 || !!ses.song), exact: mi > 0, why: ["not audio"] };
+                    out = { ok: !/html/.test(ct), split: !/ogg|opus|flac/.test(ct) && (mi > 0 || !!(ses.songLive || ses.song)), exact: mi > 0, why: ["not audio"] };
                 }
             } catch (e) {} finally { clearTimeout(timer); ctl.abort(); }
             return out;
@@ -6162,7 +6242,7 @@
             if (tag && ext === "ogg") { ctl.abort(); return recMsg("This station can only be recorded as one long file. Choose “One long recording”."); }
             const mi = tag ? parseInt(res.headers.get("icy-metaint"), 10) || 0 : 0;
             const r = (REC.st = { mode, ext, mime: ext === "aac" ? "audio/aac" : ext === "ogg" ? "audio/ogg" : "audio/mpeg", station: ses.item.title, ctl, dir, t0: Date.now(), bytes: 0, count: 0, skipped: 0, cut: null, inband: !!mi, noTitles: !!noTitles });
-            r.song = recNew(tag && !mi && ses.song ? ses.song : null, tag);
+            r.song = recNew(tag && !mi && (ses.songLive || ses.song) ? ses.songLive || ses.song : null, tag);
             REC.msg = "";
             r.timer = setInterval(() => {
                 const st = recStat(r), t = document.querySelector("#recPanel .rec-time"), m = document.querySelector("#recPanel .rec-meta"), bt = document.querySelector("#playlistRec .btn-txt");
@@ -6180,7 +6260,7 @@
                     else if (st === 1) { mlen = v[0] * 16; v = v.subarray(1); mbuf = []; if (mlen) { st = 2; left = mlen; } else { st = 0; left = mi; } }
                     else {
                         const n = Math.min(left, v.length); mbuf.push(v.slice(0, n)); v = v.subarray(n); left -= n;
-                        if (!left) { const t = streamTitleFromIcy(decodeIcyBytes(new Uint8Array(await0(mbuf)))); if (t) recTitle(t); st = 0; left = mi; }
+                        if (!left) { const t = streamTitleFromIcy(decodeIcyBytes(new Uint8Array(await0(mbuf)))); if (t) { recTitle(t); npSetTitle(ses, t); } st = 0; left = mi; }
                     }
                 }
             };
@@ -6367,6 +6447,7 @@
             }
             stopNowPlaying();
             destroyHls();
+            destroyMse();
             clearStreamTimeout();
         }
         function releaseMediaElement(el) {
@@ -6448,6 +6529,7 @@
                 }
             } else {
                 destroyHls();
+                destroyMse();
                 if (reset) {
                     if (kind === "audio") {
                         const titleEl = n.querySelector(".playlist-now-playing");
@@ -6504,6 +6586,13 @@
         function advanceAfterStartFailure(session, allowCorsRetry) {
             if (playSession !== session) return;
             clearStreamTimeout();
+            if (session.usesMse && !session.mseFailed) {
+                // the own-buffer path did not start: try the plain element on the same address before anything else
+                session.mseFailed = true;
+                destroyMse();
+                startAttempt(session, false);
+                return;
+            }
             if (allowCorsRetry && session.cors && !session.usesHls && !session.corsFailed) {
                 session.corsFailed = true;
                 startAttempt(session, false);
@@ -6585,6 +6674,7 @@
             };
             el.ontimeupdate = () => {
                 if (!alive() || el.currentTime === session.lastT) return;
+                flushTitles(session);
                 session.lastT = el.currentTime;
                 if (session.stallTimer) {
                     clearStall(session);
@@ -6601,7 +6691,7 @@
                 const was = session.pausedAt;
                 session.pausedAt = 0;
                 // resuming a live stream after a long pause: jump back to the live point
-                if (was && session.everPlayed && !session.reloading && !session.reconnecting && Date.now() - was > LIVE_RESUME_RECONNECT_MS && isLiveStream(session)) {
+                if (was && session.everPlayed && !session.reloading && !session.reconnecting && !session.usesMse && Date.now() - was > LIVE_RESUME_RECONNECT_MS && isLiveStream(session)) {
                     session.reloading = true;
                     startAttempt(session, true);
                 }
@@ -6621,9 +6711,143 @@
                 goToNextTrack();
             };
         }
+        // ---- own buffer: the page downloads the stream itself and feeds it to the player through MediaSource ----
+        // A browser stops reading a stream when it is paused or has "enough", so the cache never grew while paused.
+        // Here the download never waits for playback: pausing only stops the playhead, and the cache keeps growing
+        // (up to OWN_BUFFER_AHEAD_S ahead; the last OWN_BUFFER_BEHIND_S of played audio stay available for rewinding).
+        const OWN_BUFFER_AHEAD_S = 1800;
+        const OWN_BUFFER_BEHIND_S = 600;
+        let currentOwnBuffer = null;
+        function canUseOwnBuffer(session, el, url) {
+            if (session.mseFailed || typeof MediaSource === "undefined" || !el || el.tagName !== "AUDIO") return false;
+            if (session.corsFailed || noCorsHosts.has(hostKey(url))) return false; // the page may not read this server's audio
+            return true;
+        }
+        function destroyMse() {
+            const m = currentOwnBuffer;
+            if (!m) return;
+            currentOwnBuffer = null;
+            m.alive = false;
+            try { m.ctl.abort(); } catch (e) {}
+            if (m.objUrl) {
+                try { URL.revokeObjectURL(m.objUrl); } catch (e) {}
+            }
+        }
+        async function startOwnBuffer(session, el, url, onBlocked, fallback) {
+            const m = { alive: true, ctl: new AbortController(), objUrl: "" };
+            currentOwnBuffer = m;
+            const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+            const bail = () => {
+                if (!m.alive) return;
+                destroyMse();
+                session.mseFailed = true;
+                session.usesMse = false;
+                if (playSession === session) fallback();
+            };
+            let res;
+            try {
+                res = await fetch(url, { signal: m.ctl.signal, cache: "no-store", credentials: "omit" });
+            } catch (e) {
+                return bail(); // no CORS, mixed content or a network error: use the plain element
+            }
+            if (!m.alive || playSession !== session) return;
+            const ct = (res.headers.get("content-type") || "").toLowerCase();
+            const mime = /mpeg|mp3/.test(ct) ? "audio/mpeg" : /aac/.test(ct) ? "audio/aac" : "";
+            if (!res.ok || !res.body || !mime || !MediaSource.isTypeSupported(mime)) return bail();
+            const ms = new MediaSource();
+            m.objUrl = URL.createObjectURL(ms);
+            session.usesMse = true;
+            el.src = m.objUrl;
+            const p = el.play();
+            if (p && p.catch) p.catch(onBlocked);
+            await new Promise((r) => ms.addEventListener("sourceopen", r, { once: true }));
+            if (!m.alive) return;
+            let sb;
+            try {
+                sb = ms.addSourceBuffer(mime);
+                sb.mode = "sequence";
+            } catch (e) {
+                return bail();
+            }
+            try { ms.duration = Infinity; } catch (e) {}
+            const q = [];
+            let qBytes = 0;
+            const cacheEnd = () => {
+                try { return sb.buffered.length ? sb.buffered.end(sb.buffered.length - 1) : 0; } catch (e) { return 0; }
+            };
+            const trimBehind = (keep) => {
+                try {
+                    if (sb.updating || !sb.buffered.length) return false;
+                    const from = sb.buffered.start(0), to = el.currentTime - keep;
+                    if (to - from < 5) return false;
+                    sb.remove(from, to);
+                    return true;
+                } catch (e) { return false; }
+            };
+            const pump = () => {
+                if (!m.alive || sb.updating || ms.readyState !== "open") return;
+                try {
+                    if (sb.buffered.length && el.currentTime - sb.buffered.start(0) > OWN_BUFFER_BEHIND_S + 30 && trimBehind(OWN_BUFFER_BEHIND_S)) return;
+                } catch (e) {}
+                if (!q.length) return;
+                const parts = [];
+                let total = 0;
+                while (q.length && total < 262144) {
+                    const c = q.shift();
+                    parts.push(c);
+                    total += c.length;
+                }
+                const buf = new Uint8Array(total);
+                let o = 0;
+                for (const c of parts) { buf.set(c, o); o += c.length; }
+                try {
+                    sb.appendBuffer(buf);
+                    qBytes -= total;
+                } catch (e) {
+                    q.unshift(buf); // not lost: tried again after room is made
+                    if (e && e.name === "QuotaExceededError") trimBehind(15);
+                    else bail();
+                }
+            };
+            sb.addEventListener("updateend", pump);
+            sb.addEventListener("error", () => {
+                if (m.alive && !session.everPlayed) bail();
+            });
+            const rd = res.body.getReader();
+            try {
+                for (;;) {
+                    // the only reasons to wait: a very long cache, or the player not taking data (should be rare)
+                    while (m.alive && (qBytes > 4194304 || cacheEnd() - el.currentTime > OWN_BUFFER_AHEAD_S)) {
+                        pump();
+                        await sleep(500);
+                    }
+                    if (!m.alive) return;
+                    const { value, done } = await rd.read();
+                    if (done) break;
+                    if (value && value.length) {
+                        q.push(value);
+                        qBytes += value.length;
+                        pump();
+                    }
+                }
+            } catch (e) {
+                // the connection dropped: what is cached still plays out below
+            }
+            if (!m.alive) return;
+            for (let i = 0; m.alive && (q.length || sb.updating) && i < 600; i++) {
+                pump();
+                await sleep(100);
+            }
+            // the stream is over: once the cached audio has played, 'ended' fires and the usual reconnect takes over
+            if (m.alive && ms.readyState === "open") {
+                try { ms.endOfStream(); } catch (e) {}
+            }
+        }
         function attachStream(session, el, url) {
             const lower = url.toLowerCase();
             session.attemptStartedAt = performance.now();
+            destroyMse();
+            session.titleQ = []; // a new connection starts a new timeline, so titles waiting for the old one are dropped
             bindSessionEvents(session, el);
             clearStreamTimeout();
             streamTimeout = setTimeout(() => attemptTimedOut(session), STREAM_TIMEOUT_MS);
@@ -6675,11 +6899,19 @@
             };
             const startNative = () => {
                 session.usesHls = false;
+                session.usesMse = false;
                 el.src = url;
                 el.load();
                 const p = el.play();
                 if (p && p.catch) p.catch(onBlocked);
             };
+            // Plain audio streams are pulled by the page itself (fetch -> MediaSource) so the cache keeps filling while paused.
+            // Anything the browser refuses (no CORS, unsupported format) plays through the ordinary element as before.
+            if (!lower.includes(".m3u8") && canUseOwnBuffer(session, el, url)) {
+                destroyMse();
+                session.usesHls = false;
+                return startOwnBuffer(session, el, url, onBlocked, startNative);
+            }
             // hls.js (about 540 KB) is only fetched the first time an .m3u8 stream is played.
             if (!lower.includes(".m3u8")) return startNative();
             if (typeof Hls !== "undefined") return Hls.isSupported() ? startHls() : startNative();
