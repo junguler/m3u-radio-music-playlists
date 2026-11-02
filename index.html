@@ -569,7 +569,7 @@
         .playlist-stop-btn:hover { opacity: 0.9; }
         .playlist-stop-btn svg { width: 14px; height: 14px; }
         /* Test / Songs / Stop share one fixed height (the Stop button's) so they line up in the bar */
-        .playlist-bar #playlistTest, .playlist-bar #playlistSongs, .playlist-bar #playlistRec, .playlist-bar #playlistStop {
+        .playlist-bar #playlistTest, .playlist-bar #playlistList, .playlist-bar #playlistSongs, .playlist-bar #playlistRec, .playlist-bar #playlistStop {
             box-sizing: border-box; height: var(--bar-btn-h); min-width: var(--bar-btn-w); padding-top: 0; padding-bottom: 0; line-height: 1; gap: 0.35rem;
             display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; white-space: nowrap;
         }
@@ -581,7 +581,7 @@
         body[data-btn-style="icons"] .playlist-bar .playlist-btn .btn-txt, body[data-btn-style="icons"] .rec-panel .playlist-btn .blabel,
         body[data-btn-style="icons"] .rec-panel .playlist-btn .lbl-long, body[data-btn-style="icons"] .rec-panel .playlist-btn .lbl-short { display: none !important; }
         body[data-btn-style="icons"] .playlist-bar .playlist-btn svg, body[data-btn-style="icons"] .rec-panel .playlist-btn svg { display: block !important; }
-        body[data-btn-style="icons"] .playlist-bar #playlistTest, body[data-btn-style="icons"] .playlist-bar #playlistSongs, body[data-btn-style="icons"] .playlist-bar #playlistRec { min-width: var(--bar-btn-w); padding-left: 0.35rem; padding-right: 0.35rem; }
+        body[data-btn-style="icons"] .playlist-bar #playlistTest, body[data-btn-style="icons"] .playlist-bar #playlistList, body[data-btn-style="icons"] .playlist-bar #playlistSongs, body[data-btn-style="icons"] .playlist-bar #playlistRec { min-width: var(--bar-btn-w); padding-left: 0.35rem; padding-right: 0.35rem; }
         body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding: 0 0.5rem; }
         .playlist-bar .bar-break { display: none; flex: 0 0 100%; height: 0; }
         .playlist-bar #playlistTest[hidden], .playlist-bar #playlistSongs[hidden], .playlist-bar #playlistRec[hidden] { display: none; }
@@ -614,7 +614,7 @@
         .player-bar { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; width: 100%; max-width: 480px; margin: 0.1rem auto 0; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 0.4rem 0.75rem; }
         .player-seek-row { display: flex; align-items: center; gap: 0.5rem; width: 100%; }
         .player-seek { -webkit-appearance: none; appearance: none; flex: 1; min-width: 0; height: 10px; margin: 0; cursor: pointer; border: 1px solid var(--border-color); border-radius: var(--radius-full);
-            background: linear-gradient(to right, var(--seek-fill, var(--stat-fill, var(--accent))) var(--seek-pct, 0%), var(--control-surface) var(--seek-pct, 0%)); }
+            background: linear-gradient(to right, var(--seek-fill, var(--stat-fill, var(--accent))) var(--seek-pct, 0%), color-mix(in srgb, var(--seek-fill, var(--stat-fill, var(--accent))) 38%, var(--control-surface)) var(--seek-pct, 0%), color-mix(in srgb, var(--seek-fill, var(--stat-fill, var(--accent))) 38%, var(--control-surface)) var(--seek-cache, 0%), var(--control-surface) var(--seek-cache, 0%)); }
         .player-seek::-webkit-slider-runnable-track { background: transparent; height: 100%; }
         .player-seek::-moz-range-track { background: transparent; height: 100%; }
         .player-seek::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; margin-top: -3px; border-radius: var(--radius-full); background: var(--on-control); border: 1px solid var(--border-color); }
@@ -778,15 +778,15 @@
             .lbl-long { display: none; }
             .lbl-short { display: inline; }
             .playlist-bar { gap: 0.4rem; }
-            .playlist-bar #playlistTest, .playlist-bar #playlistSongs, .playlist-bar #playlistRec { padding-left: 0.35rem; padding-right: 0.35rem; }
+            .playlist-bar #playlistTest, .playlist-bar #playlistList, .playlist-bar #playlistSongs, .playlist-bar #playlistRec { padding-left: 0.35rem; padding-right: 0.35rem; }
             .playlist-bar #playlistStop { padding-left: 0.5rem; padding-right: 0.5rem; }
         }
         /* Mobile: the station + song under the glyph are the one place the station is named, so the header title and the
            title line in the bar are hidden. That leaves the bar with just the track controls and Test / Songs / Record on one row. */
         @container (max-width: 400px) {
-            .playlist-bar #playlistTest:not(.active) .btn-txt, .playlist-bar #playlistSongs .btn-txt, .playlist-bar #playlistRec:not(.rec-on) .btn-txt { display: none; }
+            .playlist-bar #playlistTest:not(.active) .btn-txt, .playlist-bar #playlistList .btn-txt, .playlist-bar #playlistSongs .btn-txt, .playlist-bar #playlistRec:not(.rec-on) .btn-txt { display: none; }
         }
-        body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistSongs .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistRec .btn-txt { display: inline; }
+        body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistList .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistSongs .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistRec .btn-txt { display: inline; }
         @media (max-width: 640px) {
             .modal:has(.playlist-bar.active) .modal-title { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; flex: none; }
             .modal:has(.playlist-bar.active) .modal-actions { margin-left: auto; }
@@ -842,6 +842,14 @@
         .song-links a:hover { text-decoration: underline; }
         .song-copy { padding: 0; background: none; border: 0; font: inherit; font-size: 0.75rem; color: var(--accent-text, var(--accent)); cursor: pointer; }
         .song-copy:hover { text-decoration: underline; }
+        .plist-row { display: flex; align-items: baseline; gap: 0.6rem; width: 100%; box-sizing: border-box; padding: 0.5rem 0.4rem; margin: 0; background: none; border: 0; border-bottom: 1px solid var(--border-color); border-radius: 0; font: inherit; text-align: left; color: var(--text-primary); cursor: pointer; }
+        .plist-row:hover { background: var(--bg-tertiary); }
+        .plist-row:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+        .plist-num { flex: 0 0 auto; min-width: var(--plist-num-w, 2ch); text-align: right; font-size: var(--data-size); font-variant-numeric: tabular-nums; color: var(--text-muted); }
+        .plist-title { flex: 1 1 auto; min-width: 0; font-size: 0.88rem; word-break: break-word; }
+        .plist-row.current { background: var(--bg-tertiary); box-shadow: inset 3px 0 0 var(--accent); }
+        .plist-row.current .plist-title { font-weight: 600; color: var(--accent-text, var(--accent)); }
+        .plist-row.current .plist-num { color: var(--accent-text, var(--accent)); }
         .songs-empty { padding: 1rem 0; text-align: center; font-size: 0.8rem; color: var(--text-muted); }
         .stats-summary-grid { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
         .stats-summary-item { flex: 1; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 0.65rem 0.5rem; text-align: center; }
@@ -908,9 +916,10 @@
         .audio-icon svg { width: 112px; height: 112px; }
         @media (max-height: 640px) { .audio-icon { width: 120px; height: 120px; } .audio-icon svg { width: 88px; height: 88px; } }
         @media (max-height: 520px) { .audio-icon { width: 96px; height: 96px; } .audio-icon svg { width: 70px; height: 70px; } }
-        /* Connecting / Reconnecting n/m is a tag on the bottom edge of the glyph (same language as the REC tag), not a line of its own,
-           so showing or clearing it never moves anything. */
+        /* Connecting / Reconnecting n/m is a bar along the bottom edge, so the glyph itself stays fully visible. The cached time is hidden
+           while it shows, and while recording it starts after the REC tag, so nothing overlaps. Showing or clearing it never moves anything. */
         .preview-audio-container .audio-icon[data-hint]::before { content: attr(data-hint); position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; padding: 0.15rem 0.4rem; border-top: 1px solid var(--border-color); border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg); background: var(--bg-primary); color: var(--text-secondary); font-size: 0.75rem; line-height: 1.3; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; pointer-events: none; animation: recPulse 1.6s ease-in-out infinite; }
+        body.is-recording .preview-audio-container .audio-icon[data-hint]::before { left: 3.2rem; border-left: 1px solid var(--border-color); border-bottom-left-radius: 0; }
         @media (prefers-reduced-motion: reduce) { .preview-audio-container .audio-icon[data-hint]::before { animation: none; } }
         .preview-audio-container .playlist-now-playing { order: 1; font-size: var(--label-size); font-weight: 600; letter-spacing: var(--label-track); text-transform: uppercase; color: var(--text-muted); margin-top: 0.6rem; }
         /* Station label + song share one slot (.np-stack).
@@ -943,8 +952,16 @@
         .preview-audio-container .player-bar { order: 4; margin-top: 0.9rem; }
         /* Recording is visible in the player itself, not only in the bar: the glyph gets a red hairline and a REC tag that blinks. */
         body.is-recording .audio-icon { outline-color: var(--danger); }
-        body.is-recording .audio-icon::after { content: "REC"; position: absolute; top: 0; left: 0; border-top-left-radius: var(--radius-lg); padding: 0.1rem 0.35rem; background: var(--danger-solid, var(--danger)); color: var(--on-danger, #fff); font-size: 0.75rem; font-weight: 700; letter-spacing: var(--label-track); line-height: 1.3; animation: recPulse 1.2s ease-in-out infinite; }
+        body.is-recording .audio-icon::after { content: "REC"; position: absolute; bottom: 0; left: 0; border-bottom-left-radius: var(--radius-lg); padding: 0.1rem 0.35rem; background: var(--danger-solid, var(--danger)); color: var(--on-danger, #fff); font-size: 0.75rem; font-weight: 700; letter-spacing: var(--label-track); line-height: 1.3; animation: recPulse 1.2s ease-in-out infinite; }
         @media (prefers-reduced-motion: reduce) { body.is-recording .audio-icon::after { animation: none; } }
+        /* Corner tags on the glyph, same language as the REC tag. They take no layout space, so they work the same on desktop and mobile,
+           and each has its own corner so they never collide on zoomed fonts: stream format + bitrate (MP3 · 128k) top-left,
+           REC bottom-left, cached time (12s / 1m 05s) bottom-right. */
+        .audio-icon .stream-tag, .audio-icon .cache-tag { position: absolute; box-sizing: border-box; max-width: 100%; padding: 0.1rem 0.35rem; background: var(--bg-primary); color: var(--text-secondary); font-size: 0.75rem; font-weight: 600; letter-spacing: var(--label-track); line-height: 1.3; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; pointer-events: none; }
+        .audio-icon .stream-tag { top: 0; left: 0; border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); border-top-left-radius: var(--radius-lg); }
+        .audio-icon .cache-tag { bottom: 0; right: 0; border-left: 1px solid var(--border-color); border-top: 1px solid var(--border-color); border-bottom-right-radius: var(--radius-lg); }
+        .audio-icon .stream-tag:empty, .audio-icon .cache-tag:empty { display: none; }
+        body.is-recording .audio-icon .cache-tag { max-width: calc(100% - 3.2rem); }
         /* Transport */
         .player-bar { padding: 0.55rem 0.85rem 0.6rem; gap: 0.5rem; }
         .player-controls-row { gap: 0.5rem; }
@@ -1297,6 +1314,7 @@
                 <div class="playlist-info"><span class="playlist-track" id="playlistTrack">Track 1 of 10</span><span class="playlist-health" id="playlistHealth"></span></div>
                 <div class="bar-break" aria-hidden="true"></div>
                 <button class="playlist-btn" id="playlistTest" title="Test the streams in this playlist" aria-label="Test the streams in this playlist"><svg class="ico-c" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><span class="btn-txt">Test</span></button>
+                <button class="playlist-btn" id="playlistList" title="Show the playlist" aria-label="Show the playlist"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 5h2v2H3zm4 0h14v2H7zM3 11h2v2H3zm4 0h14v2H7zM3 17h2v2H3zm4 0h14v2H7z"/></svg><span class="btn-txt">Playlist</span></button>
                 <button class="playlist-btn" id="playlistSongs" hidden title="Songs you heard" aria-label="Songs you heard"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg><span class="btn-txt">Songs</span></button>
                 <button class="playlist-btn" id="playlistRec" hidden title="Record this station and save it as audio files" aria-label="Record this station"><svg class="ico-c" viewBox="0 0 24 24" fill="currentcolor"><circle cx="12" cy="12" r="9" fill="none" stroke="currentcolor" stroke-width="2"/><circle class="rec-core" cx="12" cy="12" r="5"/></svg><span class="btn-txt">Record</span></button>
             </div>
@@ -1352,6 +1370,22 @@
                 </div>
             </div>
             <div class="modal-body songs-body"><div id="recList"></div></div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="playlistModal" role="dialog" aria-modal="true" aria-labelledby="playlistModalTitle">
+        <div class="modal songs-modal" id="playlistModalContent">
+            <div class="modal-header">
+                <span class="modal-title" id="playlistModalTitle">Playlist</span>
+                <div class="modal-actions">
+                    <button class="modal-btn" id="playlistModalClose" title="Close" aria-label="Close playlist">
+                        <svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body songs-body">
+                <input type="search" class="songs-search" id="playlistSearch" placeholder="Search streams…" aria-label="Search the playlist" autocomplete="off" />
+                <div id="playlistListBody"></div>
+            </div>
         </div>
     </div>
     <div class="modal-overlay" id="songsModal" role="dialog" aria-modal="true" aria-labelledby="songsTitle">
@@ -1931,7 +1965,9 @@
         // Sets a glyph's markup on an .audio-icon container and recenters it.
         function setPlayerIcon(iconEl, svgMarkup) {
             if (!iconEl) return;
+            const tags = iconEl.querySelectorAll(".stream-tag, .cache-tag");
             iconEl.innerHTML = svgMarkup;
+            tags.forEach((t) => iconEl.appendChild(t));
             centerAudioIconSvg(iconEl);
         }
         // Auto-swap registry: one timer per active <audio>, only ticking while
@@ -2846,17 +2882,39 @@
             // Some HLS live streams report seekable.end() far ahead of the
             // actual live edge, so we treat currentTime as the live edge and
             // only trust seekable.start() as the furthest-back rewind point.
+            // The cached window: the buffered range the playhead is in. For streams this is what can be moved around in
+            // (oldest cached audio on the left, newest on the right); for files it is drawn on the bar as the lighter part.
+            function getCacheRange() {
+                try {
+                    const b = mediaEl.buffered, t = mediaEl.currentTime;
+                    for (let i = 0; i < b.length; i++) {
+                        if (t >= b.start(i) - 0.3 && t <= b.end(i) + 0.05) return { start: b.start(i), end: b.end(i) };
+                    }
+                } catch (err) {}
+                return null;
+            }
             function getSeekableRange() {
+                let seekRange = null;
                 try {
                     const ranges = mediaEl.seekable;
                     if (ranges && ranges.length > 0) {
                         const last = ranges.length - 1;
-                        const start = ranges.start(last);
-                        const reportedEnd = ranges.end(last);
-                        const end = Math.min(reportedEnd, mediaEl.currentTime + 5);
-                        if (end - start > 1) return { start, end };
+                        seekRange = { start: ranges.start(last), end: ranges.end(last) };
                     }
                 } catch (err) {}
+                const cache = getCacheRange();
+                const hls = !!(playSession && playSession.usesHls);
+                // HLS keeps its own rewind window (some live streams report seekable.end() far ahead of the live edge,
+                // so the cached end or the playhead + 5 s is used instead). Everything else moves inside the cached window.
+                if (hls && seekRange) {
+                    const end = Math.min(seekRange.end, Math.max(mediaEl.currentTime + 5, cache ? cache.end : 0));
+                    if (end - seekRange.start > 1) return { start: seekRange.start, end };
+                }
+                if (cache && cache.end - cache.start > 1) return cache;
+                if (seekRange) {
+                    const end = Math.min(seekRange.end, mediaEl.currentTime + 5);
+                    if (end - seekRange.start > 1) return { start: seekRange.start, end };
+                }
                 return null;
             }
             function getSeekTarget(sliderValue) {
@@ -2866,10 +2924,15 @@
                 if (range) return range.start + (sliderValue / 1000) * (range.end - range.start);
                 return mediaEl.currentTime;
             }
-            function paintSeek() { seek.style.setProperty("--seek-pct", (seek.value / 10) + "%"); }
+            function paintSeek(cachePct) {
+                seek.style.setProperty("--seek-pct", seek.value / 10 + "%");
+                if (cachePct != null) seek.style.setProperty("--seek-cache", Math.max(seek.value / 10, cachePct) + "%");
+                else seek.style.setProperty("--seek-cache", Math.max(seek.value / 10, parseFloat(seek.style.getPropertyValue("--seek-cache")) || 0) + "%");
+            }
+            let cachePctNow = 0;
             function syncSeekBar() {
                 syncSeekBarInner();
-                paintSeek();
+                paintSeek(cachePctNow);
             }
             function syncSeekBarInner() {
                 if (seeking) return;
@@ -2879,18 +2942,28 @@
                     seek.disabled = false;
                     durTimeEl.textContent = formatTime(dur);
                     seek.value = Math.round((mediaEl.currentTime / dur) * 1000);
+                    const c = getCacheRange();
+                    cachePctNow = c ? Math.min(100, (c.end / dur) * 100) : 0;
                     seek.setAttribute("aria-valuetext", `${formatTime(mediaEl.currentTime)} of ${formatTime(dur)}`);
                     return;
                 }
                 const range = getSeekableRange();
                 if (range) {
                     seek.disabled = false;
-                    durTimeEl.textContent = "LIVE";
-                    durTimeEl.classList.add("is-live");
-                    const ratio = (mediaEl.currentTime - range.start) / (range.end - range.start);
+                    cachePctNow = 100; // the bar is the cached window, so everything right of the thumb is cached
+                    const span = range.end - range.start;
+                    const behind = Math.max(0, range.end - mediaEl.currentTime);
+                    if (behind < 2) {
+                        durTimeEl.textContent = "LIVE";
+                        durTimeEl.classList.add("is-live");
+                    } else {
+                        durTimeEl.textContent = "-" + formatTime(behind);
+                    }
+                    const ratio = (mediaEl.currentTime - range.start) / span;
                     seek.value = Math.round(Math.max(0, Math.min(1, ratio)) * 1000);
-                    seek.setAttribute("aria-valuetext", `${formatTime(mediaEl.currentTime)}, live`);
+                    seek.setAttribute("aria-valuetext", `${formatTime(mediaEl.currentTime)}, ${Math.round(span)} seconds cached, ${behind < 2 ? "live" : Math.round(behind) + " seconds behind live"}`);
                 } else {
+                    cachePctNow = 0;
                     seek.disabled = true;
                     seek.value = 1000;
                     durTimeEl.textContent = "LIVE";
@@ -2901,6 +2974,7 @@
             mediaEl.addEventListener("loadedmetadata", syncSeekBar);
             mediaEl.addEventListener("durationchange", syncSeekBar);
             mediaEl.addEventListener("progress", syncSeekBar);
+            mediaEl.addEventListener("seeked", syncSeekBar);
             mediaEl.addEventListener("timeupdate", () => {
                 curTimeEl.textContent = formatTime(mediaEl.currentTime);
                 syncSeekBar();
@@ -2908,7 +2982,7 @@
             syncSeekBar();
             seek.addEventListener("input", () => {
                 seeking = true;
-                paintSeek();
+                paintSeek(cachePctNow);
                 const target = getSeekTarget(seek.value);
                 curTimeEl.textContent = formatTime(target);
                 seek.setAttribute("aria-valuetext", formatTime(target));
@@ -3090,6 +3164,7 @@
                 const shortcutsOpen = document.getElementById("shortcutsModal").classList.contains("active");
                 const statsOpen = document.getElementById("statsModal").classList.contains("active");
                 const songsOpen = document.getElementById("songsModal").classList.contains("active");
+                const plistOpen = document.getElementById("playlistModal").classList.contains("active");
                 if (e.key === "Escape") {
                     const settingsMenuEl = document.getElementById("settingsMenu");
                     const themeMenuEl = document.getElementById("themeColorMenu");
@@ -3104,12 +3179,13 @@
                         return;
                     }
                     if (songsOpen) closeSongsModal();
+                    else if (plistOpen) closePlaylistModal();
                     else if (statsOpen) closeStatsModal();
                     else if (shortcutsOpen) closeShortcutsModal();
                     else closeModal();
                     return;
                 }
-                if (songsOpen) return; // typing / arrows belong to the songs list while it is open
+                if (songsOpen || plistOpen) return; // typing / arrows belong to the songs / playlist list while it is open
                 if (e.key === "?" && !["INPUT", "SELECT", "TEXTAREA"].includes(document.activeElement.tagName) && !shortcutsOpen && !statsOpen) {
                     e.preventDefault();
                     openShortcutsModal();
@@ -3215,6 +3291,14 @@
             document.getElementById("favoriteBtn").addEventListener("click", () => toggleFavoriteFile(currentFilePath));
             document.getElementById("playlistTest").addEventListener("click", runPlaylistTest);
             document.getElementById("playlistSongs").addEventListener("click", openSongsModal);
+            document.getElementById("playlistList").addEventListener("click", openPlaylistModal);
+            document.getElementById("playlistModalClose").addEventListener("click", closePlaylistModal);
+            document.getElementById("playlistSearch").addEventListener("input", renderPlaylistList);
+            document.getElementById("playlistListBody").addEventListener("click", playlistRowClick);
+            document.getElementById("playlistModal").addEventListener("click", (e) => {
+                if (e.target === e.currentTarget) closePlaylistModal();
+            });
+            document.getElementById("playlistModal").addEventListener("keydown", (e) => trapModalFocus(e, "playlistModalContent"));
             document.getElementById("songsCloseBtn").addEventListener("click", closeSongsModal);
             document.getElementById("songsClearBtn").addEventListener("click", clearSongs);
             document.getElementById("songsSaveBtn").addEventListener("click", saveSongsList);
@@ -4377,6 +4461,7 @@
     `);
         }
         function stopPlaylist() {
+            closePlaylistModal();
             endPlaySession();
             cancelHealthTest();
             const activeMedia = document.getElementById("audioPlayer") || document.getElementById("videoPlayer");
@@ -5277,6 +5362,133 @@
             }
             renderNpStatus();
         }
+        // ---- stream format + bitrate shown on the player glyph ------------
+        const EXT_FMT = { mp3: "MP3", aac: "AAC", aacp: "AAC", m4a: "AAC", ogg: "OGG", oga: "OGG", opus: "OPUS", flac: "FLAC", m3u8: "HLS" };
+        function hlsCodecName(codec) {
+            const c = String(codec || "").toLowerCase();
+            if (!c) return "";
+            if (c.startsWith("mp4a.40.34") || c === "mp3") return "MP3";
+            if (c.startsWith("mp4a")) return "AAC";
+            if (c.startsWith("opus")) return "OPUS";
+            if (c.startsWith("flac")) return "FLAC";
+            return "";
+        }
+        // Best known format / bitrate for the stream being played: live HLS level, then what this play sniffed,
+        // then what an earlier test or play stored, then a guess from the file extension.
+        function liveStreamInfo(session) {
+            let fmt = "";
+            let kbps = 0;
+            const rec = streamHealth.get(session.item.url);
+            if (session.usesHls && currentHls && currentHls.levels && currentHls.levels.length) {
+                const idx = currentHls.currentLevel >= 0 ? currentHls.currentLevel : currentHls.loadLevel >= 0 ? currentHls.loadLevel : currentHls.levels.length === 1 ? 0 : -1;
+                const lv = currentHls.levels[idx];
+                if (lv) {
+                    kbps = Math.round((lv.averageBitrate || lv.bitrate || 0) / 1000);
+                    fmt = hlsCodecName(lv.audioCodec) || "HLS";
+                }
+            }
+            if (!fmt && session.info) {
+                fmt = session.info.fmt || "";
+                kbps = kbps || session.info.kbps || 0;
+            }
+            if (!fmt && rec && rec.fmt && rec.fmt !== "HTML" && rec.fmt !== "LIST") fmt = rec.fmt;
+            if (!kbps && rec && rec.kbps) kbps = rec.kbps;
+            if (!fmt) {
+                const url = session.cands && session.cands[session.candIdx] ? session.cands[session.candIdx] : session.item.url;
+                fmt = EXT_FMT[urlPathExt(url)] || "";
+            }
+            return fmt || kbps ? { fmt, kbps } : null;
+        }
+        // Once a stream is playing, reads its first few KB once to learn the real format and bitrate.
+        // Needs CORS, so it is skipped for servers that only play without it; those fall back to the extension.
+        async function sniffLiveStream(session) {
+            const url = session.cands[session.candIdx];
+            if (!url || session.usesHls || session.sniffed) return;
+            if (session.corsFailed || noCorsHosts.has(hostKey(url))) return;
+            session.sniffed = true;
+            const ctl = new AbortController();
+            session.sniffCtl = ctl;
+            const timer = setTimeout(() => ctl.abort(), 8000);
+            try {
+                const res = await fetch(url, { signal: ctl.signal, cache: "no-store", credentials: "omit" });
+                const ctype = (res.headers.get("content-type") || "").toLowerCase();
+                if (!res.ok || /text\/html|mpegurl|x-scpls|x-ms-asx|xspf/.test(ctype)) return;
+                const reader = res.body.getReader();
+                const chunks = [];
+                let got = 0;
+                while (got < 32768) {
+                    const { value, done } = await reader.read();
+                    if (done) break;
+                    chunks.push(value);
+                    got += value.length;
+                }
+                const sn = sniffAudio(concatChunks(chunks, 32768));
+                let kbps = sn.kbps || 0;
+                const hdrBr = parseInt(res.headers.get("icy-br"), 10);
+                if (!kbps && hdrBr > 0) kbps = hdrBr;
+                const fmt = sn.fmt && sn.fmt !== "HTML" && sn.fmt !== "LIST" ? sn.fmt : fmtFromContentType(ctype);
+                if (playSession !== session || (!fmt && !kbps)) return;
+                session.info = { fmt, kbps };
+                const patch = {};
+                if (fmt) patch.fmt = fmt;
+                if (kbps) patch.kbps = kbps;
+                streamHealth.merge(session.item.url, patch);
+            } catch (e) {
+                // no CORS, timeout or aborted: the extension guess stays
+            } finally {
+                clearTimeout(timer);
+                ctl.abort();
+                if (playSession === session) renderNpStatus();
+            }
+        }
+        // Seconds of audio/video already downloaded ahead of the playhead (the "cached" amount), or -1 when unknown.
+        function bufferedAheadSec(el) {
+            try {
+                if (!el || !el.buffered || !el.buffered.length) return -1;
+                const t = el.currentTime;
+                for (let i = 0; i < el.buffered.length; i++) {
+                    const a = el.buffered.start(i), b = el.buffered.end(i);
+                    if (t >= a - 0.3 && t <= b + 0.05) return Math.max(0, b - t);
+                }
+                return 0;
+            } catch (e) {
+                return -1;
+            }
+        }
+        function fmtBufferAhead(sec) {
+            const n = Math.floor(sec);
+            if (n < 60) return n + "s";
+            const m = Math.floor(n / 60), r = n % 60;
+            if (m >= 60) return Math.floor(m / 60) + "h " + String(m % 60).padStart(2, "0") + "m";
+            return m + "m " + String(r).padStart(2, "0") + "s";
+        }
+        // Glyph tags: format · bitrate (MP3 · 128k) top-left, cached time (12s) bottom-right. Cached time only shows once the stream has started playing.
+        function updateStreamTag() {
+            const tagEl = document.getElementById("streamTag");
+            const cacheEl = document.getElementById("cacheTag");
+            const s = playSession;
+            if (tagEl) {
+                const info = s ? liveStreamInfo(s) : null;
+                const parts = [];
+                if (info && info.fmt) parts.push(info.fmt);
+                if (info && info.kbps) parts.push(info.kbps + "k");
+                const txt = parts.join(" · ");
+                if (tagEl.textContent !== txt) tagEl.textContent = txt;
+            }
+            if (cacheEl) {
+                let ctxt = "";
+                if (s && s.everPlayed && !s.reconnecting && s.el) {
+                    const ahead = bufferedAheadSec(s.el);
+                    if (ahead >= 0) ctxt = fmtBufferAhead(ahead);
+                }
+                if (cacheEl.textContent !== ctxt) cacheEl.textContent = ctxt;
+            }
+        }
+        // Keeps the cached time ticking while a stream plays (the tab being hidden pauses the refresh).
+        setInterval(() => {
+            if (document.hidden || !playSession) return;
+            updateStreamTag();
+        }, 1000);
         // The checking status at the top of the player carries this stream's format and start time.
         // Connecting / Reconnecting show as a tag on the glyph (no layout space); the song line stays collapsed until a title arrives.
         function renderNpStatus() {
@@ -5285,7 +5497,11 @@
             const s = playSession;
             const rec = s ? streamHealth.get(s.item.url) : null;
             const bits = [];
-            if (rec && rec.fmt) bits.push(rec.fmt + (rec.kbps ? " " + rec.kbps + " kbps" : ""));
+            // With the glyph tag on screen the format and bitrate live there; the status line only carries them for video.
+            const tagEl = document.getElementById("streamTag");
+            if (tagEl) {
+                updateStreamTag();
+            } else if (rec && rec.fmt) bits.push(rec.fmt + (rec.kbps ? " " + rec.kbps + " kbps" : ""));
             else if (rec && rec.kbps) bits.push(rec.kbps + " kbps");
             if (s && s.everPlayed && s.startMs) bits.push("started in " + (s.startMs / 1000).toFixed(1) + " s");
             if (out) out.textContent = healthSummaryText() + (bits.length ? " · " + bits.join(" · ") : "");
@@ -5519,6 +5735,66 @@
                         return `<div class="song-row"><div class="song-title">${escapeHtml(s.t)}</div><div class="song-meta">${escapeHtml(s.s)} · ${escapeHtml(when)}</div><div class="song-links"><a href="https://www.youtube.com/results?search_query=${enc}" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://open.spotify.com/search/${enc}" target="_blank" rel="noopener noreferrer">Spotify</a><a href="https://music.apple.com/search?term=${enc}" target="_blank" rel="noopener noreferrer">Apple Music</a><button type="button" class="song-copy" data-copy="${escapeHtml(s.t)}">Copy name</button></div></div>`;
                     })
                     .join("") + (rows.length > 200 ? `<div class="songs-empty">Showing the newest 200 of ${rows.length}.</div>` : "");
+        }
+        // ---- playlist window: every stream title with its line number; a click plays it ----
+        function renderPlaylistList() {
+            const body = document.getElementById("playlistListBody");
+            if (!body) return;
+            const q = (document.getElementById("playlistSearch").value || "").trim().toLowerCase();
+            const total = currentPlaylist.length;
+            if (!total) {
+                body.innerHTML = '<div class="songs-empty">No playlist is loaded.</div>';
+                return;
+            }
+            const rows = [];
+            for (let i = 0; i < total; i++) {
+                const t = currentPlaylist[i].title || currentPlaylist[i].url || "";
+                if (q && !(String(i + 1) + " " + t).toLowerCase().includes(q)) continue;
+                rows.push(`<button type="button" class="plist-row${i === currentPlaylistIndex ? " current" : ""}" data-idx="${i}"${i === currentPlaylistIndex ? ' aria-current="true"' : ""}><span class="plist-num">${i + 1}</span><span class="plist-title">${escapeHtml(t)}</span></button>`);
+            }
+            body.style.setProperty("--plist-num-w", String(total).length + "ch");
+            body.innerHTML = rows.length ? rows.join("") : '<div class="songs-empty">No matches.</div>';
+        }
+        // Moves the highlight to the track now playing (and keeps it in view) without rebuilding the list.
+        function syncPlaylistListCurrent(scroll) {
+            const m = document.getElementById("playlistModal");
+            if (!m || !m.classList.contains("active")) return;
+            const body = document.getElementById("playlistListBody");
+            body.querySelectorAll(".plist-row.current").forEach((r) => {
+                r.classList.remove("current");
+                r.removeAttribute("aria-current");
+            });
+            const cur = body.querySelector(`.plist-row[data-idx="${currentPlaylistIndex}"]`);
+            if (cur) {
+                cur.classList.add("current");
+                cur.setAttribute("aria-current", "true");
+                if (scroll) cur.scrollIntoView({ block: "center" });
+            }
+        }
+        function playlistRowClick(e) {
+            const row = e.target.closest(".plist-row");
+            if (!row) return;
+            const idx = parseInt(row.dataset.idx, 10);
+            if (!(idx >= 0 && idx < currentPlaylist.length) || idx === currentPlaylistIndex) return;
+            if (isShuffle) recordShuffleJump(idx);
+            playPlaylistTrack(idx);
+        }
+        function openPlaylistModal() {
+            if (!currentPlaylist.length) return;
+            rememberModalFocus("playlistModal");
+            document.getElementById("playlistSearch").value = "";
+            renderPlaylistList();
+            document.getElementById("playlistModal").classList.add("active");
+            syncBackgroundInert();
+            syncPlaylistListCurrent(true);
+            focusWhenReady("playlistModalClose", "playlistModal");
+        }
+        function closePlaylistModal() {
+            const m = document.getElementById("playlistModal");
+            if (!m || !m.classList.contains("active")) return;
+            m.classList.remove("active");
+            syncBackgroundInert();
+            restoreModalFocus("playlistModal");
         }
         function openSongsModal() {
             rememberModalFocus("songsModal");
@@ -6125,6 +6401,7 @@
                 clearStall(s);
                 clearTimeout(s.reloadTimer);
                 clearTimeout(s.stableTimer);
+                if (s.sniffCtl) s.sniffCtl.abort();
             }
             stopNowPlaying();
             destroyHls();
@@ -6181,7 +6458,7 @@
                     n.innerHTML = `
                       <div class="preview-audio-container">
                         <button class="player-info-btn" id="streamInfoBtn" title="Copy stream link &amp; header" aria-label="Copy stream link and header">${icons.info}</button>
-                        <div class="audio-icon" data-hint="Connecting…">${pickPlayerNoteIcon()}</div>
+                        <div class="audio-icon" data-hint="Connecting…">${pickPlayerNoteIcon()}<span class="stream-tag" id="streamTag"></span><span class="cache-tag" id="cacheTag"></span></div>
                         <div class="np-stack">
                           <div class="playlist-now-playing">${escapeHtml(title)}</div>
                           <div class="np-song" id="npSong" aria-live="polite"></div>
@@ -6327,6 +6604,7 @@
                     if (session.corsFailed) rememberNoCors(hostKey(session.cands[session.candIdx]));
                     recordPlayStart(session);
                     startNowPlaying(session);
+                    sniffLiveStream(session);
                 }
                 if (session.reconnecting) {
                     session.reconnecting = false;
@@ -6401,7 +6679,11 @@
                 currentHls = hls;
                 hls.loadSource(url);
                 hls.attachMedia(el);
+                hls.on(Hls.Events.LEVEL_SWITCHED, () => {
+                    if (playSession === session) renderNpStatus();
+                });
                 hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                    if (playSession === session) renderNpStatus();
                     const p = el.play();
                     if (p && p.catch) p.catch(onBlocked);
                 });
@@ -6493,6 +6775,7 @@
 
             currentPlaylistIndex = e;
             updatePlaylistUI();
+            syncPlaylistListCurrent(false);
             document.getElementById("modalTitle").textContent = item.title;
             announce(`Loading: ${item.title}`);
             // Show a buffering hint right away instead of a silent wait while the
