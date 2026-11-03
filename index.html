@@ -67,6 +67,9 @@
             --label-track: 0.06em;
             --data-size: 0.78rem;
             --preview-font-size: 0.8rem;
+            /* Zebra stripe strength (share of white / black mixed into the row color); light themes use a softer stripe. */
+            --zebra-up: 5%;
+            --zebra-down: 7%;
         }
         html[data-theme="light"] {
             --bg-primary: #ffffff;
@@ -188,6 +191,8 @@
                 --accent-glow: rgba(91, 33, 182, 0.22);
             }
         }
+        html[data-theme="light"], html[data-theme="hc-light"] { --zebra-up: 0%; --zebra-down: 3%; }
+        @media (prefers-color-scheme: light) { :root:not([data-theme]) { --zebra-up: 0%; --zebra-down: 3%; } }
         /* --- Interface corner rounding: one smooth axis from the flat,
            hard-edged default (level 1, "square", no attribute) up to a
            comfortably rounded "round" surface (level 5). Levels 2-4 are
@@ -438,8 +443,8 @@
            back to a single flat tone. In grid view, where cards wrap across
            columns, this same odd/even alternation reads as a diagonal zig-zag
            rather than plain horizontal stripes. */
-        .file-card:nth-child(odd) { --card-bg: color-mix(in srgb, var(--bg-secondary) 100%, white 5%); background: var(--card-bg); }
-        .file-card:nth-child(even) { --card-bg: color-mix(in srgb, var(--bg-secondary) 100%, black 7%); background: var(--card-bg); }
+        .file-card:nth-child(odd) { --card-bg: color-mix(in srgb, var(--bg-secondary) 100%, white var(--zebra-up)); background: var(--card-bg); }
+        .file-card:nth-child(even) { --card-bg: color-mix(in srgb, var(--bg-secondary) 100%, black var(--zebra-down)); background: var(--card-bg); }
         /* Zebra striping is optional (default on) — this flattens every
            card back to the plain panel color when disabled, from the
            settings menu. --card-bg still gets set (rather than left alone)
@@ -450,7 +455,7 @@
         html.no-zebra .file-card:nth-child(even) { --card-bg: var(--bg-secondary); background: var(--bg-secondary); }
         .file-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--bg-tertiary); }
         .file-icon svg { width: 20px; height: 20px; }
-        .file-icon.folder { color: color-mix(in srgb, #9a9a9a var(--icon-keep, 100%), #000); background: rgba(154, 154, 154, 0.14); }
+        .file-icon.folder { color: var(--text-primary); background: rgba(154, 154, 154, 0.14); }
         .file-icon.image { color: color-mix(in srgb, #c58ce0 var(--icon-keep, 100%), #000); background: rgba(197, 140, 224, 0.16); }
         .file-icon.video { color: color-mix(in srgb, #e2765c var(--icon-keep, 100%), #000); background: rgba(226, 118, 92, 0.16); }
         .file-icon.audio { color: color-mix(in srgb, #8fc25a var(--icon-keep, 100%), #000); background: rgba(143, 194, 90, 0.2); }
@@ -565,15 +570,11 @@
         .playlist-btn.active { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); }
         .playlist-info { flex: 1 1 8rem; min-width: 0; display: flex; font-size: 0.8rem; color: var(--text-secondary); overflow: hidden; white-space: nowrap; line-height: 1.4; }
         .playlist-track { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); font-weight: 500; }
-        .playlist-stop-btn { padding: 0.25rem; background: var(--danger-solid, var(--danger)); border: 1px solid var(--danger-solid, var(--danger)); border-radius: var(--radius); color: var(--on-danger, #fff); cursor: pointer; font-size: 0.75rem; }
-        .playlist-stop-btn:hover { opacity: 0.9; }
-        .playlist-stop-btn svg { width: 14px; height: 14px; }
-        /* Test / Songs / Stop share one fixed height (the Stop button's) so they line up in the bar */
-        .playlist-bar #playlistTest, .playlist-bar #playlistList, .playlist-bar #playlistSongs, .playlist-bar #playlistRec, .playlist-bar #playlistStop {
+        /* Test / List / Songs / Rec share one fixed height so they line up in the bar */
+        .playlist-bar #playlistTest, .playlist-bar #playlistList, .playlist-bar #playlistSongs, .playlist-bar #playlistRec {
             box-sizing: border-box; height: var(--bar-btn-h); min-width: var(--bar-btn-w); padding-top: 0; padding-bottom: 0; line-height: 1; gap: 0.35rem;
             display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; white-space: nowrap;
         }
-        .playlist-bar #playlistStop { padding-left: 0.6rem; padding-right: 0.6rem; font-weight: 600; margin-left: auto; }
         .lbl-short { display: none; }
         .bico-x { display: none; }
         /* Player buttons option (Settings > Media Player): default = icons and labels as designed, labels = text only, icons = glyphs only */
@@ -758,17 +759,13 @@
         .np-song:empty { display: block; }
         .np-song:empty::before { content: attr(data-hint); color: var(--text-muted); font-size: var(--data-size); }
         .np-song, .playlist-now-playing { margin: 0; }
-        .hs-dot { color: var(--text-muted); }
-        .hs-dot.hs-good { color: var(--success); }
-        .hs-dot.hs-weak { color: var(--warning); }
-        .hs-dot.hs-bad, .hs-dot.hs-blocked { color: var(--danger); }
         .modal-btn.text-btn { padding: 0.375rem 0.6rem; font-size: 0.75rem; }
         .modal-btn.text-btn.armed { background: var(--danger-solid, var(--danger)); border-color: var(--danger-solid, var(--danger)); color: var(--on-danger, #fff); }
         /* Every bar button is icon + label. The playlist bar is two rows (track on top, tools below) whenever it is narrow. */
         .playlist-bar, .rec-panel { container-type: inline-size; }
         .playlist-bar #playlistRec .ico-c { color: var(--danger); }
         .playlist-bar .ico-c { display: block; flex-shrink: 0; }
-        .playlist-bar .playlist-btn .btn-txt, .playlist-bar .playlist-stop-btn .btn-txt { display: inline; }
+        .playlist-bar .playlist-btn .btn-txt { display: inline; }
         .playlist-bar #playlistTest.active .ico-c { display: none; }
         .playlist-bar #playlistRec.rec-on .btn-txt { font-variant-numeric: tabular-nums; }
         @container (max-width: 640px) {
@@ -780,7 +777,6 @@
             .lbl-short { display: inline; }
             .playlist-bar { gap: 0.4rem; }
             .playlist-bar #playlistTest, .playlist-bar #playlistList, .playlist-bar #playlistSongs, .playlist-bar #playlistRec { padding-left: 0.35rem; padding-right: 0.35rem; }
-            .playlist-bar #playlistStop { padding-left: 0.5rem; padding-right: 0.5rem; }
         }
         /* Mobile: the station + song under the glyph are the one place the station is named, so the header title and the
            title line in the bar are hidden. That leaves the bar with just the track controls and Test / Songs / Record on one row. */
@@ -1045,7 +1041,8 @@
         .mode-chip-close { flex-shrink: 0; padding: 0; background: none; border: none; color: inherit; font: inherit; text-decoration: underline; cursor: pointer; }
         .mode-chip-close:hover { color: var(--text-primary); }
         .mode-chip-close[hidden], .op-toast[hidden], .md-toggle[hidden], #localCloseBtn[hidden], #opToastCancel[hidden] { display: none !important; }
-        @media (max-width: 640px) { body:not([data-source="local"]) .mode-chip { display: none; } .mode-chip { max-width: 11rem; } }
+        body:not([data-source="local"]) .mode-chip { display: none; }
+        @media (max-width: 640px) { .mode-chip { max-width: 11rem; } }
         /* Header: the search box and the tool buttons share one row. The tools are never hidden or clipped: the Local folder button stays on
            phones, and if a screen is really narrow the tools drop under the search box instead of running off the edge. */
         .header-tools { display: flex; align-items: center; gap: 0.375rem; flex-shrink: 0; }
@@ -1111,7 +1108,6 @@
         /* shared small buttons */
         .md-toggle { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--bg-tertiary); color: var(--text-secondary); font-size: 0.75rem; cursor: pointer; text-decoration: none; flex-shrink: 0; }
         .md-toggle:hover { color: var(--text-primary); border-color: var(--accent); }
-        .settings-text { width: 11rem; margin: 0; flex-shrink: 0; font-size: 0.75rem; padding: 0.25rem 0.375rem; }
         .settings-row .theme-reset-btn { flex: none; }
         .local-msg { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem; line-height: 1.45; }
         .local-pick { flex: none; padding: 0.4rem 0.9rem; font-size: 0.85rem; }
@@ -1119,7 +1115,7 @@
         /* Markdown / reStructuredText */
         .md-bar, .ar-bar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 0.75rem; padding: 0.375rem 0.75rem; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); min-height: 2.25rem; }
         .md-note { color: var(--text-muted); font-size: 0.8rem; }
-        .md-view { padding: 1rem 1.25rem 2.5rem; max-width: 60rem; margin: 0 auto; color: var(--text-primary); font-size: 0.95rem; line-height: 1.6; overflow-wrap: anywhere; }
+        .md-view { width: 100%; padding: 1rem 1.25rem 2.5rem; max-width: 60rem; margin: 0 auto; color: var(--text-primary); font-size: 0.95rem; line-height: 1.6; overflow-wrap: anywhere; }
         .md-view > :first-child { margin-top: 0; }
         .md-view h1, .md-view h2, .md-view h3, .md-view h4, .md-view h5, .md-view h6 { margin: 1.4em 0 0.5em; line-height: 1.25; font-weight: 700; }
         .md-view h1 { font-size: 1.7em; padding-bottom: 0.3em; border-bottom: 1px solid var(--border-color); }
@@ -2407,7 +2403,7 @@
             const c = (1 - Math.abs(2 * l - 1)) * s,
                 x = c * (1 - Math.abs((h / 60) % 2 - 1)),
                 m = l - c / 2;
-            let r = 0, g = 0, b = 0;
+            let r, g, b;
             if (h < 60) { r = c; g = x; b = 0; }
             else if (h < 120) { r = x; g = c; b = 0; }
             else if (h < 180) { r = 0; g = c; b = x; }
@@ -2774,7 +2770,7 @@
                 // Parse each item's modified date once and cache it; also cache
                 // on the original tree node since getCurrentItems()/render()
                 // read directly from fileIndex.root for date sorting.
-                let dateObj = null;
+                let dateObj;
                 try { dateObj = getItemDate(node); } catch (err) { dateObj = null; }
                 node.dateObj = dateObj;
                 // The index no longer stores a ready-made "1.2 MB" string
@@ -4669,6 +4665,7 @@
                 activeMedia.removeAttribute("src");
                 activeMedia.load();
             }
+            if (currentFileName) document.getElementById("modalTitle").textContent = currentFileName;
             (currentPlaylist = []),
                 (currentPlaylistIndex = 0),
                 (shuffleBag = []),
@@ -6574,13 +6571,17 @@
             if (streamTimeout) { clearTimeout(streamTimeout); streamTimeout = null; }
         }
 
+        // Visible note (the shared toast) for when playback stops because nothing was playable.
+        function streamNotice(text) {
+            opStart(text);
+            opDone(text, 5000);
+        }
         function skipToNext() {
-            console.debug("Stream invalid or timeout. Skipping...");
             clearStreamTimeout();
             if (currentPlaylist.length <= 1) {
-                console.debug("End of playlist reached.");
                 announce("Stream unavailable. End of playlist.");
                 stopPlaylist();
+                streamNotice("This stream is unavailable.");
                 return;
             }
             announce("Stream unavailable, skipping to next track.");
@@ -6593,8 +6594,8 @@
                 if (idx >= 0) {
                     playPlaylistTrack(idx);
                 } else {
-                    console.debug("End of playlist reached.");
                     stopPlaylist();
+                    streamNotice("No more live streams in this playlist.");
                 }
             }
         }
@@ -6769,6 +6770,7 @@
             if (failStreak >= 15) {
                 announce("Too many streams in a row are unavailable. Stopping.");
                 stopPlaylist();
+                streamNotice("No live streams found in this playlist.");
                 return;
             }
             skipToNext();
@@ -7738,7 +7740,6 @@
         // Where the files come from. Hosted: relative URLs next to this page.
         // Local: File objects the user picked (nothing is uploaded or stored).
         const LOCAL = { active: false, name: "", files: new Map(), urls: new Map(), hosted: null };
-        function isLocal() { return LOCAL.active; }
         function rootLabel() { return LOCAL.active ? LOCAL.name || "Local folder" : "Home"; }
 
         // "a/b" + "../x/y.png?v=1#h" -> "a/x/y.png". Null when the path climbs out of the root.
@@ -7839,7 +7840,6 @@
             renderTree();
         }
         // ---- Shared progress toast (folder zip, reading a local folder) -----
-        let opAbort = null;
         function opStart(text, onCancel) {
             const t = document.getElementById("opToast");
             document.getElementById("opToastText").textContent = text;
@@ -8696,7 +8696,6 @@
                 }
             }
             function paintFile() {
-                const e = view.entry;
                 bodyEl.innerHTML = `<div class="ar-bar"><button type="button" class="md-toggle" data-act="back">\u2190 Back</button><span class="ar-path" title="${escapeHtml(crumbs())}">${escapeHtml(crumbs())}</span><a class="md-toggle" data-act="dl" hidden>Download</a></div><div class="ar-content"><div class="loading"><div class="spinner"></div></div></div>`;
                 bodyEl.querySelector('[data-act="back"]').addEventListener("click", goBack);
                 bodyEl.querySelector('[data-act="back"]').focus();
