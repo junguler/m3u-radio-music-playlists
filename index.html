@@ -1037,6 +1037,146 @@
             .header-actions { flex: 1 1 100%; }
             .search-container { flex: 1 1 auto; width: auto; min-width: 0; }
         }
+
+        /* ---- Added features: mode chip, Markdown, archives, progress toast ---- */
+        .mode-chip { display: inline-flex; align-items: center; gap: 0.5rem; max-width: 16rem; padding: 0.25rem 0.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-muted); font-size: 0.75rem; line-height: 1.2; flex-shrink: 0; min-width: 0; }
+        .mode-chip > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        body[data-source="local"] .mode-chip { color: var(--accent-text, var(--accent)); border-color: var(--accent); }
+        .mode-chip-close { flex-shrink: 0; padding: 0; background: none; border: none; color: inherit; font: inherit; text-decoration: underline; cursor: pointer; }
+        .mode-chip-close:hover { color: var(--text-primary); }
+        .mode-chip-close[hidden], .op-toast[hidden], .md-toggle[hidden], #localCloseBtn[hidden], #opToastCancel[hidden] { display: none !important; }
+        @media (max-width: 640px) { body:not([data-source="local"]) .mode-chip { display: none; } .mode-chip { max-width: 11rem; } }
+        /* Header: the search box and the tool buttons share one row. The tools are never hidden or clipped: the Local folder button stays on
+           phones, and if a screen is really narrow the tools drop under the search box instead of running off the edge. */
+        .header-tools { display: flex; align-items: center; gap: 0.375rem; flex-shrink: 0; }
+        @media (max-width: 640px) {
+            .header { padding: 0.5rem 0.625rem; }
+            .header-actions { flex-wrap: wrap; row-gap: 0.375rem; }
+            .search-container { flex: 1 1 8rem; min-width: 0; }
+            .header-tools { gap: 0.25rem; margin-left: auto; }
+            /* Local folder mode shows its name chip: it gets the logo row, and the path moves to its own row so neither is squeezed */
+            body[data-source="local"] .mode-chip { flex: 1 1 0; min-width: 0; max-width: none; justify-content: space-between; }
+            body[data-source="local"] .breadcrumb { order: 3; flex: 1 1 100%; }
+            body[data-source="local"] .header-actions { order: 4; }
+        }
+        .empty-action { flex: none; padding: 0.4rem 0.9rem; font-size: 0.85rem; margin-top: 0.5rem; }
+
+        /* folder tree: header actions */
+        .tree-header { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+        .tree-header-actions { display: flex; align-items: center; gap: 0.25rem; }
+        .tree-hdr-btn { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0; background: none; border: none; border-radius: var(--radius-sm); color: var(--text-muted); cursor: pointer; text-transform: none; }
+        .tree-hdr-btn svg { width: 14px; height: 14px; }
+        .tree-hdr-btn:hover, .tree-hdr-btn:focus-visible { color: var(--text-primary); background: var(--bg-hover); }
+
+        /* ---- Gallery: an open image, audio file or video gets a rail of the other files of the SAME kind from the same folder.
+           Left side on wide screens, a strip along the bottom on phones. Without a rail the layout is exactly what it was. ---- */
+        .modal-main { display: contents; }
+        .modal.has-gallery .modal-main { display: flex; flex: 1 1 auto; min-height: 0; min-width: 0; }
+        .modal.has-gallery { height: 95vh; height: 95dvh; }
+        .modal.has-gallery[data-gallery="audio"] { max-width: min(880px, 95vw); height: min(640px, 95vh); height: min(640px, 95dvh); }
+        .modal.has-gallery .modal-body { min-width: 0; }
+        .modal.has-gallery[data-gallery="image"] .modal-body { padding: 0.5rem; box-sizing: border-box; }
+        .modal.has-gallery .preview-image { flex: 1 1 0; min-height: 0; width: 100%; max-width: 100%; max-height: none; height: auto; object-fit: contain; margin: 0; }
+        .modal.has-gallery[data-gallery="audio"] .preview-audio-container { margin: auto; }
+        .gallery-rail { flex: 0 0 auto; display: flex; flex-direction: column; width: 7.75rem; min-height: 0; background: var(--bg-secondary); border-right: 1px solid var(--border-color); }
+        .gallery-rail[hidden] { display: none; }
+        .gallery-rail[data-kind="audio"], .gallery-rail[data-kind="video"] { width: 15rem; }
+        .gal-head { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--border-color); color: var(--text-muted); font-size: var(--data-size); line-height: 1.4; }
+        .gal-count { font-variant-numeric: tabular-nums; }
+        .gal-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0.4rem; display: flex; flex-direction: column; gap: 0.4rem; }
+        .gal-item { position: relative; flex: none; display: flex; align-items: center; gap: 0.5rem; width: 100%; box-sizing: border-box; margin: 0; padding: 0; overflow: hidden; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-secondary); font: inherit; font-size: 0.8rem; line-height: 1.3; text-align: left; cursor: pointer; }
+        .gal-item:hover { border-color: var(--accent); color: var(--text-primary); }
+        .gal-item.active { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--bg-hover); color: var(--text-primary); }
+        .gal-item:focus-visible { outline-offset: -2px; }
+        .gal-ico { display: flex; flex-shrink: 0; }
+        .gal-ico svg { width: 16px; height: 16px; }
+        .gal-name { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .gallery-rail[data-kind="audio"] .gal-item, .gallery-rail[data-kind="video"] .gal-item { padding: 0.5rem 0.6rem; min-height: 2.25rem; }
+        .gallery-rail[data-kind="image"] .gal-item { aspect-ratio: 1; justify-content: center; }
+        .gallery-rail[data-kind="image"] .gal-ico { opacity: 0.4; }
+        .gallery-rail[data-kind="image"] .gal-ico svg { width: 24px; height: 24px; }
+        .gal-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+        .gal-thumb.lazy { opacity: 0; }
+        .gal-thumb.loaded { opacity: 1; transition: opacity 0.2s; }
+        @media (max-width: 640px) {
+            .modal.has-gallery .modal-main { flex-direction: column-reverse; }
+            .gallery-rail, .gallery-rail[data-kind="audio"], .gallery-rail[data-kind="video"] { width: auto; border-right: 0; border-top: 1px solid var(--border-color); padding-bottom: 0; }
+            .gal-head { display: none; }
+            .gal-list { flex-direction: row; overflow-x: auto; overflow-y: hidden; padding: 0.4rem; }
+            .gallery-rail[data-kind="image"] .gal-item { width: 4.25rem; }
+            .gallery-rail[data-kind="audio"] .gal-item, .gallery-rail[data-kind="video"] .gal-item { width: 10.5rem; }
+        }
+        @media (prefers-reduced-motion: reduce) { .gal-thumb.loaded { transition: none; } }
+
+        /* shared small buttons */
+        .md-toggle { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--bg-tertiary); color: var(--text-secondary); font-size: 0.75rem; cursor: pointer; text-decoration: none; flex-shrink: 0; }
+        .md-toggle:hover { color: var(--text-primary); border-color: var(--accent); }
+        .settings-text { width: 11rem; margin: 0; flex-shrink: 0; font-size: 0.75rem; padding: 0.25rem 0.375rem; }
+        .settings-row .theme-reset-btn { flex: none; }
+        .local-msg { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem; line-height: 1.45; }
+        .local-pick { flex: none; padding: 0.4rem 0.9rem; font-size: 0.85rem; }
+
+        /* Markdown / reStructuredText */
+        .md-bar, .ar-bar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 0.75rem; padding: 0.375rem 0.75rem; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); min-height: 2.25rem; }
+        .md-note { color: var(--text-muted); font-size: 0.8rem; }
+        .md-view { padding: 1rem 1.25rem 2.5rem; max-width: 60rem; margin: 0 auto; color: var(--text-primary); font-size: 0.95rem; line-height: 1.6; overflow-wrap: anywhere; }
+        .md-view > :first-child { margin-top: 0; }
+        .md-view h1, .md-view h2, .md-view h3, .md-view h4, .md-view h5, .md-view h6 { margin: 1.4em 0 0.5em; line-height: 1.25; font-weight: 700; }
+        .md-view h1 { font-size: 1.7em; padding-bottom: 0.3em; border-bottom: 1px solid var(--border-color); }
+        .md-view h2 { font-size: 1.4em; padding-bottom: 0.25em; border-bottom: 1px solid var(--border-color); }
+        .md-view h3 { font-size: 1.2em; }
+        .md-view h4, .md-view h5, .md-view h6 { font-size: 1em; }
+        .md-view h6 { color: var(--text-muted); }
+        .md-view p, .md-view ul, .md-view ol, .md-view blockquote, .md-view pre, .md-view table, .md-view details, .md-view dl { margin: 0 0 0.9em; }
+        .md-view ul, .md-view ol { padding-left: 1.6rem; }
+        .md-view li + li { margin-top: 0.2em; }
+        .md-view li > ul, .md-view li > ol { margin: 0.2em 0 0; }
+        .md-view li > input[type="checkbox"] { margin: 0 0.4em 0 -1.2em; vertical-align: middle; }
+        .md-view a, .md-view [data-md-open], .md-view [data-md-anchor] { color: var(--accent-text, var(--accent)); text-decoration: underline; text-underline-offset: 2px; }
+        .md-view [data-md-open], .md-view [data-md-anchor] { cursor: pointer; }
+        .md-view code { font-family: var(--font-mono); font-size: 0.88em; padding: 0.1em 0.35em; background: var(--bg-tertiary); border-radius: var(--radius-sm); }
+        .md-view pre { padding: 0.75rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); overflow-x: auto; line-height: 1.4; }
+        .md-view pre code { padding: 0; background: none; font-size: var(--preview-font-size, 0.8rem); }
+        .md-view blockquote { padding: 0.1rem 1rem; border-left: 3px solid var(--border-strong); color: var(--text-secondary); }
+        .md-view hr { border: none; border-top: 1px solid var(--border-color); margin: 1.4em 0; }
+        .md-view img { max-width: 100%; height: auto; }
+        .md-view table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+        .md-view th, .md-view td { padding: 0.35rem 0.7rem; border: 1px solid var(--border-color); }
+        .md-view th { background: var(--bg-secondary); font-weight: 700; }
+        .md-view td[align="center"], .md-view th[align="center"], .md-view [align="center"] { text-align: center; }
+        .md-view td[align="right"], .md-view th[align="right"], .md-view [align="right"] { text-align: right; }
+        .md-view summary { cursor: pointer; font-weight: 600; }
+        .md-view kbd { font-family: var(--font-mono); }
+        .md-img-blocked { color: var(--text-muted); font-style: italic; }
+
+        /* Archive viewer */
+        .ar-path { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-secondary); font-size: 0.8rem; }
+        .ar-sum { padding: 0.5rem 0.75rem 0.25rem; color: var(--text-muted); font-size: 0.8rem; }
+        .ar-filter { margin: 0.25rem 0.75rem 0.5rem; width: calc(100% - 1.5rem); }
+        .ar-head, .ar-row { display: grid; grid-template-columns: minmax(0, 1fr) 5.5rem 5.5rem 6.5rem; gap: 0.5rem; padding: 0.3rem 0.75rem; align-items: center; font-size: 0.85rem; }
+        .ar-head { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: var(--label-track, 0.04em); border-bottom: 1px solid var(--border-color); }
+        .ar-row { cursor: pointer; color: var(--text-secondary); border-left: 2px solid transparent; }
+        .ar-row:hover, .ar-row:focus-visible { background: var(--bg-hover); color: var(--text-primary); }
+        .ar-row:focus-visible { border-left-color: var(--accent); }
+        .ar-name { display: flex; align-items: center; gap: 0.5rem; min-width: 0; }
+        .ar-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .ar-ico svg { width: 14px; height: 14px; flex-shrink: 0; display: block; }
+        .ar-size, .ar-csize, .ar-date { text-align: right; color: var(--text-muted); white-space: nowrap; }
+        .ar-dir .ar-label { color: var(--text-primary); }
+        .ar-empty { padding: 1rem 0.75rem; color: var(--text-muted); font-size: 0.85rem; }
+        .ar-content { min-height: 4rem; }
+        .ar-content .md-bar { top: 2.25rem; }
+        @media (max-width: 640px) {
+            .ar-head, .ar-row { grid-template-columns: minmax(0, 1fr) 4.5rem; }
+            .ar-csize, .ar-date { display: none; }
+        }
+
+        /* Progress toast */
+        .op-toast { position: fixed; left: 50%; bottom: 1rem; transform: translateX(-50%); z-index: 1100; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; width: min(92vw, 28rem); padding: 0.6rem 0.75rem; background: var(--bg-secondary); border: 1px solid var(--border-strong); border-radius: var(--radius); color: var(--text-primary); font-size: 0.85rem; box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45); }
+        .op-toast > span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+        .op-bar { flex: 1 1 100%; height: 4px; background: var(--bg-tertiary); }
+        .op-bar > i { display: block; height: 100%; width: 0; background: var(--accent); }
+        .op-toast button { flex: none; padding: 0.2rem 0.6rem; font-size: 0.75rem; }
 </style>
 </head>
 <body>
@@ -1050,6 +1190,7 @@
                 <svg viewBox="0 0 24 24" fill="currentcolor"><rect x="2" y="5" width="20" height="14"/><circle cx="8" cy="12" r="2.4" fill="var(--bg-secondary)"/><circle cx="16" cy="12" r="2.4" fill="var(--bg-secondary)"/><circle cx="8" cy="12" r="0.8"/><circle cx="16" cy="12" r="0.8"/><rect x="10" y="15.6" width="4" height="1.6" fill="var(--bg-secondary)"/></svg>
                 <span>File Viewer</span>
             </div>
+            <span class="mode-chip" id="modeChip" title="Browsing the files hosted with this page"><span id="modeChipText">Hosted repo</span><button type="button" class="mode-chip-close" id="modeChipClose" hidden>Close</button></span>
             <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb"></nav>
             <div class="header-actions">
                 <div class="search-container">
@@ -1059,6 +1200,8 @@
                         <svg viewBox="0 0 24 24" fill="currentcolor" width="12" height="12"><use href="#icon-x"/></svg>
                     </button>
                 </div>
+                <div class="header-tools">
+                <button class="settings-btn" id="localBtn" title="Open a local folder (works offline)" aria-label="Open a local folder"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg></button>
                 <button class="settings-btn" id="shortcutsBtn" title="Keyboard shortcuts" aria-label="Show keyboard shortcuts">
                     <svg viewBox="0 0 24 24" fill="currentcolor"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41.0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21.0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
                 </button>
@@ -1186,6 +1329,13 @@
                                         <label class="switch"><input type="checkbox" id="recDirToggle" aria-label="Ask for a folder and save songs straight into it (Chrome and Edge on desktop)" /><span class="switch-slider"></span></label>
                                     </div>
                                 </details>
+                                <details class="settings-section settings-collapsible" style="border-top: 1px solid var(--border-color)">
+                                    <summary class="settings-section-title">Library</summary>
+                                    <div class="settings-row">
+                                        <span class="settings-label">Local folder</span>
+                                        <span class="settings-control"><button type="button" class="theme-reset-btn" id="localOpenBtn">Open&hellip;</button><button type="button" class="theme-reset-btn" id="localCloseBtn" hidden>Close</button></span>
+                                    </div>
+                                </details>
                             </div>
                         </div>
                     </div>
@@ -1265,6 +1415,7 @@
                     <button class="view-btn" data-view="list" title="List" aria-label="List view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"/></svg></button>
                     <button class="view-btn active" data-view="tree" title="Tree" aria-label="Tree view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3h7zM7 9H4V5h3v4zm10 6h3v4h-3v-4zm0-10h3v4h-3V5z"/></svg></button>
                 </div>
+                </div>
             </div>
         </div>
     </header>
@@ -1272,7 +1423,7 @@
         <aside class="tree-panel visible" id="treePanel">
             <div class="tree-pinned" id="treePinned"></div>
             <div class="tree-pinned" id="treeFavorites"></div>
-            <div class="tree-header">Folders</div>
+            <div class="tree-header"><span>Folders</span><span class="tree-header-actions"><button type="button" class="tree-hdr-btn" id="treeCollapseAll" title="Collapse all folders" aria-label="Collapse all folders"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 13H5v-2h14v2z"/></svg></button></span></div>
             <div class="tree-content" id="treeContent"></div>
         </aside>
         <main class="main" id="main" tabindex="-1">
@@ -1320,7 +1471,10 @@
                 <button class="playlist-btn" id="playlistRec" hidden title="Record this station and save it as audio files" aria-label="Record this station"><svg class="ico-c" viewBox="0 0 24 24" fill="currentcolor"><circle cx="12" cy="12" r="9" fill="none" stroke="currentcolor" stroke-width="2"/><circle class="rec-core" cx="12" cy="12" r="5"/></svg><span class="btn-txt">Record</span></button>
             </div>
             <div class="rec-panel" id="recPanel" hidden></div>
-            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-main" id="modalMain">
+                <aside class="gallery-rail" id="galleryRail" aria-label="Files in this folder" hidden></aside>
+                <div class="modal-body" id="modalBody"></div>
+            </div>
         </div>
     </div>
     <div class="modal-overlay" id="shortcutsModal" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle">
@@ -1341,6 +1495,7 @@
                     <div class="shortcut-row"><dt><kbd>&uarr;</kbd><kbd>&darr;</kbd><kbd>&larr;</kbd><kbd>&rarr;</kbd></dt><dd>Navigate files &amp; folders</dd></div>
                     <div class="shortcut-row"><dt><kbd>Enter</kbd> / <kbd>Space</kbd></dt><dd>Open selected file or folder</dd></div>
                     <div class="shortcut-row"><dt><kbd>&larr;</kbd> / <kbd>&rarr;</kbd> (in preview)</dt><dd>Stop / play playlist track</dd></div>
+                    <div class="shortcut-row"><dt><kbd>&larr;</kbd> / <kbd>&rarr;</kbd> (image gallery)</dt><dd>Previous / next image</dd></div>
                     <div class="shortcut-row"><dt><kbd>&uarr;</kbd> / <kbd>&darr;</kbd> (in preview)</dt><dd>Scroll preview</dd></div>
                     <div class="shortcut-row"><dt><kbd>Space</kbd> (in preview)</dt><dd>Play / pause media</dd></div>
                 </dl>
@@ -1404,6 +1559,21 @@
             <div class="modal-body songs-body">
                 <input type="search" class="songs-search" id="songsSearch" placeholder="Search songs or stations…" aria-label="Search songs" autocomplete="off" />
                 <div id="songsList"></div>
+            </div>
+        </div>
+    </div>
+    <div class="op-toast" id="opToast" hidden role="status"><span id="opToastText"></span><button type="button" class="theme-reset-btn" id="opToastCancel" hidden>Cancel</button><div class="op-bar"><i id="opBarFill"></i></div></div>
+    <input type="file" id="localDirInput" class="sr-only" webkitdirectory directory multiple tabindex="-1" aria-hidden="true" />
+    <div class="modal-overlay" id="localModal" role="dialog" aria-modal="true" aria-labelledby="localTitle">
+        <div class="modal stats-modal" id="localModalContent">
+            <div class="modal-header">
+                <span class="modal-title" id="localTitle">Open a local folder</span>
+                <div class="modal-actions"><button class="modal-btn" id="localModalClose" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button></div>
+            </div>
+            <div class="modal-body stats-body">
+                <p class="local-msg" id="localMsg"></p>
+                <p class="local-msg">Files are read in this browser only. Nothing is uploaded and nothing is remembered after you close the folder or reload.</p>
+                <button type="button" class="theme-reset-btn local-pick" id="localPickBtn">Choose folder&hellip;</button>
             </div>
         </div>
     </div>
@@ -3022,6 +3192,14 @@
             // enabled/disabled and shuffle-active state.
             updatePlaylistUI();
         }
+        function wireUiOnce() {
+            if (uiWired) return;
+            uiWired = true;
+            setupEventListeners();
+            setupSkipLink();
+            setupIntersectionObserver();
+            setupNewFeatureListeners();
+        }
         async function init() {
             loadSettings();
             try {
@@ -3029,20 +3207,16 @@
                 if (!response.ok) throw new Error("Failed to load file index");
                 fileIndex = await response.json();
                 preprocessFiles(fileIndex.root);
-                setupEventListeners();
-                setupSkipLink();
-                setupIntersectionObserver();
-                navigateTo(hashToPath());
+                loadTreeExpanded();
+                wireUiOnce();
+                const startPath = hashToPath();
+                navigateTo(startPath);
                 resetTabStart();
             } catch (err) {
                 console.error(err);
-                document.getElementById("main").innerHTML = `
-          <div class="empty-state">
-            ${emptyStateIllustrations.error}
-            <h2>Could not load files</h2>
-            <p>Make sure file_index.json exists.</p>
-          </div>
-        `;
+                if (!uiWired) { fileIndex = null; allFiles = []; filesByPath = new Map(); }
+                wireUiOnce();
+                renderNoLibrary();
             }
         }
         // The link's href="#main" is only there for no-script fallback; clicking
@@ -3178,6 +3352,7 @@
                 const songsOpen = document.getElementById("songsModal").classList.contains("active");
                 const plistOpen = document.getElementById("playlistModal").classList.contains("active");
                 if (e.key === "Escape") {
+                    if (document.getElementById("localModal").classList.contains("active")) { closeLocalModal(); return; }
                     const settingsMenuEl = document.getElementById("settingsMenu");
                     const themeMenuEl = document.getElementById("themeColorMenu");
                     if (settingsMenuEl.classList.contains("active")) {
@@ -3326,7 +3501,7 @@
         }
         function copyRawLink() {
             const btn = document.getElementById("copyLinkBtn");
-            const url = new URL(`./${encodePathForUrl(currentFilePath)}`, window.location.href).href;
+            const url = LOCAL.active ? currentFilePath : new URL(`./${encodePathForUrl(currentFilePath)}`, window.location.href).href;
             const done = () => {
                 btn.classList.add("copied");
                 setTimeout(() => btn.classList.remove("copied"), 1200);
@@ -3345,7 +3520,7 @@
                 if (!item) return;
                 text = item.header ? `${item.header}\n${item.url}` : item.url;
             } else if (currentFilePath) {
-                text = new URL(`./${encodePathForUrl(currentFilePath)}`, window.location.href).href;
+                text = LOCAL.active ? currentFilePath : new URL(`./${encodePathForUrl(currentFilePath)}`, window.location.href).href;
             } else {
                 return;
             }
@@ -3515,7 +3690,7 @@
             if (t && !t.classList.contains("empty")) {
                 e.stopPropagation();
                 const n = t.dataset.path;
-                expandedFolders.has(n) ? expandedFolders.delete(n) : expandedFolders.add(n), renderTree();
+                expandedFolders.has(n) ? expandedFolders.delete(n) : expandedFolders.add(n), persistTreeExpanded(), renderTree();
                 return;
             }
             if (n) {
@@ -3527,14 +3702,19 @@
             intersectionObserver = new IntersectionObserver(
                 (e) => {
                     e.forEach((e) => {
-                        if (e.isIntersecting) {
-                            const t = e.target;
-                            t.dataset.src &&
-                                ((t.src = t.dataset.src),
-                                (t.onload = () => t.classList.add("loaded")),
-                                (t.onerror = () => t.remove()),
-                                delete t.dataset.src,
-                                intersectionObserver.unobserve(t));
+                        if (!e.isIntersecting) return;
+                        const t = e.target;
+                        if (t.dataset.lpath) {
+                            const p = t.dataset.lpath;
+                            delete t.dataset.lpath;
+                            intersectionObserver.unobserve(t);
+                            urlForPath(p).then((u) => { t.onload = () => t.classList.add("loaded"); t.onerror = () => t.remove(); t.src = u; }).catch(() => t.remove());
+                        } else if (t.dataset.src) {
+                            t.src = t.dataset.src;
+                            t.onload = () => t.classList.add("loaded");
+                            t.onerror = () => t.remove();
+                            delete t.dataset.src;
+                            intersectionObserver.unobserve(t);
                         }
                     });
                 },
@@ -3542,6 +3722,7 @@
             );
         }
         function getCurrentItems() {
+            if (!fileIndex) return [];
             let e = fileIndex.root;
             for (const n of currentPath) {
                 const t = e.find((e) => e.name === n && e.type === "directory");
@@ -3703,6 +3884,7 @@
                 accumulated += (accumulated ? "/" : "") + segment;
                 expandedFolders.add(accumulated);
             }
+            persistTreeExpanded();
             render();
             renderPinnedFolders();
             renderFavoriteFiles();
@@ -3722,6 +3904,7 @@
             }
         }
         function savePinnedFolders() {
+            if (LOCAL.active) return;
             store.setItem(PINNED_FOLDERS_KEY, JSON.stringify(pinnedFolders));
         }
         function isPinned(pathArr) {
@@ -3835,6 +4018,7 @@
             }
         }
         function saveFavoriteFiles() {
+            if (LOCAL.active) return;
             store.setItem(FAVORITE_FILES_KEY, JSON.stringify(favoriteFiles));
         }
         function isFavoriteFile(path) {
@@ -3946,7 +4130,7 @@
         let lastBreadcrumbPathKey = null;
         function renderBreadcrumb() {
             const breadcrumbEl = document.getElementById("breadcrumb");
-            let html = `<span class="breadcrumb-item${currentPath.length === 0 ? " current" : ""}" data-path="[]">Home</span>`;
+            let html = `<span class="breadcrumb-item${currentPath.length === 0 ? " current" : ""}" data-path="[]">${escapeHtml(rootLabel())}</span>`;
             currentPath.forEach((segment, i) => {
                 const isCurrent = i === currentPath.length - 1;
                 const pathAttr = escapeHtml(JSON.stringify(currentPath.slice(0, i + 1)));
@@ -3955,6 +4139,7 @@
             });
             const pinned = isPinned(currentPath);
             html += `<button type="button" class="breadcrumb-pin-btn${pinned ? " pinned" : ""}" id="pinFolderBtn" title="${pinned ? "Unpin this folder" : "Pin this folder"}" aria-label="${pinned ? "Unpin this folder" : "Pin this folder"}" aria-pressed="${pinned}">${pinned ? icons.starFilled : icons.starOutline}</button>`;
+            html += folderZipButtonHtml();
             breadcrumbEl.innerHTML = html;
             breadcrumbEl.querySelectorAll(".breadcrumb-item:not(.current)").forEach((el) => {
                 el.addEventListener("click", () => {
@@ -3984,6 +4169,7 @@
             el.classList.toggle("fade-end", max > 1 && el.scrollLeft < max - 1);
         }
         function renderTree() {
+            if (!fileIndex) return;
             const treeEl = document.getElementById("treeContent");
 
             function countFolders(items) {
@@ -4030,13 +4216,13 @@
             ${icons.chevron}
           </span>
           ${icons.folder}
-          <span class="tree-item-name">Root</span>
+          <span class="tree-item-name">${escapeHtml(LOCAL.active ? LOCAL.name || "Root" : "Root")}</span>
         </div>
       `;
             html += renderFolderList(fileIndex.root);
             treeEl.innerHTML = html;
 
-            const totalRows = countFolders(fileIndex.root) + 1;
+            const totalRows = (fileIndex._folderCount ??= countFolders(fileIndex.root)) + 1;
             const availableHeight = treeEl.parentElement.clientHeight - 32;
             const neededHeight = totalRows * 28;
             treeEl.classList.toggle("needs-scroll", neededHeight > availableHeight);
@@ -4068,6 +4254,7 @@
               `;
         }
         function render() {
+            if (!fileIndex) return;
             renderBreadcrumb();
             if (currentView === "tree") renderTree();
             const mainEl = document.getElementById("main");
@@ -4190,8 +4377,8 @@
                         // (#, ?, %) first, then escape for the attribute context.
                         const thumbSrc = escapeHtml(encodePathForUrl(clickPath));
                         thumbnailHtml = currentView === "grid"
-                            ? `<img class="file-thumbnail lazy" data-src="./${thumbSrc}" alt="" loading="lazy" decoding="async">`
-                            : `<img class="file-thumbnail file-thumbnail-inline lazy" data-src="./${thumbSrc}" alt="" loading="lazy" decoding="async">`;
+                            ? `<img class="file-thumbnail lazy" ${LOCAL.active ? `data-lpath="${escapeHtml(clickPath)}"` : `data-src="./${thumbSrc}"`} alt="" loading="lazy" decoding="async">`
+                            : `<img class="file-thumbnail file-thumbnail-inline lazy" ${LOCAL.active ? `data-lpath="${escapeHtml(clickPath)}"` : `data-src="./${thumbSrc}"`} alt="" loading="lazy" decoding="async">`;
                     }
                     html += `
             <div class="file-card" data-file="${escapeHtml(clickPath)}" data-category="${item.category}" data-name="${escapeHtml(item.name)}" tabindex="0" role="button" aria-label="Open file ${escapeHtml(item.name)}">
@@ -4449,8 +4636,8 @@
         }
         async function startPlaylistMode() {
             if (!isPlaylistFile || !currentFilePath) return;
-            const e = `./${encodePathForUrl(currentFilePath)}`,
-                t = await parsePlaylist(e, e);
+            const e = await urlForPath(currentFilePath),
+                t = await parsePlaylistForCurrent(e);
             failStreak = 0;
             await Promise.race([streamHealth.open(), new Promise((r) => setTimeout(r, 1200))]);
             if (!currentFilePath) return; // closed while loading
@@ -4599,7 +4786,7 @@
       `;
         }
         async function showPlaylistAsText() {
-            const e = `./${encodePathForUrl(currentFilePath)}`;
+            const e = await urlForPath(currentFilePath);
             try {
                 const { text, truncated } = await fetchTextPreview(e);
                 renderTextPreview(document.getElementById("modalBody"), text, currentFileName, truncated);
@@ -5954,22 +6141,26 @@
             }
             return (c ^ -1) >>> 0;
         }
-        async function recZip(items) {
+        async function recZip(items, onProgress, signal) {
             const enc = new TextEncoder(), parts = [], cen = [], d = new Date();
             const dt = (d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1), dd = ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
             let off = 0, cs = 0;
-            for (const it of items) {
+            for (let ii = 0; ii < items.length; ii++) {
+                const it = items[ii];
+                if (signal && signal.aborted) throw new DOMException("Cancelled", "AbortError");
+                const idt = it.date ? (it.date.getHours() << 11) | (it.date.getMinutes() << 5) | (it.date.getSeconds() >> 1) : dt, idd = it.date && it.date.getFullYear() >= 1980 ? ((it.date.getFullYear() - 1980) << 9) | ((it.date.getMonth() + 1) << 5) | it.date.getDate() : dd;
                 const nm = enc.encode(it.name), crc = await recCrc(it.blob), sz = it.blob.size;
                 const h = new DataView(new ArrayBuffer(30));
-                h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(10, dt, true); h.setUint16(12, dd, true);
+                h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(10, idt, true); h.setUint16(12, idd, true);
                 h.setUint32(14, crc, true); h.setUint32(18, sz, true); h.setUint32(22, sz, true); h.setUint16(26, nm.length, true);
                 parts.push(h.buffer, nm, it.blob);
                 const c = new DataView(new ArrayBuffer(46));
-                c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(12, dt, true); c.setUint16(14, dd, true);
+                c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(12, idt, true); c.setUint16(14, idd, true);
                 c.setUint32(16, crc, true); c.setUint32(20, sz, true); c.setUint32(24, sz, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
                 cen.push(c.buffer, nm);
                 off += 30 + nm.length + sz;
                 cs += 46 + nm.length;
+                if (onProgress) onProgress(ii + 1, items.length);
             }
             const e = new DataView(new ArrayBuffer(22));
             e.setUint32(0, 0x06054b50, true); e.setUint16(8, items.length, true); e.setUint16(10, items.length, true); e.setUint32(12, cs, true); e.setUint32(16, off, true);
@@ -6982,10 +7173,95 @@
             startAttempt(session, false);
         }
 
+        // ======================================================================
+        // Gallery rail. While an image, an audio file or a video is open, the other
+        // files of that same kind from the same folder are listed beside it (images
+        // as thumbnails, audio and video as names). The kinds are never mixed: an
+        // image shows the images, audio the audio, video the videos. Everything else
+        // opens exactly as before, with no rail.
+        // ======================================================================
+        const GALLERY_LABELS = { image: "Images", audio: "Audio", video: "Video" };
+        let gallery = null,
+            openSeq = 0;
+        function gallerySiblings(dir, kind) {
+            if (!fileIndex) return [];
+            let items = fileIndex.root;
+            if (dir) { const node = findNode(dir); items = node && node.children; }
+            if (!items) return [];
+            return items
+                .filter((n) => n.type !== "directory" && n.category === kind)
+                .map((n) => ({ path: dir ? dir + "/" + n.name : n.name, name: n.name }))
+                .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: "base" }));
+        }
+        function galleryItemHtml(it, i, kind) {
+            const name = escapeHtml(it.name);
+            if (kind === "image") {
+                const src = LOCAL.active ? `data-lpath="${escapeHtml(it.path)}"` : `data-src="./${escapeHtml(encodePathForUrl(it.path))}"`;
+                return `<button type="button" class="gal-item" data-i="${i}" title="${name}" aria-label="${name}"><span class="gal-ico">${icons.image}</span><img class="gal-thumb lazy" alt="" decoding="async" ${src}></button>`;
+            }
+            return `<button type="button" class="gal-item" data-i="${i}" title="${name}"><span class="gal-ico">${icons[kind]}</span><span class="gal-name">${name}</span></button>`;
+        }
+        function hideGallery() {
+            const rail = document.getElementById("galleryRail"), modal = document.getElementById("modalContent");
+            gallery = null;
+            rail.hidden = true;
+            rail.innerHTML = "";
+            modal.classList.remove("has-gallery");
+            delete modal.dataset.gallery;
+        }
+        // Shows (or updates) the rail for the file being opened. Returns true when a rail is showing.
+        // The rail is only rebuilt when the folder or kind changes, so its scroll position survives stepping through files.
+        function syncGallery(filePath, kind) {
+            if (!GALLERY_LABELS[kind] || !fileIndex) { hideGallery(); return false; }
+            const rail = document.getElementById("galleryRail"), modal = document.getElementById("modalContent");
+            const dir = dirOfPath(filePath), key = (LOCAL.active ? "local:" : "hosted:") + dir + "|" + kind;
+            if (!gallery || gallery.key !== key) {
+                const items = gallerySiblings(dir, kind);
+                if (items.length < 2 || !items.some((it) => it.path === filePath)) { hideGallery(); return false; }
+                gallery = { key, kind, items };
+                rail.dataset.kind = kind;
+                rail.innerHTML = `<div class="gal-head"><span>${GALLERY_LABELS[kind]}</span><span class="gal-count" id="galCount"></span></div><div class="gal-list">${items.map((it, i) => galleryItemHtml(it, i, kind)).join("")}</div>`;
+                if (kind === "image") rail.querySelectorAll(".gal-thumb.lazy").forEach((img) => intersectionObserver.observe(img));
+            }
+            rail.hidden = false;
+            modal.classList.add("has-gallery");
+            modal.dataset.gallery = kind;
+            const idx = gallery.items.findIndex((it) => it.path === filePath);
+            const btns = rail.querySelectorAll(".gal-item");
+            btns.forEach((b, i) => {
+                const on = i === idx;
+                b.classList.toggle("active", on);
+                b.tabIndex = on ? 0 : -1;
+                if (on) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current");
+            });
+            const count = document.getElementById("galCount");
+            if (count) count.textContent = `${idx + 1} / ${gallery.items.length}`;
+            if (btns[idx]) btns[idx].scrollIntoView({ block: "nearest", inline: "nearest" });
+            return true;
+        }
+        function galleryStep(delta) {
+            if (!gallery) return;
+            const i = gallery.items.findIndex((it) => it.path === currentFilePath) + delta;
+            if (i < 0 || i >= gallery.items.length) return;
+            const it = gallery.items[i];
+            openFile(it.path, gallery.kind, it.name);
+        }
+        // The player's previous / next buttons step through the rail's files (they are otherwise only for playlists).
+        function wireGalleryStep() {
+            if (!gallery) return;
+            const i = gallery.items.findIndex((it) => it.path === currentFilePath);
+            const prev = document.getElementById("playlistPrev"), next = document.getElementById("playlistNext");
+            if (prev) { prev.disabled = i <= 0; prev.addEventListener("click", () => galleryStep(-1)); }
+            if (next) { next.disabled = i >= gallery.items.length - 1; next.addEventListener("click", () => galleryStep(1)); }
+        }
+
         async function openFile(filePath, fileType, fileName) {
             endPlaySession();
             cancelHealthTest();
-            rememberModalFocus("modal");
+            // Stepping through the gallery re-opens the preview while it is already open: keep the focus where it is.
+            const wasOpen = document.getElementById("modal").classList.contains("active");
+            if (!wasOpen) rememberModalFocus("modal");
+            const seq = ++openSeq;
             const modalEl = document.getElementById("modal"),
                 titleEl = document.getElementById("modalTitle"),
                 bodyEl = document.getElementById("modalBody"),
@@ -7001,7 +7277,10 @@
             // The actual request URL: percent-encode special chars (#, ?, %)
             // so filenames containing them resolve correctly instead of
             // getting truncated at a "fragment" or silently mangled.
-            const fileUrl = `./${encodePathForUrl(filePath)}`;
+            runModalCleanups();
+            let fileUrl = `./${encodePathForUrl(filePath)}`;
+            try { fileUrl = await urlForPath(filePath); } catch (err) { console.error(err); }
+            if (seq !== openSeq) return; // another file was opened (or the preview closed) while this one was loading
             // The same URL, safe to drop into an HTML attribute string.
             const fileUrlAttr = escapeHtml(fileUrl);
 
@@ -7021,12 +7300,21 @@
             if (isPlaylistFile) playPlaylistBtn.classList.remove("hidden");
             else playPlaylistBtn.classList.add("hidden");
             document.getElementById("modalContent").classList.remove("video-modal", "compact-modal");
+            const galleryOn = syncGallery(filePath, previewKindOverride(fileName) || fileType);
             modalEl.classList.add("active");
             syncBackgroundInert();
-            focusWhenReady("closeBtn", "modal");
+            if (!wasOpen) focusWhenReady("closeBtn", "modal");
             const o = fileUrlAttr;
             try {
-                switch (fileType) {
+                switch (previewKindOverride(fileName) || fileType) {
+                    case "md-view":
+                        await showMarkdownPreview(bodyEl, filePath, fileName, fileUrl);
+                        bodyEl.classList.add("scrollable");
+                        break;
+                    case "archive-view":
+                        await showArchivePreview(bodyEl, filePath, fileName, fileUrl);
+                        bodyEl.classList.add("scrollable");
+                        break;
                     case "image":
                         bodyEl.innerHTML = `<img class="preview-image" src="${o}" alt="${escapeHtml(fileName)}">`;
                         break;
@@ -7050,11 +7338,12 @@
                             setupAudioNormalization(singleVideo);
                             setupMediaSession(singleVideo, fileName);
                             maybeWireMediaControls(singleVideo);
+                            if (!useNativePlayer) wireGalleryStep();
                         }
                         document.getElementById("streamInfoBtn").addEventListener("click", copyStreamInfo);
                         break;
                     case "audio":
-                        document.getElementById("modalContent").classList.add("compact-modal");
+                        if (!galleryOn) document.getElementById("modalContent").classList.add("compact-modal");
                         bodyEl.innerHTML = `
               <div class="preview-audio-container">
                 <button class="player-info-btn" id="streamInfoBtn" title="Copy stream link" aria-label="Copy stream link">${icons.info}</button>
@@ -7075,6 +7364,7 @@
                             setupAudioNormalization(singleAudio);
                             setupMediaSession(singleAudio, fileName);
                             maybeWireMediaControls(singleAudio);
+                            if (!useNativePlayer) wireGalleryStep();
                         }
                         wirePlayerIconTap(bodyEl);
                         document.getElementById("streamInfoBtn").addEventListener("click", copyStreamInfo);
@@ -7170,9 +7460,11 @@
                 case "ArrowLeft":
                     // If a playlist is actively playing, stop it and drop back
                     // into the (now-static) preview rather than closing outright.
-                    currentPlaylist.length > 0 ? stopPlaylist() : closeModal();
+                    if (gallery && gallery.kind === "image") { galleryStep(-1); break; }
+                    modalBackHook && modalBackHook() ? 0 : currentPlaylist.length > 0 ? stopPlaylist() : closeModal();
                     break;
                 case "ArrowRight": {
+                    if (gallery && gallery.kind === "image") { galleryStep(1); break; }
                     if (isPlaylistFile && currentPlaylist.length === 0) {
                         startPlaylistMode();
                     } else {
@@ -7204,6 +7496,9 @@
             const modalEl = document.getElementById("modal");
             modalEl.classList.remove("active");
             syncBackgroundInert();
+            runModalCleanups();
+            openSeq++;
+            hideGallery();
 
             endPlaySession();
             cancelHealthTest();
@@ -7429,6 +7724,1297 @@
             }
 
             return escapeHtml(name);
+        }
+
+        // ======================================================================
+        // Added features: library source layer (hosted vs local folder), folder
+        // tree persistence, shared progress toast.
+        // Markdown, archive browsing, folder zip and local-folder mode follow.
+        // Everything below is plain browser JS: no libraries, no build step.
+        // ======================================================================
+        const LS_TREE_EXPANDED = "treeExpanded";
+        let uiWired = false;
+
+        // Where the files come from. Hosted: relative URLs next to this page.
+        // Local: File objects the user picked (nothing is uploaded or stored).
+        const LOCAL = { active: false, name: "", files: new Map(), urls: new Map(), hosted: null };
+        function isLocal() { return LOCAL.active; }
+        function rootLabel() { return LOCAL.active ? LOCAL.name || "Local folder" : "Home"; }
+
+        // "a/b" + "../x/y.png?v=1#h" -> "a/x/y.png". Null when the path climbs out of the root.
+        function joinResolve(baseDir, rel) {
+            rel = String(rel).split("#")[0].split("?")[0];
+            try { rel = decodeURIComponent(rel); } catch (err) { /* keep as typed */ }
+            const out = rel.startsWith("/") || !baseDir ? [] : baseDir.split("/");
+            for (const seg of rel.split("/")) {
+                if (!seg || seg === ".") continue;
+                if (seg === "..") { if (!out.length) return null; out.pop(); } else out.push(seg);
+            }
+            return out.join("/");
+        }
+        function dirOfPath(path) { const i = path.lastIndexOf("/"); return i < 0 ? "" : path.slice(0, i); }
+        function findNode(path) {
+            if (!fileIndex || !path) return null;
+            let items = fileIndex.root, node = null;
+            for (const seg of path.split("/")) {
+                node = items && items.find((n) => n.name === seg);
+                if (!node) return null;
+                items = node.children;
+            }
+            return node;
+        }
+
+        async function getLocalFile(path) {
+            const ent = LOCAL.files.get(path);
+            if (!ent) { const err = new Error("Not found"); err.status = 404; throw err; }
+            if (!ent.file) ent.file = await ent.handle.getFile();
+            return ent.file;
+        }
+        // A URL the browser can load for a library file. Hosted: the relative URL.
+        // Local: a blob: URL for the picked File (made lazily, revoked on close).
+        async function urlForPath(path) {
+            if (!LOCAL.active) return `./${encodePathForUrl(path)}`;
+            let u = LOCAL.urls.get(path);
+            if (!u) { u = URL.createObjectURL(await getLocalFile(path)); LOCAL.urls.set(path, u); }
+            return u;
+        }
+        async function blobForPath(path, signal) {
+            if (LOCAL.active) return getLocalFile(path);
+            const res = await fetch(`./${encodePathForUrl(path)}`, { signal });
+            if (!res.ok) { const err = new Error(`HTTP ${res.status}`); err.status = res.status; throw err; }
+            return res.blob();
+        }
+        // Playlist entries next to a local playlist file are resolved to local files;
+        // http(s) stream URLs are left alone (playing them is the network use the person asked for).
+        async function parsePlaylistForCurrent(url) {
+            if (!LOCAL.active) return parsePlaylist(url, url);
+            const items = await parsePlaylist("localfs://" + encodePathForUrl(currentFilePath), url);
+            const out = [];
+            for (const it of items) {
+                if (!it.url.startsWith("localfs://")) { out.push(it); continue; }
+                let p = null;
+                try { p = joinResolve("", decodeURIComponent(it.url.slice(10))); } catch (err) { p = null; }
+                if (p && LOCAL.files.has(p)) {
+                    try { out.push({ ...it, url: await urlForPath(p) }); } catch (err) { /* unreadable: skip */ }
+                }
+            }
+            return out;
+        }
+
+        // Cleanups for whatever the preview modal built (blob URLs, archive state).
+        const modalCleanups = [];
+        let modalBackHook = null;
+        function runModalCleanups() {
+            modalBackHook = null;
+            while (modalCleanups.length) { try { modalCleanups.pop()(); } catch (err) { /* ignore */ } }
+        }
+        function trackBlobUrl(blob) {
+            const u = URL.createObjectURL(blob);
+            modalCleanups.push(() => URL.revokeObjectURL(u));
+            return u;
+        }
+
+        // ---- Folder tree: remembered open/closed state ----------------------
+        let treeSaveTimer = 0;
+        function loadTreeExpanded() {
+            if (LOCAL.active) return;
+            try {
+                const saved = JSON.parse(store.getItem(LS_TREE_EXPANDED) || "[]");
+                if (Array.isArray(saved)) for (const p of saved) if (typeof p === "string") expandedFolders.add(p);
+            } catch (err) { /* ignore */ }
+        }
+        function persistTreeExpanded() {
+            if (LOCAL.active) return;
+            clearTimeout(treeSaveTimer);
+            treeSaveTimer = setTimeout(() => {
+                const list = Array.from(expandedFolders).filter(Boolean).slice(0, 500);
+                try { store.setItem(LS_TREE_EXPANDED, JSON.stringify(list)); } catch (err) { /* ignore */ }
+            }, 200);
+        }
+        function collapseAllFolders() {
+            expandedFolders = new Set([""]);
+            let acc = "";
+            for (const seg of currentPath) { acc += (acc ? "/" : "") + seg; expandedFolders.add(acc); }
+            persistTreeExpanded();
+            renderTree();
+        }
+        // ---- Shared progress toast (folder zip, reading a local folder) -----
+        let opAbort = null;
+        function opStart(text, onCancel) {
+            const t = document.getElementById("opToast");
+            document.getElementById("opToastText").textContent = text;
+            document.getElementById("opBarFill").style.width = "0%";
+            const c = document.getElementById("opToastCancel");
+            c.hidden = !onCancel;
+            c.onclick = onCancel || null;
+            t.hidden = false;
+            announce(text);
+        }
+        function opUpdate(text, frac) {
+            document.getElementById("opToastText").textContent = text;
+            if (typeof frac === "number") document.getElementById("opBarFill").style.width = Math.max(0, Math.min(100, frac * 100)).toFixed(1) + "%";
+        }
+        function opDone(msg, ms) {
+            const t = document.getElementById("opToast");
+            if (msg) { document.getElementById("opToastText").textContent = msg; document.getElementById("opBarFill").style.width = "100%"; document.getElementById("opToastCancel").hidden = true; announce(msg); }
+            setTimeout(() => { t.hidden = true; }, msg ? ms || 2500 : 0);
+        }
+
+        // ======================================================================
+        // Markdown / reStructuredText preview.
+        // A small CommonMark-ish subset parser (about 250 lines) instead of a
+        // library: headings, emphasis, links, images, code, lists (nested, task),
+        // tables, blockquotes, rules, link references, and sanitized inline HTML.
+        // Not supported: footnotes, math, emoji shortcodes, nested block quotes
+        // inside lists edge cases. reStructuredText is converted to Markdown first
+        // (titles, lists, literal blocks, code-block/image/note directives, links).
+        // Raw HTML in the source never reaches the page as-is: it is parsed in an
+        // inert document and rebuilt from an allow-list of tags and attributes.
+        // ======================================================================
+        const MD_NAME_RE = /\.(md|markdown|mdown|mkd|rst)$/i;
+        function isMarkdownName(name) { return MD_NAME_RE.test(name) || /^readme$/i.test(name); }
+        const ARCHIVE_NAME_RE = /\.(zip|tar|tgz|tar\.gz)$/i;
+        function previewKindOverride(name) {
+            if (isMarkdownName(name)) return "md-view";
+            if (ARCHIVE_NAME_RE.test(name)) return "archive-view";
+            return null;
+        }
+
+        const MD_TAGS = new Set("a abbr b bdi bdo blockquote br caption center code col colgroup dd del details dfn div dl dt em figcaption figure h1 h2 h3 h4 h5 h6 hr i img input ins kbd li mark ol p pre q s samp small span strike strong sub summary sup table tbody td tfoot th thead tr tt u ul var wbr".split(" "));
+        const MD_DROP = new Set("script style iframe frame frameset object embed link meta base form textarea select button svg math template noscript audio video source track canvas applet title head".split(" "));
+        const MD_ATTRS = {
+            a: ["title", "name"], img: ["alt", "title", "width", "height", "align"], td: ["align", "colspan", "rowspan"], th: ["align", "colspan", "rowspan", "scope"],
+            ol: ["start", "type"], li: ["value"], details: ["open"], p: ["align"], div: ["align"], h1: ["align"], h2: ["align"], h3: ["align"], h4: ["align"], h5: ["align"], h6: ["align"],
+            table: ["align"], col: ["span"], colgroup: ["span"], input: [], "*": ["id", "title", "lang", "dir"],
+        };
+        const MD_ALIGN = new Set(["left", "right", "center", "justify"]);
+
+        function mdSlug(text) {
+            return text.toLowerCase().replace(/<[^>]*>/g, "").replace(/[^\p{L}\p{N}\s_-]/gu, "").trim().replace(/\s/g, "-");
+        }
+
+        // ---- inline ----
+        function mdInline(src, env) {
+            const stash = [];
+            const hold = (html) => "\u0000" + (stash.push(html) - 1) + "\u0000";
+            const refOf = (label) => env.refs[label.toLowerCase().replace(/\s+/g, " ")];
+            const attr = (s) => escapeHtml(s);
+            const fmt = (s) => mdEmphasis(escapeHtml(s));
+            // code spans
+            src = src.replace(/(`+)([\s\S]*?[^`])\1(?!`)/g, (m, t, code) => hold("<code>" + escapeHtml(code.replace(/^ ([\s\S]*) $/, "$1")) + "</code>"));
+            // backslash escapes
+            src = src.replace(/\\([\\`*_{}\[\]()#+\-.!|<>~])/g, (m, c) => hold(escapeHtml(c)));
+            // comments and raw inline html
+            src = src.replace(/<!--[\s\S]*?-->/g, "");
+            src = src.replace(/<(https?:\/\/[^\s<>]+|[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+)>/g, (m, u) => {
+                const href = /^https?:/.test(u) ? u : "mailto:" + u;
+                return hold(`<a href="${attr(href)}">${escapeHtml(u)}</a>`);
+            });
+            src = src.replace(/<\/?[A-Za-z][A-Za-z0-9-]*(?:\s+[^<>]*)?\/?>/g, (m) => hold(m));
+            // images, links (inline and reference style)
+            const imgHtml = (alt, url, title) => `<img src="${attr(url)}" alt="${attr(alt)}"${title ? ` title="${attr(title)}"` : ""}>`;
+            src = src.replace(/!\[([^\]]*)\]\(\s*<?([^)\s>]+)>?(?:\s+"([^"]*)")?\s*\)/g, (m, alt, url, title) => hold(imgHtml(alt, url, title)));
+            src = src.replace(/!\[([^\]]*)\]\[([^\]]*)\]/g, (m, alt, ref) => {
+                const r = refOf(ref || alt);
+                return r ? hold(imgHtml(alt, r.url, r.title)) : m;
+            });
+            const linkRe = /\[((?:[^\[\]]|\u0000\d+\u0000)*)\]\(\s*<?([^)\s>]*)>?(?:\s+"([^"]*)")?\s*\)/g;
+            for (let pass = 0; pass < 3; pass++) {
+                src = src.replace(linkRe, (m, text, url, title) => hold(`<a href="${attr(url)}"${title ? ` title="${attr(title)}"` : ""}>${fmt(text)}</a>`));
+            }
+            src = src.replace(/\[((?:[^\[\]]|\u0000\d+\u0000)*)\]\[([^\]]*)\]/g, (m, text, ref) => {
+                const r = refOf(ref || text);
+                return r ? hold(`<a href="${attr(r.url)}"${r.title ? ` title="${attr(r.title)}"` : ""}>${fmt(text)}</a>`) : m;
+            });
+            src = src.replace(/\[([^\[\]]+)\](?!\()/g, (m, text) => {
+                const r = refOf(text);
+                return r ? hold(`<a href="${attr(r.url)}"${r.title ? ` title="${attr(r.title)}"` : ""}>${escapeHtml(text)}</a>`) : m;
+            });
+            // bare URLs
+            src = src.replace(/(^|[\s(])(https?:\/\/[^\s<>\u0000]+[^\s<>.,;:!?)'"\u0000])/g, (m, pre, u) => pre + hold(`<a href="${attr(u)}">${escapeHtml(u)}</a>`));
+            let html = mdEmphasis(escapeHtml(src));
+            html = html.replace(/(?: {2,}|\\)\n/g, "<br>\n");
+            for (let i = 0; i < 6 && html.indexOf("\u0000") >= 0; i++) html = html.replace(/\u0000(\d+)\u0000/g, (m, n) => stash[+n]);
+            return html;
+        }
+        function mdEmphasis(h) {
+            return h
+                .replace(/(\*\*|__)(?=\S)([\s\S]*?\S)\1/g, "<strong>$2</strong>")
+                .replace(/(^|[^\w*])\*(?=[^\s*])([\s\S]*?[^\s*])\*(?!\*)/g, "$1<em>$2</em>")
+                .replace(/(^|[^\w])_(?=\S)([\s\S]*?\S)_(?!\w)/g, "$1<em>$2</em>")
+                .replace(/~~(?=\S)([\s\S]*?\S)~~/g, "<del>$1</del>");
+        }
+
+        // ---- blocks ----
+        const MD_BLOCK_TAGS = /^ {0,3}<\/?(address|article|aside|blockquote|center|details|dialog|div|dl|dt|dd|fieldset|figcaption|figure|footer|h[1-6]|header|hr|li|main|nav|ol|p|pre|section|summary|table|tbody|td|tfoot|th|thead|tr|ul)(\s|>|\/>|$)/i;
+        const MD_LIST_RE = /^( {0,3})([-*+]|\d{1,9}[.)])( +|$)(.*)$/;
+        const MD_HR_RE = /^ {0,3}([-*_])(?:\s*\1){2,}\s*$/;
+        const mdBlank = (l) => /^\s*$/.test(l);
+        function mdStartsBlock(l) {
+            return /^ {0,3}(#{1,6}(\s|$)|`{3,}|~{3,}|>)/.test(l) || MD_HR_RE.test(l) || /^ {0,3}([-*+]|\d{1,9}[.)])\s+\S/.test(l) || MD_BLOCK_TAGS.test(l);
+        }
+        function mdSplitRow(line) {
+            let s = line.trim();
+            if (s.startsWith("|")) s = s.slice(1);
+            if (s.endsWith("|") && !s.endsWith("\\|")) s = s.slice(0, -1);
+            return s.split(/(?<!\\)\|/).map((c) => c.trim().replace(/\\\|/g, "|"));
+        }
+        function mdHeading(level, text, env) {
+            let id = mdSlug(text) || "section";
+            const n = env.slugs[id] = (env.slugs[id] || 0) + 1;
+            if (n > 1) id += "-" + (n - 1);
+            return `<h${level} id="${escapeHtml(id)}">${mdInline(text.trim(), env)}</h${level}>`;
+        }
+        function mdBlock(lines, env, tight) {
+            const out = [];
+            let i = 0;
+            while (i < lines.length) {
+                const line = lines[i];
+                if (mdBlank(line)) { i++; continue; }
+                let m;
+                // fenced code
+                if ((m = /^ {0,3}(`{3,}|~{3,})\s*([^`\s]*)[^`]*$/.exec(line))) {
+                    const fence = m[1], close = new RegExp("^ {0,3}" + (fence[0] === "`" ? "`" : "~") + "{" + fence.length + ",}\\s*$"), body = [];
+                    i++;
+                    while (i < lines.length && !close.test(lines[i])) body.push(lines[i++]);
+                    i++;
+                    out.push(`<pre><code>${escapeHtml(body.join("\n"))}\n</code></pre>`);
+                    continue;
+                }
+                // html comment
+                if (/^\s*<!--/.test(line)) {
+                    while (i < lines.length && !/-->/.test(lines[i])) i++;
+                    i++;
+                    continue;
+                }
+                // ATX heading
+                if ((m = /^ {0,3}(#{1,6})(?:\s+(.*?))?(?:\s+#+)?\s*$/.exec(line))) { out.push(mdHeading(m[1].length, m[2] || "", env)); i++; continue; }
+                if (MD_HR_RE.test(line)) { out.push("<hr>"); i++; continue; }
+                // indented code
+                if (/^(?: {4}|\t)/.test(line)) {
+                    const body = [];
+                    while (i < lines.length && (mdBlank(lines[i]) || /^(?: {4}|\t)/.test(lines[i]))) body.push(lines[i++].replace(/^(?: {4}|\t)/, ""));
+                    while (body.length && mdBlank(body[body.length - 1])) body.pop();
+                    out.push(`<pre><code>${escapeHtml(body.join("\n"))}\n</code></pre>`);
+                    continue;
+                }
+                // block quote
+                if (/^ {0,3}>/.test(line)) {
+                    const buf = [];
+                    while (i < lines.length && (/^ {0,3}>/.test(lines[i]) || (!mdBlank(lines[i]) && buf.length && !mdStartsBlock(lines[i])))) buf.push(lines[i++].replace(/^ {0,3}> ?/, ""));
+                    out.push("<blockquote>" + mdBlock(buf, env, false) + "</blockquote>");
+                    continue;
+                }
+                // raw html block (passes through to the sanitizer with the rest of the page)
+                if (MD_BLOCK_TAGS.test(line)) {
+                    const buf = [];
+                    while (i < lines.length && !mdBlank(lines[i])) buf.push(lines[i++]);
+                    out.push(buf.join("\n"));
+                    continue;
+                }
+                // table
+                if (line.includes("|") && i + 1 < lines.length && /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?\s*$/.test(lines[i + 1]) && lines[i + 1].includes("-")) {
+                    const head = mdSplitRow(line), delim = mdSplitRow(lines[i + 1]);
+                    if (head.length === delim.length) {
+                        const al = delim.map((d) => (/^:-+:$/.test(d) ? "center" : /^-+:$/.test(d) ? "right" : /^:-+$/.test(d) ? "left" : ""));
+                        const cell = (tag, c, k) => `<${tag}${al[k] ? ` align="${al[k]}"` : ""}>${mdInline(c || "", env)}</${tag}>`;
+                        let h = "<table><thead><tr>" + head.map((c, k) => cell("th", c, k)).join("") + "</tr></thead><tbody>";
+                        i += 2;
+                        while (i < lines.length && !mdBlank(lines[i]) && lines[i].includes("|")) {
+                            const row = mdSplitRow(lines[i++]);
+                            h += "<tr>" + head.map((_, k) => cell("td", row[k], k)).join("") + "</tr>";
+                        }
+                        out.push(h + "</tbody></table>");
+                        continue;
+                    }
+                }
+                // list
+                if ((m = MD_LIST_RE.exec(line))) {
+                    const ordered = /\d/.test(m[2]), delimCh = ordered ? m[2].slice(-1) : m[2], start = ordered ? parseInt(m[2], 10) : 1;
+                    const items = [];
+                    let looseGap = false, gap = 0;
+                    while (i < lines.length) {
+                        const lm = MD_LIST_RE.exec(lines[i]);
+                        if (!lm || /\d/.test(lm[2]) !== ordered || (ordered ? lm[2].slice(-1) : lm[2]) !== delimCh || MD_HR_RE.test(lines[i])) break;
+                        if (gap > 0 && items.length) looseGap = true;
+                        let pad = lm[3].length;
+                        if (pad === 0 || pad > 4) pad = 1;
+                        const indent = lm[1].length + lm[2].length + pad, item = { buf: [lm[4]], innerBlank: false };
+                        i++;
+                        gap = 0;
+                        while (i < lines.length) {
+                            const l = lines[i];
+                            if (mdBlank(l)) { gap++; i++; continue; }
+                            const ind = l.match(/^ */)[0].length;
+                            if (ind >= indent) {
+                                for (let b = 0; b < gap; b++) item.buf.push("");
+                                if (gap) item.innerBlank = true;
+                                item.buf.push(l.slice(indent));
+                                i++;
+                                gap = 0;
+                                continue;
+                            }
+                            if (gap === 0 && !MD_LIST_RE.test(l) && !mdStartsBlock(l)) { item.buf.push(l.trim()); i++; continue; }
+                            break;
+                        }
+                        items.push(item);
+                    }
+                    const loose = looseGap || items.some((it) => it.innerBlank);
+                    const rendered = items.map((it) => {
+                        const buf = it.buf;
+                        let task = "";
+                        const tm = /^\[([ xX])\]\s+/.exec(buf[0]);
+                        if (tm) { buf[0] = buf[0].slice(tm[0].length); task = `<input type="checkbox" disabled${tm[1] !== " " ? " checked" : ""}> `; }
+                        return "<li>" + task + mdBlock(buf, env, !loose) + "</li>";
+                    });
+                    out.push(`<${ordered ? "ol" + (start !== 1 ? ` start="${start}"` : "") : "ul"}>${rendered.join("")}</${ordered ? "ol" : "ul"}>`);
+                    continue;
+                }
+                // paragraph / setext heading
+                const buf = [line];
+                i++;
+                let setext = 0;
+                while (i < lines.length && !mdBlank(lines[i])) {
+                    if (/^ {0,3}=+\s*$/.test(lines[i])) { setext = 1; i++; break; }
+                    if (/^ {0,3}-+\s*$/.test(lines[i])) { setext = 2; i++; break; }
+                    if (mdStartsBlock(lines[i])) break;
+                    buf.push(lines[i++]);
+                }
+                if (setext) out.push(mdHeading(setext, buf.map((s) => s.trim()).join(" "), env));
+                else {
+                    const inline = mdInline(buf.map((s) => s.replace(/^\s+/, "")).join("\n"), env);
+                    out.push(tight ? inline : `<p>${inline}</p>`);
+                }
+            }
+            return out.join(tight ? "\n" : "\n");
+        }
+
+        // ---- reStructuredText -> Markdown (basic) ----
+        function rstInline(s) {
+            return s
+                .replace(/:[a-z]+:`([^`<]+?)(?:\s*<[^>]*>)?`/g, "`$1`")
+                .replace(/`([^`<]+?)\s*<([^>]+)>`__?/g, "[$1]($2)")
+                .replace(/``([^`]+)``/g, "`$1`")
+                .replace(/\|([^|]+)\|_?/g, "$1");
+        }
+        function rstToMarkdown(src) {
+            const L = src.replace(/\r\n?/g, "\n").split("\n"), out = [], levels = [];
+            const isAdorn = (s) => /^([!-\/:-@\[-`{-~])\1{2,}\s*$/.test(s);
+            const level = (key) => { let k = levels.indexOf(key); if (k < 0) { levels.push(key); k = levels.length - 1; } return Math.min(k + 1, 6); };
+            const indentOf = (s) => s.match(/^ */)[0].length;
+            const takeIndented = (from, minIndent) => {
+                const body = []; let j = from;
+                while (j < L.length && (mdBlank(L[j]) || indentOf(L[j]) >= minIndent)) body.push(L[j++]);
+                while (body.length && mdBlank(body[body.length - 1])) body.pop();
+                return { body, next: j };
+            };
+            for (let i = 0; i < L.length; i++) {
+                const l = L[i];
+                if (isAdorn(l) && i + 2 < L.length && L[i + 1].trim() && !isAdorn(L[i + 1]) && isAdorn(L[i + 2]) && L[i + 2][0] === l[0]) {
+                    out.push("#".repeat(level("o" + l[0])) + " " + rstInline(L[i + 1].trim())); i += 2; continue;
+                }
+                if (l.trim() && !isAdorn(l) && !/^\s/.test(l) && i + 1 < L.length && isAdorn(L[i + 1]) && L[i + 1].trim().length >= l.trim().length) {
+                    out.push("#".repeat(level("u" + L[i + 1][0])) + " " + rstInline(l.trim())); i += 1; continue;
+                }
+                let m;
+                if ((m = /^\.\. (code-block|code|sourcecode)::\s*(\S*)/.exec(l))) {
+                    const { body, next } = takeIndented(i + 1, 1);
+                    const content = body.filter((x) => !/^\s*:[\w-]+:/.test(x)).join("\n").replace(/^\n+/, "");
+                    const ind = Math.min(...content.split("\n").filter((x) => x.trim()).map(indentOf), 99);
+                    out.push("```" + (m[2] || ""), ...content.split("\n").map((x) => x.slice(ind === 99 ? 0 : ind)), "```"); i = next - 1; continue;
+                }
+                if ((m = /^\.\. (image|figure)::\s*(\S+)/.exec(l))) {
+                    const { body, next } = takeIndented(i + 1, 1);
+                    const alt = (body.map((x) => /^\s*:alt:\s*(.*)$/.exec(x)).find(Boolean) || [])[1] || "";
+                    out.push(`![${alt}](${m[2]})`); i = next - 1; continue;
+                }
+                if ((m = /^\.\. (note|warning|tip|important|caution|danger|attention|hint|error|seealso)::\s*(.*)$/i.exec(l))) {
+                    const { body, next } = takeIndented(i + 1, 1);
+                    out.push("> **" + m[1][0].toUpperCase() + m[1].slice(1).toLowerCase() + ":** " + rstInline((m[2] + " " + body.map((x) => x.trim()).join(" ")).trim())); i = next - 1; continue;
+                }
+                if (/^\.\.(\s|$)/.test(l)) { i = takeIndented(i + 1, 1).next - 1; continue; }
+                if (/^\+[-=+]+\+\s*$/.test(l) || /^={3,}(\s+={3,})+\s*$/.test(l)) {
+                    const body = [l]; let j = i + 1;
+                    while (j < L.length && !mdBlank(L[j])) body.push(L[j++]);
+                    out.push("```", ...body, "```"); i = j - 1; continue;
+                }
+                if (/::\s*$/.test(l) && !/^\s*\.\./.test(l)) {
+                    const text = l.replace(/\s*::\s*$/, l.trim() === "::" ? "" : ":");
+                    if (text.trim()) out.push(rstInline(text));
+                    const { body, next } = takeIndented(i + 1, 1);
+                    const real = body.filter((x) => x.trim());
+                    if (real.length) {
+                        const ind = Math.min(...real.map(indentOf));
+                        out.push("", "```", ...body.map((x) => x.slice(ind)), "```"); i = next - 1; continue;
+                    }
+                    continue;
+                }
+                out.push(rstInline(l).replace(/^(\s*)#\.\s/, "$11. "));
+            }
+            return out.join("\n");
+        }
+
+        // ---- sanitizer: rebuild the HTML from an allow-list ----
+        function mdSanitize(html, env) {
+            const doc = new DOMParser().parseFromString("<!doctype html><body>" + html, "text/html");
+            const frag = document.createDocumentFragment();
+            const walk = (from, to) => {
+                for (const n of from.childNodes) {
+                    if (n.nodeType === 3) { to.appendChild(document.createTextNode(n.nodeValue)); continue; }
+                    if (n.nodeType !== 1) continue;
+                    const tag = n.tagName.toLowerCase();
+                    if (MD_DROP.has(tag)) continue;
+                    if (!MD_TAGS.has(tag)) { walk(n, to); continue; }
+                    const el = document.createElement(tag);
+                    const allowed = (MD_ATTRS[tag] || []).concat(MD_ATTRS["*"]);
+                    for (const a of n.attributes) {
+                        const name = a.name.toLowerCase(), val = a.value;
+                        if (!allowed.includes(name) && !(tag === "input" && (name === "checked" || name === "disabled" || name === "type"))) continue;
+                        if (name === "id" || (name === "name" && tag === "a")) { const id = "md-" + val.replace(/[^\w\-\u00C0-\uFFFF]/g, "-"); if (!el.id) el.id = id; continue; }
+                        if (name === "align") { if (MD_ALIGN.has(val.toLowerCase())) el.setAttribute("align", val.toLowerCase()); continue; }
+                        if (["width", "height", "colspan", "rowspan", "start", "value", "span"].includes(name)) { if (/^\d{1,4}%?$/.test(val.trim())) el.setAttribute(name, val.trim()); continue; }
+                        if (tag === "input") { if (name === "type") continue; el.setAttribute(name, ""); continue; }
+                        el.setAttribute(name, val.slice(0, 500));
+                    }
+                    if (tag === "input") { el.setAttribute("type", "checkbox"); el.setAttribute("disabled", ""); }
+                    if (tag === "a") mdFixLink(n.getAttribute("href"), el, env);
+                    else if (tag === "img") { if (!mdFixImg(n.getAttribute("src"), el, env)) { const ph = document.createElement("span"); ph.className = "md-img-blocked"; ph.textContent = "[" + (n.getAttribute("alt") || "image") + "]"; to.appendChild(ph); continue; } el.setAttribute("decoding", "async"); }
+                    walk(n, el);
+                    to.appendChild(el);
+                }
+            };
+            walk(doc.body, frag);
+            return frag;
+        }
+        function mdFixLink(href, el, env) {
+            if (!href) return;
+            href = href.trim();
+            if (href.startsWith("#")) {
+                let a = href.slice(1);
+                try { a = decodeURIComponent(a); } catch (err) { /* keep */ }
+                el.setAttribute("data-md-anchor", a.toLowerCase());
+                el.setAttribute("role", "link");
+                el.tabIndex = 0;
+                return;
+            }
+            const scheme = /^([a-z][a-z0-9+.-]*):/i.exec(href);
+            if (scheme) {
+                const s = scheme[1].toLowerCase();
+                if (s === "http" || s === "https" || s === "mailto" || s === "tel") {
+                    el.setAttribute("href", href);
+                    if (s.startsWith("http")) { el.setAttribute("target", "_blank"); el.setAttribute("rel", "noopener noreferrer"); }
+                }
+                return;
+            }
+            if (href.startsWith("//")) return;
+            const path = joinResolve(env.dir, href);
+            if (path === null) return;
+            el.setAttribute("role", "link");
+            el.tabIndex = 0;
+            el.setAttribute("data-md-open", path);
+            const frag = href.indexOf("#");
+            if (frag >= 0) el.setAttribute("data-md-frag", href.slice(frag + 1));
+        }
+        function mdFixImg(src, el, env) {
+            if (!src) return false;
+            src = src.trim();
+            if (/^data:image\/(png|jpe?g|gif|webp|avif);base64,[a-z0-9+\/=]+$/i.test(src)) { el.setAttribute("src", src); return true; }
+            if (/^https?:\/\//i.test(src)) { if (!env.remoteImages) return false; el.setAttribute("src", src); el.setAttribute("referrerpolicy", "no-referrer"); return true; }
+            if (/^[a-z][a-z0-9+.-]*:/i.test(src) || src.startsWith("//")) return false;
+            const path = joinResolve(env.dir, src);
+            if (path === null) return false;
+            const sync = env.assetSync && env.assetSync(path);
+            if (sync) el.setAttribute("src", sync);
+            else el.setAttribute("data-md-src", path);
+            return true;
+        }
+        function mdRender(src, env) {
+            env.refs = {}; env.slugs = {};
+            const lines = src.replace(/\r\n?/g, "\n").replace(/^\uFEFF/, "").split("\n"), kept = [];
+            let fence = null;
+            for (const l of lines) {
+                const fm = /^ {0,3}(`{3,}|~{3,})/.exec(l);
+                if (fm) { if (!fence) fence = fm[1][0]; else if (fm[1][0] === fence) fence = null; }
+                const dm = !fence && /^ {0,3}\[([^\]]+)\]:\s*<?([^\s>]+)>?(?:\s+["'(]([^"')]*)["')])?\s*$/.exec(l);
+                if (dm) env.refs[dm[1].toLowerCase().replace(/\s+/g, " ")] = { url: dm[2], title: dm[3] || "" };
+                else kept.push(l);
+            }
+            return mdSanitize(mdBlock(kept, env, false), env);
+        }
+        function renderMarkdownInto(el, text, kind, env) {
+            el.replaceChildren(mdRender(kind === "rst" ? rstToMarkdown(text) : text, env));
+            el.querySelectorAll("img[data-md-src]").forEach((img) => {
+                const p = img.getAttribute("data-md-src");
+                Promise.resolve(env.loadAsset ? env.loadAsset(p) : null).then((u) => {
+                    if (u) img.src = u;
+                    else { const ph = document.createElement("span"); ph.className = "md-img-blocked"; ph.textContent = "[" + (img.alt || p) + "]"; img.replaceWith(ph); }
+                }).catch(() => {});
+            });
+        }
+        function mdActivate(e, env, container) {
+            const a = e.target.closest("[data-md-open],[data-md-anchor]");
+            if (!a || !container.contains(a)) return;
+            e.preventDefault();
+            if (a.dataset.mdAnchor) {
+                const id = "md-" + a.dataset.mdAnchor.replace(/[^\w\-\u00C0-\uFFFF]/g, "-");
+                const t = Array.from(container.querySelectorAll("[id]")).find((x) => x.id === id);
+                if (t) t.scrollIntoView({ block: "start" });
+                return;
+            }
+            const path = a.dataset.mdOpen;
+            if (env.openPath && env.openPath(path, a.dataset.mdFrag)) return;
+            if (!LOCAL.active) window.open(`./${encodePathForUrl(path)}`, "_blank", "noopener");
+        }
+        function libraryMdEnv(filePath) {
+            return {
+                dir: dirOfPath(filePath),
+                remoteImages: !LOCAL.active,
+                assetSync: LOCAL.active ? null : (p) => `./${encodePathForUrl(p)}`,
+                loadAsset: (p) => (LOCAL.active && LOCAL.files.has(p) ? urlForPath(p).catch(() => null) : Promise.resolve(null)),
+                openPath: (p) => {
+                    const f = filesByPath.get(p);
+                    if (f) { openFile(p, f.category, f.name); return true; }
+                    const d = findNode(p);
+                    if (d && d.type === "directory") { closeModal(); navigateTo(p.split("/").filter(Boolean)); return true; }
+                    return false;
+                },
+            };
+        }
+        // Rendered view + "View source" toggle (falls back to the line-numbered text preview).
+        function mountMarkdown(bodyEl, text, truncated, fileName, env) {
+            const kind = /\.rst$/i.test(fileName) ? "rst" : "md";
+            bodyEl.innerHTML = `<div class="md-bar"><button type="button" class="md-toggle" aria-pressed="false">View source</button>${kind === "rst" ? '<span class="md-note">reStructuredText: basic rendering</span>' : ""}</div><div class="md-content"></div>`;
+            const content = bodyEl.querySelector(".md-content"), btn = bodyEl.querySelector(".md-toggle");
+            let source = false;
+            const paint = () => {
+                if (source) { content.classList.remove("md-view"); renderTextPreview(content, text, fileName, truncated); }
+                else {
+                    content.classList.add("md-view");
+                    try { renderMarkdownInto(content, text, kind, env); } catch (err) { console.error(err); content.classList.remove("md-view"); renderTextPreview(content, text, fileName, truncated); }
+                    if (truncated) content.insertAdjacentHTML("afterbegin", `<div class="truncation-notice">Showing the first part of this file (previews stop at ${formatFileSize(MAX_PREVIEW_BYTES)}).</div>`);
+                }
+                btn.textContent = source ? "View rendered" : "View source";
+                btn.setAttribute("aria-pressed", String(source));
+            };
+            btn.addEventListener("click", () => { source = !source; paint(); });
+            content.addEventListener("click", (e) => mdActivate(e, env, content));
+            content.addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.matches("[data-md-open],[data-md-anchor]")) mdActivate(e, env, content); });
+            paint();
+        }
+        async function showMarkdownPreview(bodyEl, filePath, fileName, fileUrl) {
+            let res;
+            try { res = await fetchTextPreview(fileUrl); } catch (err) { showUnavailable(bodyEl, fileName, fileUrl, err); return; }
+            mountMarkdown(bodyEl, res.text, res.truncated, fileName, libraryMdEnv(filePath));
+        }
+
+        // ======================================================================
+        // Archive browsing: .zip (central directory only, via byte ranges), plain
+        // .tar (header walk via byte ranges) and .tgz / .tar.gz (streamed, only
+        // headers kept). Hosted archives are read with HTTP Range requests; if the
+        // server ignores Range the file is fetched once and sliced from memory.
+        // Local archives are sliced straight from the File. Entries are
+        // decompressed with the browser's DecompressionStream (no library).
+        // ======================================================================
+        const AR_MAX_VIEW = 64 * 1024 * 1024; // largest single entry opened in the preview
+        const AR_MAX_NESTED = 256 * 1024 * 1024; // largest nested archive opened from inside an archive
+        const AR_MAX_STREAM = 300 * 1024 * 1024; // largest .tgz scanned (it has to be read end to end)
+        const AR_ROW_CAP = 3000;
+        const AR_TEXT_EXT = new Set("txt md markdown rst json jsonc js mjs cjs ts tsx jsx css scss less html htm xml svg yml yaml toml ini cfg conf env sh bash zsh fish bat cmd ps1 py rb go rs c h cc cpp hpp cs java kt swift php pl lua sql csv tsv log m3u m3u8 pls asx xspf srt vtt gitignore gitattributes editorconfig lock mk makefile dockerfile license readme".split(" "));
+        const AR_IMG_EXT = new Set("png jpg jpeg gif webp bmp ico avif svg".split(" "));
+
+        function arExt(name) { const b = name.slice(name.lastIndexOf("/") + 1).toLowerCase(); const i = b.lastIndexOf("."); return i < 0 ? b : b.slice(i + 1); }
+
+        // ---- byte sources: read(start, end) -> Uint8Array ----
+        function blobSource(blob) {
+            return { size: blob.size, read: async (s, e) => new Uint8Array(await blob.slice(s, e).arrayBuffer()), blob: async () => blob, stream: async () => blob.stream() };
+        }
+        function httpSource(url, size) {
+            let whole = null;
+            const fail = (res) => { const err = new Error("HTTP " + res.status); err.status = res.status; return err; };
+            const src = {
+                size,
+                async read(s, e) {
+                    if (whole) return new Uint8Array(await whole.slice(s, e).arrayBuffer());
+                    const res = await fetch(url, { headers: { Range: `bytes=${s}-${e - 1}` } });
+                    if (res.status === 206) return new Uint8Array(await res.arrayBuffer());
+                    if (!res.ok) throw fail(res);
+                    whole = await res.blob();
+                    src.size = whole.size;
+                    return new Uint8Array(await whole.slice(s, e).arrayBuffer());
+                },
+                async blob() {
+                    if (!whole) { const res = await fetch(url); if (!res.ok) throw fail(res); whole = await res.blob(); src.size = whole.size; }
+                    return whole;
+                },
+                async stream() {
+                    if (whole) return whole.stream();
+                    const res = await fetch(url);
+                    if (!res.ok) throw fail(res);
+                    return res.body;
+                },
+            };
+            return src;
+        }
+        async function sourceForLibraryFile(path, url) {
+            if (LOCAL.active) return blobSource(await getLocalFile(path));
+            const f = filesByPath.get(path);
+            if (!f || !f.size) return blobSource(await httpSource(url, 0).blob());
+            return httpSource(url, f.size);
+        }
+
+        async function arInflateRaw(bytes) {
+            if (typeof DecompressionStream === "undefined") throw new Error("This browser cannot decompress archive entries (no DecompressionStream).");
+            const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+            return new Response(stream).blob();
+        }
+
+        // ---- ZIP ----
+        const arDecUtf8 = new TextDecoder("utf-8", { fatal: true }), arDecLatin = new TextDecoder("windows-1252");
+        function arName(bytes, utf8Flag) {
+            if (utf8Flag) { try { return arDecUtf8.decode(bytes); } catch (err) { /* fall through */ } }
+            try { return arDecUtf8.decode(bytes); } catch (err) { return arDecLatin.decode(bytes); }
+        }
+        function dosDate(d, t) { return new Date(((d >> 9) & 127) + 1980, ((d >> 5) & 15) - 1, d & 31, (t >> 11) & 31, (t >> 5) & 63, (t & 31) * 2); }
+        async function zipOpen(src) {
+            const size = src.size;
+            if (size < 22) throw new Error("This does not look like a zip file.");
+            const tail = await src.read(Math.max(0, size - (65535 + 22 + 20)), size);
+            const dv = new DataView(tail.buffer, tail.byteOffset, tail.byteLength);
+            let p = tail.length - 22;
+            while (p >= 0 && dv.getUint32(p, true) !== 0x06054b50) p--;
+            if (p < 0) throw new Error("This does not look like a zip file (no end-of-archive record).");
+            let total = dv.getUint16(p + 10, true), cdSize = dv.getUint32(p + 12, true), cdOff = dv.getUint32(p + 16, true);
+            if (total === 0xffff || cdSize === 0xffffffff || cdOff === 0xffffffff) {
+                const lp = p - 20;
+                if (lp >= 0 && dv.getUint32(lp, true) === 0x07064b50) {
+                    const z64 = Number(dv.getBigUint64(lp + 8, true)), z = await src.read(z64, z64 + 56), zd = new DataView(z.buffer, z.byteOffset, z.byteLength);
+                    if (zd.getUint32(0, true) !== 0x06064b50) throw new Error("Damaged zip64 record.");
+                    total = Number(zd.getBigUint64(32, true)); cdSize = Number(zd.getBigUint64(40, true)); cdOff = Number(zd.getBigUint64(48, true));
+                }
+            }
+            if (cdSize > 128 * 1024 * 1024) throw new Error("This archive's file list is too large to open here.");
+            const cd = await src.read(cdOff, cdOff + cdSize), cv = new DataView(cd.buffer, cd.byteOffset, cd.byteLength);
+            const entries = [];
+            let q = 0;
+            while (q + 46 <= cd.length && cv.getUint32(q, true) === 0x02014b50) {
+                const flags = cv.getUint16(q + 8, true), method = cv.getUint16(q + 10, true), time = cv.getUint16(q + 12, true), date = cv.getUint16(q + 14, true);
+                let csize = cv.getUint32(q + 20, true), usize = cv.getUint32(q + 24, true), lho = cv.getUint32(q + 42, true);
+                const nlen = cv.getUint16(q + 28, true), elen = cv.getUint16(q + 30, true), clen = cv.getUint16(q + 32, true);
+                const nameBytes = cd.subarray(q + 46, q + 46 + nlen);
+                if (usize === 0xffffffff || csize === 0xffffffff || lho === 0xffffffff) {
+                    let x = q + 46 + nlen; const xe = x + elen;
+                    while (x + 4 <= xe) {
+                        const id = cv.getUint16(x, true), len = cv.getUint16(x + 2, true);
+                        if (id === 1) {
+                            let y = x + 4;
+                            if (usize === 0xffffffff) { usize = Number(cv.getBigUint64(y, true)); y += 8; }
+                            if (csize === 0xffffffff) { csize = Number(cv.getBigUint64(y, true)); y += 8; }
+                            if (lho === 0xffffffff) { lho = Number(cv.getBigUint64(y, true)); }
+                        }
+                        x += 4 + len;
+                    }
+                }
+                let name = arName(nameBytes, flags & 0x800).replace(/\\/g, "/").replace(/^(\.\/|\/)+/, "");
+                const dir = name.endsWith("/");
+                if (dir) name = name.replace(/\/+$/, "");
+                if (name) entries.push({ name, dir, usize, csize, method, flags, lho, date: dosDate(date, time) });
+                q += 46 + nlen + elen + clen;
+            }
+            const readEntry = async (e, max) => {
+                if (e.flags & 1) throw new Error("This entry is password protected.");
+                if (e.usize > max) throw new Error(`This file is larger than ${formatFileSize(max)}.`);
+                const h = await src.read(e.lho, e.lho + 30), hd = new DataView(h.buffer, h.byteOffset, h.byteLength);
+                if (hd.getUint32(0, true) !== 0x04034b50) throw new Error("Damaged zip entry.");
+                const start = e.lho + 30 + hd.getUint16(26, true) + hd.getUint16(28, true), raw = await src.read(start, start + e.csize);
+                if (e.method === 0) return new Blob([raw]);
+                if (e.method === 8) return arInflateRaw(raw);
+                throw new Error("Unsupported compression method (" + e.method + ").");
+            };
+            return { kind: "zip", entries, readEntry, packed: true, fileSize: size };
+        }
+
+        // ---- TAR / TGZ ----
+        function tarOct(b, off, len) {
+            if (b[off] & 0x80) { let v = 0; for (let i = 1; i < len; i++) v = v * 256 + b[off + i]; return v; }
+            const s = new TextDecoder().decode(b.subarray(off, off + len)).replace(/\0.*$/, "").trim();
+            return s ? parseInt(s, 8) || 0 : 0;
+        }
+        function tarStr(b, off, len) { return new TextDecoder().decode(b.subarray(off, off + len)).replace(/\0.*$/, ""); }
+        function tarHeader(b) {
+            let zero = true;
+            for (let i = 0; i < 512; i++) if (b[i]) { zero = false; break; }
+            if (zero) return null;
+            let name = tarStr(b, 0, 100);
+            const prefix = tarStr(b, 345, 155);
+            if (prefix && tarStr(b, 257, 5) === "ustar") name = prefix + "/" + name;
+            return { name, size: tarOct(b, 124, 12), mtime: tarOct(b, 136, 12), type: String.fromCharCode(b[156] || 48) };
+        }
+        function tarPax(text) {
+            const out = {};
+            for (let p = 0; p < text.length;) {
+                const sp = text.indexOf(" ", p); if (sp < 0) break;
+                const len = parseInt(text.slice(p, sp), 10); if (!len) break;
+                const rec = text.slice(sp + 1, p + len - 1), eq = rec.indexOf("=");
+                if (eq > 0) out[rec.slice(0, eq)] = rec.slice(eq + 1);
+                p += len;
+            }
+            return out;
+        }
+        function tarFinish(raw, size, mtime, type, dataStart) {
+            const name = raw.replace(/^(\.\/|\/)+/, "").replace(/\/+$/, "");
+            return name && type !== "x" ? { name, dir: type === "5", usize: size, csize: null, date: mtime ? new Date(mtime * 1000) : null, dataStart } : null;
+        }
+        async function tarOpenPlain(src) {
+            const entries = [];
+            let off = 0, win = { start: 0, buf: new Uint8Array(0) }, longName = null, pax = {};
+            const header = async (o) => {
+                if (!(o >= win.start && o + 512 <= win.start + win.buf.length)) { win = { start: o, buf: await src.read(o, Math.min(src.size, o + 256 * 1024)) }; }
+                return win.buf.subarray(o - win.start, o - win.start + 512);
+            };
+            while (off + 512 <= src.size && entries.length < 200000) {
+                const h = await header(off); if (h.length < 512) break;
+                const hd = tarHeader(h); if (!hd) break;
+                const ds = off + 512;
+                if (hd.type === "L" || hd.type === "x" || hd.type === "g") {
+                    const body = await src.read(ds, ds + hd.size), text = new TextDecoder().decode(body);
+                    if (hd.type === "L") longName = text.replace(/\0.*$/, ""); else if (hd.type === "x") pax = tarPax(text);
+                    off = ds + Math.ceil(hd.size / 512) * 512; continue;
+                }
+                const size = pax.size ? parseInt(pax.size, 10) : hd.size;
+                const e = tarFinish(pax.path || longName || hd.name, size, hd.mtime, hd.type, ds);
+                if (e && hd.type !== "g" && hd.type !== "1" && hd.type !== "2") entries.push(e);
+                longName = null; pax = {};
+                off = ds + Math.ceil(size / 512) * 512;
+            }
+            const readEntry = async (e, max) => {
+                if (e.usize > max) throw new Error(`This file is larger than ${formatFileSize(max)}.`);
+                return new Blob([await src.read(e.dataStart, e.dataStart + e.usize)]);
+            };
+            return { kind: "tar", entries, readEntry, packed: false, fileSize: src.size };
+        }
+        // Sequential reader over a decompressed stream.
+        function arByteStream(reader) {
+            let chunks = [], have = 0, pos = 0, done = false;
+            const fill = async (n) => { while (have < n && !done) { const r = await reader.read(); if (r.done) done = true; else { chunks.push(r.value); have += r.value.length; } } };
+            const take = (n) => {
+                const out = new Uint8Array(Math.min(n, have)); let o = 0;
+                while (o < out.length) { const c = chunks[0], k = Math.min(c.length, out.length - o); out.set(c.subarray(0, k), o); o += k; if (k === c.length) chunks.shift(); else chunks[0] = c.subarray(k); }
+                have -= out.length; pos += out.length; return out;
+            };
+            return {
+                get pos() { return pos; },
+                async read(n) { await fill(n); return take(n); },
+                async skip(n) { while (n > 0) { await fill(Math.min(n, 1 << 20)); if (!have) return; const k = Math.min(n, have); take(k); n -= k; } },
+                async blob(n) { const parts = []; while (n > 0) { await fill(Math.min(n, 1 << 20)); if (!have) break; const k = Math.min(n, have); parts.push(take(k)); n -= k; } return new Blob(parts); },
+                cancel() { reader.cancel().catch(() => {}); },
+            };
+        }
+        async function arGzipStream(src) {
+            if (typeof DecompressionStream === "undefined") throw new Error("This browser cannot open .tgz files (no DecompressionStream).");
+            return arByteStream((await src.stream()).pipeThrough(new DecompressionStream("gzip")).getReader());
+        }
+        async function tgzOpen(src, onProgress) {
+            if (src.size > AR_MAX_STREAM) throw new Error(`.tgz files over ${formatFileSize(AR_MAX_STREAM)} are not scanned here. Download it instead.`);
+            const bs = await arGzipStream(src), entries = [];
+            let longName = null, pax = {};
+            try {
+                while (entries.length < 200000) {
+                    const h = await bs.read(512); if (h.length < 512) break;
+                    const hd = tarHeader(h); if (!hd) break;
+                    if (hd.type === "L" || hd.type === "x" || hd.type === "g") {
+                        const text = new TextDecoder().decode(await bs.read(hd.size)); await bs.skip(Math.ceil(hd.size / 512) * 512 - hd.size);
+                        if (hd.type === "L") longName = text.replace(/\0.*$/, ""); else if (hd.type === "x") pax = tarPax(text);
+                        continue;
+                    }
+                    const size = pax.size ? parseInt(pax.size, 10) : hd.size, ds = bs.pos;
+                    const e = tarFinish(pax.path || longName || hd.name, size, hd.mtime, hd.type, ds);
+                    if (e && hd.type !== "1" && hd.type !== "2") entries.push(e);
+                    longName = null; pax = {};
+                    await bs.skip(Math.ceil(size / 512) * 512);
+                    if (onProgress && entries.length % 200 === 0) onProgress(entries.length);
+                }
+            } finally { bs.cancel(); }
+            const readEntry = async (e, max) => {
+                if (e.usize > max) throw new Error(`This file is larger than ${formatFileSize(max)}.`);
+                const s2 = await arGzipStream(src);
+                try { await s2.skip(e.dataStart); return await s2.blob(e.usize); } finally { s2.cancel(); }
+            };
+            return { kind: "tgz", entries, readEntry, packed: false, fileSize: src.size };
+        }
+        async function arOpen(name, src, onProgress) {
+            if (/\.zip$/i.test(name)) return zipOpen(src);
+            if (/\.(tgz|tar\.gz)$/i.test(name)) return tgzOpen(src, onProgress);
+            return tarOpenPlain(src);
+        }
+
+        // ---- viewer ----
+        async function showArchivePreview(bodyEl, filePath, fileName, fileUrl) {
+            bodyEl.innerHTML = '<div class="loading"><div class="spinner"></div><div id="arStatus">Reading archive\u2026</div></div>';
+            const status = bodyEl.querySelector("#arStatus");
+            let first;
+            try {
+                const src = await sourceForLibraryFile(filePath, fileUrl);
+                first = await arOpen(fileName, src, (n) => { if (status.isConnected) status.textContent = `Reading archive\u2026 ${n.toLocaleString()} entries`; });
+            } catch (err) {
+                console.error(err);
+                bodyEl.innerHTML = "";
+                showUnavailable(bodyEl, fileName, fileUrl, null);
+                const p = bodyEl.querySelector("p");
+                if (p) p.textContent = (err && err.message) || "This archive could not be read.";
+                return;
+            }
+            runArchiveViewer(bodyEl, fileName, first);
+        }
+        function runArchiveViewer(bodyEl, rootName, firstArchive) {
+            const stack = [{ title: rootName, ar: firstArchive, cwd: "", filter: "" }];
+            let view = null; // { entry, title } while a file from the archive is open
+            const level = () => stack[stack.length - 1];
+            const env0 = (ar, entryPath) => ({
+                dir: dirOfPath(entryPath),
+                remoteImages: false,
+                assetSync: null,
+                loadAsset: async (p) => {
+                    const e = ar.entries.find((x) => !x.dir && x.name === p);
+                    if (!e) return null;
+                    try { return trackBlobUrl(await ar.readEntry(e, AR_MAX_VIEW)); } catch (err) { return null; }
+                },
+                openPath: (p) => {
+                    const e = ar.entries.find((x) => !x.dir && x.name === p);
+                    if (e) { openEntry(e); return true; }
+                    if (ar.entries.some((x) => x.name === p || x.name.startsWith(p + "/"))) { level().cwd = p; level().filter = ""; view = null; paint(); return true; }
+                    return false;
+                },
+            });
+            const sizeCell = (n) => (n === null || n === undefined ? "" : formatFileSize(n));
+            const fmtDate = (d) => (d ? d.toISOString().slice(0, 10) : "");
+            const crumbs = () => {
+                const lv = level();
+                return stack.map((s) => s.title).join(" \u203a ") + (lv.cwd ? " / " + lv.cwd : "") + (view ? " / " + view.title : "");
+            };
+            function goBack() {
+                if (view) { view = null; paint(); return true; }
+                const lv = level();
+                if (lv.filter) { lv.filter = ""; paint(); return true; }
+                if (lv.cwd) { lv.cwd = lv.cwd.includes("/") ? lv.cwd.slice(0, lv.cwd.lastIndexOf("/")) : ""; paint(); return true; }
+                if (stack.length > 1) { stack.pop(); paint(); return true; }
+                return false;
+            }
+            modalBackHook = () => {
+                if (document.activeElement && document.activeElement.tagName === "INPUT") return false;
+                return goBack();
+            };
+            function listing() {
+                const lv = level(), ar = lv.ar, q = lv.filter.trim().toLowerCase();
+                if (q) {
+                    const hits = [];
+                    for (const e of ar.entries) { if (!e.dir && e.name.toLowerCase().includes(q)) { hits.push({ label: e.name, e }); if (hits.length >= 500) break; } }
+                    return { rows: hits, total: hits.length, flat: true };
+                }
+                const prefix = lv.cwd ? lv.cwd + "/" : "", dirs = new Map(), files = [];
+                for (const e of ar.entries) {
+                    if (!e.name.startsWith(prefix) || e.name === lv.cwd) continue;
+                    const rest = e.name.slice(prefix.length), slash = rest.indexOf("/");
+                    if (slash >= 0) { if (!dirs.has(rest.slice(0, slash))) dirs.set(rest.slice(0, slash), true); }
+                    else if (e.dir) { if (!dirs.has(rest)) dirs.set(rest, e); }
+                    else files.push({ label: rest, e });
+                }
+                const rows = [...[...dirs.keys()].sort((a, b) => a.localeCompare(b)).map((n) => ({ label: n, dirName: n })), ...files.sort((a, b) => a.label.localeCompare(b.label))];
+                return { rows, total: rows.length, flat: false };
+            }
+            function paint() {
+                const lv = level();
+                if (view) return paintFile();
+                const ar = lv.ar, files = ar.entries.filter((e) => !e.dir), packed = ar.packed ? files.reduce((a, e) => a + (e.csize || 0), 0) : null, unpacked = files.reduce((a, e) => a + (e.usize || 0), 0);
+                const L = listing(), shown = L.rows.slice(0, AR_ROW_CAP);
+                const rowHtml = shown.map((r, k) => {
+                    const dir = !!r.dirName, e = r.e;
+                    return `<div class="ar-row${dir ? " ar-dir" : ""}" role="button" tabindex="0" data-k="${k}"><span class="ar-name"><span class="ar-ico" aria-hidden="true">${dir ? icons.folder : icons[AR_IMG_EXT.has(arExt(r.label)) ? "image" : ARCHIVE_NAME_RE.test(r.label) ? "archive" : "text"]}</span><span class="ar-label">${escapeHtml(r.label)}</span></span><span class="ar-size">${dir ? "" : sizeCell(e.usize)}</span><span class="ar-csize">${dir || !ar.packed ? "" : sizeCell(e.csize)}</span><span class="ar-date">${dir ? "" : fmtDate(e.date)}</span></div>`;
+                }).join("");
+                bodyEl.innerHTML = `<div class="ar-bar"><button type="button" class="md-toggle" data-act="back"${stack.length === 1 && !lv.cwd && !lv.filter ? " hidden" : ""}>\u2190 Back</button><span class="ar-path" title="${escapeHtml(crumbs())}">${escapeHtml(crumbs())}</span></div>
+<div class="ar-sum">${files.length.toLocaleString()} file${files.length === 1 ? "" : "s"} \u00b7 ${formatFileSize(unpacked)} unpacked${packed !== null ? ` \u00b7 ${formatFileSize(packed)} packed${unpacked ? ` (${Math.round((packed / unpacked) * 100)}%)` : ""}` : ` \u00b7 archive ${formatFileSize(ar.fileSize)}`}</div>
+<input type="search" class="songs-search ar-filter" placeholder="Filter files in this archive\u2026" aria-label="Filter files in this archive" value="${escapeHtml(lv.filter)}" autocomplete="off">
+<div class="ar-head" aria-hidden="true"><span class="ar-name">Name</span><span class="ar-size">Size</span><span class="ar-csize">${ar.packed ? "Packed" : ""}</span><span class="ar-date">Modified</span></div>
+<div class="ar-list">${rowHtml || '<div class="ar-empty">Nothing here.</div>'}</div>${L.total > shown.length ? `<div class="truncation-notice">Showing the first ${AR_ROW_CAP.toLocaleString()} of ${L.total.toLocaleString()} entries. Use the filter to find the rest.</div>` : ""}`;
+                const filter = bodyEl.querySelector(".ar-filter");
+                filter.addEventListener("input", () => {
+                    lv.filter = filter.value;
+                    clearTimeout(filter._t);
+                    filter._t = setTimeout(() => { const pos = filter.selectionStart; paint(); const f2 = bodyEl.querySelector(".ar-filter"); f2.focus(); f2.setSelectionRange(pos, pos); }, 180);
+                });
+                bodyEl.querySelector('[data-act="back"]').addEventListener("click", goBack);
+                const list = bodyEl.querySelector(".ar-list");
+                const act = (row) => {
+                    const r = shown[+row.dataset.k];
+                    if (!r) return;
+                    if (r.dirName) { lv.cwd = (lv.cwd ? lv.cwd + "/" : "") + r.dirName; paint(); return; }
+                    openEntry(r.e);
+                };
+                list.addEventListener("click", (e) => { const row = e.target.closest(".ar-row"); if (row) act(row); });
+                list.addEventListener("keydown", (e) => {
+                    const row = e.target.closest(".ar-row");
+                    if (!row) return;
+                    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); act(row); }
+                    else if (e.key === "ArrowDown" && row.nextElementSibling) { e.preventDefault(); e.stopPropagation(); row.nextElementSibling.focus(); }
+                    else if (e.key === "ArrowUp" && row.previousElementSibling) { e.preventDefault(); e.stopPropagation(); row.previousElementSibling.focus(); }
+                });
+                bodyEl.scrollTop = 0;
+            }
+            async function openEntry(entry) {
+                const lv = level(), title = entry.name.slice(entry.name.lastIndexOf("/") + 1);
+                view = { entry, title };
+                paintFile();
+                const content = bodyEl.querySelector(".ar-content");
+                const ext = arExt(entry.name);
+                try {
+                    const nested = ARCHIVE_NAME_RE.test(title);
+                    const blob = await lv.ar.readEntry(entry, nested ? AR_MAX_NESTED : AR_MAX_VIEW);
+                    if (!view || view.entry !== entry) return; // went back while loading
+                    const dl = bodyEl.querySelector("[data-act=dl]");
+                    if (dl) { dl.href = trackBlobUrl(blob); dl.download = title; dl.hidden = false; }
+                    if (nested) {
+                        content.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+                        const ar = await arOpen(title, blobSource(blob));
+                        if (!view || view.entry !== entry) return;
+                        view = null;
+                        stack.push({ title, ar, cwd: "", filter: "" });
+                        paint();
+                        return;
+                    }
+                    if (AR_IMG_EXT.has(ext)) {
+                        content.innerHTML = `<img class="preview-image" alt="${escapeHtml(title)}">`;
+                        content.querySelector("img").src = trackBlobUrl(blob.type ? blob : new Blob([blob], { type: ext === "svg" ? "image/svg+xml" : "image/" + (ext === "jpg" ? "jpeg" : ext) }));
+                        return;
+                    }
+                    const head = new Uint8Array(await blob.slice(0, 8192).arrayBuffer());
+                    if (head.includes(0) && !AR_TEXT_EXT.has(ext)) { content.innerHTML = `<div class="preview-unavailable"><h3>Binary file</h3><p>${escapeHtml(title)} \u00b7 ${formatFileSize(blob.size)}. Use Download to save it.</p></div>`; return; }
+                    const cut = blob.size > MAX_PREVIEW_BYTES, text = await (cut ? blob.slice(0, MAX_PREVIEW_BYTES) : blob).text();
+                    if (isMarkdownName(title)) mountMarkdown(content, text, cut, title, env0(lv.ar, entry.name));
+                    else renderTextPreview(content, text, title, cut);
+                } catch (err) {
+                    console.error(err);
+                    if (view && view.entry === entry) content.innerHTML = `<div class="preview-unavailable"><h3>Cannot open this file</h3><p>${escapeHtml((err && err.message) || "It could not be read from the archive.")}</p></div>`;
+                }
+            }
+            function paintFile() {
+                const e = view.entry;
+                bodyEl.innerHTML = `<div class="ar-bar"><button type="button" class="md-toggle" data-act="back">\u2190 Back</button><span class="ar-path" title="${escapeHtml(crumbs())}">${escapeHtml(crumbs())}</span><a class="md-toggle" data-act="dl" hidden>Download</a></div><div class="ar-content"><div class="loading"><div class="spinner"></div></div></div>`;
+                bodyEl.querySelector('[data-act="back"]').addEventListener("click", goBack);
+                bodyEl.querySelector('[data-act="back"]').focus();
+                bodyEl.scrollTop = 0;
+            }
+            paint();
+        }
+
+        // ======================================================================
+        // Download folder as zip (reuses the stored-zip writer recZip from the
+        // recording tools, now with progress + cancel).
+        // ======================================================================
+        const MB = 1024 * 1024;
+        const ZIP_MAX_FILES = 60000; // the writer is plain zip (no zip64): 65,535 entries and 4 GB at most
+        let zipBusy = false;
+        function folderZipButtonHtml() {
+            return `<button type="button" class="breadcrumb-pin-btn" id="zipFolderBtn" title="Download this folder as a zip" aria-label="Download this folder as a zip"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></button>`;
+        }
+        function collectFolderFiles(children, pathPrefix, relPrefix, out) {
+            for (const n of children) {
+                const path = pathPrefix ? pathPrefix + "/" + n.name : n.name, rel = relPrefix ? relPrefix + "/" + n.name : n.name;
+                if (n.type === "directory") { if (n.children) collectFolderFiles(n.children, path, rel, out); }
+                else out.push({ path, rel, size: getItemSize(n), date: getItemDate(n), order: out.length });
+            }
+        }
+        async function downloadFolderZip() {
+            if (zipBusy || !fileIndex) return;
+            const pathArr = currentPath.slice();
+            const children = pathArr.length ? (findNode(pathArr.join("/")) || {}).children : fileIndex.root;
+            if (!children) return;
+            const files = [];
+            collectFolderFiles(children, pathArr.join("/"), "", files);
+            if (!files.length) { opStart("There are no files in this folder."); opDone("There are no files in this folder.", 2500); return; }
+            const total = files.reduce((a, f) => a + (f.size || 0), 0);
+            const lim = LOCAL.active ? { warn: 1024 * MB, max: 3.5 * 1024 * MB } : { warn: 100 * MB, max: 1024 * MB };
+            if (files.length > ZIP_MAX_FILES || files.some((f) => f.size >= 0xffffffff) || total > lim.max) {
+                alert(`This folder is too big to pack in the browser (${files.length.toLocaleString()} files, ${formatFileSize(total)}). The limit is ${formatFileSize(lim.max)} and ${ZIP_MAX_FILES.toLocaleString()} files. Open a smaller sub-folder instead.`);
+                return;
+            }
+            if (total > lim.warn && !confirm(`This folder has ${files.length.toLocaleString()} files (${formatFileSize(total)}). ${LOCAL.active ? "Packing it can take a while." : "It will be downloaded and held in memory first."} Continue?`)) return;
+            const folderName = pathArr.length ? pathArr[pathArr.length - 1] : LOCAL.active ? LOCAL.name || "folder" : "files";
+            const ctl = new AbortController(), wCollect = LOCAL.active ? 0.05 : 0.8;
+            zipBusy = true;
+            opStart(`Collecting ${files.length.toLocaleString()} files\u2026`, () => ctl.abort());
+            try {
+                const items = [];
+                let next = 0, finished = 0, failed = 0;
+                const worker = async () => {
+                    while (next < files.length && !ctl.signal.aborted) {
+                        const f = files[next++];
+                        try { items[f.order] = { name: `${folderName}/${f.rel}`, blob: await blobForPath(f.path, ctl.signal), date: f.date }; }
+                        catch (err) { if (err && err.name === "AbortError") return; failed++; }
+                        finished++;
+                        opUpdate(`Collecting files\u2026 ${finished.toLocaleString()} / ${files.length.toLocaleString()}`, (finished / files.length) * wCollect);
+                    }
+                };
+                await Promise.all(Array.from({ length: LOCAL.active ? 8 : 4 }, worker));
+                if (ctl.signal.aborted) throw new DOMException("Cancelled", "AbortError");
+                const list = items.filter(Boolean);
+                if (!list.length) throw new Error("None of the files could be read.");
+                const zip = await recZip(list, (n, t) => opUpdate(`Packing\u2026 ${n.toLocaleString()} / ${t.toLocaleString()}`, wCollect + (1 - wCollect) * (n / t)), ctl.signal);
+                recSave(zip, `${folderName}.zip`);
+                opDone(failed ? `Saved ${folderName}.zip. ${failed} file${failed === 1 ? "" : "s"} could not be read and ${failed === 1 ? "was" : "were"} left out.` : `Saved ${folderName}.zip (${list.length.toLocaleString()} files)`, 4500);
+            } catch (err) {
+                if (err && err.name === "AbortError") opDone("Cancelled.", 1500);
+                else { console.error(err); opDone("Could not build the zip: " + ((err && err.message) || "unknown error"), 6000); }
+            } finally { zipBusy = false; }
+        }
+
+        // ======================================================================
+        // Local folder mode: browse a folder from this device with the same UI.
+        // File System Access API (showDirectoryPicker) where available, otherwise
+        // <input webkitdirectory>. Files stay on the device: previews use blob:
+        // URLs of the picked File objects, so no request leaves the browser.
+        // Nothing is stored; reloading returns to the hosted library.
+        // ======================================================================
+        const LOCAL_SKIP_DIRS = new Set([".git", "node_modules"]);
+        const LOCAL_SKIP_FILES = new Set([".DS_Store", "Thumbs.db"]);
+        const CAT_EXT = (() => {
+            const m = {};
+            const add = (cat, list) => list.split(" ").forEach((e) => { m[e] = cat; });
+            add("image", "png jpg jpeg gif webp svg bmp ico avif tif tiff");
+            add("video", "mp4 webm mkv mov m4v ogv avi");
+            add("audio", "mp3 flac wav ogg oga opus aac m4a wma aiff");
+            add("playlist", "m3u m3u8");
+            add("document", "pdf doc docx xls xlsx ppt pptx odt ods odp epub");
+            add("font", "ttf otf woff woff2");
+            add("archive", "zip tar tgz gz bz2 xz 7z rar");
+            add("code", "js mjs cjs ts tsx jsx py rb go rs c h cc cpp hpp java kt swift php sh bash zsh fish bat cmd ps1 lua pl sql cs");
+            add("markup", "html htm xml xhtml");
+            add("style", "css scss sass less");
+            add("data", "json jsonc csv tsv yaml yml toml ini cfg conf env");
+            add("text", "txt md markdown rst log srt vtt pls asx xspf");
+            return m;
+        })();
+        const TEXT_NAMES = new Set(["readme", "license", "licence", "changelog", "authors", "notice", "makefile", "dockerfile", ".gitignore", ".gitattributes", ".editorconfig"]);
+        function categoryForName(name) {
+            const i = name.lastIndexOf(".");
+            if (i > 0) return CAT_EXT[name.slice(i + 1).toLowerCase()] || "other";
+            return TEXT_NAMES.has(name.toLowerCase()) ? "text" : "other";
+        }
+        async function buildFromDirHandle(dirHandle, onCount, signal) {
+            const files = new Map();
+            let count = 0;
+            async function walk(dh, prefix) {
+                const kids = [], entries = [];
+                for await (const [name, h] of dh.entries()) entries.push([name, h]);
+                entries.sort((a, b) => a[0].localeCompare(b[0]));
+                const fileEntries = [];
+                for (const [name, h] of entries) {
+                    if (signal.aborted) throw new DOMException("Cancelled", "AbortError");
+                    if (h.kind === "directory") {
+                        if (LOCAL_SKIP_DIRS.has(name)) continue;
+                        kids.push({ name, type: "directory", children: await walk(h, prefix ? prefix + "/" + name : name) });
+                    } else if (!LOCAL_SKIP_FILES.has(name)) fileEntries.push([name, h]);
+                }
+                for (let i = 0; i < fileEntries.length; i += 32) {
+                    await Promise.all(fileEntries.slice(i, i + 32).map(async ([name, h]) => {
+                        try {
+                            const f = await h.getFile(), path = prefix ? prefix + "/" + name : name;
+                            files.set(path, { handle: h, file: f });
+                            kids.push({ name, type: "file", size: f.size, mtime: f.lastModified, category: categoryForName(name) });
+                        } catch (err) { /* unreadable file: leave it out */ }
+                        count++;
+                    }));
+                    onCount(count);
+                }
+                return kids;
+            }
+            const root = await walk(dirHandle, "");
+            return { root, files, name: dirHandle.name || "Local folder" };
+        }
+        function buildFromFileList(list) {
+            const files = new Map(), root = [], dirs = new Map([["", root]]);
+            let rootName = "";
+            const ensureDir = (path) => {
+                if (dirs.has(path)) return dirs.get(path);
+                const parent = dirOfPath(path), arr = [];
+                ensureDir(parent).push({ name: path.slice(parent ? parent.length + 1 : 0), type: "directory", children: arr });
+                dirs.set(path, arr);
+                return arr;
+            };
+            for (const f of list) {
+                const hasRel = !!f.webkitRelativePath, parts = (f.webkitRelativePath || f.name).split("/");
+                if (!rootName) rootName = hasRel ? parts[0] : "Selected files";
+                const inner = hasRel ? parts.slice(1) : parts, base = inner[inner.length - 1];
+                if (!base || inner.slice(0, -1).some((s) => LOCAL_SKIP_DIRS.has(s)) || LOCAL_SKIP_FILES.has(base)) continue;
+                const path = inner.join("/");
+                files.set(path, { file: f });
+                ensureDir(dirOfPath(path)).push({ name: base, type: "file", size: f.size, mtime: f.lastModified, category: categoryForName(base) });
+            }
+            return { root, files, name: rootName || "Local folder" };
+        }
+        function revokeLocalUrls() {
+            for (const u of LOCAL.urls.values()) URL.revokeObjectURL(u);
+            LOCAL.urls.clear();
+        }
+        function syncModeUi() {
+            const local = LOCAL.active;
+            const text = document.getElementById("modeChipText"), close = document.getElementById("modeChipClose"), chip = document.getElementById("modeChip");
+            if (!chip) return;
+            text.textContent = local ? `Local folder: ${LOCAL.name}` : "Hosted repo";
+            chip.title = local ? "Browsing a folder on this device. Nothing is uploaded." : "Browsing the files hosted with this page";
+            close.hidden = !local;
+            document.title = local ? `File Viewer \u2013 ${LOCAL.name}` : "File Viewer";
+            const sc = document.getElementById("localCloseBtn");
+            if (sc) sc.hidden = !local;
+            const so = document.getElementById("localOpenBtn");
+            if (so) so.textContent = local ? "Open another\u2026" : "Open\u2026";
+        }
+        function enterLocalMode(name, root, files) {
+            if (document.getElementById("modal").classList.contains("active")) closeModal();
+            if (!LOCAL.active) {
+                LOCAL.hosted = { fileIndex, allFiles, filesByPath, pinned: pinnedFolders, favorites: favoriteFiles, expanded: expandedFolders, path: currentPath, search: searchQuery };
+            } else revokeLocalUrls();
+            LOCAL.active = true;
+            LOCAL.name = name;
+            LOCAL.files = files;
+            fileIndex = { root, local: true };
+            allFiles = [];
+            filesByPath = new Map();
+            preprocessFiles(root);
+            pinnedFolders = [];
+            favoriteFiles = [];
+            expandedFolders = new Set([""]);
+            fetchCache.clear();
+            fetchCacheChars = 0;
+            document.body.dataset.source = "local";
+            syncModeUi();
+            closeLocalModal();
+            wireUiOnce();
+            navigateTo([]);
+            announce(`Opened local folder ${name}`);
+        }
+        function closeLocalFolder() {
+            if (!LOCAL.active) return;
+            if (document.getElementById("modal").classList.contains("active")) closeModal();
+            revokeLocalUrls();
+            const h = LOCAL.hosted;
+            LOCAL.active = false;
+            LOCAL.name = "";
+            LOCAL.files = new Map();
+            LOCAL.hosted = null;
+            delete document.body.dataset.source;
+            fetchCache.clear();
+            fetchCacheChars = 0;
+            searchQuery = "";
+            document.getElementById("search").value = "";
+            updateSearchClearVisibility();
+            if (h && h.fileIndex) {
+                fileIndex = h.fileIndex; allFiles = h.allFiles; filesByPath = h.filesByPath;
+                pinnedFolders = h.pinned; favoriteFiles = h.favorites; expandedFolders = h.expanded;
+                syncModeUi();
+                navigateTo(h.path);
+            } else {
+                fileIndex = null; allFiles = []; filesByPath = new Map(); pinnedFolders = []; favoriteFiles = [];
+                expandedFolders = new Set([""]); currentPath = [];
+                syncModeUi();
+                renderNoLibrary();
+            }
+            announce("Closed local folder");
+        }
+        function renderNoLibrary() {
+            document.getElementById("treeContent").innerHTML = "";
+            document.getElementById("breadcrumb").innerHTML = `<span class="breadcrumb-item current">Home</span>`;
+            renderPinnedFolders();
+            renderFavoriteFiles();
+            document.getElementById("main").innerHTML = `
+          <div class="empty-state">
+            ${emptyStateIllustrations.error}
+            <h2>Could not load files</h2>
+            <p>Make sure file_index.json exists, or browse a folder from this device.</p>
+            <p><button type="button" class="theme-reset-btn empty-action" data-act="open-local">Open a local folder</button></p>
+          </div>
+        `;
+        }
+        async function openLocalFolder() {
+            if (window.showDirectoryPicker) {
+                let dir;
+                try { dir = await window.showDirectoryPicker({ mode: "read" }); }
+                catch (err) {
+                    if (err && err.name === "AbortError") return;
+                    console.warn(err);
+                    openLocalModal(`This browser blocked the folder picker${err && err.message ? " (" + err.message + ")" : ""}. You can still open a folder with the basic picker.`);
+                    return;
+                }
+                const ctl = new AbortController();
+                opStart("Reading folder\u2026", () => ctl.abort());
+                try {
+                    const res = await buildFromDirHandle(dir, (n) => opUpdate(`Reading folder\u2026 ${n.toLocaleString()} files`), ctl.signal);
+                    opDone();
+                    enterLocalMode(res.name, res.root, res.files);
+                } catch (err) {
+                    opDone();
+                    if (!(err && err.name === "AbortError")) { console.error(err); openLocalModal("The folder could not be read" + (err && err.message ? " (" + err.message + ")." : ".") + " Try the basic picker."); }
+                }
+                return;
+            }
+            document.getElementById("localDirInput").click();
+        }
+        function handleDirInput(e) {
+            const inp = e.target, list = Array.from(inp.files || []);
+            inp.value = "";
+            if (!list.length) return;
+            const res = buildFromFileList(list);
+            if (!res.files.size) { openLocalModal("No readable files were found in that selection."); return; }
+            enterLocalMode(res.name, res.root, res.files);
+        }
+        function openLocalModal(message) {
+            document.getElementById("localMsg").textContent = message || "Choose a folder on this device to browse it here, offline.";
+            rememberModalFocus("localModal");
+            document.getElementById("localModal").classList.add("active");
+            syncBackgroundInert();
+            focusWhenReady("localPickBtn", "localModal");
+        }
+        function closeLocalModal() {
+            const m = document.getElementById("localModal");
+            if (!m || !m.classList.contains("active")) return;
+            m.classList.remove("active");
+            syncBackgroundInert();
+            restoreModalFocus("localModal");
+        }
+
+        // ======================================================================
+        // Wiring for the features above (called once, from wireUiOnce()).
+        // ======================================================================
+        function setupNewFeatureListeners() {
+            const $ = (id) => document.getElementById(id);
+            $("treeCollapseAll").addEventListener("click", collapseAllFolders);
+            $("breadcrumb").addEventListener("click", (e) => { if (e.target.closest("#zipFolderBtn")) downloadFolderZip(); });
+            $("main").addEventListener("click", (e) => { if (e.target.closest('[data-act="open-local"]')) openLocalFolder(); });
+            $("localBtn").addEventListener("click", openLocalFolder);
+            $("localOpenBtn").addEventListener("click", () => { $("settingsMenu").classList.remove("active"); $("settingsBtn").setAttribute("aria-expanded", "false"); openLocalFolder(); });
+            $("localCloseBtn").addEventListener("click", closeLocalFolder);
+            $("modeChipClose").addEventListener("click", closeLocalFolder);
+            $("localDirInput").addEventListener("change", handleDirInput);
+            $("localPickBtn").addEventListener("click", () => { $("localDirInput").click(); });
+            $("localModalClose").addEventListener("click", closeLocalModal);
+            $("localModal").addEventListener("click", (e) => { if (e.target === e.currentTarget) closeLocalModal(); });
+            $("localModal").addEventListener("keydown", (e) => trapModalFocus(e, "localModalContent"));
+            const rail = $("galleryRail");
+            rail.addEventListener("click", (e) => {
+                const b = e.target.closest(".gal-item");
+                if (!b || !gallery) return;
+                const it = gallery.items[Number(b.dataset.i)];
+                if (it && it.path !== currentFilePath) openFile(it.path, gallery.kind, it.name);
+            });
+            // Up / Down / Home / End move between the rail's files (the preview's own Up / Down scrolling stays for everywhere else).
+            rail.addEventListener("keydown", (e) => {
+                if (!["ArrowUp", "ArrowDown", "Home", "End"].includes(e.key)) return;
+                const btns = Array.from(rail.querySelectorAll(".gal-item")), cur = btns.indexOf(document.activeElement);
+                if (cur < 0) return;
+                const to = e.key === "ArrowUp" ? cur - 1 : e.key === "ArrowDown" ? cur + 1 : e.key === "Home" ? 0 : btns.length - 1;
+                e.preventDefault();
+                e.stopPropagation();
+                btns[Math.max(0, Math.min(btns.length - 1, to))].focus();
+            });
+            syncModeUi();
         }
         init();
     </script>
