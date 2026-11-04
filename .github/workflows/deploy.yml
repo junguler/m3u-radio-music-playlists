@@ -16,7 +16,10 @@ concurrency:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-24.04 #ubuntu-latest
+    # Pinned on purpose: ubuntu-latest is migrating to 26.04 in stages, so it
+    # can resolve to different images between runs. Change to ubuntu-26.04
+    # once you have tested it.
+    runs-on: ubuntu-24.04
     # Normal runs take about 4 minutes. 10 minutes leaves headroom but makes
     # a stalled run fail fast so it can be re-run.
     timeout-minutes: 10
@@ -30,10 +33,6 @@ jobs:
           # Full history is required: generate_index.js reads it to get each
           # file's real last-modified date.
           fetch-depth: 0
-          # Blobless clone: download all commits and trees (all that
-          # `git log --name-only` needs) but only the file contents of the
-          # current checkout, not every old version of every large file.
-          filter: blob:none
 
       - name: Setup Node
         uses: actions/setup-node@v7
@@ -77,12 +76,14 @@ jobs:
         run: |
           echo "Files to upload (excluding .git and .github):"
           find . -type f -not -path "./.git/*" -not -path "./.github/*" | wc -l
-          echo "Total size:"
-          du -sh --exclude=.git --exclude=.github . || true
+          echo "Total size (actual bytes, not disk blocks):"
+          du -sh --apparent-size --exclude=.git --exclude=.github . || true
           echo "Ten largest files:"
+          # The awk does the top-10 selection itself, so no pipe is closed early
+          # (the old `sort | head` printed a harmless "Broken pipe" message).
           find . -type f -not -path "./.git/*" -not -path "./.github/*" -printf '%s %p\n' \
-            | sort -nr | head -10 \
-            | awk '{ printf "%8.1f MB  %s\n", $1/1048576, $2 }'
+            | sort -nr \
+            | awk 'NR <= 10 { printf "%8.1f MB  %s\n", $1/1048576, $2 }'
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
