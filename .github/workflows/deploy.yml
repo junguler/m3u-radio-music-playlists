@@ -16,8 +16,10 @@ concurrency:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-24.04 #ubuntu-latest
-    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    # Normal runs take about 4-5 minutes. 10 minutes leaves headroom but makes
+    # a stalled run fail fast so it can be re-run.
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -45,10 +47,25 @@ jobs:
             console.log("file_index.json OK:", i.stats.files, "files,", i.stats.dirs, "folders");
           '
 
+      # Informational only: shows how much is about to be tarred and uploaded,
+      # so a slow run can be compared against the size of the site.
+      - name: Report upload size
+        run: |
+          echo "Files to upload (excluding .git and .github):"
+          find . -type f -not -path "./.git/*" -not -path "./.github/*" | wc -l
+          echo "Total size:"
+          du -sh --exclude=.git --exclude=.github . || true
+          echo "Ten largest files:"
+          find . -type f -not -path "./.git/*" -not -path "./.github/*" -printf '%s %p\n' \
+            | sort -nr | head -10 \
+            | awk '{ printf "%8.1f MB  %s\n", $1/1048576, $2 }'
+
       - name: Setup Pages
         uses: actions/configure-pages@v6
 
       - name: Upload artifact
+        # A stalled upload fails after 8 minutes instead of eating the whole job.
+        timeout-minutes: 8
         uses: actions/upload-pages-artifact@v5
         with:
           path: "."
