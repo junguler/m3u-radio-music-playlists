@@ -1,10 +1,9 @@
 const fs = require("fs");
 const path = require("path");
-const { execSync } = require("child_process");
+const { execFileSync, spawn } = require("child_process");
 
-// Running inside GitHub Actions (or any CI)? Then a missing/shallow git
-// history is a hard failure instead of a quiet fallback, because the site
-// would deploy with every file showing the checkout time as its date.
+// Running inside GitHub Actions (or any CI)? Then incomplete Git history is a
+// hard failure instead of a quiet fallback, because file dates would be wrong.
 const IN_CI = !!(process.env.GITHUB_ACTIONS || process.env.CI);
 
 // Executable and binary extensions to exclude (all lowercase: the extension
@@ -24,19 +23,17 @@ const EXECUTABLE_EXTENSIONS = new Set([
   ".jar", ".war", ".ear", ".vbs", ".vbe", ".ws", ".wsf", ".msc", ".lnk",
 ]);
 
-// Directories to skip
+// Directories to skip.
 const EXCLUDED_DIRS = new Set([
   ".git", "node_modules", ".github", "__pycache__", ".vscode", ".idea",
   ".cache", ".npm", ".yarn", "vendor", ".bundle",
 ]);
 
-// Files whose name starts with this are listed in the index like any other
-// file but flagged `external: 1`. The deploy workflow then removes them from
-// the checkout before the site is uploaded, and the viewer links to them on
-// GitHub instead. Used for the very large "---everything" files.
+// Files whose name starts with this are indexed but not deployed. The viewer
+// loads them directly from the repository's raw-content URL instead.
 const EXTERNAL_PREFIX = "---";
 
-// System/meta files to skip
+// System/meta files to skip.
 const EXCLUDED_FILES = new Set([
   "generate_index.js", "file_index.json", ".DS_Store", "Thumbs.db",
   "desktop.ini", ".gitignore", ".gitattributes", "package-lock.json",
@@ -44,8 +41,7 @@ const EXCLUDED_FILES = new Set([
 ]);
 
 // File type categories. An extension is matched against the categories in
-// this order and the FIRST match wins, so an extension listed twice goes to
-// whichever category comes first. Keep each extension in exactly one place.
+// this order and the FIRST match wins. Keep each extension in one category.
 function getFileCategory(filename) {
   const ext = path.extname(filename).toLowerCase();
 
@@ -83,12 +79,12 @@ function getFileCategory(filename) {
     data: [
       ".json", ".yaml", ".yml", ".toml", ".ini", ".cfg", ".conf",
       ".properties", ".env", ".csv", ".tsv",
-      // Playlist files (plain text)
+      // Playlist files (plain text).
       ".m3u", ".m3u8", ".pls", ".xspf", ".wpl", ".asx", ".cue",
     ],
     text: [
       ".txt", ".md", ".markdown", ".rst", ".rtf", ".log", ".nfo", ".diz",
-      ".srt", ".vtt", ".sub", ".ass", ".ssa", // Subtitle files
+      ".srt", ".vtt", ".sub", ".ass", ".ssa",
     ],
     font: [".ttf", ".otf", ".woff", ".woff2", ".eot"],
     archive: [
@@ -103,96 +99,280 @@ function getFileCategory(filename) {
   return "other";
 }
 
-// Check if file is binary/executable
 function isExecutable(filename) {
-  const ext = path.extname(filename).toLowerCase();
-  return EXECUTABLE_EXTENSIONS.has(ext);
+  return EXECUTABLE_EXTENSIONS.has(path.extname(filename).toLowerCase());
 }
 
-// A fresh `actions/checkout` (or any fresh clone) writes every file to disk at
-// checkout time, so fs.statSync(...).mtime is the same for every file
-// regardless of when it was actually last changed. The real "last modified"
-// date lives in git history instead, so we build a path -> last-commit-date
-// map from it once, up front.
-//
-// `git log --name-only` walks commits newest-first and lists every path each
-// commit touched, so the first time we see a given path is its most recent
-// commit. That gives us the whole repo's per-file last-modified dates in a
-// single git invocation instead of one process per file.
-//
-// core.quotepath=false matters: by default git quotes/escapes any path with
-// non-ASCII characters as octal-escaped bytes, which then never matches the
-// real UTF-8 filename.
-//
-// Dates are normalised to UTC ("...Z") as they are read. Git reports each
-// commit in its author's own timezone (e.g. "+03:30"), and ISO strings with
-// different offsets do NOT sort correctly as plain strings, which would make
-// the folder "modified" maximum below wrong.
-function failOrWarn(message) {
-  if (IN_CI) {
-    console.error("ERROR: " + message);
-    process.exit(1);
+// Whether a tracked Git path would be eligible for the browser index. This
+// mirrors the directory/file exclusions in scanDirectory().
+function isIndexableGitPath(filePath) {
+  const parts = filePath.split("/");
+  const filename = parts[parts.length - 1];
+
+  if (!filename || filename.startsWith(".")) return false;
+  if (EXCLUDED_FILES.has(filename) || isExecutable(filename)) return false;
+
+  for (const dirname of parts.slice(0, -1)) {
+    if (EXCLUDED_DIRS.has(dirname) || dirname.startsWith(".")) return false;
   }
-  console.warn(message + " (falling back to filesystem mtime)");
+
+  return true;
 }
 
-function buildFileDateMap() {
-  const map = new Map();
+function gitExecBuffer(args, maxBuffer = 256 * 1024 * 1024) {
+  return execFileSync("git", args, {
+    encoding: "buffer",
+    maxBuffer,
+    stdio: ["ignore", "pipe", "ignore"],
+  });
+}
 
-  if (IN_CI) {
-    try {
-      const shallow = execSync("git rev-parse --is-shallow-repository", {
-        encoding: "utf8",
-        stdio: ["ignore", "pipe", "ignore"],
-      }).trim();
-      if (shallow === "true") {
-        failOrWarn(
-          "Repository is a shallow clone, so file dates would be wrong. " +
-            "Use `fetch-depth: 0` on actions/checkout."
-        );
-      }
-    } catch (e) {
-      // Very old git without the flag: the empty-map check below still guards us.
-    }
+// Read the current commit's tree without opening file blobs. This works with
+// the workflow's blob:none partial clone, including files omitted from the
+// working tree by sparse checkout.
+function getTrackedBlobEntries() {
+  let output;
+  try {
+    output = gitExecBuffer(["ls-tree", "-r", "-z", "HEAD"]);
+  } catch (error) {
+    if (IN_CI) throw new Error("Could not read the current Git tree: " + error.message);
+    console.warn("Could not read the current Git tree; using filesystem-only indexing.");
+    return null;
   }
+
+  const entries = [];
+
+  for (const record of output.toString("utf8").split("\0")) {
+    if (!record) continue;
+    const tab = record.indexOf("\t");
+    if (tab < 0) continue;
+
+    const metadata = record.slice(0, tab).split(" ");
+    const filePath = record.slice(tab + 1);
+    const mode = metadata[0];
+    const type = metadata[1];
+
+    if (type === "blob") entries.push({ mode, path: filePath });
+  }
+
+  return entries;
+}
+
+function assertCompleteHistory() {
+  if (!IN_CI) return;
 
   try {
-    const output = execSync(
-      'git -c core.quotepath=false log --name-only --no-renames --format="%x01%cI"',
-      { encoding: "utf8", maxBuffer: 1024 * 1024 * 256, stdio: ["ignore", "pipe", "ignore"] }
-    );
-    let currentDate = null;
-    for (const rawLine of output.split("\n")) {
-      const line = rawLine.trim();
-      if (!line) continue;
-      if (rawLine.startsWith("\x01")) {
-        const d = new Date(rawLine.slice(1).trim());
-        currentDate = isNaN(d.getTime()) ? null : d.toISOString();
-      } else if (currentDate && !map.has(line)) {
-        map.set(line, currentDate);
-      }
-    }
-  } catch (e) {
-    failOrWarn("Could not read git history for file dates: " + e.message);
-  }
+    const shallow = execFileSync("git", ["rev-parse", "--is-shallow-repository"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
 
-  if (map.size === 0) {
-    failOrWarn("Git history produced no file dates");
+    if (shallow !== "false") {
+      throw new Error(
+        "Repository history is shallow. The workflow must fetch the full " +
+        "ancestry of the checked-out commit (with blob:none)."
+      );
+    }
+  } catch (error) {
+    throw new Error("Could not verify complete Git history: " + error.message);
   }
-  return map;
 }
 
-const fileDateMap = buildFileDateMap();
+// Find the newest commit touching each CURRENT tracked path. The log is read
+// as a stream and stopped as soon as every current path has been found. This
+// avoids buffering the entire repository history and avoids walking old,
+// deleted paths after all indexed files already have dates.
+function buildFileDateMap(currentPaths) {
+  assertCompleteHistory();
 
-// Recursively scan directory.
-//
-// The output is kept deliberately small, because the browser downloads all of
-// it before showing anything. Each file is just
-//   { name, type: "file", category, size, modified }
-// and each folder is { name, type: "directory", children, modified }.
-// Things the page can work out for itself (the full path, the file extension
-// and the human-readable size such as "1.2 MB") are NOT stored.
-function scanDirectory(dir, relativePath = "") {
+  const dates = new Map();
+  const pending = new Set(currentPaths);
+  if (pending.size === 0) return Promise.resolve(dates);
+
+  return new Promise((resolve, reject) => {
+    const child = spawn("git", [
+      "-c", "core.quotepath=false",
+      "--no-pager",
+      "log",
+      "--name-only",
+      "--no-renames",
+      "-z",
+      "--format=%x01%cI",
+    ], { stdio: ["ignore", "pipe", "pipe"] });
+
+    let currentDate = null;
+    let intentionallyStopped = false;
+    let buffer = "";
+    let stderr = "";
+
+    child.stdout.setEncoding("utf8");
+    child.stderr.setEncoding("utf8");
+    child.stderr.on("data", (chunk) => {
+      stderr += chunk;
+      if (stderr.length > 16000) stderr = stderr.slice(-16000);
+    });
+
+    const consumeToken = (token) => {
+      if (intentionallyStopped || !token) return;
+
+      if (token.startsWith("\x01")) {
+        const parsed = new Date(token.slice(1).trim());
+        currentDate = Number.isNaN(parsed.getTime()) ? null : parsed.toISOString();
+        return;
+      }
+
+      // Git's pretty-format separator contributes one newline before the
+      // first pathname in each commit. Remove only that separator; with -z,
+      // any newline that is actually part of a filename remains intact.
+      const filePath = token.startsWith("\n") ? token.slice(1) : token;
+      if (!currentDate || !filePath || !pending.delete(filePath)) return;
+
+      dates.set(filePath, currentDate);
+      if (pending.size === 0) {
+        intentionallyStopped = true;
+        child.kill("SIGTERM");
+      }
+    };
+
+    child.stdout.on("data", (chunk) => {
+      if (intentionallyStopped) return;
+      buffer += chunk;
+
+      let separator;
+      while (!intentionallyStopped && (separator = buffer.indexOf("\0")) !== -1) {
+        const token = buffer.slice(0, separator);
+        buffer = buffer.slice(separator + 1);
+        consumeToken(token);
+      }
+    });
+
+    child.on("error", (error) => {
+      reject(new Error("Could not start git log: " + error.message));
+    });
+
+    child.on("close", (code, signal) => {
+      if (pending.size === 0 && intentionallyStopped) {
+        resolve(dates);
+        return;
+      }
+
+      // The final token is normally empty because Git terminates path output
+      // with NUL, but consume it defensively if a Git version omits that byte.
+      if (buffer) consumeToken(buffer);
+      if (pending.size === 0 && code === 0) {
+        resolve(dates);
+        return;
+      }
+
+      const missing = Array.from(pending).slice(0, 8);
+      const detail = stderr.trim() || `git log exited with code ${code} (${signal || "no signal"})`;
+      const message =
+        `Could not obtain modification dates for ${pending.size} current file(s). ` +
+        `Examples: ${missing.join(", ")}. ${detail}`;
+
+      if (IN_CI) reject(new Error(message));
+      else {
+        console.warn(message + " (those files will use filesystem modification times)");
+        resolve(dates);
+      }
+    });
+  });
+}
+
+// Sparse checkout leaves external-prefix blobs out of the worktree. Their
+// exact sizes are still needed by the viewer, so read those sizes from the
+// GitHub Git Trees API (tree metadata; no file contents are downloaded).
+async function getMissingExternalEntries(trackedEntries, fileDateMap) {
+  const missing = trackedEntries.filter(({ path: filePath }) => {
+    if (!isIndexableGitPath(filePath)) return false;
+    if (!path.posix.basename(filePath).startsWith(EXTERNAL_PREFIX)) return false;
+
+    try {
+      fs.lstatSync(filePath);
+      return false; // Present locally; scanDirectory() will index it.
+    } catch (error) {
+      if (error.code === "ENOENT") return true;
+      throw error;
+    }
+  });
+
+  if (missing.length === 0) return [];
+
+  const repository = process.env.GITHUB_REPOSITORY;
+  const token = process.env.GITHUB_TOKEN;
+  if (!repository) {
+    throw new Error(
+      `Found ${missing.length} external file(s) missing from the working tree, ` +
+      "but GITHUB_REPOSITORY is unavailable. Run the workflow or use a full checkout."
+    );
+  }
+
+  const treeSha = execFileSync("git", ["rev-parse", "HEAD^{tree}"], {
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "ignore"],
+  }).trim();
+  const url = `https://api.github.com/repos/${repository}/git/trees/${treeSha}?recursive=1`;
+  const headers = {
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+  };
+  if (token) headers.Authorization = `Bearer ${token}`;
+
+  const response = await fetch(url, { headers });
+  if (!response.ok) {
+    const detail = (await response.text()).slice(0, 1200);
+    throw new Error(
+      `GitHub tree API request failed (${response.status} ${response.statusText}): ${detail}`
+    );
+  }
+
+  const treeData = await response.json();
+  if (treeData.truncated) {
+    throw new Error(
+      "GitHub returned a truncated recursive tree (the API caps recursive trees at " +
+      "100,000 entries / 7 MB). Refusing to publish external files with missing or " +
+      "incorrect sizes. This repository needs a non-recursive tree lookup for its " +
+      "external-file directories."
+    );
+  }
+
+  const requested = new Set(missing.map((entry) => entry.path));
+  const sizes = new Map();
+  for (const entry of treeData.tree || []) {
+    if (entry.type === "blob" && requested.has(entry.path) && Number.isSafeInteger(entry.size)) {
+      sizes.set(entry.path, entry.size);
+    }
+  }
+
+  const unresolved = missing.filter(({ path: filePath }) => !sizes.has(filePath));
+  if (unresolved.length) {
+    throw new Error(
+      "GitHub tree metadata did not return sizes for: " +
+      unresolved.slice(0, 8).map((entry) => entry.path).join(", ")
+    );
+  }
+
+  return missing.map(({ path: filePath }) => {
+    const modified = fileDateMap.get(filePath);
+    if (!modified && IN_CI) {
+      throw new Error(`No Git history date was found for external file: ${filePath}`);
+    }
+
+    return {
+      path: filePath,
+      entry: {
+        name: path.posix.basename(filePath),
+        type: "file",
+        category: getFileCategory(filePath),
+        size: sizes.get(filePath),
+        modified: modified || new Date().toISOString(),
+        external: 1,
+      },
+    };
+  });
+}
+
+function scanDirectory(dir, relativePath = "", indexedPaths = new Set(), fileDateMap = new Map()) {
   const entries = [];
 
   try {
@@ -205,26 +385,18 @@ function scanDirectory(dir, relativePath = "") {
         : item.name;
 
       if (item.isDirectory()) {
-        if (EXCLUDED_DIRS.has(item.name) || item.name.startsWith(".")) {
-          continue;
-        }
+        if (EXCLUDED_DIRS.has(item.name) || item.name.startsWith(".")) continue;
 
-        const children = scanDirectory(fullPath, itemRelativePath);
+        const children = scanDirectory(fullPath, itemRelativePath, indexedPaths, fileDateMap);
         if (children.length > 0) {
-          // A folder's "modified" date is the most recent modification among
-          // everything inside it (recursively), since git doesn't track
-          // directories directly. All dates are UTC ISO strings by now, so a
-          // plain string comparison is correct.
           let latest = null;
           for (const child of children) {
-            if (child.modified && (!latest || child.modified > latest)) {
-              latest = child.modified;
-            }
+            if (child.modified && (!latest || child.modified > latest)) latest = child.modified;
           }
           entries.push({
             name: item.name,
             type: "directory",
-            children: children,
+            children,
             modified: latest,
           });
         }
@@ -237,52 +409,78 @@ function scanDirectory(dir, relativePath = "") {
 
       try {
         const stats = fs.statSync(fullPath);
-        const modified =
-          fileDateMap.get(itemRelativePath) || stats.mtime.toISOString();
-
+        const modified = fileDateMap.get(itemRelativePath) || stats.mtime.toISOString();
         const entry = {
           name: item.name,
           type: "file",
           category: getFileCategory(item.name),
           size: stats.size,
-          modified: modified,
+          modified,
         };
         if (item.name.startsWith(EXTERNAL_PREFIX)) entry.external = 1;
         entries.push(entry);
-      } catch (e) {
+        indexedPaths.add(itemRelativePath);
+      } catch (error) {
         console.warn(`Could not stat file: ${fullPath}`);
       }
     }
-  } catch (e) {
-    console.warn(`Could not read directory: ${dir}`);
+  } catch (error) {
+    console.warn(`Could not read directory: ${dir}: ${error.message}`);
   }
 
-  entries.sort((a, b) => {
-    if (a.type === "directory" && b.type !== "directory") return -1;
-    if (a.type !== "directory" && b.type === "directory") return 1;
-    return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
-  });
-
+  entries.sort(compareEntries);
   return entries;
 }
 
-console.log("Scanning repository...");
-const startTime = Date.now();
+function compareEntries(a, b) {
+  if (a.type === "directory" && b.type !== "directory") return -1;
+  if (a.type !== "directory" && b.type === "directory") return 1;
+  return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
+}
 
-const index = {
-  generated: new Date().toISOString(),
-  // Where external files can be loaded from. Only known inside GitHub Actions.
-  source: process.env.GITHUB_REPOSITORY
-    ? {
-        repo: process.env.GITHUB_REPOSITORY,
-        branch: process.env.GITHUB_REF_NAME || "main",
-      }
-    : null,
-  root: scanDirectory("."),
-};
+function insertPath(rootEntries, filePath, fileEntry) {
+  const parts = filePath.split("/");
+  let currentEntries = rootEntries;
+
+  for (const dirname of parts.slice(0, -1)) {
+    let directory = currentEntries.find(
+      (entry) => entry.type === "directory" && entry.name === dirname
+    );
+
+    if (!directory) {
+      directory = { name: dirname, type: "directory", children: [], modified: null };
+      currentEntries.push(directory);
+    }
+
+    currentEntries = directory.children;
+  }
+
+  if (!currentEntries.some((entry) => entry.name === fileEntry.name && entry.type === "file")) {
+    currentEntries.push(fileEntry);
+  }
+}
+
+// Re-sort after external files have been inserted and recalculate directory
+// dates so folders containing only external files still appear correctly.
+function finalizeTree(items) {
+  for (const item of items) {
+    if (item.type !== "directory") continue;
+
+    finalizeTree(item.children);
+    let latest = null;
+    for (const child of item.children) {
+      if (child.modified && (!latest || child.modified > latest)) latest = child.modified;
+    }
+    item.modified = latest;
+  }
+
+  items.sort(compareEntries);
+}
 
 function countItems(items) {
-  let files = 0, dirs = 0;
+  let files = 0;
+  let dirs = 0;
+
   for (const item of items) {
     if (item.type === "directory") {
       dirs++;
@@ -293,19 +491,79 @@ function countItems(items) {
       files++;
     }
   }
+
   return { files, dirs };
 }
 
-const counts = countItems(index.root);
-index.stats = counts;
+async function main() {
+  console.log("Reading tracked file metadata...");
+  const startTime = Date.now();
+  const trackedEntries = getTrackedBlobEntries();
+  const currentTrackedPaths = (trackedEntries || [])
+    .filter(({ path: filePath }) => isIndexableGitPath(filePath))
+    .map(({ path: filePath }) => filePath);
 
-if (counts.files === 0) {
-  console.error("ERROR: no files found; refusing to write an empty index.");
-  process.exit(1);
+  if (IN_CI && currentTrackedPaths.length === 0) {
+    throw new Error("Git tree contains no indexable files; refusing to write an empty index.");
+  }
+
+  console.log(`Finding last-modified dates for ${currentTrackedPaths.length} tracked files...`);
+  const fileDateMap = await buildFileDateMap(currentTrackedPaths);
+
+  console.log("Scanning checked-out files...");
+  const indexedPaths = new Set();
+  const root = scanDirectory(".", "", indexedPaths, fileDateMap);
+
+  const externalEntries = await getMissingExternalEntries(trackedEntries || [], fileDateMap);
+  for (const item of externalEntries) {
+    if (!indexedPaths.has(item.path)) {
+      insertPath(root, item.path, item.entry);
+      indexedPaths.add(item.path);
+    }
+  }
+
+  if (IN_CI) {
+    const missingTrackedPaths = currentTrackedPaths.filter((filePath) => !indexedPaths.has(filePath));
+    if (missingTrackedPaths.length) {
+      throw new Error(
+        `The checkout/index scan missed ${missingTrackedPaths.length} tracked file(s): ` +
+        missingTrackedPaths.slice(0, 8).join(", ")
+      );
+    }
+  }
+
+  finalizeTree(root);
+
+  const index = {
+    generated: new Date().toISOString(),
+    source: process.env.GITHUB_REPOSITORY
+      ? {
+          repo: process.env.GITHUB_REPOSITORY,
+          branch: process.env.GITHUB_REF_NAME || "main",
+        }
+      : null,
+    root,
+  };
+
+  const counts = countItems(index.root);
+  index.stats = counts;
+
+  if (counts.files === 0) {
+    throw new Error("No files found; refusing to write an empty index.");
+  }
+
+  fs.writeFileSync("file_index.json", JSON.stringify(index));
+  const externalCount = Array.from(indexedPaths).filter((filePath) =>
+    path.posix.basename(filePath).startsWith(EXTERNAL_PREFIX)
+  ).length;
+
+  console.log(
+    `Done in ${Date.now() - startTime}ms. Found ${counts.files} files in ` +
+    `${counts.dirs} directories; ${externalCount} external file(s).`
+  );
 }
 
-fs.writeFileSync("file_index.json", JSON.stringify(index));
-
-console.log(
-  `Done in ${Date.now() - startTime}ms. Found ${counts.files} files in ${counts.dirs} directories.`
-);
+main().catch((error) => {
+  console.error("ERROR: " + (error && error.stack ? error.stack : error));
+  process.exitCode = 1;
+});
