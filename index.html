@@ -3497,7 +3497,7 @@
         }
         function copyRawLink() {
             const btn = document.getElementById("copyLinkBtn");
-            const url = LOCAL.active ? currentFilePath : new URL(`./${encodePathForUrl(currentFilePath)}`, window.location.href).href;
+            const url = LOCAL.active ? currentFilePath : new URL(hostedUrl(currentFilePath), window.location.href).href;
             const done = () => {
                 btn.classList.add("copied");
                 setTimeout(() => btn.classList.remove("copied"), 1200);
@@ -3516,7 +3516,7 @@
                 if (!item) return;
                 text = item.header ? `${item.header}\n${item.url}` : item.url;
             } else if (currentFilePath) {
-                text = LOCAL.active ? currentFilePath : new URL(`./${encodePathForUrl(currentFilePath)}`, window.location.href).href;
+                text = LOCAL.active ? currentFilePath : new URL(hostedUrl(currentFilePath), window.location.href).href;
             } else {
                 return;
             }
@@ -7280,7 +7280,7 @@
             // so filenames containing them resolve correctly instead of
             // getting truncated at a "fragment" or silently mangled.
             runModalCleanups();
-            let fileUrl = `./${encodePathForUrl(filePath)}`;
+            let fileUrl = hostedUrl(filePath);
             try { fileUrl = await urlForPath(filePath); } catch (err) { console.error(err); }
             if (seq !== openSeq) return; // another file was opened (or the preview closed) while this one was loading
             // The same URL, safe to drop into an HTML attribute string.
@@ -7656,6 +7656,18 @@
         function encodePathForUrl(path) {
             return String(path).split("/").map(encodeURIComponent).join("/");
         }
+        // Where a hosted file is loaded from. Most files sit next to this page.
+        // Files the build left out of the site (flagged "external" in
+        // file_index.json: the large "---" files) are loaded from the GitHub
+        // repo instead. Falls back to the relative URL when the repo is unknown.
+        function hostedUrl(path) {
+            const f = filesByPath.get(path);
+            const s = fileIndex && fileIndex.source;
+            if (f && f.external && s && s.repo && s.branch) {
+                return `https://raw.githubusercontent.com/${s.repo}/${encodePathForUrl(s.branch)}/${encodePathForUrl(path)}`;
+            }
+            return `./${encodePathForUrl(path)}`;
+        }
         // Escapes a string for safe use in both HTML text and attribute
         // values (&, <, >, " and '), so callers can also drop the result into
         // a quoted attribute (e.g. a filename with a literal ' or "). A plain
@@ -7774,14 +7786,14 @@
         // A URL the browser can load for a library file. Hosted: the relative URL.
         // Local: a blob: URL for the picked File (made lazily, revoked on close).
         async function urlForPath(path) {
-            if (!LOCAL.active) return `./${encodePathForUrl(path)}`;
+            if (!LOCAL.active) return hostedUrl(path);
             let u = LOCAL.urls.get(path);
             if (!u) { u = URL.createObjectURL(await getLocalFile(path)); LOCAL.urls.set(path, u); }
             return u;
         }
         async function blobForPath(path, signal) {
             if (LOCAL.active) return getLocalFile(path);
-            const res = await fetch(`./${encodePathForUrl(path)}`, { signal });
+            const res = await fetch(hostedUrl(path), { signal });
             if (!res.ok) { const err = new Error(`HTTP ${res.status}`); err.status = res.status; throw err; }
             return res.blob();
         }
@@ -8263,13 +8275,13 @@
             }
             const path = a.dataset.mdOpen;
             if (env.openPath && env.openPath(path, a.dataset.mdFrag)) return;
-            if (!LOCAL.active) window.open(`./${encodePathForUrl(path)}`, "_blank", "noopener");
+            if (!LOCAL.active) window.open(hostedUrl(path), "_blank", "noopener");
         }
         function libraryMdEnv(filePath) {
             return {
                 dir: dirOfPath(filePath),
                 remoteImages: !LOCAL.active,
-                assetSync: LOCAL.active ? null : (p) => `./${encodePathForUrl(p)}`,
+                assetSync: LOCAL.active ? null : (p) => hostedUrl(p),
                 loadAsset: (p) => (LOCAL.active && LOCAL.files.has(p) ? urlForPath(p).catch(() => null) : Promise.resolve(null)),
                 openPath: (p) => {
                     const f = filesByPath.get(p);

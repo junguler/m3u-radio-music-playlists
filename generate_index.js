@@ -30,6 +30,12 @@ const EXCLUDED_DIRS = new Set([
   ".cache", ".npm", ".yarn", "vendor", ".bundle",
 ]);
 
+// Files whose name starts with this are listed in the index like any other
+// file but flagged `external: 1`. The deploy workflow then removes them from
+// the checkout before the site is uploaded, and the viewer links to them on
+// GitHub instead. Used for the very large "---everything" files.
+const EXTERNAL_PREFIX = "---";
+
 // System/meta files to skip
 const EXCLUDED_FILES = new Set([
   "generate_index.js", "file_index.json", ".DS_Store", "Thumbs.db",
@@ -234,13 +240,15 @@ function scanDirectory(dir, relativePath = "") {
         const modified =
           fileDateMap.get(itemRelativePath) || stats.mtime.toISOString();
 
-        entries.push({
+        const entry = {
           name: item.name,
           type: "file",
           category: getFileCategory(item.name),
           size: stats.size,
           modified: modified,
-        });
+        };
+        if (item.name.startsWith(EXTERNAL_PREFIX)) entry.external = 1;
+        entries.push(entry);
       } catch (e) {
         console.warn(`Could not stat file: ${fullPath}`);
       }
@@ -263,6 +271,13 @@ const startTime = Date.now();
 
 const index = {
   generated: new Date().toISOString(),
+  // Where external files can be loaded from. Only known inside GitHub Actions.
+  source: process.env.GITHUB_REPOSITORY
+    ? {
+        repo: process.env.GITHUB_REPOSITORY,
+        branch: process.env.GITHUB_REF_NAME || "main",
+      }
+    : null,
   root: scanDirectory("."),
 };
 

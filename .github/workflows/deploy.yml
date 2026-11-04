@@ -16,8 +16,8 @@ concurrency:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
-    # Normal runs take about 4-5 minutes. 10 minutes leaves headroom but makes
+    runs-on: ubuntu-24.04 #ubuntu-latest
+    # Normal runs take about 4 minutes. 10 minutes leaves headroom but makes
     # a stalled run fail fast so it can be re-run.
     timeout-minutes: 10
     environment:
@@ -30,6 +30,10 @@ jobs:
           # Full history is required: generate_index.js reads it to get each
           # file's real last-modified date.
           fetch-depth: 0
+          # Blobless clone: download all commits and trees (all that
+          # `git log --name-only` needs) but only the file contents of the
+          # current checkout, not every old version of every large file.
+          filter: blob:none
 
       - name: Setup Node
         uses: actions/setup-node@v7
@@ -47,8 +51,28 @@ jobs:
             console.log("file_index.json OK:", i.stats.files, "files,", i.stats.dirs, "folders");
           '
 
-      # Informational only: shows how much is about to be tarred and uploaded,
-      # so a slow run can be compared against the size of the site.
+      # Files starting with "---" are flagged `external` in file_index.json.
+      # They stay listed in the viewer (which links to them on GitHub) but are
+      # removed from this throwaway checkout so they are not tarred, uploaded
+      # or deployed. Nothing in the repository itself is touched.
+      - name: Leave large files out of the site
+        run: |
+          node -e '
+            const fs = require("fs");
+            const idx = JSON.parse(fs.readFileSync("file_index.json", "utf8"));
+            let n = 0, bytes = 0;
+            (function walk(items, prefix) {
+              for (const it of items) {
+                const p = prefix ? prefix + "/" + it.name : it.name;
+                if (it.type === "directory") walk(it.children, p);
+                else if (it.external) { fs.rmSync(p); n++; bytes += it.size; }
+              }
+            })(idx.root, "");
+            console.log("Left out " + n + " files (" + (bytes / 1048576).toFixed(1) + " MB) from the site");
+          '
+
+      # Informational only: shows how much is about to be tarred and uploaded.
+      # Safe to delete once you no longer need to watch the site size.
       - name: Report upload size
         run: |
           echo "Files to upload (excluding .git and .github):"
