@@ -5676,7 +5676,11 @@
                 let ctxt = "";
                 if (s && s.everPlayed && !s.reconnecting && s.el) {
                     const ahead = bufferedAheadSec(s.el);
-                    if (ahead >= 0) ctxt = fmtBufferAhead(ahead);
+                    if (ahead >= 0) {
+                        const own = s.usesMse && currentOwnBuffer && currentOwnBuffer.alive ? currentOwnBuffer.queuedSec() : 0;
+                        ctxt = fmtBufferAhead(ahead + own);
+                        if (s.el.paused && !s.usesMse && s.mseWhy && isLiveStream(s)) ctxt = "not caching · " + s.mseWhy;
+                    }
                 }
                 if (cacheEl.textContent !== ctxt) cacheEl.textContent = ctxt;
             }
@@ -6781,6 +6785,7 @@
             clearStreamTimeout();
             if (session.usesMse && !session.mseFailed) {
                 // the own-buffer path did not start: try the plain element on the same address before anything else
+                noOwnBuffer(session, "start");
                 session.mseFailed = true;
                 destroyMse();
                 startAttempt(session, false);
@@ -6897,7 +6902,7 @@
             el.onended = () => {
                 if (!alive()) return;
                 clearStreamTimeout();
-                if (session.everPlayed && !isFinite(el.duration)) {
+                if (session.everPlayed && (!isFinite(el.duration) || (session.usesMse && session.mseLive))) {
                     dropAndReconnect(session); // a live stream "ended": the server hung up
                     return;
                 }
@@ -6910,11 +6915,34 @@
         // (up to OWN_BUFFER_AHEAD_S ahead; the last OWN_BUFFER_BEHIND_S of played audio stay available for rewinding).
         const OWN_BUFFER_AHEAD_S = 1800;
         const OWN_BUFFER_BEHIND_S = 600;
+        // Chromium lets a MediaSource hold only about 12 MB of audio and never drops what is ahead of the playhead, so a long pause fills it
+        // far sooner than OWN_BUFFER_AHEAD_S. The page therefore keeps the rest of the download in its own queue (up to this many bytes)
+        // and feeds it in as room opens up, so the cache no longer depends on the browser's limit.
+        const OWN_QUEUE_MAX_BYTES = (navigator.deviceMemory && navigator.deviceMemory <= 2 ? 24 : 48) * 1048576;
         let currentOwnBuffer = null;
+        // Remembers why a session is not using the own buffer (shown on the glyph while paused, so a silent fallback is visible).
+        function noOwnBuffer(session, why) {
+            if (!session.mseWhy) session.mseWhy = why;
+            return false;
+        }
         function canUseOwnBuffer(session, el, url) {
-            if (session.mseFailed || typeof MediaSource === "undefined" || !el || el.tagName !== "AUDIO") return false;
-            if (session.corsFailed || noCorsHosts.has(hostKey(url))) return false; // the page may not read this server's audio
+            if (typeof MediaSource === "undefined") return noOwnBuffer(session, "no MSE");
+            if (session.mseFailed) return false; // the reason was noted where it failed
+            if (!el || el.tagName !== "AUDIO") return noOwnBuffer(session, "video");
+            // Only this session's own failure blocks it. The remembered no-CORS host list is not consulted here: one failed
+            // request (a flaky mobile connection, a blocker) must not switch the cache off for that station for good,
+            // and a server that really refuses CORS is found out by the fetch below within one round trip.
+            if (session.corsFailed) return noOwnBuffer(session, "cors");
             return true;
+        }
+        // Keeps the tab from being frozen in the background while a stream is being cached (Chromium freezes idle hidden tabs,
+        // which would stop the download). A lock is only held for the life of this buffer.
+        function holdBufferLock(m) {
+            try {
+                if (!navigator.locks || !navigator.locks.request) return;
+                const name = "own-buffer-" + Math.random().toString(36).slice(2);
+                navigator.locks.request(name, () => (m.alive ? new Promise((release) => { m.releaseLock = release; }) : undefined)).catch(() => {});
+            } catch (e) {}
         }
         function destroyMse() {
             const m = currentOwnBuffer;
@@ -6922,17 +6950,23 @@
             currentOwnBuffer = null;
             m.alive = false;
             try { m.ctl.abort(); } catch (e) {}
+            if (m.releaseLock) {
+                try { m.releaseLock(); } catch (e) {}
+                m.releaseLock = null;
+            }
             if (m.objUrl) {
                 try { URL.revokeObjectURL(m.objUrl); } catch (e) {}
             }
         }
         async function startOwnBuffer(session, el, url, onBlocked, fallback) {
-            const m = { alive: true, ctl: new AbortController(), objUrl: "" };
+            const m = { alive: true, ctl: new AbortController(), objUrl: "", releaseLock: null, rxBytes: 0, t0: performance.now(), queuedSec: () => 0 };
             currentOwnBuffer = m;
+            holdBufferLock(m);
             const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-            const bail = () => {
+            const bail = (why) => {
                 if (!m.alive) return;
                 destroyMse();
+                noOwnBuffer(session, why || "error");
                 session.mseFailed = true;
                 session.usesMse = false;
                 if (playSession === session) fallback();
@@ -6941,12 +6975,15 @@
             try {
                 res = await fetch(url, { signal: m.ctl.signal, cache: "no-store", credentials: "omit" });
             } catch (e) {
-                return bail(); // no CORS, mixed content or a network error: use the plain element
+                return bail("fetch"); // no CORS, mixed content or a network error: use the plain element
             }
             if (!m.alive || playSession !== session) return;
             const ct = (res.headers.get("content-type") || "").toLowerCase();
             const mime = /mpeg|mp3/.test(ct) ? "audio/mpeg" : /aac/.test(ct) ? "audio/aac" : "";
-            if (!res.ok || !res.body || !mime || !MediaSource.isTypeSupported(mime)) return bail();
+            if (!res.ok || !res.body) return bail("fetch");
+            if (!mime) return bail("format");
+            if (!MediaSource.isTypeSupported(mime)) return bail("codec");
+            session.mseLive = !res.headers.get("content-length"); // a live stream has no length; a plain file does
             const ms = new MediaSource();
             m.objUrl = URL.createObjectURL(ms);
             session.usesMse = true;
@@ -6960,11 +6997,16 @@
                 sb = ms.addSourceBuffer(mime);
                 sb.mode = "sequence";
             } catch (e) {
-                return bail();
+                return bail("codec");
             }
             try { ms.duration = Infinity; } catch (e) {}
             const q = [];
             let qBytes = 0;
+            // seconds of audio waiting in the page's own queue (what the browser's MediaSource had no room for yet)
+            m.queuedSec = () => {
+                const secs = (performance.now() - m.t0) / 1000;
+                return secs > 15 && m.rxBytes > 0 ? qBytes / (m.rxBytes / secs) : 0;
+            };
             const cacheEnd = () => {
                 try { return sb.buffered.length ? sb.buffered.end(sb.buffered.length - 1) : 0; } catch (e) { return 0; }
             };
@@ -6998,19 +7040,21 @@
                     qBytes -= total;
                 } catch (e) {
                     q.unshift(buf); // not lost: tried again after room is made
-                    if (e && e.name === "QuotaExceededError") trimBehind(15);
-                    else bail();
+                    // The browser's buffer is full. Playing: older audio behind the playhead is dropped to make room.
+                    // Paused: nothing is dropped; the data waits in the queue (the whole point of pausing is to let it grow).
+                    if (e && e.name === "QuotaExceededError") { if (!el.paused) trimBehind(15); }
+                    else bail("append");
                 }
             };
             sb.addEventListener("updateend", pump);
             sb.addEventListener("error", () => {
-                if (m.alive && !session.everPlayed) bail();
+                if (m.alive && !session.everPlayed) bail("append");
             });
             const rd = res.body.getReader();
             try {
                 for (;;) {
                     // the only reasons to wait: a very long cache, or the player not taking data (should be rare)
-                    while (m.alive && (qBytes > 4194304 || cacheEnd() - el.currentTime > OWN_BUFFER_AHEAD_S)) {
+                    while (m.alive && (qBytes > OWN_QUEUE_MAX_BYTES || cacheEnd() - el.currentTime > OWN_BUFFER_AHEAD_S)) {
                         pump();
                         await sleep(500);
                     }
@@ -7020,6 +7064,7 @@
                     if (value && value.length) {
                         q.push(value);
                         qBytes += value.length;
+                        m.rxBytes += value.length;
                         pump();
                     }
                 }
@@ -7027,9 +7072,12 @@
                 // the connection dropped: what is cached still plays out below
             }
             if (!m.alive) return;
-            for (let i = 0; m.alive && (q.length || sb.updating) && i < 600; i++) {
+            let lastQ = qBytes, lastMove = Date.now();
+            while (m.alive && (q.length || sb.updating)) {
                 pump();
                 await sleep(100);
+                if (qBytes !== lastQ) { lastQ = qBytes; lastMove = Date.now(); }
+                else if (!el.paused && Date.now() - lastMove > 30000) break; // playing, yet the browser takes nothing: give up
             }
             // the stream is over: once the cached audio has played, 'ended' fires and the usual reconnect takes over
             if (m.alive && ms.readyState === "open") {
@@ -7100,6 +7148,7 @@
             };
             // Plain audio streams are pulled by the page itself (fetch -> MediaSource) so the cache keeps filling while paused.
             // Anything the browser refuses (no CORS, unsupported format) plays through the ordinary element as before.
+            if (lower.includes(".m3u8")) noOwnBuffer(session, "hls");
             if (!lower.includes(".m3u8") && canUseOwnBuffer(session, el, url)) {
                 destroyMse();
                 session.usesHls = false;
