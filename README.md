@@ -269,38 +269,37 @@ to listen to other m3u playlists in this repo click on the specific repo for eac
 <td><a href="https://github.com/junguler/listen_to_fm_cube">fm_cube</a></td>
 </tr>
 <tr>
-<td><a href="https://github.com/junguler/listen_to_fm_cube">fm_cube</a></td>
+<td><a href="https://github.com/junguler/listen_to_radio-mixer">radio-mixer</a></td>
 <td><a href="https://github.com/junguler/listen_to_live_365">live_365</a></td>
 <td><a href="https://github.com/junguler/listen_to_rcast.net">rcast.net</a></td>
 <td><a href="https://github.com/junguler/listen_to_shoutcast">shoutcast</a></td>
 <td><a href="https://github.com/junguler/listen_to_kuasark">kuasark</a></td>
 </tr>
 <tr>
-<td><a href="https://github.com/junguler/listen_to_radio-mixer">radio-mixer</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio_tune">radio_tune</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio-ly">radio-ly</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio-copycat">radio-copycat</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio-stations_live">radio-stations_live</a></td>
+<td><a href="https://github.com/junguler/listen_to_strea-m-itter">strea-m-itter</a></td>
 </tr>
 <tr>
-<td><a href="https://github.com/junguler/listen_to_strea-m-itter">strea-m-itter</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio_spinner">radio_spinner</a></td>
 <td><a href="https://github.com/junguler/listen_to_zin_music">zin_music</a></td>
 <td><a href="https://github.com/junguler/listen_to_radio-world.fm">radio-world.fm</a></td>
 <td><a href="https://github.com/junguler/listen_to_pcradio_app">pcradio_app</a></td>
+<td><a href="https://github.com/junguler/listen_to_lixty">lixty</a></td>
 </tr>
 <tr>
-<td><a href="https://github.com/junguler/listen_to_lixty">lixty</a></td>
 <td><a href="https://github.com/junguler/listen_to_ting_fm">listen_fm</a></td>
 <td><a href="https://github.com/junguler/listen_to_wavely_radio">wavely_radio</a></td>
 <td><a href="https://github.com/junguler/listen_to_world-s_radio">world-s_radio</a></td>
 <td><a href="https://github.com/junguler/listen_to_re-tune_fm">re-tune_fm</a></td>
+<td><a href="https://github.com/junguler/listen_to_my.world_tuner">my.world_tuner</a></td>
 </tr>
 <tr>
-<td><a href="https://github.com/junguler/listen_to_my.world_tuner">my.world_tuner</a></td>
 <td><a href="https://github.com/junguler/listen_to_cue_tree">cue_tree</a></td>
 <td><a href="https://github.com/junguler/listen_to_n-radio_box">n-radio_box</a></td>
-<td colspan="2"></td>
+<td colspan="3"></td>
 </tr>
 </tbody></table>
 
@@ -823,8 +822,8 @@ here is a list of websites i've scraped from already and included m3u streams fo
 </tr>
 <tr>
 <td><a href="http://l.lixty.com/en">http://l.lixty.com/en</a></td>
-<td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/pcradio_app">/lixty</a></td>
-<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/pcradio.app.sh">lixty.sh</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/lixty">/lixty</a></td>
+<td><a href="https://github.com/junguler/m3u-radio-music-playlists/blob/main/stuff/lixty.app.sh">lixty.sh</a></td>
 <tr>
 <td><a href="https://tingfm.com/">https://tingfm.com/</a></td>
 <td><a href="https://github.com/junguler/m3u-radio-music-playlists/tree/main/listen_fm">/listen_fm</a></td>
