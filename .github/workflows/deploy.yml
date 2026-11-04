@@ -3,7 +3,7 @@ name: Deploy File Viewer
 on:
   push:
     branches: [main, master]
-  push: # workflow_dispatch:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -16,140 +16,71 @@ concurrency:
 
 jobs:
   build-and-deploy:
+    # Pinned on purpose: ubuntu-latest is migrating to 26.04 in stages, so it
+    # can resolve to different images between runs. Change to ubuntu-26.04
+    # once you have tested it.
     runs-on: ubuntu-24.04
+    # Normal runs take about 4 minutes. 10 minutes leaves headroom but makes
+    # a stalled run fail fast so it can be re-run.
     timeout-minutes: 10
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # Full history is required: generate_index.js reads it to get each
+          # file's real last-modified date.
+          fetch-depth: 0
+
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
           node-version: "22"
 
-      # A custom partial clone is used because actions/checkout's `filter`
-      # input overrides `sparse-checkout`. This fetches commit/tree history
-      # without historical blobs, then materializes every current file except
-      # exact paths whose filename starts with "---".
-      - name: Checkout without external-file blobs
-        env:
-          GH_TOKEN: ${{ github.token }}
-          REPOSITORY: ${{ github.repository }}
-          COMMIT: ${{ github.sha }}
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          git init --quiet
-          git remote add origin "https://github.com/${REPOSITORY}.git"
-
-          # Mark origin as a promisor remote so Git knows missing blobs are
-          # intentional. Fetch the full ancestry of this exact event commit,
-          # but no file blobs and no unrelated branches or tags.
-          git config remote.origin.promisor true
-          git config remote.origin.partialclonefilter blob:none
-          auth_header="$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w 0)"
-          # Keep credentials available for Git's lazy fetches during checkout
-          # (selected current-file blobs are fetched only when materialized).
-          git config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ${auth_header}"
-          git fetch --no-tags --filter=blob:none origin "${COMMIT}"
-
-          git cat-file -e "${COMMIT}^{commit}"
-
-          # Start with the complete tracked tree, then exclude each external
-          # file by its exact path. This does not accidentally exclude a
-          # directory just because its name starts with "---".
-          node <<'NODE'
-          const fs = require("node:fs");
-          const { execFileSync } = require("node:child_process");
-
-          const output = execFileSync(
-            "git",
-            ["ls-tree", "-r", "-z", process.env.COMMIT],
-            { encoding: "buffer", maxBuffer: 256 * 1024 * 1024 }
-          );
-
-          const patterns = ["/*"];
-          let excluded = 0;
-
-          for (const record of output.toString("utf8").split("\0")) {
-            if (!record) continue;
-            const tab = record.indexOf("\t");
-            if (tab < 0) continue;
-
-            const metadata = record.slice(0, tab).split(" ");
-            const type = metadata[1];
-            const filePath = record.slice(tab + 1);
-            if (type !== "blob") continue;
-
-            const basename = filePath.slice(filePath.lastIndexOf("/") + 1);
-            if (!basename.startsWith("---")) continue;
-            if (/[\r\n]/.test(filePath)) {
-              throw new Error("A tracked path contains a newline and cannot be represented safely in sparse-checkout: " + filePath);
-            }
-
-            // Escape Git wildmatch metacharacters so the negative pattern
-            // matches this literal path only.
-            const escaped = filePath
-              .replace(/[\\*?\[\]]/g, "\\$&")
-              .replace(/ +$/g, (spaces) => spaces.replace(/ /g, "\\ "));
-            patterns.push("!/" + escaped);
-            excluded++;
-          }
-
-          fs.mkdirSync(".git/info", { recursive: true });
-          fs.writeFileSync(".git/info/sparse-checkout", patterns.join("\n") + "\n");
-          console.log(`Sparse checkout will omit ${excluded} external-prefix file(s).`);
-          NODE
-
-          git config core.sparseCheckout true
-          git config core.sparseCheckoutCone false
-          git checkout --quiet --detach --force "${COMMIT}"
-          git config --local --unset-all http.https://github.com/.extraheader
-
-          if [[ "$(git rev-parse --is-shallow-repository)" != "false" ]]; then
-            echo "::error::Git history is incomplete; refusing to generate inaccurate file dates."
-            exit 1
-          fi
-
-          echo "Checked out commit $(git rev-parse --short HEAD) with blob:none partial-clone filtering."
-
       - name: Generate file index
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
         run: node generate_index.js
 
       - name: Check file index
         run: |
           node -e '
             const i = JSON.parse(require("fs").readFileSync("file_index.json", "utf8"));
-            if (!i.stats || i.stats.files < 1) {
-              console.error("file_index.json has no files");
-              process.exit(1);
-            }
-            console.log(
-              "file_index.json OK:",
-              i.stats.files,
-              "files,",
-              i.stats.dirs,
-              "folders"
-            );
+            if (!i.stats || i.stats.files < 1) { console.error("file_index.json has no files"); process.exit(1); }
+            console.log("file_index.json OK:", i.stats.files, "files,", i.stats.dirs, "folders");
           '
 
-      # This diagnostic traverses the worktree several times, so only run it
-      # when a deployment is started manually for inspection.
+      # Files starting with "---" are flagged `external` in file_index.json.
+      # They stay listed in the viewer (which links to them on GitHub) but are
+      # removed from this throwaway checkout so they are not tarred, uploaded
+      # or deployed. Nothing in the repository itself is touched.
+      - name: Leave large files out of the site
+        run: |
+          node -e '
+            const fs = require("fs");
+            const idx = JSON.parse(fs.readFileSync("file_index.json", "utf8"));
+            let n = 0, bytes = 0;
+            (function walk(items, prefix) {
+              for (const it of items) {
+                const p = prefix ? prefix + "/" + it.name : it.name;
+                if (it.type === "directory") walk(it.children, p);
+                else if (it.external) { fs.rmSync(p); n++; bytes += it.size; }
+              }
+            })(idx.root, "");
+            console.log("Left out " + n + " files (" + (bytes / 1048576).toFixed(1) + " MB) from the site");
+          '
+
+      # Informational only: shows how much is about to be tarred and uploaded.
+      # Safe to delete once you no longer need to watch the site size.
       - name: Report upload size
-        if: github.event_name == 'workflow_dispatch'
         run: |
           echo "Files to upload (excluding .git and .github):"
           find . -type f -not -path "./.git/*" -not -path "./.github/*" | wc -l
-
           echo "Total size (actual bytes, not disk blocks):"
           du -sh --apparent-size --exclude=.git --exclude=.github . || true
-
           echo "Ten largest files:"
+          # The awk does the top-10 selection itself, so no pipe is closed early
+          # (the old `sort | head` printed a harmless "Broken pipe" message).
           find . -type f -not -path "./.git/*" -not -path "./.github/*" -printf '%s %p\n' \
             | sort -nr \
             | awk 'NR <= 10 { printf "%8.1f MB  %s\n", $1/1048576, $2 }'
@@ -158,6 +89,7 @@ jobs:
         uses: actions/configure-pages@v6
 
       - name: Upload artifact
+        # A stalled upload fails after 8 minutes instead of eating the whole job.
         timeout-minutes: 8
         uses: actions/upload-pages-artifact@v5
         with:
