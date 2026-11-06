@@ -911,6 +911,7 @@ my future plans for this repo is to keep scraping online radio websites, if and 
 
 ### Friend(s) of the repo
 *  [fony repo](https://github.com/wadadawadada/fony) + [fony website](https://fony.space/) desribed by the author as 'FONY is more than just a music player — it's a revolutionary Web3 platform designed for infinite global music streaming, blending freedom, decentralization, and cutting-edge technology.'
+* [radio by jamalxcode](https://github.com/jamalxcode/radio) + [the player](https://radio.sala.company/) an ai assited player made by @jamalxcode that has geniunly interesting features (such as station metadata and songs listned in a list) that i stole for my own file viewer, among many sources of data it includes a subset of my own playlists too, this is an active project, make sure to check back later for improvements
 
 <br>
 
