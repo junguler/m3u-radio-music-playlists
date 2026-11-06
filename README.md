@@ -15,6 +15,7 @@
 * [What are these genres names even mean?](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#what-are-these-genres-names-even-mean)
 * [Check for dead links without using code](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#check-for-dead-links-without-using-code)
 * [How to add metadata](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#how-to-add-metadata)
+* [How to add station logos](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#how-to-add-station-logos)
 * [Convert to and from different playlist formats](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#convert-to-and-from-different-playlist-formats)
 * [How to download from a station](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#how-to-download-from-a-station)
 * [How to download this repo](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#how-to-download-this-repo)
@@ -387,6 +388,11 @@ note: this method does not give you the stream title (tho most streams broadcast
 
 ### How to add metadata
 these playlists lack file type (mp3, aac etc) and bitrate (128kb, 360kb etc) metadata, there are a few reasons for this, firstly i didn't know how to scrape them initially, secondly many websites don't expose these to scrape and finally i think they being there makes people skip "low quality" streams and miss out on potentially great radio stations, but that doesn't mean nobody wants them, so with the help of claude and chatgpt i've made a [m3u metadata embedder](https://junguler.github.io/M3U-Metadata-embedder/) page, it's set up in a very similar way to the m3u link checker and there is relative feature parity between them
+
+<br>
+
+### How to add station logos
+station logos are included in playlists where possible but many of them don't have it, with the help claude i've made a [m3u logo embedder](https://junguler.github.io/M3U-Logo-embedder/) page, it's set exactly like the other helpers i've made and included here, it the best effort i can do to give you the ability to have more station logos in your playlists
 
 <br>
 
