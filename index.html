@@ -483,9 +483,9 @@
             .file-icon.xv2 { --xcv: hsl(from var(--xc) calc(h - 32) s l); }
             .file-icon.xv3 { --xcv: hsl(from var(--xc) calc(h + 64) s l); }
         }
-        /* Player glyph is always two-toned: body in --glyph-1, holes/details in --glyph-2 (glyphs without holes get a split fill). */
+        /* Player glyphs use --glyph-1 for their main form and --glyph-2 for
+           separately drawn details or restrained accent linework. */
         :root { --glyph-1: var(--on-control); --glyph-2: var(--stat-fill, var(--accent)); }
-        .audio-icon svg.duo-split, .audio-icon svg.duo-split [fill="currentColor"] { fill: url(#glyphSplit); }
         /* Icon colors are fixed per file category, so a given type always looks the same. */
         .file-name { font-weight: 500; word-break: break-word; font-size: 0.8rem; max-width: 100%; line-height: 1.2; }
         .file-meta { font-size: var(--data-size); color: var(--text-muted); }
@@ -1552,7 +1552,6 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
     <svg style="display:none" aria-hidden="true">
         <symbol id="icon-x" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></symbol>
     </svg>
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="glyphSplit" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="24"><stop offset="0" style="stop-color:var(--glyph-1)"/><stop offset="0.54" style="stop-color:var(--glyph-1)"/><stop offset="0.54" style="stop-color:var(--glyph-2)"/><stop offset="1" style="stop-color:var(--glyph-2)"/></linearGradient></defs></svg>
     <a class="skip-link" id="skipLink" href="#main">Skip to files</a>
     <header class="header">
         <div class="header-content">
@@ -2495,6 +2494,75 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
         // Some glyphs aren't drawn symmetrically inside their viewBox, so
         // recenter each one on its real bounding box once it's in the DOM.
+        // Give glyphs without their own built-in contrasting details a real,
+        // shape-aware two-tone treatment. Filled icons keep their main silhouette
+        // in glyph-1 and use glyph-2 for separate details; single-piece silhouettes
+        // get a restrained accent keyline. Stroke drawings receive an accent
+        // under-stroke, leaving their original linework crisp on top. This avoids
+        // the old arbitrary top/bottom color split entirely.
+        function applyPlayerIconDuo(svg) {
+            if (!svg || svg.querySelector('[fill="var(--bg-tertiary)"], [stroke="var(--bg-tertiary)"]')) return;
+
+            const shapes = [...svg.querySelectorAll("path, rect, circle, ellipse, line, polyline, polygon")];
+            if (!shapes.length) return;
+
+            const effectiveFill = (el) => {
+                for (let node = el; node && node !== svg.parentElement; node = node.parentElement) {
+                    if (node.hasAttribute && node.hasAttribute("fill")) return node.getAttribute("fill");
+                    if (node === svg) break;
+                }
+                return "black";
+            };
+            const filledShapes = shapes.filter((el) => {
+                const fill = effectiveFill(el);
+                return fill !== "none" && fill !== "transparent";
+            });
+
+            if (!filledShapes.length) {
+                // Outline-only artwork: add a slightly wider accent line beneath
+                // each original stroke. The original stroke remains untouched.
+                shapes.forEach((el) => {
+                    const clone = el.cloneNode(true);
+                    clone.setAttribute("stroke", "var(--glyph-2)");
+                    const width = parseFloat(el.getAttribute("stroke-width") || svg.getAttribute("stroke-width") || "1.8");
+                    clone.setAttribute("stroke-width", String(width + 1.15));
+                    clone.setAttribute("fill", "none");
+                    clone.setAttribute("opacity", "0.9");
+                    el.parentNode.insertBefore(clone, el);
+                });
+                return;
+            }
+
+            if (filledShapes.length > 1) {
+                // First filled component is the body; independently drawn
+                // components become the intentional accent/detail color.
+                filledShapes.slice(1).forEach((el) => {
+                    el.setAttribute("fill", "var(--glyph-2)");
+                });
+            } else {
+                // A single closed silhouette has no separate component to color.
+                // A fine accent keyline gives it depth without cutting it in half.
+                const main = filledShapes[0];
+                const baseWidth = parseFloat(main.getAttribute("stroke-width") || "0");
+                main.setAttribute("stroke", "var(--glyph-2)");
+                main.setAttribute("stroke-width", String(Math.max(baseWidth, 0.65)));
+                main.setAttribute("stroke-linejoin", "round");
+                main.setAttribute("paint-order", "stroke fill");
+            }
+
+            // Keep separately drawn line details legible while adding a subtle
+            // accent edge underneath them.
+            shapes.filter((el) => effectiveFill(el) === "none").forEach((el) => {
+                const clone = el.cloneNode(true);
+                clone.setAttribute("stroke", "var(--glyph-2)");
+                const width = parseFloat(el.getAttribute("stroke-width") || svg.getAttribute("stroke-width") || "1.6");
+                clone.setAttribute("stroke-width", String(width + 0.8));
+                clone.setAttribute("fill", "none");
+                clone.setAttribute("opacity", "0.85");
+                el.parentNode.insertBefore(clone, el);
+            });
+        }
+
         function centerAudioIconSvg(containerEl) {
             const svg = containerEl && containerEl.querySelector("svg");
             if (!svg) return;
@@ -2505,11 +2573,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 return; // element not renderable yet (e.g. detached/hidden)
             }
             if (!bbox || (!bbox.width && !bbox.height)) return;
-            if (!svg.querySelector('[fill="var(--bg-tertiary)"]')) {
-                svg.classList.add("duo-split");
-                const g = document.getElementById("glyphSplit");
-                if (g) { g.setAttribute("y1", bbox.y); g.setAttribute("y2", bbox.y + bbox.height); }
-            }
+
+            // Icons that already use the background color for cut-outs/details
+            // have their own deliberate two-tone design. Leave those untouched.
+            applyPlayerIconDuo(svg);
+
             const cx = bbox.x + bbox.width / 2;
             const cy = bbox.y + bbox.height / 2;
             const PADDING = 1.15; // slight margin so glyphs don't touch the edges
