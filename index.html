@@ -3683,7 +3683,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     seek.disabled = false;
                     cachePctNow = 100; // the bar is the cached window, so everything right of the thumb is cached
                     const span = range.end - range.start;
-                    const behind = Math.max(0, range.end - mediaEl.currentTime);
+                    const own = playSession && playSession.usesMse && currentOwnBuffer && currentOwnBuffer.alive ? currentOwnBuffer.queuedSec() : 0;
+                    const behind = Math.max(0, range.end - mediaEl.currentTime) + own;
                     if (behind < 2) {
                         durTimeEl.textContent = "LIVE";
                         durTimeEl.classList.add("is-live");
@@ -3713,6 +3714,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             // Behind the live edge (after a pause or a rewind), the time label jumps back to the newest cached audio.
             durTimeEl.addEventListener("click", () => {
                 if (!durTimeEl.classList.contains("is-behind")) return;
+                const ps = playSession;
+                if (ps && ps.el === mediaEl && ps.usesMse && currentOwnBuffer && currentOwnBuffer.alive && currentOwnBuffer.queuedSec() > 2) { jumpToLive(ps); return; }
                 const r = getSeekableRange();
                 if (r) mediaEl.currentTime = Math.max(r.start, r.end - 1);
             });
@@ -5388,7 +5391,6 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         const RECONNECT_MAX = 3;
         const RECONNECT_DELAYS_MS = [400, 1500, 3500];
         const STALL_RECONNECT_MS = 10000; // buffering this long while playing = a drop
-        const LIVE_RESUME_RECONNECT_MS = 60000; // paused longer than this: resume at the live point
         const NP_POLL_MS = 10000;
         const SONGS_KEY = "songsHeard";
         const SONGS_MAX = 500;
@@ -6248,6 +6250,13 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (m >= 60) return Math.floor(m / 60) + "h " + String(m % 60).padStart(2, "0") + "m";
             return m + "m " + String(r).padStart(2, "0") + "s";
         }
+        // Why a stream is not being cached by the page (shown as the tooltip of the cached-time tag).
+        function noCacheHint(why) {
+            const base = "Pausing can't build a cache for this station: ";
+            if (why === "cors" || why === "fetch") return base + "its server doesn't let the page read the stream, so only the browser's own small buffer is used.";
+            if (why === "format" || why === "codec") return base + "this browser can't cache its audio format.";
+            return base + "the page's own cache did not start for this stream.";
+        }
         // Glyph tags: format · bitrate (MP3 · 128k) top-left, cached time (12s) bottom-right. Cached time only shows once the stream has started playing.
         function updateStreamTag() {
             const tagEl = document.getElementById("streamTag");
@@ -6262,7 +6271,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 if (tagEl.textContent !== txt) tagEl.textContent = txt;
             }
             if (cacheEl) {
-                let ctxt = "";
+                let ctxt = "", ctitle = "";
                 if (s && s.everPlayed && !s.reconnecting && s.el) {
                     const ahead = bufferedAheadSec(s.el);
                     if (ahead >= 0) {
@@ -6274,14 +6283,16 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                         // "not caching · …" made it look like nothing was held.
                         // Only show the disclaimer when there is effectively no
                         // buffer left to play from.
-                        if (s.el.paused && !s.usesMse && s.mseWhy && isLiveStream(s) && total < 1) {
-                            ctxt = "not caching · " + s.mseWhy;
+                        if (s.el.paused && !s.usesMse && !s.usesHls && s.mseWhy && isLiveStream(s) && total < 1) {
+                            ctxt = "no cache";
                         } else {
                             ctxt = fmtBufferAhead(total);
                         }
+                        if (!s.usesMse && !s.usesHls && s.mseWhy && isLiveStream(s)) ctitle = noCacheHint(s.mseWhy);
                     }
                 }
                 if (cacheEl.textContent !== ctxt) cacheEl.textContent = ctxt;
+                if ((cacheEl.getAttribute("title") || "") !== ctitle) { if (ctitle) cacheEl.setAttribute("title", ctitle); else cacheEl.removeAttribute("title"); }
             }
         }
         // Keeps the cached time ticking while a stream plays (the tab being hidden pauses the refresh).
@@ -7357,6 +7368,13 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             recRender();
         }
         function recPush(r, v) {
+            // After the connection was reopened the new data starts mid-frame: begin the continuation at the first whole frame.
+            if (r.align) {
+                const at = recFrame(v, r.ext);
+                if (at < 0) return;
+                v = v.subarray(at);
+                r.align = false;
+            }
             let s = r.song;
             const due = r.mode === "songs" ? r.cut : recOpt.split && Date.now() - s.t0 >= recOpt.split * 1000 ? true : null;
             if (due) {
@@ -7415,7 +7433,9 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (r.mode === "songs") m += " · " + r.count + " saved · " + (r.song.title || "waiting for a title") + (r.inband ? "" : " (titles polled, cuts approximate)");
             else if (r.noTitles) m += " · no song titles, one stream" + (r.count ? " · " + r.count + " files" : "");
             else if (r.count) m += " · " + r.count + " files";
-            const short = r.mode === "songs" ? r.count + " saved · " + (r.song.title || "waiting for a title") : (r.bytes / 1048576).toFixed(1) + " MB" + (r.count ? " · " + r.count + " files" : "");
+            let short = r.mode === "songs" ? r.count + " saved · " + (r.song.title || "waiting for a title") : (r.bytes / 1048576).toFixed(1) + " MB" + (r.count ? " · " + r.count + " files" : "");
+            if (r.wait) { m += " · reconnecting…"; short += " · reconnecting…"; }
+            else if (r.gaps) m += " · " + r.gaps + (r.gaps === 1 ? " reconnect" : " reconnects");
             return { time, meta: m, short };
         }
         // Wide: full text. Narrow (one-line bar): the short text.
@@ -7768,36 +7788,23 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 return;
             }
             r.ctl.abort();
+            if (r.releaseLock) r.releaseLock();
             if (r.wake) r.wake.release().catch(() => {});
             if (r.mode === "songs") r.song.partial = true;
             recFinish(r, r.song);
             REC.msg = (msg ? msg + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + (r.skipped ? " (" + r.skipped + " short clips skipped)" : "");
             recRender();
         }
-        async function recStart(mode, noTitles) {
-            if (mode === "capture") return recStartCapture("whole");
-            if (mode === "capture-songs") return recStartCapture("songs");
-            const ses = playSession;
-            if (!ses || REC.st) return;
-            const dir = REC.dir || null;
-            REC.dir = null;
-            REC.choose = false;
-            let u = ses.cands[ses.candIdx];
-            if (location.protocol === "https:" && /^http:/i.test(u)) u = u.replace(/^http:/i, "https:");
-            recMsg("Connecting…");
-            const ctl = new AbortController(), tag = mode === "songs";
-            const op = await recOpen(ses.cands[ses.candIdx], tag, ctl.signal);
+        // One connection for the recorder: { res, mi, ct } or null (the reasons go into `why`). With `tag` it asks for in-band ICY titles; if the
+        // browser cannot read icy-metaint, the stream is asked for again without ICY framing. Otherwise a cross-origin response could hide the
+        // interval header while still inserting metadata bytes into the audio body, corrupting the saved file.
+        async function recConnect(u, tag, signal, why) {
+            const op = await recOpen(u, tag, signal);
             let res = op.res;
-            if (!res) { REC.cap = true; return recMsg(recWhy(op.why)); }
-            let ct = (res.headers.get("content-type") || "").toLowerCase();
+            if (!res) { (op.why || []).forEach((w) => why.push(w)); return null; }
             let mi = tag ? parseInt(res.headers.get("icy-metaint"), 10) || 0 : 0;
-            // If the browser cannot read icy-metaint, retry without asking for
-            // ICY framing. Otherwise a cross-origin response could hide the
-            // interval header while still inserting metadata bytes into the
-            // audio body, corrupting the saved file. The API poller can still
-            // provide approximate song cuts on this plain-audio connection.
             if (tag && !mi) {
-                const plain = await recOpen(ses.cands[ses.candIdx], false, ctl.signal);
+                const plain = await recOpen(u, false, signal);
                 if (plain.res) {
                     try {
                         if (res.body) {
@@ -7806,14 +7813,51 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                         }
                     } catch (e) {}
                     res = plain.res;
-                    ct = (res.headers.get("content-type") || "").toLowerCase();
                     mi = 0;
                 }
             }
+            return { res, mi, ct: (res.headers.get("content-type") || "").toLowerCase() };
+        }
+        // Keeps the tab from being frozen in the background while a recording runs (a frozen tab stops downloading).
+        function recHoldLock(r) {
+            let release = null;
+            try {
+                if (navigator.locks && navigator.locks.request) {
+                    navigator.locks.request("rec-" + Math.random().toString(36).slice(2), () => (REC.st === r ? new Promise((done) => { release = done; }) : undefined)).catch(() => {});
+                }
+            } catch (e) {}
+            return () => { if (release) { try { release(); } catch (e) {} release = null; } };
+        }
+        const REC_STALL_MS = 20000;
+        const REC_REOPEN_DELAYS_MS = [1000, 2000, 4000, 8000, 10000, 10000, 10000, 10000];
+        async function recStart(mode, noTitles) {
+            if (mode === "capture") return recStartCapture("whole");
+            if (mode === "capture-songs") return recStartCapture("songs");
+            const ses = playSession;
+            if (!ses || REC.st) return;
+            const dir = REC.dir || null;
+            REC.dir = null;
+            REC.choose = false;
+            recMsg("Connecting…");
+            const ctl = new AbortController(), tag = mode === "songs";
+            // Every connection has its own controller (so a dead one can be dropped alone); Stop aborts them all through `ctl`.
+            const newConn = () => {
+                const c = new AbortController();
+                ctl.signal.addEventListener("abort", () => c.abort(), { once: true });
+                return c;
+            };
+            let cc = newConn();
+            const why0 = [];
+            const c0 = await recConnect(ses.cands[ses.candIdx], tag, cc.signal, why0);
+            // The station may have been changed while connecting: that recording belongs to a station nobody is listening to any more.
+            if (playSession !== ses || REC.st) { ctl.abort(); return; }
+            if (!c0) { REC.cap = true; return recMsg(recWhy(why0)); }
+            let res = c0.res, ct = c0.ct, mi = c0.mi;
             if (/html/.test(ct)) { ctl.abort(); REC.cap = true; return recMsg(recWhy(["not audio"])); }
             const ext = /aac|mp4/.test(ct) ? "aac" : /ogg|opus|flac/.test(ct) ? "ogg" : "mp3";
             if (tag && ext === "ogg") { ctl.abort(); return recMsg("This station can only be recorded as one long file. Choose “One long recording”."); }
-            const r = (REC.st = { mode, ext, mime: ext === "aac" ? "audio/aac" : ext === "ogg" ? "audio/ogg" : "audio/mpeg", station: ses.item.title, ctl, dir, t0: Date.now(), bytes: 0, count: 0, skipped: 0, cut: null, inband: false, icyMetaInt: mi || 0, noTitles: !!noTitles });
+            const r = (REC.st = { mode, ext, mime: ext === "aac" ? "audio/aac" : ext === "ogg" ? "audio/ogg" : "audio/mpeg", station: ses.item.title, ctl, dir, t0: Date.now(), bytes: 0, count: 0, skipped: 0, cut: null, inband: false, icyMetaInt: mi || 0, noTitles: !!noTitles, gaps: 0, wait: false, align: false, releaseLock: null });
+            r.releaseLock = recHoldLock(r);
             r.song = recNew(tag && (ses.songLive || ses.song) ? ses.songLive || ses.song : null, tag);
             REC.msg = "";
             r.timer = setInterval(() => {
@@ -7837,14 +7881,52 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 }
             };
             const await0 = (a) => { const out = []; a.forEach((x) => out.push(...x)); return out; };
-            try {
-                const rd = res.body.getReader();
-                for (;;) {
-                    const { value, done } = await rd.read();
-                    if (done) break;
-                    if (mi) eat(value); else recPush(r, value);
+            const sleep = (ms) => new Promise((x) => setTimeout(x, ms));
+            const readOrStall = (reader) => new Promise((resolve, reject) => {
+                const t = setTimeout(() => reject(new Error("stalled")), REC_STALL_MS);
+                reader.read().then((v) => { clearTimeout(t); resolve(v); }, (e) => { clearTimeout(t); reject(e); });
+            });
+            let rd = res.body.getReader(), fails = 0;
+            for (;;) {
+                let got = 0;
+                try {
+                    for (;;) {
+                        const { value, done } = await readOrStall(rd);
+                        if (done) break;
+                        if (value && value.length) { got += value.length; if (mi) eat(value); else recPush(r, value); }
+                    }
+                } catch (e) {}
+                try { cc.abort(); } catch (e) {}
+                if (REC.st !== r) return; // stopped meanwhile: recStop did the wrap-up
+                if (got > 0) fails = 0;
+                // The stream dropped or went silent (a network blip, a server that cut the listener): open it again and carry on in the
+                // same recording instead of ending it. Only when that keeps failing is the recording closed, with what it has.
+                let next = null;
+                r.wait = true;
+                while (REC.st === r && !next && fails < REC_REOPEN_DELAYS_MS.length) {
+                    await sleep(REC_REOPEN_DELAYS_MS[fails++]);
+                    if (REC.st !== r) return;
+                    const nc = newConn();
+                    try {
+                        const c = await recConnect(ses.cands[ses.candIdx], tag, nc.signal, []);
+                        if (c && !/html/.test(c.ct)) next = { res: c.res, mi: c.mi, nc };
+                        else {
+                            nc.abort();
+                            try { if (c && c.res.body) c.res.body.cancel(); } catch (e) {}
+                        }
+                    } catch (e) { nc.abort(); }
                 }
-            } catch (e) {}
+                r.wait = false;
+                if (REC.st !== r) return;
+                if (!next) break;
+                r.gaps++;
+                cc = next.nc;
+                rd = next.res.body.getReader();
+                mi = next.mi;
+                st = 0; left = mi; mlen = 0; mbuf = [];
+                if (r.ext === "mp3" || r.ext === "aac") r.align = true;
+                if (r.mode === "songs") r.song.partial = true; // a song with a gap in it is not a whole song
+            }
             if (REC.st === r) recStop("Stream ended.");
         }
         function renderRecList() {
@@ -8126,6 +8208,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
         function startAttempt(session, reconnect) {
             if (playSession !== session) return;
+            // The own cache can fail to start for a passing reason (one flaky request), so a restart tries it again.
+            if (reconnect && session.mseFailed && session.mseWhy === "fetch") { session.mseFailed = false; session.mseWhy = ""; }
             const url = session.cands[session.candIdx];
             const kind = isVideoStreamUrl(url) ? "video" : "audio";
             const cors = !(session.corsFailed || noCorsHosts.has(hostKey(url)));
@@ -8134,6 +8218,14 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             session.el = el;
             attachStream(session, el, url);
             renderNpStatus();
+        }
+        // The real live point is past what the player holds (the newest part of the cache still waits in the page's queue):
+        // restart the connection quietly, the way a drop is recovered, without counting it as a drop.
+        function jumpToLive(session) {
+            if (playSession !== session || session.reloadTimer) return;
+            session.reloading = true;
+            setPlaylistBuffering(true);
+            startAttempt(session, true);
         }
         function recordPlayStart(session) {
             const slow = session.startMs > SLOW_START_MS;
@@ -8214,10 +8306,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
         function armStall(session) {
             clearStall(session);
+            // The page's own cache reopens a dead connection in place (keeping what is cached), so it gets longer than a plain element before a full restart.
             session.stallTimer = setTimeout(() => {
                 session.stallTimer = null;
                 if (playSession === session && session.everPlayed && session.el && !session.el.paused) dropAndReconnect(session);
-            }, STALL_RECONNECT_MS);
+            }, session.usesMse ? OWN_STALL_MS + 15000 : STALL_RECONNECT_MS);
         }
         function bindSessionEvents(session, el) {
             const alive = () => playSession === session;
@@ -8260,20 +8353,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     setPlaylistBuffering(false);
                 }
             };
+            // Pausing is a pause: resuming carries on from the paused spot with whatever was kept. A stream whose connection really died
+            // during the pause plays out what it holds, then the stall / ended handlers reopen it. Nothing jumps to the live point by itself.
             el.onpause = () => {
                 if (!alive()) return;
                 clearStall(session);
-                if (!session.reloading) session.pausedAt = Date.now();
-            };
-            el.onplay = () => {
-                if (!alive()) return;
-                const was = session.pausedAt;
-                session.pausedAt = 0;
-                // resuming a live stream after a long pause: jump back to the live point
-                if (was && session.everPlayed && !session.reloading && !session.reconnecting && !session.usesMse && Date.now() - was > LIVE_RESUME_RECONNECT_MS && isLiveStream(session)) {
-                    session.reloading = true;
-                    startAttempt(session, true);
-                }
             };
             el.onerror = () => {
                 if (!alive()) return;
@@ -8296,10 +8380,15 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         // (up to OWN_BUFFER_AHEAD_S ahead; the last OWN_BUFFER_BEHIND_S of played audio stay available for rewinding).
         const OWN_BUFFER_AHEAD_S = 1800;
         const OWN_BUFFER_BEHIND_S = 600;
-        // Chromium lets a MediaSource hold only about 12 MB of audio and never drops what is ahead of the playhead, so a long pause fills it
-        // far sooner than OWN_BUFFER_AHEAD_S. The page therefore keeps the rest of the download in its own queue (up to this many bytes)
-        // and feeds it in as room opens up, so the cache no longer depends on the browser's limit.
+        // A MediaSource only holds about 12 MB of audio (less on some phones). Near that limit Chromium starts evicting, and it does not
+        // always evict what the page would choose, so the page never gets near it: it hands the browser at most OWN_SB_BYTES and keeps
+        // the rest of the download in its own queue (up to OWN_QUEUE_MAX_BYTES), feeding it in as room opens up behind the playhead.
+        const OWN_SB_BYTES = (navigator.deviceMemory && navigator.deviceMemory <= 2 ? 6 : 10) * 1048576;
         const OWN_QUEUE_MAX_BYTES = (navigator.deviceMemory && navigator.deviceMemory <= 2 ? 24 : 48) * 1048576;
+        // No bytes at all for this long on a live stream means the connection is dead (or the server dropped a slow reader while paused).
+        // It is then opened again in place: the cache and the playhead stay, new audio is appended after what is cached.
+        const OWN_STALL_MS = 20000;
+        const OWN_REOPEN_DELAYS_MS = [400, 1200, 2500, 5000, 8000, 8000];
         let currentOwnBuffer = null;
         // Remembers why a session is not using the own buffer (shown on the glyph while paused, so a silent fallback is visible).
         function noOwnBuffer(session, why) {
@@ -8330,17 +8419,41 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (!m) return;
             currentOwnBuffer = null;
             m.alive = false;
+            if (m.pumpTimer) { clearInterval(m.pumpTimer); m.pumpTimer = null; }
             try { m.ctl.abort(); } catch (e) {}
             if (m.releaseLock) {
                 try { m.releaseLock(); } catch (e) {}
                 m.releaseLock = null;
             }
+            // The element must not go on playing what this buffer already handed it: that audio belongs to a stream that is gone.
+            if (m.el && m.objUrl && m.el.src === m.objUrl) {
+                try { m.el.removeAttribute("src"); m.el.load(); } catch (e) {}
+            }
             if (m.objUrl) {
                 try { URL.revokeObjectURL(m.objUrl); } catch (e) {}
             }
         }
+        // What kind of audio a stream is, so the page can cache it: from the content type, then the file extension, then (below) the first bytes.
+        function ownMimeFromType(ct) {
+            if (/mpegurl|scpls|html|xml|json|text\//.test(ct)) return "";
+            if (/mpeg|mp3/.test(ct)) return "audio/mpeg";
+            if (/aac/.test(ct)) return "audio/aac";
+            return "";
+        }
+        function ownMimeFromExt(url) {
+            const e = urlPathExt(url);
+            return e === "mp3" ? "audio/mpeg" : e === "aac" || e === "aacp" ? "audio/aac" : "";
+        }
+        function ownSniffMime(v) {
+            if (!v || v.length < 4) return "";
+            if (v[0] === 0x49 && v[1] === 0x44 && v[2] === 0x33) return "audio/mpeg"; // an ID3 tag first: an MP3 stream
+            const a = recFrame(v, "aac"), m = recFrame(v, "mp3");
+            if (a >= 0 && (m < 0 || a < m)) return "audio/aac";
+            if (m >= 0) return "audio/mpeg";
+            return "";
+        }
         async function startOwnBuffer(session, el, url, onBlocked, fallback) {
-            const m = { alive: true, ctl: new AbortController(), objUrl: "", releaseLock: null, rxBytes: 0, t0: performance.now(), queuedSec: () => 0 };
+            const m = { alive: true, ctl: new AbortController(), objUrl: "", releaseLock: null, pumpTimer: null, el, appBytes: 0, appSecs: 0, pending: null, gaps: 0, queuedSec: () => 0 };
             currentOwnBuffer = m;
             holdBufferLock(m);
             const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -8352,17 +8465,18 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 session.usesMse = false;
                 if (playSession === session) fallback();
             };
-            let res, ownBufferMetaInt = 0;
-            // Ask for ICY metadata on the same connection that feeds MediaSource.
-            // When the server and CORS policy permit it, metadata is stripped
-            // before appending audio, so playback remains valid and titles reach
-            // the shared UI/recording pipeline without opening a second stream.
-            try {
+            // One connection to the station. It asks for ICY titles on the same connection when the server and CORS policy let the page read
+            // icy-metaint; a response whose metadata interval is hidden is dropped and the stream is asked for again without ICY framing,
+            // otherwise metadata bytes would end up inside the audio. Throws on a network / CORS error.
+            const connect = async () => {
+                m.ctl = new AbortController();
+                const signal = m.ctl.signal;
+                let res = null, metaInt = 0;
                 try {
-                    res = await fetch(url, { signal: m.ctl.signal, cache: "no-store", credentials: "omit", headers: { "Icy-MetaData": "1" } });
+                    res = await fetch(url, { signal, cache: "no-store", credentials: "omit", headers: { "Icy-MetaData": "1" } });
                     if (res.ok && res.body) {
                         const candidate = parseInt(res.headers.get("icy-metaint"), 10) || 0;
-                        if (candidate > 0 && candidate <= 1048576) ownBufferMetaInt = candidate;
+                        if (candidate > 0 && candidate <= 1048576) metaInt = candidate;
                         else {
                             try { const cancelled = res.body.cancel(); if (cancelled && cancelled.catch) cancelled.catch(() => {}); } catch (e) {}
                             res = null;
@@ -8372,15 +8486,31 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                         res = null;
                     }
                 } catch (e) { res = null; }
-                if (!res) res = await fetch(url, { signal: m.ctl.signal, cache: "no-store", credentials: "omit" });
+                if (!res) res = await fetch(url, { signal, cache: "no-store", credentials: "omit" });
+                return { res, metaInt };
+            };
+            let conn;
+            try {
+                conn = await connect();
             } catch (e) {
                 return bail("fetch"); // no CORS, mixed content or a network error: use the plain element
             }
             if (!m.alive || playSession !== session) return;
+            const res = conn.res;
+            if (!res.ok || !res.body) return bail("fetch");
+            let ownBufferMetaInt = conn.metaInt;
             if (ownBufferMetaInt) { session.ownIcy = true; npDebugSource(session, "icy-own-buffer", "connected", { metaint: ownBufferMetaInt }); }
             const ct = (res.headers.get("content-type") || "").toLowerCase();
-            const mime = /mpeg|mp3/.test(ct) ? "audio/mpeg" : /aac/.test(ct) ? "audio/aac" : "";
-            if (!res.ok || !res.body) return bail("fetch");
+            const rd0 = res.body.getReader();
+            let first = null, mime = ownMimeFromType(ct) || (/mpegurl|scpls|html|xml|json|text\//.test(ct) ? "" : ownMimeFromExt(url));
+            if (!mime && !/mpegurl|scpls|html|xml|json|text\/|ogg|opus|vorbis|flac|video|mp4|webm|wav/.test(ct)) {
+                // The server did not say what this is (or said something generic like octet-stream): the first bytes tell.
+                try {
+                    const r0 = await rd0.read();
+                    if (r0 && r0.value && r0.value.length) { first = r0.value; mime = ownSniffMime(first); }
+                } catch (e) { return bail("fetch"); }
+                if (!m.alive || playSession !== session) return;
+            }
             if (!mime) return bail("format");
             if (!MediaSource.isTypeSupported(mime)) return bail("codec");
             session.mseLive = !res.headers.get("content-length"); // a live stream has no length; a plain file does
@@ -8402,19 +8532,42 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             try { ms.duration = Infinity; } catch (e) {}
             const q = [];
             let qBytes = 0;
+            let sbBudget = OWN_SB_BYTES;
+            // Bytes per second of audio, learned from what was actually appended (so a long pause, when nothing is read, does not skew it).
+            const byteRate = () => (m.appSecs > 5 && m.appBytes > 0 ? m.appBytes / m.appSecs : 0);
             // seconds of audio waiting in the page's own queue (what the browser's MediaSource had no room for yet)
             m.queuedSec = () => {
-                const secs = (performance.now() - m.t0) / 1000;
-                return secs > 15 && m.rxBytes > 0 ? qBytes / (m.rxBytes / secs) : 0;
+                const r = byteRate();
+                return r ? qBytes / r : 0;
             };
             const cacheEnd = () => {
                 try { return sb.buffered.length ? sb.buffered.end(sb.buffered.length - 1) : 0; } catch (e) { return 0; }
             };
+            const sbBytesEst = () => {
+                const r = byteRate();
+                if (!r) return 0;
+                try {
+                    let secs = 0;
+                    for (let i = 0; i < sb.buffered.length; i++) secs += sb.buffered.end(i) - sb.buffered.start(i);
+                    return secs * r;
+                } catch (e) { return 0; }
+            };
+            // Drops played audio older than `keep` seconds behind the playhead.
             const trimBehind = (keep) => {
                 try {
                     if (sb.updating || !sb.buffered.length) return false;
                     const from = sb.buffered.start(0), to = el.currentTime - keep;
                     if (to - from < 5) return false;
+                    sb.remove(from, to);
+                    return true;
+                } catch (e) { return false; }
+            };
+            // Drops the oldest `secs` of cached audio, but never closer than 30 s behind the playhead.
+            const trimBehindBy = (secs) => {
+                try {
+                    if (sb.updating || !sb.buffered.length) return false;
+                    const from = sb.buffered.start(0), to = Math.min(from + secs, el.currentTime - 30);
+                    if (to - from < 1) return false;
                     sb.remove(from, to);
                     return true;
                 } catch (e) { return false; }
@@ -8425,6 +8578,14 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     if (sb.buffered.length && el.currentTime - sb.buffered.start(0) > OWN_BUFFER_BEHIND_S + 30 && trimBehind(OWN_BUFFER_BEHIND_S)) return;
                 } catch (e) {}
                 if (!q.length) return;
+                // The browser is only given what fits the page's own budget; the rest waits in the queue.
+                const room = sbBudget - sbBytesEst();
+                if (room < 65536) {
+                    const r = byteRate();
+                    // make room by dropping the oldest played audio; with none to drop, the data simply waits (that is the paused case)
+                    if (r) trimBehindBy(Math.max(20, (262144 - room) / r + 5));
+                    return;
+                }
                 const parts = [];
                 let total = 0;
                 while (q.length && total < 262144) {
@@ -8436,29 +8597,54 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 let o = 0;
                 for (const c of parts) { buf.set(c, o); o += c.length; }
                 try {
+                    const endBefore = cacheEnd();
                     sb.appendBuffer(buf);
                     qBytes -= total;
+                    m.pending = { bytes: total, endBefore };
                 } catch (e) {
                     q.unshift(buf); // not lost: tried again after room is made
-                    // The browser's buffer is full. Playing: older audio behind the playhead is dropped to make room.
-                    // Paused: nothing is dropped; the data waits in the queue (the whole point of pausing is to let it grow).
-                    if (e && e.name === "QuotaExceededError") { if (!el.paused) trimBehind(15); }
-                    else bail("append");
+                    if (e && e.name === "QuotaExceededError") {
+                        // The browser's real limit is lower than assumed: stay under what it just held.
+                        const est = sbBytesEst();
+                        if (est > 2097152) sbBudget = Math.min(sbBudget, est * 0.85);
+                        // Playing: older audio behind the playhead is dropped to make room. Paused: the same, down to 30 s, so the cache can keep growing ahead.
+                        trimBehind(el.paused ? 30 : 15);
+                    } else bail("append");
                 }
             };
-            sb.addEventListener("updateend", pump);
+            sb.addEventListener("updateend", () => {
+                if (m.pending) {
+                    const grown = cacheEnd() - m.pending.endBefore;
+                    if (grown > 0) { m.appSecs += grown; m.appBytes += m.pending.bytes; }
+                    m.pending = null;
+                }
+                pump();
+            });
             sb.addEventListener("error", () => {
                 if (m.alive && !session.everPlayed) bail("append");
             });
-            const rd = res.body.getReader();
-            let icyAudioLeft = ownBufferMetaInt;
-            let icyState = ownBufferMetaInt ? "audio" : "plain";
-            let icyMetaLeft = 0, icyMetaParts = [], icyMetaBytes = 0;
+            // A steady tick as well, so a blocked queue is retried even when no new data arrives and the tab is in the background.
+            m.pumpTimer = setInterval(pump, 1000);
+            let icyAudioLeft = 0, icyState = "plain", icyMetaLeft = 0, icyMetaParts = [], icyMetaBytes = 0;
+            const resetIcy = (metaInt) => {
+                ownBufferMetaInt = metaInt;
+                icyAudioLeft = metaInt;
+                icyState = metaInt ? "audio" : "plain";
+                icyMetaLeft = 0; icyMetaParts = []; icyMetaBytes = 0;
+            };
+            // After the connection is reopened the new data starts mid-frame: skip to the first whole frame so the decoder never sees a torn one.
+            let align = false;
+            const alignExt = mime === "audio/aac" ? "aac" : "mp3";
             const enqueueAudio = (chunk) => {
                 if (!chunk || !chunk.length || !m.alive) return;
+                if (align) {
+                    const at = recFrame(chunk, alignExt);
+                    if (at < 0) return;
+                    chunk = chunk.subarray(at);
+                    align = false;
+                }
                 q.push(chunk);
                 qBytes += chunk.length;
-                m.rxBytes += chunk.length;
                 pump();
             };
             const feedIcy = (chunk) => {
@@ -8495,20 +8681,56 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     }
                 }
             };
-            try {
-                for (;;) {
-                    // the only reasons to wait: a very long cache, or the player not taking data (should be rare)
-                    while (m.alive && (qBytes > OWN_QUEUE_MAX_BYTES || cacheEnd() - el.currentTime > OWN_BUFFER_AHEAD_S)) {
-                        pump();
-                        await sleep(500);
+            const readOrStall = (reader) => new Promise((resolve, reject) => {
+                const t = setTimeout(() => reject(new Error("stalled")), OWN_STALL_MS);
+                reader.read().then((v) => { clearTimeout(t); resolve(v); }, (e) => { clearTimeout(t); reject(e); });
+            });
+            let rd = rd0, reopens = 0;
+            resetIcy(conn.metaInt);
+            try { if (first) feedIcy(first); } catch (e) {}
+            for (;;) {
+                let got = first ? first.length : 0;
+                first = null;
+                try {
+                    for (;;) {
+                        // the only reasons to wait: a very long cache, or the player not taking data (should be rare)
+                        while (m.alive && (qBytes > OWN_QUEUE_MAX_BYTES || cacheEnd() - el.currentTime + m.queuedSec() > OWN_BUFFER_AHEAD_S)) {
+                            pump();
+                            await sleep(500);
+                        }
+                        if (!m.alive) return;
+                        const { value, done } = await readOrStall(rd);
+                        if (done) break;
+                        if (value && value.length) { got += value.length; feedIcy(value); }
                     }
-                    if (!m.alive) return;
-                    const { value, done } = await rd.read();
-                    if (done) break;
-                    if (value && value.length) feedIcy(value);
+                } catch (e) {
+                    // the connection dropped, or sent nothing for OWN_STALL_MS: handled below
                 }
-            } catch (e) {
-                // the connection dropped: what is cached still plays out below
+                try { m.ctl.abort(); } catch (e) {}
+                try { const c = rd.cancel(); if (c && c.catch) c.catch(() => {}); } catch (e) {}
+                if (!m.alive) return;
+                if (!session.mseLive) break; // a plain file simply ends
+                if (got > 0) reopens = 0;
+                // A live stream hung up (a server dropping a reader that sat paused, a network blip): open it again in place.
+                // What is cached and where the person is stay as they are; the new audio is added after the cached part.
+                let next = null;
+                while (m.alive && !next && reopens < OWN_REOPEN_DELAYS_MS.length) {
+                    await sleep(OWN_REOPEN_DELAYS_MS[reopens++]);
+                    if (!m.alive) return;
+                    try {
+                        const c = await connect();
+                        if (!m.alive) return;
+                        if (c.res.ok && c.res.body) next = c;
+                        else { try { if (c.res.body) c.res.body.cancel(); } catch (e) {} }
+                    } catch (e) {
+                        if (!m.alive) return;
+                    }
+                }
+                if (!next) break;
+                m.gaps++;
+                rd = next.res.body.getReader();
+                resetIcy(next.metaInt);
+                align = true;
             }
             if (!m.alive) return;
             let lastQ = qBytes, lastMove = Date.now();
@@ -8516,7 +8738,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 pump();
                 await sleep(100);
                 if (qBytes !== lastQ) { lastQ = qBytes; lastMove = Date.now(); }
-                else if (!el.paused && Date.now() - lastMove > 30000) break; // playing, yet the browser takes nothing: give up
+                else if (!el.paused && Date.now() - lastMove > 120000) break; // playing, yet the browser takes nothing: give up
             }
             // the stream is over: once the cached audio has played, 'ended' fires and the usual reconnect takes over
             if (m.alive && ms.readyState === "open") {
@@ -8541,7 +8763,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             };
             const startHls = () => {
                 session.usesHls = true;
-                const hls = new Hls();
+                // hls.js stops fetching once 30 s are buffered ahead; a longer buffer lets a paused HLS stream keep caching too.
+                const hls = new Hls({ maxBufferLength: 600, maxMaxBufferLength: 1800, backBufferLength: 300 });
                 currentHls = hls;
                 hls.loadSource(url);
                 hls.attachMedia(el);
@@ -8619,6 +8842,10 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         async function playPlaylistTrack(e) {
             if (e < 0 || e >= currentPlaylist.length) return;
             endPlaySession();
+            // Moving to another stream throws the old one away completely: without this the element goes on playing the old stream's
+            // cached audio (up to half an hour of it) until the new stream has connected.
+            const oldMedia = document.getElementById("audioPlayer") || document.getElementById("videoPlayer");
+            if (oldMedia) { try { oldMedia.removeAttribute("src"); oldMedia.load(); } catch (err) {} }
             const item = currentPlaylist[e];
             const session = {
                 item,
@@ -8634,7 +8861,6 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 drops: 0,
                 reconnecting: false,
                 reloading: false,
-                pausedAt: 0,
                 startMs: 0,
                 song: "",
                 mediaRecovered: false,
