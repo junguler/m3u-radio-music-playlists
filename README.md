@@ -16,6 +16,7 @@
 * [Check for dead links without using code](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#check-for-dead-links-without-using-code)
 * [How to add metadata](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#how-to-add-metadata)
 * [How to add station logos](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#how-to-add-station-logos)
+* [How to design station logos](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#how-to-design-station-logos)
 * [Convert to and from different playlist formats](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#convert-to-and-from-different-playlist-formats)
 * [How to download from a station](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#how-to-download-from-a-station)
 * [How to download this repo](https://github.com/junguler/m3u-radio-music-playlists?tab=readme-ov-file#how-to-download-this-repo)
@@ -393,6 +394,11 @@ these playlists lack file type (mp3, aac etc) and bitrate (128kb, 360kb etc) met
 
 ### How to add station logos
 station logos are included in playlists where possible but many of them don't have it, with the help claude i've made a [m3u logo embedder](https://junguler.github.io/M3U-Logo-embedder/) page, it's set exactly like the other helpers i've made and included here, it the best effort i can do to give you the ability to have more station logos in your playlists
+
+<br>
+
+### How to design station logos
+so you ran your playlist thru the logo embedder but some of them still don't have a logo? with the help of claude i've made a [m3u logo designer](https://junguler.github.io/M3u-Logo-designer/) page, it has many options for gradients, effects, fonts, sizes, colors etc ... , it creates jpg logos to your liking and bundles them beside the m3u playlist so they could be used together if the radio player supports relative paths like kodi, or you could upload the images to github or elsewhere and include the base path to that address in the page so they are automatically inserted in the playlist
 
 <br>
 
