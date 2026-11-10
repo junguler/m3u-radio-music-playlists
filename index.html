@@ -857,6 +857,7 @@
         .song-row { padding: 0.5rem 0; border-bottom: var(--bw) solid var(--border-color); }
         .song-title { font-size: 0.88rem; color: var(--text-primary); word-break: break-word; }
         .song-meta { font-size: var(--data-size); color: var(--text-muted); margin-top: 0.1rem; }
+        .rec-store-note { padding: 0.6rem 0.9rem; }
         .song-links { margin-top: 0.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
         .song-links a { font-size: 0.75rem; color: var(--accent-text, var(--accent)); text-decoration: none; }
         .song-links a:hover { text-decoration: underline; }
@@ -7350,13 +7351,13 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         // One click: a single recording is saved as is, several become one zip.
         async function recSaveAll(b) {
             const items = REC.items.slice().reverse(), total = items.reduce((a, i) => a + i.blob.size, 0);
-            if (!items.length) return false;
+            if (!items.length || b.disabled) return false;
             if (items.length === 1) { recSave(items[0].blob, items[0].name); return true; }
             if (total > 3.5 * 1024 ** 3) { alert("That's too much for one zip. Open the list and save the files one by one."); return false; }
             const t = b.innerHTML;
             b.textContent = "Zipping…";
             b.disabled = true;
-            try { recSave(await recZip(items), "Recordings " + new Date().toISOString().slice(0, 16).replace(/[T:]/g, "-") + ".zip"); } finally { b.innerHTML = t; b.disabled = false; }
+            try { recSave(await recZip(items, (d, n) => { b.textContent = "Zipping " + d + "/" + n + "…"; }), "Recordings " + new Date().toISOString().slice(0, 16).replace(/[T:]/g, "-") + ".zip"); } finally { b.innerHTML = t; b.disabled = false; }
             return true;
         }
         function recSave(blob, name) {
@@ -7387,7 +7388,15 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                         d.createObjectStore("segs", { keyPath: "id" });
                         d.createObjectStore("chunks", { keyPath: "key" });
                     };
-                    rq.onsuccess = () => { RECDB.db = rq.result; RECDB.ok = true; resolve(RECDB.db); };
+                    rq.onsuccess = () => {
+                        const db = rq.result;
+                        RECDB.db = db; RECDB.ok = true;
+                        // If the browser closes the connection (storage cleared, profile trouble) the next write opens a fresh one instead of failing for good.
+                        const reset = () => { if (RECDB.db === db) { RECDB.db = null; RECDB.opening = null; } };
+                        db.onclose = reset;
+                        db.onversionchange = () => { db.close(); reset(); };
+                        resolve(db);
+                    };
                     rq.onerror = rq.onblocked = () => { RECDB.dead = true; resolve(null); };
                 } catch (e) { RECDB.dead = true; resolve(null); }
             });
@@ -7419,7 +7428,15 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 return res;
             }).then((r) => (r && r.v) || []);
         }
-        function recDbPutItem(it) { return recDbRun(["items"], "readwrite", (st) => { st.items.put(it); }); }
+        // The stored copy never carries the in-memory flags, so a restored file does not come back looking unsaved.
+        function recDbPutItem(it) { return recDbRun(["items"], "readwrite", (st) => { const { unsaved, retrying, ...clean } = it; st.items.put(clean); }); }
+        function recDbKeys(store) {
+            return recDbRun([store], "readonly", (st) => {
+                const res = { v: [] }, rq = st[store].getAllKeys();
+                rq.onsuccess = () => { res.v = rq.result || []; };
+                return res;
+            }).then((r) => (r && r.v) || []);
+        }
         function recDbDropSeg(id) {
             return recDbRun(["segs", "chunks"], "readwrite", (st) => {
                 st.segs.delete(id);
@@ -7476,11 +7493,14 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         async function recRestoreNow() {
             const db = await recDbOpen();
             if (!db) return;
-            const items = await recDbGetAll("items"), have = new Set(REC.items.map((i) => i.id));
+            const have = new Set(REC.items.map((i) => i.id));
+            const [keys, segs] = await Promise.all([recDbKeys("items"), recDbGetAll("segs")]);
+            // The once-a-minute check stays cheap: nothing stored that this tab does not already hold, and no leftovers from another tab.
+            if (keys.every((k) => have.has(k)) && segs.every((sg) => sg.tab === RECDB.tab)) return;
+            const items = await recDbGetAll("items");
             const segIds = new Set(items.map((i) => i.segId).filter(Boolean));
             let recovered = 0, added = 0;
-            items.forEach((i) => { if (!have.has(i.id) && i.blob) { REC.items.push(i); have.add(i.id); added++; } });
-            const segs = await recDbGetAll("segs");
+            items.forEach((i) => { if (!have.has(i.id) && i.blob) { i.unsaved = false; i.retrying = false; REC.items.push(i); have.add(i.id); added++; } });
             for (const sg of segs) {
                 if (segIds.has(sg.id)) { recDbDropSeg(sg.id); continue; }
                 if (await recTabAlive(sg)) continue;
@@ -7508,6 +7528,16 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
         // True while a recording runs: the player must stay on this station, whatever it does.
         function recHolding() { return !!REC.st; }
+        // Writes into the chosen folder under a name nobody is using there yet (an existing file is never overwritten).
+        async function recDirWrite(dir, name, blob) {
+            const dot = name.lastIndexOf("."), base = dot > 0 ? name.slice(0, dot) : name, tail = dot > 0 ? name.slice(dot) : "";
+            let out = name;
+            for (let n = 2; n < 100; n++) {
+                try { await dir.getFileHandle(out); out = base + " (" + n + ")" + tail; } catch (e) { break; } // not found = the name is free
+            }
+            const wr = await (await dir.getFileHandle(out, { create: true })).createWritable();
+            try { await wr.write(blob); await wr.close(); } catch (e) { try { await wr.abort(); } catch (x) {} throw e; }
+        }
         async function recFinish(r, s) {
             if (!s) return;
             s.done = true;
@@ -7530,7 +7560,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (r.dir) {
                 let wrote = false;
                 for (let tryN = 0; tryN < 2 && !wrote; tryN++) {
-                    try { const wr = await (await r.dir.getFileHandle(name, { create: true })).createWritable(); await wr.write(blob); await wr.close(); wrote = true; } catch (e) {}
+                    try { await recDirWrite(r.dir, name, blob); wrote = true; } catch (e) {}
                 }
                 if (!wrote) r.dirFails = (r.dirFails || 0) + 1;
             }
@@ -7594,15 +7624,26 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (r.capture) {
                 const old = r.captureMr;
                 if (old && old.state !== "inactive") {
-                    const next = recNew(t, false);
+                    const prev = r.song, next = recNew(t, false);
                     r.song = next;
                     old.rotated = true;
-                    if (!recCaptureStartChunk(r, next)) { old.rotated = false; return; }
-                    try { old.stop(); } catch (e) { recFinish(r, old === r.captureMr ? r.song : next); }
+                    if (!recCaptureStartChunk(r, next)) { old.rotated = false; r.song = prev; return; }
+                    try { old.stop(); } catch (e) { recFinish(r, prev); }
                 }
                 return;
             }
             r.cut = { title: t, source: meta.source || "metadata", playedAt: meta.playedAt || 0, exact: false };
+        }
+        // Once a second: the clock and the progress text are updated in place, and only when their text really changed
+        // (so a tooltip or a text selection on the line is not disturbed, and nothing is rebuilt).
+        function recTick(r) {
+            const st = recStat(r), t = document.querySelector("#recPanel .rec-time"), m = document.querySelector("#recPanel .rec-meta"), bt = document.querySelector("#playlistRec .btn-txt");
+            if (t && t.textContent !== st.time) t.textContent = st.time;
+            if (bt && bt.textContent !== st.time) bt.textContent = st.time;
+            if (m) {
+                const h = recMetaHtml(st);
+                if (m._h !== h) { m._h = h; m.innerHTML = h; m.title = st.meta; }
+            }
         }
         function recStat(r) {
             const time = recFmt(Math.floor((Date.now() - r.t0) / 1000));
@@ -7629,7 +7670,6 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             let m;
             if (/^Checking the stream/.test(h)) return "Checking the stream…";
             if (/Pick how you want to save/.test(h)) return "Pick how to save it";
-            if (/doesn't allow recording/.test(h)) return "Can't record this station";
             if (/isn't an audio stream/.test(h)) return "Not an audio stream";
             if (/only be recorded as one long file/.test(h)) return "Only as one long file";
             if (/Nothing was long enough/.test(h)) return "Nothing long enough to keep";
@@ -7687,7 +7727,6 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             finally { try { await reader.cancel(); } catch (e) {} }
             return false;
         }
-        // Opens the stream just long enough to read its headers. split = the
         function npHasProviderMetadata(streamUrl) {
             const host = hostKey(streamUrl).split(":")[0];
             return !!(
@@ -7696,7 +7735,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 /(^|\.)laut\.fm$/i.test(host) || /(^|\.)radiomv\.(com|live)$/i.test(host) || /(^|\.)zeno\.fm$/i.test(host)
             );
         }
-        // station sends titles (in-band exact, or polled) and the format is MP3/AAC.
+        // Opens the stream just long enough to read its headers. split = the station sends titles (in-band exact, or polled) and the format is MP3/AAC.
         async function recProbe(ses) {
             const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 12000);
             let out = { ok: false, split: false, exact: false, why: [] };
@@ -7732,7 +7771,10 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (!ses) return;
             REC.dir = null; REC.choose = false; REC.cap = false; REC.msg = "";
             if (ses.usesHls) { p.hidden = false; REC.cap = true; return recMsg("HLS streams are split into many small pieces. Press “Record tab audio” to capture this one."); }
-            if (recOpt.dir && window.showDirectoryPicker) { try { REC.dir = await window.showDirectoryPicker({ mode: "readwrite" }); } catch (e) {} }
+            if (recOpt.dir && window.showDirectoryPicker) {
+                try { REC.dir = await window.showDirectoryPicker({ mode: "readwrite" }); }
+                catch (e) { streamNotice("No folder chosen. Recordings stay in this browser."); }
+            }
             p.hidden = false;
             REC.probing = true;
             recMsg("Checking the stream…");
@@ -7818,19 +7860,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     if (REC.st === r) REC.st = null;
                     clearInterval(r.timer);
                     if (!r.captureStopMessage && !tracksStillLive) r.captureStopMessage = "Sharing stopped.";
+                    if (r.mode === "songs") song.partial = true;
                 }
-                if (stopping && r.mode === "songs") song.partial = true;
                 // recFinish adds the finished segment to the save list before its optional disk write awaits.
                 const finish = recFinish(r, song);
-                if (stopping) {
-                    Promise.resolve(finish).finally(() => {
-                        r.captureStream.getTracks().forEach((track) => { try { track.stop(); } catch (e) {} });
-                        if (r.wake) r.wake.release().catch(() => {});
-                        REC.msg = (r.captureStopMessage ? r.captureStopMessage + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + recStopTail(r);
-                        recRender();
-                    });
-                    return;
-                }
+                if (stopping) { recCaptureWrapUp(r, finish, r.captureStopMessage); return; }
                 if (r.mode === "songs") {
                     // A defensive recovery for a browser that stops a segment without a metadata change: continue under the same title.
                     r.song = recNew(song.title, false);
@@ -7840,12 +7874,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     r.captureStopRequested = true;
                     if (REC.st === r) REC.st = null;
                     clearInterval(r.timer);
-                    Promise.resolve(finish).finally(() => {
-                        r.captureStream.getTracks().forEach((track) => { try { track.stop(); } catch (e) {} });
-                        if (r.wake) r.wake.release().catch(() => {});
-                        REC.msg = "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + recStopTail(r);
-                        recRender();
-                    });
+                    recCaptureWrapUp(r, finish, "");
                 }
             };
             try { mr.start(250); }
@@ -7865,6 +7894,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             REC.choose = false;
             let ms;
             try { ms = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true, preferCurrentTab: true, selfBrowserSurface: "include", systemAudio: "include" }); } catch (e) { REC.cap = true; return recMsg("Capture was cancelled. Choose this tab and tick “Share tab audio”."); }
+            // The station may have changed, or another recording started, while the browser's share dialog was open.
+            if (playSession !== ses || REC.st) { ms.getTracks().forEach((v) => v.stop()); return; }
             const at = ms.getAudioTracks();
             ms.getVideoTracks().forEach((v) => v.stop());
             if (!at.length || typeof MediaRecorder === "undefined") { ms.getTracks().forEach((v) => v.stop()); REC.cap = true; return recMsg("No audio was shared. Choose this tab and tick “Share tab audio”."); }
@@ -7879,26 +7910,32 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 ctl: { abort() {} }, dir: null, t0: Date.now(), bytes: 0, count: 0,
                 skipped: 0, cut: null, inband: false, noTitles: mode !== "songs",
                 capture: true, captureStream: ms, captureOptions: options,
-                captureMr: null, captureNextTitle: "", captureRotating: false,
+                captureMr: null,
                 captureStopRequested: false, captureStopMessage: ""
             });
-            r.song = recNew(mode === "songs" ? (ses.songLive || ses.song || null) : null, false);
+            r.song = recNew(mode === "songs" ? (ses.songLive || ses.song || null) : null, mode === "songs");
             at[0].onended = () => { if (REC.st === r) recStop("Sharing stopped."); };
-            r.timer = setInterval(() => {
-                const st = recStat(r), t = document.querySelector("#recPanel .rec-time"), m = document.querySelector("#recPanel .rec-meta"), bt = document.querySelector("#playlistRec .btn-txt");
-                if (t) t.textContent = st.time;
-                if (m) { m.innerHTML = recMetaHtml(st); m.title = st.meta; }
-                if (bt) bt.textContent = st.time;
-            }, 1000);
+            r.timer = setInterval(() => recTick(r), 1000);
             recWake(r);
             recOwnerLock();
             REC.msg = "";
             recRender();
+            announce("Recording started.");
             recCaptureStartChunk(r, r.song);
         }
-        function recMsg(t) { REC.msg = t; recRender(); }
-        function recBlocked() {
-            return false; // never pre-judged: every station is tried, then the fallbacks run
+        function recMsg(t) { REC.msg = t; recRender(); announce(t); }
+        // Replaces the panel's content, but not when it is the same, and a focused button is found again afterwards
+        // (a keyboard user is not thrown out of the panel when a song finishes or the message changes).
+        function recSetPanel(p, html) {
+            if (p._html === html) return;
+            const a = document.activeElement, had = a && a !== p && p.contains(a);
+            const sel = had ? (a.id ? "#" + a.id : a.dataset && a.dataset.rec ? '[data-rec="' + a.dataset.rec + '"]' : "") : "";
+            p._html = html;
+            p.innerHTML = html;
+            if (!had) return;
+            const again = sel && p.querySelector(sel), rec = recEl("playlistRec");
+            if (again) again.focus();
+            else if (rec && !rec.hidden) rec.focus(); // the button that was focused is gone (Stop, after stopping): hand focus to the Record button
         }
         function recRender() {
             const p = recEl("recPanel"), b = recEl("playlistRec"), r = REC.st;
@@ -7917,12 +7954,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (r) {
                 const st = recStat(r);
                 const stopBtn = '<button class="playlist-btn rec-stop" id="recStopBtn" title="Stop recording and keep what was recorded" aria-label="Stop recording"><svg class="bico" viewBox="0 0 24 24" fill="currentcolor"><circle cx="12" cy="12" r="9" fill="none" stroke="currentcolor" stroke-width="2"/><rect x="8.5" y="8.5" width="7" height="7"/></svg><span class="blabel">Stop recording</span></button>';
-                p.innerHTML = '<span class="rec-live"><i class="rec-dot"></i>' + '<span class="lbl-long">Recording </span><span class="rec-time">' + st.time + '</span></span><span class="rec-meta" title="' + escapeHtml(st.meta) + '">' + recMetaHtml(st) + '</span><div class="rec-actions">' + saveBtn + stopBtn + "</div>";
+                recSetPanel(p, '<span class="rec-live"><i class="rec-dot"></i>' + '<span class="lbl-long">Recording </span><span class="rec-time">' + st.time + '</span></span><span class="rec-meta" title="' + escapeHtml(st.meta) + '">' + recMetaHtml(st) + '</span><div class="rec-actions">' + saveBtn + stopBtn + "</div>");
             } else {
-                const bad = recBlocked();
-                const hint = REC.msg || (bad ? "This station doesn't allow recording from a web page." : n ? "Recordings are kept in this browser until you press Clear. Save them to your device." : "");
-                const acts = REC.cap ? recCapBtn() : (REC.choose && !bad ? '<button class="playlist-btn" data-rec="songs" aria-label="Each song separately" title="Every song becomes its own file with its name and artist"><svg class="bico-x" viewBox="0 0 24 24" fill="currentcolor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg><span class="lbl-long">Each song separately</span><span class="lbl-short">Each song</span></button><button class="playlist-btn" data-rec="whole" aria-label="One long recording" title="Records everything until you press Stop recording"><svg class="bico-x" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span class="lbl-long">One long recording</span><span class="lbl-short">One long file</span></button>' : "") + (REC.choose ? "" : listBtn + saveBtn);
-                p.innerHTML = '<span class="rec-msg" title="' + escapeHtml(hint) + '">' + recHintHtml(hint) + "</span>" + (acts ? '<div class="rec-actions' + (REC.choose ? " rec-choose" : "") + '">' + acts + "</div>" : "");
+                const hint = REC.msg || (n ? "Recordings are kept in this browser until you press Clear. Save them to your device." : "");
+                const acts = REC.cap ? recCapBtn() : (REC.choose ? '<button class="playlist-btn" data-rec="songs" aria-label="Each song separately" title="Every song becomes its own file with its name and artist"><svg class="bico-x" viewBox="0 0 24 24" fill="currentcolor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg><span class="lbl-long">Each song separately</span><span class="lbl-short">Each song</span></button><button class="playlist-btn" data-rec="whole" aria-label="One long recording" title="Records everything until you press Stop recording"><svg class="bico-x" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><span class="lbl-long">One long recording</span><span class="lbl-short">One long file</span></button>' : "") + (REC.choose ? "" : listBtn + saveBtn);
+                recSetPanel(p, '<span class="rec-msg" title="' + escapeHtml(hint) + '">' + recHintHtml(hint) + "</span>" + (acts ? '<div class="rec-actions' + (REC.choose ? " rec-choose" : "") + '">' + acts + "</div>" : ""));
             }
         }
         function recSync() {
@@ -7937,6 +7973,9 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (REC.st) recStop("Station changed.");
             const p = recEl("recPanel");
             if (p) p.hidden = true;
+        }
+        function recStoppedMsg(r, lead) {
+            return (lead ? lead + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + recStopTail(r);
         }
         function recStopTail(r) {
             return (r.skipped ? " (" + r.skipped + " short clips skipped)" : "") + (r.dirFails ? " " + r.dirFails + " could not be written to the folder; they are kept in the browser, press Save." : "");
@@ -7957,24 +7996,14 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (r.capture) {
                 r.captureStopRequested = true;
                 r.captureStopMessage = msg || "";
-                if (r.captureMr) {
-                    if (r.captureMr.state === "inactive") return; // its final onstop event is already queued
-                    try { r.captureMr.stop(); } catch (e) {
-                        r.captureStream.getTracks().forEach((track) => { try { track.stop(); } catch (e) {} });
-                        if (r.mode === "songs") r.song.partial = true;
-                        recFinish(r, r.song);
-                        if (r.wake) r.wake.release().catch(() => {});
-                        REC.msg = (msg ? msg + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + recStopTail(r);
-                        recRender();
-                    }
-                } else {
-                    r.captureStream.getTracks().forEach((track) => { try { track.stop(); } catch (e) {} });
-                    if (r.mode === "songs") r.song.partial = true;
-                    recFinish(r, r.song);
-                    if (r.wake) r.wake.release().catch(() => {});
-                    REC.msg = (msg ? msg + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + recStopTail(r);
-                    recRender();
-                }
+                REC.msg = "Saving…"; // the click is answered at once; the browser's recorder needs a moment to hand over its last data
+                recRender();
+                const mr = r.captureMr;
+                if (mr && mr.state === "inactive") return; // its final onstop event is already queued
+                try { if (mr) { mr.stop(); return; } } catch (e) {}
+                // No recorder to wait for (or it would not stop): wrap up by hand.
+                if (r.mode === "songs") r.song.partial = true;
+                recCaptureWrapUp(r, recFinish(r, r.song), msg);
                 return;
             }
             r.ctl.abort();
@@ -7982,8 +8011,20 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (r.wake) r.wake.release().catch(() => {});
             if (r.mode === "songs") r.song.partial = true;
             recFinish(r, r.song);
-            REC.msg = (msg ? msg + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + recStopTail(r);
+            recAfterStop(r, msg);
+        }
+        // Ends a tab-audio recording once its last file is in the list: lets go of the share and the screen lock, then says what happened.
+        function recCaptureWrapUp(r, finish, lead) {
+            Promise.resolve(finish).finally(() => {
+                r.captureStream.getTracks().forEach((track) => { try { track.stop(); } catch (e) {} });
+                if (r.wake) r.wake.release().catch(() => {});
+                recAfterStop(r, lead);
+            });
+        }
+        function recAfterStop(r, lead) {
+            REC.msg = recStoppedMsg(r, lead);
             recRender();
+            announce(REC.msg);
         }
         // One connection for the recorder: { res, mi, ct } or null (the reasons go into `why`). With `tag` it asks for in-band ICY titles; if the
         // browser cannot read icy-metaint, the stream is asked for again without ICY framing. Otherwise a cross-origin response could hide the
@@ -8051,15 +8092,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             r.releaseLock = recHoldLock(r);
             r.song = recNew(tag && (ses.songLive || ses.song) ? ses.songLive || ses.song : null, tag);
             REC.msg = "";
-            r.timer = setInterval(() => {
-                const st = recStat(r), t = document.querySelector("#recPanel .rec-time"), m = document.querySelector("#recPanel .rec-meta"), bt = document.querySelector("#playlistRec .btn-txt");
-                if (t) t.textContent = st.time;
-                if (m) { m.innerHTML = recMetaHtml(st); m.title = st.meta; }
-                if (bt) bt.textContent = st.time;
-            }, 1000);
+            r.timer = setInterval(() => recTick(r), 1000);
             recWake(r);
             recOwnerLock();
             recRender();
+            announce("Recording started.");
             // In-band ICY: audio / length byte / metadata block, repeating.
             let st = 0, left = mi, mlen = 0, mbuf = [];
             const eat = (v) => {
@@ -8068,11 +8105,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     else if (st === 1) { mlen = v[0] * 16; v = v.subarray(1); mbuf = []; if (mlen) { st = 2; left = mlen; } else { st = 0; left = mi; } }
                     else {
                         const n = Math.min(left, v.length); mbuf.push(v.slice(0, n)); v = v.subarray(n); left -= n;
-                        if (!left) { const t = streamTitleFromIcy(decodeIcyBytes(new Uint8Array(await0(mbuf)))); if (t) { recTitle(t, { source: "recording ICY", exact: true }); npSetTitle(ses, { title: t, source: "recording ICY", exact: true }); } st = 0; left = mi; }
+                        if (!left) { const t = streamTitleFromIcy(decodeIcyBytes(new Uint8Array(flattenBytes(mbuf)))); if (t) { recTitle(t, { source: "recording ICY", exact: true }); npSetTitle(ses, { title: t, source: "recording ICY", exact: true }); } st = 0; left = mi; }
                     }
                 }
             };
-            const await0 = (a) => { const out = []; a.forEach((x) => out.push(...x)); return out; };
+            const flattenBytes = (a) => { const out = []; a.forEach((x) => out.push(...x)); return out; };
             // A pause between attempts that ends early when the browser reports the network is back.
             const sleepOrOnline = (ms) => new Promise((x) => {
                 const done = () => { clearTimeout(t); window.removeEventListener("online", done); x(); };
@@ -8130,14 +8167,14 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const l = recEl("recList");
             setTimeout(recStoreNote, 0);
             if (!REC.items.length) { l.innerHTML = '<div class="songs-empty">Nothing recorded yet.</div>'; return; }
-            l.innerHTML = REC.items.map((it, i) => '<div class="song-row"><div class="song-title">' + escapeHtml(it.name) + '</div><div class="song-meta">' + escapeHtml(it.station) + " · " + (it.blob.size / 1048576).toFixed(1) + " MB · " + recFmt(it.secs) + " · " + escapeHtml(new Date(it.at).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })) + '</div><div class="song-links"><button class="playlist-btn" data-i="' + i + '">Save</button></div></div>').join("");
+            l.innerHTML = REC.items.map((it) => '<div class="song-row"><div class="song-title">' + escapeHtml(it.name) + '</div><div class="song-meta">' + escapeHtml(it.station) + " · " + (it.blob.size / 1048576).toFixed(1) + " MB · " + recFmt(it.secs) + " · " + escapeHtml(new Date(it.at).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })) + '</div><div class="song-links"><button class="playlist-btn" data-id="' + escapeHtml(it.id) + '">Save</button></div></div>').join("");
         }
         // One line under the list: how much the saved recordings take, and how full the browser's storage for this site is.
         function recStoreNote() {
             const l = recEl("recList");
             if (!l || !REC.items.length) return;
             let el = document.getElementById("recStoreNote");
-            if (!el) { el = document.createElement("div"); el.id = "recStoreNote"; el.className = "song-meta"; el.style.padding = "0.6rem 0.9rem"; l.appendChild(el); }
+            if (!el) { el = document.createElement("div"); el.id = "recStoreNote"; el.className = "song-meta rec-store-note"; l.appendChild(el); }
             const mb = (REC.items.reduce((a, i) => a + i.blob.size, 0) / 1048576).toFixed(1);
             el.textContent = REC.items.length + " files, " + mb + " MB kept in this browser" + (recStoreWarn() ? ". ⚠ Some of it could not be written to browser storage: save it now." : ".");
             if (navigator.storage && navigator.storage.estimate) navigator.storage.estimate().then((e) => {
@@ -8208,8 +8245,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 if (e.key === "Escape") { e.stopPropagation(); closeRecModal(); } else trapModalFocus(e, "recModalContent");
             });
             recEl("recList").addEventListener("click", (e) => {
-                const b = e.target.closest("button[data-i]");
-                const it = b && REC.items[+b.dataset.i];
+                const b = e.target.closest("button[data-id]");
+                const it = b && REC.items.find((x) => x.id === b.dataset.id);
                 if (it) recSave(it.blob, it.name);
             });
             recEl("recClearBtn").addEventListener("click", () => {
