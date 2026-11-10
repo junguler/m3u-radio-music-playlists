@@ -5129,6 +5129,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
         function goToNextTrack() {
             if (currentPlaylist.length === 0) return;
+            if (!recLeaveOk()) return;
             if (isShuffle) {
                 const nextIdx = getNextShuffleIndex();
                 shuffleHistory.push(nextIdx);
@@ -5140,6 +5141,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
         function goToPrevTrack() {
             if (currentPlaylist.length === 0) return;
+            if (!recLeaveOk()) return;
             if (isShuffle) {
                 if (shuffleHistory.length > 1) {
                     shuffleHistory.pop();
@@ -5168,6 +5170,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 const idx = clamp(n) - 1;
                 input.value = idx + 1;
                 if (idx !== currentPlaylistIndex) {
+                    if (!recLeaveOk()) { input.value = currentPlaylistIndex + 1; return; }
                     if (isShuffle) recordShuffleJump(idx);
                     playPlaylistTrack(idx);
                 }
@@ -7174,6 +7177,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (!row) return;
             const idx = parseInt(row.dataset.idx, 10);
             if (!(idx >= 0 && idx < currentPlaylist.length) || idx === currentPlaylistIndex) return;
+            if (!recLeaveOk()) return;
             if (isShuffle) recordShuffleJump(idx);
             playPlaylistTrack(idx);
         }
@@ -7287,6 +7291,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
         // First byte offset that starts an MP3 / ADTS-AAC frame, or -1.
         function recFrame(v, ext) {
+            if (ext === "ogg") {
+                // the first page of a (new) Ogg stream: "OggS", version 0, "beginning of stream" flag
+                for (let i = 0; i < v.length - 5; i++) if (v[i] === 79 && v[i + 1] === 103 && v[i + 2] === 103 && v[i + 3] === 83 && v[i + 4] === 0 && (v[i + 5] & 2)) return i;
+                return -1;
+            }
             if (ext !== "mp3" && ext !== "aac") return -1;
             for (let i = 0; i < v.length - 3; i++) {
                 if (v[i] !== 255) continue;
@@ -7363,7 +7372,10 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         // ---- Recording safety net: everything recorded is also written to the browser's own storage (IndexedDB) as it arrives.
         // Finished files stay there until "Clear" is pressed, and a recording that was cut short (tab closed, crash, power loss)
         // is put back together the next time the page opens. All writes go through one queue, so a delete can never overtake a write.
-        const RECDB = { db: null, ok: false, q: Promise.resolve(), tab: Math.random().toString(36).slice(2) };
+        const RECDB = { db: null, ok: false, dead: false, fails: 0, q: Promise.resolve(), tab: Math.random().toString(36).slice(2) };
+        RECDB.lockName = "m3u-rec-owner-" + RECDB.tab;
+        // True when what is being recorded may not be safe in the browser's storage (it could not be opened, or recent writes failed).
+        function recStoreWarn() { return RECDB.dead || RECDB.fails > 0 || REC.items.some((i) => i.unsaved); }
         function recDbOpen() {
             if (RECDB.opening) return RECDB.opening;
             RECDB.opening = new Promise((resolve) => {
@@ -7376,8 +7388,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                         d.createObjectStore("chunks", { keyPath: "key" });
                     };
                     rq.onsuccess = () => { RECDB.db = rq.result; RECDB.ok = true; resolve(RECDB.db); };
-                    rq.onerror = rq.onblocked = () => resolve(null);
-                } catch (e) { resolve(null); }
+                    rq.onerror = rq.onblocked = () => { RECDB.dead = true; resolve(null); };
+                } catch (e) { RECDB.dead = true; resolve(null); }
             });
             return RECDB.opening;
         }
@@ -7391,10 +7403,10 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                         const tx = db.transaction(names, mode), st = {};
                         names.forEach((n) => { st[n] = tx.objectStore(n); });
                         let out = null;
-                        tx.oncomplete = () => resolve(out);
-                        tx.onerror = tx.onabort = () => resolve(null);
+                        tx.oncomplete = () => { if (mode === "readwrite") RECDB.fails = 0; resolve(out === undefined ? true : out); };
+                        tx.onerror = tx.onabort = () => { if (mode === "readwrite") RECDB.fails++; resolve(null); };
                         out = fn(st, tx);
-                    } catch (e) { resolve(null); }
+                    } catch (e) { if (mode === "readwrite") RECDB.fails++; resolve(null); }
                 });
             }).catch(() => null);
             RECDB.q = job;
@@ -7419,40 +7431,80 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         function recFlushSong(r, s) {
             if (!r || !s || s.done) return;
             const take = s.pend; s.pend = [];
-            const meta = { id: s.id, station: r.station, title: s.title || "", partial: !!s.partial, t0: s.t0, mode: r.mode, ext: r.ext, mime: r.mime, tab: RECDB.tab, beat: Date.now() };
+            const meta = { id: s.id, station: r.station, title: s.title || "", partial: !!s.partial, t0: s.t0, mode: r.mode, ext: r.ext, mime: r.mime, tab: RECDB.tab, lock: RECDB.lockName, beat: Date.now() };
             const blob = take.length ? new Blob(take) : null, key = s.id + ":" + String(s.n++).padStart(7, "0");
             recDbRun(["segs", "chunks"], "readwrite", (st) => {
                 if (s.done) return;
                 st.segs.put(meta);
                 if (blob) st.chunks.put({ key, seg: s.id, blob });
-            });
+            }).then((ok) => { if (!ok && !s.done) s.pend = take.concat(s.pend); }); // a failed write is tried again with the next one, in order
         }
-        function recPersistTick() { const r = REC.st; if (r && r.song) recFlushSong(r, r.song); }
+        function recPersistTick() {
+            const r = REC.st;
+            if (r && r.song) recFlushSong(r, r.song);
+            REC.items.forEach((it) => { if (it.unsaved && !it.retrying) { it.retrying = true; recDbPutItem(it).then((ok) => { it.retrying = false; if (ok) { it.unsaved = false; if (it.segId) recDbDropSeg(it.segId); } }); } });
+        }
+        // Held for as long as this page is open once it has recorded: another tab can tell a live recording from an abandoned one by it.
+        function recOwnerLock() {
+            if (RECDB.owner || !navigator.locks || !navigator.locks.request) return;
+            RECDB.owner = true;
+            try { navigator.locks.request(RECDB.lockName, () => new Promise(() => {})).catch(() => {}); } catch (e) {}
+            try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {}); } catch (e) {}
+        }
+        async function recTabAlive(sg) {
+            if (sg.tab === RECDB.tab) return true;
+            try {
+                if (sg.lock && navigator.locks && navigator.locks.query) {
+                    const q = await navigator.locks.query();
+                    return (q.held || []).some((l) => l.name === sg.lock);
+                }
+            } catch (e) {}
+            return Date.now() - (sg.beat || 0) < 30000; // no way to ask: a recording that wrote in the last 30 s is alive
+        }
         // Opens the store, brings back finished files and rebuilds recordings an earlier tab never got to finish.
         async function recRestore() {
+            if (RECDB.restoring) return;
+            const run = async () => {
+                RECDB.restoring = true;
+                try { await recRestoreNow(); } finally { RECDB.restoring = false; }
+            };
+            if (navigator.locks && navigator.locks.request) {
+                try { await navigator.locks.request("m3u-rec-restore", { ifAvailable: true }, async (lock) => { if (lock) await run(); }); return; } catch (e) {}
+            }
+            await run();
+        }
+        async function recRestoreNow() {
             const db = await recDbOpen();
             if (!db) return;
             const items = await recDbGetAll("items"), have = new Set(REC.items.map((i) => i.id));
             const segIds = new Set(items.map((i) => i.segId).filter(Boolean));
-            items.forEach((i) => { if (!have.has(i.id) && i.blob) { REC.items.push(i); have.add(i.id); } });
+            let recovered = 0, added = 0;
+            items.forEach((i) => { if (!have.has(i.id) && i.blob) { REC.items.push(i); have.add(i.id); added++; } });
             const segs = await recDbGetAll("segs");
             for (const sg of segs) {
-                if (segIds.has(sg.id) || sg.tab === RECDB.tab || Date.now() - (sg.beat || 0) < 30000) { if (segIds.has(sg.id)) recDbDropSeg(sg.id); continue; }
+                if (segIds.has(sg.id)) { recDbDropSeg(sg.id); continue; }
+                if (await recTabAlive(sg)) continue;
                 const chunks = (await recDbGetAll("chunks", IDBKeyRange.bound(sg.id + ":", sg.id + ":\uffff"))).sort((a, b) => (a.key < b.key ? -1 : 1));
-                const blob = new Blob(chunks.map((c) => c.blob), { type: sg.mime });
-                if (!blob.size) { recDbDropSeg(sg.id); continue; }
+                const tag = sg.mode === "songs" && sg.ext === "mp3" && sg.title && recOpt.tags ? [recId3(sg.title, sg.station)] : [];
+                const blob = new Blob(tag.concat(chunks.map((c) => c.blob)), { type: sg.mime });
+                if (!chunks.length || !blob.size || have.has(sg.id)) { recDbDropSeg(sg.id); continue; }
                 const w = new Date(sg.t0), base = recSafe((sg.title || sg.station || "recording") + " " + w.getFullYear() + "-" + recP2(w.getMonth() + 1) + "-" + recP2(w.getDate()) + " " + recP2(w.getHours()) + "-" + recP2(w.getMinutes()) + " (recovered)");
                 let name = base + "." + sg.ext, n = 2;
                 while (REC.items.some((i) => i.name === name)) name = base + " (" + n++ + ")." + sg.ext;
-                const item = { id: sg.id, segId: sg.id, name, blob, station: sg.station, secs: Math.max(1, Math.round(((chunks.length ? sg.beat : sg.t0) - sg.t0) / 1000)), at: sg.beat || Date.now() };
+                const item = { id: sg.id, segId: sg.id, name, blob, station: sg.station, secs: Math.max(1, Math.round(((sg.beat || sg.t0) - sg.t0) / 1000)), at: sg.beat || Date.now() };
                 REC.items.push(item);
-                await recDbPutItem(item);
-                recDbDropSeg(sg.id);
+                have.add(item.id);
+                recovered++;
+                if (await recDbPutItem(item)) recDbDropSeg(sg.id); else item.unsaved = true;
             }
             REC.items.sort((a, b) => b.at - a.at);
-            if (REC.items.length && !REC.st) REC.msg = REC.msg || "Earlier recordings were restored. Save them to your device.";
-            if (recEl("recModal").classList.contains("active")) renderRecList();
-            recRender();
+            // numbering carries on after the highest number already used in this browser
+            REC.items.forEach((i) => { if (i.seq > REC.seq) REC.seq = i.seq; });
+            if ((recovered || added) && !REC.st) REC.msg = recovered ? "A recording that was cut short was recovered. Save it to your device." : "Earlier recordings were restored. Save them to your device.";
+            if (recovered || added) {
+                if (recEl("recModal").classList.contains("active")) renderRecList();
+                recRender();
+            }
         }
         // True while a recording runs: the player must stay on this station, whatever it does.
         function recHolding() { return !!REC.st; }
@@ -7464,17 +7516,23 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (songs && ((s.partial && !recOpt.keep) || (recOpt.min && secs < recOpt.min))) { r.skipped++; recDbDropSeg(s.id); return; }
             const w = new Date(s.t0), stamp = w.getFullYear() + "-" + recP2(w.getMonth() + 1) + "-" + recP2(w.getDate()) + " " + recP2(w.getHours()) + "-" + recP2(w.getMinutes());
             const seq = songs && s.title ? ++REC.seq : 0;
-            const base = songs && s.title ? recWithStamp(recSafe(s.title), w, seq) : recSafe(r.station + " " + stamp);
+            let base = songs && s.title ? recWithStamp(recSafe(s.title) + (s.gap ? " (gap)" : ""), w, seq) : recSafe(r.station + " " + stamp);
             let name = base + "." + r.ext, n = 2;
             while (REC.items.some((i) => i.name === name)) name = base + " (" + n++ + ")." + r.ext;
             const parts = songs && recOpt.tags && r.ext === "mp3" && s.title ? [recId3(s.title, r.station)].concat(s.parts) : s.parts;
             const blob = new Blob(parts, { type: r.mime });
             const item = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8), segId: s.id, name, blob, station: r.station, secs, at: Date.now() };
+            item.seq = seq;
             REC.items.unshift(item);
             r.count++;
-            recDbPutItem(item).then(() => recDbDropSeg(s.id));
+            item.unsaved = true;
+            recDbPutItem(item).then((ok) => { if (ok) { item.unsaved = false; recDbDropSeg(s.id); } });
             if (r.dir) {
-                try { const wr = await (await r.dir.getFileHandle(name, { create: true })).createWritable(); await wr.write(blob); await wr.close(); } catch (e) {}
+                let wrote = false;
+                for (let tryN = 0; tryN < 2 && !wrote; tryN++) {
+                    try { const wr = await (await r.dir.getFileHandle(name, { create: true })).createWritable(); await wr.write(blob); await wr.close(); wrote = true; } catch (e) {}
+                }
+                if (!wrote) r.dirFails = (r.dirFails || 0) + 1;
             }
             if (recEl("recModal").classList.contains("active")) renderRecList();
             recRender();
@@ -7483,9 +7541,13 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             // After the connection was reopened the new data starts mid-frame: begin the continuation at the first whole frame.
             if (r.align) {
                 const at = recFrame(v, r.ext);
-                if (at < 0) return;
-                v = v.subarray(at);
+                if (at < 0) {
+                    // not found yet: wait for it, but never throw away more than 64 KB looking for it
+                    r.alignSkip = (r.alignSkip || 0) + v.length;
+                    if (r.alignSkip < 65536) return;
+                } else v = v.subarray(at);
                 r.align = false;
+                r.alignSkip = 0;
             }
             let s = r.song;
             const due = r.mode === "songs" ? r.cut : recOpt.split && Date.now() - s.t0 >= recOpt.split * 1000 ? true : null;
@@ -7528,12 +7590,15 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             }
             if (r.inband) return;
             if (!r.song.title) { r.song.title = t; return; }
-            if (t === r.song.title || (r.cut && (r.cut.title || r.cut) === t) || r.captureNextTitle === t) return;
+            if (t === r.song.title || (r.cut && (r.cut.title || r.cut) === t)) return;
             if (r.capture) {
-                r.captureNextTitle = t;
-                if (!r.captureRotating && r.captureMr && r.captureMr.state !== "inactive") {
-                    r.captureRotating = true;
-                    try { r.captureMr.stop(); } catch (e) { r.captureRotating = false; }
+                const old = r.captureMr;
+                if (old && old.state !== "inactive") {
+                    const next = recNew(t, false);
+                    r.song = next;
+                    old.rotated = true;
+                    if (!recCaptureStartChunk(r, next)) { old.rotated = false; return; }
+                    try { old.stop(); } catch (e) { recFinish(r, old === r.captureMr ? r.song : next); }
                 }
                 return;
             }
@@ -7548,6 +7613,12 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             let short = r.mode === "songs" ? r.count + " saved · " + (r.song.title || "waiting for a title") : (r.bytes / 1048576).toFixed(1) + " MB" + (r.count ? " · " + r.count + " files" : "");
             if (r.wait) { m += " · reconnecting…"; short += " · reconnecting…"; }
             else if (r.gaps) m += " · " + r.gaps + (r.gaps === 1 ? " reconnect" : " reconnects");
+            if (r.capture && playSession) {
+                const quiet = playSession.reconnecting ? "player reconnecting, silence is being recorded" : playSession.el && playSession.el.paused ? "player paused, silence is being recorded" : "";
+                if (quiet) { m += " · ⚠ " + quiet; short += " · ⚠ silence"; }
+            }
+            if (r.dirFails) { m += " · ⚠ " + r.dirFails + " not written to folder"; short += " · ⚠ folder"; }
+            if (recStoreWarn()) { m += " · ⚠ not safe in browser storage"; short += " · ⚠ storage"; }
             return { time, meta: m, short };
         }
         // Wide: full text. Narrow (one-line bar): the short text.
@@ -7645,7 +7716,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     const providerMayPublishTitles = npHasProviderMetadata(ses.cands[ses.candIdx]);
                     out = {
                         ok: !/html/.test(ct),
-                        split: !/ogg|opus|flac/.test(ct) && (exact || mi > 0 || !!(ses.songLive || ses.song) || providerMayPublishTitles),
+                        split: !/ogg|opus|flac|mp4|m4a/.test(ct) && (exact || mi > 0 || !!(ses.songLive || ses.song) || providerMayPublishTitles),
                         exact,
                         why: /html/.test(ct) ? ["not audio"] : []
                     };
@@ -7711,8 +7782,10 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 : "";
             return whole + songs;
         }
-        function recCaptureStartChunk(r) {
-            if (!r || r.captureStopRequested || REC.st !== r) return;
+        // One MediaRecorder per song, each bound to its own song. At a song change the next recorder is started BEFORE the old one is
+        // stopped, so no audio falls between two files (the few milliseconds both run just appear at the end of one and start of the next).
+        function recCaptureStartChunk(r, song) {
+            if (!r || r.captureStopRequested || REC.st !== r) return null;
             let mr;
             try {
                 const audioTracks = r.captureStream.getAudioTracks();
@@ -7720,15 +7793,16 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 mr = new MediaRecorder(new MediaStream(audioTracks), r.captureOptions);
             } catch (e) {
                 if (REC.st === r) recStop("The tab audio recorder could not be restarted.");
-                return;
+                return null;
             }
             r.captureMr = mr;
             mr.ondataavailable = (e) => {
-                if (e.data && e.data.size && r.song) {
-                    r.song.parts.push(e.data);
-                    r.song.pend.push(e.data);
-                    r.song.bytes += e.data.size;
+                if (e.data && e.data.size) {
+                    song.parts.push(e.data);
+                    song.pend.push(e.data);
+                    song.bytes += e.data.size;
                     r.bytes += e.data.size;
+                    if (song.parts.length > 300) song.parts = [new Blob(song.parts)];
                 }
             };
             mr.onerror = () => {
@@ -7736,10 +7810,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             };
             mr.onstop = () => {
                 if (r.captureMr === mr) r.captureMr = null;
-                const completed = r.song;
-                const nextTitle = r.captureNextTitle;
-                r.captureNextTitle = "";
-                r.captureRotating = false;
+                if (mr.rotated) { recFinish(r, song); return; } // its successor is already recording
                 const tracksStillLive = r.captureStream.getAudioTracks().some((track) => track.readyState === "live");
                 const stopping = r.captureStopRequested || REC.st !== r || !tracksStillLive;
                 if (stopping) {
@@ -7748,39 +7819,31 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     clearInterval(r.timer);
                     if (!r.captureStopMessage && !tracksStillLive) r.captureStopMessage = "Sharing stopped.";
                 }
-                if (stopping && r.mode === "songs") completed.partial = true;
-                // recFinish adds the finished segment to the save list before
-                // its optional disk write awaits, so the next segment can start
-                // immediately without leaving a gap in the captured audio.
-                const finish = recFinish(r, completed);
+                if (stopping && r.mode === "songs") song.partial = true;
+                // recFinish adds the finished segment to the save list before its optional disk write awaits.
+                const finish = recFinish(r, song);
                 if (stopping) {
                     Promise.resolve(finish).finally(() => {
                         r.captureStream.getTracks().forEach((track) => { try { track.stop(); } catch (e) {} });
                         if (r.wake) r.wake.release().catch(() => {});
-                        REC.msg = (r.captureStopMessage ? r.captureStopMessage + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + (r.skipped ? " (" + r.skipped + " short clips skipped)" : "");
+                        REC.msg = (r.captureStopMessage ? r.captureStopMessage + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + recStopTail(r);
                         recRender();
                     });
                     return;
                 }
-                if (r.mode === "songs" && nextTitle) {
-                    r.song = recNew(nextTitle, false);
-                    recCaptureStartChunk(r);
-                } else if (r.mode === "songs") {
-                    // A defensive recovery for a browser that stops a segment
-                    // without a metadata change: continue under the same title.
-                    r.song = recNew(completed.title, false);
-                    recCaptureStartChunk(r);
+                if (r.mode === "songs") {
+                    // A defensive recovery for a browser that stops a segment without a metadata change: continue under the same title.
+                    r.song = recNew(song.title, false);
+                    recCaptureStartChunk(r, r.song);
                 } else {
-                    // A whole-stream capture should remain one file. An
-                    // unexpected MediaRecorder stop ends it rather than silently
-                    // starting a second file.
+                    // A whole-stream capture should remain one file. An unexpected MediaRecorder stop ends it rather than silently starting a second file.
                     r.captureStopRequested = true;
                     if (REC.st === r) REC.st = null;
                     clearInterval(r.timer);
                     Promise.resolve(finish).finally(() => {
                         r.captureStream.getTracks().forEach((track) => { try { track.stop(); } catch (e) {} });
                         if (r.wake) r.wake.release().catch(() => {});
-                        REC.msg = "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.");
+                        REC.msg = "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + recStopTail(r);
                         recRender();
                     });
                 }
@@ -7789,7 +7852,9 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             catch (e) {
                 if (r.captureMr === mr) r.captureMr = null;
                 if (REC.st === r) recStop("The tab audio recorder could not start.");
+                return null;
             }
+            return mr;
         }
         async function recStartCapture(mode) {
             mode = mode === "songs" ? "songs" : "whole";
@@ -7825,10 +7890,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 if (m) { m.innerHTML = recMetaHtml(st); m.title = st.meta; }
                 if (bt) bt.textContent = st.time;
             }, 1000);
-            if (navigator.wakeLock) navigator.wakeLock.request("screen").then((w) => { r.wake = w; if (REC.st !== r) w.release(); }).catch(() => {});
+            recWake(r);
+            recOwnerLock();
             REC.msg = "";
             recRender();
-            recCaptureStartChunk(r);
+            recCaptureStartChunk(r, r.song);
         }
         function recMsg(t) { REC.msg = t; recRender(); }
         function recBlocked() {
@@ -7872,6 +7938,17 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const p = recEl("recPanel");
             if (p) p.hidden = true;
         }
+        function recStopTail(r) {
+            return (r.skipped ? " (" + r.skipped + " short clips skipped)" : "") + (r.dirFails ? " " + r.dirFails + " could not be written to the folder; they are kept in the browser, press Save." : "");
+        }
+        function recWake(r) {
+            if (!navigator.wakeLock || !r || REC.st !== r || (r.wake && !r.wake.released)) return;
+            navigator.wakeLock.request("screen").then((w) => {
+                if (REC.st !== r) { w.release().catch(() => {}); return; }
+                r.wake = w;
+                w.addEventListener("release", () => { if (r.wake === w) r.wake = null; });
+            }).catch(() => {});
+        }
         function recStop(msg) {
             const r = REC.st;
             if (!r) return;
@@ -7887,7 +7964,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                         if (r.mode === "songs") r.song.partial = true;
                         recFinish(r, r.song);
                         if (r.wake) r.wake.release().catch(() => {});
-                        REC.msg = (msg ? msg + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + (r.skipped ? " (" + r.skipped + " short clips skipped)" : "");
+                        REC.msg = (msg ? msg + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + recStopTail(r);
                         recRender();
                     }
                 } else {
@@ -7895,7 +7972,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     if (r.mode === "songs") r.song.partial = true;
                     recFinish(r, r.song);
                     if (r.wake) r.wake.release().catch(() => {});
-                    REC.msg = (msg ? msg + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + (r.skipped ? " (" + r.skipped + " short clips skipped)" : "");
+                    REC.msg = (msg ? msg + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + recStopTail(r);
                     recRender();
                 }
                 return;
@@ -7905,7 +7982,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (r.wake) r.wake.release().catch(() => {});
             if (r.mode === "songs") r.song.partial = true;
             recFinish(r, r.song);
-            REC.msg = (msg ? msg + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + (r.skipped ? " (" + r.skipped + " short clips skipped)" : "");
+            REC.msg = (msg ? msg + " " : "") + "Recording stopped. " + (r.count ? r.count + (r.count === 1 ? " file is" : " files are") + " ready to save." : "Nothing was long enough to keep.") + recStopTail(r);
             recRender();
         }
         // One connection for the recorder: { res, mi, ct } or null (the reasons go into `why`). With `tag` it asks for in-band ICY titles; if the
@@ -7942,7 +8019,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             return () => { if (release) { try { release(); } catch (e) {} release = null; } };
         }
         const REC_STALL_MS = 20000;
-        const REC_REOPEN_DELAYS_MS = [1000, 2000, 4000, 8000, 10000, 10000, 10000, 10000];
+        // Waits between attempts to reopen a dropped stream: 1, 2, 4, 8 s, then every 10 s for as long as it takes (Stop ends it).
+        const REC_REOPEN_DELAYS_MS = [1000, 2000, 4000, 8000, 10000];
         async function recStart(mode, noTitles) {
             if (mode === "capture") return recStartCapture("whole");
             if (mode === "capture-songs") return recStartCapture("songs");
@@ -7967,9 +8045,9 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (!c0) { REC.cap = true; return recMsg(recWhy(why0)); }
             let res = c0.res, ct = c0.ct, mi = c0.mi;
             if (/html/.test(ct)) { ctl.abort(); REC.cap = true; return recMsg(recWhy(["not audio"])); }
-            const ext = /aac|mp4/.test(ct) ? "aac" : /ogg|opus|flac/.test(ct) ? "ogg" : "mp3";
-            if (tag && ext === "ogg") { ctl.abort(); return recMsg("This station can only be recorded as one long file. Choose “One long recording”."); }
-            const r = (REC.st = { mode, ext, mime: ext === "aac" ? "audio/aac" : ext === "ogg" ? "audio/ogg" : "audio/mpeg", station: ses.item.title, ctl, dir, t0: Date.now(), bytes: 0, count: 0, skipped: 0, cut: null, inband: false, icyMetaInt: mi || 0, noTitles: !!noTitles, gaps: 0, wait: false, align: false, releaseLock: null });
+            const ext = /mp4|m4a/.test(ct) ? "m4a" : /aac/.test(ct) ? "aac" : /ogg|opus|flac/.test(ct) ? "ogg" : "mp3";
+            if (tag && (ext === "ogg" || ext === "m4a")) { ctl.abort(); return recMsg("This station can only be recorded as one long file. Choose “One long recording”."); }
+            const r = (REC.st = { mode, ext, mime: ext === "aac" ? "audio/aac" : ext === "ogg" ? "audio/ogg" : ext === "m4a" ? "audio/mp4" : "audio/mpeg", station: ses.item.title, ctl, dir, t0: Date.now(), bytes: 0, count: 0, skipped: 0, cut: null, inband: false, icyMetaInt: mi || 0, noTitles: !!noTitles, gaps: 0, wait: false, align: false, releaseLock: null });
             r.releaseLock = recHoldLock(r);
             r.song = recNew(tag && (ses.songLive || ses.song) ? ses.songLive || ses.song : null, tag);
             REC.msg = "";
@@ -7979,7 +8057,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 if (m) { m.innerHTML = recMetaHtml(st); m.title = st.meta; }
                 if (bt) bt.textContent = st.time;
             }, 1000);
-            if (navigator.wakeLock) navigator.wakeLock.request("screen").then((w) => { r.wake = w; if (REC.st !== r) w.release(); }).catch(() => {});
+            recWake(r);
+            recOwnerLock();
             recRender();
             // In-band ICY: audio / length byte / metadata block, repeating.
             let st = 0, left = mi, mlen = 0, mbuf = [];
@@ -7994,7 +8073,12 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 }
             };
             const await0 = (a) => { const out = []; a.forEach((x) => out.push(...x)); return out; };
-            const sleep = (ms) => new Promise((x) => setTimeout(x, ms));
+            // A pause between attempts that ends early when the browser reports the network is back.
+            const sleepOrOnline = (ms) => new Promise((x) => {
+                const done = () => { clearTimeout(t); window.removeEventListener("online", done); x(); };
+                const t = setTimeout(done, ms);
+                window.addEventListener("online", done, { once: true });
+            });
             const readOrStall = (reader) => new Promise((resolve, reject) => {
                 const t = setTimeout(() => reject(new Error("stalled")), REC_STALL_MS);
                 reader.read().then((v) => { clearTimeout(t); resolve(v); }, (e) => { clearTimeout(t); reject(e); });
@@ -8016,8 +8100,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 // same recording instead of ending it. Only when that keeps failing is the recording closed, with what it has.
                 let next = null;
                 r.wait = true;
-                while (REC.st === r && !next && fails < REC_REOPEN_DELAYS_MS.length) {
-                    await sleep(REC_REOPEN_DELAYS_MS[fails++]);
+                while (REC.st === r && !next) {
+                    await sleepOrOnline(REC_REOPEN_DELAYS_MS[Math.min(fails++, REC_REOPEN_DELAYS_MS.length - 1)]);
                     if (REC.st !== r) return;
                     const nc = newConn();
                     try {
@@ -8037,15 +8121,28 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 rd = next.res.body.getReader();
                 mi = next.mi;
                 st = 0; left = mi; mlen = 0; mbuf = [];
-                if (r.ext === "mp3" || r.ext === "aac") r.align = true;
-                if (r.mode === "songs") r.song.partial = true; // a song with a gap in it is not a whole song
+                if (r.ext === "mp3" || r.ext === "aac" || r.ext === "ogg") r.align = true;
+                if (r.mode === "songs") r.song.gap = true; // a song with a short hole in it is still kept, and marked in its file name
             }
             if (REC.st === r) recStop("Stream ended.");
         }
         function renderRecList() {
             const l = recEl("recList");
+            setTimeout(recStoreNote, 0);
             if (!REC.items.length) { l.innerHTML = '<div class="songs-empty">Nothing recorded yet.</div>'; return; }
             l.innerHTML = REC.items.map((it, i) => '<div class="song-row"><div class="song-title">' + escapeHtml(it.name) + '</div><div class="song-meta">' + escapeHtml(it.station) + " · " + (it.blob.size / 1048576).toFixed(1) + " MB · " + recFmt(it.secs) + " · " + escapeHtml(new Date(it.at).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })) + '</div><div class="song-links"><button class="playlist-btn" data-i="' + i + '">Save</button></div></div>').join("");
+        }
+        // One line under the list: how much the saved recordings take, and how full the browser's storage for this site is.
+        function recStoreNote() {
+            const l = recEl("recList");
+            if (!l || !REC.items.length) return;
+            let el = document.getElementById("recStoreNote");
+            if (!el) { el = document.createElement("div"); el.id = "recStoreNote"; el.className = "song-meta"; el.style.padding = "0.6rem 0.9rem"; l.appendChild(el); }
+            const mb = (REC.items.reduce((a, i) => a + i.blob.size, 0) / 1048576).toFixed(1);
+            el.textContent = REC.items.length + " files, " + mb + " MB kept in this browser" + (recStoreWarn() ? ". ⚠ Some of it could not be written to browser storage: save it now." : ".");
+            if (navigator.storage && navigator.storage.estimate) navigator.storage.estimate().then((e) => {
+                if (e && e.quota && el.isConnected) el.textContent += " Browser storage for this site: " + (e.usage / 1048576).toFixed(0) + " of " + (e.quota / 1048576).toFixed(0) + " MB used.";
+            }).catch(() => {});
         }
         function openRecModal() {
             rememberModalFocus("recModal");
@@ -8123,10 +8220,14 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 recRender();
             });
             recEl("recZipBtn").addEventListener("click", (e) => recSaveAll(e.currentTarget));
-            window.addEventListener("beforeunload", (e) => { if (REC.st || (!RECDB.ok && REC.items.length)) { e.preventDefault(); e.returnValue = ""; } });
+            window.addEventListener("beforeunload", (e) => { if (REC.st || (recStoreWarn() && REC.items.length)) { e.preventDefault(); e.returnValue = ""; } });
             // Write the latest bytes out as soon as the page is hidden or closing, and every few seconds in between.
             const flushNow = () => recPersistTick();
-            document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flushNow(); });
+            document.addEventListener("visibilitychange", () => {
+                if (document.visibilityState === "hidden") flushNow();
+                else { if (REC.st) recWake(REC.st); recRestore(); } // the screen lock is released when the tab is hidden: take it again
+            });
+            setInterval(recRestore, 60000); // picks up recordings another tab left unfinished
             window.addEventListener("pagehide", flushNow);
             setInterval(recPersistTick, 4000);
             recRestore();
@@ -8166,7 +8267,9 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         // on the same stream. (The recorder has its own connection, so a player hiccup never touches the recording.)
         function recLeaveOk() {
             if (!REC.st) return true;
-            return confirm("A recording is running. Changing the station stops it.\n\nEverything recorded so far is kept. Stop recording and continue?");
+            if (!confirm("A recording is running. Changing the station stops it.\n\nEverything recorded so far is kept. Stop recording and continue?")) return false;
+            recStop("Station changed."); // stopped here, so nothing further down asks again
+            return true;
         }
         function holdSessionForRecording(session) {
             if (playSession !== session) return;
@@ -8180,13 +8283,16 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             session.reconnecting = true;
             setPlaylistBuffering(true);
             renderNpStatus();
-            announce("Playback was interrupted. Staying on this station while recording.");
+            if (!session.holdN) announce("Playback was interrupted. Staying on this station while recording.");
+            // 5 s, 10 s, 20 s, then every 30 s: patient with a station that is really down, quick for a short drop
+            const delay = Math.min(30000, 5000 * 2 ** Math.min(session.holdN || 0, 3));
+            session.holdN = (session.holdN || 0) + 1;
             session.reloadTimer = setTimeout(() => {
                 session.reloadTimer = null;
                 if (playSession !== session) return;
                 session.reloading = true;
                 startAttempt(session, true);
-            }, 5000);
+            }, delay);
         }
         function skipToNext() {
             if (recHolding() && playSession) { holdSessionForRecording(playSession); return; }
@@ -8464,6 +8570,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const alive = () => playSession === session;
             el.onplaying = () => {
                 if (!alive()) return;
+                session.holdN = 0;
                 clearStreamTimeout();
                 clearStall(session);
                 session.reloading = false;
