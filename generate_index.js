@@ -235,6 +235,10 @@ let hiddenNormalFiles = 0;
 //
 // `exempt` is true inside an aggregate folder (see AGGREGATE_DIRS): no
 // checked-folder collapsing happens there.
+// Anything the scan could not read is collected here and makes the run fail
+// (see the check after the scan), so a partial index is never published.
+const scanErrors = [];
+
 function scanDirectory(dir, relativePath = "", exempt = false) {
   const entries = [];
 
@@ -331,7 +335,12 @@ function scanDirectory(dir, relativePath = "", exempt = false) {
         Object.defineProperty(entry, "_src", { value: itemRelativePath });
         entries.push(entry);
       } catch (e) {
-        console.warn(`Could not stat file: ${fullPath}`);
+        // A dangling symlink has nothing to index; anything else is a real failure.
+        if (item.isSymbolicLink() && (e.code === "ENOENT" || e.code === "ELOOP")) {
+          console.warn(`Skipping broken symlink: ${fullPath}`);
+        } else {
+          scanErrors.push(`stat ${fullPath}: ${e.code || e.message}`);
+        }
       }
     }
 
@@ -350,7 +359,7 @@ function scanDirectory(dir, relativePath = "", exempt = false) {
       }
     }
   } catch (e) {
-    console.warn(`Could not read directory: ${dir}`);
+    scanErrors.push(`read directory ${dir}: ${e.code || e.message}`);
   }
 
   entries.sort((a, b) => {
@@ -452,6 +461,13 @@ function countItems(items) {
     }
   }
   return { files, dirs };
+}
+
+if (scanErrors.length > 0) {
+  console.error(`ERROR: the scan was incomplete (${scanErrors.length} problem(s)); refusing to write an index.`);
+  for (const m of scanErrors.slice(0, 50)) console.error("  - " + m);
+  if (scanErrors.length > 50) console.error(`  ... and ${scanErrors.length - 50} more`);
+  process.exit(1);
 }
 
 const counts = countItems(index.root);

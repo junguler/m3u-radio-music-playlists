@@ -650,6 +650,25 @@
         .player-info-btn { position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.375rem; background: var(--control-surface); border: var(--bw) solid var(--border-color); border-radius: var(--radius); color: var(--on-control); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
         .player-info-btn:hover { background: var(--control-surface-hover); border-color: var(--accent); }
         .player-info-btn svg { width: 16px; height: 16px; }
+        .player-eq-btn { right: auto; left: 0.5rem; }
+        .player-eq-btn.eq-on { border-color: var(--accent); color: var(--accent-text, var(--accent)); }
+        .eq-panel { position: absolute; top: 2.9rem; left: 0.5rem; right: 0.5rem; z-index: 6; max-height: min(calc(100% - 3.4rem), calc(100dvh - 8rem)); overflow-y: auto; overscroll-behavior: contain; box-sizing: border-box; padding: 0.4rem 0.5rem 0.5rem; background: var(--bg-secondary); border: var(--bw) solid var(--border-color); border-radius: var(--radius-lg); color: var(--text-primary); display: flex; flex-direction: column; gap: 0.35rem; }
+        .eq-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem; }
+        .eq-title { font-size: var(--label-size); font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); color: var(--text-muted); margin-right: auto; }
+        .eq-chip, .eq-close { font: inherit; font-size: var(--data-size); line-height: 1.2; padding: 0.2rem 0.5rem; background: var(--control-surface); color: var(--on-control); border: var(--bw) solid var(--border-color); border-radius: var(--radius); cursor: pointer; }
+        .eq-chip:hover, .eq-close:hover { background: var(--control-surface-hover); border-color: var(--accent); }
+        .eq-chip[aria-pressed="true"] { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); }
+        .eq-chip:disabled, .eq-preset:disabled, .eq-slider:disabled { opacity: 0.45; cursor: not-allowed; }
+        .eq-preset { font: inherit; font-size: 0.8rem; padding: 0.2rem 0.3rem; min-width: 0; background: var(--control-surface); color: var(--on-control); border: var(--bw) solid var(--border-color); border-radius: var(--radius); width: 100%; box-sizing: border-box; }
+        .eq-bands { display: flex; justify-content: space-between; gap: 0.1rem; }
+        .eq-band { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; flex: 1 1 0; min-width: 0; }
+        .eq-val, .eq-freq { font-size: 0.65rem; line-height: 1; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+        .eq-slider { writing-mode: vertical-lr; direction: rtl; -webkit-appearance: slider-vertical; appearance: auto; height: clamp(60px, 12vh, 100px); width: 1.5rem; margin: 0; accent-color: var(--accent); cursor: pointer; }
+        .eq-selects { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+        .eq-sel { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+        .eq-sel-label { font-size: 0.65rem; line-height: 1; font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); color: var(--text-muted); }
+        .eq-note { font-size: 0.72rem; line-height: 1.3; color: var(--text-muted); }
+        .eq-note:empty { display: none; }
         .player-info-btn.copied { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); }
         .preview-code { width: 100%; min-height: 100%; padding: 0.5rem; background: var(--bg-primary); }
         /* Preview text has its own size (Settings > Font Size > Preview text), independent of the interface size. */
@@ -1098,6 +1117,7 @@
 
         /* folder tree: header actions */
         .tree-header { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+        .tree-title { margin: 0; font: inherit; color: inherit; text-transform: inherit; letter-spacing: inherit; }
         .tree-header-actions { display: flex; align-items: center; gap: 0.25rem; }
         .tree-hdr-btn { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0; background: none; border: none; border-radius: var(--radius-sm); color: var(--text-muted); cursor: pointer; text-transform: none; }
         .tree-hdr-btn svg { width: 14px; height: 14px; }
@@ -1577,6 +1597,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
     <a class="skip-link" id="skipLink" href="#main">Skip to files</a>
     <header class="header">
         <div class="header-content">
+            <h1 class="sr-only">File Viewer</h1>
             <div class="logo" id="logoHome" role="button" tabindex="0" aria-label="Go to home folder">
                 <svg viewBox="0 0 24 24" fill="currentcolor"><rect x="2" y="5" width="20" height="14"/><circle cx="8" cy="12" r="2.4" fill="var(--bg-secondary)"/><circle cx="16" cy="12" r="2.4" fill="var(--bg-secondary)"/><circle cx="8" cy="12" r="0.8"/><circle cx="16" cy="12" r="0.8"/><rect x="10" y="15.6" width="4" height="1.6" fill="var(--bg-secondary)"/></svg>
                 <span>File Viewer</span>
@@ -1822,10 +1843,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         <aside class="tree-panel visible" id="treePanel">
             <div class="tree-pinned" id="treePinned"></div>
             <div class="tree-pinned" id="treeFavorites"></div>
-            <div class="tree-header"><span>Folders</span><span class="tree-header-actions"><button type="button" class="tree-hdr-btn" id="treeCollapseAll" title="Collapse all folders" aria-label="Collapse all folders"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 13H5v-2h14v2z"/></svg></button></span></div>
-            <div class="tree-content" id="treeContent"></div>
+            <div class="tree-header"><h2 class="tree-title">Folders</h2><span class="tree-header-actions"><button type="button" class="tree-hdr-btn" id="treeCollapseAll" title="Collapse all folders" aria-label="Collapse all folders"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 13H5v-2h14v2z"/></svg></button></span></div>
+            <div class="tree-content" id="treeContent" role="tree" aria-label="Folders"></div>
         </aside>
-        <main class="main" id="main" tabindex="-1">
+        <h2 class="sr-only" id="mainHeading">Files</h2>
+        <main class="main" id="main" tabindex="-1" aria-labelledby="mainHeading">
             <div class="skeleton-list" aria-hidden="true">
                 <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name"></div><div class="skeleton-block skeleton-meta"></div></div>
                 <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:60%"></div><div class="skeleton-block skeleton-meta"></div></div>
@@ -2035,7 +2057,12 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         let currentVolume = 0.25, // Default volume 25% (on the player's own scale, see volToEl)
             audioCtx = null,
             normalizedElements = new WeakSet(),
-            compressor = null;
+            audioPost = null, // shared: make-up gain after the levelers, then equalizer, then limiter
+            audioLimiter = null,
+            levelers = new WeakMap(), // media element -> its loudness leveler
+            activeLevelers = new Set(),
+            eqNodes = null,
+            eqState = null;
         // The volume shown to the user is not the raw element volume: it is squared on the way in, so the low
         // end is much quieter and fine-grained, and Web Audio adds make-up gain so the top end is louder.
         const volToEl = (u) => Math.pow(Math.max(0, Math.min(1, u)), 2);
@@ -2092,6 +2119,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             nextCtl: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>`,
             shuffleCtl: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M10.59 9.17 5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>`,
             volDownCtl: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13H5v-2h14v2z"/></svg>`,
+            eq: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 20h4V4h-4v16zm-6 0h4v-8H4v8zM16 9v11h4V9h-4z"/></svg>`,
             volUpCtl: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>`,
             other: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/></svg>`,
             chevron: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>`,
@@ -2691,7 +2719,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 : document.documentElement.removeAttribute("data-theme");
             const t = store.getItem("fontSize");
             t &&
-                ((currentFontSize = Math.max(12, Math.min(20, parseInt(t) || 16))),
+                ((currentFontSize = Math.max(FONT_SIZE_MIN, Math.min(FONT_SIZE_MAX, parseInt(t) || 16))),
                 document.documentElement.style.setProperty("--font-size-base", currentFontSize + "px")),
                 updateThemeButtons(),
                 updateFontSizeLabel();
@@ -3291,18 +3319,20 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const toggle = document.getElementById("themeToggle");
             if (toggle) toggle.classList.toggle("custom-color-active", customActive);
         }
+        // Interface text size range in px (the A- / A+ buttons in Settings).
+        const FONT_SIZE_MIN = 10, FONT_SIZE_MAX = 26;
         function updateFontSizeLabel() {
             document.getElementById("fontSizeLabel").textContent = currentFontSize + "px";
         }
         function changeFontSize(e) {
-            (currentFontSize = Math.max(12, Math.min(20, currentFontSize + e))),
+            (currentFontSize = Math.max(FONT_SIZE_MIN, Math.min(FONT_SIZE_MAX, currentFontSize + e))),
                 document.documentElement.style.setProperty("--font-size-base", currentFontSize + "px"),
                 store.setItem("fontSize", currentFontSize),
                 updateFontSizeLabel();
         }
         // Preview text (code / text file previews) has its own size, in rem, so it can sit
         // smaller than the interface text. Default 0.8rem; stored as "previewFontSize".
-        const PREVIEW_FONT_DEFAULT = 0.8, PREVIEW_FONT_MIN = 0.6, PREVIEW_FONT_MAX = 1.6, PREVIEW_FONT_STEP = 0.1;
+        const PREVIEW_FONT_DEFAULT = 0.8, PREVIEW_FONT_MIN = 0.5, PREVIEW_FONT_MAX = 2.4, PREVIEW_FONT_STEP = 0.1;
         let previewFontSize = PREVIEW_FONT_DEFAULT;
         function clampPreviewFont(v) {
             return Math.max(PREVIEW_FONT_MIN, Math.min(PREVIEW_FONT_MAX, Math.round(v * 10) / 10));
@@ -3485,7 +3515,165 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             return scored.map((s) => s.item);
         }
         
-        // Initialize Web Audio API for Normalization
+        // ======================================================================
+        // Loudness leveler. Every stream goes through the same stages:
+        //   source -> [optional compressor] -> level gain -> make-up gain -> equalizer -> limiter -> speakers
+        // The level gain is the normalizer: the loudness of what comes out of the compressor is measured the way
+        // EBU R128 / ITU-R BS.1770 does it (K-weighting, mean square, a 3 s short-term window, silence ignored)
+        // and the gain moves slowly toward the target. Peaks are only ever caught by the limiter, so music keeps
+        // its dynamics unless Smooth or Night is chosen. The element's own volume is applied BEFORE the audio
+        // reaches Web Audio, so the meter divides it back out; otherwise the volume slider would be "corrected".
+        const LEVEL_TARGET_LUFS = 16;   // stream loudness at the level gain's output, as -LUFS (-16 LUFS)
+        const LEVEL_POST_DB = 14;       // make-up gain after it, tuned so the 25% slider sounds as loud as the old chain did (about -26 LUFS); above ~50% the limiter starts catching peaks
+        const LEVEL_GAIN_MIN = -18, LEVEL_GAIN_MAX = 12; // dB the level gain may move
+        const LEVEL_KEY = "levelMode";
+        const LEVEL_MODES = {
+            off:    { label: "Off",    hint: "The stream plays exactly as sent.", comp: { ratio: 1, threshold: 0, knee: 0, attack: 0.01, release: 0.25 } },
+            level:  { label: "Level",  hint: "Stations are matched to the same loudness. The music itself is not compressed.", comp: { ratio: 1, threshold: 0, knee: 0, attack: 0.01, release: 0.25 } },
+            smooth: { label: "Smooth", hint: "Matched loudness plus gentle compression for steadier levels.", comp: { ratio: 2.2, threshold: -22, knee: 14, attack: 0.03, release: 0.4 } },
+            night:  { label: "Night",  hint: "Matched loudness plus strong compression: loud parts come down, quiet parts come up.", comp: { ratio: 4, threshold: -30, knee: 12, attack: 0.01, release: 0.3 } },
+        };
+        let levelMode = null;
+        function getLevelMode() {
+            if (levelMode) return levelMode;
+            let m = null;
+            try { m = store.getItem(LEVEL_KEY); } catch (e) {}
+            levelMode = LEVEL_MODES[m] ? m : "level";
+            return levelMode;
+        }
+        function setLevelMode(m) {
+            if (!LEVEL_MODES[m]) return;
+            levelMode = m;
+            try { store.setItem(LEVEL_KEY, m); } catch (e) {}
+            applyLevelModeAll();
+        }
+        function applyLevelMode(lv) {
+            const mode = getLevelMode(), p = LEVEL_MODES[mode].comp, t = audioCtx.currentTime;
+            lv.comp.ratio.setTargetAtTime(p.ratio, t, 0.05);
+            lv.comp.threshold.setTargetAtTime(p.threshold, t, 0.05);
+            lv.comp.knee.setTargetAtTime(p.knee, t, 0.05);
+            lv.comp.attack.setTargetAtTime(p.attack, t, 0.05);
+            lv.comp.release.setTargetAtTime(p.release, t, 0.05);
+            if (mode === "off") { lv.gainDb = 0; lv.gain.gain.setTargetAtTime(1, t, 0.08); }
+        }
+        function applyLevelModeAll() {
+            if (!audioCtx || !audioPost) return;
+            const off = getLevelMode() === "off";
+            audioPost.gain.setTargetAtTime(off ? 1 : Math.pow(10, LEVEL_POST_DB / 20), audioCtx.currentTime, 0.08);
+            activeLevelers.forEach((lv) => applyLevelMode(lv));
+        }
+        // Pure control law, no Web Audio in it (so it can be tested). `e` is the block's energy summed over the channels,
+        // already divided by volume squared; `now` is in ms. Returns the dB the level gain should move toward, or null
+        // when it should hold (silence, paused, not enough data yet).
+        function levelUpdate(lv, e, now) {
+            const blocks = lv.blocks;
+            blocks.push({ t: now, e });
+            // About 3 s of blocks; at least the last 12 so a throttled background tab still has something to average.
+            while (blocks.length > 12 && blocks[0].t < now - 3000) blocks.shift();
+            const lufs = (x) => -0.691 + 10 * Math.log10(x);
+            const mean = (list) => list.reduce((s, b) => s + b.e, 0) / list.length;
+            const loud = blocks.filter((b) => b.e > 0 && lufs(b.e) > -70); // absolute gate: silence never moves the gain
+            lv.lufs = null;
+            if (loud.length < 3 || now - loud[0].t < 900) return null;
+            const short = lufs(mean(loud));
+            lv.lufs = short;
+            const recent = loud.filter((b) => b.t > now - 400);
+            const momentary = recent.length ? lufs(mean(recent)) : short;
+            const clamp = (g) => Math.max(LEVEL_GAIN_MIN, Math.min(LEVEL_GAIN_MAX, g));
+            let want = clamp(-LEVEL_TARGET_LUFS - short), tau;
+            if (momentary + lv.gainDb > -LEVEL_TARGET_LUFS + 4 && want < lv.gainDb) {
+                want = clamp(-LEVEL_TARGET_LUFS - momentary); // a sudden loud passage (an ad break, say): come down quickly
+                tau = 0.25;
+            } else if (now < lv.fastUntil) {
+                tau = 0.3; // just started: get to the right level quickly
+            } else {
+                tau = want < lv.gainDb ? 1.2 : 6; // down fairly fast, up slowly so quiet passages are not pumped up
+                if (Math.abs(want - lv.gainDb) < 0.6) return lv.gainDb; // close enough: leave it alone
+            }
+            const dt = Math.min(1, Math.max(0, (now - lv.lastUpdate) / 1000));
+            lv.lastUpdate = now;
+            lv.gainDb += (want - lv.gainDb) * (1 - Math.exp(-dt / tau));
+            return lv.gainDb;
+        }
+        function newLevelState(now) {
+            return { blocks: [], gainDb: 0, lufs: null, lastUpdate: now, fastUntil: now + 6000 };
+        }
+        function stopLeveler(lv) {
+            if (lv.timer) { clearInterval(lv.timer); lv.timer = null; }
+            activeLevelers.delete(lv);
+            try { lv.source.disconnect(); } catch (e) {}
+        }
+        function buildLeveler(ctx, source, el) {
+            const comp = ctx.createDynamicsCompressor();
+            const gain = ctx.createGain();
+            source.connect(comp);
+            comp.connect(gain);
+            gain.connect(audioPost);
+            // Measurement tap after the compressor, before the level gain, so what it reads never depends on the gain it sets.
+            const split = ctx.createChannelSplitter(2);
+            comp.connect(split);
+            const an = [0, 1].map((ch) => {
+                const shelf = ctx.createBiquadFilter(); // K-weighting stage 1: shelving boost around 1.7 kHz
+                shelf.type = "highshelf"; shelf.frequency.value = 1682; shelf.gain.value = 4;
+                const hp = ctx.createBiquadFilter();    // stage 2: high-pass at 38 Hz (Q is in dB for Web Audio: 0.5 linear = -6 dB)
+                hp.type = "highpass"; hp.frequency.value = 38; hp.Q.value = -6.02;
+                const a = ctx.createAnalyser();
+                a.fftSize = 2048; a.smoothingTimeConstant = 0;
+                split.connect(shelf, ch);
+                shelf.connect(hp); hp.connect(a);
+                return a;
+            });
+            const lv = Object.assign(newLevelState(performance.now()), {
+                el, source, comp, gain, an,
+                bufs: [new Float32Array(an[0].fftSize), new Float32Array(an[1].fftSize)],
+                timer: null,
+            });
+            activeLevelers.add(lv);
+            applyLevelMode(lv);
+            lv.timer = setInterval(() => {
+                if (!el.isConnected) { stopLeveler(lv); return; }
+                if (getLevelMode() === "off") { lv.lufs = null; return; }
+                const v = el.muted ? 0 : el.volume;
+                if (el.paused || v < 0.003) { lv.lufs = null; return; }
+                let sum = 0;
+                for (let c = 0; c < 2; c++) {
+                    an[c].getFloatTimeDomainData(lv.bufs[c]);
+                    let s = 0;
+                    const b = lv.bufs[c];
+                    for (let i = 0; i < b.length; i++) s += b[i] * b[i];
+                    sum += s / b.length;
+                }
+                const g = levelUpdate(lv, sum / (v * v), performance.now());
+                if (g !== null) lv.gain.gain.setTargetAtTime(Math.pow(10, g / 20), ctx.currentTime, 0.08);
+            }, 40);
+            return lv;
+        }
+        // Builds the shared part of the graph once: make-up gain -> equalizer -> limiter -> speakers.
+        function ensureAudioGraph() {
+            if (audioCtx) return;
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            audioPost = audioCtx.createGain();
+            audioLimiter = audioCtx.createDynamicsCompressor();
+            audioLimiter.threshold.value = -2;
+            audioLimiter.knee.value = 0;
+            audioLimiter.ratio.value = 20;
+            audioLimiter.attack.value = 0.001;
+            audioLimiter.release.value = 0.1;
+            // Equalizer sits after the leveler so its boosts are really heard; the limiter still catches peaks.
+            try {
+                eqNodes = buildEqChain(audioCtx);
+                audioPost.connect(eqNodes.input);
+                eqNodes.output.connect(audioLimiter);
+            } catch (eqErr) {
+                eqNodes = null;
+                try { audioPost.disconnect(); } catch (e2) {}
+                audioPost.connect(audioLimiter);
+            }
+            audioLimiter.connect(audioCtx.destination);
+            applyLevelModeAll();
+            applyEq();
+        }
+        // Routes a media element through the leveler / equalizer / limiter chain.
         function setupAudioNormalization(mediaElement) {
             // A media element can only ever connect to one MediaElementSourceNode;
             // skip if it's already wired up (elements are reused across tracks).
@@ -3493,44 +3681,216 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             try {
                 // Ensure CORS is handled for Web Audio
                 mediaElement.crossOrigin = "anonymous";
-                
-                if (!audioCtx) {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    // Settings for a "broadcast style" leveling
-                    compressor = audioCtx.createDynamicsCompressor();
-                    compressor.threshold.value = -30; // Start leveling earlier so quiet and loud stations land close together
-                    compressor.knee.value = 24;
-                    compressor.ratio.value = 18;      // Strong leveler
-                    compressor.attack.value = 0.003;
-                    compressor.release.value = 0.25;
-                    // Make-up gain gives the top of the volume range real headroom; the limiter keeps it from clipping.
-                    const makeup = audioCtx.createGain();
-                    makeup.gain.value = 2.4;
-                    const limiter = audioCtx.createDynamicsCompressor();
-                    limiter.threshold.value = -2;
-                    limiter.knee.value = 0;
-                    limiter.ratio.value = 20;
-                    limiter.attack.value = 0.001;
-                    limiter.release.value = 0.1;
-                    compressor.connect(makeup);
-                    makeup.connect(limiter);
-                    limiter.connect(audioCtx.destination);
-                }
-
+                ensureAudioGraph();
                 // Browser policy requires user interaction to resume audio context
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
-
-                // Connect source to compressor
-                // Note: creating a new source for a new element is standard
+                if (audioCtx.state === 'suspended') audioCtx.resume();
                 const source = audioCtx.createMediaElementSource(mediaElement);
-                source.connect(compressor);
                 normalizedElements.add(mediaElement);
+                // From here on the element is only heard through the graph, so a failure below must not leave it unplugged.
+                try {
+                    levelers.set(mediaElement, buildLeveler(audioCtx, source, mediaElement));
+                } catch (levelErr) {
+                    console.warn("Loudness leveler setup failed:", levelErr);
+                    try { source.disconnect(); } catch (e2) {}
+                    source.connect(audioPost);
+                }
             } catch (e) {
                 // Fails quietly if CORS blocks it or AudioContext not supported
                 console.warn("Audio Normalization setup failed:", e);
             }
+        }
+
+        // ======================================================================
+        // Equalizer. 10 bands (low shelf, 8 peaking, high shelf), presets, a mono switch. It works on the same Web Audio
+        // chain as the leveler, so it only exists for streams and files that are routed through it (CORS-enabled ones).
+        // The preamp drops by the largest boost so boosting can never clip.
+        const EQ_FREQS = [32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+        const EQ_LABELS = ["32", "64", "125", "250", "500", "1k", "2k", "4k", "8k", "16k"];
+        const EQ_MIN = -12, EQ_MAX = 12, EQ_KEY = "eqState";
+        const EQ_FLAT = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        const EQ_PRESETS = {
+            "Flat": EQ_FLAT,
+            "Bass boost": [6, 5, 4, 2, 0, 0, 0, 0, 0, 0],
+            "Bass reducer": [-6, -5, -4, -2, 0, 0, 0, 0, 0, 0],
+            "Treble boost": [0, 0, 0, 0, 0, 1, 2, 4, 5, 6],
+            "Vocal boost": [-2, -2, -1, 1, 3, 4, 4, 2, 0, -1],
+            "Loudness": [5, 4, 1, 0, -1, -1, 0, 2, 4, 5],
+            "Rock": [5, 4, 3, 1, -1, -1, 1, 3, 4, 5],
+            "Pop": [-1, 1, 3, 4, 3, 0, -1, -1, 1, 2],
+            "Jazz": [3, 2, 1, 2, -2, -2, 0, 1, 2, 3],
+            "Classical": [0, 0, 0, 0, 0, 0, -3, -3, -3, -4],
+            "Electronic": [5, 4, 1, 0, -2, 2, 1, 1, 4, 5],
+            "Hip-hop": [5, 4, 1, 3, -1, -1, 1, -1, 2, 3],
+            "Acoustic": [4, 4, 3, 1, 2, 2, 3, 3, 3, 2],
+        };
+        function buildEqChain(ctx) {
+            const input = ctx.createGain();
+            const bands = EQ_FREQS.map((f, i) => {
+                const b = ctx.createBiquadFilter();
+                b.type = i === 0 ? "lowshelf" : i === EQ_FREQS.length - 1 ? "highshelf" : "peaking";
+                b.frequency.value = f;
+                if (b.type === "peaking") b.Q.value = 1.41; // about one octave wide
+                b.gain.value = 0;
+                return b;
+            });
+            // Fixed at 2 channels, or 1 when mono is on (then spread back to both speakers).
+            const mono = ctx.createGain();
+            mono.channelCountMode = "explicit";
+            mono.channelCount = 2;
+            mono.channelInterpretation = "speakers";
+            let node = input;
+            for (const b of bands) { node.connect(b); node = b; }
+            node.connect(mono);
+            return { input, bands, mono, output: mono };
+        }
+        function getEqState() {
+            if (eqState) return eqState;
+            let s = null;
+            try { s = JSON.parse(store.getItem(EQ_KEY) || "null"); } catch (e) {}
+            const gains = s && Array.isArray(s.gains) && s.gains.length === EQ_FREQS.length
+                ? s.gains.map((v) => Math.max(EQ_MIN, Math.min(EQ_MAX, Math.round(Number(v)) || 0)))
+                : EQ_FLAT.slice();
+            const preset = s && typeof s.preset === "string" && (s.preset === "Custom" || EQ_PRESETS[s.preset]) ? s.preset : "Flat";
+            eqState = { on: !!(s && s.on), preset, gains, mono: !!(s && s.mono) };
+            return eqState;
+        }
+        function saveEqState() {
+            try { store.setItem(EQ_KEY, JSON.stringify(eqState)); } catch (e) {}
+        }
+        function applyEq() {
+            const btn = document.getElementById("eqBtn");
+            const s = getEqState();
+            if (btn) btn.classList.toggle("eq-on", s.on || s.mono);
+            if (!eqNodes || !audioCtx) return;
+            const t = audioCtx.currentTime;
+            const gains = s.on ? s.gains : EQ_FLAT;
+            const boost = Math.max(0, ...gains);
+            eqNodes.bands.forEach((b, i) => b.gain.setTargetAtTime(gains[i], t, 0.03));
+            eqNodes.input.gain.setTargetAtTime(Math.pow(10, -boost / 20), t, 0.03);
+            eqNodes.mono.channelCount = s.mono ? 1 : 2;
+        }
+        function closeEqPanel() {
+            const panel = document.getElementById("eqPanel");
+            const btn = document.getElementById("eqBtn");
+            if (panel) panel.remove();
+            if (btn) { btn.setAttribute("aria-expanded", "false"); btn.focus(); }
+        }
+        function openEqPanel(mediaEl, host) {
+            const s = getEqState();
+            const ready = !!audioCtx && normalizedElements.has(mediaEl);
+            if (ready && audioCtx && audioCtx.state === "suspended") audioCtx.resume().catch(() => {});
+            const panel = document.createElement("div");
+            panel.id = "eqPanel";
+            panel.className = "eq-panel";
+            panel.setAttribute("role", "dialog");
+            panel.setAttribute("aria-label", "Sound: leveling and equalizer");
+            panel.innerHTML = `
+                <div class="eq-head">
+                    <span class="eq-title">Sound</span>
+                    <button type="button" class="eq-chip" id="eqOnBtn" aria-pressed="false">Off</button>
+                    <button type="button" class="eq-chip" id="eqMonoBtn" aria-pressed="false" title="Play stereo as mono">Mono</button>
+                    <button type="button" class="eq-chip" id="eqResetBtn" title="Set every band back to 0">Reset</button>
+                    <button type="button" class="eq-close" id="eqCloseBtn" aria-label="Close equalizer">&times;</button>
+                </div>
+                <div class="eq-selects">
+                    <div class="eq-sel"><label class="eq-sel-label" for="eqLevel">Leveling</label>
+                        <select class="eq-preset" id="eqLevel">${Object.keys(LEVEL_MODES).map((k) => `<option value="${k}">${LEVEL_MODES[k].label}</option>`).join("")}</select></div>
+                    <div class="eq-sel"><label class="eq-sel-label" for="eqPreset">Equalizer</label>
+                        <select class="eq-preset" id="eqPreset">
+                            ${Object.keys(EQ_PRESETS).map((n) => `<option value="${n}">${n}</option>`).join("")}
+                            <option value="Custom" hidden>Custom</option>
+                        </select></div>
+                </div>
+                <div class="eq-note" id="eqLevelNote"></div>
+                <div class="eq-bands">
+                    ${EQ_LABELS.map((l, i) => `<div class="eq-band"><span class="eq-val" id="eqVal${i}">0</span><input type="range" class="eq-slider" id="eqBand${i}" data-band="${i}" min="${EQ_MIN}" max="${EQ_MAX}" step="1" value="0" aria-label="${l} hertz"><span class="eq-freq">${l}</span></div>`).join("")}
+                </div>
+                <div class="eq-note" id="eqNote"></div>`;
+            host.appendChild(panel);
+            const q = (id) => panel.querySelector("#" + id);
+            const sliders = Array.from(panel.querySelectorAll(".eq-slider"));
+            const fmt = (v) => (v > 0 ? "+" + v : String(v));
+            function sync() {
+                q("eqOnBtn").textContent = s.on ? "On" : "Off";
+                q("eqOnBtn").setAttribute("aria-pressed", String(s.on));
+                q("eqMonoBtn").setAttribute("aria-pressed", String(s.mono));
+                q("eqPreset").value = s.preset;
+                sliders.forEach((sl, i) => {
+                    sl.value = s.gains[i];
+                    sl.setAttribute("aria-valuetext", fmt(s.gains[i]) + " dB");
+                    q("eqVal" + i).textContent = fmt(s.gains[i]);
+                });
+            }
+            function changed(preset) {
+                s.preset = preset;
+                s.on = true;
+                saveEqState();
+                applyEq();
+                sync();
+            }
+            q("eqOnBtn").addEventListener("click", () => { s.on = !s.on; saveEqState(); applyEq(); sync(); });
+            q("eqMonoBtn").addEventListener("click", () => { s.mono = !s.mono; saveEqState(); applyEq(); sync(); });
+            q("eqResetBtn").addEventListener("click", () => { s.gains = EQ_FLAT.slice(); s.preset = "Flat"; saveEqState(); applyEq(); sync(); });
+            q("eqCloseBtn").addEventListener("click", closeEqPanel);
+            const levelNote = () => {
+                const m = getLevelMode(), lv = levelers.get(mediaEl);
+                let live = "";
+                if (m !== "off" && lv) live = lv.lufs === null ? " Measuring…" : ` Stream ${lv.lufs.toFixed(1)} LUFS, gain ${lv.gainDb >= 0 ? "+" : ""}${lv.gainDb.toFixed(1)} dB.`;
+                q("eqLevelNote").textContent = LEVEL_MODES[m].hint + live;
+            };
+            q("eqLevel").value = getLevelMode();
+            q("eqLevel").addEventListener("change", (e) => { setLevelMode(e.target.value); levelNote(); });
+            levelNote();
+            const noteTimer = setInterval(() => { if (!document.getElementById("eqPanel")) clearInterval(noteTimer); else levelNote(); }, 500);
+            q("eqPreset").addEventListener("change", (e) => {
+                const name = e.target.value;
+                if (EQ_PRESETS[name]) { s.gains = EQ_PRESETS[name].slice(); changed(name); }
+            });
+            sliders.forEach((sl) => sl.addEventListener("input", () => {
+                s.gains[Number(sl.dataset.band)] = Number(sl.value);
+                const match = Object.keys(EQ_PRESETS).find((n) => EQ_PRESETS[n].every((v, i) => v === s.gains[i]));
+                changed(match || "Custom");
+            }));
+            if (!ready) {
+                panel.querySelectorAll("button:not(#eqCloseBtn), select, input").forEach((el) => { el.disabled = true; });
+                q("eqNote").textContent = "Leveling and the equalizer can't be used on this stream: the station doesn't allow its audio to be processed in the browser.";
+                q("eqLevelNote").textContent = "";
+            }
+            // The page's own shortcuts (arrows, space, / and ?) must not act while the panel's controls have focus.
+            panel.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); closeEqPanel(); return; }
+                if (e.key !== "Tab") e.stopPropagation();
+            });
+            const onOutside = (e) => {
+                if (!document.getElementById("eqPanel")) { document.removeEventListener("pointerdown", onOutside, true); return; }
+                if (panel.contains(e.target) || (e.target.closest && e.target.closest("#eqBtn"))) return;
+                document.removeEventListener("pointerdown", onOutside, true);
+                closeEqPanel();
+            };
+            document.addEventListener("pointerdown", onOutside, true);
+            const btn = document.getElementById("eqBtn");
+            if (btn) btn.setAttribute("aria-expanded", "true");
+            sync();
+            (ready ? q("eqPreset") : q("eqCloseBtn")).focus();
+        }
+        // Adds the Equalizer button next to the stream-info button (top left of the audio player).
+        function attachEqButton(mediaEl) {
+            if (!mediaEl || mediaEl.tagName !== "AUDIO") return;
+            const info = document.getElementById("streamInfoBtn");
+            const host = info && info.parentElement;
+            if (!host || host.querySelector("#eqBtn")) return;
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.id = "eqBtn";
+            btn.className = "player-info-btn player-eq-btn";
+            btn.title = "Sound: leveling and equalizer";
+            btn.setAttribute("aria-label", "Sound: leveling and equalizer");
+            btn.setAttribute("aria-haspopup", "dialog");
+            btn.setAttribute("aria-expanded", "false");
+            btn.innerHTML = icons.eq;
+            btn.addEventListener("click", () => (document.getElementById("eqPanel") ? closeEqPanel() : openEqPanel(mediaEl, host)));
+            host.appendChild(btn);
+            applyEq();
         }
 
         // Media Session API: surfaces play/pause/prev/next on the lock screen,
@@ -4219,6 +4579,9 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         function handleGridKeydown(e) {
             const card = e.target.closest(".file-card");
             if (!card) return;
+            // Enter/Space on the star (or any other button inside the card)
+            // belongs to that button, not to the card around it.
+            if ((e.key === "Enter" || e.key === " ") && e.target.closest("button")) return;
             const cards = Array.from(document.querySelectorAll("#main .file-card"));
             const idx = cards.indexOf(card);
             const cols = getGridColumnCount();
@@ -4521,7 +4884,12 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         function hashToPath() {
             const raw = location.hash.replace(/^#\/?/, "");
             if (!raw) return [];
-            return raw.split("/").filter(Boolean).map(decodeURIComponent);
+            return raw.split("/").filter(Boolean).map(safeDecode);
+        }
+        // decodeURIComponent throws on a malformed escape (a stray "%"); keep
+        // the text as it is instead.
+        function safeDecode(s) {
+            try { return decodeURIComponent(s); } catch (err) { return s; }
         }
         // Keeps the URL hash in sync with currentPath so folders are
         // linkable/bookmarkable and the browser back/forward buttons retrace
@@ -4860,7 +5228,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     const isActive = JSON.stringify(pathArr) === JSON.stringify(currentPath);
                     const hasSubfolders = folder.children?.some((child) => child.type === "directory");
                     html += `
-            <div class="tree-item${isActive ? " active" : ""}" data-path="${escapeHtml(JSON.stringify(pathArr))}" style="padding-left: ${depth * 12 + 8}px" tabindex="0" role="treeitem" aria-label="Folder ${escapeHtml(folder.name)}">
+            <div class="tree-item${isActive ? " active" : ""}" data-path="${escapeHtml(JSON.stringify(pathArr))}" style="padding-left: ${depth * 12 + 8}px" tabindex="0" role="treeitem" aria-level="${depth + 2}"${hasSubfolders ? ` aria-expanded="${isExpanded}"` : ""}${isActive ? ' aria-current="page"' : ""} aria-label="Folder ${escapeHtml(folder.name)}">
               <span class="tree-toggle${hasSubfolders ? (isExpanded ? " expanded" : "") : " empty"}" data-path="${escapeHtml(folderPath)}">
                 ${icons.chevron}
               </span>
@@ -4869,7 +5237,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             </div>
           `;
                     if (isExpanded && folder.children) {
-                        html += `<div class="tree-children">${renderFolderList(folder.children, folderPath, depth + 1)}</div>`;
+                        html += `<div class="tree-children" role="group">${renderFolderList(folder.children, folderPath, depth + 1)}</div>`;
                     }
                 }
                 return html;
@@ -4878,7 +5246,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const isAtRoot = currentPath.length === 0;
             const rootHasSubfolders = fileIndex.root.some((item) => item.type === "directory");
             let html = `
-        <div class="tree-item${isAtRoot ? " active" : ""}" data-path="[]" style="padding-left: 8px" tabindex="0" role="treeitem" aria-label="Root folder">
+        <div class="tree-item${isAtRoot ? " active" : ""}" data-path="[]" style="padding-left: 8px" tabindex="0" role="treeitem" aria-level="1"${rootHasSubfolders ? ' aria-expanded="true"' : ""}${isAtRoot ? ' aria-current="page"' : ""} aria-label="Root folder">
           <span class="tree-toggle${rootHasSubfolders ? " expanded" : " empty"}" data-path="">
             ${icons.chevron}
           </span>
@@ -5135,7 +5503,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                         currentHeaderLines.push(line);
                     } else {
                         const url = (line.startsWith("http://") || line.startsWith("https://")) ? line : o + line;
-                        const title = currentTitle || decodeURIComponent(url.split('/').pop());
+                        const title = currentTitle || safeDecode(url.split('/').pop());
                         const header = currentHeaderLines.join("\n");
                         playlistItems.push({ url, title, header });
                         currentTitle = null;
@@ -5326,11 +5694,13 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
         async function startPlaylistMode() {
             if (!isPlaylistFile || !currentFilePath) return;
+            const startedFor = currentFilePath;
             const e = await urlForPath(currentFilePath),
                 t = await parsePlaylistForCurrent(e);
+            if (currentFilePath !== startedFor) return; // another file was opened while loading
             failStreak = 0;
             await Promise.race([streamHealth.open(), new Promise((r) => setTimeout(r, 1200))]);
-            if (!currentFilePath) return; // closed while loading
+            if (currentFilePath !== startedFor) return; // closed or switched while loading
             t.length > 0
                 ? ((currentPlaylist = t),
                   (currentPlaylistIndex = 0),
@@ -5382,6 +5752,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         function fetchCacheSet(url, text) {
             if (fetchCache.has(url)) fetchCacheChars -= fetchCache.get(url).length;
             fetchCache.delete(url);
+            // Too big for the cache on its own: use it once, don't keep it.
+            if (text.length > FETCH_CACHE_MAX_CHARS) return;
             fetchCache.set(url, text);
             fetchCacheChars += text.length;
             while (fetchCache.size > 1 && (fetchCache.size > FETCH_CACHE_MAX_ENTRIES || fetchCacheChars > FETCH_CACHE_MAX_CHARS)) {
@@ -6573,7 +6945,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const byPath = list.find((s) => {
                 try {
                     const listen = s.listenurl || s.listen_url || "";
-                    return listen && new URL(listen).pathname === pathname;
+                    return listen && new URL(listen, "http://localhost").pathname === pathname; // listenurl can be relative
                 } catch (e) {
                     return false;
                 }
@@ -7057,7 +7429,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 npDebug.lastPollAt = new Date().toISOString();
                 let round = sources;
                 // the playback connection already reads ICY titles: don't open a second stream
-                if (session.ownIcy) round = round.filter(([id]) => id !== "icy");
+                if (session.ownIcy && currentOwnBuffer && currentOwnBuffer.alive) round = round.filter(([id]) => id !== "icy");
                 if (good) {
                     const one = round.filter(([id]) => id === good.id && !npBad.has(id + "|" + url));
                     if (one.length) round = one; else good = null;
@@ -8647,6 +9019,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     store.setItem(VOL_KEY, currentVolume);
                 };
                 if (cors) setupAudioNormalization(el);
+                attachEqButton(el);
                 setupMediaSession(el, title);
                 maybeWireMediaControls(el);
                 document.getElementById("streamInfoBtn").addEventListener("click", copyStreamInfo);
@@ -8930,6 +9303,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
             const bail = (why) => {
                 if (!m.alive) return;
+                session.ownIcy = false; // the own buffer is gone: the separate ICY reader must take over again
                 destroyMse();
                 noOwnBuffer(session, why || "error");
                 session.mseFailed = true;
@@ -10071,6 +10445,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                             singleAudio.volume = volToEl(currentVolume);
                             singleAudio.onvolumechange = (e) => { currentVolume = elToVol(e.target.volume); store.setItem(VOL_KEY, currentVolume); };
                             setupAudioNormalization(singleAudio);
+                            attachEqButton(singleAudio);
                             setupMediaSession(singleAudio, fileName);
                             maybeWireMediaControls(singleAudio);
                             if (!useNativePlayer) wireGalleryStep();
@@ -10248,7 +10623,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (e.key !== "Tab") return;
             const modal = document.getElementById(containerId);
             const focusable = modal.querySelectorAll(
-                'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+                'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
             );
             if (focusable.length === 0) return;
             const first = focusable[0],
@@ -11087,10 +11462,30 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             return httpSource(url, f.size);
         }
 
-        async function arInflateRaw(bytes) {
+        // Counts the bytes that really come out of the decompressor instead of
+        // trusting the size written in the zip header: stops as soon as the
+        // output passes `max` or the declared size, and rejects an entry whose
+        // real size differs from the declared one.
+        async function arInflateRaw(bytes, max, expected) {
             if (typeof DecompressionStream === "undefined") throw new Error("This browser cannot decompress archive entries (no DecompressionStream).");
-            const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
-            return new Response(stream).blob();
+            const reader = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw")).getReader();
+            const parts = [];
+            let n = 0, problem = null;
+            try {
+                for (;;) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    n += value.length;
+                    if (n > max) { problem = `This file is larger than ${formatFileSize(max)}.`; break; }
+                    if (n > expected) { problem = "This zip entry is damaged (it unpacks to more than its header says)."; break; }
+                    parts.push(value);
+                }
+            } catch (err) {
+                problem = "This zip entry is damaged and could not be unpacked.";
+            }
+            if (problem) { reader.cancel().catch(() => {}); throw new Error(problem); }
+            if (n !== expected) throw new Error("This zip entry is damaged (its unpacked size does not match its header).");
+            return new Blob(parts);
         }
 
         // ---- ZIP ----
@@ -11147,12 +11542,12 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             }
             const readEntry = async (e, max) => {
                 if (e.flags & 1) throw new Error("This entry is password protected.");
-                if (e.usize > max) throw new Error(`This file is larger than ${formatFileSize(max)}.`);
+                if (e.usize > max || e.csize > max) throw new Error(`This file is larger than ${formatFileSize(max)}.`);
                 const h = await src.read(e.lho, e.lho + 30), hd = new DataView(h.buffer, h.byteOffset, h.byteLength);
                 if (hd.getUint32(0, true) !== 0x04034b50) throw new Error("Damaged zip entry.");
                 const start = e.lho + 30 + hd.getUint16(26, true) + hd.getUint16(28, true), raw = await src.read(start, start + e.csize);
                 if (e.method === 0) return new Blob([raw]);
-                if (e.method === 8) return arInflateRaw(raw);
+                if (e.method === 8) return arInflateRaw(raw, max, e.usize);
                 throw new Error("Unsupported compression method (" + e.method + ").");
             };
             return { kind: "zip", entries, readEntry, packed: true, fileSize: size };
