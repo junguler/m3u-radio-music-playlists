@@ -7,6 +7,41 @@ const { execSync } = require("child_process");
 // would deploy with every file showing the checkout time as its date.
 const IN_CI = !!(process.env.GITHUB_ACTIONS || process.env.CI);
 
+// ---------------------------------------------------------------------------
+// CHECKED-FOLDER COLLAPSING (keeps the deployed site under GitHub Pages' 1 GB)
+//
+// When a folder contains a sub-folder named "checked", the viewer shows the
+// CONTENTS of that "checked" folder directly in the parent folder and hides the
+// parent's own files (the normal, unchecked variants). Other sub-folders of the
+// parent are left alone, and folders without a "checked" folder are indexed
+// as usual. The three folders in AGGREGATE_DIRS (and everything inside them)
+// are never touched.
+//
+// The deploy workflow runs this script with --apply-layout, which makes the
+// same change on the throwaway CI checkout so the hidden files are not uploaded
+// and the "checked" files really sit at the paths the viewer shows. The repository
+// itself is never changed, and --apply-layout refuses to run outside CI.
+//
+// TO TURN IT OFF: comment out the "true" line and uncomment the "false" line.
+// (Everything is then indexed and deployed exactly as before.)
+const COLLAPSE_CHECKED = true;
+// const COLLAPSE_CHECKED = false;
+
+// Name of the folder whose contents replace the parent's files.
+const CHECKED_DIR_NAME = "checked";
+
+// Aggregate folders that are left out of this (matched by folder name).
+const AGGREGATE_DIRS = new Set(["+checked+", "+merged+", "_zoo_"]);
+
+const APPLY_LAYOUT = process.argv.includes("--apply-layout");
+if (APPLY_LAYOUT && !IN_CI) {
+  console.error(
+    "ERROR: --apply-layout rewrites the working folder, so it only runs in CI " +
+      "(GitHub Actions). Run without it on your own machine."
+  );
+  process.exit(1);
+}
+
 // Executable and binary extensions to exclude (all lowercase: the extension
 // is lowercased before it is looked up here).
 const EXECUTABLE_EXTENSIONS = new Set([
@@ -38,7 +73,7 @@ const EXTERNAL_PREFIX = "---";
 
 // System/meta files to skip
 const EXCLUDED_FILES = new Set([
-  "generate_index.js", "file_index.json", ".DS_Store", "Thumbs.db",
+  "generate_index.js", "file_index.json", "file_index_lean.json", ".DS_Store", "Thumbs.db",
   "desktop.ini", ".gitignore", ".gitattributes", "package-lock.json",
   "yarn.lock", "pnpm-lock.yaml",
 ]);
@@ -184,19 +219,49 @@ function buildFileDateMap() {
 
 const fileDateMap = buildFileDateMap();
 
+// Folders collapsed by the checked-folder rule, as { dir, checked } where dir is
+// the folder's real path and checked is the on-disk name of its "checked" folder.
+const collapsePlan = [];
+let hiddenNormalFiles = 0;
+
 // Recursively scan directory.
 //
 // The output is kept deliberately small, because the browser downloads all of
-// it before showing anything. Each file is just
+// it before showing everything. Each file is just
 //   { name, type: "file", category, size, modified }
 // and each folder is { name, type: "directory", children, modified }.
 // Things the page can work out for itself (the full path, the file extension
 // and the human-readable size such as "1.2 MB") are NOT stored.
-function scanDirectory(dir, relativePath = "") {
+//
+// `exempt` is true inside an aggregate folder (see AGGREGATE_DIRS): no
+// checked-folder collapsing happens there.
+function scanDirectory(dir, relativePath = "", exempt = false) {
   const entries = [];
 
   try {
     const items = fs.readdirSync(dir, { withFileTypes: true });
+
+    // Checked-folder collapsing. Never at the repository root (that would
+    // hide index.html and friends), and only when the "checked" folder
+    // actually has something in it.
+    let checkedName = null;
+    let hoisted = [];
+    if (COLLAPSE_CHECKED && relativePath !== "" && !exempt) {
+      const found = items.find(
+        (i) => i.isDirectory() && i.name.toLowerCase() === CHECKED_DIR_NAME
+      );
+      if (found) {
+        hoisted = scanDirectory(
+          path.join(dir, found.name),
+          `${relativePath}/${found.name}`,
+          exempt
+        );
+        if (hoisted.length > 0) {
+          checkedName = found.name;
+          collapsePlan.push({ dir: relativePath, checked: checkedName });
+        }
+      }
+    }
 
     for (const item of items) {
       const fullPath = path.join(dir, item.name);
@@ -208,8 +273,14 @@ function scanDirectory(dir, relativePath = "") {
         if (EXCLUDED_DIRS.has(item.name) || item.name.startsWith(".")) {
           continue;
         }
+        // Its contents are added to this folder below.
+        if (checkedName !== null && item.name === checkedName) continue;
 
-        const children = scanDirectory(fullPath, itemRelativePath);
+        const children = scanDirectory(
+          fullPath,
+          itemRelativePath,
+          exempt || AGGREGATE_DIRS.has(item.name)
+        );
         if (children.length > 0) {
           // A folder's "modified" date is the most recent modification among
           // everything inside it (recursively), since git doesn't track
@@ -235,8 +306,16 @@ function scanDirectory(dir, relativePath = "") {
       if (item.name.startsWith(".")) continue;
       if (isExecutable(item.name)) continue;
 
+      // The normal variants: hidden because the "checked" ones replace them.
+      if (checkedName !== null) {
+        hiddenNormalFiles++;
+        continue;
+      }
+
       try {
         const stats = fs.statSync(fullPath);
+        // Dates come from the file's real path, even when the file is shown
+        // somewhere else (a "checked" file shown in its parent folder).
         const modified =
           fileDateMap.get(itemRelativePath) || stats.mtime.toISOString();
 
@@ -248,9 +327,26 @@ function scanDirectory(dir, relativePath = "") {
           modified: modified,
         };
         if (item.name.startsWith(EXTERNAL_PREFIX)) entry.external = 1;
+        // Real repository path, used by finalizePaths() below. Not written out.
+        Object.defineProperty(entry, "_src", { value: itemRelativePath });
         entries.push(entry);
       } catch (e) {
         console.warn(`Could not stat file: ${fullPath}`);
+      }
+    }
+
+    // Put the "checked" items into this folder. If one has the same name as a
+    // sibling folder, the checked item wins.
+    for (const h of hoisted) {
+      if (checkedName === null) break;
+      const clash = entries.findIndex((e) => e.name === h.name);
+      if (clash >= 0) {
+        console.warn(
+          `"${relativePath}/${h.name}" exists next to the "${checkedName}" folder too; the checked one is used`
+        );
+        entries[clash] = h;
+      } else {
+        entries.push(h);
       }
     }
   } catch (e) {
@@ -264,6 +360,65 @@ function scanDirectory(dir, relativePath = "") {
   });
 
   return entries;
+}
+
+// A file shown at a different place than where it really lives (a "checked"
+// file shown in its parent folder) needs its real repository path when the
+// viewer links to it on GitHub. Only the "---" files that are left out of the
+// site are ever linked there, so only those get it ("repo").
+function finalizePaths(items, prefix = "") {
+  for (const it of items) {
+    const shown = prefix ? `${prefix}/${it.name}` : it.name;
+    if (it.type === "directory") {
+      finalizePaths(it.children, shown);
+    } else if (it.external && it._src && it._src !== shown) {
+      it.repo = it._src;
+    }
+  }
+}
+
+// The same tree, reduced to names, so the page can show every folder and file
+// name almost at once and fetch the rest (sizes, dates) right after.
+//   folder: [name, [children...]]      file: [name, categoryNumber]
+//   an "external" file has a third item: 1, or its real repository path
+// `cats` lists the category names that the category numbers point into.
+function toLean(items, cats) {
+  return items.map((it) => {
+    if (it.type === "directory") return [it.name, toLean(it.children, cats)];
+    let n = cats.indexOf(it.category);
+    if (n < 0) n = cats.push(it.category) - 1;
+    const row = [it.name, n];
+    if (it.external) row.push(it.repo || 1);
+    return row;
+  });
+}
+
+// Makes the checkout match the collapsed index: removes each collapsed
+// folder's normal files and moves its "checked" contents up into it. Deepest
+// folders first, so a folder inside a "checked" folder is dealt with while
+// it is still where the scan found it.
+function applyLayoutToCheckout(plan) {
+  const ordered = plan
+    .slice()
+    .sort((a, b) => b.dir.split("/").length - a.dir.split("/").length);
+  for (const { dir, checked } of ordered) {
+    const checkedPath = path.join(dir, checked);
+    const moving = fs.readdirSync(checkedPath);
+    const movingNames = new Set(moving);
+    for (const it of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (it.name === checked) continue;
+      const p = path.join(dir, it.name);
+      if (it.isDirectory()) {
+        if (movingNames.has(it.name)) fs.rmSync(p, { recursive: true, force: true });
+      } else {
+        fs.rmSync(p, { force: true });
+      }
+    }
+    for (const name of moving) {
+      fs.renameSync(path.join(checkedPath, name), path.join(dir, name));
+    }
+    fs.rmSync(checkedPath, { recursive: true, force: true });
+  }
 }
 
 console.log("Scanning repository...");
@@ -280,6 +435,7 @@ const index = {
     : null,
   root: scanDirectory("."),
 };
+finalizePaths(index.root);
 
 function countItems(items) {
   let files = 0, dirs = 0;
@@ -304,7 +460,30 @@ if (counts.files === 0) {
   process.exit(1);
 }
 
+// Two files: the lean one (names only, small) is fetched first so the page can
+// show the folders and files at once; the full one (sizes, dates) follows right
+// away and is merged in by the page.
+const cats = [];
+const lean = {
+  generated: index.generated,
+  source: index.source,
+  stats: index.stats,
+  root: toLean(index.root, cats),
+};
+lean.cats = cats;
+
+fs.writeFileSync("file_index_lean.json", JSON.stringify(lean));
 fs.writeFileSync("file_index.json", JSON.stringify(index));
+
+if (collapsePlan.length) {
+  console.log(
+    `Checked-folder collapsing: ${collapsePlan.length} folders show their "${CHECKED_DIR_NAME}" files; ${hiddenNormalFiles} normal files hidden.`
+  );
+}
+if (APPLY_LAYOUT) {
+  applyLayoutToCheckout(collapsePlan);
+  console.log("Applied the checked-folder layout to this checkout.");
+}
 
 console.log(
   `Done in ${Date.now() - startTime}ms. Found ${counts.files} files in ${counts.dirs} directories.`

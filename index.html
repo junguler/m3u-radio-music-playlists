@@ -725,6 +725,8 @@
                needs a forced height here. */
             .modal { width: 100vw; max-width: 100vw; max-height: 100vh; max-height: 100dvh; border-radius: 0; position: relative; }
             .modal > .rec-panel { position: absolute; left: 0; right: 0; bottom: env(safe-area-inset-bottom, 0px); z-index: 3; }
+            /* With the details bar open, the recording panel sits right above it instead of covering it. */
+            .modal.meta-on > .rec-panel { bottom: calc(env(safe-area-inset-bottom, 0px) + var(--ml, 2) * 1.45 * var(--data-size) + 0.8rem + var(--bw)); }
             .modal-header { padding: 0.5rem 0.5rem; gap: 0.375rem; }
             .modal-title { font-size: 0.8rem; }
             .modal-actions { gap: 0.15rem; flex-shrink: 0; }
@@ -824,9 +826,12 @@
         }
         .rec-panel.rec-on { box-shadow: inset 3px 0 0 var(--danger); }
         /* File details bar: two lines (three on a phone), always the same height (it scrolls when there is more), so opening it or stepping to the next file never moves the window. */
-        .meta-bar { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 0.1rem 1.1rem; --ml: 2; height: calc(var(--ml) * 1.45 * var(--data-size) + 0.8rem + var(--bw)); box-sizing: border-box; padding: 0.4rem 0.75rem; overflow-y: auto; flex-shrink: 0; background: var(--bg-tertiary); border-top: var(--bw) solid var(--border-color); font-size: var(--data-size); line-height: 1.45; }
+        .meta-bar { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 0.1rem 1.1rem; height: calc(var(--ml, 2) * 1.45 * var(--data-size) + 0.8rem + var(--bw)); box-sizing: border-box; padding: 0.4rem 0.75rem; overflow-y: auto; flex-shrink: 0; background: var(--bg-tertiary); border-top: var(--bw) solid var(--border-color); font-size: var(--data-size); line-height: 1.45; }
         .meta-bar[hidden], #infoBtn[hidden] { display: none; }
-        @media (max-width: 640px) { .meta-bar { --ml: 3; } }
+        /* The number of text lines the bar shows is set on the modal (not the bar), so the recording panel can sit exactly above it on phones. */
+        .modal.meta-on { --ml: 2; }
+        .modal.meta-on.meta-stream { --ml: 3; }
+        @media (max-width: 640px) { .modal.meta-on { --ml: 3; } .modal.meta-on.meta-stream { --ml: 4; } }
         .meta-bar .mi { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .meta-bar .ml { color: var(--text-muted); }
         .meta-bar .mv { color: var(--text-primary); user-select: text; }
@@ -3359,7 +3364,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 // (the page can make it from the byte size), so fill it in
                 // here once, on the tree node and on the flattened copy.
                 if (node.type === "file" && node.sizeFormatted === undefined) {
-                    node.sizeFormatted = formatFileSize(node.size);
+                    // No size yet while only the lean index has loaded.
+                    node.sizeFormatted = typeof node.size === "number" ? formatFileSize(node.size) : "—";
                 }
                 allFiles.push({
                     ...node,
@@ -3781,18 +3787,121 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             setupIntersectionObserver();
             setupNewFeatureListeners();
         }
+        // The library index comes in two files. The lean one (folder and file
+        // names only) is small, so the page shows the whole tree from it right
+        // away; the full one (sizes, dates) is requested the moment the lean one
+        // has arrived and merged in as soon as it is here.
+        const LEAN_INDEX_URL = "./file_index_lean.json";
+        const FULL_INDEX_URL = "./file_index.json";
+        function fetchJson(url) {
+            return fetch(url).then((r) => {
+                if (!r.ok) throw new Error("Failed to load " + url);
+                return r.json();
+            });
+        }
+        // Lean rows -> the same node shapes the full index uses.
+        //   folder: [name, [children]]   file: [name, categoryNumber, external?]
+        function expandLeanIndex(lean) {
+            const cats = lean.cats || [];
+            const expand = (rows) => rows.map((r) => {
+                if (typeof r[1] !== "number") return { name: r[0], type: "directory", children: expand(r[1]) };
+                const n = { name: r[0], type: "file", category: cats[r[1]] || "other" };
+                if (r[2]) { n.external = 1; if (typeof r[2] === "string") n.repo = r[2]; }
+                return n;
+            });
+            return { generated: lean.generated, source: lean.source, stats: lean.stats, partial: true, root: expand(lean.root) };
+        }
+        function adoptFullDetails(target, full) {
+            target.modified = full.modified;
+            try { target.dateObj = getItemDate(target); } catch (err) { target.dateObj = null; }
+            delete target.dateStr;
+            delete target.timeStr;
+            if (target.type === "file") {
+                target.size = full.size;
+                target.sizeFormatted = formatFileSize(full.size);
+            }
+        }
+        // Copies sizes and dates from the full tree onto the lean one, in place
+        // (the search keys already built stay as they are). allFiles was built
+        // in the same depth-first order as the tree, so the two are walked
+        // together. Returns false if the two trees do not line up.
+        function mergeFullDetails(fullRoot) {
+            let i = 0, ok = true;
+            const walk = (mine, theirs) => {
+                if (mine.length !== theirs.length) { ok = false; return; }
+                for (let k = 0; k < mine.length; k++) {
+                    const a = mine[k], b = theirs[k], rec = allFiles[i++];
+                    if (!rec || a.name !== b.name || a.type !== b.type) { ok = false; return; }
+                    adoptFullDetails(a, b);
+                    adoptFullDetails(rec, b);
+                    if (a.type === "directory") { walk(a.children, b.children); if (!ok) return; }
+                }
+            };
+            walk(fileIndex.root, fullRoot);
+            return ok && i === allFiles.length;
+        }
+        function applyFullIndex(full) {
+            // If a local folder was opened meanwhile, the hosted library is parked
+            // in LOCAL.hosted: work on that and leave what is on screen alone.
+            const parked = LOCAL.active && LOCAL.hosted ? LOCAL.hosted : null;
+            const saved = { fileIndex, allFiles, filesByPath };
+            if (parked) { fileIndex = parked.fileIndex; allFiles = parked.allFiles; filesByPath = parked.filesByPath; }
+            if (!fileIndex || !fileIndex.partial) { fileIndex = saved.fileIndex; allFiles = saved.allFiles; filesByPath = saved.filesByPath; return; }
+            if (full.generated !== fileIndex.generated || !mergeFullDetails(full.root)) {
+                // The two files are from different builds: start over from the full one.
+                fileIndex = full;
+                allFiles = [];
+                filesByPath = new Map();
+                preprocessFiles(full.root);
+            } else {
+                fileIndex.partial = false;
+                fileIndex.stats = full.stats;
+            }
+            if (parked) {
+                parked.fileIndex = fileIndex; parked.allFiles = allFiles; parked.filesByPath = filesByPath;
+                fileIndex = saved.fileIndex; allFiles = saved.allFiles; filesByPath = saved.filesByPath;
+                return;
+            }
+            const mainEl = document.getElementById("main");
+            const top = mainEl.scrollTop;
+            render();
+            mainEl.scrollTop = top;
+            if (document.getElementById("statsModal").classList.contains("active")) renderLibraryStats();
+        }
+        async function finishFullIndex(firstTry) {
+            let full = null;
+            for (let attempt = 0; attempt < 2 && !full; attempt++) {
+                try { full = await (attempt ? fetchJson(FULL_INDEX_URL) : firstTry); }
+                catch (err) {
+                    console.warn("Full file index failed to load", err);
+                    if (!attempt) await new Promise((r) => setTimeout(r, 3000));
+                }
+            }
+            if (full && full.root) applyFullIndex(full);
+        }
         async function init() {
             loadSettings();
             try {
-                const response = await fetch("./file_index.json");
-                if (!response.ok) throw new Error("Failed to load file index");
-                fileIndex = await response.json();
+                let fullRequest = null;
+                try {
+                    const lean = await fetchJson(LEAN_INDEX_URL);
+                    // Start the big download right away; it runs while the tree is drawn.
+                    fullRequest = fetchJson(FULL_INDEX_URL);
+                    fullRequest.catch(() => {});
+                    fileIndex = expandLeanIndex(lean);
+                } catch (err) {
+                    // No lean file (or it is broken): wait for the full one instead.
+                    console.warn(err);
+                    fullRequest = null;
+                    fileIndex = await fetchJson(FULL_INDEX_URL);
+                }
                 preprocessFiles(fileIndex.root);
                 loadTreeExpanded();
                 wireUiOnce();
                 const startPath = hashToPath();
                 navigateTo(startPath);
                 resetTabStart();
+                if (fullRequest) finishFullIndex(fullRequest);
             } catch (err) {
                 console.error(err);
                 if (!uiWired) { fileIndex = null; allFiles = []; filesByPath = new Map(); }
@@ -5263,6 +5372,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (!recLeaveOk()) return;
             closePlaylistModal();
             endPlaySession();
+            metaReset();
             cancelHealthTest();
             const activeMedia = document.getElementById("audioPlayer") || document.getElementById("videoPlayer");
             if (activeMedia) {
@@ -5628,7 +5738,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const kbps = table[brIdx];
             const rate = (ver === 3 ? [44100, 48000, 32000] : ver === 2 ? [22050, 24000, 16000] : [11025, 12000, 8000])[srIdx];
             const len = layer === 1 ? (Math.floor((12 * kbps * 1000) / rate) + pad) * 4 : Math.floor(((layer === 3 && !mpeg1 ? 72 : 144) * kbps * 1000) / rate) + pad;
-            return { kbps, rate, len };
+            const cm = (b[p + 3] >> 6) & 3;
+            return { kbps, rate, len, ch: cm === 3 ? 1 : 2, mode: ["Stereo", "Joint stereo", "Dual channel", "Mono"][cm] };
         }
         function readAdtsHeader(b, p) {
             if (b[p] !== 0xff || (b[p + 1] & 0xf6) !== 0xf0) return null;
@@ -5638,7 +5749,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const len = ((b[p + 3] & 3) << 11) | (b[p + 4] << 3) | (b[p + 5] >> 5);
             if (len < 7) return null;
             const rate = rates[srIdx];
-            return { rate, len, kbps: Math.round((len * 8 * rate) / 1024 / 1000) };
+            const cfg = ((b[p + 2] & 1) << 2) | ((b[p + 3] >> 6) & 3);
+            return { rate, len, kbps: Math.round((len * 8 * rate) / 1024 / 1000), ch: cfg === 7 ? 8 : cfg, mode: "" };
         }
         function syncsafe(b, p) {
             return ((b[p] & 0x7f) << 21) | ((b[p + 1] & 0x7f) << 14) | ((b[p + 2] & 0x7f) << 7) | (b[p + 3] & 0x7f);
@@ -5669,18 +5781,22 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     let bytes = 0;
                     let kbpsSum = 0;
                     let rate = 0;
+                    let ch = 0;
+                    let mode = "";
                     while (q + 6 < n && count < 32) {
                         const f = read(b, q);
                         if (!f) break;
                         bytes += f.len;
                         kbpsSum += f.kbps;
                         rate = f.rate;
+                        ch = f.ch;
+                        mode = f.mode;
                         q += f.len;
                         count++;
                     }
                     if (count >= 3) {
                         const kbps = fmt === "MP3" ? Math.round(kbpsSum / count) : Math.round(((bytes / count) * 8 * rate) / 1024 / 1000);
-                        return { fmt, kbps, rate };
+                        return { fmt, kbps, rate, ch, mode };
                     }
                 }
             }
@@ -6225,6 +6341,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 const res = await fetch(url, { signal: ctl.signal, cache: "no-store", credentials: "omit" });
                 const ctype = (res.headers.get("content-type") || "").toLowerCase();
                 if (!res.ok || /text\/html|mpegurl|x-scpls|x-ms-asx|xspf/.test(ctype)) return;
+                session.hdrs = metaPickHeaders(res.headers); // shown in the details bar
                 const reader = res.body.getReader();
                 const chunks = [];
                 let got = 0;
@@ -6235,6 +6352,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     got += value.length;
                 }
                 const sn = sniffAudio(concatChunks(chunks, 32768));
+                if (sn.rate) session.audio = { rate: sn.rate, ch: sn.ch || 0, mode: sn.mode || "" };
                 let kbps = sn.kbps || 0;
                 const hdrBr = parseInt(res.headers.get("icy-br"), 10);
                 if (!kbps && hdrBr > 0) kbps = hdrBr;
@@ -6321,6 +6439,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
         // Keeps the cached time ticking while a stream plays (the tab being hidden pauses the refresh).
         setInterval(() => {
+            if (META.kind === "stream" && META.open && !document.hidden) { metaStreamUpdate(); metaPaint(); }
             if (!playSession) return;
             flushTitles(playSession);
             if (document.hidden) return;
@@ -9244,6 +9363,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             };
             playSession = session;
             syncSongsBtn();
+            metaAttachStream(session);
             streamTimeout = setTimeout(() => attemptTimedOut(session), STREAM_TIMEOUT_MS);
 
             currentPlaylistIndex = e;
@@ -9344,19 +9464,22 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
 
         // ======================================================================
-        // File details bar (pictures, videos, music): size, dates, picture / video / audio facts and tags, in a bar at the bottom of
-        // the preview. Works the same for hosted and local files. Only the first 256 KB of a file is read for it, and only once the bar
-        // is opened; the bar keeps one fixed height, so stepping through files never moves the window.
+        // File details bar (pictures, videos, music, and playlist stations): size, dates, picture / video / audio facts and tags, in a
+        // bar at the bottom of the preview. Works the same for hosted and local files. Only the first 256 KB of a file is read for it, and
+        // only once the bar is opened; the bar keeps one fixed height, so stepping through files never moves the window.
+        // While a playlist station plays, the same button shows that station: its playlist tags, what the stream's server says about
+        // itself, the live format and bitrate, the song, and the connection. It reads nothing extra from the network.
         // ======================================================================
         const META_KEY = "metaBar", META_HEAD = 262144;
         const META_ORDER = {
             image: ["dims", "color", "camera", "taken", "exposure", "size", "modified", "type", "source"],
             video: ["dims", "duration", "bitrate", "size", "modified", "type", "source"],
             audio: ["artist", "title", "album", "year", "track", "genre", "duration", "format", "bitrate", "rate", "channels", "size", "modified", "type", "source"],
+            stream: ["station", "listpos", "nowplaying", "status", "format", "bitrate", "rate", "channels", "dims", "codec", "variants", "mode", "cached", "listening", "health", "servername", "genre", "desc", "web", "server", "ctype", "conn", "host", "url", "group", "country", "language", "tvgid", "logo"],
         };
-        const META_LABELS = { dims: "Dimensions", color: "Color", camera: "Camera", taken: "Taken", exposure: "Exposure", size: "Size", modified: "Modified", type: "Type", source: "Source", duration: "Duration", bitrate: "Bitrate", artist: "Artist", title: "Title", album: "Album", year: "Year", track: "Track", genre: "Genre", format: "Format", rate: "Sample rate", channels: "Channels" };
+        const META_LABELS = { dims: "Dimensions", color: "Color", camera: "Camera", taken: "Taken", exposure: "Exposure", size: "Size", modified: "Modified", type: "Type", source: "Source", duration: "Duration", bitrate: "Bitrate", artist: "Artist", title: "Title", album: "Album", year: "Year", track: "Track", genre: "Genre", format: "Format", rate: "Sample rate", channels: "Channels", station: "Station", listpos: "Playlist", nowplaying: "Now playing", status: "Status", codec: "Codec", variants: "Variants", mode: "Stream", cached: "Cached", listening: "Listening", health: "Health", servername: "Server name", desc: "Description", web: "Website", server: "Server", ctype: "Content type", conn: "Connection", host: "Host", url: "URL", group: "Group", country: "Country", language: "Language", tvgid: "Channel ID", logo: "Logo" };
         const META_MIME = { jpg: "image/jpeg", jpeg: "image/jpeg", jfif: "image/jpeg", png: "image/png", gif: "image/gif", webp: "image/webp", avif: "image/avif", bmp: "image/bmp", svg: "image/svg+xml", ico: "image/x-icon", tif: "image/tiff", tiff: "image/tiff", heic: "image/heic", mp4: "video/mp4", m4v: "video/mp4", webm: "video/webm", mkv: "video/x-matroska", mov: "video/quicktime", avi: "video/x-msvideo", ogv: "video/ogg", mp3: "audio/mpeg", wav: "audio/wav", flac: "audio/flac", ogg: "audio/ogg", oga: "audio/ogg", opus: "audio/ogg", m4a: "audio/mp4", aac: "audio/aac", wma: "audio/x-ms-wma" };
-        const META = { open: false, seq: 0, kind: "", path: "", name: "", vals: {}, tips: {}, size: 0, dur: 0, audio: null, ctl: null, started: false };
+        const META = { open: false, seq: 0, kind: "", path: "", name: "", vals: {}, tips: {}, size: 0, dur: 0, audio: null, ctl: null, started: false, session: null, base: {}, labels: {}, extra: [] };
         try { META.open = store.getItem(META_KEY) === "1"; } catch (e) {}
         const metaBE32 = (b, o) => ((b[o] << 24) | (b[o + 1] << 16) | (b[o + 2] << 8) | b[o + 3]) >>> 0;
         const metaLE32 = (b, o) => (b[o] | (b[o + 1] << 8) | (b[o + 2] << 16) | (b[o + 3] << 24)) >>> 0;
@@ -9602,6 +9725,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             META.tips.size = n.toLocaleString() + " bytes";
         }
         function metaDerive() {
+            if (META.kind === "stream") return;
             const v = META.vals, a = META.audio;
             if (META.dur) v.duration = metaTime(META.dur);
             if (a && a.kbps && !a.vbr) v.bitrate = (a.approx ? "~" : "") + a.kbps + " kbps";
@@ -9611,24 +9735,41 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const bar = document.getElementById("metaBar");
             if (!META.kind || bar.hidden) return;
             metaDerive();
-            const html = META_ORDER[META.kind].filter((k) => META.vals[k]).map((k) => '<span class="mi" title="' + escapeHtml(META.tips[k] || META.vals[k]) + '"><span class="ml">' + META_LABELS[k] + '</span> <span class="mv">' + escapeHtml(META.vals[k]) + "</span></span>").join("");
-            if (bar._h !== html) { bar._h = html; bar.innerHTML = html; }
+            const keys = (META.extra.length ? META_ORDER[META.kind].concat(META.extra) : META_ORDER[META.kind]).filter((k) => META.vals[k]);
+            const sig = keys.join("|"), tip = (k) => META.tips[k] || META.vals[k];
+            if (bar._sig === sig) {
+                // Same facts as before: only change the texts that changed, so a selection in the bar survives the once-a-second refresh.
+                for (let i = 0; i < keys.length; i++) {
+                    const row = bar.children[i], mv = row.lastElementChild, t = tip(keys[i]);
+                    if (mv.textContent !== META.vals[keys[i]]) mv.textContent = META.vals[keys[i]];
+                    if (row.title !== t) row.title = t;
+                }
+                return;
+            }
+            bar._sig = sig;
+            bar.innerHTML = keys.map((k) => '<span class="mi" title="' + escapeHtml(tip(k)) + '"><span class="ml">' + escapeHtml(META.labels[k] || META_LABELS[k]) + '</span> <span class="mv">' + escapeHtml(META.vals[k]) + "</span></span>").join("");
         }
         // Button and bar follow the one saved choice (open or closed), for every picture, video and song until it is changed.
         function metaSync() {
             const btn = document.getElementById("infoBtn"), bar = document.getElementById("metaBar"), on = !!META.kind && META.open;
             btn.hidden = !META.kind;
             btn.setAttribute("aria-pressed", on ? "true" : "false");
-            btn.title = on ? "Hide file details" : "Show file details";
+            const what = META.kind === "stream" ? "station" : "file";
+            btn.title = (on ? "Hide " : "Show ") + what + " details";
+            btn.setAttribute("aria-label", (what === "station" ? "Station" : "File") + " details");
+            bar.setAttribute("aria-label", (what === "station" ? "Station" : "File") + " details");
             bar.hidden = !on;
-            document.getElementById("modalContent").classList.toggle("meta-on", on);
-            if (on) { if (!META.started) metaStart(); metaPaint(); }
+            const modalEl = document.getElementById("modalContent");
+            modalEl.classList.toggle("meta-on", on);
+            modalEl.classList.toggle("meta-stream", on && META.kind === "stream");
+            if (on) { if (!META.started) metaStart(); if (META.kind === "stream") metaStreamUpdate(); metaPaint(); }
         }
         function metaReset() {
             if (META.ctl) META.ctl.abort();
             META.ctl = null; META.kind = ""; META.vals = {}; META.tips = {}; META.size = 0; META.dur = 0; META.audio = null; META.started = false; META.seq++;
+            META.session = null; META.base = {}; META.labels = {}; META.extra = [];
             const bar = document.getElementById("metaBar");
-            bar._h = ""; bar.innerHTML = "";
+            bar._sig = ""; bar.innerHTML = "";
             metaSync();
         }
         // Called once a picture, video or song is on screen: what is already known is shown at once, the rest arrives as it is read.
@@ -9663,7 +9804,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         async function metaStart() {
             META.started = true;
             const my = META.seq, kind = META.kind, v = META.vals;
-            if (kind === "video") return;
+            if (kind === "video" || kind === "stream") return;
             const ctl = (META.ctl = new AbortController());
             try {
                 const h = await metaHead(META.path, ctl.signal);
@@ -9702,6 +9843,135 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 }
             } catch (e) { /* the facts the page already has stay on show */ }
             if (my === META.seq) metaPaint();
+        }
+        // ---- playlist stations ----
+        const META_KNOWN_ATTR = { "tvg-id": "tvgid", "tvg-logo": "logo", "tvg-country": "country", country: "country", "tvg-language": "language", language: "language", "group-title": "group" };
+        const META_EXT_TAGS = { EXTGRP: ["group", "Group"], EXTGENRE: ["genre", "Genre"], EXTALB: ["x_alb", "Album"], EXTART: ["x_art", "Artist"] };
+        // The server headers worth showing. Only the ones the browser lets the page read arrive; the rest are simply missing.
+        function metaPickHeaders(h) {
+            const out = {};
+            let any = false;
+            for (const n of ["icy-name", "icy-genre", "icy-url", "icy-description", "icy-br", "icy-sr", "icy-metaint", "server", "content-type", "ice-audio-info", "icy-audio-info"]) {
+                let x = null;
+                try { x = h.get(n); } catch (e) {}
+                if (x) { out[n] = x; any = true; }
+            }
+            return any ? out : null;
+        }
+        // The station's own lines from the playlist (#EXTINF attributes, #EXTGRP, #EXTVLCOPT ...): the known ones get a fixed place,
+        // anything else is shown under its own name.
+        function metaParseStationHeader(header) {
+            const vals = {}, labels = {}, extra = [];
+            const put = (key, label, value) => {
+                value = String(value == null ? "" : value).trim();
+                if (!value || vals[key]) return;
+                vals[key] = value;
+                if (!META_ORDER.stream.includes(key)) { labels[key] = label; extra.push(key); }
+            };
+            for (const line of String(header || "").split("\n")) {
+                if (line.startsWith("#EXTINF:")) {
+                    const re = /([A-Za-z0-9_.:-]+)="([^"]*)"/g;
+                    let m;
+                    while ((m = re.exec(line))) {
+                        const lk = m[1].toLowerCase(), std = META_KNOWN_ATTR[lk];
+                        if (std) put(std, META_LABELS[std], m[2]); else put("x_" + lk, m[1], m[2]);
+                    }
+                } else if (line.startsWith("#")) {
+                    const c = line.indexOf(":");
+                    if (c < 2) continue;
+                    const name = line.slice(1, c).toUpperCase(), rest = line.slice(c + 1).trim();
+                    if (META_EXT_TAGS[name]) put(META_EXT_TAGS[name][0], META_EXT_TAGS[name][1], rest);
+                    else if (name === "EXTVLCOPT") { const e = rest.indexOf("="); if (e > 0) put("x_vlc_" + rest.slice(0, e).toLowerCase(), rest.slice(0, e), rest.slice(e + 1)); }
+                    else put("x_" + name.toLowerCase(), name.replace(/^EXT/, "") || name, rest);
+                }
+            }
+            return { vals, labels, extra };
+        }
+        // Called when a station starts loading (and for every station after it): the button appears at once with what the playlist says.
+        function metaAttachStream(session) {
+            metaReset();
+            const st = metaParseStationHeader(session.item.header);
+            META.kind = "stream"; META.session = session; META.name = session.item.title;
+            META.base = st.vals; META.labels = st.labels; META.extra = st.extra;
+            metaSync();
+        }
+        // Rebuilds every fact from the live state of the session. Nothing is fetched here; the server headers and audio facts come
+        // from the one look at the stream that the player already takes (sniffLiveStream).
+        function metaStreamUpdate() {
+            const s = META.session;
+            if (!s) return;
+            const v = Object.assign({}, META.base), t = {}, item = s.item, el = s.el, h = s.hdrs || {}, live = playSession === s;
+            v.station = item.title;
+            if (currentPlaylist.length) v.listpos = (currentFileName ? currentFileName + " · " : "") + (s.index + 1) + " of " + currentPlaylist.length;
+            if (s.song) { v.nowplaying = s.song; if (s.songSource) t.nowplaying = s.song + "\nSource: " + s.songSource; }
+            let st = !live ? "Stopped" : s.reconnecting ? "Reconnecting " + s.retries + "/" + RECONNECT_MAX : !s.everPlayed ? "Connecting…" : el && el.paused ? "Paused" : "Playing";
+            if (s.everPlayed && s.startMs) st += " · started in " + (s.startMs / 1000).toFixed(1) + " s";
+            v.status = st;
+            // format, bitrate, rate, channels
+            const info = liveStreamInfo(s), a = s.audio || {}, ai = {};
+            for (const m of String(h["ice-audio-info"] || h["icy-audio-info"] || "").matchAll(/(?:ice|icy)-(samplerate|bitrate|channels)=(\d+)/gi)) ai[m[1].toLowerCase()] = +m[2];
+            if (info && info.fmt) v.format = info.fmt;
+            const kbps = (info && info.kbps) || ai.bitrate || parseInt(h["icy-br"], 10) || 0;
+            if (kbps) v.bitrate = kbps + " kbps";
+            const rate = a.rate || ai.samplerate || parseInt(h["icy-sr"], 10) || 0;
+            if (rate) v.rate = parseFloat((rate / 1000).toFixed(2)) + " kHz";
+            const ch = a.ch || ai.channels || 0;
+            const chText = a.mode || (ch === 1 ? "Mono" : ch === 2 ? "Stereo" : ch ? ch + " channels" : "");
+            if (chText) v.channels = chText;
+            // HLS levels and the picture size of a video stream
+            if (s.usesHls && currentHls && currentHls.levels && currentHls.levels.length) {
+                const levels = currentHls.levels;
+                const idx = currentHls.currentLevel >= 0 ? currentHls.currentLevel : currentHls.loadLevel >= 0 ? currentHls.loadLevel : levels.length === 1 ? 0 : -1;
+                const lv = levels[idx];
+                if (lv) {
+                    const codec = [lv.videoCodec, lv.audioCodec].filter(Boolean).join(" + ") || lv.codecSet || "";
+                    if (codec) v.codec = codec;
+                    if (lv.width && lv.height) v.dims = lv.width + " × " + lv.height + " px";
+                }
+                if (levels.length > 1) {
+                    const rates = levels.map((l) => Math.round((l.averageBitrate || l.bitrate || 0) / 1000)).filter(Boolean);
+                    v.variants = levels.length + (rates.length ? " · " + Math.min(...rates) + "–" + Math.max(...rates) + " kbps" : "");
+                }
+            }
+            if (el && el.videoWidth && !v.dims) v.dims = el.videoWidth + " × " + el.videoHeight + " px · " + metaAspect(el.videoWidth, el.videoHeight);
+            if (el && s.everPlayed) v.mode = isLiveStream(s) ? "Live" : isFinite(el.duration) ? "On demand · " + metaTime(el.duration) : "On demand";
+            if (live && s.everPlayed && !s.reconnecting && el) {
+                const ahead = bufferedAheadSec(el);
+                if (ahead >= 0) {
+                    const own = s.usesMse && currentOwnBuffer && currentOwnBuffer.alive ? currentOwnBuffer.queuedSec() : 0;
+                    v.cached = fmtBufferAhead(ahead + own);
+                    if (!s.usesMse && !s.usesHls && s.mseWhy && isLiveStream(s)) t.cached = noCacheHint(s.mseWhy);
+                }
+                v.listening = metaTime(Math.max(0, (performance.now() - s.t0) / 1000 - (s.startMs || 0) / 1000));
+            }
+            // what the last play or test of this station found
+            const rec = streamHealth.get(item.url);
+            if (rec && rec.s) {
+                const names = { good: "On air", weak: "Weak", bad: "Off air", blocked: "Blocked" };
+                v.health = (names[rec.s] || rec.s) + (rec.ms != null ? " · " + rec.ms + " ms" : "") + (rec.dr ? " · " + rec.dr + (rec.dr === 1 ? " dropout" : " dropouts") : "");
+                if (rec.t) t.health = (rec.src === "test" ? "Tested " : "Played ") + new Date(rec.t).toLocaleString();
+            }
+            // what the stream's server says about itself
+            if (h["icy-name"]) v.servername = h["icy-name"];
+            if (h["icy-genre"] && !v.genre) v.genre = h["icy-genre"];
+            if (h["icy-description"]) v.desc = h["icy-description"];
+            if (h["icy-url"]) v.web = h["icy-url"];
+            if (h.server) v.server = h.server;
+            if (h["content-type"]) v.ctype = h["content-type"].split(";")[0].trim();
+            // where and how it is reached
+            const cur = (s.cands && s.cands[s.candIdx]) || item.url;
+            let u = null;
+            try { u = new URL(cur); } catch (e) {}
+            if (u) {
+                v.host = u.host;
+                const parts = [u.protocol.slice(0, -1).toUpperCase() + (s.cands && s.cands.length > 1 && s.candIdx === 0 ? " (upgraded from HTTP)" : "")];
+                if (s.usesMse) parts.push("own cache");
+                if (s.cors === false || s.corsFailed) parts.push("plays without CORS, server details blocked");
+                v.conn = parts.join(" · ");
+            }
+            v.url = item.url;
+            if (cur !== item.url) t.url = "Listed as " + item.url + "\nPlaying from " + cur;
+            META.vals = v; META.tips = t;
         }
         function metaInit() {
             document.getElementById("infoBtn").addEventListener("click", () => {
@@ -10090,7 +10360,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             <span class="stats-summary-label">Folders</span>
           </div>
           <div class="stats-summary-item">
-            <span class="stats-summary-value">${formatBytes(totalSize)}</span>
+            <span class="stats-summary-value">${fileIndex && fileIndex.partial ? "…" : formatBytes(totalSize)}</span>
             <span class="stats-summary-label">Total Size</span>
           </div>
         </div>
@@ -10124,7 +10394,9 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const f = filesByPath.get(path);
             const s = fileIndex && fileIndex.source;
             if (f && f.external && s && s.repo && s.branch) {
-                return `https://raw.githubusercontent.com/${s.repo}/${encodePathForUrl(s.branch)}/${encodePathForUrl(path)}`;
+                // f.repo: the file's real path when the index shows it somewhere else
+                // (a "checked" file shown in its parent folder).
+                return `https://raw.githubusercontent.com/${s.repo}/${encodePathForUrl(s.branch)}/${encodePathForUrl(f.repo || path)}`;
             }
             return `./${encodePathForUrl(path)}`;
         }
@@ -11195,6 +11467,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
         async function downloadFolderZip() {
             if (zipBusy || !fileIndex) return;
+            if (fileIndex.partial) { opStart("File sizes are still loading. Try again in a moment."); opDone("File sizes are still loading. Try again in a moment.", 2500); return; }
             const pathArr = currentPath.slice();
             const children = pathArr.length ? (findNode(pathArr.join("/")) || {}).children : fileIndex.root;
             if (!children) return;

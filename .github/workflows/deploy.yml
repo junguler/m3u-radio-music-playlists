@@ -39,15 +39,24 @@ jobs:
         with:
           node-version: "22"
 
+      # Writes file_index_lean.json (names only, loaded first by the viewer) and
+      # file_index.json (full details). --apply-layout also rearranges this
+      # throwaway checkout the way the index shows it: in every folder that has a
+      # "checked" folder, the normal files are removed and the checked files move
+      # up into the folder. The repository itself is not touched. To turn the
+      # collapsing off, change COLLAPSE_CHECKED at the top of generate_index.js.
       - name: Generate file index
-        run: node generate_index.js
+        run: node generate_index.js --apply-layout
 
       - name: Check file index
         run: |
           node -e '
-            const i = JSON.parse(require("fs").readFileSync("file_index.json", "utf8"));
+            const fs = require("fs");
+            const i = JSON.parse(fs.readFileSync("file_index.json", "utf8"));
+            const l = JSON.parse(fs.readFileSync("file_index_lean.json", "utf8"));
             if (!i.stats || i.stats.files < 1) { console.error("file_index.json has no files"); process.exit(1); }
-            console.log("file_index.json OK:", i.stats.files, "files,", i.stats.dirs, "folders");
+            if (!l.stats || l.stats.files !== i.stats.files || l.stats.dirs !== i.stats.dirs) { console.error("file_index_lean.json does not match file_index.json"); process.exit(1); }
+            console.log("file indexes OK:", i.stats.files, "files,", i.stats.dirs, "folders");
           '
 
       # Files starting with "---" are flagged `external` in file_index.json.
@@ -84,6 +93,12 @@ jobs:
           find . -type f -not -path "./.git/*" -not -path "./.github/*" -printf '%s %p\n' \
             | sort -nr \
             | awk 'NR <= 10 { printf "%8.1f MB  %s\n", $1/1048576, $2 }'
+          # GitHub documents a 1 GB limit for published Pages sites. This only
+          # raises a warning on the run page; it never fails the build.
+          bytes=$(find . -type f -not -path "./.git/*" -not -path "./.github/*" -printf '%s\n' | awk '{ s += $1 } END { print s + 0 }')
+          if [ "$bytes" -gt 1073741824 ]; then
+            echo "::warning title=Site is over GitHub Pages' 1 GB limit::The upload is $((bytes / 1048576)) MB"
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
