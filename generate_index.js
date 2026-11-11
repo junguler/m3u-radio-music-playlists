@@ -377,14 +377,16 @@ function finalizePaths(items, prefix = "") {
   }
 }
 
-// The same tree, reduced to names, so the page can show every folder and file
-// name almost at once and fetch the rest (sizes, dates) right after.
-//   folder: [name, [children...]]      file: [name, categoryNumber]
+// The top level only, reduced to names, so the first load is tiny: the page
+// can show the root folders and files at once and fetch everything else
+// (the contents of every folder, sizes, dates) from file_index.json right after.
+// Nothing inside a folder is written here.
+//   folder: [name]                     file: [name, categoryNumber]
 //   an "external" file has a third item: 1, or its real repository path
 // `cats` lists the category names that the category numbers point into.
 function toLean(items, cats) {
   return items.map((it) => {
-    if (it.type === "directory") return [it.name, toLean(it.children, cats)];
+    if (it.type === "directory") return [it.name];
     let n = cats.indexOf(it.category);
     if (n < 0) n = cats.push(it.category) - 1;
     const row = [it.name, n];
@@ -460,9 +462,9 @@ if (counts.files === 0) {
   process.exit(1);
 }
 
-// Two files: the lean one (names only, small) is fetched first so the page can
-// show the folders and files at once; the full one (sizes, dates) follows right
-// away and is merged in by the page.
+// Two files: the lean one (root folder and file names only, very small) is
+// fetched first so the page can show the top level at once; the full one
+// (every folder's contents, sizes, dates) follows right away and replaces it.
 const cats = [];
 const lean = {
   generated: index.generated,

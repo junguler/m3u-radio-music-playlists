@@ -39,8 +39,9 @@ jobs:
         with:
           node-version: "22"
 
-      # Writes file_index_lean.json (names only, loaded first by the viewer) and
-      # file_index.json (full details). --apply-layout also rearranges this
+      # Writes file_index_lean.json (root-level file and folder names only,
+      # loaded first by the viewer) and file_index.json (the whole tree with
+      # sizes and dates). --apply-layout also rearranges this
       # throwaway checkout the way the index shows it: in every folder that has a
       # "checked" folder, the normal files are removed and the checked files move
       # up into the folder. The repository itself is not touched. To turn the

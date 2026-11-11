@@ -3787,10 +3787,12 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             setupIntersectionObserver();
             setupNewFeatureListeners();
         }
-        // The library index comes in two files. The lean one (folder and file
-        // names only) is small, so the page shows the whole tree from it right
-        // away; the full one (sizes, dates) is requested the moment the lean one
-        // has arrived and merged in as soon as it is here.
+        // The library index comes in two files. The lean one (the root folder
+        // and file names only, nothing inside folders) is tiny, so the page
+        // shows the top level from it right away; the full one (every folder's
+        // contents, sizes, dates) is requested the moment the lean one has
+        // arrived and replaces it as soon as it is here. Until then a folder
+        // that is opened shows a loading placeholder.
         const LEAN_INDEX_URL = "./file_index_lean.json";
         const FULL_INDEX_URL = "./file_index.json";
         function fetchJson(url) {
@@ -3800,45 +3802,17 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             });
         }
         // Lean rows -> the same node shapes the full index uses.
-        //   folder: [name, [children]]   file: [name, categoryNumber, external?]
+        //   folder: [name]   file: [name, categoryNumber, external?]
+        // Folders come out empty: their contents only exist in the full index.
         function expandLeanIndex(lean) {
             const cats = lean.cats || [];
             const expand = (rows) => rows.map((r) => {
-                if (typeof r[1] !== "number") return { name: r[0], type: "directory", children: expand(r[1]) };
+                if (typeof r[1] !== "number") return { name: r[0], type: "directory", children: [] };
                 const n = { name: r[0], type: "file", category: cats[r[1]] || "other" };
                 if (r[2]) { n.external = 1; if (typeof r[2] === "string") n.repo = r[2]; }
                 return n;
             });
             return { generated: lean.generated, source: lean.source, stats: lean.stats, partial: true, root: expand(lean.root) };
-        }
-        function adoptFullDetails(target, full) {
-            target.modified = full.modified;
-            try { target.dateObj = getItemDate(target); } catch (err) { target.dateObj = null; }
-            delete target.dateStr;
-            delete target.timeStr;
-            if (target.type === "file") {
-                target.size = full.size;
-                target.sizeFormatted = formatFileSize(full.size);
-            }
-        }
-        // Copies sizes and dates from the full tree onto the lean one, in place
-        // (the search keys already built stay as they are). allFiles was built
-        // in the same depth-first order as the tree, so the two are walked
-        // together. Returns false if the two trees do not line up.
-        function mergeFullDetails(fullRoot) {
-            let i = 0, ok = true;
-            const walk = (mine, theirs) => {
-                if (mine.length !== theirs.length) { ok = false; return; }
-                for (let k = 0; k < mine.length; k++) {
-                    const a = mine[k], b = theirs[k], rec = allFiles[i++];
-                    if (!rec || a.name !== b.name || a.type !== b.type) { ok = false; return; }
-                    adoptFullDetails(a, b);
-                    adoptFullDetails(rec, b);
-                    if (a.type === "directory") { walk(a.children, b.children); if (!ok) return; }
-                }
-            };
-            walk(fileIndex.root, fullRoot);
-            return ok && i === allFiles.length;
         }
         function applyFullIndex(full) {
             // If a local folder was opened meanwhile, the hosted library is parked
@@ -3847,16 +3821,12 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const saved = { fileIndex, allFiles, filesByPath };
             if (parked) { fileIndex = parked.fileIndex; allFiles = parked.allFiles; filesByPath = parked.filesByPath; }
             if (!fileIndex || !fileIndex.partial) { fileIndex = saved.fileIndex; allFiles = saved.allFiles; filesByPath = saved.filesByPath; return; }
-            if (full.generated !== fileIndex.generated || !mergeFullDetails(full.root)) {
-                // The two files are from different builds: start over from the full one.
-                fileIndex = full;
-                allFiles = [];
-                filesByPath = new Map();
-                preprocessFiles(full.root);
-            } else {
-                fileIndex.partial = false;
-                fileIndex.stats = full.stats;
-            }
+            // The lean index only holds the top level, so the full one simply
+            // takes its place.
+            fileIndex = full;
+            allFiles = [];
+            filesByPath = new Map();
+            preprocessFiles(full.root);
             if (parked) {
                 parked.fileIndex = fileIndex; parked.allFiles = allFiles; parked.filesByPath = filesByPath;
                 fileIndex = saved.fileIndex; allFiles = saved.allFiles; filesByPath = saved.filesByPath;
@@ -3865,6 +3835,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const mainEl = document.getElementById("main");
             const top = mainEl.scrollTop;
             render();
+            renderFavoriteFiles();
             mainEl.scrollTop = top;
             if (document.getElementById("statsModal").classList.contains("active")) renderLibraryStats();
         }
@@ -4954,6 +4925,16 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             renderBreadcrumb();
             if (currentView === "tree") renderTree();
             const mainEl = document.getElementById("main");
+
+            // Only the top level is known until the full index has arrived, so
+            // a folder that is opened before that shows a placeholder; this
+            // runs again the moment the full index is in.
+            if (fileIndex.partial && !searchQuery && currentPath.length > 0) {
+                const widths = [45, 60, 35, 50, 40, 55];
+                mainEl.innerHTML = `<div class="skeleton-list" aria-hidden="true">${widths.map((w) => `<div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:${w}%"></div><div class="skeleton-block skeleton-meta"></div></div>`).join("")}</div>`;
+                announce("Loading folder…");
+                return;
+            }
 
             let all = [];
             if (searchQuery) {
