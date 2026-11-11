@@ -823,6 +823,15 @@
             .modal-overlay:has(.playlist-bar.active) { align-items: flex-start; padding-top: clamp(0.5rem, calc(50vh - 12.5rem), calc(100vh - 32rem)); padding-top: clamp(0.5rem, calc(50dvh - 12.5rem), calc(100dvh - 32rem)); }
         }
         .rec-panel.rec-on { box-shadow: inset 3px 0 0 var(--danger); }
+        /* File details bar: two lines (three on a phone), always the same height (it scrolls when there is more), so opening it or stepping to the next file never moves the window. */
+        .meta-bar { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 0.1rem 1.1rem; --ml: 2; height: calc(var(--ml) * 1.45 * var(--data-size) + 0.8rem + var(--bw)); box-sizing: border-box; padding: 0.4rem 0.75rem; overflow-y: auto; flex-shrink: 0; background: var(--bg-tertiary); border-top: var(--bw) solid var(--border-color); font-size: var(--data-size); line-height: 1.45; }
+        .meta-bar[hidden], #infoBtn[hidden] { display: none; }
+        @media (max-width: 640px) { .meta-bar { --ml: 3; } }
+        .meta-bar .mi { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .meta-bar .ml { color: var(--text-muted); }
+        .meta-bar .mv { color: var(--text-primary); user-select: text; }
+        #infoBtn[aria-pressed="true"] { color: var(--accent-text, var(--accent)); border-color: var(--accent-text, var(--accent)); }
+        .modal.meta-on:not(.has-gallery) .preview-image { max-height: calc(90vh - 5.2rem); max-height: calc(90dvh - 5.2rem); }
         .rec-panel[hidden], .settings-row[hidden] { display: none; }
         .rec-panel .playlist-btn { height: var(--ctl); box-sizing: border-box; padding: 0 0.65rem; font-size: 0.75rem; white-space: nowrap; flex-shrink: 0; }
         .rec-panel .playlist-btn svg { flex-shrink: 0; }
@@ -1828,6 +1837,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 <span class="modal-title" id="modalTitle">File Preview</span>
                 <div class="modal-actions">
                     <button class="modal-btn play-playlist-btn hidden" id="playPlaylistBtn" title="Play as playlist" aria-label="Play as playlist"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66.0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"/></svg><span class="btn-label">Play</span></button>
+                    <button class="modal-btn" id="infoBtn" hidden aria-pressed="false" title="Show file details" aria-label="File details"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16"/><path d="M3 14h18M7 17.2h4M14 17.2h3"/></svg></button>
                     <button class="modal-btn favorite-btn" id="favoriteBtn" title="Add to favorites" aria-label="Add file to favorites" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></button>
                     <button class="modal-btn" id="copyLinkBtn" title="Copy link" aria-label="Copy raw file link"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"/></svg></button>
                     <a class="modal-btn" id="downloadBtn" title="Download" aria-label="Download file" download><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" /></svg></a>
@@ -1859,6 +1869,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 <aside class="gallery-rail" id="galleryRail" aria-label="Files in this folder" hidden></aside>
                 <div class="modal-body" id="modalBody"></div>
             </div>
+            <div class="meta-bar" id="metaBar" role="region" aria-label="File details" hidden></div>
             <div class="rec-panel" id="recPanel" hidden></div>
         </div>
     </div>
@@ -4067,6 +4078,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             document.getElementById("songsList").addEventListener("click", copySongClick);
             document.getElementById("songsSearch").addEventListener("input", renderSongsList);
             recInit();
+            metaInit();
             document.getElementById("songsModal").addEventListener("click", (e) => {
                 if (e.target === e.currentTarget) closeSongsModal();
             });
@@ -7259,7 +7271,9 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             return s >= 3600 ? Math.floor(s / 3600) + ":" + recP2(Math.floor((s % 3600) / 60)) + ":" + recP2(s % 60) : Math.floor(s / 60) + ":" + recP2(s % 60);
         }
         function recSafe(s) {
-            return String(s).replace(/[\\/:*?"<>|\x00-\x1f]/g, "_").replace(/\s+/g, " ").trim().slice(0, 120) || "recording";
+            let t = String(s).replace(/[\\/:*?"<>|\x00-\x1f]/g, "_").replace(/\s+/g, " ").trim().slice(0, 120).replace(/[. ]+$/, "");
+            if (/^(con|prn|aux|nul|com\d|lpt\d)(\..*)?$/i.test(t)) t = "_" + t; // Windows will not create a file with one of these names
+            return t || "recording";
         }
         // The time a song started, written so the files sort in the order they were recorded (and so a player that
         // plays a folder by name goes from one song to the next the way the station did, not title by title).
@@ -7280,17 +7294,32 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         function recNew(title, partial) {
             return {
                 title, partial, t0: Date.now(), parts: [], bytes: 0,
-                id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8), pend: [], n: 0, done: false,
-                add(v) {
-                    const c = v.slice();
+                id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8), pend: [], k: 0, done: false,
+                // Every chunk joins a song here: in order for the file (parts) and numbered for the copy kept in browser storage (pend).
+                // The number, not the moment of writing, decides the order the chunks come back in.
+                push(c) {
                     this.parts.push(c);
-                    this.pend.push(c);
-                    this.bytes += v.length;
+                    this.pend.push({ k: this.k++, b: c });
+                    this.bytes += c.size === undefined ? c.length : c.size;
                     if (this.parts.length > 300) this.parts = [new Blob(this.parts)];
                 },
+                add(v) { this.push(v.slice()); },
             };
         }
-        // First byte offset that starts an MP3 / ADTS-AAC frame, or -1.
+        // Length in bytes of the MP3 frame whose header starts at i (0 when the header is not a valid one).
+        const REC_MP3_KBPS = [
+            [null, [0, 32, 64, 96, 128, 160, 192, 224, 256, 288, 320, 352, 384, 416, 448], [0, 32, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 384], [0, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320]],
+            [null, [0, 32, 48, 56, 64, 80, 96, 112, 128, 144, 160, 176, 192, 224, 256], [0, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160], [0, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160]],
+        ];
+        function recMp3Len(v, i) {
+            const b = v[i + 1], c = v[i + 2], ver = (b >> 3) & 3, layer = 4 - ((b >> 1) & 3), bi = c >> 4, si = (c >> 2) & 3, pad = (c >> 1) & 1;
+            if (ver === 1 || layer === 4 || bi === 0 || bi === 15 || si === 3) return 0;
+            const v1 = ver === 3, rate = [44100, 48000, 32000][si] / (v1 ? 1 : ver === 2 ? 2 : 4), br = REC_MP3_KBPS[v1 ? 0 : 1][layer][bi] * 1000;
+            return layer === 1 ? (Math.floor((12 * br) / rate) + pad) * 4 : Math.floor(((layer === 3 && !v1 ? 72 : 144) * br) / rate) + pad;
+        }
+        // First byte offset that starts an MP3 / ADTS-AAC / Ogg frame, or -1. For MP3 and AAC a candidate only counts when the frames after it
+        // follow exactly where its length says (two frames, three when they are in the data), so a stray 0xFF inside audio is never taken for
+        // a cut point. When the data is too short to check, the answer is -1 and the cut simply waits for the next piece.
         function recFrame(v, ext) {
             if (ext === "ogg") {
                 // the first page of a (new) Ogg stream: "OggS", version 0, "beginning of stream" flag
@@ -7298,10 +7327,29 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 return -1;
             }
             if (ext !== "mp3" && ext !== "aac") return -1;
-            for (let i = 0; i < v.length - 3; i++) {
+            const aac = ext === "aac";
+            // Length of the frame at j: 0 = not a frame, -1 = its header is not all here yet.
+            const lenAt = (j) => {
+                if (j + 5 >= v.length) return -1;
+                if (v[j] !== 255) return 0;
+                const b = v[j + 1], c = v[j + 2];
+                if (aac) {
+                    if ((b & 0xf6) !== 0xf0 || ((c >> 2) & 15) >= 13) return 0;
+                    const n = ((v[j + 3] & 3) << 11) | (v[j + 4] << 3) | (v[j + 5] >> 5);
+                    return n >= 7 && n <= 2500 ? n : 0;
+                }
+                return (b & 0xe0) === 0xe0 ? recMp3Len(v, j) : 0;
+            };
+            for (let i = 0; i < v.length - 5; i++) {
                 if (v[i] !== 255) continue;
-                const b = v[i + 1], c = v[i + 2];
-                if (ext === "aac" ? (b & 0xf6) === 0xf0 && ((c >> 2) & 15) < 13 : (b & 0xe0) === 0xe0 && (b & 0x18) !== 8 && (b & 6) !== 0 && c >> 4 !== 15 && c >> 4 !== 0 && ((c >> 2) & 3) !== 3) return i;
+                let j = i, seen = 0;
+                for (let k = 0; k < 3; k++) {
+                    const n = lenAt(j);
+                    if (n === 0) { seen = -1; break; }
+                    if (n < 0) break;
+                    seen++; j += n;
+                }
+                if (seen >= 2) return i;
             }
             return -1;
         }
@@ -7397,7 +7445,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                         db.onversionchange = () => { db.close(); reset(); };
                         resolve(db);
                     };
-                    rq.onerror = rq.onblocked = () => { RECDB.dead = true; resolve(null); };
+                    rq.onerror = () => { RECDB.dead = true; resolve(null); };
                 } catch (e) { RECDB.dead = true; resolve(null); }
             });
             return RECDB.opening;
@@ -7449,12 +7497,12 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (!r || !s || s.done) return;
             const take = s.pend; s.pend = [];
             const meta = { id: s.id, station: r.station, title: s.title || "", partial: !!s.partial, t0: s.t0, mode: r.mode, ext: r.ext, mime: r.mime, tab: RECDB.tab, lock: RECDB.lockName, beat: Date.now() };
-            const blob = take.length ? new Blob(take) : null, key = s.id + ":" + String(s.n++).padStart(7, "0");
+            const blob = take.length ? new Blob(take.map((x) => x.b)) : null, key = take.length ? s.id + ":" + String(take[0].k).padStart(7, "0") : "";
             recDbRun(["segs", "chunks"], "readwrite", (st) => {
                 if (s.done) return;
                 st.segs.put(meta);
                 if (blob) st.chunks.put({ key, seg: s.id, blob });
-            }).then((ok) => { if (!ok && !s.done) s.pend = take.concat(s.pend); }); // a failed write is tried again with the next one, in order
+            }).then((ok) => { if (!ok && !s.done) s.pend = take.concat(s.pend); }); // a failed write is tried again with the next one; the numbers keep the order
         }
         function recPersistTick() {
             const r = REC.st;
@@ -7538,8 +7586,16 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const wr = await (await dir.getFileHandle(out, { create: true })).createWritable();
             try { await wr.write(blob); await wr.close(); } catch (e) { try { await wr.abort(); } catch (x) {} throw e; }
         }
+        // Finishes a song and remembers the job, so "stopped" is only said once every file is in the list (and in the folder, when one was chosen).
+        function recEnd(r, s) {
+            const job = recFinish(r, s);
+            (r.tasks || (r.tasks = new Set())).add(job);
+            job.catch(() => {}).then(() => r.tasks.delete(job));
+            return job;
+        }
+        function recSettled(r) { return Promise.all([...(r.tasks || [])].map((t) => t.catch(() => {}))); }
         async function recFinish(r, s) {
-            if (!s) return;
+            if (!s || s.done) return; // a song is finished once, whoever asks
             s.done = true;
             if (!s.bytes) { recDbDropSeg(s.id); return; }
             const secs = Math.round((Date.now() - s.t0) / 1000), songs = r.mode === "songs";
@@ -7568,6 +7624,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             recRender();
         }
         function recPush(r, v) {
+            if (REC.st !== r) return; // stopped: whatever was still on its way is not part of the recording
             // After the connection was reopened the new data starts mid-frame: begin the continuation at the first whole frame.
             if (r.align) {
                 const at = recFrame(v, r.ext);
@@ -7586,7 +7643,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 if (o >= 0) {
                     const nextTitle = r.mode === "songs" ? (typeof due === "string" ? due : due.title) : null;
                     s.add(v.subarray(0, o));
-                    recFinish(r, s);
+                    recEnd(r, s);
                     r.song = s = recNew(nextTitle, false);
                     r.cut = null;
                     v = v.subarray(o);
@@ -7628,7 +7685,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     r.song = next;
                     old.rotated = true;
                     if (!recCaptureStartChunk(r, next)) { old.rotated = false; r.song = prev; return; }
-                    try { old.stop(); } catch (e) { recFinish(r, prev); }
+                    try { old.stop(); } catch (e) { recEnd(r, prev); }
                 }
                 return;
             }
@@ -7770,16 +7827,17 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const ses = playSession;
             if (!ses) return;
             REC.dir = null; REC.choose = false; REC.cap = false; REC.msg = "";
-            if (ses.usesHls) { p.hidden = false; REC.cap = true; return recMsg("HLS streams are split into many small pieces. Press “Record tab audio” to capture this one."); }
+            // The folder is asked for first: the browser only allows it straight after the click, and every way of recording (also tab audio) uses it.
             if (recOpt.dir && window.showDirectoryPicker) {
                 try { REC.dir = await window.showDirectoryPicker({ mode: "readwrite" }); }
                 catch (e) { streamNotice("No folder chosen. Recordings stay in this browser."); }
             }
             p.hidden = false;
+            if (ses.usesHls) { REC.cap = true; return recMsg("HLS streams are split into many small pieces. Press “Record tab audio” to capture this one."); }
             REC.probing = true;
             recMsg("Checking the stream…");
-            const pr = await recProbe(ses);
-            REC.probing = false;
+            let pr;
+            try { pr = await recProbe(ses); } finally { REC.probing = false; }
             if (playSession !== ses || REC.st) return;
             if (!pr.ok) { REC.cap = true; return recMsg(recWhy(pr.why)); }
             if (pr.split) { REC.choose = true; recMsg(pr.exact ? "This station sends song names. Pick how you want to save it." : "This station sends song names. Pick how you want to save it (song cuts may be a few seconds off)."); }
@@ -7840,11 +7898,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             r.captureMr = mr;
             mr.ondataavailable = (e) => {
                 if (e.data && e.data.size) {
-                    song.parts.push(e.data);
-                    song.pend.push(e.data);
-                    song.bytes += e.data.size;
+                    song.push(e.data);
                     r.bytes += e.data.size;
-                    if (song.parts.length > 300) song.parts = [new Blob(song.parts)];
                 }
             };
             mr.onerror = () => {
@@ -7852,7 +7907,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             };
             mr.onstop = () => {
                 if (r.captureMr === mr) r.captureMr = null;
-                if (mr.rotated) { recFinish(r, song); return; } // its successor is already recording
+                if (mr.rotated) { recEnd(r, song); return; } // its successor is already recording
                 const tracksStillLive = r.captureStream.getAudioTracks().some((track) => track.readyState === "live");
                 const stopping = r.captureStopRequested || REC.st !== r || !tracksStillLive;
                 if (stopping) {
@@ -7862,11 +7917,14 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     if (!r.captureStopMessage && !tracksStillLive) r.captureStopMessage = "Sharing stopped.";
                     if (r.mode === "songs") song.partial = true;
                 }
-                // recFinish adds the finished segment to the save list before its optional disk write awaits.
-                const finish = recFinish(r, song);
-                if (stopping) { recCaptureWrapUp(r, finish, r.captureStopMessage); return; }
+                recEnd(r, song); // adds the finished segment to the save list before its optional disk write awaits
+                if (stopping) { recCaptureWrapUp(r, r.captureStopMessage); return; }
                 if (r.mode === "songs") {
                     // A defensive recovery for a browser that stops a segment without a metadata change: continue under the same title.
+                    // A recorder that keeps stopping straight away ends the recording instead of looping.
+                    const now = Date.now();
+                    r.restarts = (r.restarts || []).filter((t) => now - t < 10000).concat(now);
+                    if (r.restarts.length > 4) { recStop("Tab audio recording keeps stopping."); return; }
                     r.song = recNew(song.title, false);
                     recCaptureStartChunk(r, r.song);
                 } else {
@@ -7874,7 +7932,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     r.captureStopRequested = true;
                     if (REC.st === r) REC.st = null;
                     clearInterval(r.timer);
-                    recCaptureWrapUp(r, finish, "");
+                    recCaptureWrapUp(r, "");
                 }
             };
             try { mr.start(250); }
@@ -7888,12 +7946,14 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         async function recStartCapture(mode) {
             mode = mode === "songs" ? "songs" : "whole";
             const ses = playSession;
-            if (!ses || REC.st) return;
+            if (!ses || REC.st || REC.starting) return;
             if (!recCanCapture()) return recMsg(recWhy([]));
             REC.cap = false;
             REC.choose = false;
+            REC.starting = true; // the buttons go away while the browser's share dialog is open, so it cannot be asked twice
+            recMsg("Choose this tab in the share dialog and tick “Share tab audio”.");
             let ms;
-            try { ms = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true, preferCurrentTab: true, selfBrowserSurface: "include", systemAudio: "include" }); } catch (e) { REC.cap = true; return recMsg("Capture was cancelled. Choose this tab and tick “Share tab audio”."); }
+            try { ms = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true, preferCurrentTab: true, selfBrowserSurface: "include", systemAudio: "include" }); } catch (e) { REC.cap = true; return recMsg("Capture was cancelled. Choose this tab and tick “Share tab audio”."); } finally { REC.starting = false; }
             // The station may have changed, or another recording started, while the browser's share dialog was open.
             if (playSession !== ses || REC.st) { ms.getTracks().forEach((v) => v.stop()); return; }
             const at = ms.getAudioTracks();
@@ -7907,12 +7967,13 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const ext = /mp4/i.test(probe.mimeType) ? "m4a" : /ogg/i.test(probe.mimeType) ? "ogg" : "webm";
             const r = (REC.st = {
                 mode, ext, mime: probe.mimeType || "audio/webm", station: ses.item.title,
-                ctl: { abort() {} }, dir: null, t0: Date.now(), bytes: 0, count: 0,
+                ctl: { abort() {} }, dir: REC.dir || null, t0: Date.now(), bytes: 0, count: 0,
                 skipped: 0, cut: null, inband: false, noTitles: mode !== "songs",
                 capture: true, captureStream: ms, captureOptions: options,
                 captureMr: null,
                 captureStopRequested: false, captureStopMessage: ""
             });
+            REC.dir = null;
             r.song = recNew(mode === "songs" ? (ses.songLive || ses.song || null) : null, mode === "songs");
             at[0].onended = () => { if (REC.st === r) recStop("Sharing stopped."); };
             r.timer = setInterval(() => recTick(r), 1000);
@@ -7993,29 +8054,30 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (!r) return;
             REC.st = null;
             clearInterval(r.timer);
+            REC.msg = "Saving…"; // the click is answered at once; the last data and the files still need a moment
+            recRender();
             if (r.capture) {
                 r.captureStopRequested = true;
                 r.captureStopMessage = msg || "";
-                REC.msg = "Saving…"; // the click is answered at once; the browser's recorder needs a moment to hand over its last data
-                recRender();
                 const mr = r.captureMr;
                 if (mr && mr.state === "inactive") return; // its final onstop event is already queued
                 try { if (mr) { mr.stop(); return; } } catch (e) {}
                 // No recorder to wait for (or it would not stop): wrap up by hand.
                 if (r.mode === "songs") r.song.partial = true;
-                recCaptureWrapUp(r, recFinish(r, r.song), msg);
+                recEnd(r, r.song);
+                recCaptureWrapUp(r, msg);
                 return;
             }
             r.ctl.abort();
             if (r.releaseLock) r.releaseLock();
             if (r.wake) r.wake.release().catch(() => {});
             if (r.mode === "songs") r.song.partial = true;
-            recFinish(r, r.song);
-            recAfterStop(r, msg);
+            recEnd(r, r.song);
+            recSettled(r).then(() => recAfterStop(r, msg));
         }
         // Ends a tab-audio recording once its last file is in the list: lets go of the share and the screen lock, then says what happened.
-        function recCaptureWrapUp(r, finish, lead) {
-            Promise.resolve(finish).finally(() => {
+        function recCaptureWrapUp(r, lead) {
+            recSettled(r).finally(() => {
                 r.captureStream.getTracks().forEach((track) => { try { track.stop(); } catch (e) {} });
                 if (r.wake) r.wake.release().catch(() => {});
                 recAfterStop(r, lead);
@@ -8035,17 +8097,13 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (!res) { (op.why || []).forEach((w) => why.push(w)); return null; }
             let mi = tag ? parseInt(res.headers.get("icy-metaint"), 10) || 0 : 0;
             if (tag && !mi) {
+                // The page cannot see an interval. If the station is putting titles into the audio anyway, they would end up inside the saved file,
+                // so the stream is asked for again without them. The first connection is closed first (some stations allow one listener per
+                // address); if the plain stream cannot be had, there is no recording rather than a damaged one.
+                try { const c = res.body && res.body.cancel(); if (c && c.catch) c.catch(() => {}); } catch (e) {}
                 const plain = await recOpen(u, false, signal);
-                if (plain.res) {
-                    try {
-                        if (res.body) {
-                            const cancelled = res.body.cancel();
-                            if (cancelled && cancelled.catch) cancelled.catch(() => {});
-                        }
-                    } catch (e) {}
-                    res = plain.res;
-                    mi = 0;
-                }
+                if (!plain.res) { (plain.why || []).forEach((w) => why.push(w)); return null; }
+                res = plain.res;
             }
             return { res, mi, ct: (res.headers.get("content-type") || "").toLowerCase() };
         }
@@ -8062,32 +8120,46 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         const REC_STALL_MS = 20000;
         // Waits between attempts to reopen a dropped stream: 1, 2, 4, 8 s, then every 10 s for as long as it takes (Stop ends it).
         const REC_REOPEN_DELAYS_MS = [1000, 2000, 4000, 8000, 10000];
+        // One controller per connection (so a dead one can be dropped alone); Stop aborts them all through the parent.
+        function recLink(ctl) {
+            const c = new AbortController();
+            if (ctl.signal.aborted) c.abort();
+            else ctl.signal.addEventListener("abort", () => c.abort(), { once: true });
+            return c;
+        }
+        function recJoin(chunks) {
+            const out = new Uint8Array(chunks.reduce((n, x) => n + x.length, 0));
+            let o = 0;
+            chunks.forEach((x) => { out.set(x, o); o += x.length; });
+            return out;
+        }
         async function recStart(mode, noTitles) {
             if (mode === "capture") return recStartCapture("whole");
             if (mode === "capture-songs") return recStartCapture("songs");
+            if (REC.st || REC.starting) return;
+            REC.starting = true;
+            let job = null;
+            try { job = await recOpenRecording(mode, noTitles); } finally { REC.starting = false; }
+            if (job) await recReadLoop(job);
+        }
+        // Connects and, when the station can be recorded, starts the recording. Returns what recReadLoop needs, or null (the panel says why).
+        async function recOpenRecording(mode, noTitles) {
             const ses = playSession;
-            if (!ses || REC.st) return;
-            const dir = REC.dir || null;
+            if (!ses) return null;
+            const dir = REC.dir || null, tag = mode === "songs", ctl = new AbortController(), why = [];
             REC.dir = null;
             REC.choose = false;
             recMsg("Connecting…");
-            const ctl = new AbortController(), tag = mode === "songs";
-            // Every connection has its own controller (so a dead one can be dropped alone); Stop aborts them all through `ctl`.
-            const newConn = () => {
-                const c = new AbortController();
-                ctl.signal.addEventListener("abort", () => c.abort(), { once: true });
-                return c;
-            };
-            let cc = newConn();
-            const why0 = [];
-            const c0 = await recConnect(ses.cands[ses.candIdx], tag, cc.signal, why0);
+            const cc = recLink(ctl);
+            const c0 = await recConnect(ses.cands[ses.candIdx], tag, cc.signal, why);
             // The station may have been changed while connecting: that recording belongs to a station nobody is listening to any more.
-            if (playSession !== ses || REC.st) { ctl.abort(); return; }
-            if (!c0) { REC.cap = true; return recMsg(recWhy(why0)); }
-            let res = c0.res, ct = c0.ct, mi = c0.mi;
-            if (/html/.test(ct)) { ctl.abort(); REC.cap = true; return recMsg(recWhy(["not audio"])); }
+            if (playSession !== ses || REC.st) { ctl.abort(); return null; }
+            if (!c0) { ctl.abort(); REC.cap = true; recMsg(recWhy(why)); return null; }
+            const { res, mi, ct } = c0;
+            if (/html/.test(ct)) { ctl.abort(); REC.cap = true; recMsg(recWhy(["not audio"])); return null; }
             const ext = /mp4|m4a/.test(ct) ? "m4a" : /aac/.test(ct) ? "aac" : /ogg|opus|flac/.test(ct) ? "ogg" : "mp3";
-            if (tag && (ext === "ogg" || ext === "m4a")) { ctl.abort(); return recMsg("This station can only be recorded as one long file. Choose “One long recording”."); }
+            // This format has no frames to cut between songs: it is saved as one long file, without asking again.
+            if (tag && (ext === "ogg" || ext === "m4a")) { ctl.abort(); REC.dir = dir; return recOpenRecording("whole", true); }
             const r = (REC.st = { mode, ext, mime: ext === "aac" ? "audio/aac" : ext === "ogg" ? "audio/ogg" : ext === "m4a" ? "audio/mp4" : "audio/mpeg", station: ses.item.title, ctl, dir, t0: Date.now(), bytes: 0, count: 0, skipped: 0, cut: null, inband: false, icyMetaInt: mi || 0, noTitles: !!noTitles, gaps: 0, wait: false, align: false, releaseLock: null });
             r.releaseLock = recHoldLock(r);
             r.song = recNew(tag && (ses.songLive || ses.song) ? ses.songLive || ses.song : null, tag);
@@ -8097,6 +8169,10 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             recOwnerLock();
             recRender();
             announce("Recording started.");
+            return { r, ses, ctl, tag, res, mi, cc };
+        }
+        // Reads the stream until Stop. A dropped or silent connection is opened again and the same recording carries on.
+        async function recReadLoop({ r, ses, ctl, tag, res, mi, cc }) {
             // In-band ICY: audio / length byte / metadata block, repeating.
             let st = 0, left = mi, mlen = 0, mbuf = [];
             const eat = (v) => {
@@ -8105,11 +8181,10 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     else if (st === 1) { mlen = v[0] * 16; v = v.subarray(1); mbuf = []; if (mlen) { st = 2; left = mlen; } else { st = 0; left = mi; } }
                     else {
                         const n = Math.min(left, v.length); mbuf.push(v.slice(0, n)); v = v.subarray(n); left -= n;
-                        if (!left) { const t = streamTitleFromIcy(decodeIcyBytes(new Uint8Array(flattenBytes(mbuf)))); if (t) { recTitle(t, { source: "recording ICY", exact: true }); npSetTitle(ses, { title: t, source: "recording ICY", exact: true }); } st = 0; left = mi; }
+                        if (!left) { const t = streamTitleFromIcy(decodeIcyBytes(recJoin(mbuf))); if (t) { recTitle(t, { source: "recording ICY", exact: true }); npSetTitle(ses, { title: t, source: "recording ICY", exact: true }); } st = 0; left = mi; }
                     }
                 }
             };
-            const flattenBytes = (a) => { const out = []; a.forEach((x) => out.push(...x)); return out; };
             // A pause between attempts that ends early when the browser reports the network is back.
             const sleepOrOnline = (ms) => new Promise((x) => {
                 const done = () => { clearTimeout(t); window.removeEventListener("online", done); x(); };
@@ -8126,21 +8201,22 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 try {
                     for (;;) {
                         const { value, done } = await readOrStall(rd);
+                        if (REC.st !== r) return; // stopped meanwhile: recStop did the wrap-up
                         if (done) break;
                         if (value && value.length) { got += value.length; if (mi) eat(value); else recPush(r, value); }
                     }
                 } catch (e) {}
                 try { cc.abort(); } catch (e) {}
-                if (REC.st !== r) return; // stopped meanwhile: recStop did the wrap-up
+                if (REC.st !== r) return;
                 if (got > 0) fails = 0;
                 // The stream dropped or went silent (a network blip, a server that cut the listener): open it again and carry on in the
-                // same recording instead of ending it. Only when that keeps failing is the recording closed, with what it has.
+                // same recording instead of ending it. It is tried again for as long as it takes; Stop ends it.
                 let next = null;
                 r.wait = true;
                 while (REC.st === r && !next) {
                     await sleepOrOnline(REC_REOPEN_DELAYS_MS[Math.min(fails++, REC_REOPEN_DELAYS_MS.length - 1)]);
                     if (REC.st !== r) return;
-                    const nc = newConn();
+                    const nc = recLink(ctl);
                     try {
                         const c = await recConnect(ses.cands[ses.candIdx], tag, nc.signal, []);
                         if (c && !/html/.test(c.ct)) next = { res: c.res, mi: c.mi, nc };
@@ -8151,8 +8227,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     } catch (e) { nc.abort(); }
                 }
                 r.wait = false;
-                if (REC.st !== r) return;
-                if (!next) break;
+                if (REC.st !== r) { if (next) next.nc.abort(); return; }
                 r.gaps++;
                 cc = next.nc;
                 rd = next.res.body.getReader();
@@ -8161,7 +8236,6 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 if (r.ext === "mp3" || r.ext === "aac" || r.ext === "ogg") r.align = true;
                 if (r.mode === "songs") r.song.gap = true; // a song with a short hole in it is still kept, and marked in its file name
             }
-            if (REC.st === r) recStop("Stream ended.");
         }
         function renderRecList() {
             const l = recEl("recList");
@@ -8195,6 +8269,10 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
         function recInit() {
             try { Object.assign(recOpt, JSON.parse(store.getItem(RECOPT_KEY) || "{}")); } catch (e) {}
+            if (![0, 1800, 3600, 7200].includes(+recOpt.split)) recOpt.split = 3600;
+            if (![0, 15, 30, 60].includes(+recOpt.min)) recOpt.min = 30;
+            recOpt.split = +recOpt.split; recOpt.min = +recOpt.min;
+            ["keep", "tags", "dir"].forEach((k) => { recOpt[k] = !!recOpt[k]; });
             const ids = ["recSplitSel", "recMinSel", "recKeepToggle", "recTagsToggle", "recDirToggle", "recStampToggle", "recStampFmtSel", "recStampPosSel"];
             if (!REC_STAMP_FMTS.some((f) => f[0] === recOpt.stampFmt)) recOpt.stampFmt = "number";
             if (recOpt.stampPos !== "after") recOpt.stampPos = "before";
@@ -9265,6 +9343,374 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (next) { next.disabled = i >= gallery.items.length - 1; next.addEventListener("click", () => galleryStep(1)); }
         }
 
+        // ======================================================================
+        // File details bar (pictures, videos, music): size, dates, picture / video / audio facts and tags, in a bar at the bottom of
+        // the preview. Works the same for hosted and local files. Only the first 256 KB of a file is read for it, and only once the bar
+        // is opened; the bar keeps one fixed height, so stepping through files never moves the window.
+        // ======================================================================
+        const META_KEY = "metaBar", META_HEAD = 262144;
+        const META_ORDER = {
+            image: ["dims", "color", "camera", "taken", "exposure", "size", "modified", "type", "source"],
+            video: ["dims", "duration", "bitrate", "size", "modified", "type", "source"],
+            audio: ["artist", "title", "album", "year", "track", "genre", "duration", "format", "bitrate", "rate", "channels", "size", "modified", "type", "source"],
+        };
+        const META_LABELS = { dims: "Dimensions", color: "Color", camera: "Camera", taken: "Taken", exposure: "Exposure", size: "Size", modified: "Modified", type: "Type", source: "Source", duration: "Duration", bitrate: "Bitrate", artist: "Artist", title: "Title", album: "Album", year: "Year", track: "Track", genre: "Genre", format: "Format", rate: "Sample rate", channels: "Channels" };
+        const META_MIME = { jpg: "image/jpeg", jpeg: "image/jpeg", jfif: "image/jpeg", png: "image/png", gif: "image/gif", webp: "image/webp", avif: "image/avif", bmp: "image/bmp", svg: "image/svg+xml", ico: "image/x-icon", tif: "image/tiff", tiff: "image/tiff", heic: "image/heic", mp4: "video/mp4", m4v: "video/mp4", webm: "video/webm", mkv: "video/x-matroska", mov: "video/quicktime", avi: "video/x-msvideo", ogv: "video/ogg", mp3: "audio/mpeg", wav: "audio/wav", flac: "audio/flac", ogg: "audio/ogg", oga: "audio/ogg", opus: "audio/ogg", m4a: "audio/mp4", aac: "audio/aac", wma: "audio/x-ms-wma" };
+        const META = { open: false, seq: 0, kind: "", path: "", name: "", vals: {}, tips: {}, size: 0, dur: 0, audio: null, ctl: null, started: false };
+        try { META.open = store.getItem(META_KEY) === "1"; } catch (e) {}
+        const metaBE32 = (b, o) => ((b[o] << 24) | (b[o + 1] << 16) | (b[o + 2] << 8) | b[o + 3]) >>> 0;
+        const metaLE32 = (b, o) => (b[o] | (b[o + 1] << 8) | (b[o + 2] << 16) | (b[o + 3] << 24)) >>> 0;
+        const metaAscii = (b, o, n) => String.fromCharCode(...b.subarray(o, o + n));
+        function metaFind(b, str, from) {
+            const n = str.length;
+            outer: for (let i = from || 0; i <= b.length - n; i++) {
+                for (let k = 0; k < n; k++) if (b[i + k] !== str.charCodeAt(k)) continue outer;
+                return i;
+            }
+            return -1;
+        }
+        function metaTime(s) {
+            s = Math.round(s);
+            const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60;
+            return (h ? h + ":" + String(m).padStart(2, "0") : m) + ":" + String(x).padStart(2, "0");
+        }
+        function metaAspect(w, h) {
+            if (!w || !h) return "";
+            const g = (a, b) => (b ? g(b, a % b) : a), d = g(w, h), a = w / d, b = h / d;
+            return a < 50 && b < 50 ? a + ":" + b : (w / h).toFixed(2) + ":1";
+        }
+        // ---- ID3v2 (MP3) ----
+        function metaId3Text(body) {
+            if (!body.length) return "";
+            const enc = body[0], d = body.subarray(1);
+            let s = "";
+            try { s = new TextDecoder(enc === 0 ? "windows-1252" : enc === 1 ? (d[0] === 0xfe && d[1] === 0xff ? "utf-16be" : "utf-16le") : enc === 2 ? "utf-16be" : "utf-8").decode(d); } catch (e) {}
+            return s.replace(/^\uFEFF/, "").split("\0").map((x) => x.trim()).filter(Boolean).join(", ");
+        }
+        function metaId3(b) {
+            if (b[0] !== 73 || b[1] !== 68 || b[2] !== 51) return null;
+            const ver = b[3], ss = (o) => ((b[o] & 127) << 21) | ((b[o + 1] & 127) << 14) | ((b[o + 2] & 127) << 7) | (b[o + 3] & 127);
+            const size = ss(6), end = Math.min(b.length, 10 + size), tags = {};
+            const map = { TIT2: "title", TT2: "title", TPE1: "artist", TP1: "artist", TALB: "album", TAL: "album", TDRC: "year", TYER: "year", TYE: "year", TRCK: "track", TRK: "track", TCON: "genre", TCO: "genre" };
+            let p = 10;
+            if ((b[5] & 0x40) && ver >= 3) p += ver === 4 ? ss(p) : metaBE32(b, p) + 4;
+            const idLen = ver === 2 ? 3 : 4, hdr = ver === 2 ? 6 : 10;
+            while (p + hdr <= end) {
+                const id = metaAscii(b, p, idLen);
+                if (!/^[A-Z0-9]+$/.test(id)) break;
+                const sz = ver === 2 ? (b[p + 3] << 16) | (b[p + 4] << 8) | b[p + 5] : ver === 4 ? ss(p + 4) : metaBE32(b, p + 4);
+                const body = b.subarray(p + hdr, p + hdr + sz);
+                p += hdr + sz;
+                if (map[id] && sz) {
+                    let t = metaId3Text(body);
+                    if (map[id] === "year") t = t.slice(0, 4);
+                    if (map[id] === "genre") t = t.replace(/^\(\d+\)/, "").trim();
+                    if (t && !tags[map[id]]) tags[map[id]] = t;
+                }
+            }
+            return { tags, end: 10 + size };
+        }
+        function metaMp3(b) {
+            const id3 = metaId3(b), out = { format: "MP3", tags: id3 ? id3.tags : {} };
+            let i = id3 ? id3.end : 0;
+            for (; i < b.length - 8; i++) {
+                if (b[i] !== 255 || (b[i + 1] & 0xe0) !== 0xe0) continue;
+                const n = recMp3Len(b, i);
+                if (n && (i + n + 1 >= b.length || (b[i + n] === 255 && (b[i + n + 1] & 0xe0) === 0xe0))) break;
+            }
+            if (i >= b.length - 8) return out;
+            const h1 = b[i + 1], h2 = b[i + 2], h3 = b[i + 3], ver = (h1 >> 3) & 3, layer = 4 - ((h1 >> 1) & 3), v1 = ver === 3;
+            out.format = (layer === 3 ? "MP3" : "MP" + layer) + " · MPEG-" + (v1 ? "1" : ver === 2 ? "2" : "2.5") + " Layer " + ["", "I", "II", "III"][layer];
+            out.rate = [44100, 48000, 32000][(h2 >> 2) & 3] / (v1 ? 1 : ver === 2 ? 2 : 4);
+            out.channels = ((h3 >> 6) & 3) === 3 ? 1 : 2;
+            out.kbps = REC_MP3_KBPS[v1 ? 0 : 1][layer][h2 >> 4];
+            // a Xing / Info / VBRI header inside the first frame tells VBR from CBR, and how many frames there are
+            const x = i + 4 + (v1 ? (out.channels === 1 ? 17 : 32) : out.channels === 1 ? 9 : 17), spf = layer === 1 ? 384 : layer === 3 && !v1 ? 576 : 1152;
+            let frames = 0;
+            if (metaAscii(b, x, 4) === "Xing" || metaAscii(b, x, 4) === "Info") { out.vbr = metaAscii(b, x, 4) === "Xing"; if (b[x + 7] & 1) frames = metaBE32(b, x + 8); }
+            else if (metaAscii(b, i + 36, 4) === "VBRI") { out.vbr = true; frames = metaBE32(b, i + 50); }
+            if (frames) out.dur = (frames * spf) / out.rate;
+            return out;
+        }
+        // ---- FLAC / Ogg / Opus (Vorbis comments), WAV, M4A ----
+        function metaVorbis(b, p, end) {
+            const tags = {}, td = new TextDecoder(), map = { TITLE: "title", ARTIST: "artist", ALBUM: "album", DATE: "year", YEAR: "year", TRACKNUMBER: "track", GENRE: "genre" };
+            if (p + 8 > end) return tags;
+            p += 4 + metaLE32(b, p);
+            const n = metaLE32(b, p);
+            p += 4;
+            for (let i = 0; i < n && p + 4 <= end; i++) {
+                const l = metaLE32(b, p);
+                p += 4;
+                if (p + l > end) break;
+                const s = td.decode(b.subarray(p, p + l)), eq = s.indexOf("=");
+                p += l;
+                const k = eq > 0 ? map[s.slice(0, eq).toUpperCase()] : null;
+                if (k && !tags[k]) tags[k] = k === "year" ? s.slice(eq + 1, eq + 5) : s.slice(eq + 1);
+            }
+            return tags;
+        }
+        function metaFlac(b) {
+            const out = { format: "FLAC", tags: {} };
+            let p = 4;
+            while (p + 4 <= b.length) {
+                const last = b[p] & 128, type = b[p] & 127, len = (b[p + 1] << 16) | (b[p + 2] << 8) | b[p + 3], d = p + 4;
+                if (d + len > b.length) break;
+                if (type === 0 && len >= 18) {
+                    out.rate = (b[d + 10] << 12) | (b[d + 11] << 4) | (b[d + 12] >> 4);
+                    out.channels = ((b[d + 12] >> 1) & 7) + 1;
+                    out.bits = (((b[d + 12] & 1) << 4) | (b[d + 13] >> 4)) + 1;
+                    const total = (b[d + 13] & 15) * 4294967296 + metaBE32(b, d + 14);
+                    if (out.rate && total) out.dur = total / out.rate;
+                } else if (type === 4) Object.assign(out.tags, metaVorbis(b, d, d + len));
+                p = d + len;
+                if (last) break;
+            }
+            return out;
+        }
+        function metaOgg(b) {
+            const out = { format: "Ogg", tags: {} }, v = metaFind(b, "\x01vorbis"), o = metaFind(b, "OpusHead");
+            if (v >= 0 && v + 24 <= b.length) {
+                out.format = "Ogg Vorbis"; out.channels = b[v + 11]; out.rate = metaLE32(b, v + 12);
+                const nom = metaLE32(b, v + 20);
+                if (nom > 0 && nom < 1e7) { out.kbps = Math.round(nom / 1000); out.approx = true; }
+                const c = metaFind(b, "\x03vorbis");
+                if (c >= 0) Object.assign(out.tags, metaVorbis(b, c + 7, Math.min(b.length, c + 7 + 65536)));
+            } else if (o >= 0) {
+                out.format = "Opus"; out.channels = b[o + 9]; out.rate = 48000;
+                const t = metaFind(b, "OpusTags");
+                if (t >= 0) Object.assign(out.tags, metaVorbis(b, t + 8, Math.min(b.length, t + 8 + 65536)));
+            }
+            return out;
+        }
+        function metaWav(b) {
+            const out = { format: "WAV", tags: {} };
+            for (let p = 12; p + 8 <= b.length;) {
+                const id = metaAscii(b, p, 4), n = metaLE32(b, p + 4);
+                if (id === "fmt " && p + 24 <= b.length) {
+                    out.format = "WAV · " + ((b[p + 8] | (b[p + 9] << 8)) === 3 ? "float" : "PCM");
+                    out.channels = b[p + 10] | (b[p + 11] << 8); out.rate = metaLE32(b, p + 12);
+                    out.kbps = Math.round((metaLE32(b, p + 16) * 8) / 1000); out.bits = b[p + 22] | (b[p + 23] << 8);
+                }
+                p += 8 + n + (n & 1);
+            }
+            return out;
+        }
+        function metaMp4(b) {
+            const out = { format: "M4A", tags: {} }, td = new TextDecoder(), names = { "\u00a9nam": "title", "\u00a9ART": "artist", "\u00a9alb": "album", "\u00a9day": "year", "\u00a9gen": "genre" };
+            const walk = (s, e, inIlst) => {
+                while (s + 8 <= e) {
+                    let n = metaBE32(b, s), h = 8;
+                    const t = metaAscii(b, s + 4, 4);
+                    if (n === 1) { n = metaBE32(b, s + 12); h = 16; } else if (n === 0) n = e - s;
+                    if (n < h) break;
+                    const end = Math.min(e, s + n), body = s + h;
+                    if (inIlst) {
+                        if (end - body > 16 && metaAscii(b, body + 4, 4) === "data") {
+                            if (names[t]) { const v = td.decode(b.subarray(body + 16, end)); out.tags[names[t]] = t === "\u00a9day" ? v.slice(0, 4) : v; }
+                            else if (t === "trkn" && end - body >= 20) out.tags.track = String((b[body + 18] << 8) | b[body + 19]);
+                        }
+                    } else if (["moov", "trak", "mdia", "minf", "stbl", "udta"].includes(t)) walk(body, end, false);
+                    else if (t === "meta") walk(body + 4, end, false);
+                    else if (t === "ilst") walk(body, end, true);
+                    else if (t === "mvhd") {
+                        const ver = b[body], ts = metaBE32(b, body + (ver ? 20 : 12)), du = ver ? metaBE32(b, body + 24) * 4294967296 + metaBE32(b, body + 28) : metaBE32(b, body + 16);
+                        if (ts && du) out.dur = du / ts;
+                    } else if (t === "stsd" && metaAscii(b, body + 12, 4).match(/^(mp4a|alac)$/)) {
+                        const e0 = body + 8;
+                        out.format = metaAscii(b, e0 + 4, 4) === "alac" ? "ALAC (M4A)" : "AAC (M4A)";
+                        out.channels = (b[e0 + 24] << 8) | b[e0 + 25]; out.rate = metaBE32(b, e0 + 32) >>> 16;
+                    }
+                    s = end;
+                }
+            };
+            walk(0, b.length, false);
+            return out;
+        }
+        // What the first bytes say about a music file (by content, not by the file's extension). Null when it is not a format read here.
+        function metaAudio(b) {
+            if (b.length < 12) return null;
+            if (metaAscii(b, 0, 4) === "fLaC") return metaFlac(b);
+            if (metaAscii(b, 0, 4) === "OggS") return metaOgg(b);
+            if (metaAscii(b, 0, 4) === "RIFF" && metaAscii(b, 8, 4) === "WAVE") return metaWav(b);
+            if (metaAscii(b, 4, 4) === "ftyp") return metaMp4(b);
+            if (metaAscii(b, 0, 3) === "ID3" || (b[0] === 255 && (b[1] & 0xe0) === 0xe0)) return metaMp3(b);
+            return null;
+        }
+        // ---- pictures: EXIF from a JPEG, bit depth from a PNG ----
+        function metaTiff(b, t, end) {
+            const le = b[t] === 73, out = {};
+            const u16 = (o) => (le ? b[o] | (b[o + 1] << 8) : (b[o] << 8) | b[o + 1]);
+            const u32 = (o) => (le ? (b[o] | (b[o + 1] << 8) | (b[o + 2] << 16) | (b[o + 3] << 24)) >>> 0 : metaBE32(b, o));
+            const ifd = (off, depth) => {
+                const o = t + off;
+                if (depth > 2 || o + 2 > end) return;
+                for (let i = 0, n = u16(o); i < n; i++) {
+                    const e = o + 2 + i * 12;
+                    if (e + 12 > end) break;
+                    const tag = u16(e), type = u16(e + 2), cnt = u32(e + 4), size = ({ 1: 1, 2: 1, 3: 2, 4: 4, 5: 8, 7: 1 }[type] || 1) * cnt, vo = size > 4 ? t + u32(e + 8) : e + 8;
+                    if (tag === 0x8769) { ifd(u32(e + 8), depth + 1); continue; }
+                    if (vo + size > end || cnt > 4096) continue;
+                    const str = () => metaAscii(b, vo, cnt).replace(/\0[\s\S]*$/, "").trim(), rat = () => { const d = u32(vo + 4); return d ? u32(vo) / d : 0; };
+                    if (tag === 0x010f) out.make = str(); else if (tag === 0x0110) out.model = str();
+                    else if (tag === 0x9003) out.taken = str();
+                    else if (tag === 0x829a) out.exposure = rat(); else if (tag === 0x829d) out.fnum = rat();
+                    else if (tag === 0x8827) out.iso = type === 3 ? u16(vo) : u32(vo);
+                    else if (tag === 0x920a) out.focal = rat();
+                }
+            };
+            try { ifd(u32(t + 4), 0); } catch (e) {}
+            return out;
+        }
+        function metaExif(b) {
+            if (b[0] !== 255 || b[1] !== 216) return null;
+            for (let p = 2; p + 4 < b.length && b[p] === 255;) {
+                const m = b[p + 1], len = (b[p + 2] << 8) | b[p + 3];
+                if (m === 0xe1 && metaAscii(b, p + 4, 4) === "Exif") return metaTiff(b, p + 10, Math.min(b.length, p + 2 + len));
+                if (m === 0xda) break;
+                p += 2 + len;
+            }
+            return null;
+        }
+        // ---- getting the first bytes: a local file is sliced, a hosted one asked for with a range (and cut off if the server sends it all) ----
+        async function metaHead(path, signal) {
+            if (LOCAL.active) {
+                const f = await getLocalFile(path);
+                return { bytes: new Uint8Array(await f.slice(0, META_HEAD).arrayBuffer()), total: f.size, type: f.type, modified: f.lastModified };
+            }
+            const res = await fetch(hostedUrl(path), { headers: { Range: "bytes=0-" + (META_HEAD - 1) }, signal });
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            const rd = res.body.getReader(), chunks = [];
+            let n = 0;
+            while (n < META_HEAD) {
+                const { value, done } = await rd.read();
+                if (done) break;
+                chunks.push(value); n += value.length;
+            }
+            try { await rd.cancel(); } catch (e) {}
+            const bytes = new Uint8Array(Math.min(n, META_HEAD));
+            for (let o = 0, i = 0; o < bytes.length; i++) { const c = chunks[i].subarray(0, bytes.length - o); bytes.set(c, o); o += c.length; }
+            const cr = /\/(\d+)\s*$/.exec(res.headers.get("content-range") || "");
+            return { bytes, total: cr ? +cr[1] : res.status === 200 ? +res.headers.get("content-length") || 0 : 0, type: res.headers.get("content-type") || "", modified: Date.parse(res.headers.get("last-modified")) || 0 };
+        }
+        // ---- the bar ----
+        function metaDate(ms) { return new Date(ms).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" }); }
+        function metaSetSize(n) {
+            if (!(n > 0)) return;
+            META.size = n;
+            META.vals.size = formatFileSize(n);
+            META.tips.size = n.toLocaleString() + " bytes";
+        }
+        function metaDerive() {
+            const v = META.vals, a = META.audio;
+            if (META.dur) v.duration = metaTime(META.dur);
+            if (a && a.kbps && !a.vbr) v.bitrate = (a.approx ? "~" : "") + a.kbps + " kbps";
+            else if (META.dur && META.size) v.bitrate = (a && a.vbr ? "VBR · ~" : "~") + Math.round((META.size * 8) / META.dur / 1000) + " kbps";
+        }
+        function metaPaint() {
+            const bar = document.getElementById("metaBar");
+            if (!META.kind || bar.hidden) return;
+            metaDerive();
+            const html = META_ORDER[META.kind].filter((k) => META.vals[k]).map((k) => '<span class="mi" title="' + escapeHtml(META.tips[k] || META.vals[k]) + '"><span class="ml">' + META_LABELS[k] + '</span> <span class="mv">' + escapeHtml(META.vals[k]) + "</span></span>").join("");
+            if (bar._h !== html) { bar._h = html; bar.innerHTML = html; }
+        }
+        // Button and bar follow the one saved choice (open or closed), for every picture, video and song until it is changed.
+        function metaSync() {
+            const btn = document.getElementById("infoBtn"), bar = document.getElementById("metaBar"), on = !!META.kind && META.open;
+            btn.hidden = !META.kind;
+            btn.setAttribute("aria-pressed", on ? "true" : "false");
+            btn.title = on ? "Hide file details" : "Show file details";
+            bar.hidden = !on;
+            document.getElementById("modalContent").classList.toggle("meta-on", on);
+            if (on) { if (!META.started) metaStart(); metaPaint(); }
+        }
+        function metaReset() {
+            if (META.ctl) META.ctl.abort();
+            META.ctl = null; META.kind = ""; META.vals = {}; META.tips = {}; META.size = 0; META.dur = 0; META.audio = null; META.started = false; META.seq++;
+            const bar = document.getElementById("metaBar");
+            bar._h = ""; bar.innerHTML = "";
+            metaSync();
+        }
+        // Called once a picture, video or song is on screen: what is already known is shown at once, the rest arrives as it is read.
+        function metaAttach(kind, path, name, root) {
+            const v = META.vals, node = filesByPath.get(path), ext = name.slice(name.lastIndexOf(".") + 1).toLowerCase();
+            META.kind = kind; META.path = path; META.name = name;
+            if (node && typeof node.size === "number") metaSetSize(node.size);
+            const d = node && getItemDate(node);
+            if (d) v.modified = metaDate(d.getTime());
+            v.type = META_MIME[ext] || ext.toUpperCase();
+            v.source = LOCAL.active ? "Local" : node && node.external ? "GitHub raw" : "Hosted";
+            const my = META.seq, still = () => my === META.seq;
+            if (kind === "image") {
+                const img = root.querySelector("img.preview-image"), apply = () => {
+                    if (!still() || !img.naturalWidth || ext === "svg") return;
+                    const w = img.naturalWidth, h = img.naturalHeight;
+                    v.dims = w + " × " + h + " px · " + metaAspect(w, h) + " · " + parseFloat(((w * h) / 1e6).toFixed(w * h >= 1e6 ? 1 : 2)) + " MP";
+                    metaPaint();
+                };
+                if (img) { img.addEventListener("load", apply); if (img.complete) apply(); }
+            } else {
+                const el = root.querySelector(kind), apply = () => {
+                    if (!still()) return;
+                    if (kind === "video" && el.videoWidth) { v.dims = el.videoWidth + " × " + el.videoHeight + " px · " + metaAspect(el.videoWidth, el.videoHeight); }
+                    if (isFinite(el.duration) && el.duration > 0) META.dur = el.duration;
+                    metaPaint();
+                };
+                if (el) { el.addEventListener("loadedmetadata", apply); el.addEventListener("durationchange", apply); if (el.readyState >= 1) apply(); }
+            }
+            metaSync();
+        }
+        async function metaStart() {
+            META.started = true;
+            const my = META.seq, kind = META.kind, v = META.vals;
+            if (kind === "video") return;
+            const ctl = (META.ctl = new AbortController());
+            try {
+                const h = await metaHead(META.path, ctl.signal);
+                if (my !== META.seq) return;
+                if (!META.size) metaSetSize(h.total);
+                if (h.type && !LOCAL.active) v.type = h.type.split(";")[0].trim() || v.type;
+                else if (h.type) v.type = h.type;
+                if (!v.modified && h.modified) v.modified = metaDate(h.modified);
+                if (kind === "audio") {
+                    const a = metaAudio(h.bytes);
+                    if (a) {
+                        META.audio = a;
+                        Object.assign(v, a.tags);
+                        v.format = a.format + (a.bits ? " · " + a.bits + "-bit" : "");
+                        if (a.rate) v.rate = parseFloat((a.rate / 1000).toFixed(2)) + " kHz";
+                        if (a.channels) v.channels = a.channels === 1 ? "Mono" : a.channels === 2 ? "Stereo" : a.channels + " channels";
+                        if (a.dur && !META.dur) META.dur = a.dur;
+                    }
+                } else {
+                    const b = h.bytes, ex = metaExif(b);
+                    if (ex) {
+                        const cam = [ex.make, ex.model].filter(Boolean);
+                        if (cam.length === 2 && ex.model.toLowerCase().startsWith(ex.make.toLowerCase())) cam.shift();
+                        if (cam.length) v.camera = cam.join(" ");
+                        if (ex.taken) v.taken = ex.taken.replace(/^(\d{4}):(\d\d):(\d\d)/, "$1-$2-$3");
+                        const ev = [];
+                        if (ex.exposure) ev.push(ex.exposure < 1 ? "1/" + Math.round(1 / ex.exposure) + " s" : parseFloat(ex.exposure.toFixed(1)) + " s");
+                        if (ex.fnum) ev.push("f/" + parseFloat(ex.fnum.toFixed(1)));
+                        if (ex.iso) ev.push("ISO " + ex.iso);
+                        if (ex.focal) ev.push(parseFloat(ex.focal.toFixed(1)) + " mm");
+                        if (ev.length) v.exposure = ev.join(" · ");
+                    } else if (b[0] === 137 && metaAscii(b, 1, 3) === "PNG" && b.length > 26) {
+                        const kinds = { 0: "grayscale", 2: "RGB", 3: "indexed", 4: "grayscale + alpha", 6: "RGBA" };
+                        if (kinds[b[25]]) v.color = b[24] + "-bit " + kinds[b[25]];
+                    }
+                }
+            } catch (e) { /* the facts the page already has stay on show */ }
+            if (my === META.seq) metaPaint();
+        }
+        function metaInit() {
+            document.getElementById("infoBtn").addEventListener("click", () => {
+                META.open = !META.open;
+                try { store.setItem(META_KEY, META.open ? "1" : "0"); } catch (e) {}
+                metaSync();
+            });
+        }
+
         async function openFile(filePath, fileType, fileName) {
             if (!recLeaveOk()) return;
             endPlaySession();
@@ -9289,6 +9735,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             // so filenames containing them resolve correctly instead of
             // getting truncated at a "fragment" or silently mangled.
             runModalCleanups();
+            metaReset();
             let fileUrl = hostedUrl(filePath);
             try { fileUrl = await urlForPath(filePath); } catch (err) { console.error(err); }
             if (seq !== openSeq) return; // another file was opened (or the preview closed) while this one was loading
@@ -9424,6 +9871,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     default:
                         showUnavailable(bodyEl, fileName, fileUrl);
                 }
+                const shown = previewKindOverride(fileName) || fileType;
+                if (seq === openSeq && (shown === "image" || shown === "video" || shown === "audio") && !isPlaylistFile) metaAttach(shown, filePath, fileName, bodyEl);
             } catch (err) {
                 console.error(err);
                 showUnavailable(bodyEl, fileName, fileUrl);
@@ -9509,6 +9958,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             modalEl.classList.remove("active");
             syncBackgroundInert();
             runModalCleanups();
+            metaReset();
             openSeq++;
             hideGallery();
 
