@@ -528,30 +528,25 @@
            can't conflict with a neighboring band regardless of source order. */
         @media (max-width: 1024px) and (min-width: 769px) {
             .tree-panel { width: 200px; }
-            /* Ext is the least essential column (the file icon + name already
-               convey type), so it's the first to go. */
-            .list-columns { --list-cols: 24px 24px 1fr 90px 100px 80px; }
-            .file-list-header .col-ext { display: none; }
-            .file-list.list-columns .col-ext { display: none; }
-            .file-list-header, .file-list.list-columns .file-card { gap: 0.35rem; }
+            /* Which list columns show is decided by the width of the file area itself, see the
+               #main[data-cols] rules below. */
         }
         @media (max-width: 768px) and (min-width: 641px) {
             .search-container { width: 150px; }
             .tree-panel { width: 170px; }
             .file-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
-            /* Ext gone (from the wider band above); Date goes next, Size and
-               Time are kept since "when" and "how big" matter more day-to-day
-               than the exact date. */
-            .list-columns { --list-cols: 24px 24px 1fr 90px 80px; }
-            .file-list-header .col-ext, .file-list-header .col-date { display: none; }
-            .file-list.list-columns .col-ext, .file-list.list-columns .col-date { display: none; }
-            .file-list-header, .file-list.list-columns .file-card { gap: 0.35rem; }
         }
-        @media (max-width: 640px) {
-            .list-columns { --list-cols: 24px 24px 1fr 80px; }
-            .file-list-header .col-ext, .file-list-header .col-date, .file-list-header .col-time { display: none; }
-            .file-list.list-columns .col-ext, .file-list.list-columns .col-date, .file-list.list-columns .col-time { display: none; }
-        }
+        /* List columns thin out by how wide the file area is (it shrinks with the window, the folder tree
+           and the text size, which a plain window breakpoint cannot see). The page sets data-cols on #main:
+           time goes first, then date, then ext, and Size always stays. */
+        #main[data-cols="no-time"] .list-columns { --list-cols: 24px 24px 1fr 70px 90px 100px; }
+        #main[data-cols="no-time"] .list-columns .col-time { display: none; }
+        #main[data-cols="ext-size"] .list-columns { --list-cols: 24px 24px 1fr 60px 80px; }
+        #main[data-cols="ext-size"] .list-columns .col-time, #main[data-cols="ext-size"] .list-columns .col-date { display: none; }
+        #main[data-cols="size"] .list-columns { --list-cols: 24px 24px 1fr 80px; }
+        #main[data-cols="size"] .list-columns .col-time, #main[data-cols="size"] .list-columns .col-date, #main[data-cols="size"] .list-columns .col-ext { display: none; }
+        #main[data-cols] .list-columns .file-list-header, #main[data-cols] .list-columns .file-card { gap: 0.35rem; }
+        #main[data-cols="all"] .list-columns .file-list-header, #main[data-cols="all"] .list-columns .file-card { gap: 0.5rem; }
         .empty-state { text-align: center; padding: 2rem; color: var(--text-secondary); }
         .empty-state svg:not(.empty-state-illustration) { width: 40px; height: 40px; margin-bottom: 0.5rem; opacity: 0.5; }
         .empty-state h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--text-primary); }
@@ -683,7 +678,7 @@
         .eq-bands { display: flex; justify-content: space-between; gap: 0.1rem; }
         .eq-band { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; flex: 1 1 0; min-width: 0; }
         .eq-val, .eq-freq { font-size: 0.65rem; line-height: 1; color: var(--text-muted); font-variant-numeric: tabular-nums; }
-        .eq-slider { writing-mode: vertical-lr; direction: rtl; -webkit-appearance: slider-vertical; appearance: auto; height: clamp(60px, 12vh, 100px); width: 1.5rem; margin: 0; accent-color: var(--accent); cursor: pointer; }
+        .eq-slider { writing-mode: vertical-lr; direction: rtl; -webkit-appearance: slider-vertical; appearance: auto; height: var(--eq-slider-h, clamp(36px, 8vh, 64px)); width: 1.5rem; margin: 0; accent-color: var(--accent); cursor: pointer; }
         .eq-selects { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
         .eq-sel { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
         .eq-sel-label { font-size: 0.65rem; line-height: 1; font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); color: var(--text-muted); }
@@ -699,12 +694,12 @@
         .eq-bal input:disabled { opacity: 0.45; cursor: not-allowed; }
         .eq-live { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; min-height: 1.3em; }
         .player-info-btn.copied { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); }
-        .preview-code { width: 100%; min-height: 100%; padding: 0.5rem; background: var(--bg-primary); }
+        .preview-code { width: 100%; min-height: 100%; flex: 0 0 auto; box-sizing: border-box; padding: 0.5rem; background: var(--bg-primary); }
         /* Preview text has its own size (Settings > Font Size > Preview text), independent of the interface size. */
         .preview-code pre { font-family: var(--font-mono); font-size: var(--preview-font-size, 0.8rem); line-height: 1.4; tab-size: 4; }
         .preview-code pre code { font-family: inherit; font-size: inherit; line-height: inherit; }
         .preview-code.line-numbers pre { counter-reset: line; white-space: pre-wrap; overflow-wrap: anywhere; word-break: normal; }
-        .preview-code.line-numbers pre .line { display: block; counter-increment: line; }
+        .preview-code.line-numbers pre .line { display: block; counter-increment: line; padding-left: 3.6em; text-indent: -3.6em; }
         .preview-code.line-numbers pre .line::before { content: counter(line); display: inline-block; width: 3em; margin-right: 1em; text-align: right; color: var(--text-muted); user-select: none; font-size: 0.9em; }
         .preview-pdf { width: 100%; height: 90vh; border: none; }
         /* Skip link: off-screen until a keyboard user tabs to it. */
@@ -3363,6 +3358,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         const FONT_SIZE_MIN = 10, FONT_SIZE_MAX = 26;
         function updateFontSizeLabel() {
             document.getElementById("fontSizeLabel").textContent = currentFontSize + "px";
+            updateListColumns();
         }
         function changeFontSize(e) {
             (currentFontSize = Math.max(FONT_SIZE_MIN, Math.min(FONT_SIZE_MAX, currentFontSize + e))),
@@ -4074,12 +4070,21 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             // Two windows in one panel: the equalizer (main) and the Effects window. Only one is shown at a time.
             const viewMain = q("eqMain"), viewFx = q("eqFx");
             let fxOpen = false;
+            // The bands start at their normal height and are shortened only as far as needed so the panel
+            // never needs its own scrollbar (the window it sits in can be short).
+            const fitSliders = () => {
+                if (!panel.isConnected || !sliders.length || viewMain.hidden) return;
+                panel.style.removeProperty("--eq-slider-h");
+                const over = panel.scrollHeight - panel.clientHeight;
+                if (over > 0) panel.style.setProperty("--eq-slider-h", Math.max(28, Math.floor(sliders[0].getBoundingClientRect().height - over)) + "px");
+            };
             const showView = (fx) => {
                 fxOpen = fx;
                 viewMain.hidden = fx;
                 viewFx.hidden = !fx;
                 panel.setAttribute("aria-label", fx ? "Sound effects" : "Sound: leveling and equalizer");
                 (fx ? q("eqBackBtn") : q("eqFxBtn")).focus();
+                if (!fx) fitSliders();
             };
             q("eqFxBtn").addEventListener("click", () => showView(true));
             q("eqBackBtn").addEventListener("click", () => showView(false));
@@ -4183,6 +4188,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (btn) btn.setAttribute("aria-expanded", "true");
             sync();
             (ready ? q("eqPreset") : q("eqCloseBtn")).focus();
+            fitSliders();
+            if (typeof ResizeObserver === "function") {
+                const ro = new ResizeObserver(() => { if (!panel.isConnected) ro.disconnect(); else fitSliders(); });
+                ro.observe(host);
+            }
         }
         // Adds the Equalizer button next to the stream-info button (top left of the audio player).
         function attachEqButton(mediaEl) {
@@ -4584,6 +4594,15 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const open = !!document.querySelector(".modal-overlay.active");
             document.querySelectorAll(".header, .app-container").forEach((el) => { el.inert = open; });
         }
+        // Chooses how many list columns fit in the file area: all, no time, ext + size, or size only.
+        // Widths are in px at 16px text and scale with the interface text size.
+        function updateListColumns() {
+            const mainEl = document.getElementById("main");
+            if (!mainEl) return;
+            const w = mainEl.clientWidth / ((parseFloat(getComputedStyle(document.documentElement).fontSize) || 16) / 16);
+            const mode = w >= 680 ? "all" : w >= 590 ? "no-time" : w >= 450 ? "ext-size" : "size";
+            if (mainEl.dataset.cols !== mode) mainEl.dataset.cols = mode;
+        }
         function updateSearchClearVisibility() {
             const input = document.getElementById("search");
             const btn = document.getElementById("searchClearBtn");
@@ -4635,6 +4654,9 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 });
             }, { passive: true });
             window.addEventListener("resize", invalidateMainPadTopCache, { passive: true });
+            if (typeof ResizeObserver === "function") new ResizeObserver(updateListColumns).observe(mainEl);
+            else window.addEventListener("resize", updateListColumns, { passive: true });
+            updateListColumns();
 
             const searchInput = document.getElementById("search");
             let searchDebounceTimer;
@@ -4690,6 +4712,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 const songsOpen = document.getElementById("songsModal").classList.contains("active");
                 const plistOpen = document.getElementById("playlistModal").classList.contains("active");
                 if (e.key === "Escape") {
+                    if (document.activeElement && document.activeElement.id === "search" && !document.querySelector(".modal-overlay.active")) {
+                        const si = document.activeElement;
+                        if (si.value) clearSearch(); else si.blur();
+                        return;
+                    }
                     if (document.getElementById("localModal").classList.contains("active")) { closeLocalModal(); return; }
                     const settingsMenuEl = document.getElementById("settingsMenu");
                     const themeMenuEl = document.getElementById("themeColorMenu");
@@ -5648,6 +5675,30 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 announce(all.length === 0 ? `No results for "${searchQuery}"` : `${all.length} result${all.length === 1 ? "" : "s"} for "${searchQuery}"`);
             }
 
+            if (visibleItems.length === 0 && !searchQuery && currentPath.length > 0 && !fileIndex.partial && !LOCAL.active) {
+                // The address points at something that is not a folder: open the file if it is one, otherwise say so.
+                const parent = currentPath.slice(0, -1), leaf = currentPath[currentPath.length - 1];
+                let dir = fileIndex.root;
+                for (const n of parent) { const t = dir && dir.find((x) => x.name === n && x.type === "directory"); dir = t ? t.children : null; }
+                const hit = dir && dir.find((x) => x.name === leaf);
+                if (hit && hit.type === "file") {
+                    const fp = parent.concat(leaf).join("/");
+                    navigateTo(parent);
+                    setTimeout(() => openFile(fp, hit.category, hit.name), 0);
+                    return;
+                }
+                if (!hit) {
+                    mainEl.innerHTML = `
+          <div class="empty-state">
+            ${emptyStateIllustrations.folder}
+            <h2>Not found</h2>
+            <p>"${escapeHtml(currentPath.join("/"))}" does not exist here.</p>
+            <p><button type="button" class="theme-reset-btn empty-action" data-act="go-home">Go to the home folder</button></p>
+          </div>
+        `;
+                    return;
+                }
+            }
             if (visibleItems.length === 0) {
                 mainEl.innerHTML = `
           <div class="empty-state">
@@ -6116,7 +6167,10 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         const MAX_PREVIEW_BYTES = 2 * 1024 * 1024;
         async function fetchTextPreview(url) {
             if (fetchCache.has(url)) return { text: await fetchTextCached(url), truncated: false };
-            const response = await fetch(url);
+            // A file from a local folder is read straight from the File: no network request, so a page that
+            // restricts fetch() (an embedded or sandboxed preview) can still show it.
+            const localFile = LOCAL.active && LOCAL.byUrl && LOCAL.byUrl.get(url);
+            const response = localFile ? { ok: true, status: 200, body: localFile.stream(), text: () => localFile.text() } : await fetch(url);
             if (!response.ok) {
                 const err = new Error(`HTTP ${response.status}`);
                 err.status = response.status;
@@ -10691,8 +10745,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             // getting truncated at a "fragment" or silently mangled.
             runModalCleanups();
             metaReset();
-            let fileUrl = hostedUrl(filePath);
-            try { fileUrl = await urlForPath(filePath); } catch (err) { console.error(err); }
+            let fileUrl = hostedUrl(filePath), loadErr = null;
+            try { fileUrl = await urlForPath(filePath); } catch (err) { console.error(err); if (LOCAL.active) loadErr = err; }
             if (seq !== openSeq) return; // another file was opened (or the preview closed) while this one was loading
             // The same URL, safe to drop into an HTML attribute string.
             const fileUrlAttr = escapeHtml(fileUrl);
@@ -10718,6 +10772,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             syncBackgroundInert();
             if (!wasOpen) focusWhenReady("closeBtn", "modal");
             const o = fileUrlAttr;
+            if (loadErr) { showUnavailable(bodyEl, fileName, fileUrl, loadErr); return; }
             try {
                 switch (previewKindOverride(fileName) || fileType) {
                     case "md-view":
@@ -10838,6 +10893,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             let reason = "This file cannot be previewed.";
             if (err && err.status === 404) reason = "This file could not be found (404).";
             else if (err && err.status) reason = `The server returned an error (HTTP ${err.status}).`;
+            else if (err && LOCAL.active) reason = "This file couldn't be read from the local folder. If it was changed or moved since the folder was opened, open the folder again.";
             else if (err) reason = "This file couldn't be loaded — it may be blocked by CORS or a network issue.";
             containerEl.innerHTML = `
         <div class="preview-unavailable">
@@ -11198,15 +11254,27 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         async function getLocalFile(path) {
             const ent = LOCAL.files.get(path);
             if (!ent) { const err = new Error("Not found"); err.status = 404; throw err; }
-            if (!ent.file) ent.file = await ent.handle.getFile();
+            // A picked folder keeps live handles, so ask for the file again each time: a File taken when the
+            // folder was opened stops being readable once the file is saved again, which made previews fail.
+            if (ent.handle) {
+                let f;
+                try { f = await ent.handle.getFile(); }
+                catch (e) { const err = new Error("Not found"); err.status = e && e.name === "NotFoundError" ? 404 : 0; err.local = true; throw err; }
+                if (!ent.file || ent.file.lastModified !== f.lastModified || ent.file.size !== f.size) {
+                    const old = LOCAL.urls.get(path);
+                    if (old) { URL.revokeObjectURL(old); LOCAL.urls.delete(path); if (LOCAL.byUrl) LOCAL.byUrl.delete(old); }
+                }
+                ent.file = f;
+            }
             return ent.file;
         }
         // A URL the browser can load for a library file. Hosted: the relative URL.
         // Local: a blob: URL for the picked File (made lazily, revoked on close).
         async function urlForPath(path) {
             if (!LOCAL.active) return hostedUrl(path);
+            const f = await getLocalFile(path); // also drops the old URL when the file has changed on disk
             let u = LOCAL.urls.get(path);
-            if (!u) { u = URL.createObjectURL(await getLocalFile(path)); LOCAL.urls.set(path, u); }
+            if (!u) { u = URL.createObjectURL(f); LOCAL.urls.set(path, u); (LOCAL.byUrl || (LOCAL.byUrl = new Map())).set(u, f); }
             return u;
         }
         async function blobForPath(path, signal) {
@@ -12303,6 +12371,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         function revokeLocalUrls() {
             for (const u of LOCAL.urls.values()) URL.revokeObjectURL(u);
             LOCAL.urls.clear();
+            if (LOCAL.byUrl) LOCAL.byUrl.clear();
         }
         function syncModeUi() {
             const local = LOCAL.active;
@@ -12437,7 +12506,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const $ = (id) => document.getElementById(id);
             $("treeCollapseAll").addEventListener("click", collapseAllFolders);
             $("breadcrumb").addEventListener("click", (e) => { if (e.target.closest("#zipFolderBtn")) downloadFolderZip(); });
-            $("main").addEventListener("click", (e) => { if (e.target.closest('[data-act="open-local"]')) openLocalFolder(); });
+            $("main").addEventListener("click", (e) => { if (e.target.closest('[data-act="open-local"]')) openLocalFolder(); else if (e.target.closest('[data-act="go-home"]')) navigateTo([]); });
             $("localBtn").addEventListener("click", openLocalFolder);
             $("localOpenBtn").addEventListener("click", () => { $("settingsMenu").classList.remove("active"); $("settingsBtn").setAttribute("aria-expanded", "false"); openLocalFolder(); });
             $("localCloseBtn").addEventListener("click", closeLocalFolder);
