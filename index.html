@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <script>(function(){try{window.__idx={};["./file_index_lean.json","./file_index.json"].forEach(function(u){var p=fetch(u).then(function(r){if(!r.ok)throw new Error("Failed to load "+u);return r.json();});p.catch(function(){});window.__idx[u]=p;});}catch(e){}})();</script>
     <script>(function(){try{var t=localStorage.getItem("theme");if(t==="concrete-custom"){t="concrete";localStorage.setItem("theme",t);}if(t==="vivid")document.documentElement.setAttribute("data-vivid","1");else if(t&&t!=="auto")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
     <meta name="referrer" content="no-referrer" />
@@ -213,7 +214,9 @@
             --radius: 16px; --radius-sm: 10px; --radius-lg: 22px; --radius-full: 999px;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { font-size: var(--font-size-base); }
+        html { font-size: var(--font-size-base); overscroll-behavior: none; }
+        /* A flick past the end of a list or panel stays in it (on phones it would otherwise pull the whole page to refresh, which stops the stream) */
+        .main, .tree-content, .modal-body, .settings-menu-body, .stats-body, .songs-body, .eq-panel { overscroll-behavior: contain; }
         body {
             font-family: var(--font-ui);
             background: var(--bg-primary);
@@ -1614,6 +1617,17 @@ html[data-theme="concrete"] #playlistRec,
 html[data-theme="concrete"] #playlistRec.rec-on { --c: var(--ink); color: var(--red) !important; border-color: var(--red) !important; -webkit-text-stroke: 0; }
 html[data-theme="concrete"] #playlistRec .ico-c { color: var(--red); }
 html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(--panel) !important; filter: none; }
+
+        /* ---- Scrolling titles (Marquee in the script) ----
+           A title that is wider than its line scrolls: left for left-to-right text, right for Arabic, Farsi, Hebrew and the like,
+           rests a moment at the start of every lap, loops with a gap, and stops while the pointer is over it (or a finger is held on it).
+           The second copy used for the loop is generated content, so the element's text stays exactly the title. */
+        .mq-on { text-overflow: clip; text-align: left; --mq-fade: 0.9em;
+            -webkit-mask-image: linear-gradient(to right, transparent 0, #000 var(--mq-fade), #000 calc(100% - var(--mq-fade)), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 var(--mq-fade), #000 calc(100% - var(--mq-fade)), transparent 100%); }
+        .mq-on > .mq-t { display: inline-block; white-space: nowrap; will-change: transform; unicode-bidi: isolate; }
+        .mq-on > .mq-t::after { content: attr(data-mq); content: attr(data-mq) / ""; padding-inline-start: 3em; }
+        @media (prefers-reduced-motion: reduce) { .mq-on > .mq-t { will-change: auto; } }
 </style>
 </head>
 <body>
@@ -3390,32 +3404,22 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const t = e.toLowerCase();
             return t.endsWith(".m3u") || t.endsWith(".m3u8");
         }
-        function preprocessFiles(nodes, pathPrefix = "") {
+        function preprocessFiles(nodes, pathPrefix = "", prefixArr = []) {
             for (const node of nodes) {
                 const currentPathStr = pathPrefix ? `${pathPrefix}/${node.name}` : node.name;
                 const searchKey = currentPathStr.toLowerCase();
-                const navPath = pathPrefix ? [...pathPrefix.split('/'), node.name] : [node.name];
+                const navPath = prefixArr.length ? [...prefixArr, node.name] : [node.name];
 
-                // Precompute fuzzy-search keys once per file so keystrokes don't
-                // re-derive them: normalizedKey (path with separators/punctuation
-                // collapsed to spaces), compactKey (normalizedKey with spaces
-                // removed, for subsequence matching), boundarySet (word-start
-                // indices in compactKey, for bonus weighting).
-                const normalizedKey = searchKey.replace(/[^a-z0-9]+/g, " ").trim().replace(/\s+/g, " ");
-                const words = normalizedKey.length ? normalizedKey.split(" ") : [];
-                const boundarySet = new Set();
-                let compactKey = "";
-                for (const w of words) {
-                    boundarySet.add(compactKey.length);
-                    compactKey += w;
-                }
+                // Precompute the search key once per file so keystrokes don't
+                // re-derive it: normalizedKey is the path with separators and
+                // punctuation collapsed to single spaces. The two fuzzy-match keys
+                // (compactKey, boundarySet) are only built the first time a search
+                // gets that far for an item (see fuzzyKeys), which keeps start-up
+                // and memory small for large libraries.
+                const normalizedKey = searchKey.replace(/[^a-z0-9]+/g, " ").trim();
 
-                // Parse each item's modified date once and cache it; also cache
-                // on the original tree node since getCurrentItems()/render()
-                // read directly from fileIndex.root for date sorting.
-                let dateObj;
-                try { dateObj = getItemDate(node); } catch (err) { dateObj = null; }
-                node.dateObj = dateObj;
+                // The modified date is parsed the first time something needs it
+                // (see itemDate), not for every file at start-up.
                 // The index no longer stores a ready-made "1.2 MB" string
                 // (the page can make it from the byte size), so fill it in
                 // here once, on the tree node and on the flattened copy.
@@ -3429,18 +3433,42 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     navPath: navPath,
                     searchKey: searchKey,
                     normalizedKey: normalizedKey,
-                    compactKey: compactKey,
-                    boundarySet: boundarySet,
-                    parentPath: pathPrefix.toLowerCase(),
-                    dateObj: dateObj
+                    parentPath: pathPrefix.toLowerCase()
                 });
                 if (node.type === "file") filesByPath.set(currentPathStr, allFiles[allFiles.length - 1]);
                 if (node.type === "directory" && node.children) {
-                    preprocessFiles(node.children, currentPathStr);
+                    preprocessFiles(node.children, currentPathStr, navPath);
                 }
             }
         }
+        // The fuzzy-match keys, built on first use and then kept on the item:
+        // compactKey (normalizedKey with the spaces removed, for subsequence
+        // matching) and boundarySet (word-start indices in compactKey, for
+        // bonus weighting).
+        function fuzzyKeys(item) {
+            if (item.compactKey !== undefined) return item;
+            const words = item.normalizedKey.length ? item.normalizedKey.split(" ") : [];
+            const boundarySet = new Set();
+            let compactKey = "";
+            for (const w of words) {
+                boundarySet.add(compactKey.length);
+                compactKey += w;
+            }
+            item.compactKey = compactKey;
+            item.boundarySet = boundarySet;
+            return item;
+        }
 
+        // Cheap yes/no version of the fuzzy test, with nothing allocated. `query` is letters and digits only,
+        // so the spaces in `norm` can never match: this is the same test as on compactKey.
+        function isSubsequence(query, norm) {
+            let qi = 0;
+            const qn = query.length;
+            for (let i = 0; i < norm.length && qi < qn; i++) {
+                if (norm.charCodeAt(i) === query.charCodeAt(qi)) qi++;
+            }
+            return qi === qn;
+        }
         // Scores a single fuzzy-subsequence match of `query` against `str`.
         // Returns null if `query`'s characters don't all appear in order within `str`.
         // Rewards consecutive runs of matched characters and matches that land on
@@ -3512,7 +3540,9 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             // Cheap length check before the character-by-character scan below:
             // a query longer than the path it's being matched against can never
             // be a subsequence, so skip the scan entirely.
-            if (compactQuery.length > 0 && compactQuery.length <= item.compactKey.length) {
+            if (compactQuery.length > 0 && compactQuery.length <= normKey.length && isSubsequence(compactQuery, normKey)) {
+                // Only an item that really matches gets its fuzzy keys built (and kept for the next keystroke).
+                fuzzyKeys(item);
                 const fuzzy = fuzzySubsequenceScore(compactQuery, item.compactKey, item.boundarySet);
                 if (fuzzy !== null) {
                     return 300 + fuzzy - item.compactKey.length * 0.05;
@@ -4436,7 +4466,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         // that is opened shows a loading placeholder.
         const LEAN_INDEX_URL = "./file_index_lean.json";
         const FULL_INDEX_URL = "./file_index.json";
+        // The head script has already started both downloads, so the first request for each file just
+        // collects that one (later requests, such as a retry, fetch again).
         function fetchJson(url) {
+            const early = window.__idx && window.__idx[url];
+            if (early) { delete window.__idx[url]; return early; }
             return fetch(url).then((r) => {
                 if (!r.ok) throw new Error("Failed to load " + url);
                 return r.json();
@@ -4608,11 +4642,13 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 updateSearchClearVisibility();
                 clearTimeout(searchDebounceTimer);
                 searchDebounceTimer = setTimeout(() => {
-                    searchQuery = e.target.value.toLowerCase().trim();
+                    const next = e.target.value.toLowerCase().trim();
+                    if (next === searchQuery) return;
+                    searchQuery = next;
                     searchResultLimit = 100;
-                    render();
                     document.getElementById("main").scrollTop = 0;
-                }, 150);
+                    render();
+                }, 90);
             });
             document.getElementById("searchClearBtn").addEventListener("click", clearSearch);
             document.getElementById("logoHome").addEventListener("click", () => navigateTo([]));
@@ -5029,7 +5065,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                         }
                     });
                 },
-                { rootMargin: "50px" }
+                { rootMargin: "300px 0px" }
             );
         }
         function getCurrentItems() {
@@ -5086,13 +5122,22 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         // preprocessFiles for allFiles entries) but falls back to computing
         // it live, since items pulled from fileIndex.root (the tree used by
         // getCurrentItems/render) never had dateObj attached to them.
-        function itemDateMs(item) {
-            return (item.dateObj ?? getItemDate(item))?.getTime() ?? 0;
+        function itemDate(item) {
+            let d = item.dateObj;
+            if (d === undefined) { try { d = getItemDate(item); } catch (err) { d = null; } item.dateObj = d; }
+            return d;
         }
+        function itemDateMs(item) {
+            return itemDate(item)?.getTime() ?? 0;
+        }
+        // One shared formatter / collator: building one per call (what toLocaleTimeString and
+        // localeCompare do behind the scenes) is the slow part of drawing and sorting a big folder.
+        const TIME_FORMAT = new Intl.DateTimeFormat([], { hour: "2-digit", minute: "2-digit" });
+        const NAME_COLLATOR = new Intl.Collator();
         const MONTH_ABBR = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
         function formatItemDate(item) {
             if (item.dateStr !== undefined) return item.dateStr;
-            const d = item.dateObj ?? getItemDate(item);
+            const d = itemDate(item);
             if (!d) { item.dateStr = "—"; return item.dateStr; }
             const day = String(d.getDate()).padStart(2, "0");
             item.dateStr = `${d.getFullYear()}/${MONTH_ABBR[d.getMonth()]}/${day}`;
@@ -5100,8 +5145,8 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
         function formatItemTime(item) {
             if (item.timeStr !== undefined) return item.timeStr;
-            const d = item.dateObj ?? getItemDate(item);
-            item.timeStr = d ? d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "—";
+            const d = itemDate(item);
+            item.timeStr = d ? TIME_FORMAT.format(d) : "—";
             return item.timeStr;
         }
         function sortItems(items) {
@@ -5112,11 +5157,11 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 if (a.type !== b.type) return dirs[a.type] - dirs[b.type];
                 switch (sortBy) {
                     case "name-desc":
-                        return b.name.localeCompare(a.name);
+                        return NAME_COLLATOR.compare(b.name, a.name);
                     case "ext-asc":
-                        return getFileExtension(a.name).localeCompare(getFileExtension(b.name)) || a.name.localeCompare(b.name);
+                        return NAME_COLLATOR.compare(getFileExtension(a.name), getFileExtension(b.name)) || NAME_COLLATOR.compare(a.name, b.name);
                     case "ext-desc":
-                        return getFileExtension(b.name).localeCompare(getFileExtension(a.name)) || a.name.localeCompare(b.name);
+                        return NAME_COLLATOR.compare(getFileExtension(b.name), getFileExtension(a.name)) || NAME_COLLATOR.compare(a.name, b.name);
                     case "size-desc":
                         return getItemSize(b) - getItemSize(a);
                     case "size-asc":
@@ -5126,10 +5171,10 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     case "date-desc":
                         return itemDateMs(b) - itemDateMs(a);
                     case "type":
-                        return (a.category || "").localeCompare(b.category || "") || a.name.localeCompare(b.name);
+                        return NAME_COLLATOR.compare(a.category || "", b.category || "") || NAME_COLLATOR.compare(a.name, b.name);
                     case "name-asc":
                     default:
-                        return a.name.localeCompare(b.name);
+                        return NAME_COLLATOR.compare(a.name, b.name);
                 }
             });
             return sorted;
@@ -5201,10 +5246,12 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 expandedFolders.add(accumulated);
             }
             persistTreeExpanded();
-            render();
+            // The side lists and the scroll reset go first and the big list last, so the page is laid out once
+            // for the new folder instead of again after every step.
             renderPinnedFolders();
             renderFavoriteFiles();
             document.getElementById("main").scrollTop = 0;
+            render();
             syncHashWithPath();
         }
         // --- Pinned folders ---------------------------------------------
@@ -5253,40 +5300,42 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         // rather than a CSS direction:rtl trick, which corrupts strings with
         // symmetric punctuation at the edges and can shuffle a trailing extension.
         function measurePinnedTextWidth(text, font) {
-            const canvas = measurePinnedTextWidth._canvas || (measurePinnedTextWidth._canvas = document.createElement("canvas"));
-            const ctx = canvas.getContext("2d");
-            ctx.font = font;
+            const ctx = measurePinnedTextWidth._ctx || (measurePinnedTextWidth._ctx = document.createElement("canvas").getContext("2d"));
+            if (ctx.font !== font) ctx.font = font;
             return ctx.measureText(text).width;
         }
         function truncatePinnedLabels(container) {
             if (!container) return;
             const els = container.querySelectorAll(".tree-pinned-name-stack[data-full]");
+            // All the measuring first, then all the writing: mixing them makes the browser re-lay out the page once per label.
+            const jobs = [];
             els.forEach((el) => {
-                const fullText = el.dataset.full;
                 const availWidth = el.clientWidth;
-                if (!availWidth) {
-                    el.textContent = fullText;
-                    return;
+                let font = "";
+                if (availWidth) {
+                    const style = getComputedStyle(el);
+                    font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
                 }
-                const style = getComputedStyle(el);
-                const font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
-                if (measurePinnedTextWidth(fullText, font) <= availWidth) {
-                    el.textContent = fullText;
-                    return;
-                }
-                const ellipsis = "\u2026";
-                let lo = 0, hi = fullText.length;
-                while (lo < hi) {
-                    const mid = Math.ceil((lo + hi) / 2);
-                    const candidate = ellipsis + fullText.slice(fullText.length - mid);
-                    if (measurePinnedTextWidth(candidate, font) <= availWidth) {
-                        lo = mid;
-                    } else {
-                        hi = mid - 1;
-                    }
-                }
-                el.textContent = lo > 0 ? ellipsis + fullText.slice(fullText.length - lo) : ellipsis;
+                jobs.push({ el, availWidth, font, fullText: el.dataset.full });
             });
+            for (const { el, availWidth, font, fullText } of jobs) {
+                let out = fullText;
+                if (availWidth && measurePinnedTextWidth(fullText, font) > availWidth) {
+                    const ellipsis = "\u2026";
+                    let lo = 0, hi = fullText.length;
+                    while (lo < hi) {
+                        const mid = Math.ceil((lo + hi) / 2);
+                        const candidate = ellipsis + fullText.slice(fullText.length - mid);
+                        if (measurePinnedTextWidth(candidate, font) <= availWidth) {
+                            lo = mid;
+                        } else {
+                            hi = mid - 1;
+                        }
+                    }
+                    out = lo > 0 ? ellipsis + fullText.slice(fullText.length - lo) : ellipsis;
+                }
+                if (el.textContent !== out) el.textContent = out;
+            }
         }
         let pinnedTruncateResizeTimer = null;
         window.addEventListener("resize", () => {
@@ -12417,6 +12466,152 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             });
             syncModeUi();
         }
+        // ======================================================================
+        // Scrolling titles. A station name or song title that is wider than its line is not cut off with "…":
+        // it scrolls, left for left-to-right text and right for right-to-left text (Arabic, Farsi, Hebrew, ...),
+        // rests for a moment at the start of every lap so the beginning can be read, and loops seamlessly.
+        // Hovering a title (or holding a finger on it) stops it. Titles that fit are never touched, and nobody has to
+        // call this: it watches the player window and picks up every title the page writes there.
+        // Tune the feel with the four numbers below.
+        // ======================================================================
+        const Marquee = (() => {
+            const SELECTOR = ".np-song, .playlist-now-playing, #modalTitle";
+            const SPEED_EM = 2.8;   // scroll speed in letter heights per second (about 45 px on a 16 px title)
+            const HOLD_MS = 1800;   // rest at the start of every lap
+            const GAP_EM = 3;       // empty space between the end of a title and its next copy (keep equal to the CSS padding)
+            const FADE_EM = 0.9;    // width of the soft edge on both sides (keep equal to --mq-fade in the CSS)
+            const LETTER = /\p{L}/u;
+            const RTL_LETTER = /[\u0590-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]/;
+            const states = new WeakMap();
+            const queue = new Set();
+            const range = document.createRange();
+            const reduceMotion = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+            let raf = 0, ro = null;
+
+            function isRtl(text) {
+                let rtl = 0, ltr = 0;
+                for (const ch of text) {
+                    if (!LETTER.test(ch)) continue;
+                    if (RTL_LETTER.test(ch)) rtl++; else ltr++;
+                }
+                return rtl > 0 && rtl >= ltr;
+            }
+            function stateOf(el) {
+                let s = states.get(el);
+                if (s) return s;
+                s = { track: null, anim: null, text: "", w: 0, cw: 0, rtl: false, holds: new Set() };
+                states.set(el, s);
+                const hold = (why, on) => {
+                    if (on) s.holds.add(why); else s.holds.delete(why);
+                    if (s.anim) { if (s.holds.size) s.anim.pause(); else s.anim.play(); }
+                };
+                el.addEventListener("pointerenter", (e) => { if (e.pointerType !== "touch") hold("hover", true); });
+                el.addEventListener("pointerleave", () => hold("hover", false));
+                el.addEventListener("pointerdown", (e) => { if (e.pointerType === "touch") hold("touch", true); });
+                el.addEventListener("pointerup", () => hold("touch", false));
+                el.addEventListener("pointercancel", () => hold("touch", false));
+                if (ro) ro.observe(el, { box: "border-box" });
+                return s;
+            }
+            function queueEl(el) { queue.add(el); if (!raf) raf = requestAnimationFrame(flush); }
+            function queueAll() { document.querySelectorAll(SELECTOR).forEach(queueEl); }
+
+            // Three passes so the layout is read once for all titles: tidy up, measure, apply.
+            function flush() {
+                raf = 0;
+                const batch = [...queue];
+                queue.clear();
+                const plan = [];
+                for (const el of batch) {
+                    const s = stateOf(el);
+                    if (!el.isConnected) { if (ro) ro.unobserve(el); if (s.anim) s.anim.cancel(); s.anim = null; s.track = null; continue; }
+                    if (s.track && s.track.parentNode !== el) { // the page wrote a new title over the scrolling one
+                        if (s.anim) s.anim.cancel();
+                        s.anim = null; s.track = null;
+                        el.classList.remove("mq-on");
+                    }
+                    plan.push({ el, s });
+                }
+                for (const p of plan) {
+                    const { el, s } = p;
+                    p.text = el.textContent;
+                    if (!p.text) continue;
+                    const cs = getComputedStyle(el);
+                    const fs = parseFloat(cs.fontSize) || 16;
+                    const box = el.getBoundingClientRect();
+                    const k = el.offsetWidth ? box.width / el.offsetWidth : 1; // undo any transform scale (the window animates in)
+                    p.fs = fs;
+                    p.cw = el.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
+                    if (s.track) p.w = (s.track.getBoundingClientRect().width / k - GAP_EM * fs) / 2;
+                    else { range.selectNodeContents(el); p.w = range.getBoundingClientRect().width / k; }
+                }
+                const still = reduceMotion && reduceMotion.matches;
+                for (const p of plan) {
+                    const { el, s, text } = p;
+                    if (!text || p.cw <= 0) { if (s.track) release(el, s, text); continue; } // empty, or not on screen yet: the resize observer calls again
+                    const need = !still && p.w > p.cw + 1;
+                    if (!need) { if (s.track) release(el, s, text); continue; }
+                    const rtl = isRtl(text);
+                    if (s.track && s.text === text && s.rtl === rtl && Math.abs(s.w - p.w) < 0.5 && Math.abs(s.cw - p.cw) < 0.5) continue; // already scrolling just right
+                    start(el, s, text, rtl, p);
+                }
+            }
+            function release(el, s, text) {
+                if (s.anim) s.anim.cancel();
+                s.anim = null; s.track = null;
+                el.classList.remove("mq-on");
+                if (text && el.firstElementChild) el.textContent = text; // back to plain text
+            }
+            function start(el, s, text, rtl, p) {
+                if (s.anim) s.anim.cancel();
+                let track = s.track;
+                if (!track) {
+                    track = document.createElement("span");
+                    track.className = "mq-t";
+                    track.textContent = text;
+                    el.textContent = "";
+                    el.appendChild(track);
+                }
+                track.dir = rtl ? "rtl" : "ltr";
+                track.setAttribute("data-mq", text);
+                el.classList.add("mq-on");
+                const { w, cw, fs } = p;
+                const gap = GAP_EM * fs, inset = FADE_EM * fs, lap = w + gap;
+                const moveMs = (lap / (SPEED_EM * fs)) * 1000;
+                const total = HOLD_MS + moveMs, hf = HOLD_MS / total;
+                // Left-to-right: the title starts at the left and everything moves left by one lap.
+                // Right-to-left: the title starts at the right edge and everything moves right by one lap.
+                const a = rtl ? cw - inset - lap - w : inset;
+                const b = rtl ? a + lap : inset - lap;
+                s.track = track; s.text = text; s.w = w; s.cw = cw; s.rtl = rtl;
+                s.anim = track.animate(
+                    [{ transform: "translateX(" + a + "px)" }, { transform: "translateX(" + a + "px)", offset: hf }, { transform: "translateX(" + b + "px)" }],
+                    { duration: total, iterations: Infinity, easing: "linear" }
+                );
+                if (s.holds.size || el.matches(":hover")) { s.holds.add("hover"); s.anim.pause(); }
+            }
+
+            if (typeof ResizeObserver === "function") ro = new ResizeObserver((entries) => entries.forEach((e) => queueEl(e.target)));
+            else window.addEventListener("resize", queueAll, { passive: true });
+            if (reduceMotion && reduceMotion.addEventListener) reduceMotion.addEventListener("change", queueAll);
+            const mo = new MutationObserver((records) => {
+                for (const r of records) {
+                    const t = r.target.nodeType === 1 ? r.target : r.target.parentElement;
+                    const host = t && t.closest(SELECTOR);
+                    if (host) queueEl(host);
+                    for (const n of r.addedNodes) {
+                        if (n.nodeType !== 1) continue;
+                        if (n.matches(SELECTOR)) queueEl(n);
+                        n.querySelectorAll(SELECTOR).forEach(queueEl);
+                    }
+                }
+            });
+            if (Element.prototype.animate) {
+                mo.observe(document.getElementById("modal"), { childList: true, subtree: true, characterData: true });
+                queueAll();
+            }
+            return { refresh: queueAll };
+        })();
         init();
     </script>
 </body>
