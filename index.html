@@ -654,7 +654,24 @@
         .player-eq-btn.eq-on { border-color: var(--accent); color: var(--accent-text, var(--accent)); }
         .eq-panel { position: absolute; top: 2.9rem; left: 0.5rem; right: 0.5rem; z-index: 6; max-height: min(calc(100% - 3.4rem), calc(100dvh - 8rem)); overflow-y: auto; overscroll-behavior: contain; box-sizing: border-box; padding: 0.4rem 0.5rem 0.5rem; background: var(--bg-secondary); border: var(--bw) solid var(--border-color); border-radius: var(--radius-lg); color: var(--text-primary); display: flex; flex-direction: column; gap: 0.35rem; }
         .eq-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem; }
-        .eq-title { font-size: var(--label-size); font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); color: var(--text-muted); margin-right: auto; }
+        .eq-titlebox { display: inline-flex; align-items: center; gap: 0.35rem; margin-right: auto; }
+        .eq-title { font-size: var(--label-size); font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); color: var(--text-muted); }
+        /* Limiter light: dim normally, solid while the limiter is holding peaks back. */
+        .eq-lim { font-size: 0.6rem; line-height: 1; font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); padding: 0.15rem 0.3rem; border: var(--bw) solid var(--border-color); border-radius: var(--radius); color: var(--text-muted); opacity: 0.5; }
+        .eq-lim.on { opacity: 1; background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); }
+        .eq-view { display: flex; flex-direction: column; gap: 0.35rem; }
+        .eq-view[hidden] { display: none; }
+        .eq-chip.fx-on { border-color: var(--accent); color: var(--accent-text, var(--accent)); }
+        .eq-ico { width: 0.8rem; height: 0.8rem; vertical-align: -0.12em; margin-right: 0.25rem; }
+        .fx-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.6rem; padding-top: 0.4rem; border-top: var(--bw) solid var(--border-color); }
+        .fx-ctl { flex: 0 0 8.5rem; display: flex; align-items: center; }
+        .fx-ctl > .eq-chip:not(.eq-mini) { width: 100%; text-align: center; }
+        .fx-ctl .eq-bal { width: 100%; }
+        .fx-ctl .eq-bal input { flex: 1 1 auto; width: auto; min-width: 0; }
+        .fx-desc { flex: 1 1 12rem; min-width: 0; font-size: 0.72rem; line-height: 1.3; color: var(--text-muted); }
+        .eq-mini { display: inline-flex; align-items: center; padding: 0.2rem 0.3rem; }
+        .eq-mini svg { width: 0.8rem; height: 0.8rem; display: block; }
+        #eqBypassBtn { touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
         .eq-chip, .eq-close { font: inherit; font-size: var(--data-size); line-height: 1.2; padding: 0.2rem 0.5rem; background: var(--control-surface); color: var(--on-control); border: var(--bw) solid var(--border-color); border-radius: var(--radius); cursor: pointer; }
         .eq-chip:hover, .eq-close:hover { background: var(--control-surface-hover); border-color: var(--accent); }
         .eq-chip[aria-pressed="true"] { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); }
@@ -669,6 +686,15 @@
         .eq-sel-label { font-size: 0.65rem; line-height: 1; font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); color: var(--text-muted); }
         .eq-note { font-size: 0.72rem; line-height: 1.3; color: var(--text-muted); }
         .eq-note:empty { display: none; }
+        /* Every leveling hint sits in the same grid cell, so the cell is always as tall as the longest one and the
+           panel (and the sliders under it) never changes height when the mode or the live reading changes. */
+        .eq-hints { display: grid; }
+        .eq-hints > .eq-hint { grid-area: 1 / 1; visibility: hidden; }
+        .eq-hints > .eq-hint.on { visibility: visible; }
+        .eq-bal { display: inline-flex; align-items: center; gap: 0.25rem; font-size: var(--data-size); line-height: 1; color: var(--text-muted); }
+        .eq-bal input { width: 5rem; margin: 0; accent-color: var(--accent); cursor: pointer; }
+        .eq-bal input:disabled { opacity: 0.45; cursor: not-allowed; }
+        .eq-live { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; min-height: 1.3em; }
         .player-info-btn.copied { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); }
         .preview-code { width: 100%; min-height: 100%; padding: 0.5rem; background: var(--bg-primary); }
         /* Preview text has its own size (Settings > Font Size > Preview text), independent of the interface size. */
@@ -3516,7 +3542,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         }
         
         // ======================================================================
-        // Loudness leveler. Every stream goes through the same stages:
+        // Loudness leveler (on by default). Every stream goes through the same stages:
         //   source -> [optional compressor] -> level gain -> make-up gain -> equalizer -> limiter -> speakers
         // The level gain is the normalizer: the loudness of what comes out of the compressor is measured the way
         // EBU R128 / ITU-R BS.1770 does it (K-weighting, mean square, a 3 s short-term window, silence ignored)
@@ -3526,12 +3552,17 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
         const LEVEL_TARGET_LUFS = 16;   // stream loudness at the level gain's output, as -LUFS (-16 LUFS)
         const LEVEL_POST_DB = 14;       // make-up gain after it, tuned so the 25% slider sounds as loud as the old chain did (about -26 LUFS); above ~50% the limiter starts catching peaks
         const LEVEL_GAIN_MIN = -18, LEVEL_GAIN_MAX = 12; // dB the level gain may move
-        const LEVEL_KEY = "levelMode";
+        // Where the level gain sits before the first measurement of a stream (and again whenever a new stream starts).
+        // Loud stations need about -7 to -11 dB, so starting this low means nothing can come in louder than it will
+        // end up; quiet stations simply swell up to their level in the first second or two.
+        const LEVEL_START_DB = -14;
+        const LEVEL_KEY = "levelMode2"; // 2nd key: the leveler is on (Level) by default for everyone, whatever an older build saved
         const LEVEL_MODES = {
             off:    { label: "Off",    hint: "The stream plays exactly as sent.", comp: { ratio: 1, threshold: 0, knee: 0, attack: 0.01, release: 0.25 } },
             level:  { label: "Level",  hint: "Stations are matched to the same loudness. The music itself is not compressed.", comp: { ratio: 1, threshold: 0, knee: 0, attack: 0.01, release: 0.25 } },
             smooth: { label: "Smooth", hint: "Matched loudness plus gentle compression for steadier levels.", comp: { ratio: 2.2, threshold: -22, knee: 14, attack: 0.03, release: 0.4 } },
             night:  { label: "Night",  hint: "Matched loudness plus strong compression: loud parts come down, quiet parts come up.", comp: { ratio: 4, threshold: -30, knee: 12, attack: 0.01, release: 0.3 } },
+            speech: { label: "Speech", hint: "Matched loudness plus firm compression that keeps voices even. Best for talk radio and podcasts.", comp: { ratio: 3, threshold: -28, knee: 8, attack: 0.005, release: 0.2 } },
         };
         let levelMode = null;
         function getLevelMode() {
@@ -3554,13 +3585,15 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             lv.comp.knee.setTargetAtTime(p.knee, t, 0.05);
             lv.comp.attack.setTargetAtTime(p.attack, t, 0.05);
             lv.comp.release.setTargetAtTime(p.release, t, 0.05);
-            if (mode === "off") { lv.gainDb = 0; lv.gain.gain.setTargetAtTime(1, t, 0.08); }
+            // Off plays the stream untouched, but the meter keeps running, so switching a mode on lands on the right gain at once.
+            lv.gain.gain.setTargetAtTime(mode === "off" ? 1 : Math.pow(10, lv.gainDb / 20), t, 0.08);
         }
         function applyLevelModeAll() {
             if (!audioCtx || !audioPost) return;
             const off = getLevelMode() === "off";
             audioPost.gain.setTargetAtTime(off ? 1 : Math.pow(10, LEVEL_POST_DB / 20), audioCtx.currentTime, 0.08);
             activeLevelers.forEach((lv) => applyLevelMode(lv));
+            updateDeess();
         }
         // Pure control law, no Web Audio in it (so it can be tested). `e` is the block's energy summed over the channels,
         // already divided by volume squared; `now` is in ms. Returns the dB the level gain should move toward, or null
@@ -3596,19 +3629,72 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             return lv.gainDb;
         }
         function newLevelState(now) {
-            return { blocks: [], gainDb: 0, lufs: null, lastUpdate: now, fastUntil: now + 6000 };
+            return { blocks: [], gainDb: LEVEL_START_DB, lufs: null, lastUpdate: now, fastUntil: now + 6000 };
+        }
+        // Fades. Each element has a fade gain at the very end of its own chain. It is cut to silence when a stream is loading,
+        // buffering or paused and ramps up when playback (re)starts, so starts and resumes never begin with a click or an abrupt
+        // blast. A pause from the player's own controls (softPause) fades out first; a station change cuts the old audio at
+        // once because the player swaps the stream itself, but the new one always fades in.
+        const FADE_IN_S = 0.2, FADE_OUT_S = 0.08;
+        function fadeTo(lv, target, secs) {
+            if (!lv.fade || !audioCtx) return;
+            const g = lv.fade.gain, t = audioCtx.currentTime;
+            g.cancelScheduledValues(t);
+            g.setValueAtTime(g.value, t);
+            g.linearRampToValueAtTime(target, t + Math.max(secs, 0.005));
+            lv.fadeOn = target > 0;
+            lv.fadeSince = performance.now();
+        }
+        function muteLeveler(lv) {
+            if (!lv.fade || !audioCtx) return;
+            const g = lv.fade.gain, t = audioCtx.currentTime;
+            g.cancelScheduledValues(t);
+            g.setValueAtTime(0, t);
+            lv.fadeOn = false;
+            lv.fadeSince = performance.now();
+        }
+        // Pause with a short fade-out (user pauses only: button, space bar, media keys).
+        function softPause(el) {
+            const lv = levelers.get(el);
+            if (!lv || !lv.fade || !audioCtx || audioCtx.state !== "running" || el.paused || !lv.fadeOn) { el.pause(); return; }
+            if (lv.pausing) return;
+            lv.pausing = true;
+            const gen = lv.gen;
+            fadeTo(lv, 0, FADE_OUT_S);
+            setTimeout(() => {
+                lv.pausing = false;
+                if (lv.gen === gen) el.pause(); // the stream was swapped meanwhile: leave the new one alone
+            }, FADE_OUT_S * 1000 + 15);
+        }
+        // A new stream on a reused element: forget the previous station's measurement and gain, so the new one
+        // starts quietly instead of inheriting a gain that was right for another station.
+        function resetLeveler(lv) {
+            Object.assign(lv, newLevelState(performance.now()));
+            lv.gen = (lv.gen || 0) + 1;
+            lv.pausing = false;
+            muteLeveler(lv);
+            if (!audioCtx) return;
+            const t = audioCtx.currentTime;
+            lv.gain.gain.cancelScheduledValues(t);
+            lv.gain.gain.setTargetAtTime(getLevelMode() === "off" ? 1 : Math.pow(10, lv.gainDb / 20), t, 0.02);
         }
         function stopLeveler(lv) {
             if (lv.timer) { clearInterval(lv.timer); lv.timer = null; }
             activeLevelers.delete(lv);
+            if (lv.el && lv.listeners) lv.listeners.forEach(([ev, fn]) => lv.el.removeEventListener(ev, fn));
             try { lv.source.disconnect(); } catch (e) {}
         }
         function buildLeveler(ctx, source, el) {
             const comp = ctx.createDynamicsCompressor();
             const gain = ctx.createGain();
+            // Set before anything is connected: the very first samples already go through the safe starting gain.
+            gain.gain.value = getLevelMode() === "off" ? 1 : Math.pow(10, LEVEL_START_DB / 20);
             source.connect(comp);
             comp.connect(gain);
-            gain.connect(audioPost);
+            const fade = ctx.createGain();
+            fade.gain.value = el.paused ? 0 : 1; // silent until playback really starts (see the fades above)
+            gain.connect(fade);
+            fade.connect(audioPost);
             // Measurement tap after the compressor, before the level gain, so what it reads never depends on the gain it sets.
             const split = ctx.createChannelSplitter(2);
             comp.connect(split);
@@ -3624,15 +3710,24 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 return a;
             });
             const lv = Object.assign(newLevelState(performance.now()), {
-                el, source, comp, gain, an,
+                el, source, comp, gain, fade, an, gen: 0, pausing: false, fadeOn: !el.paused, fadeSince: performance.now(),
                 bufs: [new Float32Array(an[0].fftSize), new Float32Array(an[1].fftSize)],
                 timer: null,
             });
             activeLevelers.add(lv);
             applyLevelMode(lv);
+            lv.listeners = [
+                ["loadstart", () => resetLeveler(lv)],
+                ["emptied", () => resetLeveler(lv)],
+                ["waiting", () => muteLeveler(lv)],
+                ["pause", () => { lv.pausing = false; muteLeveler(lv); }],
+                ["playing", () => fadeTo(lv, 1, FADE_IN_S)],
+            ];
+            lv.listeners.forEach(([ev, fn]) => el.addEventListener(ev, fn));
             lv.timer = setInterval(() => {
                 if (!el.isConnected) { stopLeveler(lv); return; }
-                if (getLevelMode() === "off") { lv.lufs = null; return; }
+                // Safety net: if it is playing but the fade never came back up, bring it up (never leave a playing stream silent).
+                if (!lv.fadeOn && !lv.pausing && !el.paused && !el.seeking && el.readyState >= 3 && performance.now() - lv.fadeSince > 800) fadeTo(lv, 1, FADE_IN_S);
                 const v = el.muted ? 0 : el.volume;
                 if (el.paused || v < 0.003) { lv.lufs = null; return; }
                 let sum = 0;
@@ -3643,8 +3738,9 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     for (let i = 0; i < b.length; i++) s += b[i] * b[i];
                     sum += s / b.length;
                 }
+                if (lv.deessV === undefined || Math.abs(20 * Math.log10(v / lv.deessV)) > 0.5) { lv.deessV = v; updateDeess(v); }
                 const g = levelUpdate(lv, sum / (v * v), performance.now());
-                if (g !== null) lv.gain.gain.setTargetAtTime(Math.pow(10, g / 20), ctx.currentTime, 0.08);
+                if (g !== null && getLevelMode() !== "off") lv.gain.gain.setTargetAtTime(Math.pow(10, g / 20), ctx.currentTime, 0.08);
             }, 40);
             return lv;
         }
@@ -3653,6 +3749,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             if (audioCtx) return;
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             audioPost = audioCtx.createGain();
+            audioPost.gain.value = getLevelMode() === "off" ? 1 : Math.pow(10, LEVEL_POST_DB / 20);
             audioLimiter = audioCtx.createDynamicsCompressor();
             audioLimiter.threshold.value = -2;
             audioLimiter.knee.value = 0;
@@ -3722,7 +3819,37 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             "Electronic": [5, 4, 1, 0, -2, 2, 1, 1, 4, 5],
             "Hip-hop": [5, 4, 1, 3, -1, -1, 1, -1, 2, 3],
             "Acoustic": [4, 4, 3, 1, 2, 2, 3, 3, 3, 2],
+            "Treble reducer": [0, 0, 0, 0, 0, -1, -2, -4, -5, -6],
+            "Warm": [3, 3, 2, 1, 0, 0, -1, -2, -3, -4],
+            "Small speakers": [-9, -7, -3, 2, 3, 2, 1, 0, 0, 0],
+            "Speech": [-8, -6, -3, 0, 3, 4, 4, 2, -2, -5],
+            "Metal": [5, 4, 2, 0, -2, -3, 0, 3, 4, 5],
+            "Country": [-1, 0, 1, 2, 2, 1, 2, 3, 3, 2],
+            "R&B": [5, 6, 3, 1, -1, -1, 1, 1, 2, 3],
         };
+        const EQ_GROUPS = [
+            ["General", ["Flat", "Bass boost", "Bass reducer", "Treble boost", "Treble reducer", "Vocal boost", "Loudness", "Warm"]],
+            ["Speakers and speech", ["Small speakers", "Speech"]],
+            ["Genre", ["Rock", "Pop", "Jazz", "Classical", "Electronic", "Hip-hop", "Acoustic", "Metal", "Country", "R&B"]],
+        ];
+        // De-esser: the signal is split at DEESS_HZ with a Linkwitz-Riley crossover (two cascaded 2nd-order Butterworth
+        // filters per side, which add back up flat). Only the top band goes through a compressor, so harsh "s" and "sh"
+        // sounds and hissy cymbals are pushed down while everything below stays untouched. The compressor's threshold
+        // follows the volume slider and the leveling mode (the volume is applied before Web Audio, so the signal that
+        // reaches this stage is that much quieter). Web Audio compressors add make-up gain on their own, which would
+        // lift the top band whenever it is not being compressed, so it is taken back out with a trim gain.
+        const DEESS_HZ = 5500, DEESS_RATIO = 4, DEESS_KNEE = 0; // hard knee, so the make-up gain below is exact
+        const DEESS_THRESH_REL = -28;   // dB below the average program level
+        const DEESS_PROG_LEVELED = -2;  // program level at this stage with leveling on (-16 LUFS leveled, +14 dB make-up), at full volume
+        const DEESS_PROG_RAW = -12;     // a typical stream as sent, with leveling off
+        // Crossfeed: each ear also hears a quieter, low-passed, slightly delayed copy of the other channel (about 0.3 ms,
+        // roughly what the head adds with speakers), which stops hard-panned stereo from sitting inside the head.
+        // The direct path only loses its bass (a low shelf), so a centered bass note keeps its level (0.7 + 0.33) and the highs are not dulled.
+        const XFEED_HZ = 700, XFEED_DELAY = 0.0003, XFEED_SHELF_DB = -3.1, XFEED_CROSS = 0.33;
+        // Widener: mid/side with the side signal turned up by WIDE_K. L' = (1+k)/2 L + (1-k)/2 R, R' the mirror image, so
+        // anything identical in both channels (voices, bass) is left exactly as it was and only what differs is widened.
+        const WIDE_K = 1.7;
+        const BUTTER_Q = -3.0103; // Web Audio's Q for low/high-pass is in dB: 0.7071 linear
         function buildEqChain(ctx) {
             const input = ctx.createGain();
             const bands = EQ_FREQS.map((f, i) => {
@@ -3740,8 +3867,48 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             mono.channelInterpretation = "speakers";
             let node = input;
             for (const b of bands) { node.connect(b); node = b; }
-            node.connect(mono);
-            return { input, bands, mono, output: mono };
+            // De-esser: dry path and split path side by side; switching crossfades between them, so it is fully transparent when off.
+            const dsDry = ctx.createGain(), dsWet = ctx.createGain(), dsOut = ctx.createGain();
+            dsWet.gain.value = 0;
+            const biq = (type, f) => { const q = ctx.createBiquadFilter(); q.type = type; q.frequency.value = f; q.Q.value = BUTTER_Q; return q; };
+            const lp1 = biq("lowpass", DEESS_HZ), lp2 = biq("lowpass", DEESS_HZ), hp1 = biq("highpass", DEESS_HZ), hp2 = biq("highpass", DEESS_HZ);
+            const dsComp = ctx.createDynamicsCompressor();
+            dsComp.ratio.value = DEESS_RATIO; dsComp.knee.value = DEESS_KNEE; dsComp.attack.value = 0.001; dsComp.release.value = 0.06;
+            const dsTrim = ctx.createGain();
+            node.connect(dsDry); dsDry.connect(dsOut);
+            node.connect(lp1); lp1.connect(lp2); lp2.connect(dsWet);
+            node.connect(hp1); hp1.connect(hp2); hp2.connect(dsComp); dsComp.connect(dsTrim); dsTrim.connect(dsWet);
+            dsWet.connect(dsOut);
+            node = dsOut;
+            // A splitter only reads the left channel of a mono signal, so every splitter gets a stage in front that
+            // always hands it 2 channels (a mono source is copied to both sides).
+            const upmix = () => { const g = ctx.createGain(); g.channelCount = 2; g.channelCountMode = "explicit"; g.channelInterpretation = "speakers"; return g; };
+            // Crossfeed: direct paths plus low-passed, delayed cross paths; with the cross gains at 0 it is a plain pass-through.
+            const xs = ctx.createChannelSplitter(2), xm = ctx.createChannelMerger(2), xup = upmix();
+            node.connect(xup); xup.connect(xs);
+            const xd = [0, 1].map(() => { const f = ctx.createBiquadFilter(); f.type = "lowshelf"; f.frequency.value = XFEED_HZ; f.gain.value = 0; return f; });
+            const xc = [ctx.createGain(), ctx.createGain()];
+            xc.forEach((g) => { g.gain.value = 0; });
+            for (let ch = 0; ch < 2; ch++) {
+                xs.connect(xd[ch], ch); xd[ch].connect(xm, 0, ch);
+                const lp = ctx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = XFEED_HZ; lp.Q.value = BUTTER_Q;
+                const dl = ctx.createDelay(0.01); dl.delayTime.value = XFEED_DELAY;
+                xs.connect(lp, ch); lp.connect(dl); dl.connect(xc[ch]); xc[ch].connect(xm, 0, 1 - ch); // this channel feeds the other ear
+            }
+            // Widener: [L->L, L->R, R->L, R->R] gains; 1, 0, 0, 1 is a plain pass-through.
+            const ws = ctx.createChannelSplitter(2), wm = ctx.createChannelMerger(2);
+            xm.connect(ws);
+            const wide = [0, 1, 2, 3].map((i) => { const g = ctx.createGain(); g.gain.value = i === 0 || i === 3 ? 1 : 0; return g; });
+            ws.connect(wide[0], 0); wide[0].connect(wm, 0, 0);
+            ws.connect(wide[1], 0); wide[1].connect(wm, 0, 1);
+            ws.connect(wide[2], 1); wide[2].connect(wm, 0, 0);
+            ws.connect(wide[3], 1); wide[3].connect(wm, 0, 1);
+            wm.connect(mono);
+            // Balance sits after mono, so a mono mix can still be moved to one side.
+            const bs = ctx.createChannelSplitter(2), bm = ctx.createChannelMerger(2), bal = [ctx.createGain(), ctx.createGain()], bup = upmix();
+            mono.connect(bup); bup.connect(bs);
+            for (let ch = 0; ch < 2; ch++) { bs.connect(bal[ch], ch); bal[ch].connect(bm, 0, ch); }
+            return { input, bands, mono, output: bm, ds: { dry: dsDry, wet: dsWet, comp: dsComp, trim: dsTrim }, xd, xc, wide, bal };
         }
         function getEqState() {
             if (eqState) return eqState;
@@ -3750,31 +3917,74 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const gains = s && Array.isArray(s.gains) && s.gains.length === EQ_FREQS.length
                 ? s.gains.map((v) => Math.max(EQ_MIN, Math.min(EQ_MAX, Math.round(Number(v)) || 0)))
                 : EQ_FLAT.slice();
-            const preset = s && typeof s.preset === "string" && (s.preset === "Custom" || EQ_PRESETS[s.preset]) ? s.preset : "Flat";
-            eqState = { on: !!(s && s.on), preset, gains, mono: !!(s && s.mono) };
+            let preset = s && typeof s.preset === "string" && (s.preset === "Custom" || EQ_PRESETS[s.preset]) ? s.preset : "Flat";
+            // Older builds had an On/Off switch. A curve that was saved while it was off stays off: back to Flat.
+            if (s && s.on === false) { gains.fill(0); preset = "Flat"; }
+            const bal = s && Number.isFinite(Number(s.bal)) ? Math.max(-1, Math.min(1, Math.round(Number(s.bal) * 20) / 20)) : 0;
+            const cross = !!(s && s.cross); // crossfeed (headphones) and the widener (speakers) are opposites: never both
+            eqState = { preset, gains, mono: !!(s && s.mono), cross, wide: !!(s && s.wide) && !cross, deess: !!(s && s.deess), bal };
             return eqState;
         }
         function saveEqState() {
             try { store.setItem(EQ_KEY, JSON.stringify(eqState)); } catch (e) {}
         }
+        // While the Bypass button is held, the equalizer, mono, crossfeed, widener and balance are skipped so the original can be
+        // heard. Leveling stays on: it matches the volume, so the comparison is not decided by one side simply being louder.
+        let eqBypass = false;
         function applyEq() {
             const btn = document.getElementById("eqBtn");
             const s = getEqState();
-            if (btn) btn.classList.toggle("eq-on", s.on || s.mono);
+            if (btn) btn.classList.toggle("eq-on", s.gains.some((g) => g !== 0) || s.mono || s.cross || s.wide || s.deess || s.bal !== 0);
             if (!eqNodes || !audioCtx) return;
             const t = audioCtx.currentTime;
-            const gains = s.on ? s.gains : EQ_FLAT;
-            const boost = Math.max(0, ...gains);
-            eqNodes.bands.forEach((b, i) => b.gain.setTargetAtTime(gains[i], t, 0.03));
+            const e = eqBypass ? { gains: EQ_FLAT, mono: false, cross: false, wide: false, deess: false, bal: 0 } : s;
+            const boost = Math.max(0, ...e.gains);
+            eqNodes.bands.forEach((b, i) => b.gain.setTargetAtTime(e.gains[i], t, 0.03));
             eqNodes.input.gain.setTargetAtTime(Math.pow(10, -boost / 20), t, 0.03);
-            eqNodes.mono.channelCount = s.mono ? 1 : 2;
+            eqNodes.mono.channelCount = e.mono ? 1 : 2;
+            if (eqNodes.ds) {
+                eqNodes.ds.dry.gain.setTargetAtTime(e.deess ? 0 : 1, t, 0.03);
+                eqNodes.ds.wet.gain.setTargetAtTime(e.deess ? 1 : 0, t, 0.03);
+                updateDeess();
+            }
+            if (!eqNodes.xd) return;
+            eqNodes.xd.forEach((f) => f.gain.setTargetAtTime(e.cross ? XFEED_SHELF_DB : 0, t, 0.03)); // dB
+            eqNodes.xc.forEach((g) => g.gain.setTargetAtTime(e.cross ? XFEED_CROSS : 0, t, 0.03));
+            const k = e.wide ? WIDE_K : 1, same = (1 + k) / 2, other = (1 - k) / 2;
+            [same, other, other, same].forEach((v, i) => eqNodes.wide[i].gain.setTargetAtTime(v, t, 0.03));
+            const b = e.bal; // balance: the far side is turned down, the near side is left alone
+            eqNodes.bal[0].gain.setTargetAtTime(b > 0 ? Math.cos(b * Math.PI / 2) : 1, t, 0.03);
+            eqNodes.bal[1].gain.setTargetAtTime(b < 0 ? Math.cos(-b * Math.PI / 2) : 1, t, 0.03);
+        }
+        // Moves the de-esser's threshold (and the trim that cancels the compressor's make-up gain) with the volume.
+        let deessVol = null;
+        function updateDeess(v) {
+            if (!eqNodes || !eqNodes.ds || !audioCtx) return;
+            if (typeof v === "number") deessVol = v;
+            const vol = Math.max(deessVol === null ? volToEl(currentVolume) : deessVol, 0.003);
+            const prog = (getLevelMode() === "off" ? DEESS_PROG_RAW : DEESS_PROG_LEVELED) + 20 * Math.log10(vol);
+            const thr = Math.max(-100, Math.min(0, prog + DEESS_THRESH_REL));
+            const t = audioCtx.currentTime;
+            eqNodes.ds.comp.threshold.setTargetAtTime(thr, t, 0.1);
+            // Chromium-style make-up gain: (1 / output at 0 dBFS in)^0.6, undone here.
+            eqNodes.ds.trim.gain.setTargetAtTime(Math.pow(10, 0.6 * thr * (1 - 1 / DEESS_RATIO) / 20), t, 0.1);
         }
         function closeEqPanel() {
             const panel = document.getElementById("eqPanel");
             const btn = document.getElementById("eqBtn");
+            if (eqBypass) { eqBypass = false; applyEq(); } // never leave the effects bypassed behind a closed panel
             if (panel) panel.remove();
             if (btn) { btn.setAttribute("aria-expanded", "false"); btn.focus(); }
         }
+        // What each effect does, in plain words (shown in the Effects window).
+        const FX_TEXT = {
+            bal: "Moves the sound toward the left or the right side. The small button puts it back in the center.",
+            mono: "Plays both sides as one signal. Helps with old or badly mixed stereo, or when you only hear one earbud.",
+            cross: "For headphones. Lets a little of each side reach the other ear, as speakers do, so the sound sits less inside your head. Turns Widen off.",
+            wide: "Makes the stereo picture wider. Best on speakers and for narrow or almost-mono streams. Turns Crossfeed off.",
+            deess: "Softens harsh S and SH sounds and hissy cymbals. Useful on bright or low-bitrate streams.",
+            bypass: "Hold to hear the original, without the equalizer or any of the effects. Leveling stays on, so the volume stays the same.",
+        };
         function openEqPanel(mediaEl, host) {
             const s = getEqState();
             const ready = !!audioCtx && normalizedElements.has(mediaEl);
@@ -3784,11 +3994,16 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             panel.className = "eq-panel";
             panel.setAttribute("role", "dialog");
             panel.setAttribute("aria-label", "Sound: leveling and equalizer");
+            const limTitle = "Lights up while the limiter is holding back loud peaks. If it stays on, lower the volume or the equalizer boosts.";
+            const bypassTitle = "Hold to hear the original: the equalizer and the effects are bypassed (leveling stays, so the volume matches)";
+            const fxRow = (ctl, text) => `<div class="fx-row"><div class="fx-ctl">${ctl}</div><div class="fx-desc">${text}</div></div>`;
+            const toggle = (id, label) => `<button type="button" class="eq-chip" id="${id}" aria-pressed="false">${label}</button>`;
             panel.innerHTML = `
+                <div class="eq-view" id="eqMain">
                 <div class="eq-head">
-                    <span class="eq-title">Sound</span>
-                    <button type="button" class="eq-chip" id="eqOnBtn" aria-pressed="false">Off</button>
-                    <button type="button" class="eq-chip" id="eqMonoBtn" aria-pressed="false" title="Play stereo as mono">Mono</button>
+                    <span class="eq-titlebox"><span class="eq-title">Sound</span><span class="eq-lim" title="${limTitle}">Limit</span></span>
+                    <button type="button" class="eq-chip" id="eqFxBtn" title="Effects: balance, mono, crossfeed, widen, de-ess"><svg class="eq-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M2 5h12M2 11h12"/><circle cx="6" cy="5" r="1.7" fill="currentColor"/><circle cx="10.5" cy="11" r="1.7" fill="currentColor"/></svg>Effects</button>
+                    <button type="button" class="eq-chip eq-bypass" id="eqBypassBtn" aria-pressed="false" title="${bypassTitle}">Bypass</button>
                     <button type="button" class="eq-chip" id="eqResetBtn" title="Set every band back to 0">Reset</button>
                     <button type="button" class="eq-close" id="eqCloseBtn" aria-label="Close equalizer">&times;</button>
                 </div>
@@ -3797,23 +4012,56 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                         <select class="eq-preset" id="eqLevel">${Object.keys(LEVEL_MODES).map((k) => `<option value="${k}">${LEVEL_MODES[k].label}</option>`).join("")}</select></div>
                     <div class="eq-sel"><label class="eq-sel-label" for="eqPreset">Equalizer</label>
                         <select class="eq-preset" id="eqPreset">
-                            ${Object.keys(EQ_PRESETS).map((n) => `<option value="${n}">${n}</option>`).join("")}
+                            ${EQ_GROUPS.map(([g, names]) => `<optgroup label="${g}">${names.map((n) => `<option value="${n}">${n.replace("&", "&amp;")}</option>`).join("")}</optgroup>`).join("")}
                             <option value="Custom" hidden>Custom</option>
                         </select></div>
                 </div>
-                <div class="eq-note" id="eqLevelNote"></div>
+                <div class="eq-hints" id="eqHints">${Object.keys(LEVEL_MODES).map((k) => `<span class="eq-note eq-hint" data-mode="${k}">${LEVEL_MODES[k].hint}</span>`).join("")}</div>
+                <div class="eq-note eq-live" id="eqLive">&nbsp;</div>
                 <div class="eq-bands">
                     ${EQ_LABELS.map((l, i) => `<div class="eq-band"><span class="eq-val" id="eqVal${i}">0</span><input type="range" class="eq-slider" id="eqBand${i}" data-band="${i}" min="${EQ_MIN}" max="${EQ_MAX}" step="1" value="0" aria-label="${l} hertz"><span class="eq-freq">${l}</span></div>`).join("")}
                 </div>
-                <div class="eq-note" id="eqNote"></div>`;
+                <div class="eq-note" id="eqNote"></div>
+                </div>
+                <div class="eq-view" id="eqFx" hidden>
+                <div class="eq-head">
+                    <button type="button" class="eq-chip" id="eqBackBtn" title="Back to leveling and equalizer"><svg class="eq-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg>Back</button>
+                    <span class="eq-titlebox"><span class="eq-title">Effects</span><span class="eq-lim" title="${limTitle}">Limit</span></span>
+                    <button type="button" class="eq-close eq-close2" id="eqCloseBtn2" aria-label="Close equalizer">&times;</button>
+                </div>
+                ${fxRow(`<div class="eq-bal"><span aria-hidden="true">L</span><input type="range" id="eqBal" min="-100" max="100" step="5" value="0" aria-label="Balance, left to right" title="Double-click to center"><span aria-hidden="true">R</span><button type="button" class="eq-chip eq-mini" id="eqBalReset" aria-label="Center balance" title="Center balance"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a5 5 0 1 0 1.6-3.7"/><path d="M3 2.5v3h3"/></svg></button></div>`, "<b>Balance.</b> " + FX_TEXT.bal)}
+                ${fxRow(toggle("eqMonoBtn", "Mono"), "<b>Mono.</b> " + FX_TEXT.mono)}
+                ${fxRow(toggle("eqCrossBtn", "Crossfeed"), "<b>Crossfeed.</b> " + FX_TEXT.cross)}
+                ${fxRow(toggle("eqWideBtn", "Widen"), "<b>Widen.</b> " + FX_TEXT.wide)}
+                ${fxRow(toggle("eqDeessBtn", "De-ess"), "<b>De-ess.</b> " + FX_TEXT.deess)}
+                ${fxRow(`<button type="button" class="eq-chip eq-bypass" id="eqBypassBtn2" aria-pressed="false" title="${bypassTitle}">Bypass</button>`, "<b>Bypass.</b> " + FX_TEXT.bypass)}
+                <div class="eq-note" id="eqFxNote"></div>
+                </div>`;
             host.appendChild(panel);
             const q = (id) => panel.querySelector("#" + id);
             const sliders = Array.from(panel.querySelectorAll(".eq-slider"));
             const fmt = (v) => (v > 0 ? "+" + v : String(v));
+            // Two windows in one panel: the equalizer (main) and the Effects window. Only one is shown at a time.
+            const viewMain = q("eqMain"), viewFx = q("eqFx");
+            let fxOpen = false;
+            const showView = (fx) => {
+                fxOpen = fx;
+                viewMain.hidden = fx;
+                viewFx.hidden = !fx;
+                panel.setAttribute("aria-label", fx ? "Sound effects" : "Sound: leveling and equalizer");
+                (fx ? q("eqBackBtn") : q("eqFxBtn")).focus();
+            };
+            q("eqFxBtn").addEventListener("click", () => showView(true));
+            q("eqBackBtn").addEventListener("click", () => showView(false));
             function sync() {
-                q("eqOnBtn").textContent = s.on ? "On" : "Off";
-                q("eqOnBtn").setAttribute("aria-pressed", String(s.on));
                 q("eqMonoBtn").setAttribute("aria-pressed", String(s.mono));
+                q("eqCrossBtn").setAttribute("aria-pressed", String(s.cross));
+                q("eqWideBtn").setAttribute("aria-pressed", String(s.wide));
+                q("eqDeessBtn").setAttribute("aria-pressed", String(s.deess));
+                q("eqFxBtn").classList.toggle("fx-on", s.mono || s.cross || s.wide || s.deess || s.bal !== 0);
+                q("eqBalReset").style.opacity = s.bal === 0 ? "0.45" : "";
+                q("eqBal").value = Math.round(s.bal * 100);
+                q("eqBal").setAttribute("aria-valuetext", s.bal === 0 ? "Center" : (s.bal < 0 ? "Left " : "Right ") + Math.abs(Math.round(s.bal * 100)) + "%");
                 q("eqPreset").value = s.preset;
                 sliders.forEach((sl, i) => {
                     sl.value = s.gains[i];
@@ -3823,20 +4071,53 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             }
             function changed(preset) {
                 s.preset = preset;
-                s.on = true;
                 saveEqState();
                 applyEq();
                 sync();
             }
-            q("eqOnBtn").addEventListener("click", () => { s.on = !s.on; saveEqState(); applyEq(); sync(); });
             q("eqMonoBtn").addEventListener("click", () => { s.mono = !s.mono; saveEqState(); applyEq(); sync(); });
+            q("eqCrossBtn").addEventListener("click", () => { s.cross = !s.cross; if (s.cross) s.wide = false; saveEqState(); applyEq(); sync(); });
+            q("eqWideBtn").addEventListener("click", () => { s.wide = !s.wide; if (s.wide) s.cross = false; saveEqState(); applyEq(); sync(); });
+            q("eqDeessBtn").addEventListener("click", () => { s.deess = !s.deess; saveEqState(); applyEq(); sync(); });
+            q("eqBalReset").addEventListener("click", () => { s.bal = 0; saveEqState(); applyEq(); sync(); });
+            // Bypass (a button in each window): active only while held (pointer, touch or Space/Enter).
+            const bypBtns = Array.from(panel.querySelectorAll(".eq-bypass"));
+            const bypassSet = (on) => { if (eqBypass === on) return; eqBypass = on; bypBtns.forEach((b) => b.setAttribute("aria-pressed", String(on))); applyEq(); };
+            bypBtns.forEach((byp) => {
+                byp.addEventListener("pointerdown", (e) => { e.preventDefault(); try { byp.setPointerCapture(e.pointerId); } catch (err) {} bypassSet(true); });
+                ["pointerup", "pointercancel", "lostpointercapture"].forEach((ev) => byp.addEventListener(ev, () => bypassSet(false)));
+                byp.addEventListener("keydown", (e) => { if ((e.key === " " || e.key === "Enter") && !e.repeat) { e.preventDefault(); bypassSet(true); } });
+                byp.addEventListener("keyup", (e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); bypassSet(false); } });
+                byp.addEventListener("blur", () => bypassSet(false));
+                byp.addEventListener("contextmenu", (e) => e.preventDefault());
+            });
+            // Limiter light (in both windows): reads the limiter's gain reduction every frame while the panel is open and holds the light for a moment.
+            const limEls = Array.from(panel.querySelectorAll(".eq-lim"));
+            let limUntil = 0, limOn = false;
+            const limLoop = () => {
+                if (!document.getElementById("eqPanel")) return;
+                let r = 0;
+                try { r = audioLimiter ? (typeof audioLimiter.reduction === "number" ? audioLimiter.reduction : audioLimiter.reduction.value) : 0; } catch (err) {}
+                const now = performance.now();
+                if (r < -1) limUntil = now + 350;
+                const on = now < limUntil;
+                if (on !== limOn) { limOn = on; limEls.forEach((el) => el.classList.toggle("on", on)); }
+                requestAnimationFrame(limLoop);
+            };
+            if (ready) limLoop();
+            q("eqBal").addEventListener("input", (e) => { s.bal = Number(e.target.value) / 100; saveEqState(); applyEq(); sync(); });
+            q("eqBal").addEventListener("dblclick", () => { s.bal = 0; saveEqState(); applyEq(); sync(); });
             q("eqResetBtn").addEventListener("click", () => { s.gains = EQ_FLAT.slice(); s.preset = "Flat"; saveEqState(); applyEq(); sync(); });
-            q("eqCloseBtn").addEventListener("click", closeEqPanel);
+            panel.querySelectorAll(".eq-close").forEach((c) => c.addEventListener("click", closeEqPanel));
             const levelNote = () => {
                 const m = getLevelMode(), lv = levelers.get(mediaEl);
-                let live = "";
-                if (m !== "off" && lv) live = lv.lufs === null ? " Measuring…" : ` Stream ${lv.lufs.toFixed(1)} LUFS, gain ${lv.gainDb >= 0 ? "+" : ""}${lv.gainDb.toFixed(1)} dB.`;
-                q("eqLevelNote").textContent = LEVEL_MODES[m].hint + live;
+                panel.querySelectorAll(".eq-hint").forEach((h) => h.classList.toggle("on", ready && h.dataset.mode === m));
+                let live = "\u00a0";
+                if (ready && lv) {
+                    if (lv.lufs === null) live = m === "off" ? "\u00a0" : "Measuring…";
+                    else live = m === "off" ? `Stream ${lv.lufs.toFixed(1)} LUFS.` : `Stream ${lv.lufs.toFixed(1)} LUFS, gain ${lv.gainDb >= 0 ? "+" : ""}${lv.gainDb.toFixed(1)} dB.`;
+                }
+                q("eqLive").textContent = live;
             };
             q("eqLevel").value = getLevelMode();
             q("eqLevel").addEventListener("change", (e) => { setLevelMode(e.target.value); levelNote(); });
@@ -3852,13 +4133,13 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 changed(match || "Custom");
             }));
             if (!ready) {
-                panel.querySelectorAll("button:not(#eqCloseBtn), select, input").forEach((el) => { el.disabled = true; });
+                panel.querySelectorAll("button:not(.eq-close), select, input").forEach((el) => { el.disabled = true; });
                 q("eqNote").textContent = "Leveling and the equalizer can't be used on this stream: the station doesn't allow its audio to be processed in the browser.";
-                q("eqLevelNote").textContent = "";
+                levelNote();
             }
             // The page's own shortcuts (arrows, space, / and ?) must not act while the panel's controls have focus.
             panel.addEventListener("keydown", (e) => {
-                if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); closeEqPanel(); return; }
+                if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); if (fxOpen) showView(false); else closeEqPanel(); return; }
                 if (e.key !== "Tab") e.stopPropagation();
             });
             const onOutside = (e) => {
@@ -3903,7 +4184,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 mediaEl.muted = false;
                 mediaEl.play().catch(() => {});
             });
-            navigator.mediaSession.setActionHandler("pause", () => mediaEl.pause());
+            navigator.mediaSession.setActionHandler("pause", () => softPause(mediaEl));
             navigator.mediaSession.setActionHandler("previoustrack", goToPrevTrack);
             navigator.mediaSession.setActionHandler("nexttrack", goToNextTrack);
             const syncPlaybackState = () => {
@@ -3981,7 +4262,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             }
             playBtn.addEventListener("click", () => {
                 mediaEl.muted = false;
-                mediaEl.paused ? mediaEl.play().catch(() => {}) : mediaEl.pause();
+                mediaEl.paused ? mediaEl.play().catch(() => {}) : softPause(mediaEl);
             });
             mediaEl.addEventListener("play", updatePlayIcon);
             mediaEl.addEventListener("pause", updatePlayIcon);
@@ -10532,7 +10813,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             const media = document.getElementById("modalBody").querySelector("audio, video");
             if (!media) return;
             media.muted = false;
-            media.paused ? media.play().catch(() => {}) : media.pause();
+            media.paused ? media.play().catch(() => {}) : softPause(media);
         }
         function handleModalKeydown(key) {
             const modalBody = document.getElementById("modalBody");
