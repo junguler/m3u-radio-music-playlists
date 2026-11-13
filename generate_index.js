@@ -2,28 +2,24 @@ const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
 
-// Running inside GitHub Actions (or any CI)? Then a missing/shallow git
-// history is a hard failure instead of a quiet fallback, because the site
-// would deploy with every file showing the checkout time as its date.
+// In CI a missing/shallow git history is a hard failure, not a quiet fallback:
+// the site would deploy with every file dated at checkout time.
 const IN_CI = !!(process.env.GITHUB_ACTIONS || process.env.CI);
 
 // ---------------------------------------------------------------------------
 // CHECKED-FOLDER COLLAPSING (keeps the deployed site under GitHub Pages' 1 GB)
 //
-// When a folder contains a sub-folder named "checked", the viewer shows the
-// CONTENTS of that "checked" folder directly in the parent folder and hides the
-// parent's own files (the normal, unchecked variants). Other sub-folders of the
-// parent are left alone, and folders without a "checked" folder are indexed
-// as usual. The three folders in AGGREGATE_DIRS (and everything inside them)
-// are never touched.
+// A folder with a sub-folder named "checked" shows the CONTENTS of that folder
+// in its place and hides its own files (the unchecked variants). Other
+// sub-folders are left alone, folders without "checked" are indexed as usual,
+// and the folders in AGGREGATE_DIRS (and everything inside them) are exempt.
 //
-// The deploy workflow runs this script with --apply-layout, which makes the
-// same change on the throwaway CI checkout so the hidden files are not uploaded
-// and the "checked" files really sit at the paths the viewer shows. The repository
-// itself is never changed, and --apply-layout refuses to run outside CI.
+// The deploy workflow runs this with --apply-layout, which makes the same change
+// on the throwaway CI checkout so hidden files aren't uploaded and "checked"
+// files sit at the paths the viewer shows. The repository itself is never
+// changed, and --apply-layout refuses to run outside CI.
 //
 // TO TURN IT OFF: comment out the "true" line and uncomment the "false" line.
-// (Everything is then indexed and deployed exactly as before.)
 const COLLAPSE_CHECKED = true;
 // const COLLAPSE_CHECKED = false;
 
@@ -42,8 +38,7 @@ if (APPLY_LAYOUT && !IN_CI) {
   process.exit(1);
 }
 
-// Executable and binary extensions to exclude (all lowercase: the extension
-// is lowercased before it is looked up here).
+// Executable and binary extensions to exclude (lowercase: looked up after lowercasing).
 const EXECUTABLE_EXTENSIONS = new Set([
   // Windows
   ".exe", ".dll", ".msi", ".com", ".bat", ".cmd", ".scr", ".pif", ".gadget",
@@ -65,10 +60,9 @@ const EXCLUDED_DIRS = new Set([
   ".cache", ".npm", ".yarn", "vendor", ".bundle",
 ]);
 
-// Files whose name starts with this are listed in the index like any other
-// file but flagged `external: 1`. The deploy workflow then removes them from
-// the checkout before the site is uploaded, and the viewer links to them on
-// GitHub instead. Used for the very large "---everything" files.
+// Files starting with this are indexed like any other but flagged `external: 1`:
+// the deploy workflow drops them from the upload and the viewer links to GitHub
+// instead. Used for the very large "---everything" files.
 const EXTERNAL_PREFIX = "---";
 
 // System/meta files to skip
@@ -78,64 +72,64 @@ const EXCLUDED_FILES = new Set([
   "yarn.lock", "pnpm-lock.yaml",
 ]);
 
-// File type categories. An extension is matched against the categories in
-// this order and the FIRST match wins, so an extension listed twice goes to
-// whichever category comes first. Keep each extension in exactly one place.
-function getFileCategory(filename) {
-  const ext = path.extname(filename).toLowerCase();
+// File type categories. The FIRST category listing an extension wins, so keep
+// each extension in exactly one place. Built once into a Map so large repos
+// don't re-allocate the arrays and run .includes() on every file.
+const FILE_CATEGORIES = {
+  image: [
+    ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg", ".webp", ".ico",
+    ".tiff", ".tif", ".avif", ".heic", ".heif",
+  ],
+  video: [
+    // .ogg is audio in practice (Vorbis/Opus); video-in-Ogg uses .ogv.
+    ".mp4", ".webm", ".ogv", ".mov", ".avi", ".mkv", ".m4v",
+    ".3gp", ".flv",
+  ],
+  audio: [
+    ".mp3", ".wav", ".ogg", ".oga", ".flac", ".aac", ".m4a", ".wma",
+    ".opus", ".aiff",
+  ],
+  document: [".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx"],
+  code: [
+    ".js", ".ts", ".jsx", ".tsx", ".py", ".rb", ".java", ".c", ".cpp",
+    ".h", ".hpp", ".cs", ".go", ".rs", ".php", ".swift", ".kt", ".scala",
+    ".r", ".m", ".mm", ".pl", ".pm", ".lua", ".sh", ".bash", ".zsh",
+    ".fish", ".ps1", ".psm1", ".vue", ".svelte", ".elm", ".clj", ".cljs",
+    ".ex", ".exs", ".erl", ".hrl", ".hs", ".fs", ".fsx", ".ml", ".mli",
+    ".nim", ".cr", ".v", ".zig", ".d", ".pas", ".pp", ".asm", ".s",
+    ".sql", ".graphql", ".gql",
+  ],
+  markup: [
+    ".html", ".htm", ".xml", ".xhtml", ".xaml", ".wxml", ".jsp",
+    ".asp", ".aspx", ".erb", ".ejs", ".haml", ".slim", ".pug", ".jade",
+    ".twig", ".hbs", ".mustache", ".njk", ".liquid",
+  ],
+  style: [".css", ".scss", ".sass", ".less", ".styl", ".stylus", ".postcss"],
+  data: [
+    ".json", ".yaml", ".yml", ".toml", ".ini", ".cfg", ".conf",
+    ".properties", ".env", ".csv", ".tsv",
+    // Playlist files (plain text)
+    ".m3u", ".m3u8", ".pls", ".xspf", ".wpl", ".asx", ".cue",
+  ],
+  text: [
+    ".txt", ".md", ".markdown", ".rst", ".rtf", ".log", ".nfo", ".diz",
+    ".srt", ".vtt", ".sub", ".ass", ".ssa", // Subtitle files
+  ],
+  font: [".ttf", ".otf", ".woff", ".woff2", ".eot"],
+  archive: [
+    ".zip", ".tar", ".gz", ".bz2", ".xz", ".7z", ".rar", ".tgz", ".tbz2",
+  ],
+};
 
-  const categories = {
-    image: [
-      ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg", ".webp", ".ico",
-      ".tiff", ".tif", ".avif", ".heic", ".heif",
-    ],
-    video: [
-      // .ogg is deliberately NOT here: in practice it is audio (Vorbis/Opus).
-      // Video-in-Ogg uses .ogv.
-      ".mp4", ".webm", ".ogv", ".mov", ".avi", ".mkv", ".m4v",
-      ".3gp", ".flv",
-    ],
-    audio: [
-      ".mp3", ".wav", ".ogg", ".oga", ".flac", ".aac", ".m4a", ".wma",
-      ".opus", ".aiff",
-    ],
-    document: [".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx"],
-    code: [
-      ".js", ".ts", ".jsx", ".tsx", ".py", ".rb", ".java", ".c", ".cpp",
-      ".h", ".hpp", ".cs", ".go", ".rs", ".php", ".swift", ".kt", ".scala",
-      ".r", ".m", ".mm", ".pl", ".pm", ".lua", ".sh", ".bash", ".zsh",
-      ".fish", ".ps1", ".psm1", ".vue", ".svelte", ".elm", ".clj", ".cljs",
-      ".ex", ".exs", ".erl", ".hrl", ".hs", ".fs", ".fsx", ".ml", ".mli",
-      ".nim", ".cr", ".v", ".zig", ".d", ".pas", ".pp", ".asm", ".s",
-      ".sql", ".graphql", ".gql",
-    ],
-    markup: [
-      ".html", ".htm", ".xml", ".xhtml", ".xaml", ".wxml", ".jsp",
-      ".asp", ".aspx", ".erb", ".ejs", ".haml", ".slim", ".pug", ".jade",
-      ".twig", ".hbs", ".mustache", ".njk", ".liquid",
-    ],
-    style: [".css", ".scss", ".sass", ".less", ".styl", ".stylus", ".postcss"],
-    data: [
-      ".json", ".yaml", ".yml", ".toml", ".ini", ".cfg", ".conf",
-      ".properties", ".env", ".csv", ".tsv",
-      // Playlist files (plain text)
-      ".m3u", ".m3u8", ".pls", ".xspf", ".wpl", ".asx", ".cue",
-    ],
-    text: [
-      ".txt", ".md", ".markdown", ".rst", ".rtf", ".log", ".nfo", ".diz",
-      ".srt", ".vtt", ".sub", ".ass", ".ssa", // Subtitle files
-    ],
-    font: [".ttf", ".otf", ".woff", ".woff2", ".eot"],
-    archive: [
-      ".zip", ".tar", ".gz", ".bz2", ".xz", ".7z", ".rar", ".tgz", ".tbz2",
-    ],
-  };
-
-  for (const [category, extensions] of Object.entries(categories)) {
-    if (extensions.includes(ext)) return category;
+const CATEGORY_BY_EXTENSION = new Map();
+for (const [category, extensions] of Object.entries(FILE_CATEGORIES)) {
+  for (const ext of extensions) {
+    if (!CATEGORY_BY_EXTENSION.has(ext)) CATEGORY_BY_EXTENSION.set(ext, category);
   }
+}
 
-  return "other";
+function getFileCategory(filename) {
+  return CATEGORY_BY_EXTENSION.get(path.extname(filename).toLowerCase()) || "other";
 }
 
 // Check if file is binary/executable
@@ -144,25 +138,15 @@ function isExecutable(filename) {
   return EXECUTABLE_EXTENSIONS.has(ext);
 }
 
-// A fresh `actions/checkout` (or any fresh clone) writes every file to disk at
-// checkout time, so fs.statSync(...).mtime is the same for every file
-// regardless of when it was actually last changed. The real "last modified"
-// date lives in git history instead, so we build a path -> last-commit-date
-// map from it once, up front.
+// A fresh checkout writes every file at checkout time, so mtime is the same
+// everywhere; the real "last modified" date lives in git history. One
+// `git log --name-only` (newest first) gives every path's latest commit date
+// in a single process: the first time a path appears is its most recent commit.
 //
-// `git log --name-only` walks commits newest-first and lists every path each
-// commit touched, so the first time we see a given path is its most recent
-// commit. That gives us the whole repo's per-file last-modified dates in a
-// single git invocation instead of one process per file.
-//
-// core.quotepath=false matters: by default git quotes/escapes any path with
-// non-ASCII characters as octal-escaped bytes, which then never matches the
-// real UTF-8 filename.
-//
-// Dates are normalised to UTC ("...Z") as they are read. Git reports each
-// commit in its author's own timezone (e.g. "+03:30"), and ISO strings with
-// different offsets do NOT sort correctly as plain strings, which would make
-// the folder "modified" maximum below wrong.
+// core.quotepath=false stops git escaping non-ASCII paths, which would never
+// match the real filename. Dates are normalised to UTC ("...Z") because ISO
+// strings with different offsets don't sort correctly as text, which would
+// break the folder "modified" maximum below.
 function failOrWarn(message) {
   if (IN_CI) {
     console.error("ERROR: " + message);
@@ -187,7 +171,7 @@ function buildFileDateMap() {
         );
       }
     } catch (e) {
-      // Very old git without the flag: the empty-map check below still guards us.
+      // Very old git without the flag: the empty-map check below still guards.
     }
   }
 
@@ -219,24 +203,18 @@ function buildFileDateMap() {
 
 const fileDateMap = buildFileDateMap();
 
-// Folders collapsed by the checked-folder rule, as { dir, checked } where dir is
-// the folder's real path and checked is the on-disk name of its "checked" folder.
+// Collapsed folders as { dir, checked }: the folder's real path and the on-disk name of its "checked" folder.
 const collapsePlan = [];
 let hiddenNormalFiles = 0;
 
-// Recursively scan directory.
+// Recursively scans a directory. The output is kept small because the browser
+// downloads all of it: a file is { name, type: "file", category, size, modified },
+// a folder { name, type: "directory", children, modified }. Anything the page can
+// derive (full path, extension, "1.2 MB") is not stored.
 //
-// The output is kept deliberately small, because the browser downloads all of
-// it before showing everything. Each file is just
-//   { name, type: "file", category, size, modified }
-// and each folder is { name, type: "directory", children, modified }.
-// Things the page can work out for itself (the full path, the file extension
-// and the human-readable size such as "1.2 MB") are NOT stored.
-//
-// `exempt` is true inside an aggregate folder (see AGGREGATE_DIRS): no
-// checked-folder collapsing happens there.
-// Anything the scan could not read is collected here and makes the run fail
-// (see the check after the scan), so a partial index is never published.
+// `exempt` is true inside an aggregate folder (AGGREGATE_DIRS): no collapsing there.
+// Unreadable entries are collected in scanErrors and fail the run (checked after
+// the scan), so a partial index is never published.
 const scanErrors = [];
 
 function scanDirectory(dir, relativePath = "", exempt = false) {
@@ -245,9 +223,8 @@ function scanDirectory(dir, relativePath = "", exempt = false) {
   try {
     const items = fs.readdirSync(dir, { withFileTypes: true });
 
-    // Checked-folder collapsing. Never at the repository root (that would
-    // hide index.html and friends), and only when the "checked" folder
-    // actually has something in it.
+    // Checked-folder collapsing: never at the repository root (it would hide
+    // index.html and friends), and only when "checked" actually has content.
     let checkedName = null;
     let hoisted = [];
     if (COLLAPSE_CHECKED && relativePath !== "" && !exempt) {
@@ -286,10 +263,8 @@ function scanDirectory(dir, relativePath = "", exempt = false) {
           exempt || AGGREGATE_DIRS.has(item.name)
         );
         if (children.length > 0) {
-          // A folder's "modified" date is the most recent modification among
-          // everything inside it (recursively), since git doesn't track
-          // directories directly. All dates are UTC ISO strings by now, so a
-          // plain string comparison is correct.
+          // Git doesn't track folders, so a folder's date is the newest date
+          // inside it (UTC ISO strings, so plain string comparison works).
           let latest = null;
           for (const child of children) {
             if (child.modified && (!latest || child.modified > latest)) {
@@ -318,8 +293,7 @@ function scanDirectory(dir, relativePath = "", exempt = false) {
 
       try {
         const stats = fs.statSync(fullPath);
-        // Dates come from the file's real path, even when the file is shown
-        // somewhere else (a "checked" file shown in its parent folder).
+        // Dates come from the real path, even for a "checked" file shown in its parent.
         const modified =
           fileDateMap.get(itemRelativePath) || stats.mtime.toISOString();
 
@@ -331,11 +305,11 @@ function scanDirectory(dir, relativePath = "", exempt = false) {
           modified: modified,
         };
         if (item.name.startsWith(EXTERNAL_PREFIX)) entry.external = 1;
-        // Real repository path, used by finalizePaths() below. Not written out.
+        // Real repository path for finalizePaths() below; not written out.
         Object.defineProperty(entry, "_src", { value: itemRelativePath });
         entries.push(entry);
       } catch (e) {
-        // A dangling symlink has nothing to index; anything else is a real failure.
+        // A dangling symlink has nothing to index; anything else is a failure.
         if (item.isSymbolicLink() && (e.code === "ENOENT" || e.code === "ELOOP")) {
           console.warn(`Skipping broken symlink: ${fullPath}`);
         } else {
@@ -344,8 +318,7 @@ function scanDirectory(dir, relativePath = "", exempt = false) {
       }
     }
 
-    // Put the "checked" items into this folder. If one has the same name as a
-    // sibling folder, the checked item wins.
+    // Put the "checked" items into this folder; on a name clash with a sibling, the checked one wins.
     for (const h of hoisted) {
       if (checkedName === null) break;
       const clash = entries.findIndex((e) => e.name === h.name);
@@ -371,10 +344,9 @@ function scanDirectory(dir, relativePath = "", exempt = false) {
   return entries;
 }
 
-// A file shown at a different place than where it really lives (a "checked"
-// file shown in its parent folder) needs its real repository path when the
-// viewer links to it on GitHub. Only the "---" files that are left out of the
-// site are ever linked there, so only those get it ("repo").
+// A "checked" file shown in its parent folder needs its real repository path
+// for the GitHub link. Only the "---" files left out of the site are linked
+// there, so only those get it ("repo").
 function finalizePaths(items, prefix = "") {
   for (const it of items) {
     const shown = prefix ? `${prefix}/${it.name}` : it.name;
@@ -386,13 +358,11 @@ function finalizePaths(items, prefix = "") {
   }
 }
 
-// The top level only, reduced to names, so the first load is tiny: the page
-// can show the root folders and files at once and fetch everything else
-// (the contents of every folder, sizes, dates) from file_index.json right after.
-// Nothing inside a folder is written here.
-//   folder: [name]                     file: [name, categoryNumber]
-//   an "external" file has a third item: 1, or its real repository path
-// `cats` lists the category names that the category numbers point into.
+// The top level only, reduced to names, so the first load is tiny: the page shows
+// the root at once and fetches the rest from file_index.json right after.
+//   folder: [name]    file: [name, categoryNumber]
+//   an "external" file adds a third item: 1, or its real repository path
+// `cats` lists the category names the numbers point into.
 function toLean(items, cats) {
   return items.map((it) => {
     if (it.type === "directory") return [it.name];
@@ -404,10 +374,9 @@ function toLean(items, cats) {
   });
 }
 
-// Makes the checkout match the collapsed index: removes each collapsed
-// folder's normal files and moves its "checked" contents up into it. Deepest
-// folders first, so a folder inside a "checked" folder is dealt with while
-// it is still where the scan found it.
+// Makes the checkout match the collapsed index: removes each collapsed folder's
+// normal files and moves its "checked" contents up. Deepest first, so a folder
+// inside a "checked" folder is handled while it is still where the scan found it.
 function applyLayoutToCheckout(plan) {
   const ordered = plan
     .slice()
@@ -437,7 +406,7 @@ const startTime = Date.now();
 
 const index = {
   generated: new Date().toISOString(),
-  // Where external files can be loaded from. Only known inside GitHub Actions.
+  // Where external files load from; only known inside GitHub Actions.
   source: process.env.GITHUB_REPOSITORY
     ? {
         repo: process.env.GITHUB_REPOSITORY,
@@ -478,9 +447,8 @@ if (counts.files === 0) {
   process.exit(1);
 }
 
-// Two files: the lean one (root folder and file names only, very small) is
-// fetched first so the page can show the top level at once; the full one
-// (every folder's contents, sizes, dates) follows right away and replaces it.
+// Two files: the lean one (root names only) is fetched first so the top level
+// shows at once; the full one follows right away and replaces it.
 const cats = [];
 const lean = {
   generated: index.generated,

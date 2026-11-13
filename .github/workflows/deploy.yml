@@ -16,12 +16,10 @@ concurrency:
 
 jobs:
   build-and-deploy:
-    # Pinned on purpose: ubuntu-latest is migrating to 26.04 in stages, so it
-    # can resolve to different images between runs. Change to ubuntu-26.04
-    # once you have tested it.
+    # Pinned: ubuntu-latest is migrating to 26.04 in stages and can resolve to
+    # different images between runs. Move to ubuntu-26.04 once tested.
     runs-on: ubuntu-24.04
-    # Normal runs take about 4 minutes. 10 minutes leaves headroom but makes
-    # a stalled run fail fast so it can be re-run.
+    # Runs take ~4 minutes; 10 leaves headroom and makes a stalled run fail fast.
     timeout-minutes: 10
     environment:
       name: github-pages
@@ -30,8 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
-          # Full history is required: generate_index.js reads it to get each
-          # file's real last-modified date.
+          # Full history: generate_index.js reads it for each file's last-modified date.
           fetch-depth: 0
 
       - name: Setup Node
@@ -39,13 +36,12 @@ jobs:
         with:
           node-version: "22"
 
-      # Writes file_index_lean.json (root-level file and folder names only,
-      # loaded first by the viewer) and file_index.json (the whole tree with
-      # sizes and dates). --apply-layout also rearranges this
-      # throwaway checkout the way the index shows it: in every folder that has a
-      # "checked" folder, the normal files are removed and the checked files move
-      # up into the folder. The repository itself is not touched. To turn the
-      # collapsing off, change COLLAPSE_CHECKED at the top of generate_index.js.
+      # Writes file_index_lean.json (root names, loaded first) and file_index.json
+      # (whole tree with sizes and dates). --apply-layout also rearranges this
+      # throwaway checkout as the index shows it: where a folder has a "checked"
+      # folder, the normal files are removed and the checked files move up.
+      # The repository itself is untouched. To turn collapsing off, change
+      # COLLAPSE_CHECKED at the top of generate_index.js.
       - name: Generate file index
         run: node generate_index.js --apply-layout
 
@@ -60,10 +56,9 @@ jobs:
             console.log("file indexes OK:", i.stats.files, "files,", i.stats.dirs, "folders");
           '
 
-      # Files starting with "---" are flagged `external` in file_index.json.
-      # They stay listed in the viewer (which links to them on GitHub) but are
-      # removed from this throwaway checkout so they are not tarred, uploaded
-      # or deployed. Nothing in the repository itself is touched.
+      # Files starting with "---" are flagged `external` in file_index.json: they
+      # stay listed (the viewer links to them on GitHub) but are removed from this
+      # throwaway checkout so they are not uploaded or deployed.
       - name: Leave large files out of the site
         run: |
           node -e '
@@ -80,8 +75,7 @@ jobs:
             console.log("Left out " + n + " files (" + (bytes / 1048576).toFixed(1) + " MB) from the site");
           '
 
-      # Informational only: shows how much is about to be tarred and uploaded.
-      # Safe to delete once you no longer need to watch the site size.
+      # Informational only: shows what is about to be uploaded. Safe to delete.
       - name: Report upload size
         run: |
           echo "Files to upload (excluding .git and .github):"
@@ -89,13 +83,11 @@ jobs:
           echo "Total size (actual bytes, not disk blocks):"
           du -sh --apparent-size --exclude=.git --exclude=.github . || true
           echo "Ten largest files:"
-          # The awk does the top-10 selection itself, so no pipe is closed early
-          # (the old `sort | head` printed a harmless "Broken pipe" message).
+          # awk picks the top 10 itself, so no pipe closes early (`sort | head` printed "Broken pipe").
           find . -type f -not -path "./.git/*" -not -path "./.github/*" -printf '%s %p\n' \
             | sort -nr \
             | awk 'NR <= 10 { printf "%8.1f MB  %s\n", $1/1048576, $2 }'
-          # GitHub documents a 1 GB limit for published Pages sites. This only
-          # raises a warning on the run page; it never fails the build.
+          # GitHub's published-site limit is 1 GB: this only warns, never fails the build.
           bytes=$(find . -type f -not -path "./.git/*" -not -path "./.github/*" -printf '%s\n' | awk '{ s += $1 } END { print s + 0 }')
           if [ "$bytes" -gt 1073741824 ]; then
             echo "::warning title=Site is over GitHub Pages' 1 GB limit::The upload is $((bytes / 1048576)) MB"
