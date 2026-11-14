@@ -358,7 +358,11 @@ body {
 .view-btn svg { width: 16px; height: 16px; }
 html[data-theme="hc-dark"] .view-toggle, html[data-theme="hc-light"] .view-toggle { border: var(--bw) solid var(--border-color); }
 .app-container { flex: 1; display: flex; overflow: hidden; }
-.tree-panel { width: 240px; background: var(--bg-secondary); border-right: var(--bw) solid var(--border-color); display: none; flex-shrink: 0; flex-direction: column; }
+.tree-panel { --tree-def: 240px; width: var(--tree-w, var(--tree-def)); position: relative; background: var(--bg-secondary); border-right: var(--bw) solid var(--border-color); display: none; flex-shrink: 0; flex-direction: column; }
+.tree-resize { position: absolute; top: 0; bottom: 0; right: -5px; width: 10px; z-index: 6; cursor: col-resize; touch-action: none; user-select: none; -webkit-user-select: none; outline: none; }
+.tree-resize::after { content: ""; position: absolute; top: 0; bottom: 0; left: 4px; width: 2px; background: transparent; transition: background 0.12s ease; }
+.tree-resize:hover::after, .tree-resize:focus-visible::after, .tree-resize.dragging::after { background: var(--accent); }
+.tree-resize.dragging.at-default::after { left: 3px; width: 4px; }
 .tree-panel.visible { display: flex; }
 .tree-header { padding: 0.5rem 0.75rem; font-size: var(--label-size); font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: var(--label-track); border-bottom: var(--bw) solid var(--border-color); flex-shrink: 0; }
 .tree-content { padding: 0.25rem 0; overflow-y: auto; flex: 1; min-height: 0; }
@@ -481,13 +485,13 @@ html:not(.no-xc) .file-icon.xc { color: color-mix(in srgb, var(--xcv, var(--xc))
 .file-list.list-columns .card-star-btn:hover, .file-list.list-columns .card-star-btn:focus-visible, .file-list.list-columns .card-star-btn.starred { opacity: 1; background: none; border: none; }
 /* Progressive column thinning as the window narrows. Each band is bounded on both ends so bands can't conflict regardless of source order. */
 @media (max-width: 1024px) and (min-width: 769px) {
-    .tree-panel { width: 200px; }
+    .tree-panel { --tree-def: 200px; }
     /* Which list columns show is decided by the width of the file area itself, see the
        #main[data-cols] rules below. */
 }
 @media (max-width: 768px) and (min-width: 641px) {
     .search-container { width: 150px; }
-    .tree-panel { width: 170px; }
+    .tree-panel { --tree-def: 170px; }
     .file-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
 }
 /* List columns thin out with the width of the file area (which shrinks with the window, folder tree and text size, so a window breakpoint can't see it).
@@ -528,6 +532,9 @@ html:not(.no-xc) .file-icon.xc { color: color-mix(in srgb, var(--xcv, var(--xc))
 .modal-btn.play-playlist-btn:hover { color: var(--text-primary); }
 .modal-btn.play-playlist-btn svg { width: 22px; height: 22px; }
 .modal-btn.hidden { display: none; }
+/* The close button is easy to hit: the same size as the Play as playlist button. */
+#modalContent .modal-actions .modal-btn#closeBtn { width: auto; height: auto; min-width: 0; min-height: 0; padding: 0.5rem 0.9rem; }
+#modalContent .modal-actions .modal-btn#closeBtn svg { width: 22px; height: 22px; }
 .playlist-bar { --bar-btn-h: var(--ctl); --bar-btn-w: var(--ctl); display: none; align-items: center; flex-wrap: wrap; gap: 0.4rem 0.5rem; padding: 0.45rem 0.75rem; background: var(--bg-tertiary); border-bottom: var(--bw) solid var(--border-color); position: relative; }
 .playlist-bar.active { display: flex; }
 .playlist-controls { display: flex; gap: 0.25rem; align-items: center; }
@@ -685,7 +692,7 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
         overflow-y: auto;
         flex-shrink: 0;
     }
-    .tree-panel .tree-header, .tree-panel .tree-content { display: none; }
+    .tree-panel .tree-header, .tree-panel .tree-content, .tree-resize { display: none; }
     .search-container { width: 120px; }
     /* header-content's gap applies to both axes; once the search + icons wrap to their own row the gap is too much dead space, so only the row gap is tightened. */
     .header-content { row-gap: 0.375rem; }
@@ -716,6 +723,8 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
     .modal-btn.play-playlist-btn .btn-label { display: none; }
     .modal-btn.play-playlist-btn { padding: 0.5rem; min-width: 44px; min-height: 44px; }
     .modal-btn.play-playlist-btn svg { width: 24px; height: 24px; }
+    #modalContent .modal-actions .modal-btn#closeBtn { padding: 0.5rem; min-width: 44px; min-height: 44px; }
+    #modalContent .modal-actions .modal-btn#closeBtn svg { width: 24px; height: 24px; }
     .playlist-bar { padding: 0.5rem; flex-wrap: wrap; }
     .playlist-btn span:not(.btn-txt):not(.blabel):not(.lbl-long):not(.lbl-short) { display: none; }
     .preview-image { max-height: 80vh; max-height: 80dvh; }
@@ -804,14 +813,21 @@ body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-bt
     .modal-overlay:has(.playlist-bar.active) { align-items: flex-start; padding-top: clamp(0.5rem, calc(50vh - 12.5rem), calc(100vh - 32rem)); padding-top: clamp(0.5rem, calc(50dvh - 12.5rem), calc(100dvh - 32rem)); }
 }
 .rec-panel.rec-on { box-shadow: inset 3px 0 0 var(--danger); }
-/* File details bar: two lines (three on a phone) at a fixed height (it scrolls for more), so opening it or stepping to the next file never moves the window. */
-.meta-bar { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 0.1rem 1.1rem; height: calc(var(--ml, 2) * 1.45 * var(--data-size) + 0.8rem + var(--bw)); box-sizing: border-box; padding: 0.4rem 0.75rem; overflow-y: auto; flex-shrink: 0; background: var(--bg-tertiary); border-top: var(--bw) solid var(--border-color); font-size: var(--data-size); line-height: 1.45; }
+/* File details bar: two lines at a fixed height on every screen, so opening it or stepping to the next file never moves the window. The facts fill it two to a column
+   and the rest scrolls sideways (wheel, swipe, arrow keys; dragging still selects text); a soft shadow on an edge shows there is more that way. */
+.meta-bar { display: flex; flex-flow: column wrap; align-content: flex-start; gap: 0.1rem 1.1rem; height: calc(var(--ml, 2) * 1.45 * var(--data-size) + 0.8rem + var(--bw)); box-sizing: border-box; padding: 0.4rem 0.75rem; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scrollbar-width: none; flex-shrink: 0; border-top: var(--bw) solid var(--border-color); font-size: var(--data-size); line-height: 1.45;
+    background:
+        linear-gradient(to right, var(--bg-tertiary), var(--bg-tertiary)) left center / 1.2rem 100% no-repeat local,
+        linear-gradient(to left, var(--bg-tertiary), var(--bg-tertiary)) right center / 1.2rem 100% no-repeat local,
+        linear-gradient(to right, rgba(0, 0, 0, 0.32), transparent) left center / 0.8rem 100% no-repeat scroll,
+        linear-gradient(to left, rgba(0, 0, 0, 0.32), transparent) right center / 0.8rem 100% no-repeat scroll,
+        var(--bg-tertiary); }
+.meta-bar::-webkit-scrollbar { display: none; }
+.meta-bar:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .meta-bar[hidden], #infoBtn[hidden] { display: none; }
 /* The number of text lines the bar shows is set on the modal (not the bar), so the recording panel can sit exactly above it on phones. */
 .modal.meta-on { --ml: 2; }
-.modal.meta-on.meta-stream { --ml: 3; }
-@media (max-width: 640px) { .modal.meta-on { --ml: 3; } .modal.meta-on.meta-stream { --ml: 4; } }
-.meta-bar .mi { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.meta-bar .mi { white-space: nowrap; user-select: text; }
 .meta-bar .ml { color: var(--text-muted); }
 .meta-bar .mv { color: var(--text-primary); user-select: text; }
 #infoBtn[aria-pressed="true"] { color: var(--accent-text, var(--accent)); border-color: var(--accent-text, var(--accent)); }
@@ -902,6 +918,38 @@ mark.search-highlight { background: color-mix(in srgb, var(--accent) 30%, transp
 .file-list .file-thumbnail:not(.file-thumbnail-inline) { display: none; }
 .file-thumbnail-inline { width: 24px; height: 24px; border-radius: var(--radius-sm); object-fit: cover; flex-shrink: 0; }
 .file-list .file-card:has(.file-thumbnail-inline.loaded) .file-icon { display: none; }
+/* Grid view, like a desktop file manager: every tile has the same 4:3 picture box. An image fills it with its thumbnail (the icon shows until the
+   thumbnail has loaded); everything else gets a big icon centered in it. The name and size always start at the same height, so neighbors stay even. */
+.file-grid { --gi: 4rem; }
+.file-grid .file-card { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; justify-items: center; align-content: start; }
+.file-grid .file-card::before { content: ""; grid-area: 1 / 1; width: 100%; aspect-ratio: 4 / 3; }
+.file-grid .file-card > .file-icon { grid-area: 1 / 1; align-self: center; width: var(--gi); height: var(--gi); }
+.file-grid .file-card > .file-icon svg { width: 50%; height: 50%; }
+.file-grid .file-card > .file-thumbnail { grid-area: 1 / 1; width: 100%; height: 0; min-height: 100%; aspect-ratio: auto; }
+.file-grid .file-card:has(> .file-thumbnail.loaded) > .file-icon { display: none; }
+.file-grid .file-card > .file-info { grid-area: 2 / 1; align-self: start; justify-self: stretch; min-width: 0; }
+/* The size / item count is a label on the bottom edge of the icon or preview, so it sits in the same place on every card whatever the name's length or the row's height.
+   (Search results keep it in the text, because they also show the folder path there.) */
+.file-grid .file-card > .file-info:not(:has(.file-path)) { display: contents; }
+.file-grid .file-card > .file-info:not(:has(.file-path)) > .file-name { grid-area: 2 / 1; align-self: start; justify-self: stretch; min-width: 0; }
+.file-grid .file-card > .file-info:not(:has(.file-path)) > .file-meta { grid-area: 1 / 1; align-self: end; justify-self: center; max-width: calc(100% - 0.5rem); margin-bottom: 0.3rem; padding: 0.05rem 0.45rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.35; color: var(--text-secondary); background: color-mix(in srgb, var(--bg-primary) 84%, transparent); border-radius: var(--radius-sm); pointer-events: none; }
+.file-grid .file-card > .file-info > .file-meta:empty { display: none; }
+/* Thumbnail sizes (Settings > Density, or Ctrl + wheel over a grid). Medium is the original look and needs no rules. */
+html[data-thumb="s"] .file-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); --gi: 2.75rem; }
+html[data-thumb="l"] .file-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); --gi: 6.5rem; }
+html[data-thumb="s"] .file-grid .file-name { font-size: 0.72rem; }
+html[data-thumb="l"] .file-grid .file-name { font-size: 0.9rem; }
+html[data-thumb="l"] .file-grid .file-card { contain-intrinsic-size: auto 240px; }
+html[data-thumb="s"] .file-grid .file-card { contain-intrinsic-size: auto 120px; }
+html[data-thumb="s"] .tw-pane .file-grid { grid-template-columns: repeat(auto-fill, minmax(4.75rem, 1fr)); --gi: 2.25rem; }
+html[data-thumb="l"] .tw-pane .file-grid { grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr)); --gi: 5.5rem; }
+@media (max-width: 768px) {
+    html[data-thumb="s"] .file-grid { grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); --gi: 2.25rem; }
+    html[data-thumb="l"] .file-grid { grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); --gi: 5rem; }
+}
+.settings-control button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent-text, var(--accent)); }
+@media (max-width: 768px) { .file-grid { --gi: 3rem; } }
+.tw-pane .file-grid { --gi: 3.25rem; }
 
 /* --- File card hover: tone and border only, no movement --- */
 .file-card { transition: border-color var(--transition), background-color var(--transition); }
@@ -1542,6 +1590,125 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
 .mq-on > .mq-t { display: inline-block; white-space: nowrap; will-change: transform; unicode-bidi: isolate; }
 .mq-on > .mq-t::after { content: attr(data-mq); content: attr(data-mq) / ""; padding-inline-start: 3em; }
 @media (prefers-reduced-motion: reduce) { .mq-on > .mq-t { will-change: auto; } }
+
+/* --- Twin panels: two independent file panels (side by side, stacked on phones) --- */
+.twin { display: none; flex: 1; min-width: 0; min-height: 0; --tw-a: 50fr; --tw-b: 50fr; grid-template-columns: minmax(0, var(--tw-a)) 1.5rem minmax(0, var(--tw-b)); grid-template-rows: minmax(0, 1fr); }
+body.twin-on .twin { display: grid; }
+body.twin-on #main, body.twin-on .tree-panel, body.twin-on .breadcrumb, body.twin-on .mode-chip { display: none !important; }
+body.twin-on .view-toggle .view-btn[data-view] { display: none; }
+body.twin-on .header-actions { margin-left: auto; }
+.twin[data-max] { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
+.twin[data-max="0"] .tw-pane[data-i="1"], .twin[data-max="1"] .tw-pane[data-i="0"], .twin[data-max] .tw-split { display: none; }
+.tw-pane { container: twp / inline-size; display: flex; flex-direction: column; min-width: 0; min-height: 0; background: var(--bg-primary); border: var(--bw) solid var(--border-color); border-top: 2px solid var(--border-color); }
+/* The active panel (the target of Tab, the keyboard and the copy-folder button) is framed in the accent colour with a tinted header; the other one is quieter. */
+.tw-pane { transition: opacity 0.12s ease; }
+.tw-pane.active { border-top-color: var(--accent); outline: 2px solid var(--accent); outline-offset: calc(-1 * var(--bw) - 1px); z-index: 1; }
+.tw-pane:not(.active) .tw-scroll, .tw-pane:not(.active) .tw-status { opacity: 0.72; }
+.tw-pane:not(.active) .tw-head { background: var(--bg-secondary); color: var(--text-muted); }
+@media (prefers-reduced-motion: reduce) { .tw-pane { transition: none; } }
+.tw-head { position: relative; display: flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.4rem; background: var(--bg-secondary); border-bottom: var(--bw) solid var(--border-color); flex-shrink: 0; min-width: 0; }
+.tw-pane.active .tw-head { background: color-mix(in srgb, var(--accent) 20%, var(--bg-tertiary)); border-bottom-color: var(--accent); }
+.tw-src { display: inline-flex; align-items: center; gap: 0.3rem; flex-shrink: 0; padding: 0.2rem 0.4rem; background: var(--control-surface); color: var(--on-control); border: var(--bw) solid var(--border-color); border-radius: var(--radius-sm); font: inherit; font-size: var(--data-size); cursor: pointer; }
+.tw-src:hover, .tw-src[aria-expanded="true"] { border-color: var(--accent); }
+.tw-src svg { width: 14px; height: 14px; flex-shrink: 0; }
+.tw-path { flex: 1; min-width: 0; display: flex; align-items: center; overflow-x: auto; white-space: nowrap; scrollbar-width: none; font-size: var(--data-size); }
+.tw-path::-webkit-scrollbar { display: none; }
+.tw-crumb { flex-shrink: 0; background: none; border: none; color: var(--text-secondary); font: inherit; padding: 0.1rem 0.15rem; cursor: pointer; }
+.tw-crumb:hover { color: var(--text-primary); text-decoration: underline; }
+.tw-crumb[aria-current] { color: var(--text-primary); font-weight: 600; cursor: default; text-decoration: none; }
+.tw-sep { color: var(--text-muted); flex-shrink: 0; }
+.tw-tools { display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0; }
+.tw-tools .tw-zip { padding: 0.25rem; }
+.tw-tools .tw-sort { width: auto; max-width: 9rem; }
+.tw-menu { position: absolute; top: 100%; left: 0.4rem; z-index: 30; min-width: 14rem; max-width: calc(100% - 0.8rem); display: flex; flex-direction: column; background: var(--bg-secondary); border: var(--bw) solid var(--border-strong); border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+.tw-menu-item { text-align: left; padding: 0.4rem 0.6rem; background: none; border: none; color: var(--text-primary); font: inherit; font-size: 0.85rem; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tw-menu-item:hover, .tw-menu-item:focus-visible { background: var(--bg-hover); }
+.tw-menu-item.on::before { content: "\2713\00a0"; color: var(--accent-text, var(--accent)); }
+.tw-scroll { flex: 1; min-height: 0; overflow: auto; padding: 0 0.25rem 0.25rem; overscroll-behavior: contain; }
+.tw-scroll:focus { outline: none; }
+.tw-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.tw-empty { padding: 1.25rem 0.75rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+.tw-status { flex-shrink: 0; padding: 0.2rem 0.5rem; border-top: var(--bw) solid var(--border-color); background: var(--bg-secondary); color: var(--text-muted); font-size: var(--data-size); line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 1.4em; box-sizing: content-box; }
+.tw-pane .list-columns { --list-cols: 24px 1fr 56px 84px 96px 72px; }
+.tw-pane .file-list-header { padding: 0.25rem calc(0.5rem + var(--bw)); gap: 0.4rem; }
+.tw-pane .file-list.list-columns .file-card { padding: 0.25rem 0.5rem; gap: 0.4rem; }
+.tw-pane .file-list-header .col-icon-spacer { width: 24px; }
+.tw-pane .file-list .file-icon { width: 22px; height: 22px; }
+.tw-pane .file-grid { grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr)); gap: 0.35rem; padding-top: 0.25rem; }
+.tw-pane .file-grid .file-card { padding: 0.4rem; gap: 0.25rem; }
+.tw-pane.active .file-card:focus { border-color: var(--accent); }
+.tw-pane .skeleton-list { padding: 0.5rem 0; }
+@container twp (max-width: 40em) { .tw-pane .list-columns { --list-cols: 24px 1fr 56px 84px 96px; } .tw-pane .col-time { display: none; } }
+@container twp (max-width: 32em) { .tw-pane .list-columns { --list-cols: 24px 1fr 56px 84px; } .tw-pane .col-time, .tw-pane .col-date { display: none; } }
+@container twp (max-width: 24em) { .tw-pane .list-columns { --list-cols: 24px 1fr 80px; } .tw-pane .col-time, .tw-pane .col-date, .tw-pane .col-ext { display: none; } .tw-src-text { display: none; } }
+@container twp (max-width: 30em) { .tw-tools .tw-sort, .tw-tools .tw-zip { display: none; } }
+.tw-split { position: relative; display: flex; align-items: center; justify-content: center; background: var(--bg-secondary); cursor: col-resize; touch-action: none; user-select: none; -webkit-user-select: none; }
+.tw-split:hover, .tw-split.dragging, .tw-split:focus-visible { background: var(--accent); outline: none; }
+.tw-split.centered.dragging { box-shadow: inset 0 0 0 2px var(--bg-primary); }
+.tw-split-tools { display: flex; flex-direction: column; gap: 2px; }
+.tw-split-tools button { width: 1.25rem; height: 1.25rem; padding: 0; display: flex; align-items: center; justify-content: center; background: var(--control-surface); color: var(--on-control); border: var(--bw) solid var(--border-color); border-radius: var(--radius-sm); cursor: pointer; }
+.tw-split-tools button:hover, .tw-split-tools button[aria-pressed="true"] { border-color: var(--accent); }
+.tw-split-tools svg { width: 14px; height: 14px; }
+@media (max-width: 640px) {
+    .twin { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, var(--tw-a)) 1.5rem minmax(0, var(--tw-b)); }
+    .twin[data-max] { grid-template-rows: minmax(0, 1fr); }
+    .tw-split { cursor: row-resize; }
+    .tw-split-tools { flex-direction: row; }
+    .tw-status { display: none; }
+    .tw-head { padding: 0.2rem 0.3rem; gap: 0.25rem; }
+    body.twin-on .header-content { row-gap: 0.25rem; }
+}
+
+/* Vivid under Windows high contrast ("forced colors" in Brave/Edge/Chrome): like Concrete, Vivid keeps its own picked-color palette instead of having every surface
+   replaced by the Windows palette (which turned the flat color into plain black and hid the controls). Its colors are already contrast-checked (text, icon controls,
+   accent text), and in forced-colors mode the edges get a stronger 2px width and the focus ring switches to the text color, since the flat accent equals the background. */
+html[data-vivid],
+html[data-vivid] *,
+html[data-vivid] *::before,
+html[data-vivid] *::after { forced-color-adjust: none !important; }
+@media (forced-colors: active) {
+    html[data-vivid] { --bw: 2px; }
+    html[data-vivid] :focus-visible { outline: 2px solid var(--text-primary); outline-offset: -2px; }
+}
+
+/* Desktop top/bottom layout (the same rules the phone layout uses, switched on by the layout button) */
+.twin[data-stack] { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, var(--tw-a)) 1.5rem minmax(0, var(--tw-b)); }
+.twin[data-stack][data-max] { grid-template-rows: minmax(0, 1fr); }
+.twin[data-stack] .tw-split { cursor: row-resize; }
+.twin[data-stack] .tw-split-tools { flex-direction: row; }
+@media (max-width: 640px) { .tw-split-tools [data-act="layout"] { display: none; } }
+
+/* --- Twin panels: previews inside a panel --- */
+.tw-view, .tw-media { display: none; flex: 1; min-height: 0; }
+.tw-view { flex-direction: column; outline: none; }
+.tw-media { position: relative; }
+.tw-pane[data-mode="view"] .tw-view { display: flex; }
+.tw-pane[data-mode="media"] .tw-media { display: block; }
+.tw-pane[data-mode="view"] .tw-scroll, .tw-pane[data-mode="view"] .tw-status, .tw-pane[data-mode="media"] .tw-scroll, .tw-pane[data-mode="media"] .tw-status { display: none; }
+.tw-vhead { padding: 0.35rem 0.5rem; }
+.tw-vhead a.modal-btn { text-decoration: none; }
+.tw-vhead [data-vact][hidden] { display: none; }
+.tw-vbody .preview-image { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; margin: auto; }
+.tw-vbody .preview-pdf { width: 100%; height: 100%; flex: 1; border: none; }
+/* A picture with its rail: the rail on the left, the picture filling the rest (the rail drops to a strip along the bottom in a narrow panel or on a phone). */
+.tw-vbody.tw-has-rail { display: flex; flex-direction: row; padding: 0; overflow: hidden; }
+.tw-vbody.tw-has-rail > .tw-rail { height: auto; }
+.tw-gal-main { flex: 1 1 0; min-width: 0; min-height: 0; display: flex; padding: 0.5rem; box-sizing: border-box; }
+.tw-gal-main .preview-image { flex: 1 1 0; min-width: 0; min-height: 0; width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; margin: 0; }
+@container twp (max-width: 32em) {
+    .tw-vbody.tw-has-rail { flex-direction: column-reverse; }
+    .tw-rail { width: auto; border-right: 0; border-top: var(--bw) solid var(--border-color); }
+    .tw-rail .gal-head { display: none; }
+    .tw-rail .gal-list { flex-direction: row; overflow-x: auto; overflow-y: hidden; }
+    .tw-rail[data-kind="image"] .gal-item { width: 4.25rem; }
+}
+#modal.tw-embedded { position: absolute; inset: 0; z-index: 5; padding: 0; background: var(--bg-secondary); transition: none; touch-action: auto; }
+#modal.tw-embedded .modal, #modal.tw-embedded .modal.compact-modal, #modal.tw-embedded .modal.video-modal { width: 100%; max-width: none; height: 100%; max-height: none; border: none; border-radius: 0; transform: none; transition: none; }
+.tw-pane[data-i="0"] { order: 1; }
+.tw-split { order: 2; }
+.tw-pane[data-i="1"] { order: 3; }
+.twin[data-flip] .tw-pane[data-i="0"] { order: 3; }
+.twin[data-flip] .tw-pane[data-i="1"] { order: 1; }
 </style>
 </head>
 <body>
@@ -1627,6 +1794,14 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                                             <span class="switch-slider"></span>
                                         </label>
                                     </div>
+                                    <div class="settings-row">
+                                        <span class="settings-label">Thumbnail size <span id="thumbSizeLabel">Medium</span></span>
+                                        <div class="settings-control" id="thumbSizeControl" role="group" aria-label="Thumbnail size (Ctrl + mouse wheel over a grid does the same)">
+                                            <button type="button" data-ts="s" aria-pressed="false" title="Small thumbnails" aria-label="Small thumbnails">S</button>
+                                            <button type="button" data-ts="m" aria-pressed="true" title="Medium thumbnails" aria-label="Medium thumbnails">M</button>
+                                            <button type="button" data-ts="l" aria-pressed="false" title="Big thumbnails" aria-label="Big thumbnails">L</button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="settings-section" style="border-top: var(--bw) solid var(--border-color)">
                                     <div class="settings-section-title">Appearance</div>
@@ -1664,6 +1839,13 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                                     <div class="settings-row">
                                         <span class="settings-label">Player buttons</span>
                                         <select class="sort-select" id="btnStyleSel" aria-label="Show the playlist and recording buttons with their usual icons and labels, with labels only, or with icons only"><option value="default">Default</option><option value="labels">All labels</option><option value="icons">All icons</option></select>
+                                    </div>
+                                    <div class="settings-row">
+                                        <span class="settings-label">Close player on outside click</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="closeOutsideToggle" aria-label="Close the player and file preview when you click on the dark area outside it" />
+                                            <span class="switch-slider"></span>
+                                        </label>
                                     </div>
                                 </details>
                                 <details class="settings-section settings-collapsible" style="border-top: var(--bw) solid var(--border-color)">
@@ -1788,6 +1970,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     <button class="view-btn" data-view="grid" title="Grid" aria-label="Grid view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg></button>
                     <button class="view-btn" data-view="list" title="List" aria-label="List view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"/></svg></button>
                     <button class="view-btn active" data-view="tree" title="Tree" aria-label="Tree view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3h7zM7 9H4V5h3v4zm10 6h3v4h-3v-4zm0-10h3v4h-3V5z"/></svg></button>
+                    <button class="view-btn twin-btn" id="twinBtn" type="button" aria-pressed="false" title="Twin panels (T): two folders side by side" aria-label="Twin panels"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 4h8v16H3V4zm10 0h8v16h-8V4z"/></svg></button>
                 </div>
                 </div>
             </div>
@@ -1799,6 +1982,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
             <div class="tree-pinned" id="treeFavorites"></div>
             <div class="tree-header"><h2 class="tree-title">Folders</h2><span class="tree-header-actions"><button type="button" class="tree-hdr-btn" id="treeCollapseAll" title="Collapse all folders" aria-label="Collapse all folders"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 13H5v-2h14v2z"/></svg></button></span></div>
             <div class="tree-content" id="treeContent" role="tree" aria-label="Folders"></div>
+            <div class="tree-resize" id="treeResize" role="separator" aria-orientation="vertical" aria-label="Resize the folder tree" tabindex="0" title="Drag to resize, double-click to reset"></div>
         </aside>
         <h2 class="sr-only" id="mainHeading">Files</h2>
         <main class="main" id="main" tabindex="-1" aria-labelledby="mainHeading">
@@ -1811,6 +1995,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:55%"></div><div class="skeleton-block skeleton-meta"></div></div>
             </div>
         </main>
+        <div class="twin" id="twin"></div>
     </div>
     <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal" id="modalContent">
@@ -1851,7 +2036,7 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                 <aside class="gallery-rail" id="galleryRail" aria-label="Files in this folder" hidden></aside>
                 <div class="modal-body" id="modalBody"></div>
             </div>
-            <div class="meta-bar" id="metaBar" role="region" aria-label="File details" hidden></div>
+            <div class="meta-bar" id="metaBar" tabindex="0" role="region" aria-label="File details" hidden></div>
             <div class="rec-panel" id="recPanel" hidden></div>
         </div>
     </div>
@@ -1871,6 +2056,9 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
                     <div class="shortcut-row"><dt><kbd>?</kbd></dt><dd>Show this help</dd></div>
                     <div class="shortcut-row"><dt><kbd>Esc</kbd></dt><dd>Close dialog</dd></div>
                     <div class="shortcut-row"><dt><kbd>&uarr;</kbd><kbd>&darr;</kbd><kbd>&larr;</kbd><kbd>&rarr;</kbd></dt><dd>Navigate files &amp; folders</dd></div>
+                    <div class="shortcut-row"><dt><kbd>T</kbd></dt><dd>Twin panels on / off</dd></div>
+                    <div class="shortcut-row"><dt><kbd>Tab</kbd> (twin panels)</dt><dd>Switch panel</dd></div>
+                    <div class="shortcut-row"><dt><kbd>Backspace</kbd> (twin panels)</dt><dd>Parent folder</dd></div>
                     <div class="shortcut-row"><dt><kbd>Enter</kbd> / <kbd>Space</kbd></dt><dd>Open selected file or folder</dd></div>
                     <div class="shortcut-row"><dt><kbd>&larr;</kbd> / <kbd>&rarr;</kbd> (in preview)</dt><dd>Stop / play playlist track</dd></div>
                     <div class="shortcut-row"><dt><kbd>&larr;</kbd> / <kbd>&rarr;</kbd> (image gallery)</dt><dd>Previous / next image</dd></div>
@@ -2661,7 +2849,7 @@ function loadSettings() {
     const v = store.getItem("viewMode");
     if (v === "grid" || v === "list" || v === "tree") {
         currentView = v;
-        document.querySelectorAll(".view-btn").forEach((btn) => {
+        document.querySelectorAll(".view-btn[data-view]").forEach((btn) => {
             btn.classList.toggle("active", btn.dataset.view === v);
         });
         document.getElementById("treePanel").classList.toggle("visible", v === "tree");
@@ -2682,11 +2870,15 @@ function loadSettings() {
     if (btnStyleSel) btnStyleSel.value = btnStyle;
     const skipDeadToggle = document.getElementById("skipDeadToggle");
     if (skipDeadToggle) skipDeadToggle.checked = skipDeadStreams;
+    closeOnOutsideClick = store.getItem(CLOSE_OUTSIDE_KEY) === "1";
+    const closeOutsideToggle = document.getElementById("closeOutsideToggle");
+    if (closeOutsideToggle) closeOutsideToggle.checked = closeOnOutsideClick;
     document.body.classList.toggle("native-player-mode", useNativePlayer);
     const compactDensity = store.getItem("compactDensity") === "1";
     document.body.classList.toggle("compact-density", compactDensity);
     const compactToggle = document.getElementById("compactDensityToggle");
     if (compactToggle) compactToggle.checked = compactDensity;
+    applyThumbSize(store.getItem("thumbSize"));
     const zebraOn = store.getItem("zebraStriping") !== "0";
     document.documentElement.classList.toggle("no-zebra", !zebraOn);
     const zebraToggle = document.getElementById("zebraStripingToggle");
@@ -3242,6 +3434,35 @@ function changeFontSize(e) {
 // smaller than the interface text. Default 0.8rem; stored as "previewFontSize".
 const PREVIEW_FONT_DEFAULT = 0.8, PREVIEW_FONT_MIN = 0.5, PREVIEW_FONT_MAX = 2.4, PREVIEW_FONT_STEP = 0.1;
 let previewFontSize = PREVIEW_FONT_DEFAULT;
+// Thumbnail size (small / medium / big) for the grid view, in the main view and in both twin panels: medium is the original size.
+const THUMB_SIZES = ["s", "m", "l"], THUMB_NAMES = { s: "Small", m: "Medium", l: "Big" };
+let thumbSize = "m";
+function applyThumbSize(v) {
+    thumbSize = THUMB_SIZES.includes(v) ? v : "m";
+    document.documentElement.dataset.thumb = thumbSize;
+    document.querySelectorAll("#thumbSizeControl [data-ts]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.ts === thumbSize)));
+    const label = document.getElementById("thumbSizeLabel");
+    if (label) label.textContent = THUMB_NAMES[thumbSize];
+}
+function setThumbSize(v) {
+    applyThumbSize(v);
+    try { store.setItem("thumbSize", thumbSize); } catch (e) {}
+}
+function wireThumbSize() {
+    const ctl = document.getElementById("thumbSizeControl");
+    if (ctl) ctl.addEventListener("click", (e) => { const b = e.target.closest("[data-ts]"); if (b) setThumbSize(b.dataset.ts); });
+    // Ctrl + mouse wheel over a grid, as in a file manager (a pinch on a trackpad arrives the same way).
+    let last = 0;
+    document.addEventListener("wheel", (e) => {
+        if (!e.ctrlKey || !e.target.closest || !e.target.closest(".file-grid")) return;
+        e.preventDefault();
+        const now = Date.now();
+        if (now - last < 160) return;
+        last = now;
+        const i = THUMB_SIZES.indexOf(thumbSize) + (e.deltaY < 0 ? 1 : -1);
+        if (i >= 0 && i < THUMB_SIZES.length) setThumbSize(THUMB_SIZES[i]);
+    }, { passive: false });
+}
 function clampPreviewFont(v) {
     return Math.max(PREVIEW_FONT_MIN, Math.min(PREVIEW_FONT_MAX, Math.round(v * 10) / 10));
 }
@@ -4296,6 +4517,7 @@ function wireUiOnce() {
     setupSkipLink();
     setupIntersectionObserver();
     setupNewFeatureListeners();
+    TWIN.init();
 }
 // The index comes in two files: the lean one (root names only) is tiny, so the top level shows from it at once; the full one
 // (every folder's contents, sizes, dates) is requested as soon as the lean one arrives and replaces it. Until then an opened folder shows a placeholder.
@@ -4338,6 +4560,7 @@ function applyFullIndex(full) {
     if (parked) {
         parked.fileIndex = fileIndex; parked.allFiles = allFiles; parked.filesByPath = filesByPath;
         fileIndex = saved.fileIndex; allFiles = saved.allFiles; filesByPath = saved.filesByPath;
+        TWIN.refresh();
         return;
     }
     const mainEl = document.getElementById("main");
@@ -4345,6 +4568,7 @@ function applyFullIndex(full) {
     render();
     renderFavoriteFiles();
     mainEl.scrollTop = top;
+    TWIN.refresh();
     if (document.getElementById("statsModal").classList.contains("active")) renderLibraryStats();
 }
 async function finishFullIndex(firstTry) {
@@ -4402,6 +4626,7 @@ function setupSkipLink() {
     if (!link) return;
     link.addEventListener("click", (e) => {
         e.preventDefault();
+        if (TWIN.on) { TWIN.focusActive(); return; }
         const target = document.querySelector("#main .file-card, #main .tree-item") || document.getElementById("main");
         if (target) target.focus();
     });
@@ -4409,7 +4634,7 @@ function setupSkipLink() {
 // While a dialog is open the page behind it is inert (no Tab, screen-reader browsing or clicks). Called right after each dialog opens/closes
 // (not via an observer) so focus returns to the page the instant it closes.
 function syncBackgroundInert() {
-    const open = !!document.querySelector(".modal-overlay.active");
+    const open = !!document.querySelector(".modal-overlay.active:not(.tw-embedded)");
     document.querySelectorAll(".header, .app-container").forEach((el) => { el.inert = open; });
 }
 // Chooses how many list columns fit in the file area: all, no time, ext + size, or size only.
@@ -4430,6 +4655,7 @@ function clearSearch() {
     const input = document.getElementById("search");
     input.value = "";
     input.focus();
+    if (TWIN.on) { updateSearchClearVisibility(); TWIN.setFilter(""); return; }
     searchQuery = "";
     searchResultLimit = 100;
     updateSearchClearVisibility();
@@ -4480,6 +4706,7 @@ function setupEventListeners() {
         updateSearchClearVisibility();
         clearTimeout(searchDebounceTimer);
         searchDebounceTimer = setTimeout(() => {
+            if (TWIN.on) { TWIN.setFilter(e.target.value); return; }
             const next = e.target.value.toLowerCase().trim();
             if (next === searchQuery) return;
             searchQuery = next;
@@ -4496,7 +4723,7 @@ function setupEventListeners() {
             navigateTo([]);
         }
     });
-    document.querySelectorAll(".view-btn").forEach((btn) => {
+    document.querySelectorAll(".view-btn[data-view]").forEach((btn) => {
         btn.addEventListener("click", () => setView(btn.dataset.view));
     });
     document.getElementById("closeBtn").addEventListener("click", closeModal);
@@ -4516,7 +4743,7 @@ function setupEventListeners() {
         if (e.detail > 0) focusBtn.blur();
     });
     document.getElementById("modal").addEventListener("click", (e) => {
-        if (e.target === e.currentTarget) closeModal();
+        if (e.target === e.currentTarget && closeOnOutsideClick) closeModal();
     });
     document.getElementById("modalContent").addEventListener("click", (e) => e.stopPropagation());
     document.getElementById("modal").addEventListener("keydown", trapModalFocus);
@@ -4543,7 +4770,7 @@ function setupEventListeners() {
         const songsOpen = document.getElementById("songsModal").classList.contains("active");
         const plistOpen = document.getElementById("playlistModal").classList.contains("active");
         if (e.key === "Escape") {
-            if (document.activeElement && document.activeElement.id === "search" && !document.querySelector(".modal-overlay.active")) {
+            if (document.activeElement && document.activeElement.id === "search" && !document.querySelector(".modal-overlay.active:not(.tw-embedded)")) {
                 const si = document.activeElement;
                 if (si.value) clearSearch(); else si.blur();
                 return;
@@ -4565,10 +4792,15 @@ function setupEventListeners() {
             else if (plistOpen) closePlaylistModal();
             else if (statsOpen) closeStatsModal();
             else if (shortcutsOpen) closeShortcutsModal();
-            else closeModal();
+            else if (TWIN.modalKeys()) closeModal();
             return;
         }
         if (songsOpen || plistOpen) return; // typing / arrows belong to the songs / playlist list while it is open
+        if ((e.key === "t" || e.key === "T") && !e.ctrlKey && !e.metaKey && !e.altKey && !["INPUT", "SELECT", "TEXTAREA"].includes(document.activeElement.tagName) && !document.querySelector(".modal-overlay.active:not(.tw-embedded)")) {
+            e.preventDefault();
+            TWIN.toggle();
+            return;
+        }
         if (e.key === "?" && !["INPUT", "SELECT", "TEXTAREA"].includes(document.activeElement.tagName) && !shortcutsOpen && !statsOpen) {
             e.preventDefault();
             openShortcutsModal();
@@ -4579,7 +4811,7 @@ function setupEventListeners() {
             document.getElementById("search").focus();
         }
         if (e.key === " ") {
-            const modalOpen = document.getElementById("modal").classList.contains("active");
+            const modalOpen = document.getElementById("modal").classList.contains("active") && TWIN.modalKeys();
             const activeEl = document.activeElement;
             // Skip when a button or form field already owns the spacebar, so the browser's native activation doesn't double-toggle.
             const ownsSpace = ["INPUT", "SELECT", "TEXTAREA", "BUTTON"].includes(activeEl.tagName);
@@ -4590,7 +4822,7 @@ function setupEventListeners() {
             }
         }
         if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
-            const modalOpen = document.getElementById("modal").classList.contains("active");
+            const modalOpen = document.getElementById("modal").classList.contains("active") && TWIN.modalKeys();
             const activeEl = document.activeElement;
             const isFormField = ["INPUT", "SELECT", "TEXTAREA"].includes(activeEl.tagName);
             if (modalOpen && !isFormField) {
@@ -4598,10 +4830,11 @@ function setupEventListeners() {
                 handleModalKeydown(e.key);
                 return;
             }
-            const insideMain = activeEl.closest && activeEl.closest("#main");
+            const insideMain = activeEl.closest && (activeEl.closest("#main") || activeEl.closest("#twin"));
             const insideTree = activeEl.closest && activeEl.closest("#treeContent");
             if (!modalOpen && !insideMain && !insideTree && !isFormField) {
                 e.preventDefault();
+                if (TWIN.on) { TWIN.focusActive(); return; }
                 const panel = document.getElementById("treePanel");
                 if (e.key === "ArrowLeft" && panel && panel.classList.contains("visible")) focusTreePanel();
                 else focusMainPanel();
@@ -4651,6 +4884,11 @@ function setupEventListeners() {
         skipDeadStreams = e.target.checked;
         store.setItem(SKIPDEAD_KEY, skipDeadStreams ? "1" : "0");
     });
+    document.getElementById("closeOutsideToggle").addEventListener("change", (e) => {
+        closeOnOutsideClick = e.target.checked;
+        try { store.setItem(CLOSE_OUTSIDE_KEY, closeOnOutsideClick ? "1" : "0"); } catch (err) {}
+    });
+    wireThumbSize();
     document.getElementById("compactDensityToggle").addEventListener("change", (e) => {
         document.body.classList.toggle("compact-density", e.target.checked);
         store.setItem("compactDensity", e.target.checked ? "1" : "0");
@@ -4907,7 +5145,12 @@ function setupIntersectionObserver() {
             e.forEach((e) => {
                 if (!e.isIntersecting) return;
                 const t = e.target;
-                if (t.dataset.lpath) {
+                if (t.dataset.tlocal) {
+                    const p = t.dataset.tlocal;
+                    delete t.dataset.tlocal;
+                    intersectionObserver.unobserve(t);
+                    twinLocalUrl(p).then((u) => { t.onload = () => t.classList.add("loaded"); t.onerror = () => t.remove(); t.src = u; }).catch(() => t.remove());
+                } else if (t.dataset.lpath) {
                     const p = t.dataset.lpath;
                     delete t.dataset.lpath;
                     intersectionObserver.unobserve(t);
@@ -4938,7 +5181,7 @@ function getCurrentItems() {
 function setView(e) {
     (currentView = e),
         store.setItem("viewMode", e),
-        document.querySelectorAll(".view-btn").forEach((t) => {
+        document.querySelectorAll(".view-btn[data-view]").forEach((t) => {
             t.classList.toggle("active", t.dataset.view === e);
         }),
         document.getElementById("treePanel").classList.toggle("visible", e === "tree"),
@@ -4999,13 +5242,13 @@ function formatItemTime(item) {
     item.timeStr = d ? TIME_FORMAT.format(d) : "—";
     return item.timeStr;
 }
-function sortItems(items) {
+function sortItems(items, mode = sortBy) {
     const sorted = [...items];
     const dirs = { directory: 0, file: 1 };
     sorted.sort((a, b) => {
         // Folders always come before files, regardless of sort mode.
         if (a.type !== b.type) return dirs[a.type] - dirs[b.type];
-        switch (sortBy) {
+        switch (mode) {
             case "name-desc":
                 return NAME_COLLATOR.compare(b.name, a.name);
             case "ext-asc":
@@ -5078,6 +5321,7 @@ function handleHashChange() {
         suppressHashSync = false;
         return;
     }
+    if (TWIN.on) { TWIN.onHash(); return; }
     navigateTo(hashToPath());
 }
 function navigateTo(pathArr) {
@@ -5593,10 +5837,7 @@ function render() {
               <div class="file-icon folder">${icons.folder}</div>
               <div class="file-info">
                 <span class="file-name">${searchQuery ? highlightMatch(item.name, searchQuery) : escapeHtml(item.name)}</span>
-                <span class="file-meta">
-                    ${isColumnView && !searchQuery ? "" : `${item.children?.length || 0} items`}
-                    ${searchQuery && parentDisplayPath ? `<span class="file-path">${escapeHtml(parentDisplayPath)}</span>` : ""}
-                </span>
+                <span class="file-meta">${isColumnView && !searchQuery ? "" : `${item.children?.length || 0} items`}${searchQuery && parentDisplayPath ? `<span class="file-path">${escapeHtml(parentDisplayPath)}</span>` : ""}</span>
               </div>
               ${
           isColumnView && !searchQuery
@@ -5621,10 +5862,7 @@ function render() {
               <div class="file-icon ${iconType}${xcAttr}">${iconSvg}</div>
               <div class="file-info">
                 <span class="file-name">${searchQuery ? highlightMatch(item.name, searchQuery) : escapeHtml(item.name)}</span>
-                <span class="file-meta">
-                    ${isColumnView && !searchQuery ? "" : item.sizeFormatted}
-                    ${searchQuery && parentDisplayPath ? `<span class="file-path">${escapeHtml(parentDisplayPath)}</span>` : ""}
-                </span>
+                <span class="file-meta">${isColumnView && !searchQuery ? "" : item.sizeFormatted}${searchQuery && parentDisplayPath ? `<span class="file-path">${escapeHtml(parentDisplayPath)}</span>` : ""}</span>
               </div>
               ${
           isColumnView && !searchQuery
@@ -6049,6 +6287,8 @@ const SKIPDEAD_KEY = "skipDeadStreams";
 const BTNSTYLE_KEY = "playerBtnStyle";
 
 let skipDeadStreams = true;
+let closeOnOutsideClick = false; // off by default: a stray click outside the player no longer closes it
+const CLOSE_OUTSIDE_KEY = "closeOnOutsideClick";
 let playSession = null; // state of the track that is playing right now
 let failStreak = 0; // consecutive tracks that failed to start
 let npJob = null; // now-playing poller for the current track
@@ -9921,6 +10161,7 @@ function syncGallery(filePath, kind) {
     const count = document.getElementById("galCount");
     if (count) count.textContent = `${idx + 1} / ${gallery.items.length}`;
     if (btns[idx]) btns[idx].scrollIntoView({ block: "nearest", inline: "nearest" });
+    try { Marquee.refresh(); } catch (e) { /* the scroller is not ready yet */ }
     return true;
 }
 function galleryStep(delta) {
@@ -10208,6 +10449,14 @@ function metaPaint() {
     const bar = document.getElementById("metaBar");
     if (!META.kind || bar.hidden) return;
     metaDerive();
+    if (!bar._wheel) {
+        bar._wheel = true;
+        bar.addEventListener("wheel", (e) => {
+            if (bar.scrollWidth <= bar.clientWidth || Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+            e.preventDefault();
+            bar.scrollLeft += e.deltaY;
+        }, { passive: false });
+    }
     const keys = (META.extra.length ? META_ORDER[META.kind].concat(META.extra) : META_ORDER[META.kind]).filter((k) => META.vals[k]);
     const sig = keys.join("|"), tip = (k) => META.tips[k] || META.vals[k];
     if (bar._sig === sig) {
@@ -10455,6 +10704,7 @@ function metaInit() {
 }
 
 async function openFile(filePath, fileType, fileName) {
+    if (TWIN.routeOpen(filePath, fileType, fileName)) return;
     if (!recLeaveOk()) return;
     endPlaySession();
     cancelHealthTest();
@@ -10717,6 +10967,7 @@ function closeModal() {
     document.getElementById("playlistBar").classList.remove("active");
     document.getElementById("playPlaylistBtn").classList.add("hidden");
     restoreModalFocus("modal");
+    TWIN.onModalClosed();
 }
 // Shared focus save/restore for all modals, keyed by modal element id.
 function rememberModalFocus(modalId) {
@@ -10729,6 +10980,8 @@ function restoreModalFocus(modalId) {
 }
 function trapModalFocus(e, containerId = "modalContent") {
     if (e.key !== "Tab") return;
+    // A player mounted inside a twin panel is part of the page, not a dialog: Tab is free to move on.
+    if (containerId === "modalContent" && document.getElementById("modal").classList.contains("tw-embedded")) return;
     const modal = document.getElementById(containerId);
     const focusable = modal.querySelectorAll(
         'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
@@ -11010,7 +11263,7 @@ function runModalCleanups() {
 }
 function trackBlobUrl(blob) {
     const u = URL.createObjectURL(blob);
-    modalCleanups.push(() => URL.revokeObjectURL(u));
+    (TWIN.cleanupList() || modalCleanups).push(() => URL.revokeObjectURL(u));
     return u;
 }
 
@@ -12071,6 +12324,8 @@ function syncModeUi() {
 }
 function enterLocalMode(name, root, files) {
     if (document.getElementById("modal").classList.contains("active")) closeModal();
+    // A local folder kept aside by the twin panels (while the hosted repo was showing) is replaced by the new one.
+    if (!LOCAL.active && LOCAL.parkedLocal) { revokeLocalUrls(); LOCAL.parkedLocal = null; }
     if (!LOCAL.active) {
         LOCAL.hosted = { fileIndex, allFiles, filesByPath, pinned: pinnedFolders, favorites: favoriteFiles, expanded: expandedFolders, path: currentPath, search: searchQuery };
     } else revokeLocalUrls();
@@ -12092,6 +12347,7 @@ function enterLocalMode(name, root, files) {
     wireUiOnce();
     navigateTo([]);
     announce(`Opened local folder ${name}`);
+    TWIN.onLocalEntered();
 }
 function closeLocalFolder() {
     if (!LOCAL.active) return;
@@ -12120,6 +12376,7 @@ function closeLocalFolder() {
         renderNoLibrary();
     }
     announce("Closed local folder");
+    TWIN.onLocalClosed();
 }
 function renderNoLibrary() {
     document.getElementById("treeContent").innerHTML = "";
@@ -12221,7 +12478,7 @@ function setupNewFeatureListeners() {
 // resting at the start of every lap and looping seamlessly. Hovering (or holding a finger on) a title stops it; titles that fit are untouched.
 // Nothing calls this: it watches the player window and picks up every title written there. Tune the feel with the four numbers below.
 const Marquee = (() => {
-    const SELECTOR = ".np-song, .playlist-now-playing, #modalTitle";
+    const SELECTOR = ".np-song, .playlist-now-playing, #modalTitle, .playlist-track, .playlist-health, #eqLive, .ar-path, .gal-item.active .gal-name";
     const SPEED_EM = 2.8;   // scroll speed in letter heights per second (about 45 px on a 16 px title)
     const HOLD_MS = 1800;   // rest at the start of every lap
     const GAP_EM = 3;       // empty space between the end of a title and its next copy (keep equal to the CSS padding)
@@ -12260,7 +12517,7 @@ const Marquee = (() => {
         return s;
     }
     function queueEl(el) { queue.add(el); if (!raf) raf = requestAnimationFrame(flush); }
-    function queueAll() { document.querySelectorAll(SELECTOR).forEach(queueEl); }
+    function queueAll() { document.querySelectorAll(SELECTOR + ", .mq-on").forEach(queueEl); }
 
     // Three passes so the layout is read once for all titles: tidy up, measure, apply.
     function flush() {
@@ -12271,6 +12528,7 @@ const Marquee = (() => {
         for (const el of batch) {
             const s = stateOf(el);
             if (!el.isConnected) { if (ro) ro.unobserve(el); if (s.anim) s.anim.cancel(); s.anim = null; s.track = null; continue; }
+            if (s.track && !el.matches(SELECTOR)) { release(el, s, el.textContent); continue; } // no longer a scrolling target (a gallery item that stopped being the open one)
             if (s.track && s.track.parentNode !== el) { // the page wrote a new title over the scrolling one
                 if (s.anim) s.anim.cancel();
                 s.anim = null; s.track = null;
@@ -12358,6 +12616,975 @@ const Marquee = (() => {
     }
     return { refresh: queueAll };
 })();
+// ---- Twin panels ----------------------------------------------------
+// Two independent file panels side by side (stacked on phones), in the spirit of orthodox file managers (Altap Salamander, Total Commander).
+// Each panel has its own source (the hosted repo or the local folder), folder, view type (list / grid) and sort. One panel is active at a time
+// (Tab switches; clicking a panel makes it active). Files open in the normal preview window, which holds a single player, so two audio or video
+// players can never play together. Panel state is remembered; a local folder is not (nothing about it survives a reload).
+const TWIN_KEY = "twinState";
+const TWIN_STACK_MQ = window.matchMedia ? window.matchMedia("(max-width: 640px)") : null;
+// A blob: URL for a file of the local folder, whichever source the page is currently showing.
+async function twinLocalUrl(path) {
+    const f = await getLocalFile(path);
+    let u = LOCAL.urls.get(path);
+    if (!u) { u = URL.createObjectURL(f); LOCAL.urls.set(path, u); (LOCAL.byUrl || (LOCAL.byUrl = new Map())).set(u, f); }
+    return u;
+}
+const TWIN = (() => {
+    const T = { on: false, active: 0, r: 50, max: -1, flip: false, vert: false, panes: [], menu: null, localTarget: null, ready: false, media: null, opening: false, quiet: false };
+    const $ = (id) => document.getElementById(id);
+    const ICON = {
+        repo: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4 8-1.79 8-4-3.58-4-8-4zM4 9v3c0 2.21 3.58 4 8 4s8-1.79 8-4V9c-1.7 1.73-4.77 2.8-8 2.8S5.7 10.73 4 9zm0 5v3c0 2.21 3.58 4 8 4s8-1.79 8-4v-3c-1.7 1.73-4.77 2.8-8 2.8S5.7 15.73 4 14z"/></svg>',
+        caret: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 10l5 5 5-5z"/></svg>',
+        list: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"/></svg>',
+        grid: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>',
+        zip: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>',
+        swap: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"/></svg>',
+        same: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M5 9h14v2H5zm0 4h14v2H5z"/></svg>',
+        max: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>',
+        cols: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 4h8v16H3V4zm10 0h8v16h-8V4z"/></svg>',
+        rows: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 3h16v8H4V3zm0 10h16v8H4v-8z"/></svg>',
+        prev: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>',
+        next: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>',
+        ext: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>',
+        close: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>',
+    };
+    const isStacked = () => T.vert || !!(TWIN_STACK_MQ && TWIN_STACK_MQ.matches);
+    const mkPane = (i, source) => ({ id: i, source, path: [], memo: { hosted: [], local: [] }, view: "list", sort: sortBy, filter: "", map: new Map(), cur: "", reveal: null, focusIt: false, summary: "", mode: "list", viewItem: null, cleanups: [], backHook: null, seq: 0, order: [], mediaName: "" });
+
+    // ---- Sources: the hosted repo and the local folder can both be loaded; the page-wide globals point at one of them at a time ----
+    const ctxNow = () => ({ fileIndex, allFiles, filesByPath, pinned: pinnedFolders, favorites: favoriteFiles, expanded: expandedFolders, path: currentPath, search: searchQuery });
+    const ctxApply = (c) => { fileIndex = c.fileIndex; allFiles = c.allFiles; filesByPath = c.filesByPath; pinnedFolders = c.pinned; favoriteFiles = c.favorites; expandedFolders = c.expanded; currentPath = c.path || []; };
+    const localLoaded = () => LOCAL.active || !!LOCAL.parkedLocal;
+    function ctxOf(kind) {
+        if (kind === "local") return LOCAL.active ? ctxNow() : LOCAL.parkedLocal || null;
+        const c = LOCAL.active ? LOCAL.hosted : ctxNow();
+        return c && c.fileIndex ? c : null;
+    }
+    // Points the page-wide state (what the preview window, folder zip, etc. read) at one source.
+    function useSource(kind) {
+        const wantLocal = kind === "local";
+        if (LOCAL.active === wantLocal) return true;
+        if (wantLocal) {
+            const p = LOCAL.parkedLocal;
+            if (!p) return false;
+            const h = ctxNow();
+            LOCAL.parkedLocal = null; ctxApply(p); LOCAL.hosted = h; LOCAL.active = true;
+            document.body.dataset.source = "local";
+        } else {
+            const h = LOCAL.hosted;
+            if (!h || !h.fileIndex) return false;
+            const l = ctxNow();
+            LOCAL.parkedLocal = l; ctxApply(h); LOCAL.hosted = null; LOCAL.active = false;
+            delete document.body.dataset.source;
+        }
+        return true;
+    }
+    function hostedUrlIn(c, path) {
+        const f = c.filesByPath.get(path), s = c.fileIndex && c.fileIndex.source;
+        if (f && f.external && s && s.repo && s.branch) return `https://raw.githubusercontent.com/${s.repo}/${encodePathForUrl(s.branch)}/${encodePathForUrl(f.repo || path)}`;
+        return `./${encodePathForUrl(path)}`;
+    }
+    function walk(c, path) {
+        let items = c.fileIndex.root;
+        for (const n of path) {
+            const t = items.find((x) => x.name === n && x.type === "directory");
+            if (!t) return null;
+            items = t.children || [];
+        }
+        return items;
+    }
+    // The folder a panel shows. A path that no longer exists (the repo changed) falls back to its nearest existing parent.
+    function itemsOf(p) {
+        const c = ctxOf(p.source);
+        if (!c) return { c: null, items: [] };
+        if (c.fileIndex.partial && p.path.length) return { c, items: [], partial: true };
+        let path = p.path, items = walk(c, path);
+        while (!items && path.length) { path = path.slice(0, -1); items = walk(c, path); }
+        if (path.length !== p.path.length) { p.path = path; p.memo[p.source] = path; }
+        return { c, items: items || [] };
+    }
+
+    const paneEl = (i) => $("twin").querySelector(`.tw-pane[data-i="${i}"]`);
+    function save() {
+        try { store.setItem(TWIN_KEY, JSON.stringify({ on: T.on, r: T.r, flip: T.flip, vert: T.vert, active: T.active, panes: T.panes.map((p) => ({ source: p.source, path: p.path, view: p.view, sort: p.sort, hosted: p.memo.hosted })) })); } catch (err) { /* ignore */ }
+    }
+    function load() {
+        let s = null;
+        try { s = JSON.parse(store.getItem(TWIN_KEY) || "null"); } catch (err) { s = null; }
+        return s && typeof s === "object" ? s : null;
+    }
+    const arrOfStr = (a) => (Array.isArray(a) ? a.filter((x) => typeof x === "string") : []);
+    function paneFromSaved(i, sp) {
+        const p = mkPane(i, "hosted");
+        if (!sp) return p;
+        p.view = sp.view === "grid" ? "grid" : "list";
+        if (typeof sp.sort === "string") p.sort = sp.sort;
+        p.memo.hosted = arrOfStr(sp.hosted);
+        p.path = sp.source === "hosted" ? arrOfStr(sp.path) : p.memo.hosted.slice();
+        return p;
+    }
+
+    // ---- Rendering ----
+    function crumbsHtml(p) {
+        const root = p.source === "local" ? LOCAL.name || "Local folder" : "Home";
+        let h = `<button type="button" class="tw-crumb" data-i="0"${p.path.length ? "" : ' aria-current="page"'}>${escapeHtml(root)}</button>`;
+        p.path.forEach((seg, k) => {
+            h += `<span class="tw-sep" aria-hidden="true">/</span><button type="button" class="tw-crumb" data-i="${k + 1}"${k === p.path.length - 1 ? ' aria-current="page"' : ""}>${escapeHtml(seg)}</button>`;
+        });
+        return h;
+    }
+    function menuHtml(p) {
+        const loaded = localLoaded();
+        const item = (act, label, checked) => `<button type="button" role="menuitem${checked === undefined ? "" : "radio"}"${checked === undefined ? "" : ` aria-checked="${checked}"`} class="tw-menu-item${checked ? " on" : ""}" data-act="${act}">${label}</button>`;
+        let h = item("src-hosted", "Repo files", p.source === "hosted");
+        if (loaded) h += item("src-local", `Local folder: ${escapeHtml(LOCAL.name || "folder")}`, p.source === "local");
+        h += item("open-local", "Open a local folder\u2026");
+        if (loaded) h += item("close-local", "Close the local folder");
+        return `<div class="tw-menu" role="menu" aria-label="What this panel shows">${h}</div>`;
+    }
+    function renderHead(p) {
+        const pn = paneEl(p.id);
+        if (!pn) return;
+        const head = pn.querySelector(".tw-head");
+        const grid = p.view === "grid";
+        const sorts = [["name-asc", "Name (A-Z)"], ["name-desc", "Name (Z-A)"], ["ext-asc", "Extension"], ["size-desc", "Size (largest)"], ["size-asc", "Size (smallest)"], ["date-desc", "Date (newest)"], ["date-asc", "Date (oldest)"], ["type", "Type"]];
+        head.innerHTML = `
+            <button type="button" class="tw-src" aria-haspopup="menu" aria-expanded="${T.menu === p.id}" title="Choose what this panel shows">${p.source === "local" ? icons.folder : ICON.repo}<span class="tw-src-text">${p.source === "local" ? "Local" : "Repo"}</span>${ICON.caret}</button>
+            <nav class="tw-path" aria-label="Folder path of panel ${p.id + 1}">${crumbsHtml(p)}</nav>
+            <span class="tw-tools">
+                ${grid ? `<select class="sort-select tw-sort" aria-label="Sort panel ${p.id + 1} by">${sorts.map(([v, l]) => `<option value="${v}"${v === p.sort ? " selected" : ""}>${l}</option>`).join("")}</select>` : ""}
+                <button type="button" class="settings-btn tw-zip" title="Download this folder as a zip" aria-label="Download this folder as a zip">${ICON.zip}</button>
+                <span class="view-toggle" role="group" aria-label="View of panel ${p.id + 1}">
+                    <button type="button" class="view-btn tw-vbtn${grid ? "" : " active"}" data-v="list" title="List" aria-label="List view" aria-pressed="${!grid}">${ICON.list}</button>
+                    <button type="button" class="view-btn tw-vbtn${grid ? " active" : ""}" data-v="grid" title="Grid" aria-label="Grid view" aria-pressed="${grid}">${ICON.grid}</button>
+                </span>
+            </span>
+            ${T.menu === p.id ? menuHtml(p) : ""}`;
+        const path = head.querySelector(".tw-path");
+        if (path) path.scrollLeft = path.scrollWidth;
+        pn.classList.toggle("active", T.active === p.id);
+    }
+    function emptyHtml(msg, extra) { return `<div class="tw-empty">${msg}${extra || ""}</div>`; }
+    function renderList(p, keepScroll) {
+        const pn = paneEl(p.id);
+        if (!pn) return;
+        const sc = pn.querySelector(".tw-scroll");
+        const top = keepScroll ? sc.scrollTop : 0;
+        const { c, items, partial } = itemsOf(p);
+        p.map = new Map();
+        p.summary = "";
+        if (!c) {
+            sc.innerHTML = emptyHtml("Nothing to show here.", '<p><button type="button" class="theme-reset-btn" data-act="open-local">Open a local folder</button></p>');
+            setStatus(p, null);
+            return;
+        }
+        if (partial) {
+            sc.innerHTML = `<div class="skeleton-list" aria-hidden="true">${[45, 60, 35, 50, 40, 55].map((w) => `<div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:${w}%"></div></div>`).join("")}</div>`;
+            setStatus(p, null);
+            return;
+        }
+        const grid = p.view === "grid";
+        let all = sortItems(items, p.sort);
+        const f = p.filter.trim().toLowerCase();
+        if (f) all = all.filter((i) => i.name.toLowerCase().includes(f));
+        p.order = all.map((i) => i.name);
+        const nf = all.filter((i) => i.type === "file").length, nd = all.length - nf;
+        const bytes = all.reduce((a, i) => a + (i.type === "file" ? getItemSize(i) : 0), 0);
+        p.summary = `${nf} ${nf === 1 ? "file" : "files"}, ${nd} ${nd === 1 ? "folder" : "folders"}${nf ? " \u00b7 " + formatFileSize(bytes) : ""}`;
+        const [sk, sd] = p.sort.includes("-") ? p.sort.split("-") : [p.sort, "asc"];
+        const hcol = (key, label, cls) => `<span class="col ${cls}" data-sort="${key}">${label}<span class="sort-arrow">${sk === key ? (sd === "desc" ? "\u25bc" : "\u25b2") : ""}</span></span>`;
+        let html = `<div class="${grid ? "file-grid" : "file-list list-columns"}">`;
+        if (!grid) html += `<div class="file-list-header"><span class="col-icon-spacer" aria-hidden="true"></span>${hcol("name", "Name", "col-name")}${hcol("ext", "Ext", "col-ext")}${hcol("size", "Size", "col-size")}${hcol("date", "Date", "col-date")}${hcol("date", "Time", "col-time")}</div>`;
+        if (p.path.length) {
+            html += `<div class="file-card directory parent-dir" role="button" tabindex="-1" data-up="1" aria-label="Go to parent folder"><div class="file-icon folder">${icons.folder}</div><div class="file-info"><span class="file-name">..</span><span class="file-meta"></span></div>${grid ? "" : renderColumnCells("", "", "", "")}</div>`;
+        }
+        const extSlot = new Map(), extSeen = new Map();
+        [...new Set(all.filter((i) => i.type !== "directory").map((i) => getFileExtension(i.name).toLowerCase()).filter(Boolean))].sort().forEach((x, i) => extSlot.set(x, i % 12));
+        const base = p.path.length ? p.path.join("/") + "/" : "";
+        for (const item of all) {
+            p.map.set(item.name, item);
+            const name = escapeHtml(item.name);
+            if (item.type === "directory") {
+                html += `<div class="file-card directory" role="button" tabindex="-1" data-n="${name}" data-t="d" aria-label="Open folder ${name}"><div class="file-icon folder">${icons.folder}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : ""}</span></div>${grid ? "" : renderColumnCells("", "DIR", escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
+                continue;
+            }
+            const iconType = getFileIconType(item.name) || item.category || "other";
+            const xe = getFileExtension(item.name).toLowerCase(), xSlot = extSlot.get(xe);
+            let xc = "";
+            if (xSlot !== undefined) { const xn = extSeen.get(xe) || 0; extSeen.set(xe, xn + 1); xc = ` xc xv${xn % 4}" style="--xc:var(--x${xSlot})`; }
+            const full = base + item.name;
+            const thumb = grid && item.category === "image"
+                ? `<img class="file-thumbnail lazy" ${p.source === "local" ? `data-tlocal="${escapeHtml(full)}"` : `data-src="${escapeHtml(hostedUrlIn(c, full))}"`} alt="" decoding="async">` : "";
+            html += `<div class="file-card" role="button" tabindex="-1" data-n="${name}" data-t="f" aria-label="Open file ${name}">${thumb}<div class="file-icon ${iconType}${xc}">${icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid ? item.sizeFormatted : ""}</span></div>${grid ? "" : renderColumnCells(escapeHtml(getFileExtension(item.name)), item.sizeFormatted, escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
+        }
+        html += "</div>";
+        if (!all.length) html += emptyHtml(f ? "No matches in this folder." : "Empty folder.");
+        sc.innerHTML = html;
+        sc.scrollTop = top;
+        if (intersectionObserver) sc.querySelectorAll(".file-thumbnail.lazy").forEach((img) => intersectionObserver.observe(img));
+        setStatus(p, null);
+        if (p.reveal !== null) {
+            const target = Array.from(sc.querySelectorAll(".file-card")).find((el) => el.dataset.n === p.reveal);
+            if (target) { if (p.focusIt) target.focus({ preventScroll: true }); target.scrollIntoView({ block: "center" }); }
+            else if (p.focusIt) focusCursor(p);
+            p.reveal = null; p.focusIt = false;
+        }
+    }
+    function setStatus(p, item) {
+        const pn = paneEl(p.id), st = pn && pn.querySelector(".tw-status");
+        if (!st) return;
+        st.textContent = item ? `${item.name}: ${item.type === "directory" ? "DIR" : item.sizeFormatted}, ${formatItemDate(item)} ${formatItemTime(item)}` : p.summary;
+    }
+    function renderPane(i, keepScroll) {
+        const p = T.panes[i];
+        if (!p) return;
+        renderList(p, keepScroll);
+        renderHead(p);
+    }
+    function renderAll(keepScroll) { T.panes.forEach((p) => renderPane(p.id, keepScroll)); }
+
+    // ---- Layout: split position, maximized panel ----
+    function applyLayout() {
+        const tw = $("twin"), sp = tw.querySelector(".tw-split");
+        tw.style.setProperty("--tw-a", T.r + "fr");
+        tw.style.setProperty("--tw-b", 100 - T.r + "fr");
+        if (T.max === 0 || T.max === 1) tw.dataset.max = String(T.max); else delete tw.dataset.max;
+        if (T.flip) tw.dataset.flip = "1"; else delete tw.dataset.flip;
+        if (T.vert) tw.dataset.stack = "1"; else delete tw.dataset.stack;
+        const lb = sp.querySelector('[data-act="layout"]');
+        if (lb) {
+            const t = T.vert ? "Put the panels side by side" : "Stack the panels top and bottom";
+            lb.innerHTML = T.vert ? ICON.cols : ICON.rows;
+            lb.title = t; lb.setAttribute("aria-label", t);
+        }
+        sp.classList.toggle("centered", Math.abs(T.r - 50) < 0.05);
+        sp.setAttribute("aria-valuenow", String(Math.round(T.r)));
+        sp.setAttribute("aria-orientation", isStacked() ? "horizontal" : "vertical");
+        const mx = sp.querySelector('[data-act="max"]');
+        if (mx) { const on = T.max !== -1; mx.setAttribute("aria-pressed", String(on)); mx.title = on ? "Show both panels" : "Fill the window with this panel"; mx.setAttribute("aria-label", mx.title); }
+    }
+
+    // ---- Navigation ----
+    function syncHash() {
+        if (!T.on) return;
+        const p = T.panes[T.active];
+        if (!p || p.source !== "hosted") return;
+        const h = pathToHash(p.path);
+        if (location.hash !== h) { suppressHashSync = true; location.hash = h; }
+    }
+    function setActive(i, quiet) {
+        if (T.max !== -1 && T.max !== i) T.max = i;
+        if (T.active === i && quiet) return;
+        T.active = i;
+        T.panes.forEach((p) => { const pn = paneEl(p.id); if (pn) pn.classList.toggle("active", p.id === i); });
+        const input = $("search");
+        input.value = T.panes[i].filter;
+        updateSearchClearVisibility();
+        applyLayout();
+        syncHash();
+        save();
+    }
+    function go(p, path, o) {
+        o = o || {};
+        if (p.mode !== "list") { closePreview(p, true); if (p.mode !== "list") return; }
+        p.path = path;
+        p.memo[p.source] = path;
+        p.filter = "";
+        if (p.id === T.active) { $("search").value = ""; updateSearchClearVisibility(); }
+        if (o.reveal !== undefined) { p.reveal = o.reveal; p.focusIt = !!o.focus; }
+        T.menu = null;
+        renderPane(p.id);
+        if (p.id === T.active) syncHash();
+        save();
+        announce(`Panel ${p.id + 1}: ${path.length ? path.join("/") : "home"}`);
+    }
+    function up(p, focus) {
+        if (!p.path.length) return;
+        go(p, p.path.slice(0, -1), { reveal: p.path[p.path.length - 1], focus });
+    }
+    function openItem(p, name) {
+        const item = p.map.get(name);
+        if (!item) return;
+        if (item.type === "directory") { go(p, [...p.path, item.name]); return; }
+        openFileItem(p, item);
+    }
+    function setSource(p, kind) {
+        T.menu = null;
+        closePreview(p, true);
+        if (p.mode !== "list") return;
+        if (kind === "local" && !localLoaded()) { T.localTarget = p.id; openLocalFolder(); renderHead(p); return; }
+        if (kind === p.source) { renderHead(p); return; }
+        p.memo[p.source] = p.path;
+        p.source = kind;
+        p.path = (p.memo[kind] || []).slice();
+        p.filter = "";
+        renderPane(p.id);
+        if (p.id === T.active) { $("search").value = ""; syncHash(); }
+        save();
+    }
+    function setView(p, v) {
+        if (p.view === v) return;
+        p.view = v;
+        renderPane(p.id);
+        save();
+    }
+    function focusCursor(p) {
+        const pn = paneEl(p.id);
+        if (!pn) return;
+        const cards = Array.from(pn.querySelectorAll(".file-card"));
+        const t = cards.find((el) => el.dataset.n === p.cur) || cards[p.path.length ? 1 : 0] || cards[0];
+        (t || pn.querySelector(".tw-scroll")).focus();
+    }
+    function switchPane() {
+        setActive(1 - T.active);
+        focusCursor(T.panes[T.active]);
+    }
+    // Swapping is only visual (the panels trade places), so nothing is moved in the page: a track that is playing in one keeps playing.
+    function swap() {
+        T.flip = !T.flip;
+        applyLayout();
+        save();
+    }
+    function same() {
+        const s = T.panes[T.active], o = T.panes[1 - T.active];
+        closePreview(o, true);
+        if (o.mode !== "list") return;
+        o.memo[o.source] = o.path;
+        o.source = s.source;
+        o.path = s.path.slice();
+        o.memo[o.source] = o.path;
+        o.filter = "";
+        renderPane(o.id);
+        save();
+    }
+    function toggleMax() { T.max = T.max === -1 ? T.active : -1; applyLayout(); }
+    function setFilter(v) {
+        const p = T.panes[T.active];
+        p.filter = v;
+        renderList(p);
+    }
+
+    // ---- Switching the mode on and off ----
+    function seedFromPage() {
+        const here = { source: LOCAL.active ? "local" : "hosted", path: currentPath.slice() };
+        const p0 = T.panes[0], p1 = T.panes[1];
+        p0.memo[p0.source] = p0.path;
+        p0.source = here.source;
+        p0.path = here.path;
+        p0.memo[here.source] = here.path;
+        if (p1.source === "local" && !localLoaded()) { p1.source = "hosted"; p1.path = p1.memo.hosted.slice(); }
+        if (!p1.path.length && p1.source === "hosted" && p0.source === "hosted" && !load()) p1.path = p0.path.slice();
+        // Local folder open while the other panel has nothing of its own yet: show the repo there.
+        if (here.source === "local" && p1.source === "local") { p1.source = "hosted"; p1.path = p1.memo.hosted.slice(); }
+        if (here.source === "hosted" && localLoaded() && !load()) { p1.source = "local"; p1.path = []; }
+    }
+    function setOn(on, fromInit) {
+        if (on === T.on) return;
+        if (on && !T.ready) return;
+        if (on && !fromInit) seedFromPage();
+        if (!on) {
+            T.panes.forEach((q) => closePreview(q, true));
+            if ($("modal").classList.contains("active")) return; // the player stayed open (a recording prompt), so stay in twin mode
+            unmountModal();
+        }
+        T.on = on;
+        T.menu = null;
+        document.body.classList.toggle("twin-on", on);
+        const btn = $("twinBtn");
+        btn.classList.toggle("active", on);
+        btn.setAttribute("aria-pressed", String(on));
+        $("search").placeholder = on ? "Filter this folder..." : "Search...";
+        $("search").setAttribute("aria-label", on ? "Filter files in the active panel" : "Search files");
+        if (on) {
+            $("search").value = T.panes[T.active].filter;
+            updateSearchClearVisibility();
+            applyLayout();
+            renderAll();
+            syncHash();
+        } else {
+            T.max = -1;
+            applyLayout();
+            const p = T.panes[T.active];
+            if (useSource(p.source)) { syncModeUi(); navigateTo(p.path.slice()); }
+            else navigateTo([]);
+        }
+        save();
+        announce(on ? "Twin panels on" : "Twin panels off");
+    }
+
+    // ---- Previews inside the panels ----
+    // Audio, video and playlists use the real player window, mounted inside the panel that opened them: one player at a time, with every feature it has.
+    // Everything else (images, text and code, markdown, PDFs, fonts, archives) is shown inline, so both panels can preview at once, next to a playing track.
+    const MEDIA_KINDS = new Set(["audio", "video", "playlist"]);
+    // The hosted index may classify M3U/M3U8 files as generic text; the extension is authoritative for twin-panel routing.
+    const kindOf = (item) => previewKindOverride(item.name) || (isPlaylistExtension(item.name) ? "playlist" : item.category);
+    const fullOf = (p, name) => (p.path.length ? p.path.join("/") + "/" : "") + name;
+    const findCard = (p, name) => { const pn = paneEl(p.id); return pn ? Array.from(pn.querySelectorAll(".file-card")).find((el) => el.dataset.n === name) : null; };
+    function setMode(p, m) { p.mode = m; const pn = paneEl(p.id); if (pn) pn.dataset.mode = m; }
+    function runCleanups(p) { while (p.cleanups.length) { try { p.cleanups.pop()(); } catch (err) { /* ignore */ } } }
+    function unmountModal() {
+        const m = $("modal");
+        if (m.parentNode !== document.body) document.body.appendChild(m);
+        m.classList.remove("tw-embedded");
+    }
+    function closePreview(p, quiet) {
+        if (p.mode === "media") { T.quiet = !!quiet; try { closeModal(); } finally { T.quiet = false; } return; }
+        if (p.mode === "view") closeInline(p, quiet);
+    }
+    function revealAfterClose(p, name, quiet) {
+        if (quiet || !name) return;
+        const el = findCard(p, name);
+        if (el) { el.focus({ preventScroll: true }); el.scrollIntoView({ block: "nearest" }); } else focusCursor(p);
+    }
+    function openFileItem(p, item) {
+        if (MEDIA_KINDS.has(kindOf(item))) openMedia(p, item); else openInline(p, item);
+    }
+    function openMedia(p, item) {
+        const modalEl = $("modal");
+        if (T.media !== null && T.media !== p.id) {
+            closePreview(T.panes[T.media], true);
+            if (modalEl.classList.contains("active")) return; // a recording prompt kept the other player open
+        }
+        if (p.mode === "view") closeInline(p, true);
+        if (!useSource(p.source)) return;
+        const slot = paneEl(p.id).querySelector(".tw-media");
+        if (modalEl.parentNode !== slot) slot.appendChild(modalEl);
+        modalEl.classList.add("tw-embedded");
+        T.media = p.id;
+        p.mediaName = item.name;
+        T.menu = null;
+        setMode(p, "media");
+        T.opening = true;
+        const done = () => {
+            T.opening = false;
+            if (!modalEl.classList.contains("active") && T.media === p.id) { T.media = null; setMode(p, "list"); }
+        };
+        Promise.resolve(openFile(fullOf(p, item.name), item.category, item.name)).then(done, done);
+    }
+    // Previous / next file only exist for a local folder's files; hosted repo files never get them. Media (audio, video, playlists) is always skipped, since it opens in the player.
+    const canStep = (p) => p.source === "local";
+    function findStep(p, dir) {
+        if (!canStep(p) || !p.viewItem) return null;
+        let i = p.order.indexOf(p.viewItem.name);
+        if (i < 0) return null;
+        for (i += dir; i >= 0 && i < p.order.length; i += dir) {
+            const it = p.map.get(p.order[i]);
+            if (it && it.type === "file" && !MEDIA_KINDS.has(kindOf(it))) return it;
+        }
+        return null;
+    }
+    function updateStepButtons(p) {
+        const v = paneEl(p.id).querySelector(".tw-view"), on = canStep(p);
+        const prev = v.querySelector('[data-vact="prev"]'), next = v.querySelector('[data-vact="next"]');
+        prev.hidden = next.hidden = !on;
+        prev.disabled = !findStep(p, -1);
+        next.disabled = !findStep(p, 1);
+    }
+    // With a picture rail open, the arrow keys walk the pictures (hosted or local); the rail is how hosted files are stepped through.
+    function stepGallery(p, dir) {
+        if (!p.gal || !p.viewItem) return false;
+        const i = p.gal.indexOf(p.viewItem.name) + dir, it = p.map.get(p.gal[i]);
+        if (it) openInline(p, it);
+        return true;
+    }
+    function stepInline(p, dir) {
+        const it = findStep(p, dir);
+        if (it) openInline(p, it);
+    }
+    function openInline(p, item) {
+        if (p.mode === "media") { closePreview(p, true); if (p.mode !== "list") return; }
+        const pn = paneEl(p.id), view = pn.querySelector(".tw-view"), body = pn.querySelector(".tw-vbody");
+        runCleanups(p);
+        p.backHook = null;
+        const mySeq = ++p.seq, full = fullOf(p, item.name);
+        p.viewItem = { name: item.name, path: full };
+        setMode(p, "view");
+        T.menu = null;
+        const title = view.querySelector(".tw-vtitle");
+        title.textContent = item.name;
+        title.title = full;
+        view.querySelectorAll("[data-vlink]").forEach((a) => a.removeAttribute("href"));
+        body.className = "modal-body tw-vbody";
+        p.gal = null;
+        body.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+        updateStepButtons(p);
+        view.focus({ preventScroll: true });
+        renderInline(p, item, full, body, mySeq);
+        announce(`Previewing ${item.name} in panel ${p.id + 1}`);
+    }
+    function mdEnv(p, c, full) {
+        const local = p.source === "local";
+        return {
+            dir: dirOfPath(full),
+            remoteImages: !local,
+            assetSync: local ? null : (q) => hostedUrlIn(c, q),
+            loadAsset: (q) => (local && LOCAL.files.has(q) ? twinLocalUrl(q).catch(() => null) : Promise.resolve(null)),
+            openPath: (q) => openPathIn(p, q),
+        };
+    }
+    async function renderInline(p, item, full, body, mySeq) {
+        const stale = () => p.seq !== mySeq;
+        const c = ctxOf(p.source);
+        let url = "";
+        try {
+            if (!c) throw new Error("source unavailable");
+            url = p.source === "local" ? await twinLocalUrl(full) : hostedUrlIn(c, full);
+        } catch (err) { if (!stale()) showUnavailable(body, item.name, "", err); return; }
+        if (stale()) return;
+        const view = paneEl(p.id).querySelector(".tw-view");
+        view.querySelector('[data-vlink="raw"]').href = url;
+        const dl = view.querySelector('[data-vlink="download"]');
+        dl.href = url;
+        dl.download = item.name;
+        const kind = kindOf(item);
+        try {
+            switch (kind) {
+                case "image": {
+                    const img = `<img class="preview-image" src="${escapeHtml(url)}" alt="${escapeHtml(item.name)}">`;
+                    // Like music and video in the player window, an open picture gets a rail of the other pictures of its folder.
+                    const names = p.order.filter((n) => { const it = p.map.get(n); return it && it.type === "file" && kindOf(it) === "image"; });
+                    if (names.length < 2 || !names.includes(item.name)) { body.innerHTML = img; break; }
+                    p.gal = names;
+                    const idx = names.indexOf(item.name);
+                    const thumb = (n) => `<img class="gal-thumb lazy" ${p.source === "local" ? `data-tlocal="${escapeHtml(fullOf(p, n))}"` : `data-src="${escapeHtml(hostedUrlIn(c, fullOf(p, n)))}"`} alt="" decoding="async">`;
+                    body.classList.add("tw-has-rail");
+                    body.innerHTML = `<aside class="gallery-rail tw-rail" data-kind="image" aria-label="Pictures in this folder"><div class="gal-head"><span>Images</span><span class="gal-count">${idx + 1} / ${names.length}</span></div><div class="gal-list">${names.map((n, i) => `<button type="button" class="gal-item${i === idx ? " active" : ""}" data-rn="${escapeHtml(n)}" title="${escapeHtml(n)}" aria-label="${escapeHtml(n)}"${i === idx ? ' aria-current="true"' : ""}><span class="gal-ico">${icons.image}</span>${thumb(n)}</button>`).join("")}</div></aside><div class="tw-gal-main">${img}</div>`;
+                    if (intersectionObserver) body.querySelectorAll(".gal-thumb.lazy").forEach((im) => intersectionObserver.observe(im));
+                    const act = body.querySelector(".gal-item.active");
+                    if (act) act.scrollIntoView({ block: "center", inline: "center" });
+                    break;
+                }
+                case "md-view": {
+                    const res = await fetchTextPreview(url);
+                    if (stale()) return;
+                    mountMarkdown(body, res.text, res.truncated, item.name, mdEnv(p, c, full));
+                    body.classList.add("scrollable");
+                    break;
+                }
+                case "archive-view": {
+                    const f = c.filesByPath.get(full);
+                    const src = p.source === "local" ? blobSource(await getLocalFile(full)) : !f || !f.size ? blobSource(await httpSource(url, 0).blob()) : httpSource(url, f.size);
+                    body.innerHTML = '<div class="loading"><div class="spinner"></div><div class="ar-status">Reading archive\u2026</div></div>';
+                    const status = body.querySelector(".ar-status");
+                    const first = await arOpen(item.name, src, (n) => { if (status && status.isConnected) status.textContent = `Reading archive\u2026 ${n.toLocaleString()} entries`; });
+                    if (stale()) return;
+                    const prevHook = modalBackHook;
+                    runArchiveViewer(body, item.name, first);
+                    p.backHook = modalBackHook;
+                    modalBackHook = prevHook;
+                    body.classList.add("scrollable");
+                    break;
+                }
+                case "document":
+                    if (item.name.toLowerCase().endsWith(".pdf")) body.innerHTML = `<iframe class="preview-pdf" src="${escapeHtml(url)}"></iframe>`;
+                    else showUnavailable(body, item.name, url);
+                    break;
+                case "code": case "markup": case "style": case "data": case "text": {
+                    const { text, truncated } = await fetchTextPreview(url);
+                    if (stale()) return;
+                    renderTextPreview(body, text, item.name, truncated);
+                    body.classList.add("scrollable");
+                    break;
+                }
+                case "font": {
+                    const fam = "PreviewFont" + Date.now();
+                    const face = new FontFace(fam, `url("${url}")`);
+                    await face.load();
+                    if (stale()) return;
+                    document.fonts.add(face);
+                    body.innerHTML = `<div style="padding: 1.5rem; text-align: center; font-family: '${fam}', sans-serif;"><p style="font-size: 2rem; margin-bottom: 0.75rem;">The quick brown fox jumps over the lazy dog</p><p style="font-size: 1.5rem; margin-bottom: 0.5rem;">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p><p style="font-size: 1.5rem; margin-bottom: 0.5rem;">abcdefghijklmnopqrstuvwxyz</p><p style="font-size: 1.5rem;">0123456789!@#$%^&amp;*()</p></div>`;
+                    break;
+                }
+                default:
+                    showUnavailable(body, item.name, url);
+            }
+        } catch (err) {
+            console.error(err);
+            if (!stale()) showUnavailable(body, item.name, url, err);
+        }
+    }
+    function closeInline(p, quiet) {
+        const name = p.viewItem && p.viewItem.name;
+        p.seq++;
+        runCleanups(p);
+        p.backHook = null;
+        p.viewItem = null;
+        p.gal = null;
+        paneEl(p.id).querySelector(".tw-vbody").innerHTML = "";
+        setMode(p, "list");
+        revealAfterClose(p, name, quiet);
+    }
+    // Opens a path of this panel's source in the panel (a link inside a markdown file, a deep link in the address bar). A folder is just browsed to.
+    function openPathIn(p, path) {
+        const c = ctxOf(p.source);
+        if (!c) return false;
+        const segs = path.split("/").filter(Boolean);
+        const f = c.filesByPath.get(path);
+        if (f) {
+            const dir = segs.slice(0, -1);
+            if (dir.join("/") !== p.path.join("/")) { p.path = dir; p.memo[p.source] = dir; p.filter = ""; renderList(p); renderHead(p); save(); }
+            const item = p.map.get(f.name);
+            if (!item) return false;
+            openFileItem(p, item);
+            return true;
+        }
+        if (walk(c, segs)) { closePreview(p, true); go(p, segs); return true; }
+        return false;
+    }
+    function viewKey(e, p) {
+        const typing = e.target.closest && e.target.closest("input, textarea, select, [contenteditable]");
+        if (typing || e.ctrlKey || e.altKey || e.metaKey) return;
+        const hook = () => !!(p.backHook && p.backHook());
+        switch (e.key) {
+            case "Tab": if (e.target.classList && e.target.classList.contains("tw-view")) { e.preventDefault(); switchPane(); } return;
+            case "Escape": case "Backspace": e.preventDefault(); e.stopPropagation(); if (!hook()) closeInline(p); return;
+            case "ArrowLeft": if (hook()) { e.preventDefault(); return; } if (p.gal) { e.preventDefault(); stepGallery(p, -1); return; } if (!canStep(p)) return; e.preventDefault(); stepInline(p, -1); return;
+            case "ArrowRight": if (p.gal) { e.preventDefault(); stepGallery(p, 1); return; } if (!canStep(p)) return; e.preventDefault(); stepInline(p, 1); return;
+        }
+    }
+
+    // ---- Events ----
+    function onClick(e) {
+        const t = e.target;
+        const pn = t.closest(".tw-pane");
+        if (!pn) {
+            const b = t.closest(".tw-split-tools button");
+            if (b) { const a = b.dataset.act; if (a === "swap") swap(); else if (a === "same") same(); else if (a === "max") toggleMax(); else if (a === "layout") toggleLayout(); }
+            return;
+        }
+        const p = T.panes[Number(pn.dataset.i)];
+        if (T.active !== p.id) setActive(p.id);
+        const va = t.closest("[data-vact]");
+        if (va) { const k = va.dataset.vact; if (k === "close") closeInline(p); else if (k === "prev") stepInline(p, -1); else if (k === "next") stepInline(p, 1); return; }
+        const gi = t.closest(".tw-rail .gal-item[data-rn]");
+        if (gi) { const it = p.map.get(gi.dataset.rn); if (it && !(p.viewItem && p.viewItem.name === it.name)) openInline(p, it); return; }
+        if (t.closest(".tw-view, .tw-media")) return;
+        const act = t.closest("[data-act]");
+        if (t.closest(".tw-src")) { T.menu = T.menu === p.id ? null : p.id; renderHead(p); return; }
+        if (act && act.closest(".tw-menu")) { menuAct(p, act.dataset.act); return; }
+        if (act && act.dataset.act === "open-local") { T.localTarget = p.id; openLocalFolder(); return; }
+        if (T.menu !== null) { T.menu = null; renderHead(T.panes[T.active]); renderAllHeads(); }
+        const crumb = t.closest(".tw-crumb");
+        if (crumb) { const i = Number(crumb.dataset.i); if (i !== p.path.length) go(p, p.path.slice(0, i)); else if (p.mode !== "list") closePreview(p); return; }
+        const vb = t.closest(".tw-vbtn");
+        if (vb) { setView(p, vb.dataset.v); return; }
+        if (t.closest(".tw-zip")) {
+            if (T.media !== null && T.panes[T.media].source !== p.source) { announce("Close the player first, then download this folder"); return; }
+            if (useSource(p.source)) { currentPath = p.path.slice(); downloadFolderZip(); }
+            return;
+        }
+        const col = t.closest(".file-list-header .col[data-sort]");
+        if (col) {
+            const key = col.dataset.sort, [ak, ad] = p.sort.includes("-") ? p.sort.split("-") : [p.sort, "asc"];
+            p.sort = `${key}-${ak === key && ad === "asc" ? "desc" : "asc"}`;
+            renderList(p, true);
+            save();
+            return;
+        }
+        const card = t.closest(".file-card");
+        if (!card) return;
+        if (card.dataset.up) { up(p, false); return; }
+        p.cur = card.dataset.n;
+        openItem(p, card.dataset.n);
+    }
+    function renderAllHeads() { T.panes.forEach((p) => renderHead(p)); }
+    function menuAct(p, act) {
+        T.menu = null;
+        if (act === "src-hosted") setSource(p, "hosted");
+        else if (act === "src-local") setSource(p, "local");
+        else if (act === "open-local") { T.localTarget = p.id; renderHead(p); openLocalFolder(); }
+        else if (act === "close-local") closeLocal();
+    }
+    function closeLocal() {
+        if (LOCAL.active) closeLocalFolder();
+        else if (LOCAL.parkedLocal) {
+            T.panes.forEach((q) => { if (q.source === "local") closePreview(q, true); });
+            revokeLocalUrls();
+            LOCAL.parkedLocal = null;
+            LOCAL.files = new Map();
+            LOCAL.name = "";
+            api.onLocalClosed();
+        }
+    }
+    function onChange(e) {
+        const s = e.target.closest(".tw-sort");
+        if (!s) return;
+        const p = T.panes[Number(s.closest(".tw-pane").dataset.i)];
+        p.sort = s.value;
+        renderList(p);
+        save();
+    }
+    function onKey(e) {
+        if (e.target.closest(".tw-split")) { splitKey(e); return; }
+        const pn = e.target.closest(".tw-pane");
+        if (!pn) return;
+        const p = T.panes[Number(pn.dataset.i)];
+        if (e.target.closest(".tw-view")) { viewKey(e, p); return; }
+        if (e.target.closest(".tw-media")) return;
+        const card = e.target.closest(".file-card");
+        const scroller = e.target.classList && e.target.classList.contains("tw-scroll");
+        const plain = !e.ctrlKey && !e.altKey && !e.metaKey;
+        if (e.key === "Tab" && plain && (card || scroller)) { e.preventDefault(); switchPane(); return; }
+        if (e.key === "Escape" && T.menu !== null) { T.menu = null; renderAllHeads(); e.stopPropagation(); return; }
+        if (e.key === "Escape" && card) { e.stopPropagation(); const s = pn.querySelector(".tw-src"); if (s) s.focus(); return; }
+        if (e.key === "Backspace" && (card || scroller)) { e.preventDefault(); up(p, true); return; }
+        if (scroller && ["ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "Home", "End", "Enter"].includes(e.key)) { e.preventDefault(); focusCursor(p); return; }
+        if (!card) return;
+        const cards = Array.from(pn.querySelectorAll(".file-card"));
+        const idx = cards.indexOf(card), grid = p.view === "grid";
+        let cols = 1;
+        if (grid) { const g = pn.querySelector(".file-grid"); cols = g ? getComputedStyle(g).gridTemplateColumns.split(" ").length || 1 : 1; }
+        const move = (to) => { e.preventDefault(); const t = cards[Math.max(0, Math.min(cards.length - 1, to))]; if (t) t.focus(); };
+        switch (e.key) {
+            case "Enter": case " ": e.preventDefault(); card.click(); return;
+            case "ArrowDown": move(idx + cols); return;
+            case "ArrowUp": move(idx - cols); return;
+            case "ArrowRight": if (grid) move(idx + 1); else { e.preventDefault(); card.click(); } return;
+            case "ArrowLeft": if (grid) move(idx - 1); else { e.preventDefault(); up(p, true); } return;
+            case "PageDown": move(idx + 10 * cols); return;
+            case "PageUp": move(idx - 10 * cols); return;
+            case "Home": move(0); return;
+            case "End": move(cards.length - 1); return;
+        }
+    }
+    function toggleLayout() {
+        T.vert = !T.vert;
+        applyLayout();
+        save();
+        announce(T.vert ? "Panels stacked top and bottom" : "Panels side by side");
+    }
+    function splitKey(e) {
+        const stacked = isStacked();
+        const dec = stacked ? "ArrowUp" : "ArrowLeft", inc = stacked ? "ArrowDown" : "ArrowRight";
+        if (e.key === dec || e.key === inc) { e.preventDefault(); T.r = Math.max(15, Math.min(85, T.r + (e.key === inc ? 2 : -2))); applyLayout(); save(); }
+        else if (e.key === "Home" || e.key === "Enter") { e.preventDefault(); T.r = 50; applyLayout(); save(); }
+    }
+    function wireSplit() {
+        const tw = $("twin"), sp = tw.querySelector(".tw-split");
+        sp.addEventListener("pointerdown", (e) => {
+            if (e.target.closest("button") || e.button > 0) return;
+            e.preventDefault();
+            sp.setPointerCapture(e.pointerId);
+            sp.classList.add("dragging");
+            const rect = tw.getBoundingClientRect();
+            let wasSnapped = Math.abs(T.r - 50) < 0.05;
+            const move = (ev) => {
+                const size = isStacked() ? rect.height : rect.width;
+                const r = (isStacked() ? ev.clientY - rect.top : ev.clientX - rect.left) / size;
+                let v = Math.round(Math.max(15, Math.min(85, r * 100)) * 10) / 10;
+                // Magnet: within ~18px of the middle the divider locks to exactly 50/50, so resetting is just a nudge.
+                const snapped = Math.abs(v - 50) <= (18 / size) * 100;
+                if (snapped) v = 50;
+                if (snapped && !wasSnapped && navigator.vibrate) { try { navigator.vibrate(8); } catch (err) { /* ignore */ } }
+                wasSnapped = snapped;
+                T.r = v;
+                applyLayout();
+            };
+            const end = () => { sp.classList.remove("dragging"); sp.removeEventListener("pointermove", move); sp.removeEventListener("pointerup", end); sp.removeEventListener("pointercancel", end); save(); };
+            sp.addEventListener("pointermove", move);
+            sp.addEventListener("pointerup", end);
+            sp.addEventListener("pointercancel", end);
+        });
+        sp.addEventListener("dblclick", (e) => { if (e.target.closest("button")) return; T.r = 50; applyLayout(); save(); });
+    }
+
+    // ---- Hooks called from the rest of the page ----
+    const api = {
+        get on() { return T.on; },
+        toggle() { setOn(!T.on); },
+        setFilter,
+        focusActive() { focusCursor(T.panes[T.active]); },
+        // The preview window's player was closed: its panel goes back to the list.
+        onModalClosed() {
+            if (T.media === null) return;
+            const p = T.panes[T.media], name = p.mediaName;
+            T.media = null;
+            setMode(p, "list");
+            revealAfterClose(p, name, T.quiet);
+        },
+        // Page-wide keys (Esc, Space, arrows) belong to an embedded player only while focus is inside it.
+        modalKeys() {
+            const m = $("modal");
+            return !(m.classList.contains("tw-embedded") && m.classList.contains("active") && !m.contains(document.activeElement));
+        },
+        // Blob URLs made by an inline preview are released when that preview closes.
+        cleanupList() {
+            if (!T.on) return null;
+            const a = document.activeElement, pn = a && a.closest ? a.closest(".tw-pane") : null;
+            if (!pn) return null;
+            const p = T.panes[Number(pn.dataset.i)];
+            return p.mode === "view" ? p.cleanups : null;
+        },
+        // Something outside the panels asked to open a file (a markdown link, an address with a file in it): show it in a panel.
+        routeOpen(path, type, name) {
+            if (!T.on || T.opening) return false;
+            const kind = previewKindOverride(name) || type;
+            if (MEDIA_KINDS.has(kind) && T.media !== null) return false;
+            const source = LOCAL.active ? "local" : "hosted";
+            let p = T.panes[T.active];
+            if (p.source !== source) p = T.panes.find((q) => q.source === source) || p;
+            if (p.source !== source) { setSource(p, source); if (p.source !== source) return false; }
+            return openPathIn(p, path);
+        },
+        refresh() { if (T.on) renderAll(true); },
+        // The index of the hosted repo changed (the full index arrived).
+        onHash() {
+            if (!T.on) return;
+            const target = T.panes[T.active].source === "hosted" ? T.panes[T.active] : T.panes.find((p) => p.source === "hosted");
+            const c = ctxOf("hosted");
+            if (!target || !c) return;
+            const path = hashToPath();
+            if (c.fileIndex.partial) { if (T.active !== target.id) setActive(target.id); go(target, path); return; }
+            let items = c.fileIndex.root, dir = [], file = null;
+            for (let i = 0; i < path.length; i++) {
+                const n = items.find((x) => x.name === path[i]);
+                if (!n) break;
+                if (n.type === "file") { if (i === path.length - 1) file = n; break; }
+                dir.push(n.name);
+                items = n.children || [];
+            }
+            if (T.active !== target.id) setActive(target.id);
+            go(target, dir);
+            if (file) openPathIn(target, dir.concat(file.name).join("/"));
+        },
+        onLocalEntered() {
+            if (!T.ready) return;
+            const idx = T.localTarget !== null ? T.localTarget : T.active;
+            T.localTarget = null;
+            T.panes.forEach((p) => { p.memo.local = []; if (p.source === "local") { closePreview(p, true); p.path = []; } });
+            if (!T.on) return;
+            const p = T.panes[idx];
+            closePreview(p, true);
+            p.memo[p.source] = p.path;
+            p.source = "local";
+            p.path = [];
+            p.filter = "";
+            T.menu = null;
+            renderAll();
+            syncHash();
+            save();
+        },
+        onLocalClosed() {
+            if (!T.ready) return;
+            T.localTarget = null;
+            T.panes.forEach((p) => { if (p.source === "local") closePreview(p, true); });
+            T.panes.forEach((p) => { p.memo.local = []; if (p.source === "local") { p.source = "hosted"; p.path = p.memo.hosted.slice(); } });
+            if (!T.on) return;
+            T.menu = null;
+            renderAll();
+            syncHash();
+            save();
+        },
+        init() {
+            if (T.ready) return;
+            const tw = $("twin");
+            const shell = (i) => `<section class="tw-pane" data-i="${i}" data-mode="list" role="region" aria-label="Panel ${i + 1}"><div class="tw-head"></div><div class="tw-scroll" tabindex="0" aria-label="Files in panel ${i + 1}"></div><div class="tw-status" aria-hidden="true"></div>
+                <div class="tw-view" tabindex="-1" aria-label="Preview in panel ${i + 1}">
+                    <div class="modal-header tw-vhead"><div class="modal-title tw-vtitle"></div><div class="modal-actions">
+                        <button type="button" class="modal-btn" data-vact="prev" title="Previous file (\u2190)" aria-label="Previous file">${ICON.prev}</button>
+                        <button type="button" class="modal-btn" data-vact="next" title="Next file (\u2192)" aria-label="Next file">${ICON.next}</button>
+                        <a class="modal-btn" data-vlink="raw" target="_blank" rel="noopener" title="Open the file by itself" aria-label="Open the file by itself">${ICON.ext}</a>
+                        <a class="modal-btn" data-vlink="download" title="Download" aria-label="Download">${ICON.zip}</a>
+                        <button type="button" class="modal-btn" data-vact="close" title="Close the preview (Esc)" aria-label="Close the preview">${ICON.close}</button>
+                    </div></div>
+                    <div class="modal-body tw-vbody"></div>
+                </div>
+                <div class="tw-media"></div></section>`;
+            tw.innerHTML = shell(0) + `<div class="tw-split" role="separator" tabindex="0" aria-label="Resize the panels" aria-valuemin="15" aria-valuemax="85" aria-valuenow="50" title="Drag to resize (it snaps to 50/50 near the middle), double-click to reset">
+                <span class="tw-split-tools">
+                    <button type="button" data-act="swap" title="Swap the two panels" aria-label="Swap the two panels">${ICON.swap}</button>
+                    <button type="button" data-act="layout" title="Stack the panels top and bottom" aria-label="Stack the panels top and bottom">${ICON.rows}</button>
+                    <button type="button" data-act="same" title="Show this panel\u2019s folder in the other panel" aria-label="Show this panel\u2019s folder in the other panel">${ICON.same}</button>
+                    <button type="button" data-act="max" aria-pressed="false" title="Fill the window with this panel" aria-label="Fill the window with this panel">${ICON.max}</button>
+                </span></div>` + shell(1);
+            const s = load();
+            T.panes = [paneFromSaved(0, s && s.panes && s.panes[0]), paneFromSaved(1, s && s.panes && s.panes[1])];
+            if (s) {
+                if (typeof s.r === "number") T.r = Math.max(15, Math.min(85, s.r));
+                if (s.active === 1) T.active = 1;
+                if (s.flip === true) T.flip = true;
+                if (s.vert === true) T.vert = true;
+            }
+            T.ready = true;
+            const hp = hashToPath();
+            if (hp.length) { T.panes[0].path = hp; T.panes[0].source = "hosted"; T.active = 0; }
+            tw.addEventListener("click", onClick);
+            tw.addEventListener("change", onChange);
+            tw.addEventListener("keydown", onKey);
+            tw.addEventListener("pointerdown", (e) => { const pn = e.target.closest(".tw-pane"); if (pn && T.active !== Number(pn.dataset.i)) setActive(Number(pn.dataset.i), true); });
+            tw.addEventListener("focusin", (e) => {
+                const pn = e.target.closest(".tw-pane");
+                if (!pn) return;
+                const i = Number(pn.dataset.i), p = T.panes[i];
+                if (T.active !== i) setActive(i, true);
+                const card = e.target.closest(".file-card");
+                if (card && !card.dataset.up) { p.cur = card.dataset.n; setStatus(p, p.map.get(card.dataset.n)); }
+            });
+            tw.addEventListener("pointerover", (e) => {
+                if (e.pointerType === "touch") return;
+                const card = e.target.closest(".file-card");
+                if (!card) return;
+                const p = T.panes[Number(card.closest(".tw-pane").dataset.i)];
+                setStatus(p, card.dataset.up ? null : p.map.get(card.dataset.n));
+            });
+            document.addEventListener("pointerdown", (e) => { if (T.menu !== null && !e.target.closest(".tw-menu, .tw-src")) { T.menu = null; renderAllHeads(); } }, true);
+            document.addEventListener("keydown", (e) => { if (e.key === "Escape" && T.menu !== null && !e.target.closest(".tw-pane")) { T.menu = null; renderAllHeads(); e.stopPropagation(); } }, true);
+            wireSplit();
+            if (TWIN_STACK_MQ && TWIN_STACK_MQ.addEventListener) TWIN_STACK_MQ.addEventListener("change", applyLayout);
+            $("twinBtn").addEventListener("click", () => setOn(!T.on));
+            applyLayout();
+            if (s && s.on) setOn(true, true);
+        },
+    };
+    return api;
+})();
+
+// ---- Folder tree: draggable width with a magnet at its default size ----
+(() => {
+    const panel = document.getElementById("treePanel"), grip = document.getElementById("treeResize");
+    if (!panel || !grip) return;
+    const KEY = "treeWidth", MIN = 140, SNAP = 14;
+    const defW = () => { const had = panel.style.getPropertyValue("--tree-w"); panel.style.removeProperty("--tree-w"); const w = panel.getBoundingClientRect().width; if (had) panel.style.setProperty("--tree-w", had); return Math.round(w); };
+    const maxW = () => Math.max(MIN + 40, Math.round(panel.parentElement.getBoundingClientRect().width * 0.5));
+    const clamp = (w) => Math.max(MIN, Math.min(maxW(), Math.round(w)));
+    const mark = () => { const w = panel.getBoundingClientRect().width; grip.classList.toggle("at-default", !panel.style.getPropertyValue("--tree-w") || Math.abs(w - defW()) < 1); grip.setAttribute("aria-valuenow", String(Math.round(w))); };
+    function set(w, persist) {
+        const d = defW();
+        if (w === null || Math.abs(w - d) <= SNAP) { panel.style.removeProperty("--tree-w"); if (persist) { try { store.removeItem(KEY); } catch (err) { /* ignore */ } } }
+        else { panel.style.setProperty("--tree-w", clamp(w) + "px"); if (persist) { try { store.setItem(KEY, String(clamp(w))); } catch (err) { /* ignore */ } } }
+        mark();
+    }
+    try { const v = parseInt(store.getItem(KEY) || "", 10); if (v >= MIN) panel.style.setProperty("--tree-w", clamp(v) + "px"); } catch (err) { /* ignore */ }
+    grip.setAttribute("aria-valuemin", String(MIN));
+    grip.addEventListener("pointerdown", (e) => {
+        if (e.button > 0) return;
+        e.preventDefault();
+        grip.setPointerCapture(e.pointerId);
+        grip.classList.add("dragging");
+        const left = panel.getBoundingClientRect().left, d = defW();
+        let wasSnapped = !panel.style.getPropertyValue("--tree-w");
+        const move = (ev) => {
+            const w = ev.clientX - left, snapped = Math.abs(w - d) <= SNAP;
+            if (snapped && !wasSnapped && navigator.vibrate) { try { navigator.vibrate(8); } catch (err) { /* ignore */ } }
+            wasSnapped = snapped;
+            set(w, false);
+        };
+        const end = () => { grip.classList.remove("dragging"); grip.removeEventListener("pointermove", move); grip.removeEventListener("pointerup", end); grip.removeEventListener("pointercancel", end); set(panel.getBoundingClientRect().width, true); };
+        grip.addEventListener("pointermove", move);
+        grip.addEventListener("pointerup", end);
+        grip.addEventListener("pointercancel", end);
+    });
+    grip.addEventListener("dblclick", () => set(null, true));
+    grip.addEventListener("keydown", (e) => {
+        const w = panel.getBoundingClientRect().width;
+        if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); const n = w + (e.key === "ArrowRight" ? 16 : -16); const d = defW(); set(Math.abs(n - d) < 16 ? d : n, true); }
+        else if (e.key === "Home" || e.key === "Enter") { e.preventDefault(); set(null, true); }
+    });
+    window.addEventListener("resize", mark);
+    mark();
+})();
+
 init();
     </script>
 </body>
