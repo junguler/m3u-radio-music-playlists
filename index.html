@@ -815,7 +815,7 @@ body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-bt
 .rec-panel.rec-on { box-shadow: inset 3px 0 0 var(--danger); }
 /* File details bar: two lines at a fixed height on every screen, so opening it or stepping to the next file never moves the window. The facts fill it two to a column
    and the rest scrolls sideways (wheel, swipe, arrow keys; dragging still selects text); a soft shadow on an edge shows there is more that way. */
-.meta-bar { display: flex; flex-flow: column wrap; align-content: flex-start; gap: 0.1rem 1.1rem; height: calc(var(--ml, 2) * 1.45 * var(--data-size) + 0.8rem + var(--bw)); box-sizing: border-box; padding: 0.4rem 0.75rem; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scrollbar-width: none; flex-shrink: 0; border-top: var(--bw) solid var(--border-color); font-size: var(--data-size); line-height: 1.45;
+.meta-bar { display: flex; flex-flow: row nowrap; align-items: center; gap: 0.1rem 1.1rem; height: calc(var(--ml, 2) * 1.45 * var(--data-size) + 0.8rem + var(--bw)); box-sizing: border-box; padding: 0.4rem 0.75rem; overflow: hidden; scrollbar-width: none; flex-shrink: 0; border-top: var(--bw) solid var(--border-color); font-size: var(--data-size); line-height: 1.45;
     background:
         linear-gradient(to right, var(--bg-tertiary), var(--bg-tertiary)) left center / 1.2rem 100% no-repeat local,
         linear-gradient(to left, var(--bg-tertiary), var(--bg-tertiary)) right center / 1.2rem 100% no-repeat local,
@@ -826,7 +826,7 @@ body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-bt
 .meta-bar:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .meta-bar[hidden], #infoBtn[hidden] { display: none; }
 /* The number of text lines the bar shows is set on the modal (not the bar), so the recording panel can sit exactly above it on phones. */
-.modal.meta-on { --ml: 2; }
+.modal.meta-on, .tw-view { --ml: 1; }
 .meta-bar .mi { white-space: nowrap; user-select: text; }
 .meta-bar .ml { color: var(--text-muted); }
 .meta-bar .mv { color: var(--text-primary); user-select: text; }
@@ -1702,13 +1702,88 @@ html[data-vivid] *::after { forced-color-adjust: none !important; }
     .tw-rail .gal-list { flex-direction: row; overflow-x: auto; overflow-y: hidden; }
     .tw-rail[data-kind="image"] .gal-item { width: 4.25rem; }
 }
-#modal.tw-embedded { position: absolute; inset: 0; z-index: 5; padding: 0; background: var(--bg-secondary); transition: none; touch-action: auto; }
-#modal.tw-embedded .modal, #modal.tw-embedded .modal.compact-modal, #modal.tw-embedded .modal.video-modal { width: 100%; max-width: none; height: 100%; max-height: none; border: none; border-radius: 0; transform: none; transition: none; }
+/* The player keeps its normal-window look inside a panel (backdrop, centered card, the same size limits, the playlist window anchored near the top like the page does),
+   with the panel taking the place of the browser window. A panel up to 640px wide gets the phone layout (class tw-narrow, set by the page from the panel width). */
+#modal.tw-embedded { position: absolute; inset: 0; z-index: 5; transition: none; touch-action: auto; }
+#modal.tw-embedded .modal { max-width: 100%; max-height: 100%; transform: none; transition: none; }
+#modal.tw-embedded .modal.compact-modal { max-width: min(560px, 100%); }
+#modal.tw-embedded .modal.video-modal { height: 100%; }
+#modal.tw-embedded:not(.tw-narrow):has(.playlist-bar.active) { align-items: flex-start; padding-top: var(--tw-pt, 0.5rem); }
+#modal.tw-embedded.tw-narrow, #modal.tw-embedded.tw-narrow:has(.playlist-bar.active) { padding: 0; align-items: center; }
+#modal.tw-embedded.tw-narrow .modal, #modal.tw-embedded.tw-narrow .modal.compact-modal, #modal.tw-embedded.tw-narrow .modal.video-modal { width: 100%; max-width: none; height: 100%; max-height: none; border: 0; border-radius: 0; }
+#modal.tw-narrow .modal-body > .preview-audio-container { height: 100%; box-sizing: border-box; justify-content: center; align-items: center; overflow-y: auto; }
+#modal.tw-narrow .preview-audio-container { padding-top: 0.6rem; }
+#modal.tw-narrow .preview-audio-container .np-stack { display: block; min-height: 0; }
+#modal.tw-narrow .preview-audio-container .np-stack > * { grid-area: auto; }
+#modal.tw-narrow .preview-audio-container .np-stack:has(.np-song:not(:empty)) .playlist-now-playing { opacity: 1; visibility: visible; }
+#modal.tw-narrow .modal:has(.playlist-bar.active) .modal-title { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; flex: none; }
+#modal.tw-narrow .modal:has(.playlist-bar.active) .modal-actions { margin-left: auto; }
+#modal.tw-narrow #playlistBar .bar-break { display: none; }
+#modal.tw-narrow #playlistBar .playlist-info { display: block; order: 2; flex: 0 0 100%; min-width: 0; overflow: visible; white-space: normal; font-size: 0.8rem; line-height: 1.4; }
+#modal.tw-narrow #playlistBar .playlist-track { display: inline; overflow: visible; }
+#modal.tw-narrow #playlistBar .playlist-track .pl-title { display: none; }
+#modal.tw-narrow #playlistBar .playlist-health { display: inline; overflow: visible; padding-left: 0; }
+#modal.tw-narrow #playlistBar .playlist-controls { margin-right: auto; }
+#modal.tw-narrow .preview-audio-container .np-stack .playlist-now-playing { font-size: 1.05rem; font-weight: 600; line-height: 1.35; letter-spacing: normal; text-transform: none; color: var(--text-primary); padding: 0 0.25rem; }
+#modal.tw-narrow .preview-audio-container .np-song { margin-top: 0.1rem; }
+#modal.tw-narrow .preview-audio-container .np-song:empty { height: 0; margin-top: 0; padding-top: 0; padding-bottom: 0; opacity: 0; }
+#modal.tw-narrow .preview-audio-container .np-stack { transition: margin-top 0.18s ease; }
+#modal.tw-narrow .preview-audio-container .np-stack:has(.np-song:not(:empty)) { margin-top: 0.4rem; }
+#modal.tw-narrow .preview-audio-container { padding-top: 0.6rem; }
+#modal.tw-narrow .preview-audio-container .np-song { font-size: 1rem; }
+#modal.tw-narrow .preview-audio-container .player-bar { margin-top: 0.7rem; }
+#modal.tw-narrow .player-bar { padding: 0.3rem 0.5rem; gap: 0.2rem; }
+#modal.tw-narrow .player-controls-row { gap: 0.4rem; }
+#modal.tw-narrow .modal:has(.playlist-bar.active) .modal-title { position: static; width: auto; height: auto; margin: 0; clip-path: none; overflow: hidden; white-space: nowrap; flex: 1 1 0; min-width: 0; }
+#modal.tw-narrow .modal:has(.playlist-bar.active) .modal-actions { margin-left: 0; }
+#modal.tw-narrow #playlistBar .playlist-info { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 1.4em; }
+#modal.tw-narrow .rec-panel:not([hidden]) { animation: recSlide 0.3s ease-out; overflow: hidden; }
+#modal.tw-narrow .modal-body > .preview-audio-container { height: 100%; box-sizing: border-box; justify-content: center; align-items: center; overflow-y: auto; }
+#modal.tw-narrow .preview-audio-container .audio-icon { width: 152px; height: 152px; flex-shrink: 0; }
+#modal.tw-narrow .preview-audio-container .np-song { max-height: 4.5rem; overflow: hidden; transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease; }
+#modal.tw-narrow .preview-audio-container .np-song:empty { height: auto; max-height: 0; }
+/* File details bar inside a panel: one line; facts wider than the bar scroll like the titles do (see Marquee.fitBar). */
+#modal.tw-embedded .modal.meta-on { --ml: 1; }
+#modal.tw-embedded .meta-bar { flex-flow: row nowrap; align-items: center; overflow: hidden; }
+.mb-run { display: flex; align-items: center; width: max-content; flex-shrink: 0; will-change: auto; }
+.mb-t { display: flex; align-items: center; flex-shrink: 0; column-gap: 1.1rem; white-space: nowrap; }
+.mb-t[hidden] { display: none; }
+.mb-on .mb-t { padding-inline-end: 3em; }
+.mb-fade { --mq-fade: 0.9em; -webkit-mask-image: linear-gradient(to right, transparent 0, #000 var(--mq-fade), #000 calc(100% - var(--mq-fade)), transparent 100%); mask-image: linear-gradient(to right, transparent 0, #000 var(--mq-fade), #000 calc(100% - var(--mq-fade)), transparent 100%); }
 .tw-pane[data-i="0"] { order: 1; }
 .tw-split { order: 2; }
 .tw-pane[data-i="1"] { order: 3; }
 .twin[data-flip] .tw-pane[data-i="0"] { order: 3; }
 .twin[data-flip] .tw-pane[data-i="1"] { order: 1; }
+
+/* Compact rows reach the twin panels too (their own row sizes would otherwise win over the page-wide compact rules). */
+body.compact-density .tw-pane .file-list.list-columns .file-card { padding: 0.1rem 0.5rem; gap: 0.35rem; contain-intrinsic-size: auto 26px; }
+body.compact-density .tw-pane .file-list .file-icon { width: 18px; height: 18px; }
+body.compact-density .tw-pane .file-list .file-icon svg { width: 11px; height: 11px; }
+body.compact-density .tw-pane .file-list-header { padding: 0.15rem calc(0.5rem + var(--bw)); }
+body.compact-density .tw-pane .file-list-header .col-icon-spacer { width: 18px; }
+body.compact-density .tw-pane .list-columns { --list-cols: 18px 1fr 56px 84px 96px 72px; }
+@container twp (max-width: 40em) { body.compact-density .tw-pane .list-columns { --list-cols: 18px 1fr 56px 84px 96px; } }
+@container twp (max-width: 32em) { body.compact-density .tw-pane .list-columns { --list-cols: 18px 1fr 56px 84px; } }
+@container twp (max-width: 24em) { body.compact-density .tw-pane .list-columns { --list-cols: 18px 1fr 80px; } }
+body.compact-density .tw-pane .file-name, body.compact-density .tw-pane .file-meta { font-size: 0.75rem; }
+body.compact-density .tw-pane .file-grid { gap: 0.25rem; }
+body.compact-density .tw-pane .file-grid .file-card { padding: 0.25rem; gap: 0.15rem; }
+body.compact-density .tw-pane .file-grid .file-icon { width: 26px; height: 26px; }
+/* While a player fills a panel, the sort / zip / list / grid controls of that panel have nothing to act on. */
+.tw-pane[data-mode="media"] .tw-tools { display: none; }
+
+/* The preview header of a panel looks like the player window's header. */
+.tw-vhead .modal-btn.vb-close { width: auto; height: auto; min-width: 0; min-height: 0; padding: 0.5rem 0.9rem; }
+.tw-vhead .modal-btn.vb-close svg { width: 22px; height: 22px; }
+@media (max-width: 640px) { .tw-vhead .modal-btn.vb-close { padding: 0.5rem; min-width: 44px; min-height: 44px; } .tw-vhead .modal-btn.vb-close svg { width: 24px; height: 24px; } }
+.modal-btn.vb-fav.favorited, .vb-info[aria-pressed="true"] { color: var(--accent-text, var(--accent)); border-color: var(--accent-text, var(--accent)); }
+.tw-view .meta-bar { flex-shrink: 0; }
+html[data-theme="concrete"] .vb-close { --c: var(--red); }
+html[data-theme="concrete"] .vb-dl, html[data-theme="concrete"] .modal-btn.copied { --c: var(--green); }
+html[data-theme="concrete"] .vb-copy { --c: var(--pink); }
+html[data-theme="concrete"] .vb-fav { --c: var(--yellow); }
+html[data-theme="concrete"] .vb-fav.favorited { --c: var(--orange); }
 </style>
 </head>
 <body>
@@ -2004,7 +2079,7 @@ html[data-vivid] *::after { forced-color-adjust: none !important; }
                 <div class="modal-actions">
                     <button class="modal-btn play-playlist-btn hidden" id="playPlaylistBtn" title="Play as playlist" aria-label="Play as playlist"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66.0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"/></svg><span class="btn-label">Play</span></button>
                     <button class="modal-btn" id="focusBtn" aria-pressed="false" title="Hide the side panel and player buttons" aria-label="Hide the side panel and player buttons"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
-                    <button class="modal-btn" id="infoBtn" hidden aria-pressed="false" title="Show file details" aria-label="File details"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16"/><path d="M3 14h18M7 17.2h4M14 17.2h3"/></svg></button>
+                    <button class="modal-btn" id="infoBtn" aria-pressed="false" title="Show file details" aria-label="File details"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16"/><path d="M3 14h18M7 17.2h4M14 17.2h3"/></svg></button>
                     <button class="modal-btn favorite-btn" id="favoriteBtn" title="Add to favorites" aria-label="Add file to favorites" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></button>
                     <button class="modal-btn" id="copyLinkBtn" title="Copy link" aria-label="Copy raw file link"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"/></svg></button>
                     <a class="modal-btn" id="downloadBtn" title="Download" aria-label="Download file" download><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" /></svg></a>
@@ -10458,23 +10533,30 @@ function metaPaint() {
         }, { passive: false });
     }
     const keys = (META.extra.length ? META_ORDER[META.kind].concat(META.extra) : META_ORDER[META.kind]).filter((k) => META.vals[k]);
-    const sig = keys.join("|"), tip = (k) => META.tips[k] || META.vals[k];
+    const emb = true; // the bar is always one line; a line wider than the bar scrolls
+    const sig = (emb ? "tw:" : "") + keys.join("|"), tip = (k) => META.tips[k] || META.vals[k];
+    if (emb && typeof ResizeObserver === "function" && !bar._ro) { bar._ro = new ResizeObserver(() => Marquee.fitBar(bar)); bar._ro.observe(bar); }
     if (bar._sig === sig) {
         // Same facts as before: only change the texts that changed, so a selection in the bar survives the once-a-second refresh.
+        const rows = emb ? bar.firstElementChild.firstElementChild.children : bar.children;
         for (let i = 0; i < keys.length; i++) {
-            const row = bar.children[i], mv = row.lastElementChild, t = tip(keys[i]);
+            const row = rows[i], mv = row.lastElementChild, t = tip(keys[i]);
             if (mv.textContent !== META.vals[keys[i]]) mv.textContent = META.vals[keys[i]];
             if (row.title !== t) row.title = t;
         }
+        if (emb) Marquee.fitBar(bar);
         return;
     }
     bar._sig = sig;
-    bar.innerHTML = keys.map((k) => '<span class="mi" title="' + escapeHtml(tip(k)) + '"><span class="ml">' + escapeHtml(META.labels[k] || META_LABELS[k]) + '</span> <span class="mv">' + escapeHtml(META.vals[k]) + "</span></span>").join("");
+    const items = keys.map((k) => '<span class="mi" title="' + escapeHtml(tip(k)) + '"><span class="ml">' + escapeHtml(META.labels[k] || META_LABELS[k]) + '</span> <span class="mv">' + escapeHtml(META.vals[k]) + "</span></span>").join("");
+    bar.innerHTML = emb ? '<div class="mb-run"><div class="mb-t">' + items + '</div><div class="mb-t" aria-hidden="true" hidden></div></div>' : items;
+    if (emb) { bar.scrollLeft = 0; Marquee.fitBar(bar); }
 }
 // Button and bar follow the one saved choice (open or closed), for every picture, video and song until it is changed.
 function metaSync() {
     const btn = document.getElementById("infoBtn"), bar = document.getElementById("metaBar"), on = !!META.kind && META.open;
-    btn.hidden = !META.kind;
+    btn.hidden = false;
+    btn.disabled = !META.kind;
     btn.setAttribute("aria-pressed", on ? "true" : "false");
     const what = META.kind === "stream" ? "station" : "file";
     btn.title = (on ? "Hide " : "Show ") + what + " details";
@@ -12483,6 +12565,8 @@ const Marquee = (() => {
     const HOLD_MS = 1800;   // rest at the start of every lap
     const GAP_EM = 3;       // empty space between the end of a title and its next copy (keep equal to the CSS padding)
     const FADE_EM = 0.9;    // width of the soft edge on both sides (keep equal to --mq-fade in the CSS)
+    const BAR_SPEED_EM = 5.5; // the details bar moves about twice as fast as a title and only rests a moment
+    const BAR_HOLD_MS = 500;
     const LETTER = /\p{L}/u;
     const RTL_LETTER = /[\u0590-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]/;
     const states = new WeakMap();
@@ -12614,7 +12698,52 @@ const Marquee = (() => {
         mo.observe(document.getElementById("modal"), { childList: true, subtree: true, characterData: true });
         queueAll();
     }
-    return { refresh: queueAll };
+    // The file-details bar of a twin panel is one line. Facts wider than the bar scroll like a title (same speed, rest and soft edges), as two copies so the lap loops seamlessly;
+    // hovering or holding a finger on the bar stops it. The once-a-second refresh keeps the lap going; only a change of width retunes it.
+    function fitBar(bar) {
+        const run = bar.firstElementChild;
+        if (!run || !run.classList.contains("mb-run")) return;
+        const t1 = run.children[0], t2 = run.children[1];
+        let s = bar._mq;
+        if (!s) {
+            s = bar._mq = { anim: null, run: null, w: 0, cw: 0, html: "", holds: new Set() };
+            const hold = (why, on) => {
+                if (on) s.holds.add(why); else s.holds.delete(why);
+                const a = bar._mq.anim;
+                if (a) { if (s.holds.size) a.pause(); else a.play(); }
+            };
+            bar.addEventListener("pointerenter", (e) => { if (e.pointerType !== "touch") hold("hover", true); });
+            bar.addEventListener("pointerleave", () => hold("hover", false));
+            bar.addEventListener("pointerdown", (e) => { if (e.pointerType === "touch") hold("touch", true); });
+            bar.addEventListener("pointerup", () => hold("touch", false));
+            bar.addEventListener("pointercancel", () => hold("touch", false));
+        }
+        if (s.run !== run) { if (s.anim) s.anim.cancel(); s.anim = null; s.run = run; s.html = ""; } // the bar was rebuilt: the old lap belonged to the old line
+        const cs = getComputedStyle(bar), fs = parseFloat(cs.fontSize) || 16;
+        const cw = bar.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
+        const w = t1.offsetWidth - (parseFloat(getComputedStyle(t1).paddingInlineEnd) || 0);
+        const still = reduceMotion && reduceMotion.matches;
+        if (still || cw <= 0 || w <= cw + 1) {
+            if (s.anim) { s.anim.cancel(); s.anim = null; }
+            run.classList.remove("mb-on");
+            bar.classList.remove("mb-fade");
+            t2.hidden = true;
+            return;
+        }
+        if (t2.hidden || s.html !== t1.innerHTML) { s.html = t1.innerHTML; t2.innerHTML = s.html; }
+        t2.hidden = false;
+        run.classList.add("mb-on");
+        bar.classList.add("mb-fade");
+        if (s.anim && Math.abs(s.w - w) < 0.5 && Math.abs(s.cw - cw) < 0.5) return;
+        const gap = GAP_EM * fs, inset = FADE_EM * fs, lap = w + gap;
+        const total = BAR_HOLD_MS + (lap / (BAR_SPEED_EM * fs)) * 1000, hf = BAR_HOLD_MS / total;
+        const frames = [{ transform: "translateX(" + inset + "px)" }, { transform: "translateX(" + inset + "px)", offset: hf }, { transform: "translateX(" + (inset - lap) + "px)" }];
+        s.w = w; s.cw = cw;
+        if (s.anim) { s.anim.effect.setKeyframes(frames); s.anim.effect.updateTiming({ duration: total }); return; }
+        s.anim = run.animate(frames, { duration: total, iterations: Infinity, easing: "linear" });
+        if (s.holds.size || bar.matches(":hover")) { s.holds.add("hover"); s.anim.pause(); }
+    }
+    return { refresh: queueAll, fitBar };
 })();
 // ---- Twin panels ----------------------------------------------------
 // Two independent file panels side by side (stacked on phones), in the spirit of orthodox file managers (Altap Salamander, Total Commander).
@@ -12631,7 +12760,7 @@ async function twinLocalUrl(path) {
     return u;
 }
 const TWIN = (() => {
-    const T = { on: false, active: 0, r: 50, max: -1, flip: false, vert: false, panes: [], menu: null, localTarget: null, ready: false, media: null, opening: false, quiet: false };
+    const T = { on: false, active: 0, r: 50, max: -1, flip: false, vert: false, panes: [], menu: null, localTarget: null, ready: false, media: null, opening: false, quiet: false, swallow: -1 };
     const $ = (id) => document.getElementById(id);
     const ICON = {
         repo: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4 8-1.79 8-4-3.58-4-8-4zM4 9v3c0 2.21 3.58 4 8 4s8-1.79 8-4V9c-1.7 1.73-4.77 2.8-8 2.8S5.7 10.73 4 9zm0 5v3c0 2.21 3.58 4 8 4s8-1.79 8-4v-3c-1.7 1.73-4.77 2.8-8 2.8S5.7 15.73 4 14z"/></svg>',
@@ -13017,7 +13146,6 @@ const TWIN = (() => {
     // Audio, video and playlists use the real player window, mounted inside the panel that opened them: one player at a time, with every feature it has.
     // Everything else (images, text and code, markdown, PDFs, fonts, archives) is shown inline, so both panels can preview at once, next to a playing track.
     const MEDIA_KINDS = new Set(["audio", "video", "playlist"]);
-    // The hosted index may classify M3U/M3U8 files as generic text; the extension is authoritative for twin-panel routing.
     const kindOf = (item) => previewKindOverride(item.name) || (isPlaylistExtension(item.name) ? "playlist" : item.category);
     const fullOf = (p, name) => (p.path.length ? p.path.join("/") + "/" : "") + name;
     const findCard = (p, name) => { const pn = paneEl(p.id); return pn ? Array.from(pn.querySelectorAll(".file-card")).find((el) => el.dataset.n === name) : null; };
@@ -13025,8 +13153,19 @@ const TWIN = (() => {
     function runCleanups(p) { while (p.cleanups.length) { try { p.cleanups.pop()(); } catch (err) { /* ignore */ } } }
     function unmountModal() {
         const m = $("modal");
+        if (T.ro) { T.ro.disconnect(); T.ro = null; }
         if (m.parentNode !== document.body) document.body.appendChild(m);
-        m.classList.remove("tw-embedded");
+        m.classList.remove("tw-embedded", "tw-narrow");
+        m.style.removeProperty("--tw-pt");
+    }
+    // The panel stands in for the browser window: up to 640px wide it gets the phone layout, and the playlist window keeps the page's anchor near the top.
+    function fitEmbedded() {
+        const m = $("modal"), slot = m.parentNode;
+        if (!m.classList.contains("tw-embedded") || !slot || !slot.classList || !slot.classList.contains("tw-media")) return;
+        const w = slot.clientWidth, h = slot.clientHeight;
+        if (!w || !h) return;
+        m.classList.toggle("tw-narrow", w <= 640);
+        m.style.setProperty("--tw-pt", Math.max(8, Math.min(h - 512, h / 2 - 200)) + "px");
     }
     function closePreview(p, quiet) {
         if (p.mode === "media") { T.quiet = !!quiet; try { closeModal(); } finally { T.quiet = false; } return; }
@@ -13051,10 +13190,13 @@ const TWIN = (() => {
         const slot = paneEl(p.id).querySelector(".tw-media");
         if (modalEl.parentNode !== slot) slot.appendChild(modalEl);
         modalEl.classList.add("tw-embedded");
+        if (T.ro) T.ro.disconnect();
+        if (typeof ResizeObserver === "function") { T.ro = new ResizeObserver(fitEmbedded); T.ro.observe(slot); }
         T.media = p.id;
         p.mediaName = item.name;
         T.menu = null;
         setMode(p, "media");
+        fitEmbedded();
         T.opening = true;
         const done = () => {
             T.opening = false;
@@ -13109,6 +13251,9 @@ const TWIN = (() => {
         p.gal = null;
         body.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
         updateStepButtons(p);
+        p.metaRows = metaRowsFor(p, item, full);
+        paintMeta(p);
+        syncFav(p);
         view.focus({ preventScroll: true });
         renderInline(p, item, full, body, mySeq);
         announce(`Previewing ${item.name} in panel ${p.id + 1}`);
@@ -13199,10 +13344,75 @@ const TWIN = (() => {
                 default:
                     showUnavailable(body, item.name, url);
             }
+            if (kind === "image") {
+                const im = body.querySelector("img.preview-image"), dims = () => {
+                    if (stale() || !im.naturalWidth || !p.metaRows) return;
+                    p.metaRows = p.metaRows.filter((r) => r[0] !== "Dimensions");
+                    p.metaRows.unshift(["Dimensions", im.naturalWidth + " \u00d7 " + im.naturalHeight + " px \u00b7 " + metaAspect(im.naturalWidth, im.naturalHeight)]);
+                    paintMeta(p);
+                };
+                if (im) { im.addEventListener("load", dims); if (im.complete) dims(); }
+            }
         } catch (err) {
             console.error(err);
             if (!stale()) showUnavailable(body, item.name, url, err);
         }
+    }
+    // ---- The preview header carries the same buttons as the player window: details, favorite, copy link, download, open raw, close ----
+    function metaRowsFor(p, item, full) {
+        const c = ctxOf(p.source), node = c && c.filesByPath.get(full), ext = item.name.slice(item.name.lastIndexOf(".") + 1).toLowerCase();
+        const rows = [["Type", META_MIME[ext] || ext.toUpperCase()]];
+        if (node && typeof node.size === "number") rows.push(["Size", formatFileSize(node.size)]);
+        const d = node && getItemDate(node);
+        if (d) rows.push(["Modified", metaDate(d.getTime())]);
+        rows.push(["Source", p.source === "local" ? "Local" : node && node.external ? "GitHub raw" : "Hosted"]);
+        return rows;
+    }
+    function paintMeta(p) {
+        const view = paneEl(p.id).querySelector(".tw-view"), bar = view.querySelector(".tw-meta"), btn = view.querySelector(".vb-info");
+        const on = META.open && !!p.metaRows;
+        btn.setAttribute("aria-pressed", String(!!META.open));
+        btn.title = (META.open ? "Hide" : "Show") + " file details";
+        bar.hidden = !on;
+        if (!on) return;
+        const items = p.metaRows.map(([l, v]) => '<span class="mi" title="' + escapeHtml(v) + '"><span class="ml">' + escapeHtml(l) + '</span> <span class="mv">' + escapeHtml(v) + "</span></span>").join("");
+        if (bar._sig === items) return;
+        bar._sig = items;
+        bar.innerHTML = '<div class="mb-run"><div class="mb-t">' + items + '</div><div class="mb-t" aria-hidden="true" hidden></div></div>';
+        if (!bar._ro && typeof ResizeObserver === "function") { bar._ro = new ResizeObserver(() => Marquee.fitBar(bar)); bar._ro.observe(bar); }
+        Marquee.fitBar(bar);
+    }
+    function toggleMeta() {
+        META.open = !META.open;
+        try { store.setItem(META_KEY, META.open ? "1" : "0"); } catch (err) { /* ignore */ }
+        metaSync();
+        T.panes.forEach((q) => { if (q.mode === "view") paintMeta(q); });
+    }
+    function syncFav(p) {
+        const btn = paneEl(p.id).querySelector(".vb-fav"), c = ctxOf(p.source);
+        if (!btn || !p.viewItem) return;
+        const on = !!(c && (c.favorites || []).includes(p.viewItem.path));
+        btn.classList.toggle("favorited", on);
+        btn.setAttribute("aria-pressed", String(on));
+        btn.title = on ? "Remove from favorites" : "Add to favorites";
+        btn.setAttribute("aria-label", on ? "Remove file from favorites" : "Add file to favorites");
+        btn.innerHTML = on ? icons.starFilled : icons.starOutline;
+    }
+    function toggleFav(p) {
+        if (!p.viewItem) return;
+        if (T.media !== null && T.panes[T.media].source !== p.source) { announce("Close the player first, then use favorites"); return; }
+        if (!useSource(p.source)) return;
+        toggleFavoriteFile(p.viewItem.path);
+        T.panes.forEach((q) => { if (q.mode === "view" && q.source === p.source) syncFav(q); });
+    }
+    function copyLink(p, btn) {
+        if (!p.viewItem) return;
+        const c = ctxOf(p.source);
+        const url = p.source === "local" ? p.viewItem.path : c ? new URL(hostedUrlIn(c, p.viewItem.path), window.location.href).href : "";
+        if (!url) return;
+        const done = () => { btn.classList.add("copied"); setTimeout(() => btn.classList.remove("copied"), 1200); };
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(done).catch(() => fallbackCopy(url, done));
+        else fallbackCopy(url, done);
     }
     function closeInline(p, quiet) {
         const name = p.viewItem && p.viewItem.name;
@@ -13211,6 +13421,8 @@ const TWIN = (() => {
         p.backHook = null;
         p.viewItem = null;
         p.gal = null;
+        p.metaRows = null;
+        paintMeta(p);
         paneEl(p.id).querySelector(".tw-vbody").innerHTML = "";
         setMode(p, "list");
         revealAfterClose(p, name, quiet);
@@ -13254,9 +13466,11 @@ const TWIN = (() => {
             return;
         }
         const p = T.panes[Number(pn.dataset.i)];
+        const focusOnly = T.swallow === p.id;
+        T.swallow = -1;
         if (T.active !== p.id) setActive(p.id);
         const va = t.closest("[data-vact]");
-        if (va) { const k = va.dataset.vact; if (k === "close") closeInline(p); else if (k === "prev") stepInline(p, -1); else if (k === "next") stepInline(p, 1); return; }
+        if (va) { const k = va.dataset.vact; if (k === "close") closeInline(p); else if (k === "prev") stepInline(p, -1); else if (k === "next") stepInline(p, 1); else if (k === "info") toggleMeta(); else if (k === "fav") toggleFav(p); else if (k === "copy") copyLink(p, va); return; }
         const gi = t.closest(".tw-rail .gal-item[data-rn]");
         if (gi) { const it = p.map.get(gi.dataset.rn); if (it && !(p.viewItem && p.viewItem.name === it.name)) openInline(p, it); return; }
         if (t.closest(".tw-view, .tw-media")) return;
@@ -13284,6 +13498,8 @@ const TWIN = (() => {
         }
         const card = t.closest(".file-card");
         if (!card) return;
+        // The first click on a panel that did not have the focus only gives it the focus (and the cursor); the next click opens.
+        if (focusOnly) { if (!card.dataset.up) { p.cur = card.dataset.n; setStatus(p, p.map.get(card.dataset.n)); } card.focus({ preventScroll: true }); return; }
         if (card.dataset.up) { up(p, false); return; }
         p.cur = card.dataset.n;
         openItem(p, card.dataset.n);
@@ -13316,6 +13532,7 @@ const TWIN = (() => {
         save();
     }
     function onKey(e) {
+        T.swallow = -1;
         if (e.target.closest(".tw-split")) { splitKey(e); return; }
         const pn = e.target.closest(".tw-pane");
         if (!pn) return;
@@ -13419,7 +13636,7 @@ const TWIN = (() => {
         // Something outside the panels asked to open a file (a markdown link, an address with a file in it): show it in a panel.
         routeOpen(path, type, name) {
             if (!T.on || T.opening) return false;
-            const kind = previewKindOverride(name) || type;
+            const kind = previewKindOverride(name) || (isPlaylistExtension(name) ? "playlist" : type);
             if (MEDIA_KINDS.has(kind) && T.media !== null) return false;
             const source = LOCAL.active ? "local" : "hosted";
             let p = T.panes[T.active];
@@ -13484,11 +13701,15 @@ const TWIN = (() => {
                     <div class="modal-header tw-vhead"><div class="modal-title tw-vtitle"></div><div class="modal-actions">
                         <button type="button" class="modal-btn" data-vact="prev" title="Previous file (\u2190)" aria-label="Previous file">${ICON.prev}</button>
                         <button type="button" class="modal-btn" data-vact="next" title="Next file (\u2192)" aria-label="Next file">${ICON.next}</button>
-                        <a class="modal-btn" data-vlink="raw" target="_blank" rel="noopener" title="Open the file by itself" aria-label="Open the file by itself">${ICON.ext}</a>
-                        <a class="modal-btn" data-vlink="download" title="Download" aria-label="Download">${ICON.zip}</a>
-                        <button type="button" class="modal-btn" data-vact="close" title="Close the preview (Esc)" aria-label="Close the preview">${ICON.close}</button>
+                        <button type="button" class="modal-btn vb-info" data-vact="info" aria-pressed="false" title="Show file details" aria-label="File details">${$("infoBtn").innerHTML}</button>
+                        <button type="button" class="modal-btn favorite-btn vb-fav" data-vact="fav" aria-pressed="false" title="Add to favorites" aria-label="Add file to favorites">${icons.starOutline}</button>
+                        <button type="button" class="modal-btn vb-copy" data-vact="copy" title="Copy link" aria-label="Copy raw file link">${$("copyLinkBtn").innerHTML}</button>
+                        <a class="modal-btn vb-dl" data-vlink="download" title="Download" aria-label="Download file">${$("downloadBtn").innerHTML}</a>
+                        <a class="modal-btn vb-raw" data-vlink="raw" target="_blank" rel="noopener" title="Open raw" aria-label="Open raw file in new tab">${$("rawBtn").innerHTML}</a>
+                        <button type="button" class="modal-btn vb-close" data-vact="close" title="Close the preview (Esc)" aria-label="Close the preview">${$("closeBtn").innerHTML}</button>
                     </div></div>
                     <div class="modal-body tw-vbody"></div>
+                    <div class="meta-bar tw-meta" tabindex="0" role="region" aria-label="File details" hidden></div>
                 </div>
                 <div class="tw-media"></div></section>`;
             tw.innerHTML = shell(0) + `<div class="tw-split" role="separator" tabindex="0" aria-label="Resize the panels" aria-valuemin="15" aria-valuemax="85" aria-valuenow="50" title="Drag to resize (it snaps to 50/50 near the middle), double-click to reset">
@@ -13512,7 +13733,7 @@ const TWIN = (() => {
             tw.addEventListener("click", onClick);
             tw.addEventListener("change", onChange);
             tw.addEventListener("keydown", onKey);
-            tw.addEventListener("pointerdown", (e) => { const pn = e.target.closest(".tw-pane"); if (pn && T.active !== Number(pn.dataset.i)) setActive(Number(pn.dataset.i), true); });
+            tw.addEventListener("pointerdown", (e) => { const pn = e.target.closest(".tw-pane"), i = pn ? Number(pn.dataset.i) : -1; T.swallow = pn && T.active !== i ? i : -1; if (pn && T.active !== i) setActive(i, true); });
             tw.addEventListener("focusin", (e) => {
                 const pn = e.target.closest(".tw-pane");
                 if (!pn) return;
