@@ -301,7 +301,8 @@ to listen to other m3u playlists in this repo click on the specific repo for eac
 <tr>
 <td><a href="https://github.com/junguler/listen_to_cue_tree">cue_tree</a></td>
 <td><a href="https://github.com/junguler/listen_to_n-radio_box">n-radio_box</a></td>
-<td colspan="3"></td>
+<td><a href="https://github.com/junguler/listen_to_tuner.radio">tuner.radio</a></td>
+<td colspan="2"></td>
 </tr>
 </tbody></table>
 
