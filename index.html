@@ -226,7 +226,7 @@ body {
 .header-content { max-width: 1600px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
 .logo { display: flex; align-items: center; gap: 0.5rem; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; color: var(--text-primary); cursor: pointer; flex-shrink: 0; }
 .logo svg { width: 20px; height: 20px; }
-.breadcrumb { display: flex; align-items: center; gap: 0.125rem; flex-wrap: wrap; font-size: 0.85rem; flex: 1; min-width: 0; }
+.breadcrumb { display: flex; align-items: center; gap: 0.125rem; flex-wrap: wrap; font-size: 0.85rem; flex: 1 1 12rem; min-width: 0; }
 .breadcrumb-item { color: var(--accent-text, var(--accent)); padding: 0.125rem 0.375rem; border-radius: var(--radius); cursor: pointer; white-space: nowrap; }
 .breadcrumb-item:hover { background: var(--bg-hover); }
 .breadcrumb-item.current { color: var(--text-primary); cursor: default; }
@@ -236,8 +236,10 @@ body {
 .breadcrumb-pin-btn svg { width: 14px; height: 14px; }
 .breadcrumb-pin-btn:hover { color: var(--accent-text, var(--accent)); background: var(--bg-hover); }
 .breadcrumb-pin-btn.pinned { color: var(--accent-text, var(--accent)); }
-.header-actions { display: flex; gap: 0.375rem; align-items: center; }
-.search-container { position: relative; width: 200px; }
+/* The search box takes most of the top bar (the path keeps about a quarter of the free room and scrolls when it is longer); in twin panels every panel gets a box of its own. */
+.header-actions { display: flex; gap: 0.375rem; align-items: center; flex: 3 1 22rem; min-width: 0; }
+.search-container { position: relative; flex: 1 1 8rem; min-width: 0; }
+.search-second { display: none; }
 .search-input { width: 100%; padding: 0.375rem 1.75rem 0.375rem 1.75rem; background: var(--bg-tertiary); border: var(--bw) solid var(--border-strong); border-radius: var(--radius); color: var(--text-primary); font-size: 0.85rem; }
 .search-input:focus { border-color: var(--accent); }
 .search-input::placeholder { color: var(--text-muted); }
@@ -490,7 +492,8 @@ html:not(.no-xc) .file-icon.xc { color: color-mix(in srgb, var(--xcv, var(--xc))
        #main[data-cols] rules below. */
 }
 @media (max-width: 768px) and (min-width: 641px) {
-    .search-container { width: 150px; }
+    .breadcrumb { flex-basis: 6rem; }
+    .header-actions { flex-basis: 19rem; }
     .tree-panel { --tree-def: 170px; }
     .file-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
 }
@@ -693,7 +696,6 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
         flex-shrink: 0;
     }
     .tree-panel .tree-header, .tree-panel .tree-content, .tree-resize { display: none; }
-    .search-container { width: 120px; }
     /* header-content's gap applies to both axes; once the search + icons wrap to their own row the gap is too much dead space, so only the row gap is tightened. */
     .header-content { row-gap: 0.375rem; }
     /* Pinned/favorites entries show filename and parent folder on a single truncated line, with the header and row chrome tightened to match. */
@@ -705,7 +707,7 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
     #shortcutsBtn { display: none; }
 }
 @media (max-width: 640px) {
-    .breadcrumb { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+    .breadcrumb { flex: 1 1 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
     .breadcrumb::-webkit-scrollbar { display: none; }
     .breadcrumb-item, .breadcrumb-separator { flex-shrink: 0; }
     .modal-overlay { padding: 0; }
@@ -1646,7 +1648,7 @@ body.twin-on .header-actions { margin-left: auto; }
 .tw-fav-head { padding: 0.5rem 0.5rem 0.25rem; font-size: var(--label-size); font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: var(--label-track); }
 .tw-fav-list .card-star-btn { position: relative; top: 0; right: auto; opacity: 1; flex-shrink: 0; width: 24px; height: 24px; background: none; border: none; color: var(--accent-text, var(--accent)); }
 .tw-fav-list .file-meta { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.tw-pane .file-list.list-columns .card-star-btn { width: 22px; height: 22px; }
+.tw-pane .file-list.list-columns .card-star-btn { width: 24px; height: 24px; }
 .tw-pane .file-list-header .col-star-spacer { width: 24px; }
 .tw-menu { position: absolute; top: 100%; left: 0.4rem; z-index: 30; min-width: 14rem; max-width: calc(100% - 0.8rem); display: flex; flex-direction: column; background: var(--bg-secondary); border: var(--bw) solid var(--border-strong); border-radius: var(--radius); box-shadow: var(--shadow-lg); }
 .tw-menu-item { text-align: left; padding: 0.4rem 0.6rem; background: none; border: none; color: var(--text-primary); font: inherit; font-size: 0.85rem; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -1658,10 +1660,10 @@ body.twin-on .header-actions { margin-left: auto; }
 .tw-empty { padding: 1.25rem 0.75rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
 .tw-status { flex-shrink: 0; padding: 0.2rem 0.5rem; border-top: var(--bw) solid var(--border-color); background: var(--bg-secondary); color: var(--text-muted); font-size: var(--data-size); line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 1.4em; box-sizing: content-box; }
 .tw-pane .list-columns { --list-cols: 24px 24px 1fr 56px 84px 96px 72px; }
-.tw-pane .file-list-header { padding: 0.25rem calc(0.5rem + var(--bw)); gap: 0.4rem; }
-.tw-pane .file-list.list-columns .file-card { padding: 0.25rem 0.5rem; gap: 0.4rem; }
+.tw-pane .file-list-header { padding: 0.4rem calc(0.5rem + var(--bw)); gap: 0.4rem; }
+.tw-pane .file-list.list-columns .file-card { padding: 0.5rem 0.5rem; gap: 0.4rem; }
 .tw-pane .file-list-header .col-icon-spacer { width: 24px; }
-.tw-pane .file-list .file-icon { width: 22px; height: 22px; }
+.tw-pane .file-list .file-icon { width: 24px; height: 24px; }
 .tw-pane .file-grid { grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr)); gap: 0.35rem; padding-top: 0.25rem; }
 .tw-pane .file-grid .file-card { padding: 0.4rem; gap: 0.25rem; }
 .tw-pane.active .file-card:focus { border-color: var(--accent); }
@@ -1790,15 +1792,10 @@ html[data-vivid] *::after { forced-color-adjust: none !important; }
 .twin[data-flip] .tw-pane[data-i="1"] { order: 1; }
 
 /* Compact rows reach the twin panels too (their own row sizes would otherwise win over the page-wide compact rules). */
-body.compact-density .tw-pane .file-list.list-columns .file-card { padding: 0.1rem 0.5rem; gap: 0.35rem; contain-intrinsic-size: auto 26px; }
-body.compact-density .tw-pane .file-list .file-icon { width: 18px; height: 18px; }
-body.compact-density .tw-pane .file-list .file-icon svg { width: 11px; height: 11px; }
-body.compact-density .tw-pane .file-list-header { padding: 0.15rem calc(0.5rem + var(--bw)); }
-body.compact-density .tw-pane .file-list-header .col-icon-spacer { width: 18px; }
-body.compact-density .tw-pane .list-columns { --list-cols: 18px 24px 1fr 56px 84px 96px 72px; }
-@container twp (max-width: 40em) { body.compact-density .tw-pane .list-columns { --list-cols: 18px 24px 1fr 56px 84px 96px; } }
-@container twp (max-width: 32em) { body.compact-density .tw-pane .list-columns { --list-cols: 18px 1fr 56px 84px; } }
-@container twp (max-width: 24em) { body.compact-density .tw-pane .list-columns { --list-cols: 18px 1fr 80px; } }
+body.compact-density .tw-pane .file-list.list-columns .file-card { padding: 0.3rem 0.5rem; gap: 0.4rem; contain-intrinsic-size: auto 34px; }
+body.compact-density .tw-pane .file-list .file-icon { width: 20px; height: 20px; }
+body.compact-density .tw-pane .file-list .file-icon svg { width: 12px; height: 12px; }
+body.compact-density .tw-pane .file-list-header { padding: 0.25rem calc(0.5rem + var(--bw)); }
 body.compact-density .tw-pane .file-name, body.compact-density .tw-pane .file-meta { font-size: 0.75rem; }
 body.compact-density .tw-pane .file-grid { gap: 0.25rem; }
 body.compact-density .tw-pane .file-grid .file-card { padding: 0.25rem; gap: 0.15rem; }
@@ -1817,6 +1814,37 @@ html[data-theme="concrete"] .vb-dl, html[data-theme="concrete"] .modal-btn.copie
 html[data-theme="concrete"] .vb-copy { --c: var(--pink); }
 html[data-theme="concrete"] .vb-fav { --c: var(--yellow); }
 html[data-theme="concrete"] .vb-fav.favorited { --c: var(--orange); }
+
+/* --- Twin panels: one search box per panel (desktop), search results inside a panel --- */
+@media (min-width: 641px) {
+    body.twin-on .search-second { display: block; }
+    /* The gap between the two boxes sits over the divider: the page sets the first box's width from the divider's position (see TWIN.alignBoxes), the second fills the rest. */
+    body.twin-on #searchBox0, body.twin-on #searchBox1 { flex: 1 1 0; min-width: 0; }
+    body.twin-on .search-container.sb-off { display: none; }
+    /* In twin panels the bar spans the whole window like the panels do, so the logo sits at the left edge with no empty margin before it. */
+    body.twin-on .header { padding-left: 0.5rem; padding-right: 0.5rem; }
+    body.twin-on .header-content { max-width: none; }
+    body.twin-on .header-tools { margin-left: 0; }
+}
+.tw-res .file-meta { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tw-res.file-list .file-path { display: inline; margin: 0 0 0 0.6em; word-break: normal; }
+.tw-res.file-grid .file-path { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tw-res.file-list .card-star-btn { position: relative; top: 0; right: auto; opacity: 0.55; background: none; border: none; width: 24px; height: 24px; flex-shrink: 0; }
+.tw-res.file-list .file-card:hover .card-star-btn, .tw-res.file-list .file-card:focus-within .card-star-btn { opacity: 0.8; }
+.tw-res.file-list .card-star-btn:hover, .tw-res.file-list .card-star-btn:focus-visible, .tw-res.file-list .card-star-btn.starred { opacity: 1; background: none; border: none; }
+.tw-more { margin-top: 0.5rem; }
+body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
+.tw-head .search-container { display: block; flex: 1 1 10rem; max-width: 22rem; min-width: 5rem; }
+.tw-head .search-input { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+
+/* --- Buttons that move when hovered or pressed keep a hit area that does not move ---
+   Concrete lifts a button 1px on hover and sinks it 2px on press. At the edge of a button that move slid the button out from under the pointer: the hover ended, the button
+   moved back, the hover began again (the shadow flashed), and a press near the top or left edge could lose its click. An invisible 3px margin around the button, which moves
+   with it, keeps the pointer inside for the whole move. Touch screens already have a larger hit area (see "Touch: bigger hit areas"). */
+@media (hover: hover) and (pointer: fine) {
+    html[data-theme="concrete"] :is(.modal-btn, .playlist-btn, .settings-menu-close, .settings-control button, .theme-reset-btn, .md-toggle, .load-more-btn, .download-btn, .tree-hdr-btn, .op-toast button) { position: relative; }
+    html[data-theme="concrete"] :is(.settings-btn, .view-btn, .goto-step-btn, .card-star-btn, .modal-btn, .playlist-btn, .settings-menu-close, .settings-control button, .theme-reset-btn, .md-toggle, .load-more-btn, .download-btn, .tree-hdr-btn, .op-toast button)::after { content: ""; position: absolute; inset: -3px; }
+}
 </style>
 </head>
 <body>
@@ -1834,10 +1862,17 @@ html[data-theme="concrete"] .vb-fav.favorited { --c: var(--orange); }
             <span class="mode-chip" id="modeChip" title="Browsing the files hosted with this page"><span id="modeChipText">Hosted repo</span><button type="button" class="mode-chip-close" id="modeChipClose" hidden>Close</button></span>
             <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb"></nav>
             <div class="header-actions">
-                <div class="search-container">
+                <div class="search-container" id="searchBox0">
                     <svg class="search-icon" viewBox="0 0 24 24" fill="currentcolor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61.0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                     <input class="search-input" id="search" placeholder="Search..." autocomplete="off" aria-label="Search files" />
                     <button class="search-clear" id="searchClearBtn" type="button" title="Clear search" aria-label="Clear search">
+                        <svg viewBox="0 0 24 24" fill="currentcolor" width="12" height="12"><use href="#icon-x"/></svg>
+                    </button>
+                </div>
+                <div class="search-container search-second" id="searchBox1">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="currentcolor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61.0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    <input class="search-input" id="search2" placeholder="Search right panel..." autocomplete="off" aria-label="Search files in the right panel" />
+                    <button class="search-clear" id="searchClearBtn2" type="button" title="Clear search" aria-label="Clear search">
                         <svg viewBox="0 0 24 24" fill="currentcolor" width="12" height="12"><use href="#icon-x"/></svg>
                     </button>
                 </div>
@@ -4835,15 +4870,17 @@ function updateListColumns() {
     if (mainEl.dataset.cols !== mode) mainEl.dataset.cols = mode;
 }
 function updateSearchClearVisibility() {
-    const input = document.getElementById("search");
-    const btn = document.getElementById("searchClearBtn");
-    if (input && btn) btn.classList.toggle("visible", input.value.length > 0);
+    [["search", "searchClearBtn"], ["search2", "searchClearBtn2"]].forEach(([i, b]) => {
+        const input = document.getElementById(i), btn = document.getElementById(b);
+        if (input && btn) btn.classList.toggle("visible", input.value.length > 0);
+    });
 }
-function clearSearch() {
-    const input = document.getElementById("search");
+// k: which box (twin panels show two on a wide screen; the second one only exists there).
+function clearSearch(k) {
+    const input = document.getElementById(k ? "search2" : "search");
     input.value = "";
     input.focus();
-    if (TWIN.on) { updateSearchClearVisibility(); TWIN.setFilter(""); return; }
+    if (TWIN.on) { updateSearchClearVisibility(); TWIN.setFilter("", k ? 1 : 0); return; }
     searchQuery = "";
     searchResultLimit = 100;
     updateSearchClearVisibility();
@@ -4888,22 +4925,33 @@ function setupEventListeners() {
     else window.addEventListener("resize", updateListColumns, { passive: true });
     updateListColumns();
 
-    const searchInput = document.getElementById("search");
-    let searchDebounceTimer;
-    searchInput.addEventListener("input", (e) => {
-        updateSearchClearVisibility();
-        clearTimeout(searchDebounceTimer);
-        searchDebounceTimer = setTimeout(() => {
-            if (TWIN.on) { TWIN.setFilter(e.target.value); return; }
-            const next = e.target.value.toLowerCase().trim();
-            if (next === searchQuery) return;
-            searchQuery = next;
-            searchResultLimit = 100;
-            document.getElementById("main").scrollTop = 0;
-            render();
-        }, 90);
+    // Each box has its own debounce timer. In twin panels box 0 searches the panel shown first and box 1 the other one (see TWIN.setFilter).
+    [["search", "searchClearBtn", 0], ["search2", "searchClearBtn2", 1]].forEach(([inputId, clearId, k]) => {
+        const input = document.getElementById(inputId);
+        let timer;
+        input.addEventListener("input", (e) => {
+            updateSearchClearVisibility();
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                if (TWIN.on) { TWIN.setFilter(e.target.value, k); return; }
+                if (k) return;
+                const next = e.target.value.toLowerCase().trim();
+                if (next === searchQuery) return;
+                searchQuery = next;
+                searchResultLimit = 100;
+                document.getElementById("main").scrollTop = 0;
+                render();
+            }, 90);
+        });
+        // Using a box makes its panel the active one; Enter or Down moves into its results; Esc clears the box first.
+        input.addEventListener("focus", () => { if (TWIN.on) TWIN.focusBox(k); });
+        input.addEventListener("keydown", (e) => {
+            if (!TWIN.on) return;
+            if ((e.key === "ArrowDown" || e.key === "Enter") && !e.isComposing) { clearTimeout(timer); TWIN.setFilter(input.value, k); if (TWIN.focusResults(k)) e.preventDefault(); }
+            else if (e.key === "Escape" && input.value) { e.preventDefault(); e.stopPropagation(); clearSearch(k); }
+        });
+        document.getElementById(clearId).addEventListener("click", () => clearSearch(k));
     });
-    document.getElementById("searchClearBtn").addEventListener("click", clearSearch);
     document.getElementById("logoHome").addEventListener("click", () => { navigateTo([]); previewTap(); });
     document.getElementById("logoHome").addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -4998,7 +5046,7 @@ function setupEventListeners() {
         }
         if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
             e.preventDefault();
-            document.getElementById("search").focus();
+            if (TWIN.on) TWIN.focusSearch(); else document.getElementById("search").focus();
         }
         if (e.key === " ") {
             const modalOpen = document.getElementById("modal").classList.contains("active") && TWIN.modalKeys();
@@ -12902,6 +12950,9 @@ const Marquee = (() => {
     const HOLD_MS = 1800;   // rest at the start of every lap
     const GAP_EM = 3;       // empty space between the end of a title and its next copy (keep equal to the CSS padding)
     const FADE_EM = 0.9;    // width of the soft edge on both sides (keep equal to --mq-fade in the CSS)
+    const START_SLACK = 1;  // plain text starts to scroll once it is wider than its line by more than this many px
+    const STOP_SLACK = 3;   // a scrolling title only goes back to plain text once its line is this many px wider than it (the gap between the two stops the flip-flop: scrolling itself changes the measuring by a fraction of a pixel)
+    const FLIP_MS = 1500;   // a title that still stops and starts again within this time is held scrolling until its text changes
     const BAR_SPEED_EM = 5.5; // the details bar moves about twice as fast as a title and only rests a moment
     const BAR_HOLD_MS = 500;
     const LETTER = /\p{L}/u;
@@ -12923,7 +12974,7 @@ const Marquee = (() => {
     function stateOf(el) {
         let s = states.get(el);
         if (s) return s;
-        s = { track: null, anim: null, text: "", w: 0, cw: 0, rtl: false, holds: new Set() };
+        s = { track: null, anim: null, text: "", w: 0, cw: 0, rtl: false, holds: new Set(), pin: false, relAt: 0, relText: "", sticky: "" };
         states.set(el, s);
         const hold = (why, on) => {
             if (on) s.holds.add(why); else s.holds.delete(why);
@@ -12954,6 +13005,7 @@ const Marquee = (() => {
                 if (s.anim) s.anim.cancel();
                 s.anim = null; s.track = null;
                 el.classList.remove("mq-on");
+                unpin(el, s);
             }
             plan.push({ el, s });
         }
@@ -12974,23 +13026,41 @@ const Marquee = (() => {
         for (const p of plan) {
             const { el, s, text } = p;
             if (!text || p.cw <= 0) { if (s.track) release(el, s, text); continue; } // empty, or not on screen yet: the resize observer calls again
-            const need = !still && p.w > p.cw + 1;
+            // Two thresholds: plain text starts to scroll when it is wider than its line, a scrolling title only stops when it is clearly narrower. Without the gap a title
+            // whose width sat right at the edge flipped between the two states on every measuring and flashed.
+            const slack = s.track ? -(s.sticky === text ? 12 : STOP_SLACK) : START_SLACK;
+            const need = !still && p.w > p.cw + slack;
             if (!need) { if (s.track) release(el, s, text); continue; }
             const rtl = isRtl(text);
             if (s.track && s.text === text && s.rtl === rtl && Math.abs(s.w - p.w) < 0.5 && Math.abs(s.cw - p.cw) < 0.5) continue; // already scrolling just right
             start(el, s, text, rtl, p);
         }
+        // What the loop above wrote to the page (tracks coming and going) is not news to the observer below: dropping those records stops it from queueing every title again.
+        if (mo) mo.takeRecords();
     }
     function release(el, s, text) {
         if (s.anim) s.anim.cancel();
         s.anim = null; s.track = null;
         el.classList.remove("mq-on");
+        unpin(el, s);
+        s.relAt = performance.now(); s.relText = text;
         if (text && el.firstElementChild) el.textContent = text; // back to plain text
     }
+    // A title that is a flex item sized by its text (the station title and the status next to it) would, with its two-copy track inside, ask for twice the room and change the width
+    // it is measured against. While it scrolls its basis is therefore pinned to the width of the plain text, so the row divides its room exactly as it did before.
+    function canPin(el) {
+        const par = el.parentElement;
+        if (!par) return false;
+        const ps = getComputedStyle(par);
+        return /flex/.test(ps.display) && ps.flexDirection.startsWith("row") && getComputedStyle(el).flexBasis === "auto";
+    }
+    function unpin(el, s) { if (s.pin) { el.style.removeProperty("flex-basis"); s.pin = false; } }
     function start(el, s, text, rtl, p) {
         if (s.anim) s.anim.cancel();
         let track = s.track;
         if (!track) {
+            if (s.relText === text && performance.now() - s.relAt < FLIP_MS) s.sticky = text; // it stopped a moment ago and wants to start again: keep it going
+            s.pin = canPin(el);
             track = document.createElement("span");
             track.className = "mq-t";
             track.textContent = text;
@@ -13001,6 +13071,11 @@ const Marquee = (() => {
         track.setAttribute("data-mq", text);
         el.classList.add("mq-on");
         const { w, cw, fs } = p;
+        if (s.pin) {
+            const cs = getComputedStyle(el);
+            const extra = cs.boxSizing === "border-box" ? ["paddingLeft", "paddingRight", "borderLeftWidth", "borderRightWidth"].reduce((a, k) => a + (parseFloat(cs[k]) || 0), 0) : 0;
+            el.style.flexBasis = w + extra + "px";
+        }
         const gap = GAP_EM * fs, inset = FADE_EM * fs, lap = w + gap;
         const moveMs = (lap / (SPEED_EM * fs)) * 1000;
         const total = HOLD_MS + moveMs, hf = HOLD_MS / total;
@@ -13060,7 +13135,7 @@ const Marquee = (() => {
         const cw = bar.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
         const w = t1.offsetWidth - (parseFloat(getComputedStyle(t1).paddingInlineEnd) || 0);
         const still = reduceMotion && reduceMotion.matches;
-        if (still || cw <= 0 || w <= cw + 1) {
+        if (still || cw <= 0 || w <= (s.anim ? cw - STOP_SLACK : cw + START_SLACK)) {
             if (s.anim) { s.anim.cancel(); s.anim = null; }
             run.classList.remove("mb-on");
             bar.classList.remove("mb-fade");
@@ -13116,7 +13191,7 @@ const TWIN = (() => {
         close: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>',
     };
     const isStacked = () => T.vert || !!(TWIN_STACK_MQ && TWIN_STACK_MQ.matches);
-    const mkPane = (i, source) => ({ id: i, source, path: [], memo: { hosted: [], local: [] }, view: "list", sort: sortBy, filter: "", map: new Map(), cur: "", reveal: null, focusIt: false, summary: "", mode: "list", tab: "files", viewItem: null, cleanups: [], backHook: null, seq: 0, order: [], mediaName: "" });
+    const mkPane = (i, source) => ({ id: i, source, path: [], memo: { hosted: [], local: [] }, view: "list", sort: sortBy, filter: "", map: new Map(), results: [], rall: [], rkey: "", rlimit: 100, cur: "", reveal: null, focusIt: false, summary: "", mode: "list", tab: "files", viewItem: null, cleanups: [], backHook: null, seq: 0, order: [], mediaName: "" });
 
     // ---- Sources: the hosted repo and the local folder can both be loaded; the page-wide globals point at one of them at a time ----
     const ctxNow = () => ({ fileIndex, allFiles, filesByPath, pinned: pinnedFolders, favorites: favoriteFiles, expanded: expandedFolders, path: currentPath, search: searchQuery });
@@ -13214,6 +13289,7 @@ const TWIN = (() => {
         const pn = paneEl(p.id);
         if (!pn) return;
         const head = pn.querySelector(".tw-head");
+        head.querySelectorAll(".search-container").forEach((e) => e.remove()); // the boxes live on (placeBoxes puts them back below)
         const grid = p.view === "grid";
         const sorts = [["name-asc", "Name (A-Z)"], ["name-desc", "Name (Z-A)"], ["ext-asc", "Extension"], ["size-desc", "Size (largest)"], ["size-asc", "Size (smallest)"], ["date-desc", "Date (newest)"], ["date-asc", "Date (oldest)"], ["type", "Type"]];
         head.innerHTML = `
@@ -13234,6 +13310,7 @@ const TWIN = (() => {
         if (path) path.scrollLeft = path.scrollWidth;
         pn.classList.toggle("active", T.active === p.id);
         pn.dataset.tab = p.tab;
+        placeBoxes();
     }
     function emptyHtml(msg, extra) { return `<div class="tw-empty">${msg}${extra || ""}</div>`; }
     function renderList(p, keepScroll) {
@@ -13250,6 +13327,8 @@ const TWIN = (() => {
             setStatus(p, null);
             return;
         }
+        const q = p.filter.trim().toLowerCase();
+        if (q) { renderResults(p, c, q, sc, top); return; }
         if (partial) {
             sc.innerHTML = `<div class="skeleton-list" aria-hidden="true">${[45, 60, 35, 50, 40, 55].map((w) => `<div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:${w}%"></div></div>`).join("")}</div>`;
             setStatus(p, null);
@@ -13257,8 +13336,7 @@ const TWIN = (() => {
         }
         const grid = p.view === "grid";
         let all = sortItems(items, p.sort);
-        const f = p.filter.trim().toLowerCase();
-        if (f) all = all.filter((i) => i.name.toLowerCase().includes(f));
+        p.results = [];
         p.order = all.map((i) => i.name);
         const nf = all.filter((i) => i.type === "file").length, nd = all.length - nf;
         const bytes = all.reduce((a, i) => a + (i.type === "file" ? getItemSize(i) : 0), 0);
@@ -13290,7 +13368,7 @@ const TWIN = (() => {
             html += `<div class="file-card" role="button" tabindex="-1" data-n="${name}" data-t="f" aria-label="Open file ${name}">${thumb}<div class="file-icon ${iconType}${xc}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div>${starHtml(c, "file", full)}<div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid ? item.sizeFormatted : ""}</span></div>${grid ? "" : renderColumnCells(escapeHtml(getFileExtension(item.name)), item.sizeFormatted, escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
         }
         html += "</div>";
-        if (!all.length) html += emptyHtml(f ? "No matches in this folder." : "Empty folder.");
+        if (!all.length) html += emptyHtml("Empty folder.");
         sc.innerHTML = html;
         sc.scrollTop = top;
         if (intersectionObserver) sc.querySelectorAll(".file-thumbnail.lazy").forEach((img) => intersectionObserver.observe(img));
@@ -13302,6 +13380,113 @@ const TWIN = (() => {
             p.reveal = null; p.focusIt = false;
         }
     }
+    // ---- Search: a box searches the whole source its panel shows (same fuzzy search as the page's own box, items of the panel's folder first); a click on a result opens it in that panel ----
+    const RES_STEP = 100;
+    const twoBoxes = () => !(TWIN_STACK_MQ && TWIN_STACK_MQ.matches);
+    const boxPane = (k) => (twoBoxes() ? (T.flip ? 1 - k : k) : T.active);
+    const boxOf = (p) => $(twoBoxes() && (T.flip ? 1 - p.id : p.id) === 1 ? "search2" : "search");
+    const cardItem = (p, card) => (card.dataset.r !== undefined ? p.results[Number(card.dataset.r)] : p.map.get(card.dataset.n));
+    function searchPane(c, q, p) {
+        const tokens = q.split(/[\s/]+/).filter(Boolean), compact = q.replace(/[^a-z0-9]/g, ""), here = p.path.join("/").toLowerCase();
+        const scored = [];
+        for (const item of c.allFiles) {
+            const sc = scoreSearchItem(q, tokens, compact, item);
+            if (sc !== null) scored.push({ item, score: sc + (item.parentPath === here ? 400 : 0) });
+        }
+        scored.sort((a, b) => b.score - a.score);
+        return scored.map((x) => x.item);
+    }
+    function renderResults(p, c, q, sc, top) {
+        const key = p.source + "\u0000" + q + "\u0000" + p.path.join("/") + "\u0000" + c.allFiles.length;
+        const fresh = p.rkey !== key;
+        if (fresh) { p.rkey = key; p.rall = searchPane(c, q, p); p.rlimit = RES_STEP; }
+        const all = p.rall, shown = all.slice(0, p.rlimit), grid = p.view === "grid", raw = p.filter.trim();
+        p.map = new Map();
+        p.order = [];
+        p.results = shown;
+        p.summary = all.length ? `${all.length} ${all.length === 1 ? "result" : "results"} for \u201c${raw}\u201d` : "No results";
+        if (fresh) announce(all.length ? p.summary : `No results for \u201c${raw}\u201d`);
+        let html = `<div class="${grid ? "file-grid" : "file-list"} tw-res">`;
+        shown.forEach((item, idx) => {
+            const dir = item.type === "directory", name = escapeHtml(item.name);
+            const iconType = dir ? "folder" : getFileIconType(item.name) || item.category || "other";
+            const where = escapeHtml(item.navPath.slice(0, -1).join("/"));
+            const thumb = grid && !dir && item.category === "image"
+                ? `<img class="file-thumbnail lazy" ${p.source === "local" ? `data-tlocal="${escapeHtml(item.fullPath)}"` : `data-src="${escapeHtml(hostedUrlIn(c, item.fullPath))}"`} alt="" decoding="async">` : "";
+            const meta = dir ? (grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : "") : item.sizeFormatted;
+            html += `<div class="file-card${dir ? " directory" : ""}" role="button" tabindex="-1" data-r="${idx}" aria-label="${dir ? "Open folder " : "Open file "}${name}">${thumb}<div class="file-icon ${iconType}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div>${starHtml(c, dir ? "folder" : "file", dir ? item.navPath : item.fullPath)}<div class="file-info"><span class="file-name">${highlightMatch(item.name, q)}</span><span class="file-meta">${meta}${where ? `<span class="file-path">${where}</span>` : ""}</span></div></div>`;
+        });
+        html += "</div>";
+        if (!all.length) html += emptyHtml(`No results for \u201c${escapeHtml(raw)}\u201d.`);
+        else if (all.length > shown.length) html += `<button type="button" class="load-more-btn tw-more">Show more (${all.length - shown.length} remaining)</button>`;
+        sc.innerHTML = html;
+        sc.scrollTop = top;
+        if (intersectionObserver) sc.querySelectorAll(".file-thumbnail.lazy").forEach((img) => intersectionObserver.observe(img));
+        setStatus(p, null);
+        p.reveal = null; p.focusIt = false;
+    }
+    // A click on a result brings it up in the panel it was searched in: a folder is opened, a file is opened in its own folder (so the panel's list, rail and prev/next belong to it).
+    function openResult(p, idx) {
+        const item = p.results[idx];
+        if (!item) return;
+        p.filter = "";
+        p.rkey = "";
+        const dir = item.type === "directory";
+        go(p, dir ? item.navPath.slice() : item.navPath.slice(0, -1), dir ? undefined : { reveal: item.name });
+        if (dir || p.mode !== "list") return;
+        p.cur = item.name;
+        const it = p.map.get(item.name);
+        if (it) openFileItem(p, it); else openPathIn(p, item.fullPath);
+    }
+    // Side by side on a wide screen the first box ends where the left panel ends and the second begins where the right one begins, so each box sits over its panel
+    // and both grow and shrink with the divider. Their outer edges are held by the logo and the tool buttons.
+    // Panels stacked top and bottom have no room for two boxes in the top bar's row, so each box moves into the head of its panel (between the path and the tools);
+    // everywhere else they sit in the top bar.
+    function placeBoxes() {
+        const boxes = T.boxes, actions = document.querySelector(".header-actions"), tools = document.querySelector(".header-tools");
+        if (!boxes || !actions || !T.panes.length) return;
+        const inHeads = T.on && T.vert && twoBoxes();
+        boxes.forEach((bx, k) => {
+            if (inHeads) {
+                const pn = paneEl(T.panes[boxPane(k)].id), head = pn && pn.querySelector(".tw-head");
+                if (head && bx.parentNode !== head) head.insertBefore(bx, head.querySelector(".tw-tools"));
+            } else if (bx.parentNode !== actions) actions.insertBefore(bx, tools);
+        });
+        document.body.classList.toggle("tw-boxes-in-heads", inHeads);
+    }
+    function alignBoxes() {
+        placeBoxes();
+        if (document.body.classList.contains("tw-boxes-in-heads")) { T.boxes.forEach((bx) => { bx.style.flex = ""; bx.style.marginLeft = ""; bx.classList.remove("sb-off"); }); return; }
+        const b0 = $("searchBox0"), b1 = $("searchBox1"), sp = $("twin").querySelector(".tw-split"), tools = document.querySelector(".header-tools");
+        if (!b0 || !b1 || !sp || !tools) return;
+        b0.style.flex = ""; b1.style.marginLeft = "";
+        b0.classList.remove("sb-off"); b1.classList.remove("sb-off");
+        if (!T.on || !twoBoxes()) return;
+        const MIN = 112; // a box narrower than this is hidden; the tool buttons never move for it
+        const gap = parseFloat(getComputedStyle(b0.parentElement).columnGap) || 6;
+        const aL = b0.getBoundingClientRect().left, aR = tools.getBoundingClientRect().left - gap;
+        const r = sp.getBoundingClientRect();
+        if (T.vert || T.max !== -1 || !r.width) { if ((aR - aL - gap) / 2 < MIN) b1.classList.add("sb-off"); return; }
+        const c = (r.left + r.right) / 2, w0 = Math.min(c - gap / 2 - aL, aR - aL), w1 = aR - (c + gap / 2);
+        if (w0 < MIN) { b0.classList.add("sb-off"); b1.style.marginLeft = Math.max(0, Math.round(c + gap / 2 - aL)) + "px"; } else b0.style.flex = "0 0 " + Math.round(w0) + "px";
+        if (w1 < MIN) b1.classList.add("sb-off");
+    }
+    // Both boxes show the filter of the panel they belong to; the page keeps them in step whenever panels change, swap or restack.
+    function syncInputs() {
+        const two = twoBoxes();
+        [0, 1].forEach((k) => {
+            const input = $(k ? "search2" : "search");
+            if (!input || (k && !two)) return;
+            const p = T.panes[boxPane(k)];
+            if (!p) return;
+            const where = !two ? "" : T.vert ? (k ? "bottom" : "top") : (k ? "right" : "left");
+            input.placeholder = two ? `Search ${where} panel...` : "Search this panel...";
+            input.setAttribute("aria-label", two ? `Search files in the ${where} panel` : "Search files in the active panel");
+            if (document.activeElement !== input || input.value === p.filter) input.value = p.filter;
+        });
+        updateSearchClearVisibility();
+    }
+
     // ---- Favorites tab: the panel's pinned folders and favorite files (of the source it shows), in place of its file list ----
     const sameArr = (a, b) => JSON.stringify(a) === JSON.stringify(b);
     function starHtml(c, type, val) {
@@ -13396,7 +13581,7 @@ const TWIN = (() => {
     function setStatus(p, item) {
         const pn = paneEl(p.id), st = pn && pn.querySelector(".tw-status");
         if (!st) return;
-        st.textContent = item ? `${item.name}: ${item.type === "directory" ? "DIR" : item.sizeFormatted}, ${formatItemDate(item)} ${formatItemTime(item)}` : p.summary;
+        st.textContent = item ? `${item.fullPath || item.name}: ${item.type === "directory" ? "DIR" : item.sizeFormatted}, ${formatItemDate(item)} ${formatItemTime(item)}` : p.summary;
     }
     function renderPane(i, keepScroll) {
         const p = T.panes[i];
@@ -13404,13 +13589,14 @@ const TWIN = (() => {
         renderList(p, keepScroll);
         renderHead(p);
     }
-    function renderAll(keepScroll) { T.panes.forEach((p) => renderPane(p.id, keepScroll)); }
+    function renderAll(keepScroll) { T.panes.forEach((p) => renderPane(p.id, keepScroll)); syncInputs(); }
 
     // ---- Layout: split position, maximized panel ----
     function applyLayout() {
         const tw = $("twin"), sp = tw.querySelector(".tw-split");
         tw.style.setProperty("--tw-a", T.r + "fr");
         tw.style.setProperty("--tw-b", 100 - T.r + "fr");
+        alignBoxes();
         if (T.max === 0 || T.max === 1) tw.dataset.max = String(T.max); else delete tw.dataset.max;
         if (T.flip) tw.dataset.flip = "1"; else delete tw.dataset.flip;
         if (T.vert) tw.dataset.stack = "1"; else delete tw.dataset.stack;
@@ -13423,6 +13609,7 @@ const TWIN = (() => {
         sp.classList.toggle("centered", Math.abs(T.r - 50) < 0.05);
         sp.setAttribute("aria-valuenow", String(Math.round(T.r)));
         sp.setAttribute("aria-orientation", isStacked() ? "horizontal" : "vertical");
+        if (T.ready && T.panes.length) syncInputs();
         const mx = sp.querySelector('[data-act="max"]');
         if (mx) { const on = T.max !== -1; mx.setAttribute("aria-pressed", String(on)); mx.title = on ? "Show both panels" : "Fill the window with this panel"; mx.setAttribute("aria-label", mx.title); }
     }
@@ -13440,9 +13627,6 @@ const TWIN = (() => {
         if (T.active === i && quiet) return;
         T.active = i;
         T.panes.forEach((p) => { const pn = paneEl(p.id); if (pn) pn.classList.toggle("active", p.id === i); });
-        const input = $("search");
-        input.value = T.panes[i].filter;
-        updateSearchClearVisibility();
         applyLayout();
         syncHash();
         save();
@@ -13454,7 +13638,7 @@ const TWIN = (() => {
         p.tab = "files";
         p.memo[p.source] = path;
         p.filter = "";
-        if (p.id === T.active) { $("search").value = ""; updateSearchClearVisibility(); }
+        syncInputs();
         if (o.reveal !== undefined) { p.reveal = o.reveal; p.focusIt = !!o.focus; }
         T.menu = null;
         renderPane(p.id);
@@ -13483,7 +13667,8 @@ const TWIN = (() => {
         p.path = (p.memo[kind] || []).slice();
         p.filter = "";
         renderPane(p.id);
-        if (p.id === T.active) { $("search").value = ""; syncHash(); }
+        syncInputs();
+        if (p.id === T.active) syncHash();
         save();
     }
     function setView(p, v) {
@@ -13496,7 +13681,7 @@ const TWIN = (() => {
         const pn = paneEl(p.id);
         if (!pn) return;
         const cards = Array.from(pn.querySelectorAll(".file-card"));
-        const t = cards.find((el) => el.dataset.n === p.cur) || cards[p.tab !== "fav" && p.path.length ? 1 : 0] || cards[0];
+        const t = cards.find((el) => el.dataset.n === p.cur) || cards[p.tab !== "fav" && !p.filter.trim() && p.path.length ? 1 : 0] || cards[0];
         (t || pn.querySelector(".tw-scroll")).focus();
     }
     function switchPane() {
@@ -13520,12 +13705,17 @@ const TWIN = (() => {
         o.memo[o.source] = o.path;
         o.filter = "";
         renderPane(o.id);
+        syncInputs();
         save();
     }
     function toggleMax() { T.max = T.max === -1 ? T.active : -1; applyLayout(); }
-    function setFilter(v) {
-        const p = T.panes[T.active];
+    function setFilter(v, k) {
+        const p = T.panes[boxPane(k || 0)];
+        if (!p || p.filter === v) return;
         p.filter = v;
+        if (p.mode === "view") closeInline(p, true); // the results replace the preview
+        else if (p.mode === "media" && v.trim()) announce("Close the player to see the search results");
+        if (p.tab === "fav" && v.trim()) { p.tab = "files"; renderHead(p); }
         renderList(p);
     }
 
@@ -13558,11 +13748,8 @@ const TWIN = (() => {
         const btn = $("twinBtn");
         btn.classList.toggle("active", on);
         btn.setAttribute("aria-pressed", String(on));
-        $("search").placeholder = on ? "Filter this folder..." : "Search...";
-        $("search").setAttribute("aria-label", on ? "Filter files in the active panel" : "Search files");
+        if (!on) { $("search").placeholder = "Search..."; $("search").setAttribute("aria-label", "Search files"); $("search2").value = ""; }
         if (on) {
-            $("search").value = T.panes[T.active].filter;
-            updateSearchClearVisibility();
             applyLayout();
             renderAll();
             syncHash();
@@ -13936,11 +14123,13 @@ const TWIN = (() => {
             save();
             return;
         }
+        if (t.closest(".tw-more")) { p.rlimit += RES_STEP; renderList(p, true); return; }
         const card = t.closest(".file-card");
         if (!card) return;
         // The first click on a panel that did not have the focus only gives it the focus (and the cursor); the next click opens.
-        if (focusOnly) { if (!card.dataset.up) { p.cur = card.dataset.n; setStatus(p, p.map.get(card.dataset.n)); } card.focus({ preventScroll: true }); return; }
+        if (focusOnly) { if (!card.dataset.up) { p.cur = card.dataset.n; setStatus(p, cardItem(p, card)); } card.focus({ preventScroll: true }); return; }
         if (card.dataset.up) { up(p, false); return; }
+        if (card.dataset.r !== undefined) { openResult(p, Number(card.dataset.r)); return; }
         if (card.dataset.fav) { openFav(p, card); return; }
         p.cur = card.dataset.n;
         openItem(p, card.dataset.n);
@@ -13987,6 +14176,7 @@ const TWIN = (() => {
         if (e.key === "Escape" && T.menu !== null) { T.menu = null; renderAllHeads(); e.stopPropagation(); return; }
         if (e.key === "Escape" && card) { e.stopPropagation(); const s = pn.querySelector(".tw-src"); if (s) s.focus(); return; }
         if (p.tab === "fav" && (card || scroller) && (e.key === "Backspace" || e.key === "ArrowLeft") && plain) { e.preventDefault(); setTab(p, "files"); return; }
+        if (p.filter.trim() && p.tab !== "fav" && (card || scroller) && plain && (e.key === "Backspace" || (e.key === "ArrowLeft" && p.view !== "grid"))) { e.preventDefault(); const bx = boxOf(p); if (bx) bx.focus(); return; }
         if (e.key === "Backspace" && (card || scroller)) { e.preventDefault(); up(p, true); return; }
         if (scroller && ["ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "Home", "End", "Enter"].includes(e.key)) { e.preventDefault(); focusCursor(p); return; }
         if (!card) return;
@@ -14055,6 +14245,16 @@ const TWIN = (() => {
         toggle() { setOn(!T.on); },
         setFilter,
         focusActive() { focusCursor(T.panes[T.active]); },
+        // The box of a panel was used: that panel becomes the active one.
+        focusBox(k) { const p = T.panes[boxPane(k)]; if (p && T.active !== p.id) setActive(p.id, true); },
+        focusSearch() { let bx = boxOf(T.panes[T.active]); if (bx && !bx.offsetParent) bx = [$("search"), $("search2")].find((e) => e.offsetParent); if (bx) { bx.focus(); bx.select(); } },
+        focusResults(k) {
+            const p = T.panes[boxPane(k)], pn = p && paneEl(p.id);
+            const card = pn && p.mode === "list" && p.filter.trim() ? pn.querySelector(".tw-scroll .file-card") : null;
+            if (!card) return false;
+            card.focus();
+            return true;
+        },
         // The preview window's player was closed: its panel goes back to the list.
         onModalClosed() {
             closeSeatedWindows();
@@ -14172,6 +14372,7 @@ const TWIN = (() => {
                 if (s.vert === true) T.vert = true;
             }
             T.ready = true;
+            T.boxes = [$("searchBox0"), $("searchBox1")];
             const hp = hashToPath();
             if (hp.length) { T.panes[0].path = hp; T.panes[0].source = "hosted"; T.active = 0; }
             tw.addEventListener("click", onClick);
@@ -14184,18 +14385,19 @@ const TWIN = (() => {
                 const i = Number(pn.dataset.i), p = T.panes[i];
                 if (T.active !== i) setActive(i, true);
                 const card = e.target.closest(".file-card");
-                if (card && !card.dataset.up) { p.cur = card.dataset.n; setStatus(p, p.map.get(card.dataset.n)); }
+                if (card && !card.dataset.up) { p.cur = card.dataset.n; setStatus(p, cardItem(p, card)); }
             });
             tw.addEventListener("pointerover", (e) => {
                 if (e.pointerType === "touch") return;
                 const card = e.target.closest(".file-card");
                 if (!card) return;
                 const p = T.panes[Number(card.closest(".tw-pane").dataset.i)];
-                setStatus(p, card.dataset.up ? null : p.map.get(card.dataset.n));
+                setStatus(p, card.dataset.up ? null : cardItem(p, card));
             });
             document.addEventListener("pointerdown", (e) => { if (T.menu !== null && !e.target.closest(".tw-menu, .tw-src")) { T.menu = null; renderAllHeads(); } }, true);
             document.addEventListener("keydown", (e) => { if (e.key === "Escape" && T.menu !== null && !e.target.closest(".tw-pane")) { T.menu = null; renderAllHeads(); e.stopPropagation(); } }, true);
             wireSplit();
+            if (typeof ResizeObserver === "function") { const ro = new ResizeObserver(() => alignBoxes()); ro.observe($("twin")); ro.observe(document.querySelector(".header-actions")); }
             if (TWIN_STACK_MQ && TWIN_STACK_MQ.addEventListener) TWIN_STACK_MQ.addEventListener("change", applyLayout);
             $("twinBtn").addEventListener("click", () => setOn(!T.on));
             applyLayout();
