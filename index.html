@@ -920,7 +920,7 @@ mark.search-highlight { background: color-mix(in srgb, var(--accent) 30%, transp
 .file-list .file-card:has(.file-thumbnail-inline.loaded) .file-icon { display: none; }
 /* Grid view, like a desktop file manager: every tile has the same 4:3 picture box. An image fills it with its thumbnail (the icon shows until the
    thumbnail has loaded); everything else gets a big icon centered in it. The name and size always start at the same height, so neighbors stay even. */
-.file-grid { --gi: 4rem; }
+.file-grid { --gi: 4.5rem; }
 .file-grid .file-card { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; justify-items: center; align-content: start; }
 .file-grid .file-card::before { content: ""; grid-area: 1 / 1; width: 100%; aspect-ratio: 4 / 3; }
 .file-grid .file-card > .file-icon { grid-area: 1 / 1; align-self: center; width: var(--gi); height: var(--gi); }
@@ -936,7 +936,7 @@ mark.search-highlight { background: color-mix(in srgb, var(--accent) 30%, transp
 .file-grid .file-card > .file-info > .file-meta:empty { display: none; }
 /* Thumbnail sizes (Settings > Density, or Ctrl + wheel over a grid). Medium is the original look and needs no rules. */
 html[data-thumb="s"] .file-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); --gi: 2.75rem; }
-html[data-thumb="l"] .file-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); --gi: 6.5rem; }
+html[data-thumb="l"] .file-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); --gi: 7rem; }
 html[data-thumb="s"] .file-grid .file-name { font-size: 0.72rem; }
 html[data-thumb="l"] .file-grid .file-name { font-size: 0.9rem; }
 html[data-thumb="l"] .file-grid .file-card { contain-intrinsic-size: auto 240px; }
@@ -948,8 +948,27 @@ html[data-thumb="l"] .tw-pane .file-grid { grid-template-columns: repeat(auto-fi
     html[data-thumb="l"] .file-grid { grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); --gi: 5rem; }
 }
 .settings-control button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent-text, var(--accent)); }
-@media (max-width: 768px) { .file-grid { --gi: 3rem; } }
-.tw-pane .file-grid { --gi: 3.25rem; }
+@media (max-width: 768px) { .file-grid { --gi: 3.25rem; } }
+.tw-pane .file-grid { --gi: 3.5rem; }
+
+/* Large file icons: grid view draws the detailed 64-unit artwork (ibIcon) straight on the card, without the tinted tile behind it (Concrete keeps its tile). */
+.file-grid .file-card > .file-icon > svg.ib { display: block; width: 100%; height: 100%; overflow: visible; }
+html:not([data-theme="concrete"]) .file-grid .file-card > .file-icon { background: none !important; }
+html[data-theme="concrete"] .file-grid .file-card > .file-icon > svg.ib { width: 84%; height: 84%; margin: auto; }
+/* Preview-an-index dialog (opened by tapping the logo five times quickly) */
+.pv-label { display: block; margin: 0.8rem 0 0.3rem; font-size: var(--label-size, 0.75rem); font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: var(--label-track, 0.04em); }
+.pv-label span { text-transform: none; font-weight: 400; letter-spacing: 0; }
+.pv-input { width: 100%; padding: 0.5rem 0.6rem; background: var(--control-surface, var(--bg-tertiary)); color: var(--text-primary); border: var(--bw) solid var(--border-color); border-radius: var(--radius-sm); font: inherit; font-size: 0.85rem; }
+.pv-input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.pv-status { min-height: 1.3em; margin: 0.8rem 0 0; font-size: 0.8rem; line-height: 1.45; color: var(--text-secondary); overflow-wrap: anywhere; }
+.pv-status.err { color: #e5675b; }
+.pv-actions { display: flex; gap: 0.5rem; margin-top: 0.8rem; }
+
+/* Thumbnail size (S / M / L) in the stats line of the main grid and in the head of a twin panel showing a grid */
+.stats-bar .ts-ctl { margin-left: auto; align-items: center; }
+.ts-ctl button { padding: 0.1rem 0.45rem; line-height: 1.4; }
+.tw-tools .ts-ctl { gap: 0.15rem; }
+.tw-tools .ts-ctl button { padding: 0.15rem 0.35rem; }
 
 /* --- File card hover: tone and border only, no movement --- */
 .file-card { transition: border-color var(--transition), background-color var(--transition); }
@@ -1095,11 +1114,11 @@ body.is-recording .audio-icon .cache-tag { max-width: calc(100% - 3.2rem); }
 /* ---- Added features: mode chip, Markdown, archives, progress toast ---- */
 .mode-chip { display: inline-flex; align-items: center; gap: 0.5rem; max-width: 16rem; padding: 0.25rem 0.5rem; border: var(--bw) solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-muted); font-size: 0.75rem; line-height: 1.2; flex-shrink: 0; min-width: 0; }
 .mode-chip > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-body[data-source="local"] .mode-chip { color: var(--accent-text, var(--accent)); border-color: var(--accent); }
+body[data-source="local"] .mode-chip, body[data-source="preview"] .mode-chip { color: var(--accent-text, var(--accent)); border-color: var(--accent); }
 .mode-chip-close { flex-shrink: 0; padding: 0; background: none; border: none; color: inherit; font: inherit; text-decoration: underline; cursor: pointer; }
 .mode-chip-close:hover { color: var(--text-primary); }
-.mode-chip-close[hidden], .op-toast[hidden], .md-toggle[hidden], #localCloseBtn[hidden], #opToastCancel[hidden] { display: none !important; }
-body:not([data-source="local"]) .mode-chip { display: none; }
+.mode-chip-close[hidden], .op-toast[hidden], .md-toggle[hidden], #localCloseBtn[hidden], #opToastCancel[hidden], #previewStopBtn[hidden] { display: none !important; }
+body:not([data-source]) .mode-chip { display: none; }
 @media (max-width: 640px) { .mode-chip { max-width: 11rem; } }
 /* Header: search box and tool buttons share one row and are never hidden or clipped (Local folder stays on phones); on a really narrow screen the tools drop under the search box. */
 .header-tools { display: flex; align-items: center; gap: 0.375rem; flex-shrink: 0; }
@@ -1109,9 +1128,9 @@ body:not([data-source="local"]) .mode-chip { display: none; }
     .search-container { flex: 1 1 8rem; min-width: 0; }
     .header-tools { gap: 0.25rem; margin-left: auto; }
     /* Local folder mode shows its name chip: it gets the logo row, and the path moves to its own row so neither is squeezed */
-    body[data-source="local"] .mode-chip { flex: 1 1 0; min-width: 0; max-width: none; justify-content: space-between; }
-    body[data-source="local"] .breadcrumb { order: 3; flex: 1 1 100%; }
-    body[data-source="local"] .header-actions { order: 4; }
+    body[data-source="local"] .mode-chip, body[data-source="preview"] .mode-chip { flex: 1 1 0; min-width: 0; max-width: none; justify-content: space-between; }
+    body[data-source="local"] .breadcrumb, body[data-source="preview"] .breadcrumb { order: 3; flex: 1 1 100%; }
+    body[data-source="local"] .header-actions, body[data-source="preview"] .header-actions { order: 4; }
 }
 .empty-action { flex: none; padding: 0.4rem 0.9rem; font-size: 0.85rem; margin-top: 0.5rem; }
 
@@ -1620,6 +1639,15 @@ body.twin-on .header-actions { margin-left: auto; }
 .tw-tools { display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0; }
 .tw-tools .tw-zip { padding: 0.25rem; }
 .tw-tools .tw-sort { width: auto; max-width: 9rem; }
+.tw-tools .tw-favtab { padding: 0.25rem; }
+.tw-tools .tw-favtab[aria-pressed="true"] { color: var(--accent-text, var(--accent)); border-color: var(--accent-text, var(--accent)); }
+/* The Favorites tab replaces the file list of one panel; the view/sort/zip tools mean nothing there, so only the tab button stays. */
+.tw-pane[data-tab="fav"] .tw-tools > :not(.tw-favtab) { display: none; }
+.tw-fav-head { padding: 0.5rem 0.5rem 0.25rem; font-size: var(--label-size); font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: var(--label-track); }
+.tw-fav-list .card-star-btn { position: relative; top: 0; right: auto; opacity: 1; flex-shrink: 0; width: 24px; height: 24px; background: none; border: none; color: var(--accent-text, var(--accent)); }
+.tw-fav-list .file-meta { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tw-pane .file-list.list-columns .card-star-btn { width: 22px; height: 22px; }
+.tw-pane .file-list-header .col-star-spacer { width: 24px; }
 .tw-menu { position: absolute; top: 100%; left: 0.4rem; z-index: 30; min-width: 14rem; max-width: calc(100% - 0.8rem); display: flex; flex-direction: column; background: var(--bg-secondary); border: var(--bw) solid var(--border-strong); border-radius: var(--radius); box-shadow: var(--shadow-lg); }
 .tw-menu-item { text-align: left; padding: 0.4rem 0.6rem; background: none; border: none; color: var(--text-primary); font: inherit; font-size: 0.85rem; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tw-menu-item:hover, .tw-menu-item:focus-visible { background: var(--bg-hover); }
@@ -1629,7 +1657,7 @@ body.twin-on .header-actions { margin-left: auto; }
 .tw-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .tw-empty { padding: 1.25rem 0.75rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
 .tw-status { flex-shrink: 0; padding: 0.2rem 0.5rem; border-top: var(--bw) solid var(--border-color); background: var(--bg-secondary); color: var(--text-muted); font-size: var(--data-size); line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 1.4em; box-sizing: content-box; }
-.tw-pane .list-columns { --list-cols: 24px 1fr 56px 84px 96px 72px; }
+.tw-pane .list-columns { --list-cols: 24px 24px 1fr 56px 84px 96px 72px; }
 .tw-pane .file-list-header { padding: 0.25rem calc(0.5rem + var(--bw)); gap: 0.4rem; }
 .tw-pane .file-list.list-columns .file-card { padding: 0.25rem 0.5rem; gap: 0.4rem; }
 .tw-pane .file-list-header .col-icon-spacer { width: 24px; }
@@ -1638,9 +1666,9 @@ body.twin-on .header-actions { margin-left: auto; }
 .tw-pane .file-grid .file-card { padding: 0.4rem; gap: 0.25rem; }
 .tw-pane.active .file-card:focus { border-color: var(--accent); }
 .tw-pane .skeleton-list { padding: 0.5rem 0; }
-@container twp (max-width: 40em) { .tw-pane .list-columns { --list-cols: 24px 1fr 56px 84px 96px; } .tw-pane .col-time { display: none; } }
-@container twp (max-width: 32em) { .tw-pane .list-columns { --list-cols: 24px 1fr 56px 84px; } .tw-pane .col-time, .tw-pane .col-date { display: none; } }
-@container twp (max-width: 24em) { .tw-pane .list-columns { --list-cols: 24px 1fr 80px; } .tw-pane .col-time, .tw-pane .col-date, .tw-pane .col-ext { display: none; } .tw-src-text { display: none; } }
+@container twp (max-width: 40em) { .tw-pane .list-columns { --list-cols: 24px 24px 1fr 56px 84px 96px; } .tw-pane .col-time { display: none; } }
+@container twp (max-width: 32em) { .tw-pane .list-columns { --list-cols: 24px 24px 1fr 56px 84px; } .tw-pane .col-time, .tw-pane .col-date { display: none; } }
+@container twp (max-width: 24em) { .tw-pane .list-columns { --list-cols: 24px 24px 1fr 80px; } .tw-pane .col-time, .tw-pane .col-date, .tw-pane .col-ext { display: none; } .tw-src-text { display: none; } }
 @container twp (max-width: 30em) { .tw-tools .tw-sort, .tw-tools .tw-zip { display: none; } }
 .tw-split { position: relative; display: flex; align-items: center; justify-content: center; background: var(--bg-secondary); cursor: col-resize; touch-action: none; user-select: none; -webkit-user-select: none; }
 .tw-split:hover, .tw-split.dragging, .tw-split:focus-visible { background: var(--accent); outline: none; }
@@ -1702,6 +1730,11 @@ html[data-vivid] *::after { forced-color-adjust: none !important; }
     .tw-rail .gal-list { flex-direction: row; overflow-x: auto; overflow-y: hidden; }
     .tw-rail[data-kind="image"] .gal-item { width: 4.25rem; }
 }
+/* The windows opened from the player (playlist, songs heard, recordings) follow it: inside a panel they open inside that panel, over the player, with the same normal-window look. */
+.modal-overlay.tw-embedded:not(#modal) { position: absolute; inset: 0; z-index: 6; transition: none; touch-action: auto; }
+.modal-overlay.tw-embedded:not(#modal) .modal { max-width: min(560px, 100%); max-height: 100%; transform: none; transition: none; }
+.modal-overlay.tw-embedded.tw-narrow:not(#modal) { padding: 0; }
+.modal-overlay.tw-embedded.tw-narrow:not(#modal) .modal { width: 100%; max-width: none; height: 100%; max-height: none; border: 0; border-radius: 0; }
 /* The player keeps its normal-window look inside a panel (backdrop, centered card, the same size limits, the playlist window anchored near the top like the page does),
    with the panel taking the place of the browser window. A panel up to 640px wide gets the phone layout (class tw-narrow, set by the page from the panel width). */
 #modal.tw-embedded { position: absolute; inset: 0; z-index: 5; transition: none; touch-action: auto; }
@@ -1762,8 +1795,8 @@ body.compact-density .tw-pane .file-list .file-icon { width: 18px; height: 18px;
 body.compact-density .tw-pane .file-list .file-icon svg { width: 11px; height: 11px; }
 body.compact-density .tw-pane .file-list-header { padding: 0.15rem calc(0.5rem + var(--bw)); }
 body.compact-density .tw-pane .file-list-header .col-icon-spacer { width: 18px; }
-body.compact-density .tw-pane .list-columns { --list-cols: 18px 1fr 56px 84px 96px 72px; }
-@container twp (max-width: 40em) { body.compact-density .tw-pane .list-columns { --list-cols: 18px 1fr 56px 84px 96px; } }
+body.compact-density .tw-pane .list-columns { --list-cols: 18px 24px 1fr 56px 84px 96px 72px; }
+@container twp (max-width: 40em) { body.compact-density .tw-pane .list-columns { --list-cols: 18px 24px 1fr 56px 84px 96px; } }
 @container twp (max-width: 32em) { body.compact-density .tw-pane .list-columns { --list-cols: 18px 1fr 56px 84px; } }
 @container twp (max-width: 24em) { body.compact-density .tw-pane .list-columns { --list-cols: 18px 1fr 80px; } }
 body.compact-density .tw-pane .file-name, body.compact-density .tw-pane .file-meta { font-size: 0.75rem; }
@@ -1868,14 +1901,6 @@ html[data-theme="concrete"] .vb-fav.favorited { --c: var(--orange); }
                                             <input type="checkbox" id="compactDensityToggle" aria-label="Use compact row density for grid and list views" />
                                             <span class="switch-slider"></span>
                                         </label>
-                                    </div>
-                                    <div class="settings-row">
-                                        <span class="settings-label">Thumbnail size <span id="thumbSizeLabel">Medium</span></span>
-                                        <div class="settings-control" id="thumbSizeControl" role="group" aria-label="Thumbnail size (Ctrl + mouse wheel over a grid does the same)">
-                                            <button type="button" data-ts="s" aria-pressed="false" title="Small thumbnails" aria-label="Small thumbnails">S</button>
-                                            <button type="button" data-ts="m" aria-pressed="true" title="Medium thumbnails" aria-label="Medium thumbnails">M</button>
-                                            <button type="button" data-ts="l" aria-pressed="false" title="Big thumbnails" aria-label="Big thumbnails">L</button>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="settings-section" style="border-top: var(--bw) solid var(--border-color)">
@@ -2218,6 +2243,26 @@ html[data-theme="concrete"] .vb-fav.favorited { --c: var(--orange); }
             </div>
         </div>
     </div>
+    <div class="modal-overlay" id="previewModal" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+        <div class="modal stats-modal" id="previewModalContent">
+            <div class="modal-header">
+                <span class="modal-title" id="previewTitle">Preview an index</span>
+                <div class="modal-actions"><button class="modal-btn" id="previewModalClose" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button></div>
+            </div>
+            <div class="modal-body stats-body">
+                <p class="local-msg">Load a file_index.json that is hosted on GitHub and browse the repo exactly as that index describes it, before anything is pushed or deployed. Nothing is saved except the two links below.</p>
+                <label class="pv-label" for="previewJsonInput">Index JSON link</label>
+                <input class="pv-input" id="previewJsonInput" type="text" inputmode="url" placeholder="https://raw.githubusercontent.com/user/repo/branch/file_index.json" autocomplete="off" autocapitalize="off" spellcheck="false" />
+                <label class="pv-label" for="previewFilesInput">Load files from <span>(optional)</span></label>
+                <input class="pv-input" id="previewFilesInput" type="text" placeholder="user/repo@branch  (default: the repo named inside the JSON)" autocomplete="off" autocapitalize="off" spellcheck="false" />
+                <p class="pv-status" id="previewStatus" role="status"></p>
+                <div class="pv-actions">
+                    <button type="button" class="theme-reset-btn local-pick" id="previewLoadBtn">Load</button>
+                    <button type="button" class="theme-reset-btn local-pick" id="previewStopBtn" hidden>Stop previewing</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="srAnnouncer" class="sr-only" aria-live="polite" role="status"></div>
     <script>
 // Storage can throw just by being touched (blocked site data, hardened Firefox, some private modes): `store` is localStorage when it works,
@@ -2335,6 +2380,65 @@ const icons = {
     chevron: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>`,
     info: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 7h2v2h-2V7zm0 4h2v6h-2v-6zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>`,
 };
+
+// ---- Large file icons (grid view) ----
+// Drawn on a 64x64 grid from currentColor (so the per-type and per-extension colors still apply), tinted fills and the page's paper color, so they follow every theme.
+// Square corners throughout. One <symbol> per type lives in a hidden sprite; each tile adds only its extension tag. Folders carry no tag.
+const IB_S = 'stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter"';
+const IB_PAPER = "var(--bg-secondary)";
+const ibT = (o) => `fill="currentColor" fill-opacity="${o}"`;
+const ibLine = (d, w = 2, o = 1) => `<path d="${d}" fill="none" stroke="currentColor" stroke-width="${w}" stroke-opacity="${o}"/>`;
+const ibSolid = (d, o = 1) => `<path d="${d}" fill="currentColor" fill-opacity="${o}"/>`;
+const IB_PAGE = `<path d="M12 4h27l13 13v43H12z" ${ibT(0.13)} ${IB_S}/><path d="M39 4v13h13z" ${ibT(0.4)} ${IB_S}/>`;
+const ibHoles = (x) => [15, 22.5, 30, 37.5, 45].map((y) => `M${x} ${y}h4v4h-4z`).join("");
+const ibTeeth = () => Array.from({ length: 7 }, (_, i) => `M${i % 2 ? 32 : 29} ${+(11.5 + i * 5.2).toFixed(1)}h3v2.8h-3z`).join("");
+const ibRows = [[30.5, 14], [38, 10], [45.5, 12]].map(([y, w]) => ibSolid(`M13 ${y - 2.5}l5 2.5-5 2.5z`) + ibLine(`M21 ${y}h${w}`, 2.2)).join("");
+const IB_SYMBOLS = {
+    // a folder with a sheet peeking out
+    folder: `<path d="M4 12h20l6 7h30v37H4z" ${ibT(0.34)} ${IB_S}/><path d="M12 16h38v14H12z" fill="${IB_PAPER}" stroke="currentColor" stroke-width="1.6" stroke-opacity=".6"/>${ibLine("M17 21h20M17 25h14", 1.4, 0.4)}<path d="M4 26h56v30H4z" fill="${IB_PAPER}"/><path d="M4 26h56v30H4z" ${ibT(0.2)} ${IB_S}/>${ibLine("M9 31h46", 1.6, 0.35)}`,
+    // a photo: sun, two ranges of hills, a snow cap
+    image: `<path d="M4 10h56v44H4z" ${ibT(0.12)}/><circle cx="18" cy="23" r="5" fill="currentColor"/>${ibSolid("M4 46l16-15 11 10 9-9 20 19v3H4z", 0.4)}${ibSolid("M24 54l16-20 20 20z", 0.75)}<path d="M40 34l-4.5 5.5 2.5-1.5 2 2.5 2-2.5 2.5 1.5z" fill="${IB_PAPER}" fill-opacity=".85"/><path d="M4 10h56v44H4z" fill="none" ${IB_S}/>`,
+    // a strip of film with sprocket holes and a play mark
+    video: `<path d="M4 12h56v40H4z" ${ibT(0.12)}/>${ibLine("M13 12v40M51 12v40", 1.6, 0.7)}${ibSolid(ibHoles(6.5), 0.6)}${ibSolid(ibHoles(53.5), 0.6)}${ibSolid("M26 22l16 10-16 10z")}<path d="M4 12h56v40H4z" fill="none" ${IB_S}/>`,
+    // a record with grooves, a label and a tonearm
+    audio: `<circle cx="28" cy="34" r="24" ${ibT(0.14)} ${IB_S}/><circle cx="28" cy="34" r="18" fill="none" stroke="currentColor" stroke-opacity=".45" stroke-width="1.2"/><circle cx="28" cy="34" r="13.5" fill="none" stroke="currentColor" stroke-opacity=".45" stroke-width="1.2"/>${ibLine("M12 24a18 18 0 0 1 9-9", 2, 0.7)}<circle cx="28" cy="34" r="8" fill="currentColor"/><circle cx="28" cy="34" r="2" fill="${IB_PAPER}"/>${ibLine("M57 11v15l-10 12", 2.4)}${ibSolid("M52 7h10v6H52z")}${ibLine("M42.5 36.5l6 4.5", 5)}`,
+    // a radio set: antenna, a station list on the display, tuning dial
+    playlist: `${ibLine("M45 19L56 4", 2.4)}${ibSolid("M53.5 1.5h6v6h-6z")}<path d="M4 19h56v38H4z" ${ibT(0.13)} ${IB_S}/><path d="M9 24h28v28H9z" fill="${IB_PAPER}" stroke="currentColor" stroke-width="1.8"/>${ibSolid("M10 26.5h26v8H10z", 0.35)}${ibRows}<circle cx="48" cy="32" r="8" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="48" cy="32" r="2.2" fill="currentColor"/>${ibLine("M48 32l5-5", 2)}${ibLine("M42 46h5M50 46h5", 3)}`,
+    code: `${IB_PAGE}${ibLine("M27 24l-7 8 7 8M37 24l7 8-7 8M34 22l-4 20", 2.6)}`,
+    // a browser window holding a tag
+    markup: `<path d="M4 10h56v44H4z" ${ibT(0.12)}/>${ibSolid("M4 10h56v10H4z", 0.4)}${ibSolid("M8 13.5h3v3H8zM14 13.5h3v3h-3zM20 13.5h3v3h-3z")}${ibLine("M22 28l-8 8 8 8M42 28l8 8-8 8M35 27l-6 18", 2.6)}<path d="M4 10h56v44H4z" fill="none" ${IB_S}/>${ibLine("M4 20h56", 1.6)}`,
+    style: `${IB_PAGE}${ibLine("M28 22h-5v7l-3 3 3 3v7h5M36 22h5v7l3 3-3 3v7h-5", 2.4)}${ibSolid("M30 29h4v6h-4z")}`,
+    data: `${IB_PAGE}${ibSolid("M18 22h28v6H18z", 0.5)}${ibLine("M27 22v18M37 22v18M18 28h28M18 34h28", 1.5)}<path d="M18 22h28v18H18z" fill="none" stroke="currentColor" stroke-width="1.5"/>`,
+    document: `${IB_PAGE}${ibSolid("M18 21h16v4H18z")}${ibLine("M18 30h28M18 35h28M18 40h18", 2)}`,
+    text: `${IB_PAGE}${ibLine("M18 24h28M18 29h22M18 34h28M18 39h14", 2)}`,
+    // a crate with a zipper
+    archive: `<path d="M6 10h52v14H6z" ${ibT(0.34)} ${IB_S}/><path d="M9 24h46v32H9z" ${ibT(0.13)} ${IB_S}/>${ibSolid(ibTeeth())}${ibSolid("M28 47h8v9h-8z")}<path d="M31 51h2v2.5h-2z" fill="${IB_PAPER}"/>`,
+    // a capital A between the type guide lines
+    font: `${IB_PAGE}<path d="M16 23h32M16 40h32" fill="none" stroke="currentColor" stroke-opacity=".4" stroke-width="1.2" stroke-dasharray="2 2"/>${ibLine("M21 40l11-17 11 17M25.5 33h13", 3.2)}`,
+    other: `${IB_PAGE}${ibLine("M18 26h28M18 32h20M18 38h10", 2)}`,
+};
+// Where the extension tag sits on each icon: [x, y, width, height]; the page-style icons share the lower-left sticker.
+const IB_BADGE = { image: [30, 47, 30, 12], video: [20, 47, 24, 12], audio: [36, 49, 26, 11], playlist: [38, 50, 25, 12], markup: [38, 48, 24, 11], archive: [38, 46, 24, 11] };
+const IB_BADGE_PAGE = [7, 44, 30, 13];
+const ibCache = new Map();
+function ibIcon(type, name) {
+    const t = IB_SYMBOLS[type] ? type : "other";
+    const ext = t === "folder" ? "" : getFileExtension(name || "").toUpperCase().slice(0, 5);
+    const key = t + "." + ext;
+    let svg = ibCache.get(key);
+    if (!svg) {
+        let tag = "";
+        if (ext) {
+            const [x, y, w, h] = IB_BADGE[t] || IB_BADGE_PAGE;
+            const fs = Math.min(8, (w - 6) / (ext.length * 0.62));
+            tag = `<path d="M${x} ${y}h${w}v${h}H${x}z" fill="${IB_PAPER}" ${IB_S}/><text x="${x + w / 2}" y="${(y + h / 2 + fs * 0.36).toFixed(1)}" text-anchor="middle" font-size="${fs.toFixed(1)}" font-weight="700" fill="currentColor" textLength="${(ext.length * fs * 0.62).toFixed(1)}" lengthAdjust="spacingAndGlyphs">${escapeHtml(ext)}</text>`;
+        }
+        svg = `<svg class="ib" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><use href="#ib-${t}" width="64" height="64"/>${tag}</svg>`;
+        ibCache.set(key, svg);
+    }
+    return svg;
+}
+document.body.insertAdjacentHTML("afterbegin", `<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">${Object.entries(IB_SYMBOLS).map(([k, v]) => `<symbol id="ib-${k}" viewBox="0 0 64 64" fill="none">${v}</symbol>`).join("")}</svg>`);
 
 // Two-tone illustrations for empty/no-results/error states: currentColor outline, var(--accent) highlight, so they follow the theme.
 const emptyStateIllustrations = {
@@ -3515,17 +3619,18 @@ let thumbSize = "m";
 function applyThumbSize(v) {
     thumbSize = THUMB_SIZES.includes(v) ? v : "m";
     document.documentElement.dataset.thumb = thumbSize;
-    document.querySelectorAll("#thumbSizeControl [data-ts]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.ts === thumbSize)));
-    const label = document.getElementById("thumbSizeLabel");
-    if (label) label.textContent = THUMB_NAMES[thumbSize];
+    document.querySelectorAll(".ts-ctl [data-ts]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.ts === thumbSize)));
+}
+// The S / M / L control sits in the bar of each grid: the stats line of the main view and the head of each twin panel (see thumbSizeCtl()).
+function thumbSizeCtl() {
+    return `<span class="settings-control ts-ctl" role="group" aria-label="Thumbnail size (Ctrl + mouse wheel over a grid does the same)">${THUMB_SIZES.map((k) => `<button type="button" data-ts="${k}" aria-pressed="${k === thumbSize}" title="${THUMB_NAMES[k]} thumbnails" aria-label="${THUMB_NAMES[k]} thumbnails">${k.toUpperCase()}</button>`).join("")}</span>`;
 }
 function setThumbSize(v) {
     applyThumbSize(v);
     try { store.setItem("thumbSize", thumbSize); } catch (e) {}
 }
 function wireThumbSize() {
-    const ctl = document.getElementById("thumbSizeControl");
-    if (ctl) ctl.addEventListener("click", (e) => { const b = e.target.closest("[data-ts]"); if (b) setThumbSize(b.dataset.ts); });
+    document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest(".ts-ctl [data-ts]"); if (b) setThumbSize(b.dataset.ts); });
     // Ctrl + mouse wheel over a grid, as in a file manager (a pinch on a trackpad arrives the same way).
     let last = 0;
     document.addEventListener("wheel", (e) => {
@@ -4620,6 +4725,14 @@ function expandLeanIndex(lean) {
     return { generated: lean.generated, source: lean.source, stats: lean.stats, partial: true, root: expand(lean.root) };
 }
 function applyFullIndex(full) {
+    // A preview is showing: the real hosted index is kept aside in PREVIEW.saved and gets filled in there.
+    if (PREVIEW.active && PREVIEW.saved && PREVIEW.saved.fileIndex && PREVIEW.saved.fileIndex.partial) {
+        const keep = { fileIndex, allFiles, filesByPath };
+        allFiles = []; filesByPath = new Map(); preprocessFiles(full.root);
+        PREVIEW.saved = { fileIndex: full, allFiles, filesByPath };
+        fileIndex = keep.fileIndex; allFiles = keep.allFiles; filesByPath = keep.filesByPath;
+        return;
+    }
     // If a local folder was opened meanwhile, the hosted library is parked
     // in LOCAL.hosted: work on that and leave what is on screen alone.
     const parked = LOCAL.active && LOCAL.hosted ? LOCAL.hosted : null;
@@ -4791,11 +4904,12 @@ function setupEventListeners() {
         }, 90);
     });
     document.getElementById("searchClearBtn").addEventListener("click", clearSearch);
-    document.getElementById("logoHome").addEventListener("click", () => navigateTo([]));
+    document.getElementById("logoHome").addEventListener("click", () => { navigateTo([]); previewTap(); });
     document.getElementById("logoHome").addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             navigateTo([]);
+            previewTap();
         }
     });
     document.querySelectorAll(".view-btn[data-view]").forEach((btn) => {
@@ -4842,8 +4956,8 @@ function setupEventListeners() {
     document.addEventListener("keydown", (e) => {
         const shortcutsOpen = document.getElementById("shortcutsModal").classList.contains("active");
         const statsOpen = document.getElementById("statsModal").classList.contains("active");
-        const songsOpen = document.getElementById("songsModal").classList.contains("active");
-        const plistOpen = document.getElementById("playlistModal").classList.contains("active");
+        const songsOpen = windowOwnsKeys("songsModal");
+        const plistOpen = windowOwnsKeys("playlistModal");
         if (e.key === "Escape") {
             if (document.activeElement && document.activeElement.id === "search" && !document.querySelector(".modal-overlay.active:not(.tw-embedded)")) {
                 const si = document.activeElement;
@@ -4851,6 +4965,7 @@ function setupEventListeners() {
                 return;
             }
             if (document.getElementById("localModal").classList.contains("active")) { closeLocalModal(); return; }
+            if (document.getElementById("previewModal").classList.contains("active")) { closePreviewModal(); return; }
             const settingsMenuEl = document.getElementById("settingsMenu");
             const themeMenuEl = document.getElementById("themeColorMenu");
             if (settingsMenuEl.classList.contains("active")) {
@@ -5844,6 +5959,7 @@ function render() {
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
             ${folderCount} ${folderCount === 1 ? "folder" : "folders"}
           </span>
+          ${currentView === "grid" ? thumbSizeCtl() : ""}
         </div>
         <div class="main-content">
           <div class="${listClass}" id="fileItems">
@@ -5867,7 +5983,7 @@ function render() {
         html += `
             <div class="file-card directory parent-dir" data-directory="true" data-path="${escapeHtml(JSON.stringify(currentPath.slice(0, -1)))}" tabindex="0" role="button" aria-label="Go to parent folder">
               ${isColumnView ? `<span class="card-star-spacer" aria-hidden="true"></span>` : ""}
-              <div class="file-icon folder">${icons.folder}</div>
+              <div class="file-icon folder">${currentView === "grid" ? ibIcon("folder") : icons.folder}</div>
               <div class="file-info">
                 <span class="file-name">..</span>
                 <span class="file-meta"></span>
@@ -5888,7 +6004,7 @@ function render() {
             extSeen.set(xe, xn + 1);
             xcAttr = ` xc xv${xn % 4}" style="--xc:var(--x${xSlot})`;
         }
-        const iconSvg = icons[iconType] || icons.other;
+        const iconSvg = currentView === "grid" ? ibIcon(iconType, item.name) : icons[iconType] || icons.other;
 
         let clickPath, fullDisplayPath, parentDisplayPath, parentPathArr;
 
@@ -5909,7 +6025,7 @@ function render() {
             html += `
             <div class="file-card directory" data-directory="true" data-path="${escapeHtml(JSON.stringify(parentPathArr))}" tabindex="0" role="button" aria-label="Open folder ${escapeHtml(item.name)}">
               ${renderStarButton("folder", parentPathArr)}
-              <div class="file-icon folder">${icons.folder}</div>
+              <div class="file-icon folder">${currentView === "grid" ? ibIcon("folder") : icons.folder}</div>
               <div class="file-info">
                 <span class="file-name">${searchQuery ? highlightMatch(item.name, searchQuery) : escapeHtml(item.name)}</span>
                 <span class="file-meta">${isColumnView && !searchQuery ? "" : `${item.children?.length || 0} items`}${searchQuery && parentDisplayPath ? `<span class="file-path">${escapeHtml(parentDisplayPath)}</span>` : ""}</span>
@@ -5924,11 +6040,9 @@ function render() {
         } else {
             let thumbnailHtml = "";
             if (item.category === "image") {
-                // The URL needs special characters (#, ?, %) encoded for the request, then escaping for the HTML attribute.
-                const thumbSrc = escapeHtml(encodePathForUrl(clickPath));
                 thumbnailHtml = currentView === "grid"
-                    ? `<img class="file-thumbnail lazy" ${LOCAL.active ? `data-lpath="${escapeHtml(clickPath)}"` : `data-src="./${thumbSrc}"`} alt="" loading="lazy" decoding="async">`
-                    : `<img class="file-thumbnail file-thumbnail-inline lazy" ${LOCAL.active ? `data-lpath="${escapeHtml(clickPath)}"` : `data-src="./${thumbSrc}"`} alt="" loading="lazy" decoding="async">`;
+                    ? `<img class="file-thumbnail lazy" ${LOCAL.active ? `data-lpath="${escapeHtml(clickPath)}"` : `data-src="${escapeHtml(hostedUrl(clickPath))}"`} alt="" loading="lazy" decoding="async">`
+                    : `<img class="file-thumbnail file-thumbnail-inline lazy" ${LOCAL.active ? `data-lpath="${escapeHtml(clickPath)}"` : `data-src="${escapeHtml(hostedUrl(clickPath))}"`} alt="" loading="lazy" decoding="async">`;
             }
             html += `
             <div class="file-card" data-file="${escapeHtml(clickPath)}" data-category="${item.category}" data-name="${escapeHtml(item.name)}" tabindex="0" role="button" aria-label="Open file ${escapeHtml(item.name)}">
@@ -8123,11 +8237,43 @@ function playlistRowClick(e) {
     if (isShuffle) recordShuffleJump(idx);
     playPlaylistTrack(idx);
 }
+// Windows opened from the player (playlist, songs heard, recordings). While the player sits inside a twin panel they are mounted in that same panel, so each side stays independent of the other.
+const PLAYER_WINDOWS = ["playlistModal", "songsModal", "recModal"];
+function seatPlayerWindow(id) {
+    const el = document.getElementById(id), m = document.getElementById("modal");
+    const slot = m.classList.contains("tw-embedded") ? m.parentNode : null;
+    if (!slot) { unseatPlayerWindows(); return; }
+    if (el.parentNode !== slot) slot.appendChild(el);
+    el.classList.add("tw-embedded");
+    el.classList.toggle("tw-narrow", m.classList.contains("tw-narrow"));
+}
+function unseatPlayerWindows() {
+    PLAYER_WINDOWS.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (el.parentNode !== document.body) document.body.appendChild(el);
+        el.classList.remove("tw-embedded", "tw-narrow");
+    });
+}
+// The player closed: whatever was open on top of it inside its panel closes with it.
+function closeSeatedWindows() {
+    const seated = (id) => document.getElementById(id).classList.contains("tw-embedded");
+    if (seated("playlistModal")) closePlaylistModal();
+    if (seated("songsModal") && document.getElementById("songsModal").classList.contains("active")) closeSongsModal();
+    if (seated("recModal") && document.getElementById("recModal").classList.contains("active")) closeRecModal();
+    unseatPlayerWindows();
+}
+// Esc / arrow keys belong to a window inside a panel only while focus is inside it.
+function windowOwnsKeys(id) {
+    const el = document.getElementById(id);
+    return el.classList.contains("active") && !(el.classList.contains("tw-embedded") && !el.contains(document.activeElement));
+}
 function openPlaylistModal() {
     if (!currentPlaylist.length) return;
     rememberModalFocus("playlistModal");
     document.getElementById("playlistSearch").value = "";
     renderPlaylistList();
+    seatPlayerWindow("playlistModal");
     document.getElementById("playlistModal").classList.add("active");
     syncBackgroundInert();
     syncPlaylistListCurrent(true);
@@ -8143,6 +8289,7 @@ function closePlaylistModal() {
 function openSongsModal() {
     rememberModalFocus("songsModal");
     renderSongsList();
+    seatPlayerWindow("songsModal");
     document.getElementById("songsModal").classList.add("active");
     syncBackgroundInert();
     focusWhenReady("songsCloseBtn", "songsModal");
@@ -9182,6 +9329,7 @@ function recStoreNote() {
 function openRecModal() {
     rememberModalFocus("recModal");
     renderRecList();
+    seatPlayerWindow("recModal");
     recEl("recModal").classList.add("active");
     syncBackgroundInert();
     focusWhenReady("recCloseBtn", "recModal");
@@ -10195,7 +10343,7 @@ function gallerySiblings(dir, kind) {
 function galleryItemHtml(it, i, kind) {
     const name = escapeHtml(it.name);
     if (kind === "image") {
-        const src = LOCAL.active ? `data-lpath="${escapeHtml(it.path)}"` : `data-src="./${escapeHtml(encodePathForUrl(it.path))}"`;
+        const src = LOCAL.active ? `data-lpath="${escapeHtml(it.path)}"` : `data-src="${escapeHtml(hostedUrl(it.path))}"`;
         return `<button type="button" class="gal-item" data-i="${i}" title="${name}" aria-label="${name}"><span class="gal-ico">${icons.image}</span><img class="gal-thumb lazy" alt="" decoding="async" ${src}></button>`;
     }
     return `<button type="button" class="gal-item" data-i="${i}" title="${name}"><span class="gal-ico">${icons[kind]}</span><span class="gal-name">${name}</span></button>`;
@@ -10910,10 +11058,7 @@ async function openFile(filePath, fileType, fileName) {
                 }
                 break;
             case "playlist":
-                // Start playing right away instead of waiting for a manual
-                // "Play" click — opening the file is the trigger.
-                await startPlaylistMode();
-                break;
+                // A playlist is also plain text: show the text first (like the hosted repo does) and let the Play button start it.
             case "code":
             case "markup":
             case "style":
@@ -11063,7 +11208,8 @@ function restoreModalFocus(modalId) {
 function trapModalFocus(e, containerId = "modalContent") {
     if (e.key !== "Tab") return;
     // A player mounted inside a twin panel is part of the page, not a dialog: Tab is free to move on.
-    if (containerId === "modalContent" && document.getElementById("modal").classList.contains("tw-embedded")) return;
+    const host = document.getElementById(containerId);
+    if (host && host.closest(".modal-overlay.tw-embedded")) return;
     const modal = document.getElementById(containerId);
     const focusable = modal.querySelectorAll(
         'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
@@ -11180,6 +11326,7 @@ function encodePathForUrl(path) {
 // which load from the GitHub repo. Falls back to the relative URL when the repo is unknown.
 function hostedUrl(path) {
     const f = filesByPath.get(path);
+    if (PREVIEW.active) return previewUrl(path, f);
     const s = fileIndex && fileIndex.source;
     if (f && f.external && s && s.repo && s.branch) {
         // f.repo: the file's real path when the index shows it somewhere else
@@ -12392,13 +12539,17 @@ function revokeLocalUrls() {
     if (LOCAL.byUrl) LOCAL.byUrl.clear();
 }
 function syncModeUi() {
-    const local = LOCAL.active;
+    const local = LOCAL.active, prev = PREVIEW.active && !local;
     const text = document.getElementById("modeChipText"), close = document.getElementById("modeChipClose"), chip = document.getElementById("modeChip");
     if (!chip) return;
-    text.textContent = local ? `Local folder: ${LOCAL.name}` : "Hosted repo";
-    chip.title = local ? "Browsing a folder on this device. Nothing is uploaded." : "Browsing the files hosted with this page";
-    close.hidden = !local;
-    document.title = local ? `File Viewer \u2013 ${LOCAL.name}` : "File Viewer";
+    if (local) document.body.dataset.source = "local";
+    else if (prev) document.body.dataset.source = "preview";
+    else delete document.body.dataset.source;
+    text.textContent = local ? `Local folder: ${LOCAL.name}` : prev ? `Preview: ${PREVIEW.label}` : "Hosted repo";
+    chip.title = local ? "Browsing a folder on this device. Nothing is uploaded." : prev ? `Browsing the index at ${PREVIEW.url}` : "Browsing the files hosted with this page";
+    close.hidden = !(local || prev);
+    close.textContent = local ? "Close" : "Stop";
+    document.title = local ? `File Viewer \u2013 ${LOCAL.name}` : prev ? `File Viewer \u2013 preview ${PREVIEW.label}` : "File Viewer";
     const sc = document.getElementById("localCloseBtn");
     if (sc) sc.hidden = !local;
     const so = document.getElementById("localOpenBtn");
@@ -12521,6 +12672,186 @@ function closeLocalModal() {
     restoreModalFocus("localModal");
 }
 
+// ---- Preview an index (the hidden dialog) ----
+// Tap the logo five times quickly (or press Enter on it five times). Paste the link of a file_index.json that lives on GitHub and the viewer shows the repo as that
+// index describes it, as if it had been pushed and deployed. File contents are read from the repo on raw.githubusercontent.com, so anything not pushed yet cannot open.
+// The real hosted index is kept aside and comes back with "Stop".
+const PREVIEW = { active: false, base: "", label: "", url: "", saved: null, busy: false };
+let previewTaps = [];
+function previewTap() {
+    const now = Date.now();
+    previewTaps = previewTaps.filter((t) => now - t < 2000);
+    previewTaps.push(now);
+    if (previewTaps.length >= 5) { previewTaps = []; openPreviewModal(); }
+}
+function previewUrl(path, f) {
+    // f.repo: the file's real path when the index shows it somewhere else (a "checked" file listed in its parent folder)
+    return PREVIEW.base + encodePathForUrl((f && f.repo) || path);
+}
+// Accepts a raw link, a github.com file page (blob / raw) or a gist; anything else (jsDelivr, GitHack...) passes through. Returns "" when it is not a file link.
+function previewJsonUrl(input) {
+    let s = String(input || "").trim();
+    if (!s) return "";
+    if (!/^https?:\/\//i.test(s)) s = "https://" + s;
+    let u;
+    try { u = new URL(s); } catch (err) { return ""; }
+    const h = u.hostname.toLowerCase(), p = u.pathname.split("/").filter(Boolean);
+    if (h === "github.com" || h === "www.github.com") {
+        if (p.length >= 5 && (p[2] === "blob" || p[2] === "raw")) return `https://raw.githubusercontent.com/${p[0]}/${p[1]}/${p.slice(3).join("/")}`;
+        return "";
+    }
+    if (h === "gist.github.com" && p.length >= 2) return `https://gist.githubusercontent.com/${p[0]}/${p[1]}/raw`;
+    return u.href;
+}
+// Where the files are read from: the "Load files from" box (user/repo, user/repo@branch, a github.com tree link or a raw link), else the repo named in the JSON,
+// else the folder the JSON itself sits in. Always ends with "/".
+function previewFilesBase(spec, data, jsonUrl) {
+    const raw = (repo, branch) => `https://raw.githubusercontent.com/${repo}/${encodePathForUrl(branch)}/`;
+    const src = data && data.source, defBranch = (src && src.branch) || "main";
+    spec = String(spec || "").trim();
+    if (spec) {
+        let m = /^([\w.-]+\/[\w.-]+)@(.+)$/.exec(spec);
+        if (m) return raw(m[1], m[2]);
+        if ((m = /^([\w.-]+\/[\w.-]+)$/.exec(spec))) return raw(m[1], defBranch);
+        let u = null;
+        try { u = new URL(/^https?:\/\//i.test(spec) ? spec : "https://" + spec); } catch (err) { u = null; }
+        if (u) {
+            const h = u.hostname.toLowerCase(), p = u.pathname.split("/").filter(Boolean);
+            if ((h === "github.com" || h === "www.github.com") && p.length >= 4 && p[2] === "tree") return raw(p[0] + "/" + p[1], p[3]);
+            if (h === "github.com" || h === "www.github.com") { if (p.length === 2) return raw(p[0] + "/" + p[1], defBranch); }
+            else if (h === "raw.githubusercontent.com" && p.length >= 3) return raw(p[0] + "/" + p[1], p[2]);
+            else return u.href.replace(/[?#].*$/, "").replace(/\/?$/, "/");
+        }
+        throw new Error("Could not understand \u201cLoad files from\u201d. Use user/repo@branch, or a github.com or raw link.");
+    }
+    if (src && src.repo && src.branch) return raw(src.repo, src.branch);
+    return jsonUrl.replace(/[?#].*$/, "").replace(/[^/]*$/, "");
+}
+function previewLabel(base) {
+    const m = /^https:\/\/raw\.githubusercontent\.com\/([^/]+\/[^/]+)\/(.+?)\/?$/.exec(base);
+    if (m) { try { return `${m[1]}@${decodeURIComponent(m[2])}`; } catch (err) { return `${m[1]}@${m[2]}`; } }
+    try { return new URL(base).host; } catch (err) { return "index"; }
+}
+async function loadPreviewIndex(jsonIn, filesIn) {
+    let url = previewJsonUrl(jsonIn);
+    if (!url) throw new Error("Paste the link of a file_index.json on GitHub: its raw link, or the file's page on github.com.");
+    url = url.replace(/_lean(\.json)(?=$|[?#])/i, "$1");
+    let res;
+    try { res = await fetch(url + (url.includes("?") ? "&" : "?") + "cb=" + Date.now(), { cache: "no-store" }); }
+    catch (err) { throw new Error("Could not reach that link. Check it, and that the file is in a public repo or gist."); }
+    if (!res.ok) throw new Error(`GitHub answered ${res.status}. Check the link${res.status === 404 ? " (private repos cannot be read)" : ""}.`);
+    let data;
+    try { data = await res.json(); } catch (err) { throw new Error("That file is not valid JSON."); }
+    if (!data || !Array.isArray(data.root)) throw new Error("That JSON has no \u201croot\u201d list, so it does not look like a file_index.json.");
+    if (data.root.some((r) => Array.isArray(r))) throw new Error("That is the lean index. Use the full file_index.json link.");
+    return { index: data, url, base: previewFilesBase(filesIn, data, url) };
+}
+// Swaps the hosted library for the preview index. If a local folder is on screen the hosted library is the parked one, so that is what gets swapped. Returns true in that case.
+function installPreviewIndex(index) {
+    const parked = LOCAL.active && LOCAL.hosted ? LOCAL.hosted : null;
+    const saved = { fileIndex, allFiles, filesByPath };
+    if (parked) { fileIndex = parked.fileIndex; allFiles = parked.allFiles; filesByPath = parked.filesByPath; }
+    if (!PREVIEW.saved) PREVIEW.saved = { fileIndex, allFiles, filesByPath };
+    fileIndex = index; allFiles = []; filesByPath = new Map();
+    preprocessFiles(index.root);
+    if (parked) {
+        parked.fileIndex = fileIndex; parked.allFiles = allFiles; parked.filesByPath = filesByPath;
+        fileIndex = saved.fileIndex; allFiles = saved.allFiles; filesByPath = saved.filesByPath;
+    }
+    return !!parked;
+}
+function previewPathExists(pathArr) {
+    let items = fileIndex && fileIndex.root;
+    for (const n of pathArr) {
+        const t = items && items.find((x) => x.name === n && x.type === "directory");
+        if (!t) return false;
+        items = t.children || [];
+    }
+    return true;
+}
+function enterPreview(index, url, base) {
+    if (document.getElementById("modal").classList.contains("active")) closeModal();
+    const parked = installPreviewIndex(index);
+    PREVIEW.active = true; PREVIEW.url = url; PREVIEW.base = base; PREVIEW.label = previewLabel(base);
+    fetchCache.clear();
+    fetchCacheChars = 0;
+    wireUiOnce();
+    syncModeUi();
+    if (parked) { TWIN.refresh(); return; }
+    navigateTo(previewPathExists(currentPath) ? currentPath : []);
+    TWIN.refresh();
+}
+function exitPreview() {
+    if (!PREVIEW.active) return;
+    if (document.getElementById("modal").classList.contains("active")) closeModal();
+    const saved = PREVIEW.saved, parked = LOCAL.active && LOCAL.hosted ? LOCAL.hosted : null;
+    PREVIEW.active = false; PREVIEW.saved = null; PREVIEW.base = ""; PREVIEW.url = ""; PREVIEW.label = "";
+    fetchCache.clear();
+    fetchCacheChars = 0;
+    if (parked) {
+        parked.fileIndex = saved ? saved.fileIndex : null; parked.allFiles = saved ? saved.allFiles : []; parked.filesByPath = saved ? saved.filesByPath : new Map();
+        syncModeUi();
+        TWIN.refresh();
+        return;
+    }
+    if (saved && saved.fileIndex) {
+        fileIndex = saved.fileIndex; allFiles = saved.allFiles; filesByPath = saved.filesByPath;
+        syncModeUi();
+        navigateTo(previewPathExists(currentPath) ? currentPath : []);
+    } else {
+        fileIndex = null; allFiles = []; filesByPath = new Map(); currentPath = [];
+        syncModeUi();
+        renderNoLibrary();
+    }
+    TWIN.refresh();
+    announce("Stopped previewing");
+}
+function previewSetStatus(text, isError) {
+    const st = document.getElementById("previewStatus");
+    st.textContent = text || "";
+    st.classList.toggle("err", !!isError);
+}
+function openPreviewModal() {
+    const $ = (id) => document.getElementById(id);
+    if (!$("previewJsonInput").value) $("previewJsonInput").value = store.getItem("previewJsonUrl") || "";
+    if (!$("previewFilesInput").value) $("previewFilesInput").value = store.getItem("previewFilesFrom") || "";
+    $("previewLoadBtn").textContent = PREVIEW.active ? "Load another" : "Load";
+    $("previewStopBtn").hidden = !PREVIEW.active;
+    previewSetStatus(PREVIEW.active ? `Previewing ${PREVIEW.url}\nFiles are read from ${PREVIEW.base}` : "");
+    $("previewStatus").style.whiteSpace = "pre-line";
+    rememberModalFocus("previewModal");
+    $("previewModal").classList.add("active");
+    syncBackgroundInert();
+    focusWhenReady("previewJsonInput", "previewModal");
+}
+function closePreviewModal() {
+    const m = document.getElementById("previewModal");
+    if (!m || !m.classList.contains("active")) return;
+    m.classList.remove("active");
+    syncBackgroundInert();
+    restoreModalFocus("previewModal");
+}
+async function submitPreview() {
+    if (PREVIEW.busy) return;
+    const $ = (id) => document.getElementById(id);
+    const jsonIn = $("previewJsonInput").value, filesIn = $("previewFilesInput").value, btn = $("previewLoadBtn");
+    PREVIEW.busy = true;
+    btn.disabled = true;
+    previewSetStatus("Loading\u2026");
+    try {
+        const res = await loadPreviewIndex(jsonIn, filesIn);
+        try { store.setItem("previewJsonUrl", jsonIn.trim()); store.setItem("previewFilesFrom", filesIn.trim()); } catch (err) { /* storage blocked: the links are just not remembered */ }
+        enterPreview(res.index, res.url, res.base);
+        closePreviewModal();
+        announce(`Previewing ${PREVIEW.label}`);
+    } catch (err) {
+        previewSetStatus((err && err.message) || "Could not load that index.", true);
+    } finally {
+        PREVIEW.busy = false;
+        btn.disabled = false;
+    }
+}
+
 // ---- Wiring for the features above (called once, from wireUiOnce()) ----
 function setupNewFeatureListeners() {
     const $ = (id) => document.getElementById(id);
@@ -12530,7 +12861,13 @@ function setupNewFeatureListeners() {
     $("localBtn").addEventListener("click", openLocalFolder);
     $("localOpenBtn").addEventListener("click", () => { $("settingsMenu").classList.remove("active"); $("settingsBtn").setAttribute("aria-expanded", "false"); openLocalFolder(); });
     $("localCloseBtn").addEventListener("click", closeLocalFolder);
-    $("modeChipClose").addEventListener("click", closeLocalFolder);
+    $("modeChipClose").addEventListener("click", () => { if (LOCAL.active) closeLocalFolder(); else exitPreview(); });
+    $("previewModalClose").addEventListener("click", closePreviewModal);
+    $("previewModal").addEventListener("click", (e) => { if (e.target === e.currentTarget) closePreviewModal(); });
+    $("previewModal").addEventListener("keydown", (e) => trapModalFocus(e, "previewModalContent"));
+    $("previewLoadBtn").addEventListener("click", submitPreview);
+    $("previewStopBtn").addEventListener("click", () => { exitPreview(); closePreviewModal(); });
+    ["previewJsonInput", "previewFilesInput"].forEach((id) => $(id).addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); submitPreview(); } }));
     $("localDirInput").addEventListener("change", handleDirInput);
     $("localPickBtn").addEventListener("click", () => { $("localDirInput").click(); });
     $("localModalClose").addEventListener("click", closeLocalModal);
@@ -12779,7 +13116,7 @@ const TWIN = (() => {
         close: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>',
     };
     const isStacked = () => T.vert || !!(TWIN_STACK_MQ && TWIN_STACK_MQ.matches);
-    const mkPane = (i, source) => ({ id: i, source, path: [], memo: { hosted: [], local: [] }, view: "list", sort: sortBy, filter: "", map: new Map(), cur: "", reveal: null, focusIt: false, summary: "", mode: "list", viewItem: null, cleanups: [], backHook: null, seq: 0, order: [], mediaName: "" });
+    const mkPane = (i, source) => ({ id: i, source, path: [], memo: { hosted: [], local: [] }, view: "list", sort: sortBy, filter: "", map: new Map(), cur: "", reveal: null, focusIt: false, summary: "", mode: "list", tab: "files", viewItem: null, cleanups: [], backHook: null, seq: 0, order: [], mediaName: "" });
 
     // ---- Sources: the hosted repo and the local folder can both be loaded; the page-wide globals point at one of them at a time ----
     const ctxNow = () => ({ fileIndex, allFiles, filesByPath, pinned: pinnedFolders, favorites: favoriteFiles, expanded: expandedFolders, path: currentPath, search: searchQuery });
@@ -12805,12 +13142,13 @@ const TWIN = (() => {
             if (!h || !h.fileIndex) return false;
             const l = ctxNow();
             LOCAL.parkedLocal = l; ctxApply(h); LOCAL.hosted = null; LOCAL.active = false;
-            delete document.body.dataset.source;
+            if (PREVIEW.active) document.body.dataset.source = "preview"; else delete document.body.dataset.source;
         }
         return true;
     }
     function hostedUrlIn(c, path) {
         const f = c.filesByPath.get(path), s = c.fileIndex && c.fileIndex.source;
+        if (PREVIEW.active) return previewUrl(path, f);
         if (f && f.external && s && s.repo && s.branch) return `https://raw.githubusercontent.com/${s.repo}/${encodePathForUrl(s.branch)}/${encodePathForUrl(f.repo || path)}`;
         return `./${encodePathForUrl(path)}`;
     }
@@ -12882,6 +13220,8 @@ const TWIN = (() => {
             <button type="button" class="tw-src" aria-haspopup="menu" aria-expanded="${T.menu === p.id}" title="Choose what this panel shows">${p.source === "local" ? icons.folder : ICON.repo}<span class="tw-src-text">${p.source === "local" ? "Local" : "Repo"}</span>${ICON.caret}</button>
             <nav class="tw-path" aria-label="Folder path of panel ${p.id + 1}">${crumbsHtml(p)}</nav>
             <span class="tw-tools">
+                <button type="button" class="settings-btn tw-favtab" aria-pressed="${p.tab === "fav"}" title="${p.tab === "fav" ? "Back to the files" : "Favorites and pinned folders"}" aria-label="${p.tab === "fav" ? "Back to the files of panel " : "Favorites of panel "}${p.id + 1}">${p.tab === "fav" ? icons.starFilled : icons.starOutline}</button>
+                ${grid ? thumbSizeCtl() : ""}
                 ${grid ? `<select class="sort-select tw-sort" aria-label="Sort panel ${p.id + 1} by">${sorts.map(([v, l]) => `<option value="${v}"${v === p.sort ? " selected" : ""}>${l}</option>`).join("")}</select>` : ""}
                 <button type="button" class="settings-btn tw-zip" title="Download this folder as a zip" aria-label="Download this folder as a zip">${ICON.zip}</button>
                 <span class="view-toggle" role="group" aria-label="View of panel ${p.id + 1}">
@@ -12893,6 +13233,7 @@ const TWIN = (() => {
         const path = head.querySelector(".tw-path");
         if (path) path.scrollLeft = path.scrollWidth;
         pn.classList.toggle("active", T.active === p.id);
+        pn.dataset.tab = p.tab;
     }
     function emptyHtml(msg, extra) { return `<div class="tw-empty">${msg}${extra || ""}</div>`; }
     function renderList(p, keepScroll) {
@@ -12900,6 +13241,7 @@ const TWIN = (() => {
         if (!pn) return;
         const sc = pn.querySelector(".tw-scroll");
         const top = keepScroll ? sc.scrollTop : 0;
+        if (p.tab === "fav") { renderFavs(p, top); return; }
         const { c, items, partial } = itemsOf(p);
         p.map = new Map();
         p.summary = "";
@@ -12924,9 +13266,9 @@ const TWIN = (() => {
         const [sk, sd] = p.sort.includes("-") ? p.sort.split("-") : [p.sort, "asc"];
         const hcol = (key, label, cls) => `<span class="col ${cls}" data-sort="${key}">${label}<span class="sort-arrow">${sk === key ? (sd === "desc" ? "\u25bc" : "\u25b2") : ""}</span></span>`;
         let html = `<div class="${grid ? "file-grid" : "file-list list-columns"}">`;
-        if (!grid) html += `<div class="file-list-header"><span class="col-icon-spacer" aria-hidden="true"></span>${hcol("name", "Name", "col-name")}${hcol("ext", "Ext", "col-ext")}${hcol("size", "Size", "col-size")}${hcol("date", "Date", "col-date")}${hcol("date", "Time", "col-time")}</div>`;
+        if (!grid) html += `<div class="file-list-header"><span class="col-icon-spacer" aria-hidden="true"></span><span class="col-star-spacer" aria-hidden="true"></span>${hcol("name", "Name", "col-name")}${hcol("ext", "Ext", "col-ext")}${hcol("size", "Size", "col-size")}${hcol("date", "Date", "col-date")}${hcol("date", "Time", "col-time")}</div>`;
         if (p.path.length) {
-            html += `<div class="file-card directory parent-dir" role="button" tabindex="-1" data-up="1" aria-label="Go to parent folder"><div class="file-icon folder">${icons.folder}</div><div class="file-info"><span class="file-name">..</span><span class="file-meta"></span></div>${grid ? "" : renderColumnCells("", "", "", "")}</div>`;
+            html += `<div class="file-card directory parent-dir" role="button" tabindex="-1" data-up="1" aria-label="Go to parent folder"><div class="file-icon folder">${grid ? ibIcon("folder") : icons.folder}</div>${grid ? "" : '<span aria-hidden="true"></span>'}<div class="file-info"><span class="file-name">..</span><span class="file-meta"></span></div>${grid ? "" : renderColumnCells("", "", "", "")}</div>`;
         }
         const extSlot = new Map(), extSeen = new Map();
         [...new Set(all.filter((i) => i.type !== "directory").map((i) => getFileExtension(i.name).toLowerCase()).filter(Boolean))].sort().forEach((x, i) => extSlot.set(x, i % 12));
@@ -12935,7 +13277,7 @@ const TWIN = (() => {
             p.map.set(item.name, item);
             const name = escapeHtml(item.name);
             if (item.type === "directory") {
-                html += `<div class="file-card directory" role="button" tabindex="-1" data-n="${name}" data-t="d" aria-label="Open folder ${name}"><div class="file-icon folder">${icons.folder}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : ""}</span></div>${grid ? "" : renderColumnCells("", "DIR", escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
+                html += `<div class="file-card directory" role="button" tabindex="-1" data-n="${name}" data-t="d" aria-label="Open folder ${name}"><div class="file-icon folder">${grid ? ibIcon("folder") : icons.folder}</div>${starHtml(c, "folder", [...p.path, item.name])}<div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : ""}</span></div>${grid ? "" : renderColumnCells("", "DIR", escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
                 continue;
             }
             const iconType = getFileIconType(item.name) || item.category || "other";
@@ -12945,7 +13287,7 @@ const TWIN = (() => {
             const full = base + item.name;
             const thumb = grid && item.category === "image"
                 ? `<img class="file-thumbnail lazy" ${p.source === "local" ? `data-tlocal="${escapeHtml(full)}"` : `data-src="${escapeHtml(hostedUrlIn(c, full))}"`} alt="" decoding="async">` : "";
-            html += `<div class="file-card" role="button" tabindex="-1" data-n="${name}" data-t="f" aria-label="Open file ${name}">${thumb}<div class="file-icon ${iconType}${xc}">${icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid ? item.sizeFormatted : ""}</span></div>${grid ? "" : renderColumnCells(escapeHtml(getFileExtension(item.name)), item.sizeFormatted, escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
+            html += `<div class="file-card" role="button" tabindex="-1" data-n="${name}" data-t="f" aria-label="Open file ${name}">${thumb}<div class="file-icon ${iconType}${xc}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div>${starHtml(c, "file", full)}<div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid ? item.sizeFormatted : ""}</span></div>${grid ? "" : renderColumnCells(escapeHtml(getFileExtension(item.name)), item.sizeFormatted, escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
         }
         html += "</div>";
         if (!all.length) html += emptyHtml(f ? "No matches in this folder." : "Empty folder.");
@@ -12959,6 +13301,97 @@ const TWIN = (() => {
             else if (p.focusIt) focusCursor(p);
             p.reveal = null; p.focusIt = false;
         }
+    }
+    // ---- Favorites tab: the panel's pinned folders and favorite files (of the source it shows), in place of its file list ----
+    const sameArr = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+    function starHtml(c, type, val) {
+        const folder = type === "folder";
+        const on = folder ? (c.pinned || []).some((x) => sameArr(x, val)) : (c.favorites || []).includes(val);
+        const label = folder ? (on ? "Unpin this folder" : "Pin this folder") : (on ? "Remove from favorites (F)" : "Add to favorites (F)");
+        return `<button type="button" class="card-star-btn${on ? " starred" : ""}" tabindex="-1" data-star-type="${type}" data-star-path="${escapeHtml(folder ? JSON.stringify(val) : val)}" title="${label}" aria-label="${label}" aria-pressed="${on}">${on ? icons.starFilled : icons.starOutline}</button>`;
+    }
+    function renderFavs(p, top) {
+        const pn = paneEl(p.id);
+        if (!pn) return;
+        const sc = pn.querySelector(".tw-scroll");
+        const c = ctxOf(p.source);
+        p.map = new Map();
+        p.order = [];
+        if (!c) { sc.innerHTML = emptyHtml("Nothing to show here."); p.summary = ""; setStatus(p, null); return; }
+        const pins = (c.pinned || []).filter((x) => Array.isArray(x) && x.length), favs = c.favorites || [];
+        p.summary = `${pins.length} pinned ${pins.length === 1 ? "folder" : "folders"}, ${favs.length} favorite ${favs.length === 1 ? "file" : "files"}`;
+        let html = "";
+        if (!pins.length && !favs.length) {
+            html = emptyHtml("No favorites yet.", `<p>Click the star on a file or folder in the list (or press F on it), or the star in a file preview.</p>${p.source === "local" ? "<p>Favorites of a local folder are kept until the folder is closed.</p>" : ""}`);
+        }
+        if (pins.length) {
+            html += '<div class="tw-fav-head">Pinned folders</div><div class="file-list tw-fav-list">';
+            for (const arr of pins) {
+                const name = escapeHtml(arr[arr.length - 1]), where = arr.length > 1 ? arr.slice(0, -1).join("/") : (p.source === "local" ? LOCAL.name || "Local folder" : "Home");
+                html += `<div class="file-card directory" role="button" tabindex="-1" data-fav="d" data-fp="${escapeHtml(JSON.stringify(arr))}" aria-label="Open pinned folder ${name}" title="${escapeHtml(arr.join("/"))}"><div class="file-icon folder">${icons.folder}</div>${starHtml(c, "folder", arr)}<div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${escapeHtml(where)}</span></div></div>`;
+            }
+            html += "</div>";
+        }
+        if (favs.length) {
+            html += '<div class="tw-fav-head">Favorite files</div><div class="file-list tw-fav-list">';
+            for (const path of favs) {
+                const item = c.filesByPath.get(path), name = escapeHtml(item ? item.name : path.substring(path.lastIndexOf("/") + 1));
+                const iconType = item ? getFileIconType(item.name) || item.category || "other" : "other";
+                const segs = path.split("/").slice(0, -1), where = segs.length ? segs.join("/") : (p.source === "local" ? LOCAL.name || "Local folder" : "Home");
+                html += `<div class="file-card" role="button" tabindex="-1" data-fav="f" data-fpath="${escapeHtml(path)}" aria-label="Open favorite file ${name}" title="${escapeHtml(path)}"><div class="file-icon ${iconType}">${icons[iconType] || icons.other}</div>${starHtml(c, "file", path)}<div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${escapeHtml(where)}</span></div></div>`;
+            }
+            html += "</div>";
+        }
+        sc.innerHTML = html;
+        sc.scrollTop = top || 0;
+        setStatus(p, null);
+    }
+    function setTab(p, tab) {
+        if (p.tab === tab) return;
+        if (p.mode !== "list") { closePreview(p, true); if (p.mode !== "list") return; }
+        p.tab = tab;
+        T.menu = null;
+        renderPane(p.id);
+        focusCursor(p);
+        announce(tab === "fav" ? `Panel ${p.id + 1}: favorites` : `Panel ${p.id + 1}: files`);
+    }
+    // A favorite was clicked: the panel goes back to its files and opens the folder, or the file inside its folder.
+    function openFav(p, card) {
+        if (card.dataset.fav === "d") {
+            const arr = safeJsonParse(card.dataset.fp, null);
+            if (Array.isArray(arr)) go(p, arr);
+            return;
+        }
+        p.tab = "files";
+        renderPane(p.id);
+        if (!openPathIn(p, card.dataset.fpath || "")) announce("That file could not be found any more");
+    }
+    // The star on a card or favorites row: pins a folder or favorites a file of this panel's source, and refreshes everything that shows it.
+    function starClick(p, btn) {
+        if (T.media !== null && T.panes[T.media].source !== p.source) { announce("Close the player first, then use favorites"); return; }
+        if (!useSource(p.source)) return;
+        const folder = btn.dataset.starType === "folder", raw = btn.dataset.starPath;
+        const val = folder ? safeJsonParse(raw, null) : raw;
+        if (!val) return;
+        if (folder) toggleFolderPin(val); else toggleFavoriteFile(val);
+        const on = folder ? isPinned(val) : isFavoriteFile(val);
+        const inFavs = !!btn.closest(".tw-fav-list");
+        if (!inFavs) {
+            const label = folder ? (on ? "Unpin this folder" : "Pin this folder") : (on ? "Remove from favorites (F)" : "Add to favorites (F)");
+            btn.classList.toggle("starred", on);
+            btn.setAttribute("aria-pressed", String(on));
+            btn.title = label;
+            btn.setAttribute("aria-label", label);
+            btn.innerHTML = on ? icons.starFilled : icons.starOutline;
+        }
+        T.panes.forEach((q) => {
+            if (q.source !== p.source) return;
+            if (q.tab === "fav") renderFavs(q, paneEl(q.id).querySelector(".tw-scroll").scrollTop);
+            else if (q.id !== p.id) renderList(q, true);
+            if (q.mode === "view") syncFav(q);
+        });
+        if (inFavs) { const sc = paneEl(p.id).querySelector(".tw-scroll"); if (sc) sc.focus(); }
+        announce(on ? (folder ? "Folder pinned" : "Added to favorites") : (folder ? "Folder unpinned" : "Removed from favorites"));
     }
     function setStatus(p, item) {
         const pn = paneEl(p.id), st = pn && pn.querySelector(".tw-status");
@@ -13018,6 +13451,7 @@ const TWIN = (() => {
         o = o || {};
         if (p.mode !== "list") { closePreview(p, true); if (p.mode !== "list") return; }
         p.path = path;
+        p.tab = "files";
         p.memo[p.source] = path;
         p.filter = "";
         if (p.id === T.active) { $("search").value = ""; updateSearchClearVisibility(); }
@@ -13062,7 +13496,7 @@ const TWIN = (() => {
         const pn = paneEl(p.id);
         if (!pn) return;
         const cards = Array.from(pn.querySelectorAll(".file-card"));
-        const t = cards.find((el) => el.dataset.n === p.cur) || cards[p.path.length ? 1 : 0] || cards[0];
+        const t = cards.find((el) => el.dataset.n === p.cur) || cards[p.tab !== "fav" && p.path.length ? 1 : 0] || cards[0];
         (t || pn.querySelector(".tw-scroll")).focus();
     }
     function switchPane() {
@@ -13080,6 +13514,7 @@ const TWIN = (() => {
         closePreview(o, true);
         if (o.mode !== "list") return;
         o.memo[o.source] = o.path;
+        o.tab = "files";
         o.source = s.source;
         o.path = s.path.slice();
         o.memo[o.source] = o.path;
@@ -13157,6 +13592,7 @@ const TWIN = (() => {
         if (m.parentNode !== document.body) document.body.appendChild(m);
         m.classList.remove("tw-embedded", "tw-narrow");
         m.style.removeProperty("--tw-pt");
+        unseatPlayerWindows();
     }
     // The panel stands in for the browser window: up to 640px wide it gets the phone layout, and the playlist window keeps the page's anchor near the top.
     function fitEmbedded() {
@@ -13164,7 +13600,8 @@ const TWIN = (() => {
         if (!m.classList.contains("tw-embedded") || !slot || !slot.classList || !slot.classList.contains("tw-media")) return;
         const w = slot.clientWidth, h = slot.clientHeight;
         if (!w || !h) return;
-        m.classList.toggle("tw-narrow", w <= 640);
+        const narrow = w <= 640;
+        slot.querySelectorAll(":scope > .modal-overlay").forEach((el) => el.classList.toggle("tw-narrow", narrow));
         m.style.setProperty("--tw-pt", Math.max(8, Math.min(h - 512, h / 2 - 200)) + "px");
     }
     function closePreview(p, quiet) {
@@ -13480,9 +13917,12 @@ const TWIN = (() => {
         if (act && act.dataset.act === "open-local") { T.localTarget = p.id; openLocalFolder(); return; }
         if (T.menu !== null) { T.menu = null; renderHead(T.panes[T.active]); renderAllHeads(); }
         const crumb = t.closest(".tw-crumb");
-        if (crumb) { const i = Number(crumb.dataset.i); if (i !== p.path.length) go(p, p.path.slice(0, i)); else if (p.mode !== "list") closePreview(p); return; }
+        if (crumb) { const i = Number(crumb.dataset.i); if (p.tab === "fav" && i === p.path.length) { setTab(p, "files"); return; } if (i !== p.path.length) go(p, p.path.slice(0, i)); else if (p.mode !== "list") closePreview(p); return; }
         const vb = t.closest(".tw-vbtn");
         if (vb) { setView(p, vb.dataset.v); return; }
+        if (t.closest(".tw-favtab")) { setTab(p, p.tab === "fav" ? "files" : "fav"); return; }
+        const sb = t.closest(".card-star-btn");
+        if (sb) { starClick(p, sb); return; }
         if (t.closest(".tw-zip")) {
             if (T.media !== null && T.panes[T.media].source !== p.source) { announce("Close the player first, then download this folder"); return; }
             if (useSource(p.source)) { currentPath = p.path.slice(); downloadFolderZip(); }
@@ -13501,6 +13941,7 @@ const TWIN = (() => {
         // The first click on a panel that did not have the focus only gives it the focus (and the cursor); the next click opens.
         if (focusOnly) { if (!card.dataset.up) { p.cur = card.dataset.n; setStatus(p, p.map.get(card.dataset.n)); } card.focus({ preventScroll: true }); return; }
         if (card.dataset.up) { up(p, false); return; }
+        if (card.dataset.fav) { openFav(p, card); return; }
         p.cur = card.dataset.n;
         openItem(p, card.dataset.n);
     }
@@ -13545,6 +13986,7 @@ const TWIN = (() => {
         if (e.key === "Tab" && plain && (card || scroller)) { e.preventDefault(); switchPane(); return; }
         if (e.key === "Escape" && T.menu !== null) { T.menu = null; renderAllHeads(); e.stopPropagation(); return; }
         if (e.key === "Escape" && card) { e.stopPropagation(); const s = pn.querySelector(".tw-src"); if (s) s.focus(); return; }
+        if (p.tab === "fav" && (card || scroller) && (e.key === "Backspace" || e.key === "ArrowLeft") && plain) { e.preventDefault(); setTab(p, "files"); return; }
         if (e.key === "Backspace" && (card || scroller)) { e.preventDefault(); up(p, true); return; }
         if (scroller && ["ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "Home", "End", "Enter"].includes(e.key)) { e.preventDefault(); focusCursor(p); return; }
         if (!card) return;
@@ -13555,6 +13997,7 @@ const TWIN = (() => {
         const move = (to) => { e.preventDefault(); const t = cards[Math.max(0, Math.min(cards.length - 1, to))]; if (t) t.focus(); };
         switch (e.key) {
             case "Enter": case " ": e.preventDefault(); card.click(); return;
+            case "f": case "F": { const sb = plain && card.querySelector(".card-star-btn"); if (sb) { e.preventDefault(); starClick(p, sb); } return; }
             case "ArrowDown": move(idx + cols); return;
             case "ArrowUp": move(idx - cols); return;
             case "ArrowRight": if (grid) move(idx + 1); else { e.preventDefault(); card.click(); } return;
@@ -13614,6 +14057,7 @@ const TWIN = (() => {
         focusActive() { focusCursor(T.panes[T.active]); },
         // The preview window's player was closed: its panel goes back to the list.
         onModalClosed() {
+            closeSeatedWindows();
             if (T.media === null) return;
             const p = T.panes[T.media], name = p.mediaName;
             T.media = null;
