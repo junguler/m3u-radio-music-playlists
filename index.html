@@ -517,12 +517,12 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 .modal-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .modal-btn:disabled:hover { background: var(--bg-tertiary); border-color: var(--border-color); }
 .modal-btn svg { width: 16px; height: 16px; }
-.modal-btn.play-playlist-btn { padding: 0.375rem 0.675rem; font-size: 0.675rem; font-weight: 600; gap: 0.3rem; color: var(--accent-text, var(--accent)); }
+.modal-btn.play-playlist-btn { padding: 0.5rem 0.9rem; font-size: 0.9rem; font-weight: 600; gap: 0.4rem; color: var(--accent-text, var(--accent)); }
 .modal-btn.play-playlist-btn:hover { color: var(--text-primary); }
-.modal-btn.play-playlist-btn svg { width: 16.5px; height: 16.5px; }
+.modal-btn.play-playlist-btn svg { width: 22px; height: 22px; }
 .modal-btn.hidden { display: none; }
-#modalContent .modal-actions .modal-btn#closeBtn { width: auto; height: auto; min-width: 0; min-height: 0; padding: 0.375rem 0.675rem; }
-#modalContent .modal-actions .modal-btn#closeBtn svg { width: 16.5px; height: 16.5px; }
+#modalContent .modal-actions .modal-btn#closeBtn { width: auto; height: auto; min-width: 0; min-height: 0; padding: 0.5rem 0.9rem; }
+#modalContent .modal-actions .modal-btn#closeBtn svg { width: 22px; height: 22px; }
 .playlist-bar { --bar-btn-h: var(--ctl); --bar-btn-w: var(--ctl); display: none; align-items: center; flex-wrap: wrap; gap: 0.4rem 0.5rem; padding: 0.45rem 0.75rem; background: var(--bg-tertiary); border-bottom: var(--bw) solid var(--border-color); position: relative; }
 .playlist-bar.active { display: flex; }
 .playlist-controls { display: flex; gap: 0.25rem; align-items: center; }
@@ -589,9 +589,9 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 .player-controls-row { display: flex; align-items: center; justify-content: center; gap: 0.4rem; width: 100%; flex-wrap: nowrap; overflow-x: auto; }
 .player-controls-row .playlist-btn { padding: 0.35rem; flex-shrink: 0; border-radius: var(--radius-full); }
 .player-divider { width: var(--bw); height: 1.25rem; background: var(--border-color); flex-shrink: 0; }
-.playlist-btn.player-play-btn { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); border-radius: var(--radius-full); width: 1.8rem; height: 1.8rem; padding: 0; transition: background-color var(--transition), border-color var(--transition); }
+.playlist-btn.player-play-btn { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); border-radius: var(--radius-full); width: 2.4rem; height: 2.4rem; padding: 0; transition: background-color var(--transition), border-color var(--transition); }
 .playlist-btn.player-play-btn:hover { background: var(--accent-solid-hover, var(--accent-hover)); border-color: var(--accent-solid-hover, var(--accent-hover)); }
-.playlist-btn.player-play-btn svg { width: 15px; height: 15px; }
+.playlist-btn.player-play-btn svg { width: 20px; height: 20px; }
 .player-time.is-behind { cursor: pointer; text-decoration: underline dotted; }
 .player-time, .player-vol { font-size: 0.75rem; color: var(--text-secondary); min-width: 2.5rem; text-align: center; user-select: none; }
 .player-info-btn { position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.375rem; background: var(--control-surface); border: var(--bw) solid var(--border-color); border-radius: var(--radius); color: var(--on-control); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
@@ -707,10 +707,10 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
     .modal-btn { padding: 0.4rem; min-width: 32px; min-height: 32px; }
     .modal-btn svg { width: 15px; height: 15px; }
     .modal-btn.play-playlist-btn .btn-label { display: none; }
-    .modal-btn.play-playlist-btn { padding: 0.375rem; min-width: 33px; min-height: 33px; }
-    .modal-btn.play-playlist-btn svg { width: 18px; height: 18px; }
-    #modalContent .modal-actions .modal-btn#closeBtn { padding: 0.375rem; min-width: 33px; min-height: 33px; }
-    #modalContent .modal-actions .modal-btn#closeBtn svg { width: 18px; height: 18px; }
+    .modal-btn.play-playlist-btn { padding: 0.5rem; min-width: 44px; min-height: 44px; }
+    .modal-btn.play-playlist-btn svg { width: 24px; height: 24px; }
+    #modalContent .modal-actions .modal-btn#closeBtn { padding: 0.5rem; min-width: 44px; min-height: 44px; }
+    #modalContent .modal-actions .modal-btn#closeBtn svg { width: 24px; height: 24px; }
     .playlist-bar { padding: 0.5rem; flex-wrap: wrap; }
     .playlist-btn span:not(.btn-txt):not(.blabel):not(.lbl-long):not(.lbl-short) { display: none; }
     .preview-image { max-height: 80vh; max-height: 80dvh; }
@@ -719,8 +719,8 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
     .player-bar { padding: 0.3rem 0.5rem; max-width: 100%; gap: 0.2rem; }
     .player-bar .playlist-btn { padding: 0.4rem; }
     .player-bar .playlist-btn svg { width: 12px; height: 12px; }
-    .player-bar .playlist-btn.player-play-btn { width: 1.5rem; height: 1.5rem; padding: 0; }
-    .player-bar .playlist-btn.player-play-btn svg { width: 12px; height: 12px; }
+    .player-bar .playlist-btn.player-play-btn { width: 2rem; height: 2rem; padding: 0; }
+    .player-bar .playlist-btn.player-play-btn svg { width: 16px; height: 16px; }
     .player-time { min-width: 2.2rem; font-size: 0.75rem; }
     .player-vol { min-width: 2.2rem; font-size: 0.75rem; }
     .settings-menu.active { position: fixed; inset: 0; top: 0; right: 0; margin: 0; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.85); padding: 0.5rem; z-index: 1000; }
@@ -1069,7 +1069,6 @@ body.is-recording .audio-icon .cache-tag { max-width: calc(100% - 3.2rem); }
 /* Header action buttons (star, info, link, download, open) are a little larger than the playlist-bar ones; Play and Close shrank by 25%, so the header ends up no taller than before. */
 #modalContent .modal-actions .modal-btn:not(.play-playlist-btn):not(.text-btn):not(#closeBtn) { width: max(var(--ctl), 2rem); height: max(var(--ctl), 2rem); }
 #modalContent .modal-actions .modal-btn:not(.play-playlist-btn):not(.text-btn) svg { width: 17px; height: 17px; }
-#modalContent .modal-actions .modal-btn#closeBtn, .modal-btn.play-playlist-btn { min-height: 0; }
 @media (pointer: coarse) { #modalContent .modal-actions .modal-btn#closeBtn::after, .modal-btn.play-playlist-btn::after, .playlist-btn.player-play-btn::after { content: ""; position: absolute; inset: -6px; } #modalContent .modal-actions .modal-btn#closeBtn, .modal-btn.play-playlist-btn, .playlist-btn.player-play-btn { position: relative; } }
 
 /* --- Mobile: previews are full-screen pages; the player keeps desktop sizes and a fixed layout ---
@@ -1767,9 +1766,9 @@ body.compact-density .tw-pane .file-grid .file-icon { width: 26px; height: 26px;
 /* While a player fills a panel, the sort / zip / list / grid controls of that panel have nothing to act on. */
 .tw-pane[data-mode="media"] .tw-tools { display: none; }
 
-.tw-vhead .modal-btn.vb-close { width: auto; height: auto; min-width: 0; min-height: 0; padding: 0.375rem 0.675rem; }
-.tw-vhead .modal-btn.vb-close svg { width: 16.5px; height: 16.5px; }
-@media (max-width: 640px) { .tw-vhead .modal-btn.vb-close { padding: 0.375rem; min-width: 33px; min-height: 33px; } .tw-vhead .modal-btn.vb-close svg { width: 18px; height: 18px; } }
+.tw-vhead .modal-btn.vb-close { width: auto; height: auto; min-width: 0; min-height: 0; padding: 0.5rem 0.9rem; }
+.tw-vhead .modal-btn.vb-close svg { width: 22px; height: 22px; }
+@media (max-width: 640px) { .tw-vhead .modal-btn.vb-close { padding: 0.5rem; min-width: 44px; min-height: 44px; } .tw-vhead .modal-btn.vb-close svg { width: 24px; height: 24px; } }
 .modal-btn.vb-fav.favorited, .vb-info[aria-pressed="true"] { color: var(--accent-text, var(--accent)); border-color: var(--accent-text, var(--accent)); }
 .tw-view .meta-bar { flex-shrink: 0; }
 html[data-theme="concrete"] .vb-close { --c: var(--red); }
@@ -14161,46 +14160,6 @@ const TWIN = (() => {
 })();
 
 init();
-
-// Fit the player to the room it has: when the preview is short or narrow (a stacked twin panel, a small window, a phone on its side) everything in it
-// shrinks together, down to a floor, before the body is allowed to scroll. The size is measured at full scale each time, so it never drifts.
-(function fitPlayerToRoom() {
-    const modal = document.getElementById("modalContent"), body = document.getElementById("modalBody");
-    if (!modal || !body || typeof ResizeObserver === "undefined") return;
-    const MIN = 0.55;
-    let raf = 0, watched = null;
-    const parts = () => [...modal.children].filter((e) => e.id !== "modalMain" && !e.hidden && e.offsetParent !== null);
-    function fit() {
-        raf = 0;
-        const c = body.querySelector(":scope > .preview-audio-container");
-        [...modal.children].forEach((e) => { e.style.zoom = ""; });
-        if (c) {
-            c.style.zoom = "";
-            const ic0 = c.querySelector(".audio-icon"); if (ic0) ic0.style.zoom = "";
-            if (c !== watched) { if (watched) ro.unobserve(watched); watched = c; ro.observe(c); }
-        }
-        if (!c || !modal.clientHeight) return;
-        const ps = parts();
-        let total = ps.reduce((n, e) => n + e.getBoundingClientRect().height, 0) + c.scrollHeight;
-        // The big glyph is the only part that is decoration, so it gives way first (down to half size); the text and controls shrink only for what is still missing.
-        const icon = c.querySelector(".audio-icon");
-        if (icon) icon.style.zoom = "";
-        if (icon && total > modal.clientHeight) {
-            const h = icon.getBoundingClientRect().height;
-            const g = Math.max(0.5, Math.min(1, (modal.clientHeight - (total - h)) / h));
-            if (g < 1) { icon.style.zoom = Math.floor(g * 100) / 100; total -= h * (1 - g); }
-        }
-        let z = Math.min(1, modal.clientHeight / total);
-        [...ps, c].forEach((e) => { if (e.scrollWidth > e.clientWidth + 1 && e.clientWidth) z = Math.min(z, e.clientWidth / e.scrollWidth); });
-        z = Math.max(MIN, Math.floor(z * 100) / 100);
-        if (z < 1) { ps.forEach((e) => { e.style.zoom = z; }); c.style.zoom = z; }
-    }
-    const queue = () => { if (!raf) raf = requestAnimationFrame(fit); };
-    const ro = new ResizeObserver(queue);
-    ro.observe(modal); ro.observe(body);
-    new MutationObserver(queue).observe(modal, { childList: true, subtree: true, attributes: true, attributeFilter: ["hidden", "class"] });
-    window.addEventListener("resize", queue);
-})();
     </script>
 </body>
 </html>
