@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <script>(function(){try{window.__idx={};["./file_index_lean.json","./file_index.json"].forEach(function(u){var p=fetch(u).then(function(r){if(!r.ok)throw new Error("Failed to load "+u);return r.json();});p.catch(function(){});window.__idx[u]=p;});}catch(e){}})();</script>
+    <script>(function(){try{window.__idx={};var L="./file_index_lean.json",F="./file_index.json";function get(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("Failed to load "+u);return r.json();});}var lp=get(L);lp.catch(function(){});window.__idx[L]=lp;var fp=lp.then(function(){},function(){}).then(function(){return get(F);});fp.catch(function(){});window.__idx[F]=fp;}catch(e){}})();</script>
     <script>(function(){try{var t=localStorage.getItem("theme");if(t==="concrete-custom"){t="concrete";localStorage.setItem("theme",t);}if(t==="vivid")document.documentElement.setAttribute("data-vivid","1");else if(t&&t!=="auto")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
     <meta name="referrer" content="no-referrer" />
@@ -1673,6 +1673,9 @@ html[data-vivid] *::after { forced-color-adjust: none !important; }
 .twin[data-stack] .tw-split-tools { flex-direction: row; }
 .twin[data-stack] .tw-split-tools button { width: 1.4rem; height: 1.4rem; }
 @media (max-width: 640px) { .tw-split-tools [data-act="layout"] { display: none; } }
+/* Curtain: dragged all the way to an edge, a panel slides behind it instead of closing. It stays mounted, so a player in it keeps playing; the divider stays in view to pull it back. */
+.tw-pane[data-curtain] { overflow: hidden; border-width: 0; outline: none; min-width: 0; min-height: 0; }
+.twin[data-curtain] .tw-split { background: var(--accent); }
 
 .tw-view, .tw-media { display: none; flex: 1; min-height: 0; }
 .tw-view { flex-direction: column; outline: none; }
@@ -2244,7 +2247,10 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
                 <div class="modal-actions"><button class="modal-btn" id="previewModalClose" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button></div>
             </div>
             <div class="modal-body stats-body">
-                <p class="local-msg">Load a file_index.json that is hosted on GitHub and browse the repo exactly as that index describes it, before anything is pushed or deployed. Nothing is saved except the two links below.</p>
+                <div class="pv-actions pv-presets">
+                    <button type="button" class="theme-reset-btn local-pick" data-pv-preset="https://junguler.github.io/placeholder/file_index.json">placeholder</button>
+                    <button type="button" class="theme-reset-btn local-pick" data-pv-preset="https://junguler.github.io/m3u-radio-music-playlists/file_index.json">m3u-repo</button>
+                </div>
                 <label class="pv-label" for="previewJsonInput">Index JSON link</label>
                 <input class="pv-input" id="previewJsonInput" type="text" inputmode="url" placeholder="https://raw.githubusercontent.com/user/repo/branch/file_index.json" autocomplete="off" autocapitalize="off" spellcheck="false" />
                 <label class="pv-label" for="previewFilesInput">Load files from <span>(optional)</span></label>
@@ -6541,11 +6547,26 @@ function syncsafe(b, p) {
 }
 // b: the first few KB of a stream. Returns { fmt, kbps?, rate? }.
 // fmt is "" when nothing is recognised, "HTML" for an error page.
+// An Ogg stream says what it carries in its first page: Opus (no bitrate stored) or Vorbis (with a nominal bitrate).
+function sniffOgg(b) {
+    const n = Math.min(b.length, 512);
+    let t = "";
+    for (let i = 0; i < n; i++) t += String.fromCharCode(b[i]);
+    const o = t.indexOf("OpusHead");
+    if (o >= 0) return { fmt: "OPUS", ch: b[o + 9] || 0, rate: 48000 };
+    const v = t.indexOf("\x01vorbis");
+    if (v >= 0 && v + 28 <= n) {
+        const le = (i) => (b[i] | (b[i + 1] << 8) | (b[i + 2] << 16) | (b[i + 3] << 24)) | 0;
+        const nominal = le(v + 20);
+        return { fmt: "OGG", ch: b[v + 11] || 0, rate: le(v + 12) >>> 0, kbps: nominal > 0 ? Math.round(nominal / 1000) : 0 };
+    }
+    return { fmt: "OGG" };
+}
 function sniffAudio(b) {
     const n = b.length;
     if (n < 16) return { fmt: "" };
     const head = String.fromCharCode.apply(null, b.subarray(0, 16));
-    if (head.startsWith("OggS")) return { fmt: "OGG" };
+    if (head.startsWith("OggS")) return sniffOgg(b);
     if (head.startsWith("fLaC")) return { fmt: "FLAC" };
     if (/^\s*<(!doctype|html|\?xml|head|body)/i.test(head)) return { fmt: "HTML" };
     if (/^(#EXTM3U|\[playlist\])/i.test(head)) return { fmt: "LIST" };
@@ -7099,6 +7120,17 @@ function liveStreamInfo(session) {
     }
     if (!fmt && rec && rec.fmt && rec.fmt !== "HTML" && rec.fmt !== "LIST") fmt = rec.fmt;
     if (!kbps && rec && rec.kbps) kbps = rec.kbps;
+    // The page's own cache reads the stream anyway: its mime type and the measured bytes per second of audio answer when the separate look could not.
+    if (session.usesMse && currentOwnBuffer && currentOwnBuffer.alive) {
+        if (!fmt && session.ownMime) fmt = /aac|mp4a/.test(session.ownMime) ? "AAC" : /mpeg|mp3/.test(session.ownMime) ? "MP3" : "";
+        const m = currentOwnBuffer;
+        if (!kbps && m.appSecs > 8 && m.appBytes > 0) {
+            const raw = (m.appBytes * 8) / m.appSecs / 1000;
+            const std = [24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320];
+            const near = std.reduce((a, b) => (Math.abs(b - raw) < Math.abs(a - raw) ? b : a));
+            kbps = Math.abs(near - raw) / near <= 0.06 ? near : Math.round(raw);
+        }
+    }
     if (!fmt) {
         const url = session.cands && session.cands[session.candIdx] ? session.cands[session.candIdx] : session.item.url;
         fmt = EXT_FMT[urlPathExt(url)] || "";
@@ -7109,12 +7141,15 @@ function liveStreamInfo(session) {
 // Needs CORS, so it is skipped for servers that only play without it; those fall back to the extension.
 async function sniffLiveStream(session) {
     const url = session.cands[session.candIdx];
-    if (!url || session.usesHls || session.sniffed) return;
+    if (!url || session.usesHls || session.sniffing) return;
     if (session.corsFailed || noCorsHosts.has(hostKey(url))) return;
-    session.sniffed = true;
+    session.sniffing = true;
+    session.sniffTries = (session.sniffTries || 0) + 1;
+    session.sniffAt = Date.now();
     const ctl = new AbortController();
     session.sniffCtl = ctl;
-    const timer = setTimeout(() => ctl.abort(), 8000);
+    // Slow, low-bitrate stations need time to deliver a few KB; whatever arrived before the timeout is still used.
+    const timer = setTimeout(() => ctl.abort(), 12000);
     try {
         const res = await fetch(url, { signal: ctl.signal, cache: "no-store", credentials: "omit" });
         const ctype = (res.headers.get("content-type") || "").toLowerCase();
@@ -7123,13 +7158,20 @@ async function sniffLiveStream(session) {
         const reader = res.body.getReader();
         const chunks = [];
         let got = 0;
+        let sn = { fmt: "" };
         while (got < 32768) {
-            const { value, done } = await reader.read();
-            if (done) break;
-            chunks.push(value);
-            got += value.length;
+            let r;
+            try { r = await reader.read(); } catch (e) { break; }
+            if (r.done) break;
+            chunks.push(r.value);
+            got += r.value.length;
+            // A few KB are enough when the format and bitrate are already clear.
+            if (got >= 6144) {
+                sn = sniffAudio(concatChunks(chunks, 32768));
+                if (sn.fmt && (sn.kbps || /^(OGG|OPUS|FLAC)$/.test(sn.fmt))) break;
+            }
         }
-        const sn = sniffAudio(concatChunks(chunks, 32768));
+        if (!sn.fmt || got < 6144 || (!sn.kbps && got < 32768)) sn = sniffAudio(concatChunks(chunks, 32768));
         if (sn.rate) session.audio = { rate: sn.rate, ch: sn.ch || 0, mode: sn.mode || "" };
         let kbps = sn.kbps || 0;
         const hdrBr = parseInt(res.headers.get("icy-br"), 10);
@@ -7137,6 +7179,7 @@ async function sniffLiveStream(session) {
         const fmt = sn.fmt && sn.fmt !== "HTML" && sn.fmt !== "LIST" ? sn.fmt : fmtFromContentType(ctype);
         if (playSession !== session || (!fmt && !kbps)) return;
         session.info = { fmt, kbps };
+        session.infoUrl = url;
         const patch = {};
         if (fmt) patch.fmt = fmt;
         if (kbps) patch.kbps = kbps;
@@ -7145,8 +7188,18 @@ async function sniffLiveStream(session) {
     } finally {
         clearTimeout(timer);
         ctl.abort();
+        session.sniffing = false;
         if (playSession === session) renderNpStatus();
     }
+}
+// The one look can fail (a busy server, a dropped connection, a slow station): while nothing is known, ask again a few times, and look again after the stream moved to another address.
+function sniffRetry(s) {
+    if (!s || !s.everPlayed || s.usesHls || s.sniffing) return;
+    const cur = s.cands && s.cands[s.candIdx];
+    if (s.infoUrl && cur && s.infoUrl !== cur) { s.info = null; s.infoUrl = ""; s.sniffTries = 0; }
+    if (s.info && (s.info.fmt || s.info.kbps)) return;
+    if ((s.sniffTries || 0) >= 3 || Date.now() - (s.sniffAt || 0) < 15000) return;
+    sniffLiveStream(s);
 }
 // Seconds of audio/video already downloaded ahead of the playhead (the "cached" amount), or -1 when unknown.
 function bufferedAheadSec(el) {
@@ -7216,6 +7269,7 @@ setInterval(() => {
     if (!playSession) return;
     flushTitles(playSession);
     if (document.hidden) return;
+    sniffRetry(playSession);
     updateStreamTag();
 }, 1000);
 // The checking status at the top of the player carries this stream's format and start time.
@@ -9770,6 +9824,7 @@ async function startOwnBuffer(session, el, url, onBlocked, fallback) {
         if (!m.alive || playSession !== session) return;
     }
     if (!mime) return bail("format");
+    session.ownMime = mime;
     if (!MediaSource.isTypeSupported(mime)) return bail("codec");
     session.mseLive = !res.headers.get("content-length");
     const ms = new MediaSource();
@@ -12450,7 +12505,7 @@ function closeLocalModal() {
     restoreModalFocus("localModal");
 }
 
-const PREVIEW = { active: false, base: "", label: "", url: "", saved: null, busy: false };
+const PREVIEW = { active: false, base: "", label: "", url: "", saved: null, busy: false, pending: null };
 let previewTaps = [];
 function previewTap() {
     const now = Date.now();
@@ -12506,19 +12561,54 @@ function previewLabel(base) {
     if (m) { try { return `${m[1]}@${decodeURIComponent(m[2])}`; } catch (err) { return `${m[1]}@${m[2]}`; } }
     try { return new URL(base).host; } catch (err) { return "index"; }
 }
-async function loadPreviewIndex(jsonIn, filesIn) {
-    let url = previewJsonUrl(jsonIn);
-    if (!url) throw new Error("Paste the link of a file_index.json on GitHub: its raw link, or the file's page on github.com.");
-    url = url.replace(/_lean(\.json)(?=$|[?#])/i, "$1");
+async function fetchPreviewJson(url) {
     let res;
     try { res = await fetch(url + (url.includes("?") ? "&" : "?") + "cb=" + Date.now(), { cache: "no-store" }); }
     catch (err) { throw new Error("Could not reach that link. Check it, and that the file is in a public repo or gist."); }
     if (!res.ok) throw new Error(`GitHub answered ${res.status}. Check the link${res.status === 404 ? " (private repos cannot be read)" : ""}.`);
-    let data;
-    try { data = await res.json(); } catch (err) { throw new Error("That file is not valid JSON."); }
+    try { return await res.json(); } catch (err) { throw new Error("That file is not valid JSON."); }
+}
+function checkPreviewFull(data) {
     if (!data || !Array.isArray(data.root)) throw new Error("That JSON has no \u201croot\u201d list, so it does not look like a file_index.json.");
     if (data.root.some((r) => Array.isArray(r))) throw new Error("That is the lean index. Use the full file_index.json link.");
-    return { index: data, url, base: previewFilesBase(filesIn, data, url) };
+    return data;
+}
+// The lean index (top level only) is requested first so the repo shows at once; the full one downloads alongside and replaces it (see previewFinishFull).
+async function loadPreviewIndex(jsonIn, filesIn) {
+    let url = previewJsonUrl(jsonIn);
+    if (!url) throw new Error("Paste the link of a file_index.json on GitHub: its raw link, or the file's page on github.com.");
+    url = url.replace(/_lean(\.json)(?=$|[?#])/i, "$1");
+    const leanUrl = /file_index\.json(?=$|[?#])/i.test(url) ? url.replace(/file_index\.json(?=$|[?#])/i, "file_index_lean.json") : "";
+    const fullP = fetchPreviewJson(url);
+    fullP.catch(() => {});
+    let lean = null;
+    if (leanUrl) {
+        try {
+            const d = await fetchPreviewJson(leanUrl);
+            if (d && Array.isArray(d.root) && d.root.some((r) => Array.isArray(r))) lean = d;
+        } catch (err) { /* no lean file: wait for the full one */ }
+    }
+    if (lean) return { index: expandLeanIndex(lean), url, base: previewFilesBase(filesIn, lean, url), full: fullP };
+    const data = checkPreviewFull(await fullP);
+    return { index: data, url, base: previewFilesBase(filesIn, data, url), full: null };
+}
+async function previewFinishFull(res) {
+    let full = null;
+    for (let attempt = 0; attempt < 2 && !full; attempt++) {
+        try { full = checkPreviewFull(await (attempt ? fetchPreviewJson(res.url) : res.full)); }
+        catch (err) { console.warn("Full preview index failed to load", err); if (!attempt) await new Promise((r) => setTimeout(r, 3000)); }
+    }
+    if (!full || PREVIEW.pending !== res) return;
+    PREVIEW.pending = null;
+    const parked = installPreviewIndex(full);
+    if (parked) { TWIN.refresh(); return; }
+    const mainEl = document.getElementById("main");
+    const top = mainEl.scrollTop;
+    render();
+    renderFavoriteFiles();
+    mainEl.scrollTop = top;
+    TWIN.refresh();
+    if (document.getElementById("statsModal").classList.contains("active")) renderLibraryStats();
 }
 // Swaps the hosted library for the preview index. If a local folder is on screen the hosted library is the parked one, so that is what gets swapped. Returns true in that case.
 function installPreviewIndex(index) {
@@ -12543,10 +12633,10 @@ function previewPathExists(pathArr) {
     }
     return true;
 }
-function enterPreview(index, url, base) {
+function enterPreview(index, url, base, pending) {
     if (document.getElementById("modal").classList.contains("active")) closeModal();
     const parked = installPreviewIndex(index);
-    PREVIEW.active = true; PREVIEW.url = url; PREVIEW.base = base; PREVIEW.label = previewLabel(base);
+    PREVIEW.active = true; PREVIEW.url = url; PREVIEW.base = base; PREVIEW.label = previewLabel(base); PREVIEW.pending = pending || null;
     fetchCache.clear();
     fetchCacheChars = 0;
     wireUiOnce();
@@ -12559,7 +12649,7 @@ function exitPreview() {
     if (!PREVIEW.active) return;
     if (document.getElementById("modal").classList.contains("active")) closeModal();
     const saved = PREVIEW.saved, parked = LOCAL.active && LOCAL.hosted ? LOCAL.hosted : null;
-    PREVIEW.active = false; PREVIEW.saved = null; PREVIEW.base = ""; PREVIEW.url = ""; PREVIEW.label = "";
+    PREVIEW.active = false; PREVIEW.saved = null; PREVIEW.base = ""; PREVIEW.url = ""; PREVIEW.label = ""; PREVIEW.pending = null;
     fetchCache.clear();
     fetchCacheChars = 0;
     if (parked) {
@@ -12615,7 +12705,8 @@ async function submitPreview() {
     try {
         const res = await loadPreviewIndex(jsonIn, filesIn);
         try { store.setItem("previewJsonUrl", jsonIn.trim()); store.setItem("previewFilesFrom", filesIn.trim()); } catch (err) { /* storage blocked: the links are just not remembered */ }
-        enterPreview(res.index, res.url, res.base);
+        enterPreview(res.index, res.url, res.base, res.full ? res : null);
+        if (res.full) previewFinishFull(res);
         closePreviewModal();
         announce(`Previewing ${PREVIEW.label}`);
     } catch (err) {
@@ -12639,6 +12730,11 @@ function setupNewFeatureListeners() {
     $("previewModal").addEventListener("click", (e) => { if (e.target === e.currentTarget) closePreviewModal(); });
     $("previewModal").addEventListener("keydown", (e) => trapModalFocus(e, "previewModalContent"));
     $("previewLoadBtn").addEventListener("click", submitPreview);
+    document.querySelectorAll("[data-pv-preset]").forEach((b) => b.addEventListener("click", () => {
+        $("previewJsonInput").value = b.dataset.pvPreset;
+        $("previewFilesInput").value = "";
+        submitPreview();
+    }));
     $("previewStopBtn").addEventListener("click", () => { exitPreview(); closePreviewModal(); });
     ["previewJsonInput", "previewFilesInput"].forEach((id) => $(id).addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); submitPreview(); } }));
     $("localDirInput").addEventListener("change", handleDirInput);
@@ -12893,7 +12989,7 @@ async function twinLocalUrl(path) {
     return u;
 }
 const TWIN = (() => {
-    const T = { on: false, active: 0, r: 50, max: -1, flip: false, vert: false, panes: [], menu: null, localTarget: null, ready: false, media: null, opening: false, quiet: false, swallow: -1 };
+    const T = { on: false, active: 0, r: 50, lastCurtain: -1, max: -1, flip: false, vert: false, panes: [], menu: null, localTarget: null, ready: false, media: null, opening: false, quiet: false, swallow: -1 };
     const $ = (id) => document.getElementById(id);
     const ICON = {
         repo: '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4 8-1.79 8-4-3.58-4-8-4zM4 9v3c0 2.21 3.58 4 8 4s8-1.79 8-4V9c-1.7 1.73-4.77 2.8-8 2.8S5.7 10.73 4 9zm0 5v3c0 2.21 3.58 4 8 4s8-1.79 8-4v-3c-1.7 1.73-4.77 2.8-8 2.8S5.7 15.73 4 14z"/></svg>',
@@ -13063,9 +13159,9 @@ const TWIN = (() => {
         const [sk, sd] = p.sort.includes("-") ? p.sort.split("-") : [p.sort, "asc"];
         const hcol = (key, label, cls) => `<span class="col ${cls}" data-sort="${key}">${label}<span class="sort-arrow">${sk === key ? (sd === "desc" ? "\u25bc" : "\u25b2") : ""}</span></span>`;
         let html = `<div class="${grid ? "file-grid" : "file-list list-columns"}">`;
-        if (!grid) html += `<div class="file-list-header"><span class="col-icon-spacer" aria-hidden="true"></span><span class="col-star-spacer" aria-hidden="true"></span>${hcol("name", "Name", "col-name")}${hcol("ext", "Ext", "col-ext")}${hcol("size", "Size", "col-size")}${hcol("date", "Date", "col-date")}${hcol("date", "Time", "col-time")}</div>`;
+        if (!grid) html += `<div class="file-list-header"><span class="col-star-spacer" aria-hidden="true"></span><span class="col-icon-spacer" aria-hidden="true"></span>${hcol("name", "Name", "col-name")}${hcol("ext", "Ext", "col-ext")}${hcol("size", "Size", "col-size")}${hcol("date", "Date", "col-date")}${hcol("date", "Time", "col-time")}</div>`;
         if (p.path.length) {
-            html += `<div class="file-card directory parent-dir" role="button" tabindex="-1" data-up="1" aria-label="Go to parent folder"><div class="file-icon folder">${grid ? ibIcon("folder") : icons.folder}</div>${grid ? "" : '<span aria-hidden="true"></span>'}<div class="file-info"><span class="file-name">..</span><span class="file-meta"></span></div>${grid ? "" : renderColumnCells("", "", "", "")}</div>`;
+            html += `<div class="file-card directory parent-dir" role="button" tabindex="-1" data-up="1" aria-label="Go to parent folder">${grid ? "" : '<span aria-hidden="true"></span>'}<div class="file-icon folder">${grid ? ibIcon("folder") : icons.folder}</div><div class="file-info"><span class="file-name">..</span><span class="file-meta"></span></div>${grid ? "" : renderColumnCells("", "", "", "")}</div>`;
         }
         const extSlot = new Map(), extSeen = new Map();
         [...new Set(all.filter((i) => i.type !== "directory").map((i) => getFileExtension(i.name).toLowerCase()).filter(Boolean))].sort().forEach((x, i) => extSlot.set(x, i % 12));
@@ -13074,7 +13170,7 @@ const TWIN = (() => {
             p.map.set(item.name, item);
             const name = escapeHtml(item.name);
             if (item.type === "directory") {
-                html += `<div class="file-card directory" role="button" tabindex="-1" data-n="${name}" data-t="d" aria-label="Open folder ${name}"><div class="file-icon folder">${grid ? ibIcon("folder") : icons.folder}</div>${starHtml(c, "folder", [...p.path, item.name])}<div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : ""}</span></div>${grid ? "" : renderColumnCells("", "DIR", escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
+                html += `<div class="file-card directory" role="button" tabindex="-1" data-n="${name}" data-t="d" aria-label="Open folder ${name}">${starHtml(c, "folder", [...p.path, item.name])}<div class="file-icon folder">${grid ? ibIcon("folder") : icons.folder}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : ""}</span></div>${grid ? "" : renderColumnCells("", "DIR", escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
                 continue;
             }
             const iconType = getFileIconType(item.name) || item.category || "other";
@@ -13084,7 +13180,7 @@ const TWIN = (() => {
             const full = base + item.name;
             const thumb = grid && item.category === "image"
                 ? `<img class="file-thumbnail lazy" ${p.source === "local" ? `data-tlocal="${escapeHtml(full)}"` : `data-src="${escapeHtml(hostedUrlIn(c, full))}"`} alt="" decoding="async">` : "";
-            html += `<div class="file-card" role="button" tabindex="-1" data-n="${name}" data-t="f" aria-label="Open file ${name}">${thumb}<div class="file-icon ${iconType}${xc}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div>${starHtml(c, "file", full)}<div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid ? item.sizeFormatted : ""}</span></div>${grid ? "" : renderColumnCells(escapeHtml(getFileExtension(item.name)), item.sizeFormatted, escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
+            html += `<div class="file-card" role="button" tabindex="-1" data-n="${name}" data-t="f" aria-label="Open file ${name}">${starHtml(c, "file", full)}${thumb}<div class="file-icon ${iconType}${xc}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid ? item.sizeFormatted : ""}</span></div>${grid ? "" : renderColumnCells(escapeHtml(getFileExtension(item.name)), item.sizeFormatted, escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
         }
         html += "</div>";
         if (!all.length) html += emptyHtml("Empty folder.");
@@ -13132,7 +13228,7 @@ const TWIN = (() => {
             const thumb = grid && !dir && item.category === "image"
                 ? `<img class="file-thumbnail lazy" ${p.source === "local" ? `data-tlocal="${escapeHtml(item.fullPath)}"` : `data-src="${escapeHtml(hostedUrlIn(c, item.fullPath))}"`} alt="" decoding="async">` : "";
             const meta = dir ? (grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : "") : item.sizeFormatted;
-            html += `<div class="file-card${dir ? " directory" : ""}" role="button" tabindex="-1" data-r="${idx}" aria-label="${dir ? "Open folder " : "Open file "}${name}">${thumb}<div class="file-icon ${iconType}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div>${starHtml(c, dir ? "folder" : "file", dir ? item.navPath : item.fullPath)}<div class="file-info"><span class="file-name">${highlightMatch(item.name, q)}</span><span class="file-meta">${meta}${where ? `<span class="file-path">${where}</span>` : ""}</span></div></div>`;
+            html += `<div class="file-card${dir ? " directory" : ""}" role="button" tabindex="-1" data-r="${idx}" aria-label="${dir ? "Open folder " : "Open file "}${name}">${starHtml(c, dir ? "folder" : "file", dir ? item.navPath : item.fullPath)}${thumb}<div class="file-icon ${iconType}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${highlightMatch(item.name, q)}</span><span class="file-meta">${meta}${where ? `<span class="file-path">${where}</span>` : ""}</span></div></div>`;
         });
         html += "</div>";
         if (!all.length) html += emptyHtml(`No results for \u201c${escapeHtml(raw)}\u201d.`);
@@ -13230,7 +13326,7 @@ const TWIN = (() => {
             html += '<div class="tw-fav-head">Pinned folders</div><div class="file-list tw-fav-list">';
             for (const arr of pins) {
                 const name = escapeHtml(arr[arr.length - 1]), where = arr.length > 1 ? arr.slice(0, -1).join("/") : (p.source === "local" ? LOCAL.name || "Local folder" : "Home");
-                html += `<div class="file-card directory" role="button" tabindex="-1" data-fav="d" data-fp="${escapeHtml(JSON.stringify(arr))}" aria-label="Open pinned folder ${name}" title="${escapeHtml(arr.join("/"))}"><div class="file-icon folder">${icons.folder}</div>${starHtml(c, "folder", arr)}<div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${escapeHtml(where)}</span></div></div>`;
+                html += `<div class="file-card directory" role="button" tabindex="-1" data-fav="d" data-fp="${escapeHtml(JSON.stringify(arr))}" aria-label="Open pinned folder ${name}" title="${escapeHtml(arr.join("/"))}">${starHtml(c, "folder", arr)}<div class="file-icon folder">${icons.folder}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${escapeHtml(where)}</span></div></div>`;
             }
             html += "</div>";
         }
@@ -13240,7 +13336,7 @@ const TWIN = (() => {
                 const item = c.filesByPath.get(path), name = escapeHtml(item ? item.name : path.substring(path.lastIndexOf("/") + 1));
                 const iconType = item ? getFileIconType(item.name) || item.category || "other" : "other";
                 const segs = path.split("/").slice(0, -1), where = segs.length ? segs.join("/") : (p.source === "local" ? LOCAL.name || "Local folder" : "Home");
-                html += `<div class="file-card" role="button" tabindex="-1" data-fav="f" data-fpath="${escapeHtml(path)}" aria-label="Open favorite file ${name}" title="${escapeHtml(path)}"><div class="file-icon ${iconType}">${icons[iconType] || icons.other}</div>${starHtml(c, "file", path)}<div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${escapeHtml(where)}</span></div></div>`;
+                html += `<div class="file-card" role="button" tabindex="-1" data-fav="f" data-fpath="${escapeHtml(path)}" aria-label="Open favorite file ${name}" title="${escapeHtml(path)}">${starHtml(c, "file", path)}<div class="file-icon ${iconType}">${icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${escapeHtml(where)}</span></div></div>`;
             }
             html += "</div>";
         }
@@ -13308,6 +13404,16 @@ const TWIN = (() => {
     }
     function renderAll(keepScroll) { T.panes.forEach((p) => renderPane(p.id, keepScroll)); syncInputs(); }
 
+    // The panel whose track is collapsed to nothing (-1 when both are visible). The first track belongs to panel 1 unless the panels are swapped.
+    function curtainId() {
+        if (T.r <= 0) return T.flip ? 1 : 0;
+        if (T.r >= 100) return T.flip ? 0 : 1;
+        return -1;
+    }
+    // Something wants to show a panel that is tucked away: bring it back to an even split.
+    function uncurtain(p) {
+        if (p && curtainId() === p.id) { T.r = 50; applyLayout(); }
+    }
     function applyLayout() {
         const tw = $("twin"), sp = tw.querySelector(".tw-split");
         tw.style.setProperty("--tw-a", T.r + "fr");
@@ -13324,6 +13430,25 @@ const TWIN = (() => {
         }
         sp.classList.toggle("centered", Math.abs(T.r - 50) < 0.05);
         sp.setAttribute("aria-valuenow", String(Math.round(T.r)));
+        // Curtain: the panel in a collapsed track is tucked away, not closed (a player inside keeps playing).
+        const cur = curtainId();
+        if (T.panes.length) {
+            if (cur !== -1 && T.active === cur) {
+                T.active = 1 - cur;
+                T.panes.forEach((q) => { const pe = paneEl(q.id); if (pe) pe.classList.toggle("active", q.id === T.active); });
+            }
+            T.panes.forEach((q) => {
+                const pe = paneEl(q.id);
+                if (!pe) return;
+                if (q.id === cur) { pe.setAttribute("data-curtain", ""); pe.setAttribute("inert", ""); pe.setAttribute("aria-hidden", "true"); }
+                else { pe.removeAttribute("data-curtain"); pe.removeAttribute("inert"); pe.removeAttribute("aria-hidden"); }
+            });
+        }
+        if (cur !== -1) tw.setAttribute("data-curtain", String(cur)); else tw.removeAttribute("data-curtain");
+        if (T.ready && cur !== T.lastCurtain) {
+            announce(cur !== -1 ? `Panel ${cur + 1} tucked away, still running. Drag the divider back to show it.` : "Both panels visible");
+        }
+        T.lastCurtain = cur;
         sp.setAttribute("aria-orientation", isStacked() ? "horizontal" : "vertical");
         if (T.ready && T.panes.length) syncInputs();
         const mx = sp.querySelector('[data-act="max"]');
@@ -13348,6 +13473,7 @@ const TWIN = (() => {
     }
     function go(p, path, o) {
         o = o || {};
+        uncurtain(p);
         if (p.mode !== "list") { closePreview(p, true); if (p.mode !== "list") return; }
         p.path = path;
         p.tab = "files";
@@ -13411,6 +13537,7 @@ const TWIN = (() => {
     }
     function same() {
         const s = T.panes[T.active], o = T.panes[1 - T.active];
+        uncurtain(o);
         closePreview(o, true);
         if (o.mode !== "list") return;
         o.memo[o.source] = o.path;
@@ -13916,7 +14043,16 @@ const TWIN = (() => {
     function splitKey(e) {
         const stacked = isStacked();
         const dec = stacked ? "ArrowUp" : "ArrowLeft", inc = stacked ? "ArrowDown" : "ArrowRight";
-        if (e.key === dec || e.key === inc) { e.preventDefault(); T.r = Math.max(15, Math.min(85, T.r + (e.key === inc ? 2 : -2))); applyLayout(); save(); }
+        if (e.key === dec || e.key === inc) {
+            e.preventDefault();
+            const step = e.key === inc ? 2 : -2;
+            let v = T.r + step;
+            if (T.r <= 0 && step > 0) v = 15;
+            else if (T.r >= 100 && step < 0) v = 85;
+            else if (v < 15) v = T.r <= 15 ? 0 : 15;
+            else if (v > 85) v = T.r >= 85 ? 100 : 85;
+            T.r = v; applyLayout(); save();
+        }
         else if (e.key === "Home" || e.key === "Enter") { e.preventDefault(); T.r = 50; applyLayout(); save(); }
     }
     function wireSplit() {
@@ -13927,14 +14063,22 @@ const TWIN = (() => {
             sp.setPointerCapture(e.pointerId);
             sp.classList.add("dragging");
             const rect = tw.getBoundingClientRect();
-            let wasSnapped = Math.abs(T.r - 50) < 0.05;
+            const isSnap = (x) => x === 0 || x === 50 || x === 100;
+            let wasSnapped = isSnap(T.r) || Math.abs(T.r - 50) < 0.05;
             const move = (ev) => {
                 const size = isStacked() ? rect.height : rect.width;
-                const r = (isStacked() ? ev.clientY - rect.top : ev.clientX - rect.left) / size;
-                let v = Math.round(Math.max(15, Math.min(85, r * 100)) * 10) / 10;
-                // Magnet: within ~18px of the middle the divider locks to exactly 50/50, so resetting is just a nudge.
-                const snapped = Math.abs(v - 50) <= (18 / size) * 100;
-                if (snapped) v = 50;
+                const px = isStacked() ? ev.clientY - rect.top : ev.clientX - rect.left;
+                // Magnets: the middle locks to exactly 50/50 (within ~18px), and each edge tucks its panel away behind the curtain
+                // (within half of the smallest visible size). In between, a panel never gets smaller than 15%.
+                const zone = Math.max(40, size * 0.15 * 0.5);
+                let v;
+                if (px <= zone) v = 0;
+                else if (px >= size - zone) v = 100;
+                else {
+                    v = Math.round(Math.max(15, Math.min(85, (px / size) * 100)) * 10) / 10;
+                    if (Math.abs(v - 50) <= (18 / size) * 100) v = 50;
+                }
+                const snapped = isSnap(v);
                 if (snapped && !wasSnapped && navigator.vibrate) { try { navigator.vibrate(8); } catch (err) { } }
                 wasSnapped = snapped;
                 T.r = v;
@@ -14064,7 +14208,7 @@ const TWIN = (() => {
                     <div class="meta-bar tw-meta" tabindex="0" role="region" aria-label="File details" hidden></div>
                 </div>
                 <div class="tw-media"></div></section>`;
-            tw.innerHTML = shell(0) + `<div class="tw-split" role="separator" tabindex="0" aria-label="Resize the panels" aria-valuemin="15" aria-valuemax="85" aria-valuenow="50" title="Drag to resize (it snaps to 50/50 near the middle), double-click to reset">
+            tw.innerHTML = shell(0) + `<div class="tw-split" role="separator" tabindex="0" aria-label="Resize the panels" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" title="Drag to resize. It snaps to 50/50 in the middle and tucks a panel away at either edge (it keeps playing). Double-click to reset.">
                 <span class="tw-split-tools">
                     <button type="button" data-act="swap" title="Swap the two panels" aria-label="Swap the two panels">${ICON.swap}</button>
                     <button type="button" data-act="layout" title="Stack the panels top and bottom" aria-label="Stack the panels top and bottom">${ICON.rows}</button>
@@ -14074,7 +14218,7 @@ const TWIN = (() => {
             const s = load();
             T.panes = [paneFromSaved(0, s && s.panes && s.panes[0]), paneFromSaved(1, s && s.panes && s.panes[1])];
             if (s) {
-                if (typeof s.r === "number") T.r = Math.max(15, Math.min(85, s.r));
+                if (typeof s.r === "number") { T.r = Math.max(0, Math.min(100, s.r)); if (T.r > 0 && T.r < 15) T.r = 15; if (T.r < 100 && T.r > 85) T.r = 85; }
                 if (s.active === 1) T.active = 1;
                 if (s.flip === true) T.flip = true;
                 if (s.vert === true) T.vert = true;
