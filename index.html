@@ -85,7 +85,7 @@ html[data-theme="light"] {
     --danger: #b3261e;
     --danger-solid: #b3261e;
     --border-strong: #8a8a8a;
-    --icon-keep: 50%;
+    --icon-keep: 64%;
     color-scheme: light;
     --shadow-sm: none;
     --shadow-lg: none;
@@ -139,7 +139,7 @@ html[data-theme="hc-light"] {
     --accent-solid: var(--accent);
     --accent-solid-hover: var(--accent-hover);
     --border-strong: var(--border-color);
-    --icon-keep: 50%;
+    --icon-keep: 64%;
     color-scheme: light;
     --shadow-sm: none;
     --shadow-lg: none;
@@ -165,7 +165,7 @@ html[data-theme="hc-light"] {
         --danger: #b3261e;
         --danger-solid: #b3261e;
         --border-strong: #8a8a8a;
-        --icon-keep: 50%;
+        --icon-keep: 64%;
         color-scheme: light;
         --shadow-sm: none;
         --shadow-lg: none;
@@ -508,6 +508,7 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 .modal.video-modal.focus-view .playlist-bar, .modal.video-modal.focus-view .meta-bar { display: none !important; }
 /* Audio preview content tops out at 500px (.preview-audio-container), but the modal defaults to 95vw, leaving wide empty gutters; cap the modal to match. */
 .modal.compact-modal { max-width: 560px; }
+#modal:not(.tw-embedded) .modal:not(.has-gallery):not(.video-modal):where(:has(#playlistBar.active):has(.preview-audio-container)) { max-width: 680px; }
 .modal-overlay.active .modal { transform: scale(1); }
 .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; background: var(--bg-tertiary); border-bottom: var(--bw) solid var(--border-color); gap: 0.5rem; flex-shrink: 0; }
 .modal-title { font-size: 0.95rem; line-height: 1.4; font-weight: 700; letter-spacing: -0.005em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
@@ -534,6 +535,7 @@ body.native-player-mode .playlist-btn.top-native-btn { display: inline-flex; }
 .playlist-btn svg { width: 14px; height: 14px; }
 .playlist-btn.active { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); }
 .playlist-info { flex: 1 1 8rem; min-width: 0; display: flex; font-size: 0.8rem; color: var(--text-secondary); overflow: hidden; white-space: nowrap; line-height: 1.4; }
+#playlistBar .playlist-track .pl-title { display: none; }
 .playlist-track { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); font-weight: 500; }
 .playlist-bar #playlistTest, .playlist-bar #playlistList, .playlist-bar #playlistSongs, .playlist-bar #playlistRec {
     box-sizing: border-box; height: var(--bar-btn-h); min-width: var(--bar-btn-w); padding-top: 0; padding-bottom: 0; line-height: 1; gap: 0.35rem;
@@ -1053,6 +1055,14 @@ body.is-recording .audio-icon .cache-tag { max-width: calc(100% - 3.2rem); }
     .file-list.list-columns .card-star-btn { opacity: 0.75; }
 }
 
+@media (pointer: coarse) {
+    .player-seek { height: 16px; }
+    .player-seek::-webkit-slider-thumb { margin-top: 0; }
+    html[data-theme="concrete"] .player-seek { height: 20px; }
+    html[data-theme="concrete"] .player-seek::-webkit-slider-thumb { margin-top: 2px; }
+    .header .search-input { min-height: 34px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .skeleton-block { animation: none; background: var(--skeleton-base); }
     .spinner { animation-duration: 2.4s; }
@@ -1452,6 +1462,8 @@ html[data-theme="concrete"] .empty-action { --c: var(--orange); }
 html[data-theme="concrete"] .md-toggle[aria-pressed="true"] { --c: var(--orange); }
 html[data-theme="concrete"] .load-more-btn { --c: var(--orange); }
 html[data-theme="concrete"] .card-star-btn.starred { --c: var(--yellow); }
+html[data-theme="concrete"] .card-star-btn:not(.starred):not(:hover):not(:focus-visible):not(:active) { background: transparent !important; border-color: transparent !important; box-shadow: none !important; }
+html[data-theme="concrete"] .card-star-btn:not(.starred):not(:hover):not(:focus-visible):not(:active) svg { color: var(--text); }
 html[data-theme="concrete"] input[type="file"]::file-selector-button { background: var(--orange); color: var(--ink); border: 2px solid var(--ink); font: inherit; font-weight: 900; text-transform: uppercase; padding: 4px 10px; margin-right: 10px; cursor: pointer; }
 html[data-theme="concrete"] .switch-slider { background: var(--ink); border: var(--bw) solid var(--line); transition: none; }
 html[data-theme="concrete"] .switch-slider::before { background: var(--muted); transition: none; }
@@ -1510,7 +1522,7 @@ html[data-theme="concrete"] .file-list-header .col.active,
 html[data-theme="concrete"] .file-list-header .col:hover { color: var(--yellow); }
 html[data-theme="concrete"] .file-name { font-weight: 700; }
 html[data-theme="concrete"] .file-icon { border: 2px solid var(--ink); background: var(--c, var(--line)); color: var(--ink); }
-html[data-theme="concrete"] .file-icon svg { color: var(--ink); }
+html[data-theme="concrete"] .file-icon svg { color: var(--ink); --bg-tertiary: var(--c, var(--line)); }
 html[data-theme="concrete"] .file-icon.folder { --c: var(--yellow); }
 html[data-theme="concrete"] .file-icon.image { --c: var(--pink); }
 html[data-theme="concrete"] .file-icon.video { --c: var(--red); }
@@ -1549,7 +1561,7 @@ html[data-theme="concrete"] .audio-icon { background: var(--ink); }
 html[data-theme="concrete"] .audio-icon .stream-tag,
 html[data-theme="concrete"] .audio-icon .cache-tag { border-width: 2px; background: var(--concrete); color: var(--text); }
 html[data-theme="concrete"] .player-bar { background: var(--ink); }
-html[data-theme="concrete"] .player-seek { height: 14px; background: var(--ink); }
+html[data-theme="concrete"] .player-seek { height: 14px; background: linear-gradient(to right, var(--yellow) var(--seek-pct, 0%), color-mix(in srgb, var(--yellow) 38%, var(--ink)) var(--seek-pct, 0%), color-mix(in srgb, var(--yellow) 38%, var(--ink)) var(--seek-cache, 0%), var(--ink) var(--seek-cache, 0%)); }
 html[data-theme="concrete"] .player-seek::-webkit-slider-thumb { width: 12px; height: 12px; margin-top: -1px; background: var(--yellow); border: 2px solid var(--ink); }
 html[data-theme="concrete"] .player-seek::-moz-range-thumb { width: 8px; height: 8px; background: var(--yellow); border: 2px solid var(--ink); }
 html[data-theme="concrete"] .rec-dot { background: var(--red); }
@@ -1590,7 +1602,7 @@ body.twin-on .header-actions { margin-left: auto; }
 /* The active panel (the target of Tab, the keyboard and the copy-folder button) is framed in the accent colour with a tinted header; the other one is quieter. */
 .tw-pane { transition: opacity 0.12s ease; }
 .tw-pane.active { border-top-color: var(--accent); outline: 2px solid var(--accent); outline-offset: calc(-1 * var(--bw) - 1px); z-index: 1; }
-.tw-pane:not(.active) .tw-scroll, .tw-pane:not(.active) .tw-status { opacity: 0.72; }
+.tw-pane:not(.active) .tw-scroll, .tw-pane:not(.active) .tw-status { opacity: 0.88; }
 .tw-pane:not(.active) .tw-head { background: var(--bg-secondary); color: var(--text-muted); }
 @media (prefers-reduced-motion: reduce) { .tw-pane { transition: none; } }
 .tw-head { position: relative; display: flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.4rem; background: var(--bg-secondary); border-bottom: var(--bw) solid var(--border-color); flex-shrink: 0; min-width: 0; }
@@ -2482,10 +2494,8 @@ const playerNoteIcons = [
     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 16v-4a9 9 0 0 1 18 0v4"/><rect x="1" y="15" width="4.6" height="7.4" rx="2.1" fill="currentColor" stroke="none"/><rect x="18.4" y="15" width="4.6" height="7.4" rx="2.1" fill="currentColor" stroke="none"/></svg>`,
     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4.5 15v-2.5a7.5 7.5 0 0 1 15 0v2.5"/><circle cx="4" cy="17" r="3" fill="currentColor" stroke="none"/><circle cx="20" cy="17" r="3" fill="currentColor" stroke="none"/></svg>`,
     `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5.5" cy="5.5" r="3"/><circle cx="18.5" cy="5.5" r="3"/><path d="M5.5 8.5 C 5.5 16, 9.5 17, 9.5 22" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M18.5 8.5 C 18.5 16, 14 17, 12 18.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>`,
-    
     `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 13.5v-2a8 8 0 0 1 16 0v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="2.5" y="12.5" width="4" height="6.4" rx="1.6"/><rect x="17.5" y="12.5" width="4" height="6.4" rx="1.6"/></svg>`,
     `<svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="6" cy="12" rx="2.6" ry="4.4"/><ellipse cx="18" cy="12" rx="2.6" ry="4.4"/><path d="M6 8V6.5A6 6 0 0 1 18 6.5V8" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>`,
-    
     `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a7.5 7.5 0 0 0-7.5 7.5V17a2 2 0 0 0 2 2H8a1 1 0 0 0 1-1v-4.5a1 1 0 0 0-1-1H6.1V10.5a5.9 5.9 0 0 1 11.8 0V12.5H16a1 1 0 0 0-1 1V18a1 1 0 0 0 1 1h1.5a2 2 0 0 0 2-2v-6.5A7.5 7.5 0 0 0 12 3z"/></svg>`,
     `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="8.5" y="1.5" width="7" height="13" rx="3.5"/><path d="M7.5 6.5h9M7.5 9.5h9M7.5 12.5h9" stroke="var(--bg-tertiary)" stroke-width="1"/><path d="M5.5 12.5a6.5 6.5 0 0 0 13 0" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="1.8"/><line x1="7.5" y1="23" x2="16.5" y2="23" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
     `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="9" y="1" width="6" height="12" rx="3"/><path d="M6 12a6 6 0 0 0 12 0" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/><line x1="12" y1="18" x2="12" y2="21" stroke="currentColor" stroke-width="1.8"/><path d="M17 5 L21.5 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M17 8 L22 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><rect x="6" y="21.5" width="12" height="1.8" rx="0.8"/></svg>`,
@@ -2644,10 +2654,6 @@ const playerNoteIcons = [
     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17h4V7h6v10h6V7h4"/></svg>`,
     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17 8 7v10l6-10v10l6-10v10"/></svg>`,
     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l4-7 6 14 6-14 4 7"/></svg>`,
-    `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 5h14M2 10h14M2 15h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 13l8 4.500-8 4.500z"/></svg>`,
-    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h3c6 0 7 10 13 10h3M2 17h3c2.500 0 4-1.800 5-3.800M13 9.800c1-1.700 2.700-2.800 5-2.800h3"/><path d="M18.500 4 22 7l-3.500 3M18.500 14l3.500 3-3.500 3"/></svg>`,
-    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11V9a3 3 0 0 1 3-3h14M21 13v2a3 3 0 0 1-3 3H4"/><path d="M17 3l3.500 3L17 9M7 15l-3.500 3L7 21"/></svg>`,
-    `<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5.500"/></svg>`,
     `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 19a5 5 0 0 1-.6-9.950A6.500 6.500 0 0 1 18.800 8.500 5.250 5.250 0 0 1 18 19z"/><path d="M11 16.500V10.500l5-1V15" stroke="var(--bg-tertiary)" stroke-width="1.300" fill="none"/><circle cx="9.800" cy="16.500" r="1.400" fill="var(--bg-tertiary)"/><circle cx="14.800" cy="15" r="1.400" fill="var(--bg-tertiary)"/></svg>`,
     `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 6h14c-.5 4-1.2 6-2.2 8L16 21H8l-.8-7C6.200 12 5.500 10 5 6z"/><ellipse cx="12" cy="6" rx="7" ry="2.200" fill="var(--bg-tertiary)" stroke="currentColor" stroke-width="1.300"/><path d="M6.500 12h11M7.500 16.500h9" stroke="var(--bg-tertiary)" stroke-width="1"/></svg>`,
     `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 6h10l4 14H3z"/><path d="M9 6V3.500h6V6" fill="none" stroke="currentColor" stroke-width="1.500"/><ellipse cx="12" cy="20" rx="9" ry="1.800" fill="var(--bg-tertiary)"/><rect x="9.500" y="9" width="5" height="3" rx="1" fill="var(--bg-tertiary)"/></svg>`,
