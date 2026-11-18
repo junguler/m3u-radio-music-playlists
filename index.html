@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <script>(function(){try{window.__idx={};var L="./file_index_lean.json",F="./file_index.json";function get(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("Failed to load "+u);return r.json();});}var lp=get(L);lp.catch(function(){});window.__idx[L]=lp;var fp=lp.then(function(){},function(){}).then(function(){return get(F);});fp.catch(function(){});window.__idx[F]=fp;}catch(e){}})();</script>
     <script>(function(){try{var t=localStorage.getItem("theme");if(t==="concrete-custom"){t="concrete";localStorage.setItem("theme",t);}if(t==="vivid")document.documentElement.setAttribute("data-vivid","1");else if(t&&t!=="auto")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="referrer" content="no-referrer" />
     <meta name="theme-color" content="#1a1a1a" />
     <title>File Viewer</title>
@@ -537,7 +537,7 @@ body.native-player-mode .playlist-btn.top-native-btn { display: inline-flex; }
 .playlist-info { flex: 1 1 8rem; min-width: 0; display: flex; font-size: 0.8rem; color: var(--text-secondary); overflow: hidden; white-space: nowrap; line-height: 1.4; }
 #playlistBar .playlist-track .pl-title { display: none; }
 .playlist-track { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); font-weight: 500; }
-.playlist-bar #playlistTest, .playlist-bar #playlistList, .playlist-bar #playlistSongs, .playlist-bar #playlistRec {
+.playlist-bar #playlistTest, .playlist-bar #playlistList, .playlist-bar #playlistSongs, .playlist-bar #playlistQuality, .playlist-bar #playlistRec {
     box-sizing: border-box; height: var(--bar-btn-h); min-width: var(--bar-btn-w); padding-top: 0; padding-bottom: 0; line-height: 1; gap: 0.35rem;
     display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; white-space: nowrap;
 }
@@ -548,10 +548,10 @@ body[data-btn-style="labels"] .playlist-bar .playlist-btn svg, body[data-btn-sty
 body[data-btn-style="icons"] .playlist-bar .playlist-btn .btn-txt, body[data-btn-style="icons"] .rec-panel .playlist-btn .blabel,
 body[data-btn-style="icons"] .rec-panel .playlist-btn .lbl-long, body[data-btn-style="icons"] .rec-panel .playlist-btn .lbl-short { display: none !important; }
 body[data-btn-style="icons"] .playlist-bar .playlist-btn svg, body[data-btn-style="icons"] .rec-panel .playlist-btn svg { display: block !important; }
-body[data-btn-style="icons"] .playlist-bar #playlistTest, body[data-btn-style="icons"] .playlist-bar #playlistList, body[data-btn-style="icons"] .playlist-bar #playlistSongs, body[data-btn-style="icons"] .playlist-bar #playlistRec { min-width: var(--bar-btn-w); padding-left: 0.35rem; padding-right: 0.35rem; }
+body[data-btn-style="icons"] .playlist-bar #playlistTest, body[data-btn-style="icons"] .playlist-bar #playlistList, body[data-btn-style="icons"] .playlist-bar #playlistSongs, body[data-btn-style="icons"] .playlist-bar #playlistQuality, body[data-btn-style="icons"] .playlist-bar #playlistRec { min-width: var(--bar-btn-w); padding-left: 0.35rem; padding-right: 0.35rem; }
 body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding: 0 0.5rem; }
 .playlist-bar .bar-break { display: none; flex: 0 0 100%; height: 0; }
-.playlist-bar #playlistTest[hidden], .playlist-bar #playlistSongs[hidden], .playlist-bar #playlistRec[hidden] { display: none; }
+.playlist-bar #playlistTest[hidden], .playlist-bar #playlistSongs[hidden], .playlist-bar #playlistQuality[hidden], .playlist-bar #playlistRec[hidden] { display: none; }
 .goto-quick { display: flex; align-items: center; gap: 0.35rem; }
 .goto-input { width: 3.4rem; height: var(--bar-btn-h); box-sizing: border-box; text-align: center; background: var(--control-surface); border: var(--bw) solid var(--border-strong); border-radius: var(--radius); color: var(--on-control); font-size: 0.8rem; padding: 0.35rem 0.2rem; -moz-appearance: textfield; }
 .goto-input::-webkit-outer-spin-button, .goto-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
@@ -774,13 +774,13 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
     .lbl-long { display: none; }
     .lbl-short { display: inline; }
     .playlist-bar { gap: 0.4rem; }
-    .playlist-bar #playlistTest, .playlist-bar #playlistList, .playlist-bar #playlistSongs, .playlist-bar #playlistRec { padding-left: 0.35rem; padding-right: 0.35rem; }
+    .playlist-bar #playlistTest, .playlist-bar #playlistList, .playlist-bar #playlistSongs, .playlist-bar #playlistQuality, .playlist-bar #playlistRec { padding-left: 0.35rem; padding-right: 0.35rem; }
 }
 /* Mobile: the station + song under the glyph are the one place the station is named, so the header title and the bar's title line are hidden, leaving the track controls and Test / Songs / Record on one row. */
 @container (max-width: 400px) {
-    .playlist-bar #playlistTest:not(.active) .btn-txt, .playlist-bar #playlistList .btn-txt, .playlist-bar #playlistSongs .btn-txt, .playlist-bar #playlistRec:not(.rec-on) .btn-txt { display: none; }
+    .playlist-bar #playlistTest:not(.active) .btn-txt, .playlist-bar #playlistList .btn-txt, .playlist-bar #playlistSongs .btn-txt, .playlist-bar #playlistQuality .btn-txt, .playlist-bar #playlistRec:not(.rec-on) .btn-txt { display: none; }
 }
-body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistList .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistSongs .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistRec .btn-txt { display: inline; }
+body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistList .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistSongs .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistQuality .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistRec .btn-txt { display: inline; }
 @media (max-width: 640px) {
     .modal:has(.playlist-bar.active) .modal-title { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; flex: none; }
     .modal:has(.playlist-bar.active) .modal-actions { margin-left: auto; }
@@ -947,6 +947,24 @@ html[data-theme="concrete"] .file-grid .file-card > .file-icon > svg.ib { width:
 .pv-input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .pv-status { min-height: 1.3em; margin: 0.8rem 0 0; font-size: 0.8rem; line-height: 1.45; color: var(--text-secondary); overflow-wrap: anywhere; }
 .pv-status.err { color: #e5675b; }
+.src-help { margin: 0 0 0.2rem; padding-left: 1.1rem; font-size: 0.8rem; line-height: 1.45; color: var(--text-secondary); }
+.src-help li + li { margin-top: 0.25rem; }
+.src-row { display: flex; gap: 0.4rem; align-items: stretch; }
+.src-row .pv-input { flex: 1; min-width: 0; }
+.src-drop { display: inline-flex; align-items: center; justify-content: center; padding: 0 0.5rem; }
+.src-recent { margin-top: 0.35rem; max-height: 11rem; overflow-y: auto; background: var(--control-surface, var(--bg-tertiary)); border: var(--bw) solid var(--border-color); border-radius: var(--radius); }
+.src-recent[hidden] { display: none; }
+.src-item { display: block; width: 100%; text-align: left; padding: 0.4rem 0.6rem; background: none; border: 0; color: var(--text-primary); font: inherit; font-size: 0.8rem; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.src-item:hover, .src-item:focus-visible { background: var(--bg-hover); outline: none; }
+.src-item + .src-item { border-top: var(--bw) solid var(--border-color); }
+.src-forget { color: var(--text-muted); font-size: 0.75rem; }
+.src-empty { display: block; padding: 0.5rem 0.6rem; font-size: 0.8rem; color: var(--text-muted); }
+.q-menu { position: fixed; z-index: 3000; min-width: 12rem; max-width: min(92vw, 22rem); max-height: 70vh; overflow-y: auto; background: var(--bg-secondary); color: var(--text-primary); border: var(--bw) solid var(--border-color); border-radius: var(--radius-lg); padding: 0.25rem; }
+.q-item { display: flex; align-items: center; gap: 0.45rem; width: 100%; padding: 0.45rem 0.6rem; background: none; border: 0; border-radius: var(--radius); color: inherit; font: inherit; font-size: 0.85rem; text-align: left; cursor: pointer; }
+.q-item:hover, .q-item:focus-visible { background: var(--bg-hover); outline: none; }
+.q-item.on { font-weight: 700; }
+.q-mark { width: 1em; flex: 0 0 1em; color: var(--accent); }
+#playlistQuality[data-manual="1"] { border-color: var(--accent); }
 .pv-actions { display: flex; gap: 0.5rem; margin-top: 0.8rem; }
 
 /* Thumbnail size (S / M / L) in the stats line of the main grid and in the head of a twin panel showing a grid */
@@ -1056,11 +1074,48 @@ body.is-recording .audio-icon .cache-tag { max-width: calc(100% - 3.2rem); }
 }
 
 @media (pointer: coarse) {
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea { font-size: max(16px, 1em); }
     .player-seek { height: 16px; }
     .player-seek::-webkit-slider-thumb { margin-top: 0; }
     html[data-theme="concrete"] .player-seek { height: 20px; }
     html[data-theme="concrete"] .player-seek::-webkit-slider-thumb { margin-top: 2px; }
     .header .search-input { min-height: 34px; }
+}
+
+/* --- Selecting several items --- */
+.file-card.selected { background: color-mix(in srgb, var(--accent) 16%, var(--bg-secondary)) !important; box-shadow: inset 4px 0 0 var(--accent) !important; }
+.file-card.selected:focus-visible { outline-offset: -2px; }
+body.sel-on .main { padding-bottom: 5rem; }
+.sel-bar { position: fixed; left: 50%; transform: translateX(-50%); width: max-content; bottom: calc(env(safe-area-inset-bottom, 0px) + 0.75rem); z-index: 900; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.375rem 0.5rem; max-width: calc(100vw - 1.5rem); padding: 0.5rem 0.625rem; background: var(--bg-secondary); color: var(--text-primary); border: var(--bw) solid var(--border-strong); border-radius: var(--radius); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35); }
+.sel-bar[hidden] { display: none; }
+.sel-count { font-weight: 600; font-size: 0.85rem; padding: 0 0.25rem; white-space: nowrap; }
+.sel-btn { font: inherit; font-size: 0.8rem; color: var(--text-primary); background: var(--bg-tertiary); border: var(--bw) solid var(--border-strong); border-radius: var(--radius); padding: 0.375rem 0.7rem; min-height: 2rem; cursor: pointer; }
+.sel-btn:hover:not(:disabled) { background: var(--bg-hover); }
+.sel-btn:disabled { opacity: 0.45; cursor: default; }
+.sel-btn[hidden] { display: none; }
+html[data-theme="concrete"] .file-card.selected { background: var(--yellow) !important; color: var(--ink) !important; box-shadow: none !important; outline: 3px solid var(--text) !important; outline-offset: -3px; }
+html[data-theme="concrete"] .file-card.selected .file-name, html[data-theme="concrete"] .file-card.selected .file-meta, html[data-theme="concrete"] .file-card.selected .col-ext, html[data-theme="concrete"] .file-card.selected .col-size, html[data-theme="concrete"] .file-card.selected .col-date, html[data-theme="concrete"] .file-card.selected .col-time, html[data-theme="concrete"] .file-card.selected .card-star-btn svg { color: var(--ink) !important; }
+html[data-theme="concrete"] .sel-bar { background: var(--yellow); color: var(--ink); border: var(--bw) solid var(--ink); box-shadow: 5px 5px 0 var(--text); border-radius: 0; }
+html[data-theme="concrete"] .sel-count { color: var(--ink); }
+html[data-theme="concrete"] .sel-btn { background: #fff; color: var(--ink); border: var(--bw) solid var(--ink); border-radius: 0; box-shadow: 2px 2px 0 var(--ink); font-weight: 700; text-transform: uppercase; }
+html[data-theme="concrete"] .sel-btn:hover:not(:disabled) { background: var(--orange); }
+@media (max-width: 640px) { .sel-bar { left: 0.75rem; right: 0.75rem; transform: none; max-width: none; width: auto; } .sel-count { flex: 1 1 100%; text-align: center; } }
+/* --- Print: the file list, or just the open preview when one is open; no app chrome, black on white --- */
+@media print {
+    html, body { height: auto !important; overflow: visible !important; display: block !important; font-size: 11pt; }
+    html, body, .app-container, .main, .modal, .modal-body, .modal-header { background: #fff !important; color: #000 !important; }
+    .sel-bar, .header, #treePanel, #twin, .skip-link, .tree-resize, .modal-actions, .playlist-bar, .player-bar, .player-info-btn, .settings-menu, .op-toast, .card-star-btn,
+    .modal-overlay:not(.active), #loadMoreBtn, .load-more-btn { display: none !important; }
+    .app-container, .main { display: block !important; height: auto !important; overflow: visible !important; padding: 0 !important; }
+    body:has(#modal.active) .header, body:has(#modal.active) .app-container { display: none !important; }
+    .modal-overlay.active { position: static !important; display: block !important; opacity: 1 !important; visibility: visible !important; background: none !important; padding: 0 !important; }
+    .modal { position: static !important; display: block !important; width: auto !important; max-width: none !important; height: auto !important; max-height: none !important; transform: none !important; border: 0 !important; box-shadow: none !important; }
+    .modal-header { border-bottom: 1pt solid #000 !important; }
+    .modal-body { overflow: visible !important; display: block !important; }
+    .file-card { break-inside: avoid; background: none !important; border-bottom: 0.5pt solid #999 !important; box-shadow: none !important; }
+    a { color: #000 !important; }
+    .file-icon.folder, .file-icon.folder svg { color: #000 !important; }
+    .file-icon { background: none !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1441,7 +1496,7 @@ html[data-theme="concrete"] .playlist-btn.active { --c: var(--orange); }
 html[data-theme="concrete"] #playlistTest { --c: var(--blue); }
 html[data-theme="concrete"] #playlistTest.active { --c: var(--orange); }
 html[data-theme="concrete"] #playlistList { --c: var(--violet); }
-html[data-theme="concrete"] #playlistSongs { --c: var(--yellow); }
+html[data-theme="concrete"] #playlistSongs, html[data-theme="concrete"] #playlistQuality { --c: var(--yellow); }
 html[data-theme="concrete"] #playlistRec { --c: var(--orange); }
 html[data-theme="concrete"] #playlistRec.rec-on { --c: var(--red); }
 html[data-theme="concrete"] #playPauseBtn { --c: var(--orange); }
@@ -1829,7 +1884,7 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
     <header class="header">
         <div class="header-content">
             <h1 class="sr-only">File Viewer</h1>
-            <div class="logo" id="logoHome" role="button" tabindex="0" aria-label="Go to home folder">
+            <div class="logo" id="logoHome" role="button" tabindex="0" aria-label="File Viewer, go to home folder">
                 <svg viewBox="0 0 24 24" fill="currentcolor"><rect x="2" y="5" width="20" height="14"/><circle cx="8" cy="12" r="2.4" fill="var(--bg-secondary)"/><circle cx="16" cy="12" r="2.4" fill="var(--bg-secondary)"/><circle cx="8" cy="12" r="0.8"/><circle cx="16" cy="12" r="0.8"/><rect x="10" y="15.6" width="4" height="1.6" fill="var(--bg-secondary)"/></svg>
                 <span>File Viewer</span>
             </div>
@@ -1838,7 +1893,7 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
             <div class="header-actions">
                 <div class="search-container" id="searchBox0">
                     <svg class="search-icon" viewBox="0 0 24 24" fill="currentcolor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61.0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                    <input class="search-input" id="search" placeholder="Search..." autocomplete="off" aria-label="Search files" />
+                    <input class="search-input" id="search" placeholder="Search..." autocomplete="off" aria-label="Search files" title="Filters: ext:m3u  type:audio  size:>1mb  newer:7d  in:folder  -word" />
                     <button class="search-clear" id="searchClearBtn" type="button" title="Clear search" aria-label="Clear search">
                         <svg viewBox="0 0 24 24" fill="currentcolor" width="12" height="12"><use href="#icon-x"/></svg>
                     </button>
@@ -1852,6 +1907,7 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
                 </div>
                 <div class="header-tools">
                 <button class="settings-btn" id="localBtn" title="Open a local folder (works offline)" aria-label="Open a local folder"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg></button>
+                <button class="settings-btn" id="extraBtn" title="Load an extra source: a link or a file" aria-label="Load an extra source"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z" /></svg></button>
                 <button class="settings-btn" id="shortcutsBtn" title="Keyboard shortcuts" aria-label="Show keyboard shortcuts">
                     <svg viewBox="0 0 24 24" fill="currentcolor"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41.0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21.0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
                 </button>
@@ -1874,15 +1930,15 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
                                     <div class="settings-row">
                                         <span class="settings-label">Interface text <span id="fontSizeLabel">16px</span></span>
                                         <div class="settings-control">
-                                            <button id="fontDecrease" title="Decrease font size" aria-label="Decrease font size">A-</button>
-                                            <button id="fontIncrease" title="Increase font size" aria-label="Increase font size">A+</button>
+                                            <button id="fontDecrease" title="Decrease font size" aria-label="A-, decrease font size">A-</button>
+                                            <button id="fontIncrease" title="Increase font size" aria-label="A+, increase font size">A+</button>
                                         </div>
                                     </div>
                                     <div class="settings-row">
                                         <span class="settings-label">Preview text <span id="previewFontLabel">13px</span></span>
                                         <div class="settings-control">
-                                            <button id="previewFontDecrease" title="Decrease preview text size" aria-label="Decrease preview text size">A-</button>
-                                            <button id="previewFontIncrease" title="Increase preview text size" aria-label="Increase preview text size">A+</button>
+                                            <button id="previewFontDecrease" title="Decrease preview text size" aria-label="A-, decrease preview text size">A-</button>
+                                            <button id="previewFontIncrease" title="Increase preview text size" aria-label="A+, increase preview text size">A+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -2093,8 +2149,7 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
             <div class="tree-content" id="treeContent" role="tree" aria-label="Folders"></div>
             <div class="tree-resize" id="treeResize" role="separator" aria-orientation="vertical" aria-label="Resize the folder tree" tabindex="0" title="Drag to resize, double-click to reset"></div>
         </aside>
-        <h2 class="sr-only" id="mainHeading">Files</h2>
-        <main class="main" id="main" tabindex="-1" aria-labelledby="mainHeading">
+        <main class="main" id="main" tabindex="-1" aria-label="Files">
             <div class="skeleton-list" aria-hidden="true">
                 <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name"></div><div class="skeleton-block skeleton-meta"></div></div>
                 <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:60%"></div><div class="skeleton-block skeleton-meta"></div></div>
@@ -2140,6 +2195,7 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
                 <button class="playlist-btn" id="playlistList" title="Show the playlist" aria-label="Show the playlist"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 5h2v2H3zm4 0h14v2H7zM3 11h2v2H3zm4 0h14v2H7zM3 17h2v2H3zm4 0h14v2H7z"/></svg><span class="btn-txt">Playlist</span></button>
                 <button class="playlist-btn" id="playlistSongs" hidden title="Songs you heard" aria-label="Songs you heard"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg><span class="btn-txt">Songs</span></button>
                 <button class="playlist-btn" id="playlistRec" hidden title="Record this station and save it as audio files" aria-label="Record this station"><svg class="ico-c" viewBox="0 0 24 24" fill="currentcolor"><circle cx="12" cy="12" r="9" fill="none" stroke="currentcolor" stroke-width="2"/><circle class="rec-core" cx="12" cy="12" r="5"/></svg><span class="btn-txt">Record</span></button>
+                <button class="playlist-btn" id="playlistQuality" hidden aria-haspopup="menu" aria-expanded="false" title="Quality" aria-label="Choose the stream quality"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z" /></svg><span class="btn-txt">Quality</span></button>
             </div>
             <div class="modal-main" id="modalMain">
                 <aside class="gallery-rail" id="galleryRail" aria-label="Files in this folder" hidden></aside>
@@ -2162,6 +2218,8 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
             <div class="modal-body shortcuts-body">
                 <dl class="shortcuts-list">
                     <div class="shortcut-row"><dt><kbd>/</kbd></dt><dd>Focus search</dd></div>
+                    <div class="shortcut-row"><dt><code>ext:m3u</code> <code>type:audio</code> <code>size:&gt;1mb</code></dt><dd>Search filters</dd></div>
+                    <div class="shortcut-row"><dt><code>newer:7d</code> <code>in:folder</code> <code>-word</code></dt><dd>Recent, inside a folder, exclude</dd></div>
                     <div class="shortcut-row"><dt><kbd>?</kbd></dt><dd>Show this help</dd></div>
                     <div class="shortcut-row"><dt><kbd>Esc</kbd></dt><dd>Close dialog</dd></div>
                     <div class="shortcut-row"><dt><kbd>&uarr;</kbd><kbd>&darr;</kbd><kbd>&larr;</kbd><kbd>&rarr;</kbd></dt><dd>Navigate files &amp; folders</dd></div>
@@ -2275,6 +2333,33 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
             </div>
         </div>
     </div>
+    <div class="modal-overlay" id="sourceModal" role="dialog" aria-modal="true" aria-labelledby="sourceTitle">
+        <div class="modal stats-modal" id="sourceModalContent">
+            <div class="modal-header">
+                <span class="modal-title" id="sourceTitle">Load extra source</span>
+                <div class="modal-actions"><button class="modal-btn" id="sourceModalClose" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button></div>
+            </div>
+            <div class="modal-body stats-body">
+                <ul class="src-help">
+                    <li>Paste a link or choose a file from your device.</li>
+                    <li>Playlists and streams (m3u, m3u8, pls, xspf, asx, mp3, aac, mp4 …) open in the player; images, text, PDF and zip/tar open in the viewer.</li>
+                    <li>A link from another site must allow reading from other sites (CORS), otherwise download the file and choose it here.</li>
+                </ul>
+                <label class="pv-label" for="sourceInput">Link</label>
+                <div class="src-row">
+                    <input class="pv-input" id="sourceInput" type="text" inputmode="url" placeholder="https://example.com/radio.m3u8" autocomplete="off" autocapitalize="off" spellcheck="false" />
+                    <button type="button" class="theme-reset-btn local-pick src-drop" id="sourceDrop" aria-haspopup="listbox" aria-expanded="false" aria-controls="sourceRecent" title="Recent links" aria-label="Recent links"><svg viewBox="0 0 24 24" fill="currentcolor" width="16" height="16"><path d="M7 10l5 5 5-5z" /></svg></button>
+                </div>
+                <div class="src-recent" id="sourceRecent" role="listbox" aria-label="Recent links" hidden></div>
+                <p class="pv-status" id="sourceStatus" role="status"></p>
+                <div class="pv-actions">
+                    <button type="button" class="theme-reset-btn local-pick" id="sourceLoadBtn">Load</button>
+                    <button type="button" class="theme-reset-btn local-pick" id="sourceFileBtn">Choose file…</button>
+                </div>
+                <input type="file" id="sourceFileInput" hidden />
+            </div>
+        </div>
+    </div>
     <div id="srAnnouncer" class="sr-only" aria-live="polite" role="status"></div>
     <script>
 // Storage can throw just by being touched (blocked site data, hardened Firefox, some private modes): `store` is localStorage when it works,
@@ -2308,8 +2393,11 @@ let fileIndex = null,
 
 let searchQuery = "",
     // Search results are paged (the whole repo can match thousands of
-    // files). Folders are NOT paged: a folder always shows everything in it.
-    searchResultLimit = 100;
+    // files). Folders show everything in them; the one exception is a huge local folder (over FOLDER_PAGE_AT items), which grows as you scroll
+    // (and by "Show more", End or Down at the last item) so a folder of thousands of files does not build thousands of rows at once.
+    searchResultLimit = 100,
+    folderLimit = 500;
+const FOLDER_PAGE_AT = 2500; // far above the ~1k a hosted folder can hold, so only a huge local folder ever pages
 
 let currentFilePath = "",
     currentFileName = "",
@@ -3514,25 +3602,31 @@ function changePreviewFontSize(dir) {
     applyPreviewFontSize();
 }
 // "1536" -> "1.5 KB". Same format the index generator used to store.
+const SIZE_UNITS = ["B", "KB", "MB", "GB", "TB"];
 function formatFileSize(bytes) {
     if (!bytes || bytes < 0) return "0 B";
-    const k = 1024, units = ["B", "KB", "MB", "GB", "TB"];
-    const i = Math.min(Math.floor(Math.log(bytes) / Math.log(k)), units.length - 1);
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + units[i];
+    let i = 0, v = bytes;
+    while (v >= 1024 && i < 4) { v /= 1024; i++; }
+    return parseFloat(v.toFixed(2)) + " " + SIZE_UNITS[i];
 }
 function isPlaylistExtension(e) {
     const t = e.toLowerCase();
     return t.endsWith(".m3u") || t.endsWith(".m3u8");
 }
 function preprocessFiles(nodes, pathPrefix = "", prefixArr = []) {
+    // The folder's own lowercase and normalized forms are made once; each item only adds its (short) name to them.
+    const parentLower = pathPrefix.toLowerCase();
+    const parentNorm = parentLower.replace(/[^a-z0-9]+/g, " ").trim();
     for (const node of nodes) {
         const currentPathStr = pathPrefix ? `${pathPrefix}/${node.name}` : node.name;
-        const searchKey = currentPathStr.toLowerCase();
+        const nameLower = node.name.toLowerCase();
+        const searchKey = pathPrefix ? parentLower + "/" + nameLower : nameLower;
         const navPath = prefixArr.length ? [...prefixArr, node.name] : [node.name];
 
         // Search keys are built once per file: normalizedKey is the path lowercased with punctuation collapsed to single spaces.
         // The fuzzy keys (compactKey, boundarySet) are built on first use (see fuzzyKeys) to keep start-up and memory small.
-        const normalizedKey = searchKey.replace(/[^a-z0-9]+/g, " ").trim();
+        const nameNorm = nameLower.replace(/[^a-z0-9]+/g, " ").trim();
+        const normalizedKey = parentNorm ? (nameNorm ? parentNorm + " " + nameNorm : parentNorm) : nameNorm;
 
         // The modified date is parsed on first use (see itemDate). The index stores no "1.2 MB" string, so it is made here once from the byte size.
         if (node.type === "file" && node.sizeFormatted === undefined) {
@@ -3545,7 +3639,7 @@ function preprocessFiles(nodes, pathPrefix = "", prefixArr = []) {
             navPath: navPath,
             searchKey: searchKey,
             normalizedKey: normalizedKey,
-            parentPath: pathPrefix.toLowerCase()
+            parentPath: parentLower
         });
         if (node.type === "file") filesByPath.set(currentPathStr, allFiles[allFiles.length - 1]);
         if (node.type === "directory" && node.children) {
@@ -3653,23 +3747,96 @@ function scoreSearchItem(query, tokens, compactQuery, item) {
     return null;
 }
 
-// Runs the fuzzy search across every indexed file/folder, ranked by
+// ---- Search filters ----
+// Words of the form key:value narrow the results and combine with ordinary (fuzzy) words:
+//   ext:m3u,m3u8   type:folder | file | a category (audio, image, video, playlist, code, ...)   size:>1mb  size:<500kb  size:10kb..2mb
+//   newer:7d  older:3m  (d days, w weeks, m months, y years)   after:2026-01-01  before:2026-06-30   in:folder (path contains)
+//   A leading minus turns a filter around (-ext:json) or excludes a word (-backup).
+const SEARCH_UNITS = { b: 1, kb: 1024, mb: 1048576, gb: 1073741824, tb: 1099511627776 };
+function parseSize(v) {
+    const m = /^(\d+(?:\.\d+)?)\s*(b|kb|mb|gb|tb|k|m|g)?$/.exec(v);
+    if (!m) return null;
+    const u = m[2] || "b";
+    return parseFloat(m[1]) * SEARCH_UNITS[u.length === 1 && u !== "b" ? u + "b" : u];
+}
+function parseAge(v) {
+    const m = /^(\d+)\s*([dwmy])$/.exec(v);
+    if (!m) return null;
+    return Date.now() - parseInt(m[1], 10) * ({ d: 1, w: 7, m: 30, y: 365 }[m[2]]) * 86400000;
+}
+const searchParseCache = new Map();
+function parseSearch(q) {
+    const hit = searchParseCache.get(q);
+    if (hit) return hit;
+    const words = [], tests = [];
+    for (let tok of q.split(/\s+/).filter(Boolean)) {
+        let neg = false;
+        if (tok.length > 1 && tok[0] === "-") { neg = true; tok = tok.slice(1); }
+        const m = /^(ext|type|size|newer|older|after|before|in):(.+)$/.exec(tok);
+        let test = null;
+        if (m) {
+            const key = m[1], val = m[2];
+            if (key === "ext") {
+                const set = new Set(val.split(",").map((x) => x.replace(/^\./, "")).filter(Boolean));
+                test = (it) => { if (it.type === "directory") return false; const i = it.name.lastIndexOf("."); return i >= 0 && set.has(it.name.slice(i + 1).toLowerCase()); };
+            } else if (key === "type") {
+                const set = new Set(val.split(",").map((x) => x === "dir" || x === "directory" ? "folder" : x));
+                test = (it) => (it.type === "directory" ? set.has("folder") : set.has("file") || set.has(String(it.category || "").toLowerCase()));
+            } else if (key === "size") {
+                let a = null, b = null, mm;
+                if ((mm = /^>=?(.+)$/.exec(val))) a = parseSize(mm[1]);
+                else if ((mm = /^<=?(.+)$/.exec(val))) b = parseSize(mm[1]);
+                else if ((mm = /^(.+?)\.\.(.+)$/.exec(val))) { a = parseSize(mm[1]); b = parseSize(mm[2]); }
+                else { a = b = parseSize(val.replace(/^=/, "")); }
+                if (a !== null || b !== null) test = (it) => typeof it.size === "number" && it.type !== "directory" && (a === null || it.size >= a) && (b === null || it.size <= b);
+            } else if (key === "newer" || key === "older") {
+                const t = parseAge(val);
+                if (t !== null) test = key === "newer" ? (it) => { const d = itemDateMs(it); return d > 0 && d >= t; } : (it) => { const d = itemDateMs(it); return d > 0 && d <= t; };
+            } else if (key === "after" || key === "before") {
+                const t = Date.parse(val);
+                if (!isNaN(t)) test = key === "after" ? (it) => { const d = itemDateMs(it); return d > 0 && d >= t; } : (it) => { const d = itemDateMs(it); return d > 0 && d <= t; };
+            } else if (key === "in") {
+                test = (it) => it.searchKey.includes(val);
+            }
+        }
+        if (test) tests.push(neg ? (it) => !test(it) : test);
+        else if (neg) tests.push((it) => !it.searchKey.includes(tok));
+        else words.push(tok);
+    }
+    const out = { text: words.join(" "), tests };
+    if (searchParseCache.size > 50) searchParseCache.clear();
+    searchParseCache.set(q, out);
+    return out;
+}
+function searchTextOf(q) { return q ? parseSearch(q).text : q; }
+
+// Ranks `items` for query `q`: filters first, then the fuzzy score, with a bonus for items in the folder being viewed.
+// A query of filters only (no words) lists every match, folders first, by name.
+const SEARCH_COLLATOR = new Intl.Collator(undefined, { numeric: true });
+function rankSearch(items, q, here) {
+    const { text, tests } = parseSearch(q);
+    const tokens = text.split(/[\s/]+/).filter(Boolean);
+    const compact = text.replace(/[^a-z0-9]/g, "");
+    const SAME_FOLDER_BONUS = 400;
+    const scored = [];
+    for (const item of items) {
+        let ok = true;
+        for (let i = 0; i < tests.length; i++) if (!tests[i](item)) { ok = false; break; }
+        if (!ok) continue;
+        if (!text) { scored.push({ item, score: (item.type === "directory" ? 100000 : 0) + (item.parentPath === here ? 50000 : 0) }); continue; }
+        const score = scoreSearchItem(text, tokens, compact, item);
+        if (score === null) continue;
+        scored.push({ item, score: score + (item.parentPath === here ? SAME_FOLDER_BONUS : 0) });
+    }
+    if (text) scored.sort((a, b) => b.score - a.score);
+    else scored.sort((a, b) => b.score - a.score || SEARCH_COLLATOR.compare(a.item.fullPath, b.item.fullPath));
+    return scored.map((x) => x.item);
+}
+
+// Runs the search across every indexed file/folder, ranked by
 // relevance with a bonus for items in the currently viewed folder.
 function searchFiles(query) {
-    const tokens = query.split(/[\s/]+/).filter(Boolean);
-    const compactQuery = query.replace(/[^a-z0-9]/g, "");
-    const currentFolderKey = currentPath.join("/").toLowerCase();
-    const SAME_FOLDER_BONUS = 400;
-
-    const scored = [];
-    for (const item of allFiles) {
-        const score = scoreSearchItem(query, tokens, compactQuery, item);
-        if (score === null) continue;
-        const inCurrentFolder = item.parentPath === currentFolderKey;
-        scored.push({ item, score: score + (inCurrentFolder ? SAME_FOLDER_BONUS : 0) });
-    }
-    scored.sort((a, b) => b.score - a.score);
-    return scored.map((s) => s.item);
+    return rankSearch(allFiles, query, currentPath.join("/").toLowerCase());
 }
 
 // ---- Loudness leveler (on by default) ----
@@ -4828,6 +4995,8 @@ function setupEventListeners() {
                 return;
             }
             if (document.getElementById("localModal").classList.contains("active")) { closeLocalModal(); return; }
+            if (document.getElementById("qualityMenu")) { closeQualityMenu(); return; }
+            if (document.getElementById("sourceModal").classList.contains("active")) { closeSourceModal(); return; }
             if (document.getElementById("previewModal").classList.contains("active")) { closePreviewModal(); return; }
             const settingsMenuEl = document.getElementById("settingsMenu");
             const themeMenuEl = document.getElementById("themeColorMenu");
@@ -4896,6 +5065,7 @@ function setupEventListeners() {
     });
     document.getElementById("main").addEventListener("click", handleStarButtonClick);
     document.getElementById("main").addEventListener("click", handleCardClick);
+    selInit();
     document.getElementById("main").addEventListener("click", handleSortHeaderClick);
     document.getElementById("main").addEventListener("keydown", handleGridKeydown);
     document.getElementById("treeContent").addEventListener("click", handleTreeClick);
@@ -4965,6 +5135,7 @@ function setupEventListeners() {
     document.getElementById("topNextBtn").addEventListener("click", goToNextTrack);
     document.getElementById("topShuffleBtn").addEventListener("click", toggleShuffle);
     document.getElementById("copyLinkBtn").addEventListener("click", copyRawLink);
+    if (canNativeShare()) { const lb = document.getElementById("copyLinkBtn"); lb.title = "Share link"; lb.setAttribute("aria-label", "Share file link"); }
     document.getElementById("favoriteBtn").addEventListener("click", () => toggleFavoriteFile(currentFilePath));
     document.getElementById("playlistTest").addEventListener("click", runPlaylistTest);
     document.getElementById("playlistSongs").addEventListener("click", openSongsModal);
@@ -4990,6 +5161,10 @@ function setupEventListeners() {
     document.getElementById("playPlaylistBtn").addEventListener("click", startPlaylistMode);
     setupGotoStepper();
 }
+// On phones and tablets (touch screen with a share sheet) the link button opens the system share sheet, which has Copy in it; elsewhere it copies.
+function canNativeShare() {
+    return typeof navigator.share === "function" && !LOCAL.active && window.matchMedia("(pointer: coarse)").matches;
+}
 function copyRawLink() {
     const btn = document.getElementById("copyLinkBtn");
     const url = LOCAL.active ? currentFilePath : new URL(hostedUrl(currentFilePath), window.location.href).href;
@@ -4997,6 +5172,14 @@ function copyRawLink() {
         btn.classList.add("copied");
         setTimeout(() => btn.classList.remove("copied"), 1200);
     };
+    if (canNativeShare()) {
+        navigator.share({ title: currentFileName || "File", url }).then(done).catch((err) => {
+            if (err && err.name === "AbortError") return; // the person closed the sheet
+            if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(done).catch(() => fallbackCopy(url, done));
+            else fallbackCopy(url, done);
+        });
+        return;
+    }
     if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(url).then(done).catch(() => fallbackCopy(url, done));
     } else {
@@ -5067,6 +5250,10 @@ function handleGridKeydown(e) {
             if (nextIdx < cards.length) {
                 e.preventDefault();
                 cards[nextIdx].focus();
+            } else if (!searchQuery && document.getElementById("loadMoreBtn") && idx === cards.length - 1) {
+                e.preventDefault();
+                pagerGrow(false);
+                requestAnimationFrame(() => document.querySelectorAll("#main .file-card")[idx + 1]?.focus());
             }
             return;
         }
@@ -5084,6 +5271,7 @@ function handleGridKeydown(e) {
             return;
         case "End":
             e.preventDefault();
+            if (!searchQuery && document.getElementById("loadMoreBtn")) { pagerGrow(true); requestAnimationFrame(() => { const c = document.querySelectorAll("#main .file-card"); c[c.length - 1]?.focus(); }); return; }
             cards[cards.length - 1]?.focus();
     }
 }
@@ -5140,10 +5328,240 @@ function safeJsonParse(str, fallback) {
         return fallback;
     }
 }
+// ---- Selecting several items (main list and grid) ----
+// Ctrl/Cmd + click toggles one item, Shift + click selects a range, long press does the same on a touch screen, X toggles the focused item,
+// Shift + Up/Down extends, Ctrl/Cmd + A selects everything in view, Esc clears. While something is selected a plain click toggles instead of opening.
+const SEL = { map: new Map(), anchor: null, folder: "", suppress: false, bar: null };
+function selKeyOf(card) {
+    if (!card || card.classList.contains("parent-dir")) return null;
+    if (card.dataset.directory) return "d:" + card.dataset.path;
+    if (card.dataset.file) return "f:" + card.dataset.file;
+    return null;
+}
+function selEntryOf(card) {
+    const key = selKeyOf(card);
+    if (!key) return null;
+    if (key[0] === "d") {
+        const arr = safeJsonParse(card.dataset.path, null);
+        return arr && arr.length ? { key, type: "d", arr, path: arr.join("/"), name: arr[arr.length - 1] } : null;
+    }
+    const path = card.dataset.file;
+    return { key, type: "f", path, name: card.dataset.name || path.split("/").pop() };
+}
+function selAllEntries() {
+    const items = searchQuery ? searchFiles(searchQuery) : sortItems(getCurrentItems());
+    return items.map((it) => {
+        if (it.type === "directory") {
+            const arr = searchQuery ? it.navPath : [...currentPath, it.name];
+            return { key: "d:" + JSON.stringify(arr), type: "d", arr, path: arr.join("/"), name: it.name };
+        }
+        const path = searchQuery ? it.fullPath : (currentPath.length ? currentPath.join("/") + "/" : "") + it.name;
+        return { key: "f:" + path, type: "f", path, name: it.name };
+    });
+}
+function selPaint() {
+    const main = document.getElementById("main");
+    if (!main) return;
+    main.querySelectorAll(".file-card").forEach((c) => {
+        const k = selKeyOf(c), on = !!k && SEL.map.has(k);
+        if (c.classList.contains("selected") === on) return;
+        c.classList.toggle("selected", on);
+        if (on) { c.dataset.l0 = c.getAttribute("aria-label") || ""; c.setAttribute("aria-label", c.dataset.l0 + ", selected"); }
+        else if (c.dataset.l0 !== undefined) { c.setAttribute("aria-label", c.dataset.l0); delete c.dataset.l0; }
+    });
+}
+function selSync(say) {
+    const n = SEL.map.size;
+    document.body.classList.toggle("sel-on", n > 0);
+    selPaint();
+    const bar = SEL.bar;
+    if (!bar) return;
+    bar.hidden = n === 0;
+    if (n) {
+        let f = 0, d = 0;
+        SEL.map.forEach((e) => { if (e.type === "d") d++; else f++; });
+        const parts = [];
+        if (f) parts.push(`${f} file${f === 1 ? "" : "s"}`);
+        if (d) parts.push(`${d} folder${d === 1 ? "" : "s"}`);
+        bar.querySelector(".sel-count").textContent = parts.join(", ") + " selected";
+        bar.querySelector('[data-sel="copy"]').disabled = f === 0;
+        const sh = bar.querySelector('[data-sel="share"]');
+        sh.hidden = !canNativeShare() || f === 0;
+    }
+    if (say !== false) announce(n ? `${n} selected` : "Selection cleared");
+}
+function selClear() {
+    if (!SEL.map.size) return;
+    SEL.map.clear();
+    SEL.anchor = null;
+    selSync();
+}
+function selToggle(entry, force) {
+    if (!entry) return;
+    if (!SEL.map.size) SEL.folder = currentPath.join("/");
+    const on = force !== undefined ? force : !SEL.map.has(entry.key);
+    if (on) SEL.map.set(entry.key, entry); else SEL.map.delete(entry.key);
+    SEL.anchor = entry.key;
+    selSync();
+}
+function selRange(card) {
+    const cards = Array.from(document.querySelectorAll("#main .file-card")).filter((c) => selKeyOf(c));
+    const to = cards.indexOf(card);
+    let from = cards.findIndex((c) => selKeyOf(c) === SEL.anchor);
+    if (to < 0) return;
+    if (from < 0) from = to;
+    if (!SEL.map.size) SEL.folder = currentPath.join("/");
+    const [a, b] = from < to ? [from, to] : [to, from];
+    for (let i = a; i <= b; i++) { const e = selEntryOf(cards[i]); if (e) SEL.map.set(e.key, e); }
+    selSync();
+}
+function selSelectAll() {
+    if (!SEL.map.size) SEL.folder = currentPath.join("/");
+    selAllEntries().forEach((e) => SEL.map.set(e.key, e));
+    selSync();
+}
+function selPaintStars() {
+    document.querySelectorAll("#main .card-star-btn").forEach((btn) => {
+        const type = btn.dataset.starType, raw = btn.dataset.starPath;
+        let on, label;
+        if (type === "folder") { const arr = safeJsonParse(raw, null); if (!arr) return; on = isPinned(arr); label = on ? "Unpin this folder" : "Pin this folder"; }
+        else { on = isFavoriteFile(raw); label = on ? "Remove from favorites" : "Add to favorites"; }
+        btn.classList.toggle("starred", on);
+        btn.setAttribute("aria-pressed", String(on));
+        btn.title = label;
+        btn.setAttribute("aria-label", label);
+        btn.innerHTML = on ? icons.starFilled : icons.starOutline;
+    });
+}
+function selNote(msg, ms) { opStart(msg); opDone(msg, ms || 2200); }
+function selStar() {
+    const list = [...SEL.map.values()];
+    const isOn = (e) => (e.type === "f" ? isFavoriteFile(e.path) : isPinned(e.arr));
+    const allOn = list.every(isOn);
+    list.forEach((e) => { if (allOn ? isOn(e) : !isOn(e)) { if (e.type === "f") toggleFavoriteFile(e.path); else toggleFolderPin(e.arr); } });
+    selPaintStars();
+    announce(allOn ? "Removed from favorites" : "Added to favorites");
+}
+function selLinks() {
+    return [...SEL.map.values()].filter((e) => e.type === "f").map((e) => LOCAL.active ? e.path : new URL(hostedUrl(e.path), window.location.href).href);
+}
+function selCopy() {
+    const links = selLinks();
+    if (!links.length) return;
+    const text = links.join("\n"), done = () => selNote(`Copied ${links.length} link${links.length === 1 ? "" : "s"}.`);
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+    else fallbackCopy(text, done);
+}
+function selShare() {
+    const links = selLinks();
+    if (!links.length || !canNativeShare()) return;
+    navigator.share({ title: `${links.length} file${links.length === 1 ? "" : "s"}`, text: links.join("\n") }).catch(() => {});
+}
+async function selDownload() {
+    if (zipBusy || !fileIndex) return;
+    if (fileIndex.partial) { selNote("File sizes are still loading. Try again in a moment.", 2500); return; }
+    const files = [], used = new Set();
+    for (const e of SEL.map.values()) {
+        if (e.type === "f") {
+            const node = filesByPath.get(e.path);
+            const rel = used.has(e.name) ? e.path : e.name;
+            used.add(rel);
+            files.push({ path: e.path, rel, size: node ? getItemSize(node) : 0, date: node ? getItemDate(node) : null, order: files.length });
+        } else {
+            const dn = findNode(e.path);
+            if (dn && dn.children) collectFolderFiles(dn.children, e.path, e.name, files);
+        }
+    }
+    if (!files.length) { selNote("Nothing to download in the selection.", 2500); return; }
+    if (files.length === 1 && SEL.map.size === 1) {
+        zipBusy = true;
+        const ctl = new AbortController();
+        opStart(`Downloading ${files[0].rel}\u2026`, () => ctl.abort());
+        try { recSave(await blobForPath(files[0].path, ctl.signal), files[0].rel.split("/").pop()); opDone(`Saved ${files[0].rel.split("/").pop()}.`, 2500); }
+        catch (err) { opDone(err && err.name === "AbortError" ? "Cancelled." : "Could not download the file.", 3500); }
+        finally { zipBusy = false; }
+        return;
+    }
+    await zipFilesFlow(files, "selection", "", "selection");
+}
+function selInit() {
+    const main = document.getElementById("main");
+    const bar = document.createElement("div");
+    bar.id = "selBar";
+    bar.className = "sel-bar";
+    bar.setAttribute("role", "region");
+    bar.setAttribute("aria-label", "Selected items");
+    bar.hidden = true;
+    bar.innerHTML = `<span class="sel-count" aria-hidden="true"></span>
+        <button type="button" class="sel-btn" data-sel="all">Select all</button>
+        <button type="button" class="sel-btn" data-sel="zip">Download</button>
+        <button type="button" class="sel-btn" data-sel="star">Star</button>
+        <button type="button" class="sel-btn" data-sel="copy">Copy links</button>
+        <button type="button" class="sel-btn" data-sel="share" hidden>Share</button>
+        <button type="button" class="sel-btn" data-sel="clear">Clear</button>`;
+    document.body.appendChild(bar);
+    SEL.bar = bar;
+    bar.addEventListener("click", (e) => {
+        const b = e.target.closest("[data-sel]");
+        if (!b) return;
+        ({ all: selSelectAll, zip: selDownload, star: selStar, copy: selCopy, share: selShare, clear: selClear })[b.dataset.sel]();
+    });
+    // Cards are rebuilt on every render and on "show more": mark the selected ones again, and drop the selection when the folder changes.
+    let raf = 0;
+    new MutationObserver(() => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+            raf = 0;
+            if (SEL.map.size && SEL.folder !== currentPath.join("/")) { SEL.map.clear(); SEL.anchor = null; selSync(false); return; }
+            if (SEL.map.size) selPaint();
+        });
+    }).observe(main, { childList: true, subtree: true });
+    // Long press on a touch screen starts (or extends) a selection.
+    let timer = 0, sx = 0, sy = 0;
+    const cancel = () => { clearTimeout(timer); timer = 0; };
+    main.addEventListener("pointerdown", (e) => {
+        if (e.pointerType === "mouse" || e.target.closest(".card-star-btn")) return;
+        const card = e.target.closest(".file-card");
+        if (!card || !selKeyOf(card)) return;
+        sx = e.clientX; sy = e.clientY;
+        cancel();
+        timer = setTimeout(() => {
+            timer = 0;
+            SEL.suppress = true;
+            selToggle(selEntryOf(card));
+            if (navigator.vibrate) { try { navigator.vibrate(15); } catch (err) {} }
+        }, 450);
+    });
+    main.addEventListener("pointermove", (e) => { if (timer && Math.hypot(e.clientX - sx, e.clientY - sy) > 8) cancel(); });
+    ["pointerup", "pointercancel", "pointerleave"].forEach((t) => main.addEventListener(t, cancel));
+    main.addEventListener("contextmenu", (e) => { if (SEL.suppress || (timer && e.target.closest(".file-card"))) e.preventDefault(); });
+    main.addEventListener("keydown", (e) => {
+        if (e.target.closest("input, textarea, select") || e.altKey) return;
+        const card = e.target.closest(".file-card");
+        if ((e.key === "x" || e.key === "X") && card && !e.ctrlKey && !e.metaKey) { const en = selEntryOf(card); if (en) { e.preventDefault(); selToggle(en); } return; }
+        if ((e.key === "a" || e.key === "A") && (e.ctrlKey || e.metaKey) && !TWIN.on) { e.preventDefault(); selSelectAll(); return; }
+        if (e.shiftKey && card && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
+            const en = selEntryOf(card);
+            if (en) selToggle(en, true);
+            setTimeout(() => { const c = document.activeElement && document.activeElement.closest ? document.activeElement.closest("#main .file-card") : null; const n = c && selEntryOf(c); if (n) selToggle(n, true); }, 0);
+        }
+    });
+    document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape" || !SEL.map.size || e.defaultPrevented) return;
+        if (document.querySelector(".modal-overlay.active") || e.target.closest("input, textarea, select")) return;
+        e.preventDefault();
+        selClear();
+    });
+}
 function handleCardClick(e) {
     if (e.target.closest(".card-star-btn")) return;
     const t = e.target.closest(".file-card");
     if (!t) return;
+    if (SEL.suppress) { SEL.suppress = false; e.preventDefault(); return; } // the click that ends a long press
+    const entry = selEntryOf(t);
+    if (entry && (e.ctrlKey || e.metaKey)) { e.preventDefault(); selToggle(entry); return; }
+    if (entry && e.shiftKey && SEL.map.size) { e.preventDefault(); selRange(t); return; }
+    if (entry && SEL.map.size) { selToggle(entry); return; }
     if (t.dataset.directory) {
         const path = safeJsonParse(t.dataset.path, null);
         if (path) navigateTo(path);
@@ -5377,6 +5795,7 @@ function handleHashChange() {
 }
 function navigateTo(pathArr) {
     currentPath = pathArr;
+    folderLimit = 500;
     searchQuery = "";
     document.getElementById("search").value = "";
     updateSearchClearVisibility();
@@ -5762,7 +6181,7 @@ function render() {
     } else {
         all = sortItems(getCurrentItems());
     }
-    const visibleItems = searchQuery ? all.slice(0, searchResultLimit) : all;
+    const visibleItems = searchQuery ? all.slice(0, searchResultLimit) : all.length > FOLDER_PAGE_AT ? all.slice(0, folderLimit) : all;
 
     if (searchQuery) {
         announce(all.length === 0 ? `No results for "${searchQuery}"` : `${all.length} result${all.length === 1 ? "" : "s"} for "${searchQuery}"`);
@@ -5840,7 +6259,7 @@ function render() {
       `;
     if (currentPath.length > 0 && !searchQuery) {
         html += `
-            <div class="file-card directory parent-dir" data-directory="true" data-path="${escapeHtml(JSON.stringify(currentPath.slice(0, -1)))}" tabindex="0" role="button" aria-label="Go to parent folder">
+            <div class="file-card directory parent-dir" data-directory="true" data-path="${escapeHtml(JSON.stringify(currentPath.slice(0, -1)))}" tabindex="0" role="link" aria-label="Go to parent folder">
               ${isColumnView ? `<span class="card-star-spacer" aria-hidden="true"></span>` : ""}
               <div class="file-icon folder">${currentView === "grid" ? ibIcon("folder") : icons.folder}</div>
               <div class="file-info">
@@ -5882,11 +6301,11 @@ function render() {
 
         if (item.type === "directory") {
             html += `
-            <div class="file-card directory" data-directory="true" data-path="${escapeHtml(JSON.stringify(parentPathArr))}" tabindex="0" role="button" aria-label="Open folder ${escapeHtml(item.name)}">
+            <div class="file-card directory" data-directory="true" data-path="${escapeHtml(JSON.stringify(parentPathArr))}" tabindex="0" role="link" aria-label="Open folder ${escapeHtml(item.name)}">
               ${renderStarButton("folder", parentPathArr)}
               <div class="file-icon folder">${currentView === "grid" ? ibIcon("folder") : icons.folder}</div>
               <div class="file-info">
-                <span class="file-name">${searchQuery ? highlightMatch(item.name, searchQuery) : escapeHtml(item.name)}</span>
+                <span class="file-name">${searchQuery ? highlightMatch(item.name, searchTextOf(searchQuery)) : escapeHtml(item.name)}</span>
                 <span class="file-meta">${isColumnView && !searchQuery ? "" : `${item.children?.length || 0} ${(item.children?.length || 0) === 1 ? "item" : "items"}`}${searchQuery && parentDisplayPath ? `<span class="file-path">${escapeHtml(parentDisplayPath)}</span>` : ""}</span>
               </div>
               ${
@@ -5904,12 +6323,12 @@ function render() {
                     : `<img class="file-thumbnail file-thumbnail-inline lazy" ${LOCAL.active ? `data-lpath="${escapeHtml(clickPath)}"` : `data-src="${escapeHtml(hostedUrl(clickPath))}"`} alt="" loading="lazy" decoding="async">`;
             }
             html += `
-            <div class="file-card" data-file="${escapeHtml(clickPath)}" data-category="${item.category}" data-name="${escapeHtml(item.name)}" tabindex="0" role="button" aria-label="Open file ${escapeHtml(item.name)}">
+            <div class="file-card" data-file="${escapeHtml(clickPath)}" data-category="${item.category}" data-name="${escapeHtml(item.name)}" tabindex="0" role="link" aria-label="Open file ${escapeHtml(item.name)}">
               ${renderStarButton("file", clickPath)}
               ${thumbnailHtml}
               <div class="file-icon ${iconType}${xcAttr}">${iconSvg}</div>
               <div class="file-info">
-                <span class="file-name">${searchQuery ? highlightMatch(item.name, searchQuery) : escapeHtml(item.name)}</span>
+                <span class="file-name">${searchQuery ? highlightMatch(item.name, searchTextOf(searchQuery)) : escapeHtml(item.name)}</span>
                 <span class="file-meta">${isColumnView && !searchQuery ? "" : item.sizeFormatted}${searchQuery && parentDisplayPath ? `<span class="file-path">${escapeHtml(parentDisplayPath)}</span>` : ""}</span>
               </div>
               ${
@@ -5934,13 +6353,21 @@ function render() {
     });
     const loadMoreBtn = document.getElementById("loadMoreBtn");
     if (loadMoreBtn) {
-        loadMoreBtn.addEventListener("click", () => {
-            searchResultLimit += 100;
-            render();
-        });
+        loadMoreBtn.addEventListener("click", () => pagerGrow(false));
+        // A big folder keeps filling as the bottom comes near; search results stay behind the button.
+        if (!searchQuery && "IntersectionObserver" in window) {
+            const io = new IntersectionObserver((en) => { if (en.some((x) => x.isIntersecting)) { io.disconnect(); pagerGrow(false); } }, { root: mainEl, rootMargin: "900px 0px" });
+            io.observe(loadMoreBtn);
+        }
     }
     syncSortUI();
     updateListHeaderStuck();
+}
+// Shows more of a paged list: search results 100 at a time, a big folder twice as many (or all of it with `all`).
+function pagerGrow(all) {
+    if (searchQuery) searchResultLimit += 100;
+    else folderLimit = all ? Infinity : folderLimit * 2;
+    render();
 }
 async function parsePlaylist(e, t) {
     try {
@@ -6002,10 +6429,7 @@ function updatePlaylistUI() {
         const plNum = document.createElement("span");
         plNum.className = "pl-num";
         plNum.textContent = `${currentPlaylistIndex + 1}/${currentPlaylist.length}`;
-        const plTitle = document.createElement("span");
-        plTitle.className = "pl-title";
-        plTitle.textContent = `: ${item.title}`;
-        t.append(plNum, plTitle);
+        t.append(plNum); // the station name is in the window title and under the glyph, so the status row keeps only the position
         let prevDisabled, nextDisabled;
         if (isShuffle) {
             (prevDisabled = shuffleHistory.length <= 1), (nextDisabled = currentPlaylist.length <= 1);
@@ -6487,9 +6911,9 @@ function parseStreamPlaylist(text, base) {
     return { kind: "unknown", urls: [] };
 }
 const PLAYLIST_WRAPPER_EXTS = ["m3u", "m3u8", "pls", "asx", "xspf"];
-// Follows playlist wrappers (up to 5 deep) to the real stream URL. HLS master playlists resolve to their best variant;
-// media playlists are left to hls.js. Anything unreadable (usually no CORS) is returned as-is.
-async function resolveStreamUrl(url, depth) {
+// Follows playlist wrappers (up to 5 deep) to the real stream URL. HLS master playlists resolve to their best variant (unless keepMaster: the player picks the level);
+// media playlists are left to the HLS player. Anything unreadable (usually no CORS) is returned as-is.
+async function resolveStreamUrl(url, depth, keepMaster) {
     depth = depth || 0;
     if (depth >= 5) {
         console.warn("Playlist redirect chain too deep, using URL as-is:", url);
@@ -6503,10 +6927,11 @@ async function resolveStreamUrl(url, depth) {
         if (!response.ok || looksLikeMedia) return url;
         const info = parseStreamPlaylist(await readTextLimited(response, 512 * 1024), url);
         if (info.kind === "hls-master" && info.variants.length) {
+            if (keepMaster) return url; // the player offers the levels itself
             const best = info.variants.slice().sort((a, b) => b.bw - a.bw)[0];
-            return resolveStreamUrl(best.url, depth + 1);
+            return resolveStreamUrl(best.url, depth + 1, keepMaster);
         }
-        if (info.kind === "list" && info.urls.length) return resolveStreamUrl(info.urls[0], depth + 1);
+        if (info.kind === "list" && info.urls.length) return resolveStreamUrl(info.urls[0], depth + 1, keepMaster);
     } catch (e) {}
     return url;
 }
@@ -9326,7 +9751,7 @@ loadNoCorsHosts();
 
 // Shared teardown helpers for the HLS instance and stream-timeout timer, used by stop/close/skip/retry.
 function destroyHls() {
-    if (currentHls) { currentHls.destroy(); currentHls = null; }
+    if (currentHls) { currentHls.destroy(); currentHls = null; syncQualityBtn(); }
 }
 function clearStreamTimeout() {
     if (streamTimeout) { clearTimeout(streamTimeout); streamTimeout = null; }
@@ -10082,16 +10507,16 @@ function attachStream(session, el, url) {
     };
     const startHls = () => {
         session.usesHls = true;
-        // hls.js stops fetching once 30 s are buffered ahead; a longer buffer lets a paused HLS stream keep caching too.
-        const hls = new Hls({ maxBufferLength: 600, maxMaxBufferLength: 1800, backBufferLength: 300 });
+        // A long buffer target lets a paused HLS stream keep caching (a normal player stops at 30 s).
+        const hls = new Hls({ maxBufferLength: 600, backBufferLength: 300 });
         currentHls = hls;
         hls.loadSource(url);
         hls.attachMedia(el);
         hls.on(Hls.Events.LEVEL_SWITCHED, () => {
-            if (playSession === session) renderNpStatus();
+            if (playSession === session) { renderNpStatus(); syncQualityBtn(); }
         });
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            if (playSession === session) renderNpStatus();
+            if (playSession === session) { renderNpStatus(); syncQualityBtn(); }
             const p = el.play();
             if (p && p.catch) p.catch(onBlocked);
         });
@@ -10135,28 +10560,8 @@ function attachStream(session, el, url) {
         session.usesHls = false;
         return startOwnBuffer(session, el, url, onBlocked, startNative);
     }
-    // hls.js (about 540 KB) is only fetched the first time an .m3u8 stream is played.
     if (!lower.includes(".m3u8")) return startNative();
-    if (typeof Hls !== "undefined") return Hls.isSupported() ? startHls() : startNative();
-    loadHlsLib().then(() => {
-        if (playSession !== session) return;
-        if (typeof Hls !== "undefined" && Hls.isSupported()) startHls();
-        else startNative();
-    });
-}
-let hlsLibPromise = null;
-function loadHlsLib() {
-    if (typeof Hls !== "undefined") return Promise.resolve();
-    if (!hlsLibPromise) {
-        hlsLibPromise = new Promise((resolve) => {
-            const sc = document.createElement("script");
-            sc.src = "./hls.min.js";
-            sc.onload = resolve;
-            sc.onerror = () => { hlsLibPromise = null; sc.remove(); resolve(); };
-            document.head.appendChild(sc);
-        });
-    }
-    return hlsLibPromise;
+    return Hls.isSupported() ? startHls() : startNative();
 }
 async function playPlaylistTrack(e) {
     if (e < 0 || e >= currentPlaylist.length) return;
@@ -10204,7 +10609,7 @@ async function playPlaylistTrack(e) {
     // stream URL resolves.
     setPlaylistBuffering(true);
 
-    const finalUrl = await resolveStreamUrl(item.url);
+    const finalUrl = await resolveStreamUrl(item.url, 0, true);
     if (playSession !== session) return;
     session.cands = buildCandidates(finalUrl);
     startAttempt(session, false);
@@ -11280,6 +11685,9 @@ let uiWired = false;
 // Where the files come from. Hosted: relative URLs next to this page.
 // Local: File objects the user picked (nothing is uploaded or stored).
 const LOCAL = { active: false, name: "", files: new Map(), urls: new Map(), hosted: null };
+// Sources loaded from a link or a picked file (Load extra source): path -> { name, url, blob, more }
+const EXTRA = new Map();
+const EXTRA_PREFIX = "__extra__/";
 function rootLabel() { return LOCAL.active ? LOCAL.name || "Local folder" : "Home"; }
 
 // "a/b" + "../x/y.png?v=1#h" -> "a/x/y.png". Null when the path climbs out of the root.
@@ -11325,6 +11733,8 @@ async function getLocalFile(path) {
 // A URL the browser can load for a library file. Hosted: the relative URL.
 // Local: a blob: URL for the picked File (made lazily, revoked on close).
 async function urlForPath(path) {
+    const ex = EXTRA.get(path);
+    if (ex) return ex.url;
     if (!LOCAL.active) return hostedUrl(path);
     const f = await getLocalFile(path); // also drops the old URL when the file has changed on disk
     let u = LOCAL.urls.get(path);
@@ -11332,6 +11742,8 @@ async function urlForPath(path) {
     return u;
 }
 async function blobForPath(path, signal) {
+    const ex = EXTRA.get(path);
+    if (ex) { const res = await fetch(ex.url, { signal }); if (!res.ok) { const err = new Error(`HTTP ${res.status}`); err.status = res.status; throw err; } return res.blob(); }
     if (LOCAL.active) return getLocalFile(path);
     const res = await fetch(hostedUrl(path), { signal });
     if (!res.ok) { const err = new Error(`HTTP ${res.status}`); err.status = res.status; throw err; }
@@ -12259,14 +12671,18 @@ async function downloadFolderZip() {
     const files = [];
     collectFolderFiles(children, pathArr.join("/"), "", files);
     if (!files.length) { opStart("There are no files in this folder."); opDone("There are no files in this folder.", 2500); return; }
+    const folderName = pathArr.length ? pathArr[pathArr.length - 1] : LOCAL.active ? LOCAL.name || "folder" : "files";
+    return zipFilesFlow(files, folderName, folderName, "folder");
+}
+// Packs `files` ({path, rel, size, date, order}) into one zip and saves it as `folderName`.zip; `topDir` (or "") is the folder name inside the zip.
+async function zipFilesFlow(files, folderName, topDir, noun) {
     const total = files.reduce((a, f) => a + (f.size || 0), 0);
     const lim = LOCAL.active ? { warn: 1024 * MB, max: 3.5 * 1024 * MB } : { warn: 100 * MB, max: 1024 * MB };
     if (files.length > ZIP_MAX_FILES || files.some((f) => f.size >= 0xffffffff) || total > lim.max) {
-        alert(`This folder is too big to pack in the browser (${files.length.toLocaleString()} files, ${formatFileSize(total)}). The limit is ${formatFileSize(lim.max)} and ${ZIP_MAX_FILES.toLocaleString()} files. Open a smaller sub-folder instead.`);
+        alert(`This ${noun} is too big to pack in the browser (${files.length.toLocaleString()} files, ${formatFileSize(total)}). The limit is ${formatFileSize(lim.max)} and ${ZIP_MAX_FILES.toLocaleString()} files. Open a smaller sub-folder instead.`);
         return;
     }
-    if (total > lim.warn && !confirm(`This folder has ${files.length.toLocaleString()} files (${formatFileSize(total)}). ${LOCAL.active ? "Packing it can take a while." : "It will be downloaded and held in memory first."} Continue?`)) return;
-    const folderName = pathArr.length ? pathArr[pathArr.length - 1] : LOCAL.active ? LOCAL.name || "folder" : "files";
+    if (total > lim.warn && !confirm(`This ${noun} has ${files.length.toLocaleString()} files (${formatFileSize(total)}). ${LOCAL.active ? "Packing it can take a while." : "It will be downloaded and held in memory first."} Continue?`)) return;
     const ctl = new AbortController(), wCollect = LOCAL.active ? 0.05 : 0.8;
     zipBusy = true;
     opStart(`Collecting ${files.length.toLocaleString()} files\u2026`, () => ctl.abort());
@@ -12276,7 +12692,7 @@ async function downloadFolderZip() {
         const worker = async () => {
             while (next < files.length && !ctl.signal.aborted) {
                 const f = files[next++];
-                try { items[f.order] = { name: `${folderName}/${f.rel}`, blob: await blobForPath(f.path, ctl.signal), date: f.date }; }
+                try { items[f.order] = { name: `${topDir ? topDir + "/" : ""}${f.rel}`, blob: await blobForPath(f.path, ctl.signal), date: f.date }; }
                 catch (err) { if (err && err.name === "AbortError") return; failed++; }
                 finished++;
                 opUpdate(`Collecting files\u2026 ${finished.toLocaleString()} / ${files.length.toLocaleString()}`, (finished / files.length) * wCollect);
@@ -12723,7 +13139,287 @@ async function submitPreview() {
     }
 }
 
+// ---- Quality menu (HLS levels) ----
+function qualityLabel(lv, i) {
+    const kb = Math.round((lv.averageBitrate || lv.bitrate || 0) / 1000);
+    const rate = kb >= 1000 ? (kb / 1000).toFixed(kb >= 10000 ? 0 : 1) + " Mbps" : kb ? kb + " kbps" : "";
+    const size = lv.height ? lv.height + "p" : "";
+    return [lv.name && lv.name !== size ? lv.name : "", size, rate].filter(Boolean).join(" \u00b7 ") || `Level ${i + 1}`;
+}
+function closeQualityMenu() {
+    const m = document.getElementById("qualityMenu");
+    if (m) m.remove();
+    const b = document.getElementById("playlistQuality");
+    if (b) b.setAttribute("aria-expanded", "false");
+}
+// Shows the Quality button only while an HLS stream with more than one level is playing.
+function syncQualityBtn() {
+    const b = document.getElementById("playlistQuality");
+    if (!b) return;
+    const lv = currentHls && currentHls.levels;
+    const on = !!(lv && lv.length > 1);
+    b.hidden = !on;
+    if (!on) { closeQualityMenu(); return; }
+    const cur = currentHls.currentLevel;
+    b.dataset.manual = currentHls.autoLevelEnabled ? "" : "1";
+    b.title = `Quality: ${currentHls.autoLevelEnabled ? "Auto" : "fixed"}${lv[cur] ? " (" + qualityLabel(lv[cur], cur) + ")" : ""}`;
+}
+function openQualityMenu() {
+    const b = document.getElementById("playlistQuality");
+    if (!b || !currentHls || !currentHls.levels || currentHls.levels.length < 2) return;
+    closeQualityMenu();
+    const lv = currentHls.levels, cur = currentHls.currentLevel, auto = currentHls.autoLevelEnabled;
+    const m = document.createElement("div");
+    m.id = "qualityMenu";
+    m.className = "q-menu";
+    m.setAttribute("role", "menu");
+    const row = (idx, text, on) => `<button type="button" class="q-item${on ? " on" : ""}" role="menuitemradio" aria-checked="${on}" data-q="${idx}"><span class="q-mark">${on ? "\u2713" : ""}</span>${escapeHtml(text)}</button>`;
+    let html = row(-1, "Auto" + (auto && lv[cur] ? " \u00b7 now " + qualityLabel(lv[cur], cur) : ""), auto);
+    for (let i = lv.length - 1; i >= 0; i--) html += row(i, qualityLabel(lv[i], i), !auto && i === cur);
+    m.innerHTML = html;
+    document.body.appendChild(m);
+    const r = b.getBoundingClientRect(), mw = m.offsetWidth, mh = m.offsetHeight;
+    m.style.left = Math.max(6, Math.min(innerWidth - mw - 6, r.right - mw)) + "px";
+    m.style.top = (r.bottom + 6 + mh > innerHeight ? Math.max(6, r.top - mh - 6) : r.bottom + 6) + "px";
+    b.setAttribute("aria-expanded", "true");
+    const first = m.querySelector(".q-item.on") || m.querySelector(".q-item");
+    if (first) first.focus();
+    m.addEventListener("click", (e) => {
+        const it = e.target.closest(".q-item");
+        if (!it || !currentHls) return;
+        const idx = parseInt(it.dataset.q, 10);
+        currentHls.currentLevel = idx;
+        closeQualityMenu();
+        syncQualityBtn();
+        announce(idx < 0 ? "Quality: Auto" : "Quality: " + qualityLabel(currentHls.levels[idx], idx));
+        b.focus();
+    });
+    m.addEventListener("keydown", (e) => {
+        const items = [...m.querySelectorAll(".q-item")], i = items.indexOf(document.activeElement);
+        if (e.key === "ArrowDown") { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+        else if (e.key === "ArrowUp") { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+        else if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); closeQualityMenu(); b.focus(); }
+    });
+}
+document.addEventListener("pointerdown", (e) => {
+    if (document.getElementById("qualityMenu") && !e.target.closest("#qualityMenu, #playlistQuality")) closeQualityMenu();
+}, true);
+window.addEventListener("resize", closeQualityMenu);
+
+// ---- Load extra source: a link or a file, opened by what it is ----
+const LOCAL_BASE = "http://local.invalid/";
+const EXTRA_RECENT_KEY = "extraRecent";
+const EXTRA_MAX_RECENT = 8;
+let extraSeq = 0, extraBusy = false;
+function extraRecent() {
+    try { const r = JSON.parse(store.getItem(EXTRA_RECENT_KEY) || "[]"); return Array.isArray(r) ? r.filter((x) => typeof x === "string").slice(0, EXTRA_MAX_RECENT) : []; } catch (e) { return []; }
+}
+function extraRemember(url) {
+    const list = [url, ...extraRecent().filter((x) => x !== url)].slice(0, EXTRA_MAX_RECENT);
+    try { store.setItem(EXTRA_RECENT_KEY, JSON.stringify(list)); } catch (e) { /* storage blocked: the link is just not remembered */ }
+}
+// Local files and made-up playlists live as blob: URLs; `more` are further blob URLs that belong to the same source.
+function extraRelease(e) {
+    if (e.blob) URL.revokeObjectURL(e.url);
+    for (const u of e.more || []) URL.revokeObjectURL(u);
+}
+function extraAdd(name, url, blob, more) {
+    const path = EXTRA_PREFIX + ++extraSeq + "/" + name;
+    EXTRA.set(path, { name, url, blob: !!blob, more });
+    return path;
+}
+const extraBlobUrl = (text) => URL.createObjectURL(new Blob([text], { type: "audio/x-mpegurl" }));
+function extraNameOf(u) {
+    try {
+        const p = new URL(u).pathname.replace(/\/+$/, "");
+        return safeDecode(p.slice(p.lastIndexOf("/") + 1)) || new URL(u).hostname;
+    } catch (e) { return u; }
+}
+function extraSetStatus(text, isError) {
+    const st = document.getElementById("sourceStatus");
+    st.textContent = text || "";
+    st.classList.toggle("err", !!isError);
+}
+// What the first bytes (and content type) say the thing is -> a file extension, or "" when unknown.
+function extraSniffExt(b, ctype) {
+    const head = b ? new TextDecoder("latin1").decode(b.subarray(0, 600)).replace(/^\uFEFF/, "").trimStart() : "";
+    if (/^#EXTM3U|^#EXT-X-|^#EXTINF/i.test(head)) return "m3u";
+    if (/^\[playlist\]/i.test(head)) return "pls";
+    if (/^<asx[\s>]/i.test(head)) return "asx";
+    if (/^<(\?xml[^>]*>\s*)?<playlist[\s>]/i.test(head)) return "xspf";
+    if (b && b.length > 3) {
+        if (b[0] === 0x49 && b[1] === 0x44 && b[2] === 0x33) return "mp3";
+        if (b[0] === 0xff && (b[1] & 0xe0) === 0xe0) return (b[1] & 6) === 0 ? "aac" : "mp3";
+        if (b[0] === 0x4f && b[1] === 0x67 && b[2] === 0x67 && b[3] === 0x53) return "ogg";
+        if (head.startsWith("fLaC")) return "flac";
+        if (head.startsWith("RIFF")) return head.slice(8, 12) === "WAVE" ? "wav" : head.slice(8, 12) === "WEBP" ? "webp" : "avi";
+        if (head.slice(4, 8) === "ftyp") return "mp4";
+        if (b[0] === 0x1a && b[1] === 0x45 && b[2] === 0xdf && b[3] === 0xa3) return "webm";
+        if (b[0] === 0x47 && b.length > 188 && b[188] === 0x47) return "ts";
+        if (b[0] === 0x89 && head.slice(1, 4) === "PNG") return "png";
+        if (b[0] === 0xff && b[1] === 0xd8) return "jpg";
+        if (head.startsWith("GIF8")) return "gif";
+        if (head.startsWith("%PDF")) return "pdf";
+        if (b[0] === 0x50 && b[1] === 0x4b) return "zip";
+        if (b[0] === 0x1f && b[1] === 0x8b) return "gz";
+    }
+    const c = String(ctype || "").toLowerCase();
+    if (/mpegurl/.test(c)) return "m3u";
+    if (/^audio\/(mpeg|mp3)/.test(c)) return "mp3";
+    if (/^audio\/(aac|aacp)/.test(c)) return "aac";
+    if (/^audio\/|ogg/.test(c)) return "ogg";
+    if (/^video\//.test(c)) return "mp4";
+    if (/^image\//.test(c)) return "png";
+    if (/json/.test(c)) return "json";
+    if (/^text\/html/.test(c)) return "html";
+    if (/^text\//.test(c)) return "txt";
+    if (head && !/[\x00-\x08\x0e-\x1f]/.test(head.slice(0, 300))) return "txt";
+    return "";
+}
+// A link without a known extension: ask the server what it is (first 4 KB only).
+// Returns the extension, or "stream" when nothing could be read (a live stream or a server that blocks other sites).
+async function extraSniffUrl(url) {
+    const ac = new AbortController(), timer = setTimeout(() => ac.abort(), 8000);
+    try {
+        const res = await fetch(url, { signal: ac.signal, headers: { Range: "bytes=0-4095" } });
+        if (!res.ok) return "stream";
+        const ctype = res.headers.get("content-type") || "";
+        let bytes = null;
+        try { const rd = res.body.getReader(), { value } = await rd.read(); bytes = value || null; rd.cancel().catch(() => {}); } catch (e) { /* headers are enough */ }
+        return extraSniffExt(bytes, ctype) || "stream";
+    } catch (e) { return "stream"; }
+    finally { clearTimeout(timer); }
+}
+async function extraReadText(url) {
+    try { return await fetchTextCached(url); }
+    catch (err) {
+        if (/^http:\/\//i.test(url) && location.protocol === "https:") return fetchTextCached(url.replace(/^http:/i, "https:"));
+        throw err;
+    }
+}
+const extraM3u = (items) => "#EXTM3U\n" + items.map((it) => `#EXTINF:-1,${String(it.title).replace(/[\r\n]+/g, " ")}\n${it.url}\n`).join("");
+// Opens a link ({ url }) or a picked file ({ file }) in whatever suits its type.
+async function loadExtraSource({ url, file }) {
+    let name = file ? file.name || "file" : extraNameOf(url), ext = (/\.([A-Za-z0-9]{1,5})$/.exec(name) || [])[1] || "", stream = false;
+    ext = ext.toLowerCase();
+    let cat = categoryForName(name);
+    if (cat === "other" && !ARCHIVE_NAME_RE.test(name)) {
+        const found = file ? extraSniffExt(new Uint8Array(await file.slice(0, 4096).arrayBuffer()), file.type) : await extraSniffUrl(url);
+        if (found === "stream") { stream = true; cat = "audio"; } else if (found) { ext = found; name = name + "." + found; cat = categoryForName(name); }
+    }
+    const archive = ARCHIVE_NAME_RE.test(name);
+    const isList = cat === "playlist" || ["pls", "asx", "xspf"].includes(ext);
+    if (!file && (stream || ((cat === "audio" || cat === "video") && !archive))) {
+        // A direct stream or media link goes through the player (it handles blocked-CORS streams, reconnecting and HLS levels).
+        const title = stream ? new URL(url).hostname : name.replace(/\.[^.]+$/, "") || name;
+        return { path: extraAdd(title + ".m3u", extraBlobUrl(extraM3u([{ title, url }])), true), type: "playlist", name: title + ".m3u", play: true };
+    }
+    if (isList) {
+        const text = file ? await file.text() : await extraReadText(url);
+        const info = parseStreamPlaylist(text, file ? LOCAL_BASE : url);
+        const title = name.replace(/\.[^.]+$/, "") || name;
+        if (info.kind.startsWith("hls")) {
+            // One stream with levels: hand the playlist itself to the player.
+            if (file && /^(?!#)\s*(?!https?:)\S/m.test(text)) throw new Error("This HLS playlist points to files next to it, which a single picked file can't reach. Open the folder instead, or paste its link.");
+            const own = file ? URL.createObjectURL(file) : "";
+            return { path: extraAdd(title + ".m3u", extraBlobUrl(extraM3u([{ title, url: own || url }])), true, own ? [own] : undefined), type: "playlist", name: title + ".m3u", play: true };
+        }
+        if (ext === "pls" || ext === "asx" || ext === "xspf" || info.kind === "unknown") {
+            const urls = info.urls.filter((u) => !u.startsWith(LOCAL_BASE));
+            if (!urls.length) throw new Error("No playable items found in that playlist.");
+            const items = urls.map((u, i) => ({ title: urls.length > 1 ? `${title} ${i + 1}` : title, url: u }));
+            return { path: extraAdd(title + ".m3u", extraBlobUrl(extraM3u(items)), true), type: "playlist", name: title + ".m3u", play: true };
+        }
+        // An ordinary m3u list: open the file itself (a link keeps its own address so relative entries resolve).
+        const pname = isPlaylistExtension(name) ? name : name + ".m3u";
+        return { path: file ? extraAdd(pname, URL.createObjectURL(file), true) : extraAdd(pname, url, false), type: "playlist", name: pname, play: true };
+    }
+    const path = file ? extraAdd(name, URL.createObjectURL(file), true) : extraAdd(name, url, false);
+    return { path, type: cat, name, play: false };
+}
+function openSourceModal() {
+    const $ = (id) => document.getElementById(id);
+    const recent = extraRecent();
+    if (!$("sourceInput").value) $("sourceInput").value = recent[0] || "";
+    extraSetStatus("");
+    renderSourceRecent();
+    $("sourceRecent").hidden = true;
+    $("sourceDrop").setAttribute("aria-expanded", "false");
+    rememberModalFocus("sourceModal");
+    $("sourceModal").classList.add("active");
+    syncBackgroundInert();
+    focusWhenReady("sourceInput", "sourceModal");
+}
+function closeSourceModal() {
+    const m = document.getElementById("sourceModal");
+    if (!m || !m.classList.contains("active")) return;
+    m.classList.remove("active");
+    syncBackgroundInert();
+    restoreModalFocus("sourceModal");
+}
+function renderSourceRecent() {
+    const box = document.getElementById("sourceRecent"), list = extraRecent();
+    box.innerHTML = list.length
+        ? list.map((u) => `<button type="button" class="src-item" role="option" data-u="${escapeHtml(u)}" title="${escapeHtml(u)}">${escapeHtml(u)}</button>`).join("") + '<button type="button" class="src-item src-forget" data-forget="1">Forget these links</button>'
+        : '<span class="src-empty">Nothing yet. Links you load show up here.</span>';
+}
+async function submitSource(picked) {
+    if (extraBusy) return;
+    const $ = (id) => document.getElementById(id);
+    let url = picked ? "" : $("sourceInput").value.trim();
+    if (!picked) {
+        if (!url) { extraSetStatus("Paste a link or choose a file.", true); return; }
+        if (!/^[a-z][a-z0-9+.-]*:/i.test(url)) url = "https://" + url;
+        if (!/^https?:\/\//i.test(url)) { extraSetStatus("Only http(s) links work here. To open something from your computer, choose a file.", true); return; }
+    }
+    extraBusy = true;
+    $("sourceLoadBtn").disabled = true;
+    extraSetStatus("Loading\u2026");
+    try {
+        const old = new Map(EXTRA);
+        const r = await loadExtraSource(picked ? { file: picked } : { url });
+        if (!picked) { extraRemember(url); $("sourceInput").value = url; }
+        closeSourceModal();
+        await openFile(r.path, r.type, r.name);
+        if (r.play) await startPlaylistMode();
+        for (const [p, e] of old) { extraRelease(e); EXTRA.delete(p); } // the earlier sources are not needed any more
+        announce(`Opened ${r.name}`);
+    } catch (err) {
+        const status = err && err.status;
+        extraSetStatus(status ? `The server answered HTTP ${status}.` : err && err.name === "TypeError" ? "Couldn't read that link. The address may be wrong, or the site doesn't allow other sites to read it (CORS). Download the file and choose it here instead." : (err && err.message) || "Couldn't open that.", true);
+    } finally {
+        extraBusy = false;
+        $("sourceLoadBtn").disabled = false;
+    }
+}
+function setupExtraSource() {
+    const $ = (id) => document.getElementById(id);
+    $("extraBtn").addEventListener("click", openSourceModal);
+    $("sourceModalClose").addEventListener("click", closeSourceModal);
+    $("sourceModal").addEventListener("click", (e) => { if (e.target === e.currentTarget) closeSourceModal(); });
+    $("sourceModal").addEventListener("keydown", (e) => trapModalFocus(e, "sourceModalContent"));
+    $("sourceLoadBtn").addEventListener("click", () => submitSource());
+    $("sourceInput").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); submitSource(); } });
+    $("sourceFileBtn").addEventListener("click", () => $("sourceFileInput").click());
+    $("sourceFileInput").addEventListener("change", (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ""; if (f) submitSource(f); });
+    $("sourceDrop").addEventListener("click", () => {
+        const box = $("sourceRecent");
+        box.hidden = !box.hidden;
+        $("sourceDrop").setAttribute("aria-expanded", String(!box.hidden));
+    });
+    $("sourceRecent").addEventListener("click", (e) => {
+        const it = e.target.closest(".src-item");
+        if (!it) return;
+        if (it.dataset.forget) { try { store.removeItem(EXTRA_RECENT_KEY); } catch (err) {} renderSourceRecent(); return; }
+        $("sourceInput").value = it.dataset.u;
+        $("sourceRecent").hidden = true;
+        $("sourceDrop").setAttribute("aria-expanded", "false");
+        $("sourceInput").focus();
+    });
+}
 function setupNewFeatureListeners() {
+    setupExtraSource();
+    document.getElementById("playlistQuality").addEventListener("click", () => { if (document.getElementById("qualityMenu")) closeQualityMenu(); else openQualityMenu(); });
     const $ = (id) => document.getElementById(id);
     $("treeCollapseAll").addEventListener("click", collapseAllFolders);
     $("breadcrumb").addEventListener("click", (e) => { if (e.target.closest("#zipFolderBtn")) downloadFolderZip(); });
@@ -13167,7 +13863,7 @@ const TWIN = (() => {
         let html = `<div class="${grid ? "file-grid" : "file-list list-columns"}">`;
         if (!grid) html += `<div class="file-list-header"><span class="col-star-spacer" aria-hidden="true"></span><span class="col-icon-spacer" aria-hidden="true"></span>${hcol("name", "Name", "col-name")}${hcol("ext", "Ext", "col-ext")}${hcol("size", "Size", "col-size")}${hcol("date", "Date", "col-date")}${hcol("date", "Time", "col-time")}</div>`;
         if (p.path.length) {
-            html += `<div class="file-card directory parent-dir" role="button" tabindex="-1" data-up="1" aria-label="Go to parent folder">${grid ? "" : '<span aria-hidden="true"></span>'}<div class="file-icon folder">${grid ? ibIcon("folder") : icons.folder}</div><div class="file-info"><span class="file-name">..</span><span class="file-meta"></span></div>${grid ? "" : renderColumnCells("", "", "", "")}</div>`;
+            html += `<div class="file-card directory parent-dir" role="link" tabindex="-1" data-up="1" aria-label="Go to parent folder">${grid ? "" : '<span aria-hidden="true"></span>'}<div class="file-icon folder">${grid ? ibIcon("folder") : icons.folder}</div><div class="file-info"><span class="file-name">..</span><span class="file-meta"></span></div>${grid ? "" : renderColumnCells("", "", "", "")}</div>`;
         }
         const extSlot = new Map(), extSeen = new Map();
         [...new Set(all.filter((i) => i.type !== "directory").map((i) => getFileExtension(i.name).toLowerCase()).filter(Boolean))].sort().forEach((x, i) => extSlot.set(x, i % 12));
@@ -13176,7 +13872,7 @@ const TWIN = (() => {
             p.map.set(item.name, item);
             const name = escapeHtml(item.name);
             if (item.type === "directory") {
-                html += `<div class="file-card directory" role="button" tabindex="-1" data-n="${name}" data-t="d" aria-label="Open folder ${name}">${starHtml(c, "folder", [...p.path, item.name])}<div class="file-icon folder">${grid ? ibIcon("folder") : icons.folder}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : ""}</span></div>${grid ? "" : renderColumnCells("", "DIR", escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
+                html += `<div class="file-card directory" role="link" tabindex="-1" data-n="${name}" data-t="d" aria-label="Open folder ${name}">${starHtml(c, "folder", [...p.path, item.name])}<div class="file-icon folder">${grid ? ibIcon("folder") : icons.folder}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : ""}</span></div>${grid ? "" : renderColumnCells("", "DIR", escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
                 continue;
             }
             const iconType = getFileIconType(item.name) || item.category || "other";
@@ -13186,7 +13882,7 @@ const TWIN = (() => {
             const full = base + item.name;
             const thumb = grid && item.category === "image"
                 ? `<img class="file-thumbnail lazy" ${p.source === "local" ? `data-tlocal="${escapeHtml(full)}"` : `data-src="${escapeHtml(hostedUrlIn(c, full))}"`} alt="" decoding="async">` : "";
-            html += `<div class="file-card" role="button" tabindex="-1" data-n="${name}" data-t="f" aria-label="Open file ${name}">${starHtml(c, "file", full)}${thumb}<div class="file-icon ${iconType}${xc}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid ? item.sizeFormatted : ""}</span></div>${grid ? "" : renderColumnCells(escapeHtml(getFileExtension(item.name)), item.sizeFormatted, escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
+            html += `<div class="file-card" role="link" tabindex="-1" data-n="${name}" data-t="f" aria-label="Open file ${name}">${starHtml(c, "file", full)}${thumb}<div class="file-icon ${iconType}${xc}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid ? item.sizeFormatted : ""}</span></div>${grid ? "" : renderColumnCells(escapeHtml(getFileExtension(item.name)), item.sizeFormatted, escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
         }
         html += "</div>";
         if (!all.length) html += emptyHtml("Empty folder.");
@@ -13207,14 +13903,7 @@ const TWIN = (() => {
     const boxOf = (p) => $(twoBoxes() && (T.flip ? 1 - p.id : p.id) === 1 ? "search2" : "search");
     const cardItem = (p, card) => (card.dataset.r !== undefined ? p.results[Number(card.dataset.r)] : p.map.get(card.dataset.n));
     function searchPane(c, q, p) {
-        const tokens = q.split(/[\s/]+/).filter(Boolean), compact = q.replace(/[^a-z0-9]/g, ""), here = p.path.join("/").toLowerCase();
-        const scored = [];
-        for (const item of c.allFiles) {
-            const sc = scoreSearchItem(q, tokens, compact, item);
-            if (sc !== null) scored.push({ item, score: sc + (item.parentPath === here ? 400 : 0) });
-        }
-        scored.sort((a, b) => b.score - a.score);
-        return scored.map((x) => x.item);
+        return rankSearch(c.allFiles, q, p.path.join("/").toLowerCase());
     }
     function renderResults(p, c, q, sc, top) {
         const key = p.source + "\u0000" + q + "\u0000" + p.path.join("/") + "\u0000" + c.allFiles.length;
@@ -13234,7 +13923,7 @@ const TWIN = (() => {
             const thumb = grid && !dir && item.category === "image"
                 ? `<img class="file-thumbnail lazy" ${p.source === "local" ? `data-tlocal="${escapeHtml(item.fullPath)}"` : `data-src="${escapeHtml(hostedUrlIn(c, item.fullPath))}"`} alt="" decoding="async">` : "";
             const meta = dir ? (grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : "") : item.sizeFormatted;
-            html += `<div class="file-card${dir ? " directory" : ""}" role="button" tabindex="-1" data-r="${idx}" aria-label="${dir ? "Open folder " : "Open file "}${name}">${starHtml(c, dir ? "folder" : "file", dir ? item.navPath : item.fullPath)}${thumb}<div class="file-icon ${iconType}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${highlightMatch(item.name, q)}</span><span class="file-meta">${meta}${where ? `<span class="file-path">${where}</span>` : ""}</span></div></div>`;
+            html += `<div class="file-card${dir ? " directory" : ""}" role="link" tabindex="-1" data-r="${idx}" aria-label="${dir ? "Open folder " : "Open file "}${name}">${starHtml(c, dir ? "folder" : "file", dir ? item.navPath : item.fullPath)}${thumb}<div class="file-icon ${iconType}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${highlightMatch(item.name, searchTextOf(q))}</span><span class="file-meta">${meta}${where ? `<span class="file-path">${where}</span>` : ""}</span></div></div>`;
         });
         html += "</div>";
         if (!all.length) html += emptyHtml(`No results for \u201c${escapeHtml(raw)}\u201d.`);
@@ -13332,7 +14021,7 @@ const TWIN = (() => {
             html += '<div class="tw-fav-head">Pinned folders</div><div class="file-list tw-fav-list">';
             for (const arr of pins) {
                 const name = escapeHtml(arr[arr.length - 1]), where = arr.length > 1 ? arr.slice(0, -1).join("/") : (p.source === "local" ? LOCAL.name || "Local folder" : "Home");
-                html += `<div class="file-card directory" role="button" tabindex="-1" data-fav="d" data-fp="${escapeHtml(JSON.stringify(arr))}" aria-label="Open pinned folder ${name}" title="${escapeHtml(arr.join("/"))}">${starHtml(c, "folder", arr)}<div class="file-icon folder">${icons.folder}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${escapeHtml(where)}</span></div></div>`;
+                html += `<div class="file-card directory" role="link" tabindex="-1" data-fav="d" data-fp="${escapeHtml(JSON.stringify(arr))}" aria-label="Open pinned folder ${name}" title="${escapeHtml(arr.join("/"))}">${starHtml(c, "folder", arr)}<div class="file-icon folder">${icons.folder}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${escapeHtml(where)}</span></div></div>`;
             }
             html += "</div>";
         }
@@ -13342,7 +14031,7 @@ const TWIN = (() => {
                 const item = c.filesByPath.get(path), name = escapeHtml(item ? item.name : path.substring(path.lastIndexOf("/") + 1));
                 const iconType = item ? getFileIconType(item.name) || item.category || "other" : "other";
                 const segs = path.split("/").slice(0, -1), where = segs.length ? segs.join("/") : (p.source === "local" ? LOCAL.name || "Local folder" : "Home");
-                html += `<div class="file-card" role="button" tabindex="-1" data-fav="f" data-fpath="${escapeHtml(path)}" aria-label="Open favorite file ${name}" title="${escapeHtml(path)}">${starHtml(c, "file", path)}<div class="file-icon ${iconType}">${icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${escapeHtml(where)}</span></div></div>`;
+                html += `<div class="file-card" role="link" tabindex="-1" data-fav="f" data-fpath="${escapeHtml(path)}" aria-label="Open favorite file ${name}" title="${escapeHtml(path)}">${starHtml(c, "file", path)}<div class="file-icon ${iconType}">${icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${escapeHtml(where)}</span></div></div>`;
             }
             html += "</div>";
         }
@@ -14137,7 +14826,7 @@ const TWIN = (() => {
         },
         // Something outside the panels asked to open a file (a markdown link, an address with a file in it): show it in a panel.
         routeOpen(path, type, name) {
-            if (!T.on || T.opening) return false;
+            if (!T.on || T.opening || EXTRA.has(path)) return false;
             const kind = previewKindOverride(name) || (isPlaylistExtension(name) ? "playlist" : type);
             if (MEDIA_KINDS.has(kind) && T.media !== null) return false;
             const source = LOCAL.active ? "local" : "hosted";
@@ -14310,6 +14999,1069 @@ const TWIN = (() => {
 })();
 
 init();
+    </script>
+    <script>
+    /* Lean HLS engine (RFC 8216). Written for this page: no dependencies, no license to carry.
+       Plays HLS through Media Source Extensions:
+         playlists    master + media, live (sliding window) and VOD, EXT-X-KEY AES-128, EXT-X-MAP, byte ranges
+         segments     MPEG-TS (AAC, MP3, H.264, ID3 timed metadata), packed AAC / MP3, fragmented MP4 (passed through)
+         playback     adaptive quality (Auto) or a chosen level, seeking, live edge, buffer limits, stall recovery
+       Not included: separate audio renditions, subtitles, DRM / SAMPLE-AES, HEVC inside TS, low-latency parts.
+       Surface used by the page: new Hls(cfg), isSupported(), Events, ErrorTypes, loadSource, attachMedia, on, off, destroy,
+       recoverMediaError, levels, currentLevel (-1 = Auto), loadLevel, autoLevelEnabled. */
+    const Hls = (() => {
+        "use strict";
+
+        const Events = {
+            MANIFEST_PARSED: "manifestParsed",
+            LEVEL_LOADED: "levelLoaded",
+            LEVEL_SWITCHED: "levelSwitched",
+            FRAG_BUFFERED: "fragBuffered",
+            FRAG_PARSING_METADATA: "fragParsingMetadata",
+            ERROR: "error",
+        };
+        const ErrorTypes = { NETWORK_ERROR: "networkError", MEDIA_ERROR: "mediaError", OTHER_ERROR: "otherError" };
+
+        // ------------------------------------------------------------------ bytes
+        const ascii = (s) => Uint8Array.from(s, (c) => c.charCodeAt(0));
+        const w16 = (v) => Uint8Array.of(v >>> 8, v);
+        const w32 = (v) => Uint8Array.of(v >>> 24, v >>> 16, v >>> 8, v);
+        const w64 = (v) => cat([w32(Math.floor(v / 4294967296)), w32(v >>> 0)]);
+        const rd32 = (b, o) => ((b[o] << 24) | (b[o + 1] << 16) | (b[o + 2] << 8) | b[o + 3]) >>> 0;
+        const hex2 = (v) => (v < 16 ? "0" : "") + v.toString(16);
+        function cat(parts) {
+            let n = 0;
+            for (const p of parts) n += p.length;
+            const out = new Uint8Array(n);
+            let k = 0;
+            for (const p of parts) { out.set(p, k); k += p.length; }
+            return out;
+        }
+        const sleep = (ms, signal) => new Promise((res) => {
+            const done = () => { clearTimeout(t); if (signal) signal.removeEventListener("abort", done); res(); };
+            const t = setTimeout(done, ms);
+            if (signal) signal.addEventListener("abort", done, { once: true });
+        });
+
+        // ------------------------------------------------------------------ network
+        class HttpError extends Error {
+            constructor(status, url) { super("HTTP " + status + " " + url); this.status = status; }
+        }
+        // Resolves to text or bytes. Retries network failures and 5xx / 408 / 429 with a growing delay; other 4xx fail at once.
+        async function fetchRetry(url, { signal, text, headers, timeout = 20000, retries = 2, delay = 700 } = {}) {
+            for (let attempt = 0; ; attempt++) {
+                const ac = new AbortController();
+                const stop = () => ac.abort();
+                if (signal) { if (signal.aborted) throw new DOMException("aborted", "AbortError"); signal.addEventListener("abort", stop, { once: true }); }
+                const timer = setTimeout(stop, timeout);
+                try {
+                    const res = await fetch(url, { signal: ac.signal, headers, credentials: "omit" });
+                    if (!res.ok) throw new HttpError(res.status, url);
+                    return text ? await res.text() : new Uint8Array(await res.arrayBuffer());
+                } catch (err) {
+                    if (signal && signal.aborted) throw err;
+                    const s = err && err.status;
+                    if (attempt >= retries || (s >= 400 && s < 500 && s !== 408 && s !== 429)) throw err;
+                    await sleep(delay * 2 ** attempt, signal);
+                } finally {
+                    clearTimeout(timer);
+                    if (signal) signal.removeEventListener("abort", stop);
+                }
+            }
+        }
+
+        // ------------------------------------------------------------------ playlists
+        function attrList(s) {
+            const o = {};
+            for (const m of s.matchAll(/([A-Z0-9-]+)=("[^"]*"|[^,]*)/g)) o[m[1]] = m[2].replace(/^"|"$/g, "");
+            return o;
+        }
+        const absUrl = (u, base) => { try { return new URL(u, base).href; } catch (e) { return u; } };
+        // "mp4a.40.2,avc1.64001f" -> the first audio and first video codec
+        function splitCodecs(s) {
+            const out = { audioCodec: "", videoCodec: "", codecSet: "" };
+            const list = String(s || "").toLowerCase().split(/[\s,]+/).filter(Boolean);
+            out.codecSet = list.join(",");
+            for (const c of list) {
+                if (!out.videoCodec && /^(avc[13]|hev1|hvc1|av01|vp0?9|dvh[1e])/.test(c)) out.videoCodec = c;
+                else if (!out.audioCodec && /^(mp4a|opus|flac|ac-3|ec-3|mp3|vorbis)/.test(c)) out.audioCodec = c;
+            }
+            return out;
+        }
+        // Master playlist -> levels sorted by bitrate, or null when the text is a media playlist.
+        function parseMaster(text, base) {
+            if (!/^\s*#EXTM3U/.test(text) || !/#EXT-X-STREAM-INF/.test(text)) return null;
+            const levels = [];
+            let cur = null;
+            for (let line of text.split(/\r?\n/)) {
+                line = line.trim();
+                if (!line) continue;
+                if (line.startsWith("#EXT-X-STREAM-INF:")) {
+                    const a = attrList(line.slice(18));
+                    const [w, h] = (a.RESOLUTION || "0x0").split("x");
+                    const bw = parseInt(a.BANDWIDTH, 10) || 0;
+                    cur = {
+                        bitrate: bw, averageBitrate: parseInt(a["AVERAGE-BANDWIDTH"], 10) || bw,
+                        width: parseInt(w, 10) || 0, height: parseInt(h, 10) || 0, name: a.NAME || "",
+                        frameRate: parseFloat(a["FRAME-RATE"]) || 0, ...splitCodecs(a.CODECS),
+                    };
+                } else if (line[0] !== "#" && cur) {
+                    cur.url = absUrl(line, base);
+                    if (!levels.some((l) => l.url === cur.url)) levels.push(cur);
+                    cur = null;
+                }
+            }
+            levels.sort((a, b) => a.bitrate - b.bitrate);
+            return levels.length ? levels : null;
+        }
+        function parseRange(spec, prevEnd) {
+            const m = /^(\d+)(?:@(\d+))?$/.exec(spec.trim());
+            return m ? { offset: m[2] !== undefined ? +m[2] : prevEnd, length: +m[1] } : null;
+        }
+        // Media playlist -> { frags, startSn, endSn, target, live, ended, total } or null when it lists no segments.
+        function parseMedia(text, url) {
+            if (!/^\s*#EXTM3U/.test(text)) return null;
+            const frags = [];
+            let sn = 0, startSn = 0, target = 10, ended = false, vod = false;
+            let dur = 0, disc = false, key = null, map = null, range = null, start = 0, prevEnd = 0;
+            for (let line of text.split(/\r?\n/)) {
+                line = line.trim();
+                if (!line) continue;
+                if (line[0] === "#") {
+                    if (line.startsWith("#EXTINF:")) dur = parseFloat(line.slice(8)) || 0;
+                    else if (line.startsWith("#EXT-X-TARGETDURATION:")) target = parseInt(line.slice(22), 10) || 10;
+                    else if (line.startsWith("#EXT-X-MEDIA-SEQUENCE:")) sn = startSn = parseInt(line.slice(22), 10) || 0;
+                    else if (line.startsWith("#EXT-X-KEY:")) {
+                        const a = attrList(line.slice(11));
+                        key = !a.METHOD || a.METHOD === "NONE" ? null : { method: a.METHOD, uri: a.URI ? absUrl(a.URI, url) : "", iv: a.IV || "" };
+                    } else if (line.startsWith("#EXT-X-MAP:")) {
+                        const a = attrList(line.slice(11));
+                        map = a.URI ? { url: absUrl(a.URI, url), range: a.BYTERANGE ? parseRange(a.BYTERANGE, 0) : null } : null;
+                    } else if (line.startsWith("#EXT-X-BYTERANGE:")) range = parseRange(line.slice(17), prevEnd);
+                    else if (line === "#EXT-X-DISCONTINUITY") disc = true;
+                    else if (line === "#EXT-X-ENDLIST") ended = true;
+                    else if (line.startsWith("#EXT-X-PLAYLIST-TYPE:") && /VOD/.test(line)) vod = true;
+                    continue;
+                }
+                frags.push({ sn: sn++, url: absUrl(line, url), dur, start, key, map, range, disc });
+                start += dur;
+                if (range) prevEnd = range.offset + range.length;
+                dur = 0; disc = false; range = null;
+            }
+            if (!frags.length) return null;
+            return { frags, startSn, endSn: startSn + frags.length - 1, target, live: !(ended || vod), ended: ended || vod, total: start };
+        }
+
+        // ------------------------------------------------------------------ MPEG-TS demuxer
+        const AAC_RATES = [96000, 88200, 64000, 48000, 44100, 32000, 24000, 22050, 16000, 12000, 11025, 8000, 7350];
+        const TS_KINDS = { 0x0f: "aac", 0x03: "mp3", 0x04: "mp3", 0x1b: "avc", 0x15: "id3", 0x24: "hevc", 0x11: "latm", 0x81: "ac3", 0x87: "ec3" };
+        const MP3_KBPS = {
+            1: [0, 32, 64, 96, 128, 160, 192, 224, 256, 288, 320, 352, 384, 416, 448],
+            2: [0, 32, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 384],
+            3: [0, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320],
+            low1: [0, 32, 48, 56, 64, 80, 96, 112, 128, 144, 160, 176, 192, 224, 256],
+            low: [0, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160],
+        };
+        const WRAP = 2 ** 33;
+
+        const pts33 = (b, o) => ((b[o] >> 1) & 7) * 1073741824 + b[o + 1] * 4194304 + (b[o + 2] >> 1) * 32768 + b[o + 3] * 128 + (b[o + 4] >> 1);
+        // Seconds from the first stamp, safe across the 33-bit wrap.
+        const relSecs = (v, first) => { let d = v - first; if (d < -WRAP / 2) d += WRAP; else if (d > WRAP / 2) d -= WRAP; return d / 90000; };
+
+        function id3Tags(b) {
+            const tags = [];
+            let o = 0;
+            while (o + 10 <= b.length && b[o] === 0x49 && b[o + 1] === 0x44 && b[o + 2] === 0x33) {
+                const len = 10 + (((b[o + 6] & 127) << 21) | ((b[o + 7] & 127) << 14) | ((b[o + 8] & 127) << 7) | (b[o + 9] & 127)) + (b[o + 5] & 16 ? 10 : 0);
+                if (o + len > b.length) break;
+                tags.push(b.subarray(o, o + len));
+                o += len;
+            }
+            return { tags, end: o };
+        }
+        // Seconds carried by the Apple PRIV frame "com.apple.streaming.transportStreamTimestamp" (packed audio), else null.
+        function id3Time(tag) {
+            const s = String.fromCharCode(...tag.subarray(10, Math.min(tag.length, 120)));
+            const i = s.indexOf("com.apple.streaming.transportStreamTimestamp");
+            if (i < 0) return null;
+            const o = 10 + i + 45; // text + NUL
+            if (o + 8 > tag.length) return null;
+            return (((tag[o] & 1) * 4294967296) + rd32(tag, o + 4)) / 90000;
+        }
+
+        // One ADTS or MPEG-audio frame header at b[i] -> { len, rate, ch, ... } or null.
+        function adtsHead(b, i) {
+            if (b[i] !== 0xff || (b[i + 1] & 0xf6) !== 0xf0) return null;
+            const sf = (b[i + 2] >> 2) & 15, len = ((b[i + 3] & 3) << 11) | (b[i + 4] << 3) | (b[i + 5] >> 5);
+            const hdr = b[i + 1] & 1 ? 7 : 9;
+            if (sf > 12 || len <= hdr) return null;
+            return { len, hdr, sf, rate: AAC_RATES[sf], aot: ((b[i + 2] >> 6) & 3) + 1, ch: ((b[i + 2] & 1) << 2) | (b[i + 3] >> 6) };
+        }
+        function mpegHead(b, i) {
+            if (b[i] !== 0xff || (b[i + 1] & 0xe0) !== 0xe0) return null;
+            const ver = (b[i + 1] >> 3) & 3, layer = (b[i + 1] >> 1) & 3, br = b[i + 2] >> 4, sr = (b[i + 2] >> 2) & 3;
+            if (ver === 1 || layer === 0 || br === 0 || br === 15 || sr === 3) return null;
+            const v1 = ver === 3, l = 4 - layer, pad = (b[i + 2] >> 1) & 1;
+            const kbps = (v1 ? MP3_KBPS[l] : l === 1 ? MP3_KBPS.low1 : MP3_KBPS.low)[br];
+            const rate = [44100, 48000, 32000][sr] / (v1 ? 1 : ver === 2 ? 2 : 4);
+            const len = l === 1 ? (Math.floor((12 * kbps * 1000) / rate) + pad) * 4 : Math.floor(((l === 3 && !v1 ? 72 : 144) * kbps * 1000) / rate) + pad;
+            return { len, rate, ch: ((b[i + 3] >> 6) & 3) === 3 ? 1 : 2, kbps };
+        }
+        // Walks a continuous audio byte stream and returns its whole frames (resyncs after junk, drops a cut-off tail).
+        function walkAudio(buf, kind) {
+            const head = kind === "aac" ? adtsHead : mpegHead;
+            const frames = [];
+            let cfg = null, i = 0;
+            while (i + 7 < buf.length) {
+                const h = head(buf, i);
+                if (!h) { i++; continue; }
+                const next = i + h.len;
+                if (next > buf.length) break;
+                if (next + 1 < buf.length && !head(buf, next)) { i++; continue; }
+                if (!cfg) cfg = h;
+                frames.push(kind === "aac" ? buf.subarray(i + h.hdr, next) : buf.subarray(i, next));
+                i = next;
+            }
+            return frames.length ? { kind, frames, cfg } : null;
+        }
+
+        // Annex B byte stream -> [start, end) pairs of NAL units (start-code free)
+        function nalRanges(d) {
+            const out = [];
+            let s = -1;
+            for (let i = 0; i + 2 < d.length; i++) {
+                if (d[i + 2] > 1) { i += 2; continue; }
+                if (d[i] === 0 && d[i + 1] === 0 && d[i + 2] === 1) {
+                    if (s >= 0) { let e = i; while (e > s && d[e - 1] === 0) e--; out.push([s, e]); }
+                    s = i + 3;
+                    i += 2;
+                }
+            }
+            if (s >= 0 && s < d.length) { let e = d.length; while (e > s && d[e - 1] === 0) e--; out.push([s, e]); }
+            return out;
+        }
+        // PES payloads of H.264 -> access units with 4-byte length prefixes, plus the first SPS/PPS seen.
+        function avcSamples(pesList, first) {
+            const samples = [];
+            let sps = null, pps = null, frameDur = 0;
+            for (const pes of pesList) {
+                const d = pes.data;
+                let units = [], size = 0, key = false;
+                const flush = (dts, pts) => {
+                    if (!units.length) return;
+                    const o = new Uint8Array(size);
+                    let p = 0;
+                    for (const u of units) { o[p++] = u.length >>> 24; o[p++] = u.length >>> 16; o[p++] = u.length >>> 8; o[p++] = u.length; o.set(u, p); p += u.length; }
+                    samples.push({ data: o, dts, pts, key });
+                    units = []; size = 0; key = false;
+                };
+                const dts0 = relSecs(pes.dts, first), pts0 = relSecs(pes.pts, first);
+                let n = 0;
+                for (const [s, e] of nalRanges(d)) {
+                    const t = d[s] & 31, u = d.subarray(s, e);
+                    if (t === 9) { if (units.length) { flush(dts0 + n * frameDur, pts0 + n * frameDur); n++; } continue; }
+                    if (t === 7) { if (!sps) sps = u; continue; }
+                    if (t === 8) { if (!pps) pps = u; continue; }
+                    if (t === 5) key = true;
+                    units.push(u); size += 4 + u.length;
+                }
+                flush(dts0 + n * frameDur, pts0 + n * frameDur);
+                const k = samples.length;
+                if (k > 1 && !frameDur) frameDur = Math.max(0.005, samples[k - 1].dts - samples[k - 2].dts);
+            }
+            return { samples, sps, pps };
+        }
+
+        // Splits a transport stream into audio / video / ID3 streams.
+        // -> { audio: {kind, frames, cfg, pts}, video: {samples, sps, pps, ...}, id3: [{data, pts}], unsupported: [kinds] }
+        function demuxTs(d) {
+            const out = { audio: null, video: null, id3: [], unsupported: [] };
+            let step = 188, start = -1;
+            for (const sz of [188, 192, 204]) {
+                for (let i = 0; i < sz && start < 0; i++) if (d[i] === 0x47 && d[i + sz] === 0x47 && (d[i + 2 * sz] === 0x47 || i + 2 * sz >= d.length)) { start = i; step = sz; }
+                if (start >= 0) break;
+            }
+            if (start < 0) return out;
+            const streams = new Map(); // pid -> { kind, parts, size, pts, dts, done: [] }
+            let pmtPid = -1, sect = null;
+            const addSection = (pid, p, pusi) => {
+                if (pusi) { sect = { pid, buf: p.subarray(1 + p[0]) }; } else if (sect && sect.pid === pid) sect.buf = cat([sect.buf, p]);
+                else return;
+                const b = sect.buf;
+                if (b.length < 3) return;
+                const len = 3 + (((b[1] & 15) << 8) | b[2]);
+                if (b.length < len) return;
+                sect = null;
+                if (pid === 0 && b[0] === 0) {
+                    for (let i = 8; i + 4 <= len - 4; i += 4) if ((b[i] << 8 | b[i + 1]) !== 0 && pmtPid < 0) pmtPid = ((b[i + 2] & 31) << 8) | b[i + 3];
+                } else if (pid === pmtPid && b[0] === 2) {
+                    let i = 12 + (((b[10] & 15) << 8) | b[11]);
+                    while (i + 5 <= len - 4) {
+                        const kind = TS_KINDS[b[i]], epid = ((b[i + 1] & 31) << 8) | b[i + 2];
+                        if (kind && !streams.has(epid)) {
+                            const have = [...streams.values()].some((s) => s.kind === kind || (kind !== "avc" && kind !== "id3" && /^(aac|mp3)$/.test(s.kind) && /^(aac|mp3)$/.test(kind)));
+                            if (!have) streams.set(epid, { kind, parts: [], size: 0, pts: 0, dts: 0, done: [] });
+                            else if (!/^(avc|id3|aac|mp3)$/.test(kind)) out.unsupported.push(kind);
+                        } else if (!kind) out.unsupported.push("0x" + hex2(b[i]));
+                        i += 5 + (((b[i + 3] & 15) << 8) | b[i + 4]);
+                    }
+                }
+            };
+            const flush = (s) => {
+                if (s.parts.length) s.done.push({ pts: s.pts, dts: s.dts, data: cat(s.parts) });
+                s.parts = []; s.size = 0;
+            };
+            for (let p = start; p + 188 <= d.length; p += step) {
+                if (d[p] !== 0x47) continue;
+                const pusi = !!(d[p + 1] & 0x40), pid = ((d[p + 1] & 31) << 8) | d[p + 2], afc = (d[p + 3] >> 4) & 3;
+                let o = p + 4;
+                if (afc & 2) o += 1 + d[p + 4];
+                if (!(afc & 1) || o >= p + 188) continue;
+                const pay = d.subarray(o, p + 188);
+                if (pid === 0 || pid === pmtPid) { addSection(pid, pay, pusi); continue; }
+                const s = streams.get(pid);
+                if (!s) continue;
+                if (pusi) {
+                    flush(s);
+                    if (pay.length < 9 || pay[0] || pay[1] || pay[2] !== 1) continue;
+                    const fl = pay[7] >> 6;
+                    if (fl & 2) { s.pts = pts33(pay, 9); s.dts = fl & 1 ? pts33(pay, 14) : s.pts; }
+                    const body = pay.subarray(9 + pay[8]);
+                    s.parts.push(body); s.size += body.length;
+                } else if (s.parts.length) { s.parts.push(pay); s.size += pay.length; }
+            }
+            for (const s of streams.values()) flush(s);
+            for (const s of streams.values()) {
+                if (!s.done.length) continue;
+                if (s.kind === "aac" || s.kind === "mp3") {
+                    const a = walkAudio(cat(s.done.map((x) => x.data)), s.kind);
+                    if (a && !out.audio) out.audio = { ...a, pts: s.done[0].pts / 90000, ptsRaw: s.done[0].pts };
+                } else if (s.kind === "avc") {
+                    const first = s.done[0].dts;
+                    const v = avcSamples(s.done, first);
+                    if (v.samples.length) out.video = { ...v, ptsRaw: first };
+                } else if (s.kind === "id3") {
+                    for (const x of s.done) if (x.data.length > 10) out.id3.push({ data: x.data, pts: x.pts / 90000 });
+                } else out.unsupported.push(s.kind);
+            }
+            if (out.audio && out.video) { // one clock for both: seconds of audio relative to the video start
+                out.audio.pts = relSecs(out.audio.ptsRaw, out.video.ptsRaw);
+                out.video.pts = 0;
+            } else if (out.video) out.video.pts = 0;
+            return out;
+        }
+
+        // ------------------------------------------------------------------ H.264 SPS (picture size)
+        function spsSize(sps) {
+            try {
+                const b = [];
+                for (let i = 1; i < sps.length; i++) { if (i > 2 && sps[i] === 3 && !sps[i - 1] && !sps[i - 2]) continue; b.push(sps[i]); }
+                let p = 0;
+                const bit = () => { const v = (b[p >> 3] >> (7 - (p & 7))) & 1; p++; return v; };
+                const bits = (n) => { let v = 0; while (n--) v = v * 2 + bit(); return v; };
+                const ue = () => { let z = 0; while (!bit() && z < 32) z++; return 2 ** z - 1 + bits(z); };
+                const se = () => { const k = ue(); return k & 1 ? (k + 1) / 2 : -(k / 2); };
+                const profile = bits(8); bits(16); ue();
+                let chroma = 1;
+                if ([100, 110, 122, 244, 44, 83, 86, 118, 128, 138, 139, 134, 135].includes(profile)) {
+                    chroma = ue();
+                    if (chroma === 3) bit();
+                    ue(); ue(); bit();
+                    if (bit()) for (let i = 0; i < (chroma === 3 ? 12 : 8); i++) if (bit()) {
+                        let last = 8, next = 8;
+                        for (let j = 0; j < (i < 6 ? 16 : 64); j++) { if (next) next = (last + se() + 256) % 256; if (next) last = next; }
+                    }
+                }
+                ue();
+                const poc = ue();
+                if (poc === 0) ue();
+                else if (poc === 1) { bit(); se(); se(); for (let n = ue(); n > 0; n--) se(); }
+                ue(); bit();
+                const w = ue() + 1, h = ue() + 1, frameOnly = bit();
+                if (!frameOnly) bit();
+                bit();
+                let l = 0, r = 0, t = 0, bt = 0;
+                if (bit()) { l = ue(); r = ue(); t = ue(); bt = ue(); }
+                const cx = chroma === 0 || chroma === 3 ? 1 : 2, cy = (chroma === 1 ? 2 : 1) * (2 - frameOnly) * (chroma === 0 ? 1 : 1);
+                return { width: w * 16 - (l + r) * cx, height: (2 - frameOnly) * h * 16 - (t + bt) * cy };
+            } catch (e) { return { width: 0, height: 0 }; }
+        }
+
+        // ------------------------------------------------------------------ fMP4 writer (init segments and fragments)
+        function box(type, ...parts) {
+            let n = 8;
+            for (const p of parts) n += p.length;
+            const o = new Uint8Array(n);
+            o.set(w32(n)); o.set(ascii(type), 4);
+            let k = 8;
+            for (const p of parts) { o.set(p, k); k += p.length; }
+            return o;
+        }
+        const fbox = (type, ver, flags, ...parts) => box(type, Uint8Array.of(ver, flags >> 16, flags >> 8, flags), ...parts);
+        const zeros = (n) => new Uint8Array(n);
+        const MATRIX = cat([0x10000, 0, 0, 0, 0x10000, 0, 0, 0, 0x40000000].map(w32));
+        function descr(tag, payload) {
+            const len = [];
+            let n = payload.length;
+            do { len.unshift((n & 127) | (len.length ? 128 : 0)); n >>>= 7; } while (n);
+            return cat([Uint8Array.of(tag, ...len), payload]);
+        }
+        function trakBox(t) {
+            const video = t.kind === "video";
+            const tkhd = fbox("tkhd", 0, 7, w32(0), w32(0), w32(t.id), w32(0), w32(0), zeros(8), w16(0), w16(0), w16(video ? 0 : 0x100), w16(0), MATRIX, w32((t.width || 0) * 65536), w32((t.height || 0) * 65536));
+            const mdhd = fbox("mdhd", 0, 0, w32(0), w32(0), w32(t.scale), w32(0), w16(0x55c4), w16(0));
+            const hdlr = fbox("hdlr", 0, 0, w32(0), ascii(video ? "vide" : "soun"), zeros(12), ascii("hls\0"));
+            let entry;
+            if (video) {
+                const sps = t.sps, pps = t.pps;
+                const avcC = box("avcC", Uint8Array.of(1, sps[1], sps[2], sps[3], 0xff, 0xe1), w16(sps.length), sps, Uint8Array.of(1), w16(pps.length), pps);
+                entry = box("avc1", zeros(6), w16(1), zeros(16), w16(t.width), w16(t.height), w32(0x480000), w32(0x480000), w32(0), w16(1), zeros(32), w16(0x18), w16(0xffff), avcC);
+            } else {
+                const dcd = descr(4, cat([Uint8Array.of(0x40, 0x15, 0, 0x18, 0, 0, 1, 0xf4, 0, 0, 1, 0xf4, 0), descr(5, t.asc)]));
+                const esds = fbox("esds", 0, 0, descr(3, cat([w16(t.id), Uint8Array.of(0), dcd, descr(6, Uint8Array.of(2))])));
+                entry = box("mp4a", zeros(6), w16(1), zeros(8), w16(t.channels), w16(16), w16(0), w16(0), w32(t.scale * 65536), esds);
+            }
+            const stbl = box("stbl", fbox("stsd", 0, 0, w32(1), entry), fbox("stts", 0, 0, w32(0)), fbox("stsc", 0, 0, w32(0)), fbox("stsz", 0, 0, w32(0), w32(0)), fbox("stco", 0, 0, w32(0)));
+            const dinf = box("dinf", fbox("dref", 0, 0, w32(1), fbox("url ", 0, 1)));
+            const head = video ? fbox("vmhd", 0, 1, zeros(8)) : fbox("smhd", 0, 0, zeros(4));
+            return box("trak", tkhd, box("mdia", mdhd, hdlr, box("minf", head, dinf, stbl)));
+        }
+        function initSegment(tracks) {
+            const ftyp = box("ftyp", ascii("isom"), w32(512), ascii("isomiso6mp41"));
+            const mvhd = fbox("mvhd", 0, 0, w32(0), w32(0), w32(1000), w32(0), w32(0x10000), w16(0x100), zeros(10), MATRIX, zeros(24), w32(tracks.length + 1));
+            const trex = tracks.map((t) => fbox("trex", 0, 0, w32(t.id), w32(1), w32(0), w32(0), w32(0)));
+            return cat([ftyp, box("moov", mvhd, ...tracks.map(trakBox), box("mvex", ...trex))]);
+        }
+        // One moof + mdat for the given tracks: [{ id, tfdt (track ticks), samples: [{ data, dur, flags, cts }] }]
+        function fragment(seq, tracks) {
+            let moofSize = 8 + 16, mdat = 0;
+            const withCts = tracks.map((t) => t.samples.some((s) => s.cts));
+            tracks.forEach((t, i) => { moofSize += 8 + 16 + 20 + 12 + 8 + t.samples.length * (withCts[i] ? 16 : 12); });
+            let offset = moofSize + 8;
+            const trafs = tracks.map((t, i) => {
+                const entries = [];
+                for (const s of t.samples) { entries.push(w32(s.dur), w32(s.data.length), w32(s.flags)); if (withCts[i]) entries.push(w32(s.cts >>> 0)); mdat += s.data.length; }
+                const trun = fbox("trun", withCts[i] ? 1 : 0, 0x701 | (withCts[i] ? 0x800 : 0), w32(t.samples.length), w32(offset), ...entries);
+                offset += t.samples.reduce((a, s) => a + s.data.length, 0);
+                return box("traf", fbox("tfhd", 0, 0x20000, w32(t.id)), fbox("tfdt", 1, 0, w64(Math.max(0, t.tfdt))), trun);
+            });
+            const moof = box("moof", fbox("mfhd", 0, 0, w32(seq)), ...trafs);
+            const data = [];
+            for (const t of tracks) for (const s of t.samples) data.push(s.data);
+            return cat([moof, w32(mdat + 8), ascii("mdat"), ...data]);
+        }
+
+        // ------------------------------------------------------------------ reading existing fMP4
+        function* boxes(b, s = 0, e = b.length) {
+            while (s + 8 <= e) {
+                let n = rd32(b, s), hdr = 8;
+                if (n === 1) { n = rd32(b, s + 8) * 4294967296 + rd32(b, s + 12); hdr = 16; } else if (n === 0) n = e - s;
+                if (n < hdr || s + n > e) return;
+                yield { type: String.fromCharCode(b[s + 4], b[s + 5], b[s + 6], b[s + 7]), start: s, body: s + hdr, end: s + n };
+                s += n;
+            }
+        }
+        const find = (b, parent, type) => { for (const x of boxes(b, parent.body, parent.end)) if (x.type === type) return x; return null; };
+        // MSE codec string of one sample entry
+        function entryCodec(b, e) {
+            const t = e.type;
+            if (t === "avc1" || t === "avc3") { const c = find(b, { body: e.body + 78, end: e.end }, "avcC"); return c ? "avc1." + hex2(b[c.body + 1]) + hex2(b[c.body + 2]) + hex2(b[c.body + 3]) : ""; }
+            if (t === "hvc1" || t === "hev1") {
+                const c = find(b, { body: e.body + 78, end: e.end }, "hvcC");
+                if (!c) return "";
+                const o = c.body, compat = rd32(b, o + 2);
+                let rev = 0;
+                for (let i = 0; i < 32; i++) if (compat & (1 << i)) rev |= 1 << (31 - i);
+                const cons = [...b.subarray(o + 6, o + 12)].map(hex2).join(".").replace(/(\.00)+$/, "");
+                return `${t}.${["", "A", "B", "C"][b[o] >> 6]}${b[o] & 31}.${(rev >>> 0).toString(16)}.${b[o + 1] & 32 ? "H" : "L"}${b[o + 11]}${cons ? "." + cons : ""}`.replace(/\.\./g, ".");
+            }
+            if (t === "mp4a") {
+                const es = find(b, { body: e.body + 28, end: e.end }, "esds");
+                if (!es) return "mp4a.40.2";
+                let i = es.body + 4, ot = 0x40, aot = 2;
+                const tag = () => { const k = b[i++]; let n = 0, c; do { c = b[i++]; n = (n << 7) | (c & 127); } while (c & 128); return [k, n]; };
+                for (let g = 0; g < 4 && i < es.end; g++) {
+                    const [k] = tag();
+                    if (k === 3) i += 3; else if (k === 4) { ot = b[i]; i += 13; } else if (k === 5) { aot = b[i] >> 3; break; }
+                }
+                return ot === 0x6b || ot === 0x69 ? "mp3" : "mp4a.40." + aot;
+            }
+            return { Opus: "opus", fLaC: "flac", "ac-3": "ac-3", "ec-3": "ec-3", av01: "" }[t] || "";
+        }
+        // Looks into an init segment: { codecs, video, scales: {trackId: timescale} }
+        function mp4Info(b) {
+            const info = { codecs: [], video: false, scales: {} };
+            for (const moov of boxes(b)) {
+                if (moov.type !== "moov") continue;
+                for (const trak of boxes(b, moov.body, moov.end)) {
+                    if (trak.type !== "trak") continue;
+                    const tkhd = find(b, trak, "tkhd"), mdia = find(b, trak, "mdia");
+                    if (!tkhd || !mdia) continue;
+                    const id = rd32(b, tkhd.body + (b[tkhd.body] === 1 ? 20 : 12)), mdhd = find(b, mdia, "mdhd"), hdlr = find(b, mdia, "hdlr");
+                    if (mdhd) info.scales[id] = rd32(b, mdhd.body + (b[mdhd.body] === 1 ? 20 : 12));
+                    if (hdlr && String.fromCharCode(...b.subarray(hdlr.body + 8, hdlr.body + 12)) === "vide") info.video = true;
+                    const minf = find(b, mdia, "minf"), stbl = minf && find(b, minf, "stbl"), stsd = stbl && find(b, stbl, "stsd");
+                    if (!stsd) continue;
+                    for (const e of boxes(b, stsd.body + 8, stsd.end)) { const c = entryCodec(b, e); if (c) info.codecs.push(c); }
+                }
+            }
+            return info;
+        }
+        // Decode time (seconds) of the first fragment in an fMP4 segment, or null.
+        function firstDecodeTime(b, scales) {
+            for (const moof of boxes(b)) {
+                if (moof.type !== "moof") continue;
+                for (const traf of boxes(b, moof.body, moof.end)) {
+                    if (traf.type !== "traf") continue;
+                    const tfhd = find(b, traf, "tfhd"), tfdt = find(b, traf, "tfdt");
+                    if (!tfhd || !tfdt) continue;
+                    const scale = scales[rd32(b, tfhd.body + 4)] || 90000;
+                    const t = b[tfdt.body] === 1 ? rd32(b, tfdt.body + 4) * 4294967296 + rd32(b, tfdt.body + 8) : rd32(b, tfdt.body + 4);
+                    return t / scale;
+                }
+            }
+            return null;
+        }
+
+        // ------------------------------------------------------------------ the player
+        const sniff = (b) => {
+            if (b.length < 8) return "";
+            for (let i = 0; i < 188 && i + 376 < b.length; i++) if (b[i] === 0x47 && b[i + 188] === 0x47 && b[i + 376] === 0x47) return "ts";
+            if (b[0] === 0x47 && b.length < 564) return "ts";
+            const t = String.fromCharCode(b[4], b[5], b[6], b[7]);
+            if (t === "ftyp" || t === "styp" || t === "moof" || t === "moov" || t === "sidx") return "mp4";
+            const i = id3Tags(b).end;
+            if (adtsHead(b, i)) return "aac";
+            if (mpegHead(b, i)) return "mp3";
+            return b[0] === 0x47 ? "ts" : "";
+        };
+        const MS_OK = (m) => { try { return MediaSource.isTypeSupported(m); } catch (e) { return false; } };
+
+        class Hls {
+            static isSupported() {
+                return typeof MediaSource !== "undefined" && (MS_OK('audio/mp4; codecs="mp4a.40.2"') || MS_OK("audio/mpeg"));
+            }
+            constructor(cfg) {
+                this.cfg = { maxBufferLength: 30, backBufferLength: 120, liveSyncCount: 3, fragRetries: 3, levelRetries: 3, ...cfg };
+                this.levels = [];
+                this.media = null;
+                this.url = "";
+                this.live = false;
+                this.bandwidth = 0;
+                this._auto = true;
+                this._cur = -1;          // level the next segment comes from
+                this._shown = -1;        // level of the last appended segment
+                this._ev = {};
+                this._gen = 0;
+                this._maps = new Map();
+                this._keys = new Map();
+                this._resetPlayback();
+            }
+            on(ev, fn) { (this._ev[ev] || (this._ev[ev] = [])).push(fn); return this; }
+            off(ev, fn) { const l = this._ev[ev]; if (l) { const i = l.indexOf(fn); if (i >= 0) l.splice(i, 1); } return this; }
+            _emit(ev, data) { for (const fn of (this._ev[ev] || []).slice()) { try { fn(ev, data); } catch (e) { console.error(e); } } }
+
+            get currentLevel() { return this._shown >= 0 ? this._shown : this._cur; }
+            set currentLevel(v) {
+                if (v < 0 || v >= this.levels.length) { this._auto = true; return; }
+                this._auto = false;
+                this._pending = { type: "level", idx: v };
+                this._poke();
+            }
+            get loadLevel() { return this._cur; }
+            set loadLevel(v) { this.currentLevel = v; }
+            get autoLevelEnabled() { return this._auto; }
+
+            loadSource(url) {
+                this.url = absUrl(url, location.href);
+                if (this.media) this._run();
+            }
+            attachMedia(el) {
+                this.media = el;
+                const ms = (this.ms = new MediaSource());
+                const obj = URL.createObjectURL(ms);
+                this._objUrl = obj;
+                this._opened = new Promise((res) => ms.addEventListener("sourceopen", () => { URL.revokeObjectURL(obj); res(); }, { once: true }));
+                this._onSeeking = () => this._seeking();
+                el.addEventListener("seeking", this._onSeeking);
+                el.src = obj;
+                this._timer = setInterval(() => this._watch(), 1000);
+                if (this.url) this._run();
+            }
+            destroy() {
+                this._gen++;
+                if (this._abort) this._abort.abort();
+                clearInterval(this._timer);
+                const el = this.media;
+                if (el) {
+                    el.removeEventListener("seeking", this._onSeeking);
+                    if (this._objUrl && el.src === this._objUrl) el.removeAttribute("src");
+                }
+                try { if (this.ms && this.ms.readyState === "open") this.ms.endOfStream(); } catch (e) {}
+                this.media = this.ms = this.sb = null;
+                this._ev = {};
+            }
+            // Rebuilds the MediaSource and carries on from the playhead (VOD) or the live edge.
+            recoverMediaError() {
+                const el = this.media;
+                if (!el) return;
+                const t = el.currentTime;
+                this._gen++;
+                if (this._abort) this._abort.abort();
+                try { if (this.ms.readyState === "open") this.ms.endOfStream(); } catch (e) {}
+                this.sb = null;
+                const ms = (this.ms = new MediaSource());
+                const obj = (this._objUrl = URL.createObjectURL(ms));
+                this._opened = new Promise((res) => ms.addEventListener("sourceopen", () => { URL.revokeObjectURL(obj); res(); }, { once: true }));
+                this._resetPlayback();
+                if (!this.live) this._resumeAt = t;
+                el.src = obj;
+                this._run();
+            }
+
+            _resetPlayback() {
+                this.sb = null; this.mime = ""; this._initKey = null; this._tsOff = null; this._sbOff = 0;
+                this.nextSn = null; this._ring = []; this._tl = {}; this._base = 0; this._pending = null;
+                this._placed = false; this._seq = 1; this._lastT = -1; this._stuck = 0; this._misses = 0;
+                this._seekTo = null; this._seqStart = null; this._vtrack = null; this._resumeAt = null;
+            }
+            _fatal(err, type, details) {
+                if (!this.media && !this.ms) return;
+                this._gen++;
+                if (this._abort) this._abort.abort();
+                this._emit(Events.ERROR, { type: type || ErrorTypes.OTHER_ERROR, details: details || "error", fatal: true, error: err, reason: err && err.message });
+            }
+            _poke() { if (this._fragAc) this._fragAc.abort(); if (this._wake) this._wake(); }
+            _idle(ms) {
+                return new Promise((res) => {
+                    const done = () => { clearTimeout(t); this._wake = null; res(); };
+                    const t = setTimeout(done, ms);
+                    this._wake = done;
+                });
+            }
+            _run() {
+                const gen = ++this._gen;
+                if (this._abort) this._abort.abort();
+                const ac = (this._abort = new AbortController());
+                this._loop(gen, ac.signal).catch((err) => {
+                    if (gen !== this._gen || ac.signal.aborted) return;
+                    if (err && err.name === "NetErr") this._fatal(err.cause, ErrorTypes.NETWORK_ERROR, err.details);
+                    else if (err && err.name === "MediaErr") this._fatal(err.cause, ErrorTypes.MEDIA_ERROR, err.details);
+                    else this._fatal(err, ErrorTypes.OTHER_ERROR, "internalError");
+                });
+            }
+
+            // ---- playlists
+            async _text(url, sig, details) {
+                try { return await fetchRetry(url, { signal: sig, text: true, timeout: 10000, retries: this.cfg.levelRetries }); }
+                catch (e) { if (sig.aborted) throw e; throw Object.assign(new Error(e.message), { name: "NetErr", cause: e, details }); }
+            }
+            async _loadManifest(sig) {
+                const text = await this._text(this.url, sig, "manifestLoadError");
+                const levels = parseMaster(text, this.url);
+                if (levels) this.levels = levels;
+                else {
+                    const d = parseMedia(text, this.url);
+                    if (!d) throw Object.assign(new Error("not a playlist"), { name: "NetErr", details: "manifestParsingError" });
+                    this.levels = [{ url: this.url, bitrate: 0, averageBitrate: 0, width: 0, height: 0, name: "", audioCodec: "", videoCodec: "", codecSet: "", details: d, at: performance.now() }];
+                }
+                this._cur = this._pickStart();
+                this._emit(Events.MANIFEST_PARSED, { levels: this.levels, firstLevel: this._cur });
+            }
+            _pickStart() {
+                if (this.levels.length < 2) return 0;
+                const est = this.bandwidth || (navigator.connection && navigator.connection.downlink * 1e6) || 5e6;
+                let pick = 0;
+                this.levels.forEach((l, i) => { if ((l.averageBitrate || l.bitrate) <= est * 0.8) pick = i; });
+                return pick;
+            }
+            async _loadLevel(idx, sig) {
+                const lv = this.levels[idx];
+                const text = await this._text(lv.url, sig, "levelLoadError");
+                const d = parseMedia(text, lv.url);
+                if (!d) throw Object.assign(new Error("empty playlist"), { name: "NetErr", details: "levelEmptyError" });
+                lv.details = d;
+                lv.at = performance.now();
+                if (idx === this._cur) this.live = d.live;
+                this._emit(Events.LEVEL_LOADED, { level: idx, details: d });
+            }
+
+            // ---- the loading loop
+            async _loop(gen, sig) {
+                const ok = () => gen === this._gen && !sig.aborted;
+                if (!this.levels.length) await this._loadManifest(sig);
+                await this._opened;
+                if (!ok()) return;
+                while (ok()) {
+                    if (this._pending) { const p = this._pending; this._pending = null; await this._apply(p, sig); continue; }
+                    const lv = this.levels[this._cur], d = lv.details;
+                    const age = performance.now() - (lv.at || 0);
+                    if (!d || (d.live && ((this.nextSn !== null && this.nextSn > d.endSn && age > Math.max(1000, d.target * 500)) || age > d.target * 3000))) {
+                        await this._loadLevel(this._cur, sig);
+                        continue;
+                    }
+                    this.live = d.live;
+                    if (this.nextSn === null) this._startPosition(d);
+                    if (this.nextSn < d.startSn) this.nextSn = d.startSn; // fell out of the live window
+                    if (this.nextSn > d.endSn) {
+                        if (d.ended) { this._endOfStream(); await this._idle(1000); } else await this._idle(Math.max(500, d.target * 250));
+                        continue;
+                    }
+                    if (this._ahead() >= this.cfg.maxBufferLength) { await this._idle(400); continue; }
+                    await this._fragment(d.frags[this.nextSn - d.startSn], this._cur, d, sig, ok);
+                }
+            }
+            _startPosition(d) {
+                if (this._resumeAt != null) {
+                    const t = this._resumeAt;
+                    this._resumeAt = null;
+                    const f = d.frags.find((x) => t < x.start + x.dur) || d.frags[0];
+                    if (!d.live) { this.nextSn = f.sn; this._base = f.start; this._seekTo = t; return; }
+                }
+                if (d.live) { this.nextSn = Math.max(d.startSn, d.endSn - this.cfg.liveSyncCount + 1); this._base = 0; }
+                else { this.nextSn = d.startSn; this._base = 0; }
+            }
+            _ahead() {
+                const sb = this.sb, el = this.media;
+                if (!sb || !el) return 0;
+                const t = el.currentTime, b = sb.buffered;
+                let end = t;
+                for (let i = 0; i < b.length; i++) if (b.start(i) <= t + 0.3 && b.end(i) > end) end = b.end(i);
+                return end - t;
+            }
+            _inBuffer(t) {
+                const b = this.sb && this.sb.buffered;
+                if (!b) return false;
+                for (let i = 0; i < b.length; i++) if (t >= b.start(i) - 0.05 && t <= b.end(i)) return true;
+                return false;
+            }
+
+            // ---- one segment: download, decrypt, convert, append
+            async _fragment(frag, idx, d, sig, ok) {
+                const lv = this.levels[idx];
+                const fc = (this._fragAc = new AbortController());
+                const stop = () => fc.abort();
+                sig.addEventListener("abort", stop, { once: true });
+                const t0 = performance.now();
+                let data, unit;
+                try {
+                    const headers = frag.range ? { Range: `bytes=${frag.range.offset}-${frag.range.offset + frag.range.length - 1}` } : undefined;
+                    try { data = await fetchRetry(frag.url, { signal: fc.signal, headers, retries: this.cfg.fragRetries, timeout: 30000 }); }
+                    catch (e) {
+                        if (fc.signal.aborted) return; // superseded by a seek or a level change
+                        if (d.live && e && (e.status === 404 || e.status === 410) && ++this._misses < 6) { lv.at = 0; this.nextSn = null; await this._idle(1000); return; }
+                        throw Object.assign(new Error(e.message), { name: "NetErr", cause: e, details: "fragLoadError" });
+                    }
+                    const secs = Math.max(0.01, (performance.now() - t0) / 1000);
+                    if (this._pending || !ok()) return;
+                    if (frag.key) data = await this._decrypt(data, frag, fc.signal);
+                    if (this._pending || !ok()) return;
+                    unit = await this._convert(data, frag, lv, d, fc.signal);
+                    if (this._pending || !ok() || !unit) return;
+                    await this._append(unit, fc.signal);
+                    this._misses = 0;
+                    this._afterAppend(frag, idx, unit, d);
+                    this._abr(data.length, secs, frag, idx);
+                } finally {
+                    sig.removeEventListener("abort", stop);
+                    if (this._fragAc === fc) this._fragAc = null;
+                }
+            }
+            async _decrypt(data, frag, sig) {
+                const k = frag.key;
+                if (k.method !== "AES-128" || !k.uri) throw Object.assign(new Error("unsupported encryption " + k.method), { name: "NetErr", details: "keyLoadError" });
+                let p = this._keys.get(k.uri);
+                if (!p) {
+                    p = fetchRetry(k.uri, { signal: sig, retries: 2, timeout: 10000 }).then((raw) => crypto.subtle.importKey("raw", raw, "AES-CBC", false, ["decrypt"]));
+                    this._keys.set(k.uri, p);
+                    p.catch(() => this._keys.delete(k.uri));
+                }
+                const iv = new Uint8Array(16);
+                if (k.iv) { const h = k.iv.replace(/^0x/i, "").padStart(32, "0").slice(-32); for (let i = 0; i < 16; i++) iv[i] = parseInt(h.substr(i * 2, 2), 16); }
+                else for (let i = 15, n = frag.sn; i >= 0 && n > 0; i--, n = Math.floor(n / 256)) iv[i] = n & 255;
+                try { return new Uint8Array(await crypto.subtle.decrypt({ name: "AES-CBC", iv }, await p, data)); }
+                catch (e) { if (sig.aborted) throw e; throw Object.assign(new Error("decryption failed"), { name: "NetErr", cause: e, details: "keyLoadError" }); }
+            }
+            async _initFor(map, sig) {
+                const id = map.url + (map.range ? "@" + map.range.offset : "");
+                let p = this._maps.get(id);
+                if (!p) {
+                    const headers = map.range ? { Range: `bytes=${map.range.offset}-${map.range.offset + map.range.length - 1}` } : undefined;
+                    p = fetchRetry(map.url, { signal: sig, headers, retries: 2 });
+                    this._maps.set(id, p);
+                    p.catch(() => this._maps.delete(id));
+                }
+                return { id, bytes: await p };
+            }
+            _media(err, details) { return Object.assign(new Error(err), { name: "MediaErr", details }); }
+
+            // -> { mime, init, initKey, media, mode, start, end, id3 }: what the SourceBuffer needs for this segment
+            async _convert(data, frag, lv, d, sig) {
+                const kind = sniff(data);
+                if (kind === "mp4") return this._passthrough(data, frag, lv, sig);
+                if (!kind) throw this._media("unrecognized segment format", "fragParsingError");
+                let dm;
+                if (kind === "ts") dm = demuxTs(data);
+                else {
+                    const { tags, end } = id3Tags(data);
+                    const a = walkAudio(data.subarray(end), kind);
+                    const stamp = tags.map(id3Time).find((x) => x != null);
+                    dm = { audio: a && { ...a, pts: stamp != null ? stamp : null }, video: null, id3: tags.map((t) => ({ data: t, pts: stamp || 0 })), unsupported: [] };
+                }
+                if (dm.id3.length) this._emit(Events.FRAG_PARSING_METADATA, { frag, samples: dm.id3.map((x) => ({ data: x.data, pts: x.pts })) });
+                if (!dm.audio && !dm.video) {
+                    if (dm.unsupported.length) throw this._media("unsupported stream type " + dm.unsupported.join(","), "unsupportedCodecError");
+                    throw this._media("no audio or video in segment", "fragParsingError");
+                }
+                if (dm.audio && dm.audio.kind === "mp3") {
+                    // MPEG audio goes in raw: the browser lays the frames out one after the other.
+                    if (!MS_OK("audio/mpeg")) throw this._media("MP3 is not supported here", "bufferIncompatibleCodecsError");
+                    const media = cat(dm.audio.frames);
+                    return { mime: "audio/mpeg", init: null, initKey: "mp3", media, mode: "sequence", start: this._base, id3: dm.id3 };
+                }
+                return this._remux(dm, frag);
+            }
+            _remux(dm, frag) {
+                const tracks = [], init = [];
+                const firsts = [dm.audio && dm.audio.pts, dm.video && dm.video.pts].filter((x) => x != null);
+                const ref = firsts.length ? Math.min(...firsts) : 0;
+                let sig = "", codecs = [], start = Infinity, end = 0;
+                // timeline of one track: continuous from the previous segment, re-synced after a jump in the stream's own clock
+                const place = (key, first, secs) => {
+                    let st = this._tl[key];
+                    let at;
+                    if (!st) { st = this._tl[key] = { off: this._base - ref, end: 0 }; at = (first != null ? first : ref) + st.off; }
+                    else {
+                        const act = first != null ? first + st.off : st.end;
+                        if (first != null && Math.abs(act - st.end) > 0.5) st.off += st.end - act;
+                        at = st.end;
+                    }
+                    st.end = at + secs;
+                    start = Math.min(start, at); end = Math.max(end, st.end);
+                    return at;
+                };
+                if (dm.audio) {
+                    const a = dm.audio, c = a.cfg, n = a.frames.length;
+                    const asc = c.aot < 31 ? Uint8Array.of((c.aot << 3) | (c.sf >> 1), ((c.sf & 1) << 7) | (c.ch << 3)) : null;
+                    const t = { id: 1, kind: "audio", scale: c.rate, channels: c.ch || 2, asc, tfdt: 0, samples: a.frames.map((f) => ({ data: f, dur: 1024, flags: 0x2000000, cts: 0 })) };
+                    t.tfdt = Math.round(place("a", a.pts, (n * 1024) / c.rate) * c.rate);
+                    tracks.push(t);
+                    sig += `a${c.aot}.${c.sf}.${c.ch}`;
+                    codecs.push("mp4a.40." + c.aot);
+                    init.push(t);
+                }
+                if (dm.video) {
+                    const v = dm.video;
+                    const have = this._vtrack;
+                    const sps = v.sps || (have && have.sps), pps = v.pps || (have && have.pps);
+                    if (!sps || !pps) { // no parameter sets yet: wait for a segment that carries them
+                        if (!dm.audio) return null;
+                    } else {
+                        const { width, height } = spsSize(sps);
+                        const t = (this._vtrack = { id: 2, kind: "video", scale: 90000, sps, pps, width, height, tfdt: 0, samples: [] });
+                        const s = v.samples;
+                        let total = 0;
+                        t.samples = s.map((x, i) => {
+                            const dur = i + 1 < s.length ? Math.max(1, Math.round((s[i + 1].dts - x.dts) * 90000)) : Math.max(1, Math.round((i ? (x.dts - s[0].dts) / i : 1 / 30) * 90000));
+                            total += dur;
+                            return { data: x.data, dur, flags: x.key ? 0x2000000 : 0x1010000, cts: Math.max(0, Math.round((x.pts - x.dts) * 90000)) };
+                        });
+                        t.tfdt = Math.round(place("v", v.pts, total / 90000) * 90000);
+                        tracks.push(t);
+                        sig += `v${hex2(sps[1])}${hex2(sps[2])}${hex2(sps[3])}.${width}x${height}`;
+                        codecs.unshift("avc1." + hex2(sps[1]) + hex2(sps[2]) + hex2(sps[3]));
+                        init.push(t);
+                    }
+                }
+                if (!tracks.length) return null;
+                const mime = `${tracks.some((t) => t.kind === "video") ? "video" : "audio"}/mp4; codecs="${codecs.join(",")}"`;
+                return { mime, init: initSegment(init), initKey: sig, media: fragment(this._seq++, tracks), mode: "segments", start, end, id3: dm.id3 };
+            }
+            async _passthrough(data, frag, lv, sig) {
+                let init = null, key = "", info = null;
+                if (frag.map) { const m = await this._initFor(frag.map, sig); init = m.bytes; key = m.id; info = mp4Info(init); }
+                else info = mp4Info(data);
+                let codecs = info.codecs.join(",") || lv.codecSet;
+                const mime = `${info.video || lv.videoCodec ? "video" : "audio"}/mp4${codecs ? `; codecs="${codecs}"` : ""}`;
+                if (this._tsOff === null) { // place the first segment of a run at the playlist position (VOD) or at 0 (live)
+                    const t = firstDecodeTime(data, info.scales);
+                    this._tsOff = t == null ? 0 : this._base - t;
+                }
+                return { mime, init, initKey: key || "inline", media: data, mode: "segments", offset: this._tsOff, start: null, end: null, id3: [] };
+            }
+
+            // ---- the SourceBuffer
+            _op(fn) {
+                return new Promise((res, rej) => {
+                    const sb = this.sb;
+                    if (!sb || this.ms.readyState === "closed") return rej(this._media("media source closed", "bufferAppendError"));
+                    const done = () => { sb.removeEventListener("updateend", done); sb.removeEventListener("error", fail); res(); };
+                    const fail = () => { sb.removeEventListener("updateend", done); sb.removeEventListener("error", fail); rej(this._media("buffer error", "bufferAppendError")); };
+                    sb.addEventListener("updateend", done);
+                    sb.addEventListener("error", fail);
+                    try { fn(sb); } catch (e) { sb.removeEventListener("updateend", done); sb.removeEventListener("error", fail); rej(e); }
+                });
+            }
+            async _ensureBuffer(u) {
+                const ms = this.ms;
+                if (!this.sb) {
+                    if (!MS_OK(u.mime)) throw this._media("unsupported codec " + u.mime, "bufferIncompatibleCodecsError");
+                    try { this.sb = ms.addSourceBuffer(u.mime); } catch (e) { throw this._media(e.message, "bufferAddCodecError"); }
+                    this.mime = u.mime;
+                    try { this.sb.mode = u.mode; } catch (e) {}
+                    try { ms.duration = this.live ? Infinity : this.levels[this._cur].details.total; } catch (e) {}
+                } else if (u.mime !== this.mime) {
+                    if (!MS_OK(u.mime)) throw this._media("unsupported codec " + u.mime, "bufferIncompatibleCodecsError");
+                    if (!this.sb.changeType) throw this._media("codec change not supported", "bufferIncompatibleCodecsError");
+                    if (this.sb.updating) await this._op(() => {});
+                    this.sb.changeType(u.mime);
+                    this.mime = u.mime;
+                    this._initKey = null;
+                }
+            }
+            async _append(u, sig) {
+                await this._ensureBuffer(u);
+                const sb = this.sb;
+                if (sb.updating) await this._op(() => {});
+                if (u.offset !== undefined && sb.timestampOffset !== u.offset) sb.timestampOffset = u.offset;
+                if (u.mode === "sequence" && this._seqStart != null) { sb.timestampOffset = this._seqStart; this._seqStart = null; }
+                const put = (bytes) => this._appendBytes(bytes);
+                if (u.init && u.initKey !== this._initKey) { await put(u.init); this._initKey = u.initKey; }
+                else if (!u.init && u.initKey !== this._initKey) this._initKey = u.initKey;
+                await put(u.media);
+            }
+            async _appendBytes(bytes) {
+                for (let tries = 0; ; tries++) {
+                    try { return await this._op((sb) => sb.appendBuffer(bytes)); }
+                    catch (e) {
+                        if (!e || e.name !== "QuotaExceededError" || tries > 2) throw e && e.name === "MediaErr" ? e : this._media((e && e.message) || "append failed", "bufferAppendError");
+                        // buffer full: drop what has been played, then shrink the target so it does not happen again
+                        const t = this.media.currentTime, b = this.sb.buffered;
+                        if (b.length && t - b.start(0) > 1) await this._op((sb) => sb.remove(b.start(0), t - 1));
+                        else this.cfg.maxBufferLength = Math.max(8, this._ahead() * 0.7);
+                        this._prune();
+                    }
+                }
+            }
+            _prune() {
+                const b = this.sb && this.sb.buffered;
+                if (!b || !b.length) { this._ring.length = 0; return; }
+                const s = b.start(0);
+                while (this._ring.length && this._ring[0].end <= s) this._ring.shift();
+            }
+            _afterAppend(frag, idx, u, d) {
+                const sb = this.sb, b = sb.buffered, el = this.media;
+                const bEnd = b.length ? b.end(b.length - 1) : 0;
+                const start = u.start != null ? u.start : this._ring.length ? this._ring[this._ring.length - 1].end : this._base;
+                const end = u.end != null ? u.end : bEnd;
+                this._ring.push({ sn: frag.sn, level: idx, start, end, tl: JSON.parse(JSON.stringify(this._tl)) });
+                if (this._ring.length > 600) this._ring.shift();
+                this.nextSn = frag.sn + 1;
+                if (!this._placed && b.length) { // first data of a run: put the playhead on it
+                    this._placed = true;
+                    const want = this._seekTo != null ? this._seekTo : el.currentTime;
+                    this._seekTo = null;
+                    if (!this._inBuffer(want)) { try { el.currentTime = b.start(0); } catch (e) {} }
+                    else if (want !== el.currentTime) { try { el.currentTime = want; } catch (e) {} }
+                }
+                if (this.live && this.ms.setLiveSeekableRange && b.length) { try { this.ms.setLiveSeekableRange(b.start(0), bEnd); } catch (e) {} }
+                if (this._shown !== idx) { this._shown = idx; this._emit(Events.LEVEL_SWITCHED, { level: idx }); }
+                this._emit(Events.FRAG_BUFFERED, { frag });
+                // played media beyond the back buffer goes
+                const keep = this.cfg.backBufferLength;
+                if (b.length && el.currentTime - b.start(0) > keep + 10 && !sb.updating) {
+                    try { sb.remove(b.start(0), el.currentTime - keep); } catch (e) {}
+                }
+                if (!d.live && frag.sn === d.endSn) this._endOfStream();
+            }
+            _endOfStream() {
+                const ms = this.ms, sb = this.sb;
+                if (ms && sb && ms.readyState === "open" && !sb.updating) { try { ms.endOfStream(); } catch (e) {} }
+            }
+
+            // ---- adaptive quality
+            _abr(bytes, secs, frag, idx) {
+                const bps = (bytes * 8) / secs;
+                this.bandwidth = this.bandwidth ? this.bandwidth * 0.6 + bps * 0.4 : bps;
+                if (!this._auto || this.levels.length < 2 || this._pending) return;
+                const rate = (l) => l.averageBitrate || l.bitrate;
+                let target = 0;
+                this.levels.forEach((l, i) => { if (rate(l) <= this.bandwidth * 0.75) target = i; });
+                if (target < idx) this._cur = target;                                     // too slow: step down at once
+                else if (target > idx && this._ahead() > frag.dur * 1.5) this._cur = idx + 1; // plenty buffered: step up one level
+                if (this._cur !== idx && !this.levels[this._cur].details) this._wake && this._wake();
+            }
+
+            // ---- seeking, manual level changes
+            _seeking() {
+                const el = this.media;
+                if (!el || !this.sb) return;
+                const t = el.currentTime;
+                if (this._inBuffer(t)) return;
+                if (this.live) {
+                    const b = this.sb.buffered;
+                    if (b.length && t < b.start(0)) el.currentTime = b.start(0);
+                    return;
+                }
+                this._pending = { type: "seek", t };
+                this._poke();
+            }
+            async _apply(p, sig) {
+                const sb = this.sb, el = this.media;
+                const wipe = async (from) => {
+                    if (!sb || !sb.buffered.length) return;
+                    if (sb.updating) await this._op(() => {});
+                    await this._op((s) => s.remove(from, Infinity));
+                };
+                if (p.type === "seek") {
+                    const d = this.levels[this._cur].details;
+                    const f = d.frags.find((x) => p.t < x.start + x.dur) || d.frags[d.frags.length - 1];
+                    if (this._inBuffer(p.t)) return;
+                    await wipe(0);
+                    this._ring.length = 0; this._tl = {}; this._tsOff = null; this._base = f.start;
+                    if (this.mime === "audio/mpeg") this._seqStart = f.start;
+                    this.nextSn = f.sn;
+                } else if (p.type === "level") {
+                    const keepOld = p.idx === this._cur && this._shown === this._cur;
+                    this._cur = p.idx;
+                    if (keepOld) return;
+                    const t = el ? el.currentTime : 0;
+                    const cut = this._ring.find((e) => e.end > t + 0.5);
+                    if (cut && sb) { // everything after the segment being played is replaced by the new quality
+                        await wipe(cut.end);
+                        this._ring = this._ring.filter((e) => e.end <= cut.end);
+                        this._tl = JSON.parse(JSON.stringify(cut.tl));
+                        if (this.mime === "audio/mpeg") this._seqStart = cut.end;
+                        this.nextSn = cut.sn + 1;
+                    }
+                    if (!this.levels[this._cur].details) await this._loadLevel(this._cur, sig);
+                }
+            }
+
+            // ---- watchdog: start-up gaps, small gaps, frozen playback
+            _watch() {
+                const el = this.media, sb = this.sb;
+                if (!el || !sb) return;
+                if (this.live && this.ms.setLiveSeekableRange && sb.buffered.length) { try { this.ms.setLiveSeekableRange(sb.buffered.start(0), sb.buffered.end(sb.buffered.length - 1)); } catch (e) {} }
+                if (el.paused || el.ended || el.seeking) { this._stuck = 0; this._lastT = el.currentTime; return; }
+                const t = el.currentTime, b = sb.buffered;
+                if (el.readyState < 3 && b.length) {
+                    let next = -1;
+                    for (let i = 0; i < b.length; i++) if (b.start(i) > t && b.start(i) - t < 2.5) { next = b.start(i); break; }
+                    if (next >= 0 && !this._inBuffer(t)) { try { el.currentTime = next + 0.02; } catch (e) {} this._stuck = 0; return; }
+                    if (this._inBuffer(t) && t === this._lastT && this._ahead() > 0.5) {
+                        if (++this._stuck > 3) { this._stuck = 0; this._emit(Events.ERROR, { type: ErrorTypes.MEDIA_ERROR, details: "bufferStalledError", fatal: true }); return; }
+                        try { el.currentTime = t + 0.1; } catch (e) {}
+                    }
+                } else this._stuck = 0;
+                this._lastT = t;
+            }
+        }
+
+        Hls.Events = Events;
+        Hls.ErrorTypes = ErrorTypes;
+        return Hls;
+    })();
     </script>
 </body>
 </html>
