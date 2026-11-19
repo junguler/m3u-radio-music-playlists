@@ -23,7 +23,7 @@
     --border-color: #3a3a3a;
     --text-primary: #f0f0f0;
     --text-secondary: #adadad;
-    --text-muted: #8f8f8f;
+    --text-muted: #9e9e9e;
     --accent: #9b5de5;
     --accent-hover: #b280ea;
     /* --accent is for rings, borders and bars; text in the accent uses --accent-text (lighter on dark), and filled buttons with --on-accent use --accent-solid (darker), so both clear WCAG AA. */
@@ -74,7 +74,7 @@ html[data-theme="light"] {
     --border-color: #d6d6d6;
     --text-primary: #1a1a1a;
     --text-secondary: #4d4d4d;
-    --text-muted: #666666;
+    --text-muted: #5c5c5c;
     --accent: #5b21b6;
     --accent-hover: #4c1a99;
     --accent-text: var(--accent);
@@ -154,7 +154,7 @@ html[data-theme="hc-light"] {
         --border-color: #d6d6d6;
         --text-primary: #1a1a1a;
         --text-secondary: #4d4d4d;
-        --text-muted: #666666;
+        --text-muted: #5c5c5c;
         --accent: #5b21b6;
         --accent-hover: #4c1a99;
         --accent-text: var(--accent);
@@ -497,7 +497,7 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 .empty-state svg:not(.empty-state-illustration) { width: 40px; height: 40px; margin-bottom: 0.5rem; opacity: 0.5; }
 .empty-state h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--text-primary); }
 .empty-state p { font-size: 0.85rem; }
-.modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; padding: 0.5rem; overscroll-behavior: contain; touch-action: pan-y; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; padding: 0.5rem; overscroll-behavior: contain; touch-action: pan-y; }
 .modal-overlay.active { opacity: 1; visibility: visible; }
 .modal { background: var(--bg-secondary); border-radius: var(--radius-lg); max-width: 95vw; max-height: 95vh; max-height: 95dvh; width: 100%; display: flex; flex-direction: column; transform: scale(0.95); transition: transform 0.2s; overflow: hidden; border: var(--bw) solid var(--border-color); }
 .modal.video-modal { height: 95vh; height: 95dvh; }
@@ -522,8 +522,6 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 .modal-btn.play-playlist-btn:hover { color: var(--text-primary); }
 .modal-btn.play-playlist-btn svg { width: 22px; height: 22px; }
 .modal-btn.hidden { display: none; }
-#modalContent .modal-actions .modal-btn#closeBtn { width: auto; height: auto; min-width: 0; min-height: 0; padding: 0.5rem 0.9rem; }
-#modalContent .modal-actions .modal-btn#closeBtn svg { width: 22px; height: 22px; }
 .playlist-bar { --bar-btn-h: var(--ctl); --bar-btn-w: var(--ctl); display: none; align-items: center; flex-wrap: wrap; gap: 0.4rem 0.5rem; padding: 0.45rem 0.75rem; background: var(--bg-tertiary); border-bottom: var(--bw) solid var(--border-color); position: relative; }
 .playlist-bar.active { display: flex; }
 .playlist-controls { display: flex; gap: 0.25rem; align-items: center; }
@@ -711,8 +709,6 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
     .modal-btn.play-playlist-btn .btn-label { display: none; }
     .modal-btn.play-playlist-btn { padding: 0.5rem; min-width: 44px; min-height: 44px; }
     .modal-btn.play-playlist-btn svg { width: 24px; height: 24px; }
-    #modalContent .modal-actions .modal-btn#closeBtn { padding: 0.5rem; min-width: 44px; min-height: 44px; }
-    #modalContent .modal-actions .modal-btn#closeBtn svg { width: 24px; height: 24px; }
     .playlist-bar { padding: 0.5rem; flex-wrap: wrap; }
     .playlist-btn span:not(.btn-txt):not(.blabel):not(.lbl-long):not(.lbl-short) { display: none; }
     .preview-image { max-height: 80vh; max-height: 80dvh; }
@@ -794,12 +790,10 @@ body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-bt
     #playlistBar .playlist-controls { margin-right: auto; }
 }
 /* Recording panel: same bar language as the playlist bar above it. Left = what is happening, right = what you can press. */
-.rec-panel { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem 0.75rem; padding: 0.45rem 0.75rem; min-height: 2.55rem; box-sizing: border-box; background: var(--bg-tertiary); border-top: var(--bw) solid var(--border-color); flex-shrink: 0; }
-/* The recording row sits below the player so opening it never pushes the glyph or player: on desktop the window keeps its top edge fixed (height is added at the bottom),
-   on phones the row overlays the empty space under the controls instead of resizing the stage. */
-@media (min-width: 641px) {
-    .modal-overlay:has(.playlist-bar.active) { align-items: flex-start; padding-top: clamp(0.5rem, calc(50vh - 12.5rem), calc(100vh - 32rem)); padding-top: clamp(0.5rem, calc(50dvh - 12.5rem), calc(100dvh - 32rem)); }
-}
+.rec-panel { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem 0.75rem; padding: 0.45rem 0.75rem; min-height: var(--rec-h, 2.55rem); box-sizing: border-box; background: var(--bg-tertiary); border-top: var(--bw) solid var(--border-color); flex-shrink: 0; }
+/* Player window (station list): the details bar and the recording row take space only while they are open. The window stays centred in the page (and in a twin panel),
+   so opening or closing a bar grows or shrinks it evenly around the middle and the player section moves just enough to stay centred. On phones the recording row
+   overlays the empty space under the controls instead (see the max-width: 640px rules). */
 .rec-panel.rec-on { box-shadow: inset 3px 0 0 var(--danger); }
 /* File details bar: two lines at a fixed height on every screen, so opening it or stepping to the next file never moves the window. The facts fill it two to a column
    and the rest scrolls sideways (wheel, swipe, arrow keys; dragging still selects text); a soft shadow on an edge shows there is more that way. */
@@ -941,6 +935,8 @@ html[data-thumb="l"] .tw-pane .file-grid { grid-template-columns: repeat(auto-fi
 .file-grid .file-card > .file-icon > svg.ib { display: block; width: 100%; height: 100%; overflow: visible; }
 html:not([data-theme="concrete"]) .file-grid .file-card > .file-icon { background: none !important; }
 html[data-theme="concrete"] .file-grid .file-card > .file-icon > svg.ib { width: 84%; height: 84%; margin: auto; }
+/* the "paper" of the big icons (extension tag, folder sheet, radio display) was the near-black panel colour, so the black ink vanished on it */
+html[data-theme="concrete"] .file-icon svg.ib { --bg-secondary: #ffffff; }
 .pv-label { display: block; margin: 0.8rem 0 0.3rem; font-size: var(--label-size, 0.75rem); font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: var(--label-track, 0.04em); }
 .pv-label span { text-transform: none; font-weight: 400; letter-spacing: 0; }
 .pv-input { width: 100%; padding: 0.5rem 0.6rem; background: var(--control-surface, var(--bg-tertiary)); color: var(--text-primary); border: var(--bw) solid var(--border-color); border-radius: var(--radius-sm); font: inherit; font-size: 0.85rem; }
@@ -1099,12 +1095,19 @@ html[data-theme="concrete"] .sel-bar { background: var(--yellow); color: var(--i
 html[data-theme="concrete"] .sel-count { color: var(--ink); }
 html[data-theme="concrete"] .sel-btn { background: #fff; color: var(--ink); border: var(--bw) solid var(--ink); border-radius: 0; box-shadow: 2px 2px 0 var(--ink); font-weight: 700; text-transform: uppercase; }
 html[data-theme="concrete"] .sel-btn:hover:not(:disabled) { background: var(--orange); }
+/* Twin panels: each panel has its own selection bar, in the panel itself (not floating over the page) */
+.tw-selbar { flex-shrink: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.375rem; padding: 0.3rem 0.4rem; background: var(--bg-secondary); color: var(--text-primary); border-top: var(--bw) solid var(--border-strong); }
+.tw-selbar[hidden] { display: none; }
+.tw-selbar .sel-count { font-size: var(--data-size); padding: 0 0.25rem 0 0; }
+.tw-selbar .sel-btn { font-size: 0.75rem; min-height: 1.75rem; padding: 0.2rem 0.5rem; }
+.tw-pane[data-mode="view"] .tw-selbar, .tw-pane[data-mode="media"] .tw-selbar { display: none; }
+html[data-theme="concrete"] .tw-selbar { background: var(--yellow); color: var(--ink); border-top: var(--bw) solid var(--ink); }
 @media (max-width: 640px) { .sel-bar { left: 0.75rem; right: 0.75rem; transform: none; max-width: none; width: auto; } .sel-count { flex: 1 1 100%; text-align: center; } }
 /* --- Print: the file list, or just the open preview when one is open; no app chrome, black on white --- */
 @media print {
     html, body { height: auto !important; overflow: visible !important; display: block !important; font-size: 11pt; }
     html, body, .app-container, .main, .modal, .modal-body, .modal-header { background: #fff !important; color: #000 !important; }
-    .sel-bar, .header, #treePanel, #twin, .skip-link, .tree-resize, .modal-actions, .playlist-bar, .player-bar, .player-info-btn, .settings-menu, .op-toast, .card-star-btn,
+    .sel-bar, .tw-selbar, .header, #treePanel, #twin, .skip-link, .tree-resize, .modal-actions, .playlist-bar, .player-bar, .player-info-btn, .settings-menu, .op-toast, .card-star-btn,
     .modal-overlay:not(.active), #loadMoreBtn, .load-more-btn { display: none !important; }
     .app-container, .main { display: block !important; height: auto !important; overflow: visible !important; padding: 0 !important; }
     body:has(#modal.active) .header, body:has(#modal.active) .app-container { display: none !important; }
@@ -1132,7 +1135,7 @@ html[data-theme="concrete"] .sel-btn:hover:not(:disabled) { background: var(--or
 .player-controls-row .playlist-btn:not(.player-play-btn), .playlist-bar .playlist-controls .playlist-btn, #modalContent .modal-actions .modal-btn:not(.play-playlist-btn):not(.text-btn) { width: var(--ctl); height: var(--ctl); min-width: 0; min-height: 0; padding: 0; flex-shrink: 0; }
 .playlist-bar .playlist-btn .btn-txt { padding-right: 0.2rem; }
 /* Header action buttons (star, info, link, download, open) are a little larger than the playlist-bar ones; Play and Close shrank by 25%, so the header ends up no taller than before. */
-#modalContent .modal-actions .modal-btn:not(.play-playlist-btn):not(.text-btn):not(#closeBtn) { width: max(var(--ctl), 2rem); height: max(var(--ctl), 2rem); }
+#modalContent .modal-actions .modal-btn:not(.play-playlist-btn):not(.text-btn) { width: max(var(--ctl), 2rem); height: max(var(--ctl), 2rem); }
 #modalContent .modal-actions .modal-btn:not(.play-playlist-btn):not(.text-btn) svg { width: 17px; height: 17px; }
 @media (pointer: coarse) { #modalContent .modal-actions .modal-btn#closeBtn::after, .modal-btn.play-playlist-btn::after, .playlist-btn.player-play-btn::after { content: ""; position: absolute; inset: -6px; } #modalContent .modal-actions .modal-btn#closeBtn, .modal-btn.play-playlist-btn, .playlist-btn.player-play-btn { position: relative; } }
 
@@ -1539,6 +1542,11 @@ html[data-theme="concrete"] .modal { background: var(--panel); border: var(--bw)
 html[data-theme="concrete"] .modal-header { background: var(--ink); border-bottom: var(--bw) solid var(--line); }
 html[data-theme="concrete"] .modal-title { font-weight: 900; text-transform: uppercase; letter-spacing: 0.02em; }
 html[data-theme="concrete"] .modal-body { background: var(--ink); }
+#modal .modal:has(#playlistBar.active):not(.video-modal) .meta-bar.meta-empty { background: var(--bg-primary) !important; border-top-color: transparent; }
+html[data-theme="concrete"] #modal .modal:has(#playlistBar.active):not(.video-modal) .meta-bar.meta-empty { background: var(--ink) !important; }
+/* Whatever is not covered by a bar inside the station player window (if anything) shows the window's own colour, so make that the colour of the player body */
+#modal .modal:has(#playlistBar.active):not(.video-modal) { background: var(--bg-primary); }
+html[data-theme="concrete"] #modal .modal:has(#playlistBar.active):not(.video-modal) { background: var(--ink); } /* the player body is black */
 @media (min-width: 641px) {
 html[data-theme="concrete"] .modal-overlay,
 html[data-theme="concrete"] .modal-overlay .modal,
@@ -1778,7 +1786,6 @@ html[data-vivid] *::after { forced-color-adjust: none !important; }
 #modal.tw-embedded .modal { max-width: 100%; max-height: 100%; transform: none; transition: none; }
 #modal.tw-embedded .modal.compact-modal { max-width: min(560px, 100%); }
 #modal.tw-embedded .modal.video-modal { height: 100%; }
-#modal.tw-embedded:not(.tw-narrow):has(.playlist-bar.active) { align-items: flex-start; padding-top: var(--tw-pt, 0.5rem); }
 #modal.tw-embedded.tw-narrow, #modal.tw-embedded.tw-narrow:has(.playlist-bar.active) { padding: 0; align-items: center; }
 #modal.tw-embedded.tw-narrow .modal, #modal.tw-embedded.tw-narrow .modal.compact-modal, #modal.tw-embedded.tw-narrow .modal.video-modal { width: 100%; max-width: none; height: 100%; max-height: none; border: 0; border-radius: 0; }
 #modal.tw-narrow .preview-audio-container .np-stack { display: block; min-height: 0; }
@@ -1836,9 +1843,8 @@ body.compact-density .tw-pane .file-grid .file-icon { width: 26px; height: 26px;
 /* While a player fills a panel, the sort / zip / list / grid controls of that panel have nothing to act on. */
 .tw-pane[data-mode="media"] .tw-tools { display: none; }
 
-.tw-vhead .modal-btn.vb-close { width: auto; height: auto; min-width: 0; min-height: 0; padding: 0.5rem 0.9rem; }
-.tw-vhead .modal-btn.vb-close svg { width: 22px; height: 22px; }
-@media (max-width: 640px) { .tw-vhead .modal-btn.vb-close { padding: 0.5rem; min-width: 44px; min-height: 44px; } .tw-vhead .modal-btn.vb-close svg { width: 24px; height: 24px; } }
+.tw-vhead .modal-btn.vb-close { width: max(var(--ctl), 2rem); height: max(var(--ctl), 2rem); }
+.tw-vhead .modal-btn.vb-close svg { width: 17px; height: 17px; }
 .modal-btn.vb-fav.favorited, .vb-info[aria-pressed="true"] { color: var(--accent-text, var(--accent)); border-color: var(--accent-text, var(--accent)); }
 .tw-view .meta-bar { flex-shrink: 0; }
 html[data-theme="concrete"] .vb-close { --c: var(--red); }
@@ -1873,6 +1879,55 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
 @media (hover: hover) and (pointer: fine) {
     html[data-theme="concrete"] :is(.modal-btn, .playlist-btn, .settings-menu-close, .settings-control button, .theme-reset-btn, .md-toggle, .load-more-btn, .download-btn, .tree-hdr-btn, .op-toast button) { position: relative; }
     html[data-theme="concrete"] :is(.settings-btn, .view-btn, .goto-step-btn, .card-star-btn, .modal-btn, .playlist-btn, .settings-menu-close, .settings-control button, .theme-reset-btn, .md-toggle, .load-more-btn, .download-btn, .tree-hdr-btn, .op-toast button)::after { content: ""; position: absolute; inset: -3px; }
+}
+
+/* ---- visual pass fixes ---- */
+/* Keyboard focus ring on breadcrumb buttons was clipped by the scrolling breadcrumb box: give it room */
+.breadcrumb { padding-block: 5px; margin-block: -5px; }
+
+/* Active view button: clear in light themes (white on light grey was too close) */
+html[data-theme="light"] .view-btn.active { box-shadow: inset 0 0 0 1px var(--border-strong); color: var(--accent-text, var(--accent)); }
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) .view-btn.active { box-shadow: inset 0 0 0 1px var(--border-strong); color: var(--accent-text, var(--accent)); }
+}
+/* Active view button in the high-contrast themes (background and surface were identical, so nothing showed) */
+html[data-theme="hc-dark"] .view-btn.active, html[data-theme="hc-light"] .view-btn.active { background: var(--accent); color: var(--on-accent, #fff); }
+html[data-theme="hc-light"] .view-btn.active { color: #fff; }
+@media (max-width: 480px) {
+    /* tree view is hidden here, so the list button stands in for it (same as the base rule) */
+    html[data-theme="hc-dark"] .view-toggle:has(.view-btn[data-view="tree"].active) .view-btn[data-view="list"],
+    html[data-theme="hc-light"] .view-toggle:has(.view-btn[data-view="tree"].active) .view-btn[data-view="list"] { background: var(--accent); color: var(--on-accent, #fff); }
+    html[data-theme="hc-light"] .view-toggle:has(.view-btn[data-view="tree"].active) .view-btn[data-view="list"] { color: #fff; }
+}
+
+/* Selects: same flat look as the rest, with a themed chevron instead of the OS one (concrete keeps its own look) */
+html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]) .eq-preset {
+    -webkit-appearance: none; appearance: none; padding-right: 1.5rem; cursor: pointer;
+    background-image: linear-gradient(45deg, transparent 50%, var(--text-secondary) 50%), linear-gradient(135deg, var(--text-secondary) 50%, transparent 50%);
+    background-position: calc(100% - 11px) 55%, calc(100% - 6px) 55%; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat;
+}
+
+/* Parent-folder row: quiet the icon */
+.file-card.parent-dir .file-icon { opacity: 0.7; }
+
+/* Stats modal: category icons take the same colors as the file list */
+.stats-row-icon.file-icon { background: none; width: 18px; height: 18px; padding: 0; }
+
+/* The "preview not available" modal does not need the full width */
+@media (min-width: 641px) {
+    #modal .modal:has(.preview-unavailable) { max-width: min(760px, 95vw); }
+}
+
+/* Phones: search starts as an icon button next to the tools (one row instead of two) and opens full width when used */
+@media (max-width: 640px) {
+    .header-content { row-gap: 0.375rem; }
+    .header-actions { row-gap: 0.375rem; }
+    #searchBox0:not(:focus-within):has(.search-input:placeholder-shown) { flex: 0 0 2rem; }
+    #searchBox0:not(:focus-within) .search-input:placeholder-shown { padding: 0; height: 30px; box-sizing: border-box; color: transparent; cursor: pointer; text-indent: -999px; }
+    #searchBox0:not(:focus-within) .search-input:placeholder-shown::placeholder { color: transparent; }
+    #searchBox0:not(:focus-within) .search-input:placeholder-shown ~ .search-icon, #searchBox0:not(:focus-within) .search-icon { left: 50%; transform: translate(-50%, -50%); }
+    #searchBox0 .search-icon { pointer-events: none; }
+    #searchBox0:focus-within { flex: 1 1 100%; }
 }
 </style>
 </head>
@@ -2201,7 +2256,7 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
                 <aside class="gallery-rail" id="galleryRail" aria-label="Files in this folder" hidden></aside>
                 <div class="modal-body" id="modalBody"></div>
             </div>
-            <div class="meta-bar" id="metaBar" tabindex="0" role="region" aria-label="File details" hidden></div>
+            <div class="meta-bar" id="metaBar" tabindex="-1" role="region" aria-label="File details" hidden></div>
             <div class="rec-panel" id="recPanel" hidden></div>
         </div>
     </div>
@@ -2227,6 +2282,11 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
                     <div class="shortcut-row"><dt><kbd>Tab</kbd> (twin panels)</dt><dd>Switch panel</dd></div>
                     <div class="shortcut-row"><dt><kbd>Backspace</kbd> (twin panels)</dt><dd>Parent folder</dd></div>
                     <div class="shortcut-row"><dt><kbd>Enter</kbd> / <kbd>Space</kbd></dt><dd>Open selected file or folder</dd></div>
+                    <div class="shortcut-row"><dt><kbd>Ctrl</kbd>+click / long press</dt><dd>Select several items. Then a plain click toggles</dd></div>
+                    <div class="shortcut-row"><dt><kbd>Shift</kbd>+click / <kbd>Shift</kbd>+<kbd>&uarr;</kbd><kbd>&darr;</kbd></dt><dd>Select a range</dd></div>
+                    <div class="shortcut-row"><dt><kbd>X</kbd> / <kbd>Ctrl</kbd>+<kbd>A</kbd> / <kbd>Ctrl</kbd>+<kbd>I</kbd></dt><dd>Toggle one / all / invert</dd></div>
+                    <div class="shortcut-row"><dt>Selection bar</dt><dd>Play, download, star or copy links. Each twin panel has its own</dd></div>
+                    <div class="shortcut-row"><dt><kbd>Esc</kbd> (selecting)</dt><dd>Clear the selection</dd></div>
                     <div class="shortcut-row"><dt><kbd>&larr;</kbd> / <kbd>&rarr;</kbd> (in preview)</dt><dd>Stop / play playlist track</dd></div>
                     <div class="shortcut-row"><dt><kbd>&larr;</kbd> / <kbd>&rarr;</kbd> (image gallery)</dt><dd>Previous / next image</dd></div>
                     <div class="shortcut-row"><dt><kbd>&uarr;</kbd> / <kbd>&darr;</kbd> (in preview)</dt><dd>Scroll preview</dd></div>
@@ -5328,9 +5388,10 @@ function safeJsonParse(str, fallback) {
         return fallback;
     }
 }
-// ---- Selecting several items (main list and grid) ----
+// ---- Selecting several items (main list and grid; twin panels have their own copy of this inside TWIN, one selection per panel) ----
 // Ctrl/Cmd + click toggles one item, Shift + click selects a range, long press does the same on a touch screen, X toggles the focused item,
-// Shift + Up/Down extends, Ctrl/Cmd + A selects everything in view, Esc clears. While something is selected a plain click toggles instead of opening.
+// Shift + Up/Down extends, Ctrl/Cmd + A selects everything in view, Ctrl/Cmd + I inverts it, Esc clears. While something is selected a plain click toggles instead of opening.
+// The actions (star, copy, share, download, play) take a plain list of entries, so the main view and every panel share them.
 const SEL = { map: new Map(), anchor: null, folder: "", suppress: false, bar: null };
 function selKeyOf(card) {
     if (!card || card.classList.contains("parent-dir")) return null;
@@ -5378,13 +5439,14 @@ function selSync(say) {
     if (!bar) return;
     bar.hidden = n === 0;
     if (n) {
-        let f = 0, d = 0;
-        SEL.map.forEach((e) => { if (e.type === "d") d++; else f++; });
+        let f = 0, d = 0, play = false;
+        SEL.map.forEach((e) => { if (e.type === "d") d++; else { f++; if (selIsPlayable(e)) play = true; } });
         const parts = [];
         if (f) parts.push(`${f} file${f === 1 ? "" : "s"}`);
         if (d) parts.push(`${d} folder${d === 1 ? "" : "s"}`);
         bar.querySelector(".sel-count").textContent = parts.join(", ") + " selected";
         bar.querySelector('[data-sel="copy"]').disabled = f === 0;
+        bar.querySelector('[data-sel="play"]').hidden = !play;
         const sh = bar.querySelector('[data-sel="share"]');
         sh.hidden = !canNativeShare() || f === 0;
     }
@@ -5420,6 +5482,12 @@ function selSelectAll() {
     selAllEntries().forEach((e) => SEL.map.set(e.key, e));
     selSync();
 }
+function selInvert() {
+    if (!SEL.map.size) SEL.folder = currentPath.join("/");
+    selAllEntries().forEach((e) => { if (SEL.map.has(e.key)) SEL.map.delete(e.key); else SEL.map.set(e.key, e); });
+    SEL.anchor = null;
+    selSync();
+}
 function selPaintStars() {
     document.querySelectorAll("#main .card-star-btn").forEach((btn) => {
         const type = btn.dataset.starType, raw = btn.dataset.starPath;
@@ -5434,34 +5502,39 @@ function selPaintStars() {
     });
 }
 function selNote(msg, ms) { opStart(msg); opDone(msg, ms || 2200); }
-function selStar() {
-    const list = [...SEL.map.values()];
+const selList = () => [...SEL.map.values()];
+// Stars everything in the list, or un-stars it when all of it is starred already. Returns true when it un-starred.
+function selStarList(list) {
     const isOn = (e) => (e.type === "f" ? isFavoriteFile(e.path) : isPinned(e.arr));
     const allOn = list.every(isOn);
     list.forEach((e) => { if (allOn ? isOn(e) : !isOn(e)) { if (e.type === "f") toggleFavoriteFile(e.path); else toggleFolderPin(e.arr); } });
+    return allOn;
+}
+function selStar() {
+    const allOn = selStarList(selList());
     selPaintStars();
     announce(allOn ? "Removed from favorites" : "Added to favorites");
 }
-function selLinks() {
-    return [...SEL.map.values()].filter((e) => e.type === "f").map((e) => LOCAL.active ? e.path : new URL(hostedUrl(e.path), window.location.href).href);
+function selLinksOf(list) {
+    return list.filter((e) => e.type === "f").map((e) => LOCAL.active ? e.path : new URL(hostedUrl(e.path), window.location.href).href);
 }
-function selCopy() {
-    const links = selLinks();
+function selCopyList(list) {
+    const links = selLinksOf(list);
     if (!links.length) return;
     const text = links.join("\n"), done = () => selNote(`Copied ${links.length} link${links.length === 1 ? "" : "s"}.`);
     if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
     else fallbackCopy(text, done);
 }
-function selShare() {
-    const links = selLinks();
+function selShareList(list) {
+    const links = selLinksOf(list);
     if (!links.length || !canNativeShare()) return;
     navigator.share({ title: `${links.length} file${links.length === 1 ? "" : "s"}`, text: links.join("\n") }).catch(() => {});
 }
-async function selDownload() {
+async function selDownloadList(list) {
     if (zipBusy || !fileIndex) return;
     if (fileIndex.partial) { selNote("File sizes are still loading. Try again in a moment.", 2500); return; }
     const files = [], used = new Set();
-    for (const e of SEL.map.values()) {
+    for (const e of list) {
         if (e.type === "f") {
             const node = filesByPath.get(e.path);
             const rel = used.has(e.name) ? e.path : e.name;
@@ -5473,7 +5546,7 @@ async function selDownload() {
         }
     }
     if (!files.length) { selNote("Nothing to download in the selection.", 2500); return; }
-    if (files.length === 1 && SEL.map.size === 1) {
+    if (files.length === 1 && list.length === 1) {
         zipBusy = true;
         const ctl = new AbortController();
         opStart(`Downloading ${files[0].rel}\u2026`, () => ctl.abort());
@@ -5483,6 +5556,43 @@ async function selDownload() {
         return;
     }
     await zipFilesFlow(files, "selection", "", "selection");
+}
+// Play: the selected sounds, videos and playlists become one playlist (in the order they were picked) and open in the player.
+// Playlists are read and their stations added; a video from a local folder is left out (the station player cannot tell what a bare blob link holds).
+const selIsPlayable = (e) => e.type === "f" && ["audio", "video", "playlist"].includes(categoryForName(e.name));
+async function selPlayList(list) {
+    const files = list.filter(selIsPlayable);
+    if (!files.length) { selNote("Nothing playable in the selection.", 2500); return; }
+    if (extraBusy) return;
+    extraBusy = true;
+    opStart("Building the playlist\u2026");
+    try {
+        const items = [];
+        let skipped = 0;
+        for (const e of files) {
+            const cat = categoryForName(e.name), title = e.name.replace(/\.[^.]+$/, "") || e.name;
+            if (cat === "playlist") {
+                const url = await urlForPath(e.path);
+                const found = await parsePlaylistForCurrent(LOCAL.active ? url : new URL(url, window.location.href).href, e.path);
+                if (found.length) items.push(...found.map((it) => ({ title: it.title, url: it.url })));
+                else skipped++;
+            } else if (LOCAL.active) {
+                if (cat === "video") skipped++; else items.push({ title, url: await urlForPath(e.path) });
+            } else items.push({ title, url: new URL(hostedUrl(e.path), window.location.href).href });
+        }
+        if (!items.length) { opDone("Nothing playable in the selection.", 3000); return; }
+        const name = `Selection (${items.length}).m3u`;
+        const old = new Map(EXTRA);
+        const path = extraAdd(name, extraBlobUrl(extraM3u(items)), true);
+        opDone(skipped ? `${skipped} item${skipped === 1 ? "" : "s"} could not be added.` : "", 3000);
+        await openFile(path, "playlist", name);
+        await startPlaylistMode();
+        for (const [k, v] of old) { extraRelease(v); EXTRA.delete(k); } // the earlier made-up playlists are not needed any more
+    } catch (err) {
+        opDone("Could not build the playlist.", 3500);
+    } finally {
+        extraBusy = false;
+    }
 }
 function selInit() {
     const main = document.getElementById("main");
@@ -5494,6 +5604,8 @@ function selInit() {
     bar.hidden = true;
     bar.innerHTML = `<span class="sel-count" aria-hidden="true"></span>
         <button type="button" class="sel-btn" data-sel="all">Select all</button>
+        <button type="button" class="sel-btn" data-sel="invert" title="Select what is not selected (Ctrl+I)">Invert</button>
+        <button type="button" class="sel-btn" data-sel="play" title="Play the selected sounds, videos and playlists as one list" hidden>Play</button>
         <button type="button" class="sel-btn" data-sel="zip">Download</button>
         <button type="button" class="sel-btn" data-sel="star">Star</button>
         <button type="button" class="sel-btn" data-sel="copy">Copy links</button>
@@ -5504,7 +5616,7 @@ function selInit() {
     bar.addEventListener("click", (e) => {
         const b = e.target.closest("[data-sel]");
         if (!b) return;
-        ({ all: selSelectAll, zip: selDownload, star: selStar, copy: selCopy, share: selShare, clear: selClear })[b.dataset.sel]();
+        ({ all: selSelectAll, invert: selInvert, play: () => selPlayList(selList()), zip: () => selDownloadList(selList()), star: selStar, copy: () => selCopyList(selList()), share: () => selShareList(selList()), clear: selClear })[b.dataset.sel]();
     });
     // Cards are rebuilt on every render and on "show more": mark the selected ones again, and drop the selection when the folder changes.
     let raf = 0;
@@ -5539,7 +5651,8 @@ function selInit() {
         if (e.target.closest("input, textarea, select") || e.altKey) return;
         const card = e.target.closest(".file-card");
         if ((e.key === "x" || e.key === "X") && card && !e.ctrlKey && !e.metaKey) { const en = selEntryOf(card); if (en) { e.preventDefault(); selToggle(en); } return; }
-        if ((e.key === "a" || e.key === "A") && (e.ctrlKey || e.metaKey) && !TWIN.on) { e.preventDefault(); selSelectAll(); return; }
+        if ((e.key === "a" || e.key === "A") && (e.ctrlKey || e.metaKey) && !e.shiftKey && !TWIN.on) { e.preventDefault(); selSelectAll(); return; }
+        if ((e.key === "i" || e.key === "I") && (e.ctrlKey || e.metaKey) && !e.shiftKey && !TWIN.on) { e.preventDefault(); selInvert(); return; }
         if (e.shiftKey && card && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
             const en = selEntryOf(card);
             if (en) selToggle(en, true);
@@ -6394,7 +6507,7 @@ async function parsePlaylist(e, t) {
                 // that belong to this entry's header block.
                 currentHeaderLines.push(line);
             } else {
-                const url = (line.startsWith("http://") || line.startsWith("https://")) ? line : o + line;
+                const url = /^(?:https?|blob):/i.test(line) ? line : o + line;
                 const title = currentTitle || safeDecode(url.split('/').pop());
                 const header = currentHeaderLines.join("\n");
                 playlistItems.push({ url, title, header });
@@ -6772,6 +6885,15 @@ let healthTest = null;
 let testUiAt = 0;
 let songsHeard = [];
 const noCorsHosts = new Set();
+// An HLS stream the page cannot read (its server sends no CORS permission, or it is http on an https page) is handed to the browser's own HLS player when it has one
+// (Safari, iOS): that plays it without asking for permission. No page can read such a stream itself, with any HLS library. Returns true when it restarted the stream.
+function corsRescue(session, el) {
+    if (playSession !== session || session.nativeTried || !(el.canPlayType && el.canPlayType("application/vnd.apple.mpegurl"))) return false;
+    session.nativeTried = true;
+    session.nativeHls = true;
+    setTimeout(() => { if (playSession === session) startAttempt(session, true); }, 0);
+    return true;
+}
 const npBad = new Set(); // "source|origin" pairs that never worked (this page load)
 const npFails = new Map(); // "source|origin" -> failures in a row; a source is only given up on after 3
 
@@ -6934,6 +7056,20 @@ async function resolveStreamUrl(url, depth, keepMaster) {
         if (info.kind === "list" && info.urls.length) return resolveStreamUrl(info.urls[0], depth + 1, keepMaster);
     } catch (e) {}
     return url;
+}
+
+// Does this HLS playlist carry pictures? A master playlist says so (a resolution or a video codec on its levels).
+// A plain media playlist says nothing: for those the HLS engine reports VIDEO_FOUND once it has read the first segment.
+async function hlsLooksVideo(url) {
+    try {
+        const res = await fetchWithTimeout(url, {}, 8000);
+        if (!res.ok) return false;
+        const text = await readTextLimited(res, 256 * 1024);
+        const levels = String(text).match(/^#EXT-X-STREAM-INF:.*$/gim) || [];
+        return levels.some((l) => /RESOLUTION=\d+x\d+/i.test(l) || /CODECS="[^"]*\b(avc[13]|hev1|hvc1|av01|vp0?9|dvh[1e])/i.test(l));
+    } catch (e) {
+        return false;
+    }
 }
 
 function readMp3Header(b, p) {
@@ -9891,7 +10027,7 @@ function ensurePlaylistMedia(kind, session, cors, reset) {
             n.innerHTML = `
                       <div class="preview-media-container">
                         <button class="player-info-btn" id="streamInfoBtn" title="Copy stream link &amp; header" aria-label="Copy stream link and header">${icons.info}</button>
-                        <video id="videoPlayer" class="preview-video" autoplay playsinline muted ${crossAttr} data-cors="${flag}" ${mediaTagAttrs()}>
+                        <video id="videoPlayer" class="preview-video" autoplay playsinline ${crossAttr} data-cors="${flag}" ${mediaTagAttrs()}>
                           Your browser does not support video playback.
                         </video>
                         ${mediaControlsMarkup()}
@@ -9954,8 +10090,8 @@ function startAttempt(session, reconnect) {
     // The own cache can fail to start for a passing reason (one flaky request), so a restart tries it again.
     if (reconnect && session.mseFailed && session.mseWhy === "fetch") { session.mseFailed = false; session.mseWhy = ""; }
     const url = session.cands[session.candIdx];
-    const kind = isVideoStreamUrl(url) ? "video" : "audio";
-    const cors = !(session.corsFailed || noCorsHosts.has(hostKey(url)));
+    const kind = session.video || isVideoStreamUrl(url) ? "video" : "audio";
+    const cors = !(session.nativeHls || session.corsFailed || noCorsHosts.has(hostKey(url)));
     session.cors = cors;
     const el = ensurePlaylistMedia(kind, session, cors, !reconnect);
     session.el = el;
@@ -10515,6 +10651,12 @@ function attachStream(session, el, url) {
         hls.on(Hls.Events.LEVEL_SWITCHED, () => {
             if (playSession === session) { renderNpStatus(); syncQualityBtn(); }
         });
+        hls.on(Hls.Events.VIDEO_FOUND, () => {
+            // Pictures arrived in a player built for sound only: start again in a video player (the page never played anything yet).
+            if (playSession !== session || session.video) return;
+            session.video = true;
+            setTimeout(() => { if (playSession === session) startAttempt(session, true); }, 0);
+        });
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
             if (playSession === session) { renderNpStatus(); syncQualityBtn(); }
             const p = el.play();
@@ -10522,6 +10664,7 @@ function attachStream(session, el, url) {
         });
         hls.on(Hls.Events.ERROR, (event, data) => {
             if (!data || !data.fatal || playSession !== session) return;
+            if (data.type === Hls.ErrorTypes.NETWORK_ERROR && !session.everPlayed && corsRescue(session, el)) return;
             if (data.type === Hls.ErrorTypes.MEDIA_ERROR && !session.mediaRecovered) {
                 session.mediaRecovered = true;
                 try {
@@ -10554,6 +10697,7 @@ function attachStream(session, el, url) {
     };
     // Plain audio streams are pulled by the page itself (fetch -> MediaSource) so the cache keeps filling while paused.
     // Anything the browser refuses (no CORS, unsupported format) plays through the ordinary element as before.
+    if (session.nativeHls && lower.includes(".m3u8")) return startNative();
     if (lower.includes(".m3u8")) noOwnBuffer(session, "hls");
     if (!lower.includes(".m3u8") && canUseOwnBuffer(session, el, url)) {
         destroyMse();
@@ -10581,6 +10725,9 @@ async function playPlaylistTrack(e) {
         corsFailed: false,
         cors: true,
         usesHls: false,
+        nativeTried: false,
+        nativeHls: false, // HLS handed to the browser's own player (no permission needed)
+        video: false, // the stream has pictures (HLS with a video level): played in a <video>, not the sound-only player
         everPlayed: false,
         retries: 0,
         drops: 0,
@@ -10611,6 +10758,10 @@ async function playPlaylistTrack(e) {
 
     const finalUrl = await resolveStreamUrl(item.url, 0, true);
     if (playSession !== session) return;
+    if (finalUrl.toLowerCase().includes(".m3u8")) {
+        session.video = await hlsLooksVideo(finalUrl);
+        if (playSession !== session) return;
+    }
     session.cands = buildCandidates(finalUrl);
     startAttempt(session, false);
 }
@@ -10967,6 +11118,7 @@ function metaPaint() {
         }, { passive: false });
     }
     const keys = (META.extra.length ? META_ORDER[META.kind].concat(META.extra) : META_ORDER[META.kind]).filter((k) => META.vals[k]);
+    bar.classList.toggle("meta-empty", keys.length === 0);
     const emb = true; // the bar is always one line; a line wider than the bar scrolls
     const sig = (emb ? "tw:" : "") + keys.join("|"), tip = (k) => META.tips[k] || META.vals[k];
     if (emb && typeof ResizeObserver === "function" && !bar._ro) { bar._ro = new ResizeObserver(() => Marquee.fitBar(bar)); bar._ro.observe(bar); }
@@ -10997,6 +11149,8 @@ function metaSync() {
     btn.setAttribute("aria-label", (what === "station" ? "Station" : "File") + " details");
     bar.setAttribute("aria-label", (what === "station" ? "Station" : "File") + " details");
     bar.hidden = !on;
+    bar.tabIndex = on ? 0 : -1;
+    if (on) bar.removeAttribute("aria-hidden"); else bar.setAttribute("aria-hidden", "true");
     const modalEl = document.getElementById("modalContent");
     modalEl.classList.toggle("meta-on", on);
     modalEl.classList.toggle("meta-stream", on && META.kind === "stream");
@@ -11007,7 +11161,7 @@ function metaReset() {
     META.ctl = null; META.kind = ""; META.vals = {}; META.tips = {}; META.size = 0; META.dur = 0; META.audio = null; META.started = false; META.seq++;
     META.session = null; META.base = {}; META.labels = {}; META.extra = [];
     const bar = document.getElementById("metaBar");
-    bar._sig = ""; bar.innerHTML = "";
+    bar._sig = ""; bar.innerHTML = ""; bar.classList.remove("meta-empty");
     metaSync();
 }
 // Called once a picture, video or song is on screen: what is already known is shown at once, the rest arrives as it is read.
@@ -11559,7 +11713,7 @@ function renderLibraryStats() {
         const label = isPlaylistRow ? "M3U / M3U8" : escapeHtml(cat);
         return `
           <div class="stats-row">
-            <span class="stats-row-icon">${icons[cat] || icons.other}</span>
+            <span class="stats-row-icon file-icon ${escapeHtml(cat)}">${icons[cat] || icons.other}</span>
             <span class="stats-row-label"${isPlaylistRow ? ' style="text-transform:none"' : ""}>${label}</span>
             <span class="stats-row-bar-track"><span class="stats-row-bar-fill" style="width: ${pct}%"></span></span>
             <span class="stats-row-count">${count.toLocaleString()}</span>
@@ -11751,9 +11905,10 @@ async function blobForPath(path, signal) {
 }
 // Playlist entries next to a local playlist file are resolved to local files;
 // http(s) stream URLs are left alone (playing them is the network use the person asked for).
-async function parsePlaylistForCurrent(url) {
+async function parsePlaylistForCurrent(url, path) {
     if (!LOCAL.active) return parsePlaylist(url, url);
-    const items = await parsePlaylist("localfs://" + encodePathForUrl(currentFilePath), url);
+    path = path || currentFilePath;
+    const items = await parsePlaylist("localfs://" + encodePathForUrl(path), url);
     const out = [];
     for (const it of items) {
         if (!it.url.startsWith("localfs://")) { out.push(it); continue; }
@@ -13830,7 +13985,153 @@ const TWIN = (() => {
         placeBoxes();
     }
     function emptyHtml(msg, extra) { return `<div class="tw-empty">${msg}${extra || ""}</div>`; }
+    // ---- Selecting several items in a panel: every panel keeps its own selection (and its own bar), the other side never notices ----
+    // Same gestures as the main view: Ctrl/Cmd + click, Shift + click, long press, X, Shift + Up/Down, Ctrl/Cmd + A (all), Ctrl/Cmd + I (invert), Esc.
+    // It lives in a panel's folder view only: a new folder, the favorites tab or a search drops it. Names start with tws so they never clash with the page-wide sel* ones.
+    const twsOf = (p) => p.sel || (p.sel = { map: new Map(), anchor: null, folder: "", suppress: false });
+    const twsSize = (p) => (p.sel ? p.sel.map.size : 0);
+    const twsFolder = (p) => p.source + ":" + p.path.join("/");
+    function twsFromItem(p, item) {
+        const full = fullOf(p, item.name);
+        return item.type === "directory" ? { key: "d:" + full, type: "d", arr: [...p.path, item.name], path: full, name: item.name } : { key: "f:" + full, type: "f", path: full, name: item.name };
+    }
+    function twsEntry(p, card) {
+        if (!card || p.tab !== "files" || p.filter.trim() || card.dataset.up || card.dataset.r !== undefined || card.dataset.fav !== undefined) return null;
+        const item = p.map.get(card.dataset.n);
+        return item ? twsFromItem(p, item) : null;
+    }
+    function twsPaint(p) {
+        const pn = paneEl(p.id);
+        if (!pn) return;
+        const s = p.sel, n = s ? s.map.size : 0;
+        pn.querySelectorAll(".tw-scroll .file-card").forEach((c) => {
+            const en = n ? twsEntry(p, c) : null, on = !!en && s.map.has(en.key);
+            if (c.classList.contains("selected") !== on) c.classList.toggle("selected", on);
+            if (on) { if (c.dataset.l0 === undefined) { c.dataset.l0 = c.getAttribute("aria-label") || ""; c.setAttribute("aria-label", c.dataset.l0 + ", selected"); } }
+            else if (c.dataset.l0 !== undefined) { c.setAttribute("aria-label", c.dataset.l0); delete c.dataset.l0; }
+        });
+        const bar = pn.querySelector(".tw-selbar");
+        if (!bar) return;
+        bar.hidden = n === 0;
+        if (!n) return;
+        let f = 0, d = 0, play = false;
+        s.map.forEach((e) => { if (e.type === "d") d++; else { f++; if (selIsPlayable(e)) play = true; } });
+        const parts = [];
+        if (f) parts.push(`${f} file${f === 1 ? "" : "s"}`);
+        if (d) parts.push(`${d} folder${d === 1 ? "" : "s"}`);
+        bar.querySelector(".sel-count").textContent = parts.join(", ") + " selected";
+        bar.querySelector('[data-sel="copy"]').disabled = f === 0;
+        bar.querySelector('[data-sel="play"]').hidden = !play;
+        bar.querySelector('[data-sel="share"]').hidden = !canNativeShare() || f === 0;
+    }
+    function twsSet(p, en, force) {
+        const s = twsOf(p);
+        if (!s.map.size) s.folder = twsFolder(p);
+        const on = force !== undefined ? force : !s.map.has(en.key);
+        if (on) s.map.set(en.key, en); else s.map.delete(en.key);
+        s.anchor = en.key;
+        twsPaint(p);
+        announce(`Panel ${p.id + 1}: ${s.map.size ? s.map.size + " selected" : "selection cleared"}`);
+    }
+    function twsRange(p, card) {
+        const pn = paneEl(p.id), s = twsOf(p);
+        const cards = Array.from(pn.querySelectorAll(".tw-scroll .file-card")).filter((c) => twsEntry(p, c));
+        const to = cards.indexOf(card);
+        let from = cards.findIndex((c) => twsEntry(p, c).key === s.anchor);
+        if (to < 0) return;
+        if (from < 0) from = to;
+        if (!s.map.size) s.folder = twsFolder(p);
+        const [a, b] = from < to ? [from, to] : [to, from];
+        for (let i = a; i <= b; i++) { const e = twsEntry(p, cards[i]); s.map.set(e.key, e); }
+        twsPaint(p);
+        announce(`Panel ${p.id + 1}: ${s.map.size} selected`);
+    }
+    const twsAllEntries = (p) => (p.tab !== "files" || p.filter.trim() ? [] : p.order.map((n) => p.map.get(n)).filter(Boolean).map((it) => twsFromItem(p, it)));
+    function twsAll(p) {
+        const s = twsOf(p), all = twsAllEntries(p);
+        if (!all.length) return;
+        if (!s.map.size) s.folder = twsFolder(p);
+        all.forEach((e) => s.map.set(e.key, e));
+        twsPaint(p);
+        announce(`Panel ${p.id + 1}: ${s.map.size} selected`);
+    }
+    function twsInvert(p) {
+        const s = twsOf(p), all = twsAllEntries(p);
+        if (!all.length) return;
+        if (!s.map.size) s.folder = twsFolder(p);
+        all.forEach((e) => { if (s.map.has(e.key)) s.map.delete(e.key); else s.map.set(e.key, e); });
+        s.anchor = null;
+        twsPaint(p);
+        announce(`Panel ${p.id + 1}: ${s.map.size ? s.map.size + " selected" : "selection cleared"}`);
+    }
+    function twsClear(p, quiet) {
+        if (!twsSize(p)) return;
+        p.sel.map.clear();
+        p.sel.anchor = null;
+        twsPaint(p);
+        if (!quiet) announce(`Panel ${p.id + 1}: selection cleared`);
+    }
+    // The bar's buttons. The page-wide helpers (zip, favorites, links, play) work on one source at a time, so the panel's source is switched in first, as for its zip button.
+    function twsAct(p, act) {
+        if (act === "clear") { twsClear(p); return; }
+        if (act === "all") { twsAll(p); return; }
+        if (act === "invert") { twsInvert(p); return; }
+        const list = [...twsOf(p).map.values()];
+        if (!list.length) return;
+        if (T.media !== null && T.panes[T.media].source !== p.source) { announce("Close the player first, then use the selection"); return; }
+        if (!useSource(p.source)) return;
+        if (act === "zip") selDownloadList(list);
+        else if (act === "copy") selCopyList(list);
+        else if (act === "share") selShareList(list);
+        else if (act === "play") selPlayList(list);
+        else if (act === "star") {
+            const allOn = selStarList(list);
+            T.panes.forEach((q) => {
+                if (q.source !== p.source) return;
+                if (q.tab === "fav") renderFavs(q, paneEl(q.id).querySelector(".tw-scroll").scrollTop);
+                else renderList(q, true);
+                if (q.mode === "view") syncFav(q);
+            });
+            announce(allOn ? "Removed from favorites" : "Added to favorites");
+        }
+    }
+    function twsWire(tw) {
+        // Long press on a touch screen starts (or extends) a selection.
+        let timer = 0, sx = 0, sy = 0;
+        const cancel = () => { clearTimeout(timer); timer = 0; };
+        tw.addEventListener("pointerdown", (e) => {
+            if (e.pointerType === "mouse" || e.target.closest(".card-star-btn")) return;
+            const card = e.target.closest(".tw-scroll .file-card");
+            if (!card) return;
+            const p = T.panes[Number(card.closest(".tw-pane").dataset.i)], en = twsEntry(p, card);
+            if (!en) return;
+            sx = e.clientX; sy = e.clientY;
+            cancel();
+            timer = setTimeout(() => {
+                timer = 0;
+                const s = twsOf(p);
+                s.suppress = true;
+                setTimeout(() => { s.suppress = false; }, 900); // the click that ends the press normally comes first; if none comes, do not wait for one
+                twsSet(p, en);
+                if (navigator.vibrate) { try { navigator.vibrate(15); } catch (err) { } }
+            }, 450);
+        });
+        tw.addEventListener("pointermove", (e) => { if (timer && Math.hypot(e.clientX - sx, e.clientY - sy) > 8) cancel(); });
+        ["pointerup", "pointercancel", "pointerleave"].forEach((t) => tw.addEventListener(t, cancel));
+        tw.addEventListener("contextmenu", (e) => {
+            const card = e.target.closest(".tw-scroll .file-card");
+            if (!card) return;
+            const p = T.panes[Number(card.closest(".tw-pane").dataset.i)];
+            if (timer || (p.sel && p.sel.suppress)) e.preventDefault();
+        });
+    }
     function renderList(p, keepScroll) {
+        const s = p.sel;
+        if (s && s.map.size && (p.tab !== "files" || p.filter.trim() || s.folder !== twsFolder(p))) { s.map.clear(); s.anchor = null; }
+        renderListBody(p, keepScroll);
+        twsPaint(p);
+    }
+    function renderListBody(p, keepScroll) {
         const pn = paneEl(p.id);
         if (!pn) return;
         const sc = pn.querySelector(".tw-scroll");
@@ -14280,6 +14581,8 @@ const TWIN = (() => {
         }
         T.on = on;
         T.menu = null;
+        if (on) selClear(); // the main view's selection does not follow into the panels
+        else T.panes.forEach((q) => twsClear(q, true));
         document.body.classList.toggle("twin-on", on);
         const btn = $("twinBtn");
         btn.classList.toggle("active", on);
@@ -14311,10 +14614,9 @@ const TWIN = (() => {
         if (T.ro) { T.ro.disconnect(); T.ro = null; }
         if (m.parentNode !== document.body) document.body.appendChild(m);
         m.classList.remove("tw-embedded", "tw-narrow");
-        m.style.removeProperty("--tw-pt");
         unseatPlayerWindows();
     }
-    // The panel stands in for the browser window: up to 640px wide it gets the phone layout, and the playlist window keeps the page's anchor near the top.
+    // The panel stands in for the browser window: up to 640px wide it gets the phone layout, and the playlist window is centred like the page's.
     function fitEmbedded() {
         const m = $("modal"), slot = m.parentNode;
         if (!m.classList.contains("tw-embedded") || !slot || !slot.classList || !slot.classList.contains("tw-media")) return;
@@ -14322,7 +14624,6 @@ const TWIN = (() => {
         if (!w || !h) return;
         const narrow = w <= 640;
         slot.querySelectorAll(":scope > .modal-overlay").forEach((el) => el.classList.toggle("tw-narrow", narrow));
-        m.style.setProperty("--tw-pt", Math.max(8, Math.min(h - 512, h / 2 - 200)) + "px");
     }
     function closePreview(p, quiet) {
         if (p.mode === "media") { T.quiet = !!quiet; try { closeModal(); } finally { T.quiet = false; } return; }
@@ -14624,6 +14925,9 @@ const TWIN = (() => {
         const focusOnly = T.swallow === p.id;
         T.swallow = -1;
         if (T.active !== p.id) setActive(p.id);
+        const sbtn = t.closest(".tw-selbar [data-sel]");
+        if (sbtn) { twsAct(p, sbtn.dataset.sel); return; }
+        if (t.closest(".tw-selbar")) return;
         const va = t.closest("[data-vact]");
         if (va) { const k = va.dataset.vact; if (k === "close") closeInline(p); else if (k === "prev") stepInline(p, -1); else if (k === "next") stepInline(p, 1); else if (k === "info") toggleMeta(); else if (k === "fav") toggleFav(p); else if (k === "copy") copyLink(p, va); return; }
         const gi = t.closest(".tw-rail .gal-item[data-rn]");
@@ -14657,6 +14961,15 @@ const TWIN = (() => {
         if (t.closest(".tw-more")) { p.rlimit += RES_STEP; renderList(p, true); return; }
         const card = t.closest(".file-card");
         if (!card) return;
+        // Selecting: Ctrl/Cmd + click toggles, Shift + click extends, and while this panel has a selection a plain click toggles instead of opening.
+        const en = twsEntry(p, card);
+        if (en) {
+            const sel = twsOf(p);
+            if (sel.suppress) { sel.suppress = false; return; } // the click that ends a long press
+            if (e.ctrlKey || e.metaKey) { twsSet(p, en); card.focus({ preventScroll: true }); return; }
+            if (e.shiftKey && sel.map.size) { twsRange(p, card); card.focus({ preventScroll: true }); return; }
+            if (sel.map.size) { twsSet(p, en); card.focus({ preventScroll: true }); return; }
+        }
         // The first click on a panel that did not have the focus only gives it the focus (and the cursor); the next click opens.
         if (focusOnly) { if (!card.dataset.up) { p.cur = card.dataset.n; setStatus(p, cardItem(p, card)); } card.focus({ preventScroll: true }); return; }
         if (card.dataset.up) { up(p, false); return; }
@@ -14705,6 +15018,9 @@ const TWIN = (() => {
         const plain = !e.ctrlKey && !e.altKey && !e.metaKey;
         if (e.key === "Tab" && plain && (card || scroller)) { e.preventDefault(); switchPane(); return; }
         if (e.key === "Escape" && T.menu !== null) { T.menu = null; renderAllHeads(); e.stopPropagation(); return; }
+        if (e.key === "Escape" && plain && twsSize(p)) { e.preventDefault(); e.stopPropagation(); twsClear(p); return; }
+        if ((card || scroller) && (e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey && (e.key === "a" || e.key === "A")) { e.preventDefault(); twsAll(p); return; }
+        if ((card || scroller) && (e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey && (e.key === "i" || e.key === "I")) { e.preventDefault(); twsInvert(p); return; }
         if (e.key === "Escape" && card) { e.stopPropagation(); const s = pn.querySelector(".tw-src"); if (s) s.focus(); return; }
         if (p.tab === "fav" && (card || scroller) && (e.key === "Backspace" || e.key === "ArrowLeft") && plain) { e.preventDefault(); setTab(p, "files"); return; }
         if (p.filter.trim() && p.tab !== "fav" && (card || scroller) && plain && (e.key === "Backspace" || (e.key === "ArrowLeft" && p.view !== "grid"))) { e.preventDefault(); const bx = boxOf(p); if (bx) bx.focus(); return; }
@@ -14716,7 +15032,12 @@ const TWIN = (() => {
         let cols = 1;
         if (grid) { const g = pn.querySelector(".file-grid"); cols = g ? getComputedStyle(g).gridTemplateColumns.split(" ").length || 1 : 1; }
         const move = (to) => { e.preventDefault(); const t = cards[Math.max(0, Math.min(cards.length - 1, to))]; if (t) t.focus(); };
+        if (e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
+            const here = twsEntry(p, card), next = cards[Math.max(0, Math.min(cards.length - 1, idx + (e.key === "ArrowDown" ? cols : -cols)))], there = next && twsEntry(p, next);
+            if (here) { e.preventDefault(); twsSet(p, here, true); if (next && there) { next.focus(); twsSet(p, there, true); } return; }
+        }
         switch (e.key) {
+            case "x": case "X": { const en = plain && twsEntry(p, card); if (en) { e.preventDefault(); twsSet(p, en); } return; }
             case "Enter": case " ": e.preventDefault(); card.click(); return;
             case "f": case "F": { const sb = plain && card.querySelector(".card-star-btn"); if (sb) { e.preventDefault(); starClick(p, sb); } return; }
             case "ArrowDown": move(idx + cols); return;
@@ -14887,7 +15208,17 @@ const TWIN = (() => {
         init() {
             if (T.ready) return;
             const tw = $("twin");
-            const shell = (i) => `<section class="tw-pane" data-i="${i}" data-mode="list" role="region" aria-label="Panel ${i + 1}"><div class="tw-head"></div><div class="tw-scroll" tabindex="0" aria-label="Files in panel ${i + 1}"></div><div class="tw-status" aria-hidden="true"></div>
+            const shell = (i) => `<section class="tw-pane" data-i="${i}" data-mode="list" role="region" aria-label="Panel ${i + 1}"><div class="tw-head"></div><div class="tw-scroll" tabindex="0" aria-label="Files in panel ${i + 1}"></div>
+                <div class="tw-selbar" role="region" aria-label="Selected items in panel ${i + 1}" hidden><span class="sel-count" aria-hidden="true"></span>
+                    <button type="button" class="sel-btn" data-sel="all">All</button>
+                    <button type="button" class="sel-btn" data-sel="invert" title="Select what is not selected (Ctrl+I)">Invert</button>
+                    <button type="button" class="sel-btn" data-sel="play" title="Play the selected sounds, videos and playlists as one list" hidden>Play</button>
+                    <button type="button" class="sel-btn" data-sel="zip">Download</button>
+                    <button type="button" class="sel-btn" data-sel="star">Star</button>
+                    <button type="button" class="sel-btn" data-sel="copy">Copy links</button>
+                    <button type="button" class="sel-btn" data-sel="share" hidden>Share</button>
+                    <button type="button" class="sel-btn" data-sel="clear">Clear</button></div>
+                <div class="tw-status" aria-hidden="true"></div>
                 <div class="tw-view" tabindex="-1" aria-label="Preview in panel ${i + 1}">
                     <div class="modal-header tw-vhead"><div class="modal-title tw-vtitle"></div><div class="modal-actions">
                         <button type="button" class="modal-btn" data-vact="prev" title="Previous file (\u2190)" aria-label="Previous file">${ICON.prev}</button>
@@ -14943,6 +15274,7 @@ const TWIN = (() => {
             });
             document.addEventListener("pointerdown", (e) => { if (T.menu !== null && !e.target.closest(".tw-menu, .tw-src")) { T.menu = null; renderAllHeads(); } }, true);
             document.addEventListener("keydown", (e) => { if (e.key === "Escape" && T.menu !== null && !e.target.closest(".tw-pane")) { T.menu = null; renderAllHeads(); e.stopPropagation(); } }, true);
+            twsWire(tw);
             wireSplit();
             if (typeof ResizeObserver === "function") { const ro = new ResizeObserver(() => alignBoxes()); ro.observe($("twin")); ro.observe(document.querySelector(".header-actions")); }
             if (TWIN_STACK_MQ && TWIN_STACK_MQ.addEventListener) TWIN_STACK_MQ.addEventListener("change", applyLayout);
@@ -15007,6 +15339,7 @@ init();
          segments     MPEG-TS (AAC, MP3, H.264, ID3 timed metadata), packed AAC / MP3, fragmented MP4 (passed through)
          playback     adaptive quality (Auto) or a chosen level, seeking, live edge, buffer limits, stall recovery
        Not included: separate audio renditions, subtitles, DRM / SAMPLE-AES, HEVC inside TS, low-latency parts.
+       Events beyond the usual: VIDEO_FOUND (the stream carries pictures, so the page can swap its sound-only player for a video one).
        Surface used by the page: new Hls(cfg), isSupported(), Events, ErrorTypes, loadSource, attachMedia, on, off, destroy,
        recoverMediaError, levels, currentLevel (-1 = Auto), loadLevel, autoLevelEnabled. */
     const Hls = (() => {
@@ -15018,6 +15351,7 @@ init();
             LEVEL_SWITCHED: "levelSwitched",
             FRAG_BUFFERED: "fragBuffered",
             FRAG_PARSING_METADATA: "fragParsingMetadata",
+            VIDEO_FOUND: "videoFound",
             ERROR: "error",
         };
         const ErrorTypes = { NETWORK_ERROR: "networkError", MEDIA_ERROR: "mediaError", OTHER_ERROR: "otherError" };
@@ -15908,6 +16242,7 @@ init();
                     if (!MS_OK(u.mime)) throw this._media("unsupported codec " + u.mime, "bufferIncompatibleCodecsError");
                     try { this.sb = ms.addSourceBuffer(u.mime); } catch (e) { throw this._media(e.message, "bufferAddCodecError"); }
                     this.mime = u.mime;
+                    if (/^video\//.test(u.mime)) this._emit(Events.VIDEO_FOUND, { mime: u.mime }); // the page may be showing a sound-only player
                     try { this.sb.mode = u.mode; } catch (e) {}
                     try { ms.duration = this.live ? Infinity : this.levels[this._cur].details.total; } catch (e) {}
                 } else if (u.mime !== this.mime) {
