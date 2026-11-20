@@ -7,11 +7,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="referrer" content="no-referrer" />
     <meta name="theme-color" content="#1a1a1a" />
+    <script>(function(){try{var d=document.documentElement.getAttribute("data-theme"),l=d?d==="light"||d==="hc-light":!!(window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches);document.querySelector('meta[name="theme-color"]').setAttribute("content",d==="hc-dark"?"#000000":d==="hc-light"?"#ffffff":l?"#f5f5f5":"#1a1a1a");}catch(e){}})();</script>
     <title>File Viewer</title>
     <meta name="description" content="Browse and preview files from this repository directly in your browser — code, images, audio, video, and playlists." />
     <meta property="og:title" content="File Viewer" />
     <meta property="og:description" content="Browse and preview files from this repository directly in your browser." />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="File Viewer" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="File Viewer" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect fill='%23121212' width='24' height='24'/%3E%3Crect fill='%239b5de5' x='2' y='5' width='20' height='14'/%3E%3Ccircle fill='%23121212' cx='8' cy='12' r='2.4'/%3E%3Ccircle fill='%23121212' cx='16' cy='12' r='2.4'/%3E%3Ccircle fill='%239b5de5' cx='8' cy='12' r='0.8'/%3E%3Ccircle fill='%239b5de5' cx='16' cy='12' r='0.8'/%3E%3Crect fill='%23121212' x='10' y='15.6' width='4' height='1.6'/%3E%3C/svg%3E" />
     
     <style>
@@ -28,6 +32,7 @@
     --accent-hover: #b280ea;
     /* --accent is for rings, borders and bars; text in the accent uses --accent-text (lighter on dark), and filled buttons with --on-accent use --accent-solid (darker), so both clear WCAG AA. */
     --accent-text: #bb8cef;
+    --accent-on-control: var(--accent-text);
     --accent-solid: #8648d6;
     --accent-solid-hover: #7a3fc9;
     --on-accent: #ffffff;
@@ -80,7 +85,7 @@ html[data-theme="light"] {
     --accent-text: var(--accent);
     --accent-solid: var(--accent);
     --accent-solid-hover: var(--accent-hover);
-    --success: #2e7d32;
+    --success: #256a29;
     --warning: #8a5a00;
     --danger: #b3261e;
     --danger-solid: #b3261e;
@@ -160,7 +165,7 @@ html[data-theme="hc-light"] {
         --accent-text: var(--accent);
         --accent-solid: var(--accent);
         --accent-solid-hover: var(--accent-hover);
-        --success: #2e7d32;
+        --success: #256a29;
         --warning: #8a5a00;
         --danger: #b3261e;
         --danger-solid: #b3261e;
@@ -207,17 +212,23 @@ body {
 }
 .header { background: var(--bg-secondary); border-bottom: var(--bw) solid var(--border-color); padding: 0.5rem 0.5rem; flex-shrink: 0; }
 .header-content { max-width: none; margin: 0; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
-.logo { display: flex; align-items: center; gap: 0.5rem; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; color: var(--text-primary); cursor: pointer; flex-shrink: 0; }
+.logo { display: flex; align-items: center; gap: 0.5rem; background: none; border: 0; padding: 0; margin: 0; font-family: inherit; line-height: inherit; text-align: left; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; color: var(--text-primary); cursor: pointer; flex-shrink: 0; }
 .logo svg { width: 20px; height: 20px; }
 .breadcrumb { display: flex; align-items: center; gap: 0.125rem; flex-wrap: wrap; font-size: 0.85rem; flex: 1 1 12rem; min-width: 0; }
 .breadcrumb-item { color: var(--accent-text, var(--accent)); padding: 0.125rem 0.375rem; border-radius: var(--radius); cursor: pointer; white-space: nowrap; }
+@media (hover: hover) {
 .breadcrumb-item:hover { background: var(--bg-hover); }
+}
 .breadcrumb-item.current { color: var(--text-primary); cursor: default; }
+@media (hover: hover) {
 .breadcrumb-item.current:hover { background: 0 0; }
+}
 .breadcrumb-separator { color: var(--text-muted); font-size: 0.75rem; }
 .breadcrumb-pin-btn { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; margin-left: 0.25rem; padding: 0; background: none; border: none; color: var(--text-muted); cursor: pointer; border-radius: var(--radius-sm); flex-shrink: 0; }
 .breadcrumb-pin-btn svg { width: 14px; height: 14px; }
+@media (hover: hover) {
 .breadcrumb-pin-btn:hover { color: var(--accent-text, var(--accent)); background: var(--bg-hover); }
+}
 .breadcrumb-pin-btn.pinned { color: var(--accent-text, var(--accent)); }
 /* The search box takes most of the top bar (the path keeps about a quarter of the free room and scrolls when it is longer); in twin panels every panel gets a box of its own. */
 .header-actions { display: flex; gap: 0.375rem; align-items: center; flex: 3 1 22rem; min-width: 0; }
@@ -229,11 +240,15 @@ body {
 .search-icon { position: absolute; left: 0.5rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); width: 14px; height: 14px; }
 .search-clear { position: absolute; right: 0.25rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; display: none; align-items: center; justify-content: center; padding: 0.25rem; border-radius: var(--radius); }
 .search-clear.visible { display: flex; }
+@media (hover: hover) {
 .search-clear:hover { color: var(--text-primary); background: var(--bg-hover); }
+}
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .settings-dropdown { position: relative; }
 .settings-btn { padding: 0.375rem; background: var(--control-surface); border: var(--bw) solid var(--border-color); border-radius: var(--radius); color: var(--on-control); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+@media (hover: hover) {
 .settings-btn:hover { background: var(--control-surface-hover); border-color: var(--accent); }
+}
 .settings-btn svg { width: 16px; height: 16px; }
 .settings-menu { position: absolute; top: 100%; right: 0; margin-top: 0.75rem; min-width: 280px; z-index: 100; display: none; }
 .settings-menu.active { display: block; }
@@ -241,10 +256,13 @@ body {
 .settings-menu-header { display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 0.7rem; background: var(--bg-tertiary); border-bottom: var(--bw) solid var(--border-color); gap: 0.5rem; }
 .settings-menu-title { font-size: 0.8rem; font-weight: 700; letter-spacing: -0.005em; }
 .settings-menu-close { padding: 0.3rem; background: var(--bg-tertiary); border: var(--bw) solid var(--border-color); border-radius: var(--radius); color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+@media (hover: hover) {
 .settings-menu-close:hover { background: var(--bg-hover); border-color: var(--accent); }
+}
 .settings-menu-close svg { width: 14px; height: 14px; }
 .settings-menu-body { max-height: 70vh; overflow-y: auto; }
 .settings-section { padding: 0.65rem 0.7rem; }
+.settings-menu-body > .settings-section:not(:first-child) { border-top: var(--bw) solid var(--border-color); }
 .settings-section-title { font-size: var(--label-size); font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: var(--label-track); margin-bottom: 0.375rem; }
 .settings-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.35rem 0; }
 .switch { position: relative; display: inline-block; width: 38px; height: 22px; flex-shrink: 0; }
@@ -261,7 +279,9 @@ body {
 .settings-row #sortSelect { width: 100%; }
 .settings-control { display: flex; gap: 0.25rem; }
 .settings-control button { padding: 0.25rem 0.5rem; background: var(--bg-tertiary); border: var(--bw) solid var(--border-strong); border-radius: var(--radius-sm); color: var(--text-secondary); cursor: pointer; font-size: 0.75rem; }
+@media (hover: hover) {
 .settings-control button:hover { color: var(--text-primary); border-color: var(--accent); }
+}
 .intensity-bar-wrap { display: flex; align-items: center; gap: 0.5rem; width: 100%; }
 .intensity-bar-label { font-size: var(--label-size); font-weight: 600; color: var(--text-muted); flex-shrink: 0; text-transform: uppercase; letter-spacing: var(--label-track); }
 .intensity-bar-wrap > .intensity-bar-label:first-child { min-width: 3.5rem; }
@@ -283,7 +303,9 @@ body {
 }
 .intensity-seg { flex: 1; border: none; border-right: var(--bw) solid rgba(0, 0, 0, 0.15); cursor: pointer; padding: 0; position: relative; }
 .intensity-seg:last-child { border-right: none; }
+@media (hover: hover) {
 .intensity-seg:hover { filter: brightness(1.12); }
+}
 .intensity-seg.active { box-shadow: inset 0 0 0 2px var(--on-control); }
 /* The depth control reuses the color-intensity bar's segmented shell, but each segment previews a live radius + shadow instead of a color. */
 .depth-seg { background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center; }
@@ -295,7 +317,9 @@ body {
 .depth-seg[data-depth="5"] .depth-seg-preview { border-radius: 8px; }
 .theme-toggle { display: grid; width: 100%; grid-template-columns: repeat(3, 1fr); background: var(--bg-tertiary); border-radius: var(--radius); padding: 2px; gap: 2px; }
 .theme-btn { padding: 0.25rem 0.5rem; background: 0 0; border: none; color: var(--text-secondary); cursor: pointer; border-radius: var(--radius-sm); font-size: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.25rem; }
+@media (hover: hover) {
 .theme-btn:hover { background: var(--bg-hover); }
+}
 /* Seven buttons in three columns: the odd one out (Vivid) takes the whole last row instead of sitting alone on the left. */
 .theme-toggle .theme-btn:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
 .theme-btn.active { background: var(--bg-primary); }
@@ -303,12 +327,14 @@ body {
 /* Label text uses the theme's own text color on every button in every state; only the icon above carries a per-theme color. */
 .theme-btn .theme-btn-label { color: var(--text-secondary) !important; }
 /* Icons stay neutral; the active theme's icon takes the accent. Only the Custom button shows its own swatch color. */
-.theme-btn.active svg { color: var(--accent-text, var(--accent)); }
+.theme-btn.active svg { color: var(--accent-on-control, var(--accent-text, var(--accent))); }
 .theme-btn[data-theme="custom"] svg { color: var(--custom-theme-swatch, #8b5cf6); }
 /* While a custom color is active the light/dark/HC buttons all look the same (the custom color overrides them), so they dim to show only the hidden base changes.
    The Custom button stays full strength since it drives what's on screen. */
 .theme-toggle.custom-color-active .theme-btn:not(.theme-btn-custom) { opacity: 1; }
+@media (hover: hover) {
 .theme-toggle.custom-color-active .theme-btn:not(.theme-btn-custom):hover { opacity: 1; }
+}
 /* Eight compact columns keep the three-row preset palette centered without widening the theme menu; every swatch stays square. */
 .theme-swatches {
     display: grid;
@@ -331,15 +357,21 @@ body {
     padding: 0;
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
 }
+@media (hover: hover) {
 .theme-swatch:hover { border-color: var(--text-muted); }
+}
 .theme-swatch.active { border: 2px solid var(--text-primary); }
 .theme-custom-row { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
 .theme-custom-row input[type="color"] { width: 32px; height: 28px; border: var(--bw) solid var(--border-strong); border-radius: var(--radius-sm); background: 0 0; padding: 0; cursor: pointer; }
 .theme-reset-btn { flex: 1; border: var(--bw) solid var(--border-strong); background: var(--bg-tertiary); color: var(--text-secondary); border-radius: var(--radius); padding: 0.3rem 0.5rem; cursor: pointer; font-size: 0.75rem; }
+@media (hover: hover) {
 .theme-reset-btn:hover { color: var(--text-primary); border-color: var(--accent); }
+}
 .view-toggle { display: flex; background: var(--bg-tertiary); border-radius: var(--radius); padding: 2px; }
 .view-btn { padding: 0.25rem 0.375rem; background: 0 0; border: none; color: var(--text-secondary); cursor: pointer; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
+@media (hover: hover) {
 .view-btn:hover { color: var(--text-primary); }
+}
 .view-btn.active { background: var(--bg-primary); color: var(--text-primary); }
 .view-btn svg { width: 16px; height: 16px; }
 html[data-theme="hc-dark"] .view-toggle, html[data-theme="hc-light"] .view-toggle { border: var(--bw) solid var(--border-color); }
@@ -347,14 +379,19 @@ html[data-theme="hc-dark"] .view-toggle, html[data-theme="hc-light"] .view-toggl
 .tree-panel { --tree-def: 240px; width: var(--tree-w, var(--tree-def)); position: relative; background: var(--bg-secondary); border-right: var(--bw) solid var(--border-color); display: none; flex-shrink: 0; flex-direction: column; }
 .tree-resize { position: absolute; top: 0; bottom: 0; right: -5px; width: 10px; z-index: 6; cursor: col-resize; touch-action: none; user-select: none; -webkit-user-select: none; outline: none; }
 .tree-resize::after { content: ""; position: absolute; top: 0; bottom: 0; left: 4px; width: 2px; background: transparent; transition: background 0.12s ease; }
-.tree-resize:hover::after, .tree-resize:focus-visible::after, .tree-resize.dragging::after { background: var(--accent); }
+.tree-resize:focus-visible::after, .tree-resize.dragging::after { background: var(--accent); }
+@media (hover: hover) {
+.tree-resize:hover::after { background: var(--accent); }
+}
 .tree-resize.dragging.at-default::after { left: 3px; width: 4px; }
 .tree-panel.visible { display: flex; }
 .tree-header { padding: 0.5rem 0.75rem; font-size: var(--label-size); font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: var(--label-track); border-bottom: var(--bw) solid var(--border-color); flex-shrink: 0; }
 .tree-content { padding: 0.25rem 0; overflow-y: auto; flex: 1; min-height: 0; }
 .tree-content:not(.needs-scroll) { overflow-y: visible; }
 .tree-item { display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.5rem; cursor: pointer; font-size: 0.85rem; color: var(--text-secondary); border-left: 2px solid transparent; }
+@media (hover: hover) {
 .tree-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+}
 .tree-item.active { background: var(--bg-tertiary); color: var(--text-primary); border-left-color: var(--accent); }
 .tree-item svg { width: 14px; height: 14px; flex-shrink: 0; }
 .tree-item-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.3; }
@@ -367,16 +404,23 @@ html[data-theme="hc-dark"] .view-toggle, html[data-theme="hc-light"] .view-toggl
 .tree-pinned { border-bottom: var(--bw) solid var(--border-color); padding-bottom: 0.25rem; flex-shrink: 0; }
 .tree-pinned-header { padding: 0.5rem 0.75rem 0.25rem; font-size: var(--label-size); font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: var(--label-track); }
 .tree-pinned-item { display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.5rem; cursor: pointer; font-size: 0.85rem; color: var(--text-secondary); border-left: 2px solid transparent; }
+@media (hover: hover) {
 .tree-pinned-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+}
 .tree-pinned-item.active { background: var(--bg-tertiary); color: var(--text-primary); border-left-color: var(--accent); }
 .tree-pinned-item svg { width: 14px; height: 14px; flex-shrink: 0; }
 .tree-pinned-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.3; flex: 1; }
 /* Single-line label for pinned/favorite entries, truncated from the start (keeping the tail, e.g. "…9/00.m3u") with the direction:rtl + text-align:left trick,
    since the end of a path is usually the more distinguishing part. */
 .tree-pinned-name-stack { display: block; overflow: hidden; flex: 1; min-width: 0; line-height: 1.3; white-space: nowrap; }
+/* The open control of a pinned folder / favorite file: a real button filling the row beside the unpin button. */
+.tree-pinned-open { display: flex; align-items: center; gap: 0.25rem; flex: 1; min-width: 0; padding: 0; margin: 0; background: none; border: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .tree-pinned-unpin { flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; padding: 0; background: none; border: none; opacity: 1; color: var(--accent-text, var(--accent)); cursor: pointer; }
 .tree-pinned-unpin svg { width: 12px; height: 12px; }
-.tree-pinned-unpin:hover, .tree-pinned-unpin:focus-visible { color: var(--danger); }
+.tree-pinned-unpin:focus-visible { color: var(--danger); }
+@media (hover: hover) {
+.tree-pinned-unpin:hover { color: var(--danger); }
+}
 .main { flex: 1; overflow: auto; padding: 0.75rem; display: flex; flex-direction: column; }
 .main-content { flex: 1; }
 .stats-bar { display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: var(--data-size); line-height: 1.4; color: var(--text-muted); }
@@ -391,12 +435,20 @@ html[data-theme="hc-dark"] .view-toggle, html[data-theme="hc-light"] .view-toggl
 body.compact-density .file-list .file-card { contain-intrinsic-size: auto 34px; }
 .card-star-btn { position: absolute; top: 4px; right: 4px; width: 24px; height: 24px; padding: 0; display: flex; align-items: center; justify-content: center; background: var(--bg-secondary); border: var(--bw) solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-muted); cursor: pointer; opacity: 0.6; transition: opacity var(--transition), color var(--transition), border-color var(--transition); z-index: 2; flex-shrink: 0; }
 /* Calmer resting state: unstarred cards only hint at the star until hovered/focused (low base opacity, not 0, so it stays discoverable on touch). Starred cards stay fully visible (see .starred below). */
-.file-card:hover .card-star-btn, .file-card:focus-within .card-star-btn { opacity: 0.85; }
+.file-card:focus-within .card-star-btn { opacity: 0.85; }
+@media (hover: hover) {
+.file-card:hover .card-star-btn { opacity: 0.85; }
+}
 .card-star-btn svg { width: 13px; height: 13px; }
-.card-star-btn:hover, .card-star-btn:focus-visible { opacity: 1; color: var(--accent-text, var(--accent)); border-color: var(--accent-text, var(--accent)); }
-.card-star-btn.starred { opacity: 1; color: var(--accent-text, var(--accent)); border-color: var(--accent-text, var(--accent)); }
+.card-star-btn:focus-visible { opacity: 1; color: var(--accent-on-control, var(--accent-text, var(--accent))); border-color: var(--accent-on-control, var(--accent-text, var(--accent))); }
+@media (hover: hover) {
+.card-star-btn:hover { opacity: 1; color: var(--accent-on-control, var(--accent-text, var(--accent))); border-color: var(--accent-on-control, var(--accent-text, var(--accent))); }
+}
+.card-star-btn.starred { opacity: 1; color: var(--accent-on-control, var(--accent-text, var(--accent))); border-color: var(--accent-on-control, var(--accent-text, var(--accent))); }
 .card-star-spacer { width: 24px; flex-shrink: 0; }
+@media (hover: hover) {
 .file-card:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); background: color-mix(in srgb, var(--card-bg, var(--bg-secondary)) 70%, var(--bg-hover) 30%); }
+}
 .file-card.directory { background: var(--bg-secondary); }
 .file-card.parent-dir .file-name { color: var(--text-secondary); }
 /* Zebra striping: alternating cards/rows are nudged lighter or darker than --bg-secondary via color-mix(), so it adapts to every theme without overrides.
@@ -441,7 +493,9 @@ html:not(.no-xc) .file-icon.xc { color: color-mix(in srgb, var(--xcv, var(--xc))
 .file-thumbnail.lazy { opacity: 0; transition: opacity 0.2s; }
 .file-thumbnail.loaded { opacity: 1; }
 .file-list .file-card { flex-direction: row; text-align: left; padding: 0.5rem 0.75rem; gap: 0.5rem; border-radius: var(--radius); }
+@media (hover: hover) {
 .file-list .file-card:hover { box-shadow: var(--shadow-sm); border-color: var(--accent); }
+}
 /* Rows in the plain themes rely on the zebra stripe and the gap alone; a border on every row as well was a third signal that made the folder rows look heavier. Hover and focus still draw the accent border. */
 html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="hc-light"]):not([data-vivid]) .file-list .file-card:not(:hover):not(:focus):not(:focus-visible):not(.selected) { border-color: transparent; }
 .file-list .file-icon { width: 24px; height: 24px; }
@@ -457,7 +511,9 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 .file-list-header .col-star-spacer { width: 24px; }
 .file-list-header .col-icon-spacer { width: 24px; }
 .file-list-header .col { display: flex; align-items: center; gap: 0.25rem; cursor: pointer; user-select: none; }
+@media (hover: hover) {
 .file-list-header .col:hover { color: var(--text-primary); }
+}
 .file-list-header .col.active { color: var(--text-primary); }
 .file-list-header .col.active .sort-arrow { color: var(--accent-text, var(--accent)); }
 .file-list-header .sort-arrow { font-size: 0.75rem; width: 0.7em; display: inline-block; }
@@ -469,8 +525,14 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 /* In list/tree mode the star sits inline as its own grid column
    rather than floating over the card content. */
 .file-list.list-columns .card-star-btn { position: relative; top: 0; right: auto; opacity: 0.55; background: none; border: none; width: 24px; height: 24px; }
-.file-list.list-columns .file-card:hover .card-star-btn, .file-list.list-columns .file-card:focus-within .card-star-btn { opacity: 0.8; }
-.file-list.list-columns .card-star-btn:hover, .file-list.list-columns .card-star-btn:focus-visible, .file-list.list-columns .card-star-btn.starred { opacity: 1; background: none; border: none; }
+.file-list.list-columns .file-card:focus-within .card-star-btn { opacity: 0.8; }
+@media (hover: hover) {
+.file-list.list-columns .file-card:hover .card-star-btn { opacity: 0.8; }
+}
+.file-list.list-columns .card-star-btn:focus-visible, .file-list.list-columns .card-star-btn.starred { opacity: 1; background: none; border: none; }
+@media (hover: hover) {
+.file-list.list-columns .card-star-btn:hover { opacity: 1; background: none; border: none; }
+}
 /* Progressive column thinning as the window narrows. Each band is bounded on both ends so bands can't conflict regardless of source order. */
 @media (max-width: 1024px) and (min-width: 769px) {
     .tree-panel { --tree-def: 200px; }
@@ -514,12 +576,18 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 .modal-title { font-size: 0.95rem; line-height: 1.4; font-weight: 700; letter-spacing: -0.005em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
 .modal-actions { display: flex; align-items: center; gap: 0.25rem; }
 .modal-btn { padding: 0.375rem; background: var(--control-surface); border: var(--bw) solid var(--border-color); border-radius: var(--radius); color: var(--on-control); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.25rem; }
+@media (hover: hover) {
 .modal-btn:hover { background: var(--control-surface-hover); border-color: var(--accent); }
+}
 .modal-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+@media (hover: hover) {
 .modal-btn:disabled:hover { background: var(--bg-tertiary); border-color: var(--border-color); }
+}
 .modal-btn svg { width: 16px; height: 16px; }
-.modal-btn.play-playlist-btn { padding: 0.5rem 0.9rem; font-size: 0.9rem; font-weight: 600; gap: 0.4rem; color: var(--accent-text, var(--accent)); }
+.modal-btn.play-playlist-btn { padding: 0.5rem 0.9rem; font-size: 0.9rem; font-weight: 600; gap: 0.4rem; color: var(--accent-on-control, var(--accent-text, var(--accent))); }
+@media (hover: hover) {
 .modal-btn.play-playlist-btn:hover { color: var(--text-primary); }
+}
 .modal-btn.play-playlist-btn svg { width: 22px; height: 22px; }
 .modal-btn.hidden { display: none; }
 .playlist-bar { --bar-btn-h: var(--ctl); --bar-btn-w: var(--ctl); display: none; align-items: center; flex-wrap: wrap; gap: 0.4rem 0.5rem; padding: 0.45rem 0.75rem; background: var(--bg-tertiary); border-bottom: var(--bw) solid var(--border-color); position: relative; }
@@ -528,12 +596,13 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 .playlist-btn.top-native-btn { display: none; }
 body.native-player-mode .playlist-btn.top-native-btn { display: inline-flex; }
 .playlist-btn { padding: 0.375rem 0.5rem; background: var(--control-surface); border: var(--bw) solid var(--border-color); border-radius: var(--radius); color: var(--on-control); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.25rem; font-size: 0.75rem; }
+@media (hover: hover) {
 .playlist-btn:hover { background: var(--control-surface-hover); border-color: var(--accent); }
+}
 .playlist-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .playlist-btn svg { width: 14px; height: 14px; }
 .playlist-btn.active { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); }
 .playlist-info { flex: 1 1 8rem; min-width: 0; display: flex; font-size: 0.8rem; color: var(--text-secondary); overflow: hidden; white-space: nowrap; line-height: 1.4; }
-#playlistBar .playlist-track .pl-title { display: none; }
 .playlist-track { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); font-weight: 500; }
 .playlist-bar #playlistTest, .playlist-bar #playlistList, .playlist-bar #playlistSongs, .playlist-bar #playlistQuality, .playlist-bar #playlistRec {
     box-sizing: border-box; height: var(--bar-btn-h); min-width: var(--bar-btn-w); padding-top: 0; padding-bottom: 0; line-height: 1; gap: 0.35rem;
@@ -558,7 +627,9 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 .goto-stepper { display: flex; flex-direction: row; gap: 0.3rem; }
 .goto-step-btn { width: var(--bar-btn-w); height: var(--bar-btn-h); box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: var(--control-surface); border: var(--bw) solid var(--border-color); border-radius: var(--radius); color: var(--on-control); cursor: pointer; padding: 0; line-height: 0; }
 .goto-step-btn svg { width: 18px; height: 18px; }
+@media (hover: hover) {
 .goto-step-btn:hover:not(:disabled) { background: var(--control-surface-hover); }
+}
 .goto-step-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 @media (max-width: 640px) {
     .goto-input { width: 2.5rem; font-size: 0.9rem; }
@@ -590,12 +661,16 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 .player-controls-row .playlist-btn { padding: 0.35rem; flex-shrink: 0; border-radius: var(--radius-full); }
 .player-divider { width: var(--bw); height: 1.25rem; background: var(--border-color); flex-shrink: 0; }
 .playlist-btn.player-play-btn { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); border-radius: var(--radius-full); width: 2.4rem; height: 2.4rem; padding: 0; transition: background-color var(--transition), border-color var(--transition); }
+@media (hover: hover) {
 .playlist-btn.player-play-btn:hover { background: var(--accent-solid-hover, var(--accent-hover)); border-color: var(--accent-solid-hover, var(--accent-hover)); }
+}
 .playlist-btn.player-play-btn svg { width: 20px; height: 20px; }
 .player-time.is-behind { cursor: pointer; text-decoration: underline dotted; }
 .player-time, .player-vol { font-size: 0.75rem; color: var(--text-secondary); min-width: 2.5rem; text-align: center; user-select: none; }
 .player-info-btn { position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.375rem; background: var(--control-surface); border: var(--bw) solid var(--border-color); border-radius: var(--radius); color: var(--on-control); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
+@media (hover: hover) {
 .player-info-btn:hover { background: var(--control-surface-hover); border-color: var(--accent); }
+}
 .player-info-btn svg { width: 16px; height: 16px; }
 .player-eq-btn { right: auto; left: 0.5rem; }
 .player-eq-btn.eq-on { border-color: var(--accent); color: var(--accent-text, var(--accent)); }
@@ -603,11 +678,11 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 .eq-head { display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem; }
 .eq-titlebox { display: inline-flex; align-items: center; gap: 0.35rem; margin-right: auto; }
 .eq-title { font-size: var(--label-size); font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); color: var(--text-muted); }
-.eq-lim { font-size: 0.6rem; line-height: 1; font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); padding: 0.15rem 0.3rem; border: var(--bw) solid var(--border-color); border-radius: var(--radius); color: var(--text-muted); opacity: 0.5; }
+.eq-lim { font-size: 0.7rem; line-height: 1; font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); padding: 0.15rem 0.3rem; border: var(--bw) solid var(--border-color); border-radius: var(--radius); color: var(--text-muted); opacity: 0.5; }
 .eq-lim.on { opacity: 1; background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); }
 .eq-view { display: flex; flex-direction: column; gap: 0.35rem; }
 .eq-view[hidden] { display: none; }
-.eq-chip.fx-on { border-color: var(--accent); color: var(--accent-text, var(--accent)); }
+.eq-chip.fx-on { border-color: var(--accent); color: var(--accent-on-control, var(--accent-text, var(--accent))); }
 .eq-ico { width: 0.8rem; height: 0.8rem; vertical-align: -0.12em; margin-right: 0.25rem; }
 .fx-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.6rem; padding-top: 0.4rem; border-top: var(--bw) solid var(--border-color); }
 .fx-ctl { flex: 0 0 8.5rem; display: flex; align-items: center; }
@@ -619,17 +694,19 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 .eq-mini svg { width: 0.8rem; height: 0.8rem; display: block; }
 #eqBypassBtn { touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
 .eq-chip, .eq-close { font: inherit; font-size: var(--data-size); line-height: 1.2; padding: 0.2rem 0.5rem; background: var(--control-surface); color: var(--on-control); border: var(--bw) solid var(--border-color); border-radius: var(--radius); cursor: pointer; }
+@media (hover: hover) {
 .eq-chip:hover, .eq-close:hover { background: var(--control-surface-hover); border-color: var(--accent); }
+}
 .eq-chip[aria-pressed="true"] { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); }
 .eq-chip:disabled, .eq-preset:disabled, .eq-slider:disabled { opacity: 0.45; cursor: not-allowed; }
 .eq-preset { font: inherit; font-size: 0.8rem; padding: 0.2rem 0.3rem; min-width: 0; background: var(--control-surface); color: var(--on-control); border: var(--bw) solid var(--border-color); border-radius: var(--radius); width: 100%; box-sizing: border-box; }
 .eq-bands { display: flex; justify-content: space-between; gap: 0.1rem; }
 .eq-band { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; flex: 1 1 0; min-width: 0; }
-.eq-val, .eq-freq { font-size: 0.65rem; line-height: 1; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.eq-val, .eq-freq { font-size: 0.7rem; line-height: 1; color: var(--text-muted); font-variant-numeric: tabular-nums; }
 .eq-slider { writing-mode: vertical-lr; direction: rtl; -webkit-appearance: slider-vertical; appearance: auto; height: var(--eq-slider-h, clamp(36px, 8vh, 64px)); width: 1.5rem; margin: 0; accent-color: var(--accent); cursor: pointer; }
 .eq-selects { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
 .eq-sel { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
-.eq-sel-label { font-size: 0.65rem; line-height: 1; font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); color: var(--text-muted); }
+.eq-sel-label { font-size: 0.7rem; line-height: 1; font-weight: 600; text-transform: uppercase; letter-spacing: var(--label-track); color: var(--text-muted); }
 .eq-note { font-size: 0.72rem; line-height: 1.3; color: var(--text-muted); }
 .eq-note:empty { display: none; }
 /* Every leveling hint shares one grid cell, so the cell is as tall as the longest hint and the panel never changes height when the mode or live reading changes. */
@@ -658,7 +735,9 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 .download-btn { display: inline-flex; align-items: center; gap: 0.375rem; margin-top: 0.75rem; padding: 0.5rem 1rem; background: var(--accent-solid, var(--accent)); color: var(--on-accent); text-decoration: none; border-radius: var(--radius); font-weight: 500; font-size: 0.85rem; }
 /* The generic ".preview-unavailable svg" rule (big, faded glyph) must not reach the button's own icon. */
 .preview-unavailable .download-btn svg { width: 16px; height: 16px; margin: 0; opacity: 1; flex-shrink: 0; }
+@media (hover: hover) {
 .download-btn:hover { background: var(--accent-solid-hover, var(--accent-hover)); }
+}
 .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; color: var(--text-secondary); }
 .spinner { width: 28px; height: 28px; border: 2px solid var(--border-color); border-top-color: var(--accent); border-radius: var(--radius-full); animation: spin 0.8s linear infinite; margin-bottom: 0.5rem; }
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -728,7 +807,9 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: 0 0; }
 ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: var(--radius-full); }
+@media (hover: hover) {
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+}
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .search-input:focus-visible, .goto-input:focus-visible, .songs-search:focus-visible { outline-offset: 0; }
 .file-card:focus-visible { outline-offset: -2px; }
@@ -736,10 +817,12 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 .breadcrumb::-webkit-scrollbar { height: 4px; }
 .sort-select { background: var(--bg-tertiary); border: var(--bw) solid var(--border-strong); border-radius: var(--radius-sm); color: var(--text-secondary); font-size: 0.75rem; padding: 0.25rem 0.375rem; }
 .load-more-btn { display: block; margin: 0.75rem auto 0; padding: 0.375rem 1rem; background: var(--bg-tertiary); border: var(--bw) solid var(--border-strong); border-radius: var(--radius); color: var(--text-primary); cursor: pointer; font-size: 0.8rem; }
+@media (hover: hover) {
 .load-more-btn:hover { border-color: var(--accent); }
+}
 .truncation-notice { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; background: var(--bg-tertiary); border-bottom: var(--bw) solid var(--border-color); color: var(--text-muted); font-size: 0.75rem; }
 .modal-btn.copied { color: var(--success); border-color: var(--success); }
-.modal-btn.favorite-btn.favorited { color: var(--accent-text, var(--accent)); border-color: var(--accent-text, var(--accent)); }
+.modal-btn.favorite-btn.favorited { color: var(--accent-on-control, var(--accent-text, var(--accent))); border-color: var(--accent-on-control, var(--accent-text, var(--accent))); }
 .shortcuts-modal { max-width: 440px; }
 .shortcuts-body { padding: 0.75rem 1rem 1rem; }
 .shortcuts-list { display: flex; flex-direction: column; gap: 0.6rem; }
@@ -785,7 +868,6 @@ body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-bt
     #playlistBar .bar-break { display: none; }
     #playlistBar .playlist-info { display: block; order: 2; flex: 0 0 100%; min-width: 0; overflow: visible; white-space: normal; font-size: 0.8rem; line-height: 1.4; }
     #playlistBar .playlist-track { display: inline; overflow: visible; }
-    #playlistBar .playlist-track .pl-title { display: none; }
     #playlistBar .playlist-health { display: inline; overflow: visible; padding-left: 0; }
     #playlistBar .playlist-controls { margin-right: auto; }
 }
@@ -806,13 +888,13 @@ body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-bt
         var(--bg-tertiary); }
 .meta-bar::-webkit-scrollbar { display: none; }
 .meta-bar:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-.meta-bar[hidden], #infoBtn[hidden] { display: none; }
+.meta-bar[hidden], #infoBtn[hidden], .vb-info[hidden], .vb-play[hidden], .local-msg[hidden] { display: none; }
 /* The number of text lines the bar shows is set on the modal (not the bar), so the recording panel can sit exactly above it on phones. */
 .modal.meta-on, .tw-view { --ml: 1; }
 .meta-bar .mi { white-space: nowrap; user-select: text; }
 .meta-bar .ml { color: var(--text-muted); }
 .meta-bar .mv { color: var(--text-primary); user-select: text; }
-#infoBtn[aria-pressed="true"] { color: var(--accent-text, var(--accent)); border-color: var(--accent-text, var(--accent)); }
+#infoBtn[aria-pressed="true"] { color: var(--accent-on-control, var(--accent-text, var(--accent))); border-color: var(--accent-on-control, var(--accent-text, var(--accent))); }
 .modal.meta-on:not(.has-gallery) .preview-image { max-height: calc(90vh - 5.2rem); max-height: calc(90dvh - 5.2rem); }
 .rec-panel[hidden], .settings-row[hidden] { display: none; }
 .rec-panel .playlist-btn { height: var(--ctl); box-sizing: border-box; padding: 0 0.65rem; font-size: 0.75rem; white-space: nowrap; flex-shrink: 0; }
@@ -836,7 +918,9 @@ body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-bt
 @media (prefers-reduced-motion: reduce) { .rec-on .rec-dot, .playlist-bar #playlistRec.rec-on .rec-core { animation: none; } }
 /* Stop recording: unmistakably red and labeled, so it is never confused with the playlist Stop or the window's close button */
 .rec-panel .rec-stop { background: var(--danger-solid, var(--danger)); border-color: var(--danger-solid, var(--danger)); color: var(--on-danger, #fff); font-weight: 600; }
+@media (hover: hover) {
 .rec-panel .rec-stop:hover { background: var(--danger-solid, var(--danger)); border-color: var(--danger-solid, var(--danger)); opacity: 0.9; }
+}
 .playlist-bar #playlistRec.rec-on { color: var(--danger); border-color: var(--danger); }
 .rec-modal { max-width: 560px; }
 .songs-modal { max-width: 560px; }
@@ -850,11 +934,17 @@ body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-bt
 .rec-store-note { padding: 0.6rem 0.9rem; }
 .song-links { margin-top: 0.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
 .song-links a { font-size: 0.75rem; color: var(--accent-text, var(--accent)); text-decoration: none; }
+@media (hover: hover) {
 .song-links a:hover { text-decoration: underline; }
+}
 .song-copy { padding: 0; background: none; border: 0; font: inherit; font-size: 0.75rem; color: var(--accent-text, var(--accent)); cursor: pointer; }
+@media (hover: hover) {
 .song-copy:hover { text-decoration: underline; }
+}
 .plist-row { display: flex; align-items: baseline; gap: 0.6rem; width: 100%; box-sizing: border-box; padding: 0.5rem 0.4rem; margin: 0; background: none; border: 0; border-bottom: var(--bw) solid var(--border-color); border-radius: 0; font: inherit; text-align: left; color: var(--text-primary); cursor: pointer; }
+@media (hover: hover) {
 .plist-row:hover { background: var(--bg-tertiary); }
+}
 .plist-row:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .plist-num { flex: 0 0 auto; min-width: var(--plist-num-w, 2ch); text-align: right; font-size: var(--data-size); font-variant-numeric: tabular-nums; color: var(--text-muted); }
 .plist-title { flex: 1 1 auto; min-width: 0; font-size: 0.88rem; word-break: break-word; }
@@ -951,13 +1041,19 @@ html[data-theme="concrete"] .file-icon svg.ib { --bg-secondary: #ffffff; }
 .src-recent { margin-top: 0.35rem; max-height: 11rem; overflow-y: auto; background: var(--control-surface, var(--bg-tertiary)); border: var(--bw) solid var(--border-color); border-radius: var(--radius); }
 .src-recent[hidden] { display: none; }
 .src-item { display: block; width: 100%; text-align: left; padding: 0.4rem 0.6rem; background: none; border: 0; color: var(--text-primary); font: inherit; font-size: 0.8rem; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.src-item:hover, .src-item:focus-visible { background: var(--bg-hover); outline: none; }
+.src-item:focus-visible { background: var(--bg-hover); outline: none; }
+@media (hover: hover) {
+.src-item:hover { background: var(--bg-hover); outline: none; }
+}
 .src-item + .src-item { border-top: var(--bw) solid var(--border-color); }
 .src-forget { color: var(--text-muted); font-size: 0.75rem; }
 .src-empty { display: block; padding: 0.5rem 0.6rem; font-size: 0.8rem; color: var(--text-muted); }
 .q-menu { position: fixed; z-index: 3000; min-width: 12rem; max-width: min(92vw, 22rem); max-height: 70vh; overflow-y: auto; background: var(--bg-secondary); color: var(--text-primary); border: var(--bw) solid var(--border-color); border-radius: var(--radius-lg); padding: 0.25rem; }
 .q-item { display: flex; align-items: center; gap: 0.45rem; width: 100%; padding: 0.45rem 0.6rem; background: none; border: 0; border-radius: var(--radius); color: inherit; font: inherit; font-size: 0.85rem; text-align: left; cursor: pointer; }
-.q-item:hover, .q-item:focus-visible { background: var(--bg-hover); outline: none; }
+.q-item:focus-visible { background: var(--bg-hover); outline: none; }
+@media (hover: hover) {
+.q-item:hover { background: var(--bg-hover); outline: none; }
+}
 .q-item.on { font-weight: 700; }
 .q-mark { width: 1em; flex: 0 0 1em; color: var(--accent); }
 #playlistQuality[data-manual="1"] { border-color: var(--accent); }
@@ -978,6 +1074,14 @@ html[data-theme="concrete"] .file-icon svg.ib { --bg-secondary: #ffffff; }
 .skeleton-block { border-radius: var(--radius-sm); background: linear-gradient(90deg, var(--skeleton-base) 25%, var(--skeleton-shine) 37%, var(--skeleton-base) 63%); background-size: 400% 100%; animation: skeleton-shimmer 1.4s ease infinite; }
 .skeleton-icon { width: 24px; height: 24px; flex-shrink: 0; }
 .skeleton-name { height: 12px; width: 45%; }
+.skeleton-name.sk-w60 { width: 60%; }
+.skeleton-name.sk-w35 { width: 35%; }
+.skeleton-name.sk-w50 { width: 50%; }
+.skeleton-name.sk-w40 { width: 40%; }
+.skeleton-name.sk-w55 { width: 55%; }
+.noscript-msg { padding: 1rem; color: var(--text-primary); }
+#askModal { z-index: 1050; }
+.ask-msg { white-space: pre-line; margin: 0 0 0.75rem; }
 .skeleton-meta { height: 10px; width: 15%; margin-left: auto; }
 @keyframes skeleton-shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
 
@@ -1051,7 +1155,9 @@ body.is-recording .audio-icon .cache-tag { max-width: calc(100% - 3.2rem); }
 .settings-collapsible > summary::-webkit-details-marker { display: none; }
 .settings-collapsible > summary::after { content: ""; width: 0.4rem; height: 0.4rem; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg); transition: transform var(--transition); flex-shrink: 0; }
 .settings-collapsible[open] > summary::after { transform: rotate(45deg); }
+@media (hover: hover) {
 .settings-collapsible > summary:hover { color: var(--text-primary); }
+}
 .settings-collapsible:not([open]) > summary { margin-bottom: 0; }
 .settings-label > span { color: var(--text-muted); }
 
@@ -1086,7 +1192,9 @@ body.sel-on .main { padding-bottom: 5rem; }
 .sel-bar[hidden] { display: none; }
 .sel-count { font-weight: 600; font-size: 0.85rem; padding: 0 0.25rem; white-space: nowrap; }
 .sel-btn { font: inherit; font-size: 0.8rem; color: var(--text-primary); background: var(--bg-tertiary); border: var(--bw) solid var(--border-strong); border-radius: var(--radius); padding: 0.375rem 0.7rem; min-height: 2rem; cursor: pointer; }
+@media (hover: hover) {
 .sel-btn:hover:not(:disabled) { background: var(--bg-hover); }
+}
 .sel-btn:disabled { opacity: 0.45; cursor: default; }
 .sel-btn[hidden] { display: none; }
 html[data-theme="concrete"] .file-card.selected { background: var(--yellow) !important; color: var(--ink) !important; box-shadow: none !important; outline: 3px solid var(--text) !important; outline-offset: -3px; }
@@ -1094,13 +1202,18 @@ html[data-theme="concrete"] .file-card.selected .file-name, html[data-theme="con
 html[data-theme="concrete"] .sel-bar { background: var(--yellow); color: var(--ink); border: var(--bw) solid var(--ink); box-shadow: 5px 5px 0 var(--text); border-radius: 0; }
 html[data-theme="concrete"] .sel-count { color: var(--ink); }
 html[data-theme="concrete"] .sel-btn { background: #fff; color: var(--ink); border: var(--bw) solid var(--ink); border-radius: 0; box-shadow: 2px 2px 0 var(--ink); font-weight: 700; text-transform: uppercase; }
+@media (hover: hover) {
 html[data-theme="concrete"] .sel-btn:hover:not(:disabled) { background: var(--orange); }
+}
 /* Twin panels: each panel has its own selection bar, in the panel itself (not floating over the page) */
 .tw-selbar { flex-shrink: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.375rem; padding: 0.3rem 0.4rem; background: var(--bg-secondary); color: var(--text-primary); border-top: var(--bw) solid var(--border-strong); }
 .tw-selbar[hidden] { display: none; }
 .tw-selbar .sel-count { font-size: var(--data-size); padding: 0 0.25rem 0 0; }
 .tw-selbar .sel-btn { font-size: 0.75rem; min-height: 1.75rem; padding: 0.2rem 0.5rem; }
 .tw-pane[data-mode="view"] .tw-selbar, .tw-pane[data-mode="media"] .tw-selbar { display: none; }
+/* A panel with a preview or a player open gives its whole height to it: the Repo / breadcrumb bar is hidden until the preview is closed. */
+.tw-pane[data-mode="view"] > .tw-head, .tw-pane[data-mode="media"] > .tw-head { display: none; }
+.tw-pane.active[data-mode="view"], .tw-pane.active[data-mode="media"] { box-shadow: inset 0 2px 0 var(--accent); }
 html[data-theme="concrete"] .tw-selbar { background: var(--yellow); color: var(--ink); border-top: var(--bw) solid var(--ink); }
 @media (max-width: 640px) { .sel-bar { left: 0.75rem; right: 0.75rem; transform: none; max-width: none; width: auto; } .sel-count { flex: 1 1 100%; text-align: center; } }
 /* --- Print: the file list, or just the open preview when one is open; no app chrome, black on white --- */
@@ -1161,7 +1274,9 @@ html[data-theme="concrete"] .tw-selbar { background: var(--yellow); color: var(-
 .mode-chip > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 body[data-source="local"] .mode-chip, body[data-source="preview"] .mode-chip { color: var(--accent-text, var(--accent)); border-color: var(--accent); }
 .mode-chip-close { flex-shrink: 0; padding: 0; background: none; border: none; color: inherit; font: inherit; text-decoration: underline; cursor: pointer; }
+@media (hover: hover) {
 .mode-chip-close:hover { color: var(--text-primary); }
+}
 .mode-chip-close[hidden], .op-toast[hidden], .md-toggle[hidden], #localCloseBtn[hidden], #opToastCancel[hidden], #previewStopBtn[hidden] { display: none !important; }
 body:not([data-source]) .mode-chip { display: none; }
 @media (max-width: 640px) { .mode-chip { max-width: 11rem; } }
@@ -1184,7 +1299,10 @@ body:not([data-source]) .mode-chip { display: none; }
 .tree-header-actions { display: flex; align-items: center; gap: 0.25rem; }
 .tree-hdr-btn { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0; background: none; border: none; border-radius: var(--radius-sm); color: var(--text-muted); cursor: pointer; text-transform: none; }
 .tree-hdr-btn svg { width: 14px; height: 14px; }
-.tree-hdr-btn:hover, .tree-hdr-btn:focus-visible { color: var(--text-primary); background: var(--bg-hover); }
+.tree-hdr-btn:focus-visible { color: var(--text-primary); background: var(--bg-hover); }
+@media (hover: hover) {
+.tree-hdr-btn:hover { color: var(--text-primary); background: var(--bg-hover); }
+}
 
 /* ---- Gallery: an open image, audio file or video gets a rail of the other files of the same kind in its folder: left on wide screens, a strip along the bottom on phones. ---- */
 .modal-main { display: contents; }
@@ -1202,7 +1320,9 @@ body:not([data-source]) .mode-chip { display: none; }
 .gal-count { font-variant-numeric: tabular-nums; }
 .gal-list { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0.4rem; display: flex; flex-direction: column; gap: 0.4rem; }
 .gal-item { position: relative; flex: none; display: flex; align-items: center; gap: 0.5rem; width: 100%; box-sizing: border-box; margin: 0; padding: 0; overflow: hidden; background: var(--bg-tertiary); border: var(--bw) solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-secondary); font: inherit; font-size: 0.8rem; line-height: 1.3; text-align: left; cursor: pointer; }
+@media (hover: hover) {
 .gal-item:hover { border-color: var(--accent); color: var(--text-primary); }
+}
 .gal-item.active { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--bg-hover); color: var(--text-primary); }
 .gal-item:focus-visible { outline-offset: -2px; }
 .gal-ico { display: flex; flex-shrink: 0; }
@@ -1226,7 +1346,9 @@ body:not([data-source]) .mode-chip { display: none; }
 @media (prefers-reduced-motion: reduce) { .gal-thumb.loaded { transition: none; } }
 
 .md-toggle { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border: var(--bw) solid var(--border-strong); border-radius: var(--radius-sm); background: var(--bg-tertiary); color: var(--text-secondary); font-size: 0.75rem; cursor: pointer; text-decoration: none; flex-shrink: 0; }
+@media (hover: hover) {
 .md-toggle:hover { color: var(--text-primary); border-color: var(--accent); }
+}
 .settings-row .theme-reset-btn { flex: none; }
 .local-msg { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem; line-height: 1.45; }
 .local-pick { flex: none; padding: 0.4rem 0.9rem; font-size: 0.85rem; }
@@ -1269,7 +1391,10 @@ body:not([data-source]) .mode-chip { display: none; }
 .ar-head, .ar-row { display: grid; grid-template-columns: minmax(0, 1fr) 5.5rem 5.5rem 6.5rem; gap: 0.5rem; padding: 0.3rem 0.75rem; align-items: center; font-size: 0.85rem; }
 .ar-head { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: var(--label-track, 0.04em); border-bottom: var(--bw) solid var(--border-color); }
 .ar-row { cursor: pointer; color: var(--text-secondary); border-left: 2px solid transparent; }
-.ar-row:hover, .ar-row:focus-visible { background: var(--bg-hover); color: var(--text-primary); }
+.ar-row:focus-visible { background: var(--bg-hover); color: var(--text-primary); }
+@media (hover: hover) {
+.ar-row:hover { background: var(--bg-hover); color: var(--text-primary); }
+}
 .ar-row:focus-visible { border-left-color: var(--accent); }
 .ar-name { display: flex; align-items: center; gap: 0.5rem; min-width: 0; }
 .ar-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -1301,6 +1426,8 @@ html[data-theme="concrete"] {
     --yellow: var(--cc-accent); --red: #ff3b30; --blue: #3d8bff;
     --bw: 2px;
 }
+/* These tokens are !important on purpose: the color engine writes the same variables inline on <html> (root.setProperty), and an inline value
+   beats any stylesheet rule that is not !important. Without it a picked color would repaint Concrete instead of tinting it as designed. */
 html[data-theme="concrete"] {
     --bg-primary: var(--cc-page) !important;
     --bg-secondary: var(--cc-panel) !important;
@@ -1355,15 +1482,23 @@ html[data-theme="concrete"] .breadcrumb.fade-start.fade-end { -webkit-mask-image
 html[data-theme="concrete"] .header { background: var(--yellow); color: var(--ink); border-bottom: var(--bw) solid var(--line); }
 html[data-theme="concrete"] .logo { color: var(--ink); font-size: 1.15rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.02em; }
 html[data-theme="concrete"] .header .breadcrumb-item { color: var(--ink); font-weight: 800; }
+@media (hover: hover) {
 html[data-theme="concrete"] .header .breadcrumb-item:hover { background: var(--ink); color: var(--yellow); }
-html[data-theme="concrete"] .header .breadcrumb-item.current,
+}
+html[data-theme="concrete"] .header .breadcrumb-item.current { background: none; color: var(--ink); font-weight: 900; }
+@media (hover: hover) {
 html[data-theme="concrete"] .header .breadcrumb-item.current:hover { background: none; color: var(--ink); font-weight: 900; }
+}
 html[data-theme="concrete"] .header .breadcrumb-separator { color: var(--ink); font-weight: 900; }
 html[data-theme="concrete"] .header .breadcrumb-pin-btn { color: var(--ink); }
+@media (hover: hover) {
 html[data-theme="concrete"] .header .breadcrumb-pin-btn:hover { background: var(--ink); color: var(--yellow); }
+}
 html[data-theme="concrete"] .header .breadcrumb-pin-btn.pinned { background: var(--ink); color: var(--yellow); }
 html[data-theme="concrete"] .mode-chip { background: var(--ink); color: var(--yellow); border-color: var(--ink); font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; }
+@media (hover: hover) {
 html[data-theme="concrete"] .mode-chip-close:hover { color: var(--text); }
+}
 html[data-theme="concrete"] .header :focus-visible { outline-color: var(--ink); }
 html[data-theme="concrete"] .search-input,
 html[data-theme="concrete"] .sort-select,
@@ -1418,6 +1553,7 @@ html[data-theme="concrete"] .op-toast button {
     font-weight: 900; text-transform: uppercase; letter-spacing: 0.02em; -webkit-text-stroke: 0.6px currentColor;
     text-decoration: none; transition: none; cursor: pointer; opacity: 1;
 }
+@media (hover: hover) {
 html[data-theme="concrete"] .settings-btn:hover:not(:disabled),
 html[data-theme="concrete"] .view-btn:hover:not(:disabled),
 html[data-theme="concrete"] .modal-btn:hover:not(:disabled),
@@ -1433,6 +1569,7 @@ html[data-theme="concrete"] .tree-hdr-btn:hover:not(:disabled),
 html[data-theme="concrete"] .card-star-btn:hover:not(:disabled),
 html[data-theme="concrete"] .op-toast button:hover:not(:disabled) {
     filter: brightness(1.08); transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--text) !important; opacity: 1;
+}
 }
 html[data-theme="concrete"] .settings-btn:active:not(:disabled),
 html[data-theme="concrete"] .view-btn:active:not(:disabled),
@@ -1565,24 +1702,30 @@ html[data-theme="concrete"] .tree-pinned-header { color: var(--text); font-weigh
 html[data-theme="concrete"] .tree-item,
 html[data-theme="concrete"] .tree-pinned-item { border-left: var(--bw) solid transparent; }
 html[data-theme="concrete"] .tree-item.active,
-html[data-theme="concrete"] .tree-pinned-item.active,
+html[data-theme="concrete"] .tree-pinned-item.active { background: var(--yellow); color: var(--ink); font-weight: 800; border-left-color: var(--ink); }
+@media (hover: hover) {
 html[data-theme="concrete"] .tree-item.active:hover,
 html[data-theme="concrete"] .tree-pinned-item.active:hover { background: var(--yellow); color: var(--ink); font-weight: 800; border-left-color: var(--ink); }
+}
 html[data-theme="concrete"] .tree-pinned-item.active .tree-pinned-unpin { color: var(--ink); }
 html[data-theme="concrete"] .file-card { background: var(--panel); border: var(--bw) solid var(--line); }
 html[data-theme="concrete"] .file-card:nth-child(odd) { --card-bg: var(--panel); background: var(--panel); }
 html[data-theme="concrete"] .file-card:nth-child(even) { --card-bg: var(--ink); background: var(--ink); }
 html.no-zebra[data-theme="concrete"] .file-card:nth-child(odd),
 html.no-zebra[data-theme="concrete"] .file-card:nth-child(even) { --card-bg: var(--panel); background: var(--panel); }
+@media (hover: hover) {
 html[data-theme="concrete"] .file-card:hover,
 html.no-zebra[data-theme="concrete"] .file-card:hover { background: var(--concrete); border-color: var(--yellow); box-shadow: 3px 3px 0 var(--ink); z-index: 1; }
+}
 html[data-theme="concrete"] .file-list { gap: 0; }
 html[data-theme="concrete"] .file-list > .file-card { margin-top: calc(var(--bw) * -1); }
 html[data-theme="concrete"] .file-list > .file-card:first-child { margin-top: 0; }
 html[data-theme="concrete"] .gal-item.active { box-shadow: none; }
 html[data-theme="concrete"] .file-list-header { background: var(--ink); color: var(--text); font-weight: 900; border-bottom: var(--bw) solid var(--line); margin-bottom: 0; }
-html[data-theme="concrete"] .file-list-header .col.active,
+html[data-theme="concrete"] .file-list-header .col.active { color: var(--yellow); }
+@media (hover: hover) {
 html[data-theme="concrete"] .file-list-header .col:hover { color: var(--yellow); }
+}
 html[data-theme="concrete"] .file-name { font-weight: 700; }
 html[data-theme="concrete"] .file-icon { border: 2px solid var(--ink); background: var(--c, var(--line)); color: var(--ink); }
 html[data-theme="concrete"] .file-icon svg { color: var(--ink); --bg-tertiary: var(--c, var(--line)); }
@@ -1642,7 +1785,9 @@ html[data-theme="concrete"] .player-controls-row::-webkit-scrollbar { display: n
 html[data-theme="concrete"] #playlistRec,
 html[data-theme="concrete"] #playlistRec.rec-on { --c: var(--ink); color: var(--red) !important; border-color: var(--red) !important; -webkit-text-stroke: 0; }
 html[data-theme="concrete"] #playlistRec .ico-c { color: var(--red); }
+@media (hover: hover) {
 html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(--panel) !important; filter: none; }
+}
 
 /* ---- Scrolling titles (Marquee in the script) ----
    A title wider than its line scrolls (left for LTR, right for Arabic/Farsi/Hebrew), rests at the start of every lap, loops with a gap and stops under the pointer or a held finger.
@@ -1671,12 +1816,17 @@ body.twin-on .header-actions { margin-left: auto; }
 .tw-head { position: relative; display: flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.4rem; background: var(--bg-secondary); border-bottom: var(--bw) solid var(--border-color); flex-shrink: 0; min-width: 0; }
 .tw-pane.active .tw-head { background: color-mix(in srgb, var(--accent) 10%, var(--bg-tertiary)); border-bottom-color: var(--accent); }
 .tw-src { display: inline-flex; align-items: center; gap: 0.3rem; flex-shrink: 0; padding: 0.2rem 0.4rem; background: var(--control-surface); color: var(--on-control); border: var(--bw) solid var(--border-color); border-radius: var(--radius-sm); font: inherit; font-size: var(--data-size); cursor: pointer; }
-.tw-src:hover, .tw-src[aria-expanded="true"] { border-color: var(--accent); }
+.tw-src[aria-expanded="true"] { border-color: var(--accent); }
+@media (hover: hover) {
+.tw-src:hover { border-color: var(--accent); }
+}
 .tw-src svg { width: 14px; height: 14px; flex-shrink: 0; }
 .tw-path { flex: 1; min-width: 0; display: flex; align-items: center; overflow-x: auto; white-space: nowrap; scrollbar-width: none; font-size: var(--data-size); }
 .tw-path::-webkit-scrollbar { display: none; }
 .tw-crumb { flex-shrink: 0; background: none; border: none; color: var(--text-secondary); font: inherit; padding: 0.1rem 0.15rem; cursor: pointer; }
+@media (hover: hover) {
 .tw-crumb:hover { color: var(--text-primary); text-decoration: underline; }
+}
 .tw-crumb[aria-current] { color: var(--text-primary); font-weight: 600; cursor: default; text-decoration: none; }
 .tw-sep { color: var(--text-muted); flex-shrink: 0; }
 .tw-tools { display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0; }
@@ -1693,7 +1843,10 @@ body.twin-on .header-actions { margin-left: auto; }
 .tw-pane .file-list-header .col-star-spacer { width: 24px; }
 .tw-menu { position: absolute; top: 100%; left: 0.4rem; z-index: 30; min-width: 14rem; max-width: calc(100% - 0.8rem); display: flex; flex-direction: column; background: var(--bg-secondary); border: var(--bw) solid var(--border-strong); border-radius: var(--radius); box-shadow: var(--shadow-lg); }
 .tw-menu-item { text-align: left; padding: 0.4rem 0.6rem; background: none; border: none; color: var(--text-primary); font: inherit; font-size: 0.85rem; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.tw-menu-item:hover, .tw-menu-item:focus-visible { background: var(--bg-hover); }
+.tw-menu-item:focus-visible { background: var(--bg-hover); }
+@media (hover: hover) {
+.tw-menu-item:hover { background: var(--bg-hover); }
+}
 .tw-menu-item.on::before { content: "\2713\00a0"; color: var(--accent-text, var(--accent)); }
 .tw-scroll { flex: 1; min-height: 0; overflow: auto; padding: 0 0.25rem 0.25rem; overscroll-behavior: contain; }
 .tw-scroll:focus { outline: none; }
@@ -1714,11 +1867,17 @@ body.twin-on .header-actions { margin-left: auto; }
 @container twp (max-width: 24em) { .tw-pane .list-columns { --list-cols: 24px 24px 1fr 80px; } .tw-pane .col-time, .tw-pane .col-date, .tw-pane .col-ext { display: none; } .tw-src-text { display: none; } }
 @container twp (max-width: 30em) { .tw-tools .tw-sort, .tw-tools .tw-zip { display: none; } }
 .tw-split { position: relative; display: flex; align-items: center; justify-content: center; background: var(--bg-secondary); cursor: col-resize; touch-action: none; user-select: none; -webkit-user-select: none; }
-.tw-split:hover, .tw-split.dragging, .tw-split:focus-visible { background: var(--accent); outline: none; }
+.tw-split.dragging, .tw-split:focus-visible { background: var(--accent); outline: none; }
+@media (hover: hover) {
+.tw-split:hover { background: var(--accent); outline: none; }
+}
 .tw-split.centered.dragging { box-shadow: inset 0 0 0 2px var(--bg-primary); }
 .tw-split-tools { display: flex; flex-direction: column; gap: 2px; }
 .tw-split-tools button { width: 1.6rem; height: 1.6rem; padding: 0; display: flex; align-items: center; justify-content: center; background: var(--control-surface); color: var(--on-control); border: var(--bw) solid var(--border-color); border-radius: var(--radius-sm); cursor: pointer; }
-.tw-split-tools button:hover, .tw-split-tools button[aria-pressed="true"] { border-color: var(--accent); }
+.tw-split-tools button[aria-pressed="true"] { border-color: var(--accent); }
+@media (hover: hover) {
+.tw-split-tools button:hover { border-color: var(--accent); }
+}
 .tw-split-tools svg { width: 16px; height: 16px; }
 @media (max-width: 640px) {
     .twin { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, var(--tw-a)) var(--tw-gut-h, 1.75rem) minmax(0, var(--tw-b)); }
@@ -1796,7 +1955,6 @@ html[data-vivid] *::after { forced-color-adjust: none !important; }
 #modal.tw-narrow #playlistBar .bar-break { display: none; }
 #modal.tw-narrow #playlistBar .playlist-info { display: block; order: 2; flex: 0 0 100%; min-width: 0; overflow: visible; white-space: normal; font-size: 0.8rem; line-height: 1.4; }
 #modal.tw-narrow #playlistBar .playlist-track { display: inline; overflow: visible; }
-#modal.tw-narrow #playlistBar .playlist-track .pl-title { display: none; }
 #modal.tw-narrow #playlistBar .playlist-health { display: inline; overflow: visible; padding-left: 0; }
 #modal.tw-narrow #playlistBar .playlist-controls { margin-right: auto; }
 #modal.tw-narrow .preview-audio-container .np-stack .playlist-now-playing { font-size: 1.05rem; font-weight: 600; line-height: 1.35; letter-spacing: normal; text-transform: none; color: var(--text-primary); padding: 0 0.25rem; }
@@ -1845,7 +2003,7 @@ body.compact-density .tw-pane .file-grid .file-icon { width: 26px; height: 26px;
 
 .tw-vhead .modal-btn.vb-close { width: max(var(--ctl), 2rem); height: max(var(--ctl), 2rem); }
 .tw-vhead .modal-btn.vb-close svg { width: 17px; height: 17px; }
-.modal-btn.vb-fav.favorited, .vb-info[aria-pressed="true"] { color: var(--accent-text, var(--accent)); border-color: var(--accent-text, var(--accent)); }
+.modal-btn.vb-fav.favorited, .vb-info[aria-pressed="true"] { color: var(--accent-on-control, var(--accent-text, var(--accent))); border-color: var(--accent-on-control, var(--accent-text, var(--accent))); }
 .tw-view .meta-bar { flex-shrink: 0; }
 html[data-theme="concrete"] .vb-close { --c: var(--red); }
 html[data-theme="concrete"] .vb-dl, html[data-theme="concrete"] .modal-btn.copied { --c: var(--green); }
@@ -1864,8 +2022,14 @@ html[data-theme="concrete"] .vb-fav.favorited { --c: var(--orange); }
 .tw-res.file-list .file-path { display: inline; margin: 0 0 0 0.6em; word-break: normal; }
 .tw-res.file-grid .file-path { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tw-res.file-list .card-star-btn { position: relative; top: 0; right: auto; opacity: 0.55; background: none; border: none; width: 24px; height: 24px; flex-shrink: 0; }
-.tw-res.file-list .file-card:hover .card-star-btn, .tw-res.file-list .file-card:focus-within .card-star-btn { opacity: 0.8; }
-.tw-res.file-list .card-star-btn:hover, .tw-res.file-list .card-star-btn:focus-visible, .tw-res.file-list .card-star-btn.starred { opacity: 1; background: none; border: none; }
+.tw-res.file-list .file-card:focus-within .card-star-btn { opacity: 0.8; }
+@media (hover: hover) {
+.tw-res.file-list .file-card:hover .card-star-btn { opacity: 0.8; }
+}
+.tw-res.file-list .card-star-btn:focus-visible, .tw-res.file-list .card-star-btn.starred { opacity: 1; background: none; border: none; }
+@media (hover: hover) {
+.tw-res.file-list .card-star-btn:hover { opacity: 1; background: none; border: none; }
+}
 .tw-more { margin-top: 0.5rem; }
 body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
 .tw-head .search-container { display: block; flex: 8 1 12rem; max-width: none; min-width: 5rem; }
@@ -1886,9 +2050,9 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
 .breadcrumb { padding-block: 5px; margin-block: -5px; }
 
 /* Active view button: clear in light themes (white on light grey was too close) */
-html[data-theme="light"] .view-btn.active { box-shadow: inset 0 0 0 1px var(--border-strong); color: var(--accent-text, var(--accent)); }
+html[data-theme="light"] .view-btn.active { box-shadow: inset 0 0 0 1px var(--border-strong); color: var(--accent-on-control, var(--accent-text, var(--accent))); }
 @media (prefers-color-scheme: light) {
-    :root:not([data-theme]) .view-btn.active { box-shadow: inset 0 0 0 1px var(--border-strong); color: var(--accent-text, var(--accent)); }
+    :root:not([data-theme]) .view-btn.active { box-shadow: inset 0 0 0 1px var(--border-strong); color: var(--accent-on-control, var(--accent-text, var(--accent))); }
 }
 /* Active view button in the high-contrast themes (background and surface were identical, so nothing showed) */
 html[data-theme="hc-dark"] .view-btn.active, html[data-theme="hc-light"] .view-btn.active { background: var(--accent); color: var(--on-accent, #fff); }
@@ -1935,14 +2099,15 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
     <svg style="display:none" aria-hidden="true">
         <symbol id="icon-x" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></symbol>
     </svg>
+    <noscript><p class="noscript-msg">File Viewer needs JavaScript to list and preview the files in this repository.</p></noscript>
     <a class="skip-link" id="skipLink" href="#main">Skip to files</a>
     <header class="header">
         <div class="header-content">
             <h1 class="sr-only">File Viewer</h1>
-            <div class="logo" id="logoHome" role="button" tabindex="0" aria-label="File Viewer, go to home folder">
+            <button type="button" class="logo" id="logoHome" aria-label="File Viewer, go to home folder">
                 <svg viewBox="0 0 24 24" fill="currentcolor"><rect x="2" y="5" width="20" height="14"/><circle cx="8" cy="12" r="2.4" fill="var(--bg-secondary)"/><circle cx="16" cy="12" r="2.4" fill="var(--bg-secondary)"/><circle cx="8" cy="12" r="0.8"/><circle cx="16" cy="12" r="0.8"/><rect x="10" y="15.6" width="4" height="1.6" fill="var(--bg-secondary)"/></svg>
                 <span>File Viewer</span>
-            </div>
+            </button>
             <span class="mode-chip" id="modeChip" title="Browsing the files hosted with this page"><span id="modeChipText">Hosted repo</span><button type="button" class="mode-chip-close" id="modeChipClose" hidden>Close</button></span>
             <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb"></nav>
             <div class="header-actions">
@@ -1997,7 +2162,7 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
                                         </div>
                                     </div>
                                 </div>
-                                <div class="settings-section" style="border-top: var(--bw) solid var(--border-color)">
+                                <div class="settings-section">
                                     <div class="settings-section-title">Sort By</div>
                                     <div class="settings-row">
                                         <select class="sort-select" id="sortSelect" aria-label="Sort files by">
@@ -2013,7 +2178,7 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
                                         </select>
                                     </div>
                                 </div>
-                                <div class="settings-section" style="border-top: var(--bw) solid var(--border-color)">
+                                <div class="settings-section">
                                     <div class="settings-section-title">Density</div>
                                     <div class="settings-row">
                                         <span class="settings-label">Compact rows</span>
@@ -2023,7 +2188,7 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
                                         </label>
                                     </div>
                                 </div>
-                                <div class="settings-section" style="border-top: var(--bw) solid var(--border-color)">
+                                <div class="settings-section">
                                     <div class="settings-section-title">Appearance</div>
                                     <div class="settings-row">
                                         <span class="settings-label">Zebra striping</span>
@@ -2040,7 +2205,7 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
                                         </label>
                                     </div>
                                 </div>
-                                <details class="settings-section settings-collapsible" style="border-top: var(--bw) solid var(--border-color)" open>
+                                <details class="settings-section settings-collapsible" open>
                                     <summary class="settings-section-title">Media Player</summary>
                                     <div class="settings-row">
                                         <span class="settings-label">Use native player</span>
@@ -2068,7 +2233,7 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
                                         </label>
                                     </div>
                                 </details>
-                                <details class="settings-section settings-collapsible" style="border-top: var(--bw) solid var(--border-color)">
+                                <details class="settings-section settings-collapsible">
                                     <summary class="settings-section-title">Recording</summary>
                                     <div class="settings-row">
                                         <span class="settings-label">Split whole-stream files</span>
@@ -2104,7 +2269,7 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
                                         <label class="switch"><input type="checkbox" id="recDirToggle" aria-label="Ask for a folder and save songs straight into it (Chrome and Edge on desktop)" /><span class="switch-slider"></span></label>
                                     </div>
                                 </details>
-                                <details class="settings-section settings-collapsible" style="border-top: var(--bw) solid var(--border-color)">
+                                <details class="settings-section settings-collapsible">
                                     <summary class="settings-section-title">Library</summary>
                                     <div class="settings-row">
                                         <span class="settings-label">Local folder</span>
@@ -2140,7 +2305,7 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
                                         </div>
                                     </div>
                                 </div>
-                                <div class="settings-section" style="border-top: var(--bw) solid var(--border-color)">
+                                <div class="settings-section">
                                     <div class="settings-section-title">Base Color</div>
                                     <div class="settings-row">
                                         <span class="settings-label">Color intensity</span>
@@ -2166,7 +2331,7 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
                                         <button id="themeResetBtn" class="theme-reset-btn">Reset</button>
                                     </div>
                                 </div>
-                                <div class="settings-section" style="border-top: var(--bw) solid var(--border-color)">
+                                <div class="settings-section">
                                     <div class="settings-section-title">Corners</div>
                                     <div class="settings-row">
                                         <div class="intensity-bar-wrap">
@@ -2207,19 +2372,19 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
         <main class="main" id="main" tabindex="-1" aria-label="Files">
             <div class="skeleton-list" aria-hidden="true">
                 <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name"></div><div class="skeleton-block skeleton-meta"></div></div>
-                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:60%"></div><div class="skeleton-block skeleton-meta"></div></div>
-                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:35%"></div><div class="skeleton-block skeleton-meta"></div></div>
-                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:50%"></div><div class="skeleton-block skeleton-meta"></div></div>
-                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:40%"></div><div class="skeleton-block skeleton-meta"></div></div>
-                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name" style="width:55%"></div><div class="skeleton-block skeleton-meta"></div></div>
+                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name sk-w60"></div><div class="skeleton-block skeleton-meta"></div></div>
+                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name sk-w35"></div><div class="skeleton-block skeleton-meta"></div></div>
+                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name sk-w50"></div><div class="skeleton-block skeleton-meta"></div></div>
+                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name sk-w40"></div><div class="skeleton-block skeleton-meta"></div></div>
+                <div class="skeleton-row"><div class="skeleton-block skeleton-icon"></div><div class="skeleton-block skeleton-name sk-w55"></div><div class="skeleton-block skeleton-meta"></div></div>
             </div>
         </main>
         <div class="twin" id="twin"></div>
     </div>
-    <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal" id="modalContent">
+    <div class="modal-overlay" id="modal">
+        <div class="modal" id="modalContent" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
             <div class="modal-header">
-                <span class="modal-title" id="modalTitle">File Preview</span>
+                <span class="modal-title" id="modalTitle" role="heading" aria-level="2">File Preview</span>
                 <div class="modal-actions">
                     <button class="modal-btn play-playlist-btn hidden" id="playPlaylistBtn" title="Play as playlist" aria-label="Play as playlist"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66.0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"/></svg><span class="btn-label">Play</span></button>
                     <button class="modal-btn" id="focusBtn" aria-pressed="false" title="Hide the side panel and player buttons" aria-label="Hide the side panel and player buttons"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
@@ -2260,10 +2425,10 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
             <div class="rec-panel" id="recPanel" hidden></div>
         </div>
     </div>
-    <div class="modal-overlay" id="shortcutsModal" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle">
-        <div class="modal shortcuts-modal" id="shortcutsModalContent">
+    <div class="modal-overlay" id="shortcutsModal">
+        <div class="modal shortcuts-modal" id="shortcutsModalContent" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle">
             <div class="modal-header">
-                <span class="modal-title" id="shortcutsTitle">Keyboard Shortcuts</span>
+                <span class="modal-title" id="shortcutsTitle" role="heading" aria-level="2">Keyboard Shortcuts</span>
                 <div class="modal-actions">
                     <button class="modal-btn" id="shortcutsCloseBtn" title="Close" aria-label="Close keyboard shortcuts">
                         <svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg>
@@ -2295,10 +2460,10 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
             </div>
         </div>
     </div>
-    <div class="modal-overlay" id="statsModal" role="dialog" aria-modal="true" aria-labelledby="statsTitle">
-        <div class="modal stats-modal" id="statsModalContent">
+    <div class="modal-overlay" id="statsModal">
+        <div class="modal stats-modal" id="statsModalContent" role="dialog" aria-modal="true" aria-labelledby="statsTitle">
             <div class="modal-header">
-                <span class="modal-title" id="statsTitle">Library Stats</span>
+                <span class="modal-title" id="statsTitle" role="heading" aria-level="2">Library Stats</span>
                 <div class="modal-actions">
                     <button class="modal-btn" id="statsCloseBtn" title="Close" aria-label="Close library stats">
                         <svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg>
@@ -2308,10 +2473,10 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
             <div class="modal-body stats-body" id="statsBody"></div>
         </div>
     </div>
-    <div class="modal-overlay" id="recModal" role="dialog" aria-modal="true" aria-labelledby="recTitle">
-        <div class="modal rec-modal" id="recModalContent">
+    <div class="modal-overlay" id="recModal">
+        <div class="modal rec-modal" id="recModalContent" role="dialog" aria-modal="true" aria-labelledby="recTitle">
             <div class="modal-header">
-                <span class="modal-title" id="recTitle">Recordings (kept in this browser until you clear them)</span>
+                <span class="modal-title" id="recTitle" role="heading" aria-level="2">Recordings (kept in this browser until you clear them)</span>
                 <div class="modal-actions">
                     <button class="modal-btn text-btn" id="recZipBtn" title="Save everything to your device (one zip file)" aria-label="Save all recordings as a zip">Save all</button>
                     <button class="modal-btn text-btn" id="recClearBtn" title="Discard all recordings" aria-label="Clear recordings">Clear</button>
@@ -2321,10 +2486,10 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
             <div class="modal-body songs-body"><div id="recList"></div></div>
         </div>
     </div>
-    <div class="modal-overlay" id="playlistModal" role="dialog" aria-modal="true" aria-labelledby="playlistModalTitle">
-        <div class="modal songs-modal" id="playlistModalContent">
+    <div class="modal-overlay" id="playlistModal">
+        <div class="modal songs-modal" id="playlistModalContent" role="dialog" aria-modal="true" aria-labelledby="playlistModalTitle">
             <div class="modal-header">
-                <span class="modal-title" id="playlistModalTitle">Playlist</span>
+                <span class="modal-title" id="playlistModalTitle" role="heading" aria-level="2">Playlist</span>
                 <div class="modal-actions">
                     <button class="modal-btn" id="playlistModalClose" title="Close" aria-label="Close playlist">
                         <svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg>
@@ -2337,10 +2502,10 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
             </div>
         </div>
     </div>
-    <div class="modal-overlay" id="songsModal" role="dialog" aria-modal="true" aria-labelledby="songsTitle">
-        <div class="modal songs-modal" id="songsModalContent">
+    <div class="modal-overlay" id="songsModal">
+        <div class="modal songs-modal" id="songsModalContent" role="dialog" aria-modal="true" aria-labelledby="songsTitle">
             <div class="modal-header">
-                <span class="modal-title" id="songsTitle">Songs heard</span>
+                <span class="modal-title" id="songsTitle" role="heading" aria-level="2">Songs heard</span>
                 <div class="modal-actions">
                     <button class="modal-btn text-btn" id="songsSaveBtn" title="Save this list as a text file" aria-label="Save the songs list as a text file">Save list</button>
                     <button class="modal-btn text-btn" id="songsClearBtn" title="Clear the list" aria-label="Clear the songs list">Clear</button>
@@ -2357,32 +2522,30 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
     </div>
     <div class="op-toast" id="opToast" hidden role="status"><span id="opToastText"></span><button type="button" class="theme-reset-btn" id="opToastCancel" hidden>Cancel</button><div class="op-bar"><i id="opBarFill"></i></div></div>
     <input type="file" id="localDirInput" class="sr-only" webkitdirectory directory multiple tabindex="-1" aria-hidden="true" />
-    <div class="modal-overlay" id="localModal" role="dialog" aria-modal="true" aria-labelledby="localTitle">
-        <div class="modal stats-modal" id="localModalContent">
+    <div class="modal-overlay" id="localModal">
+        <div class="modal stats-modal" id="localModalContent" role="dialog" aria-modal="true" aria-labelledby="localTitle">
             <div class="modal-header">
-                <span class="modal-title" id="localTitle">Open a local folder</span>
+                <span class="modal-title" id="localTitle" role="heading" aria-level="2">Open a local folder</span>
                 <div class="modal-actions"><button class="modal-btn" id="localModalClose" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button></div>
             </div>
             <div class="modal-body stats-body">
                 <p class="local-msg" id="localMsg"></p>
                 <p class="local-msg">Files are read in this browser only. Nothing is uploaded and nothing is remembered after you close the folder or reload.</p>
+                <p class="local-msg" id="localUploadNote" hidden>Your browser will now ask &ldquo;Upload N files to this site?&rdquo;. That wording is the browser&rsquo;s own and cannot be changed by a page; the files only get read here, they are not sent anywhere.</p>
                 <button type="button" class="theme-reset-btn local-pick" id="localPickBtn">Choose folder&hellip;</button>
             </div>
         </div>
     </div>
-    <div class="modal-overlay" id="previewModal" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
-        <div class="modal stats-modal" id="previewModalContent">
+    <div class="modal-overlay" id="previewModal">
+        <div class="modal stats-modal" id="previewModalContent" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
             <div class="modal-header">
-                <span class="modal-title" id="previewTitle">Preview an index</span>
+                <span class="modal-title" id="previewTitle" role="heading" aria-level="2">Preview an index</span>
                 <div class="modal-actions"><button class="modal-btn" id="previewModalClose" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button></div>
             </div>
             <div class="modal-body stats-body">
-                <div class="pv-actions pv-presets">
-                    <button type="button" class="theme-reset-btn local-pick" data-pv-preset="https://junguler.github.io/placeholder/file_index.json">placeholder</button>
-                    <button type="button" class="theme-reset-btn local-pick" data-pv-preset="https://junguler.github.io/m3u-radio-music-playlists/file_index.json">m3u-repo</button>
-                </div>
+                <div class="pv-actions pv-presets" id="pvPresets" hidden></div>
                 <label class="pv-label" for="previewJsonInput">Index JSON link</label>
-                <input class="pv-input" id="previewJsonInput" type="text" inputmode="url" placeholder="https://raw.githubusercontent.com/user/repo/branch/file_index.json" autocomplete="off" autocapitalize="off" spellcheck="false" />
+                <input class="pv-input" id="previewJsonInput" type="text" inputmode="url" placeholder="user/repo   (or a full link to its file_index.json)" autocomplete="off" autocapitalize="off" spellcheck="false" />
                 <label class="pv-label" for="previewFilesInput">Load files from <span>(optional)</span></label>
                 <input class="pv-input" id="previewFilesInput" type="text" placeholder="user/repo@branch  (default: the repo named inside the JSON)" autocomplete="off" autocapitalize="off" spellcheck="false" />
                 <p class="pv-status" id="previewStatus" role="status"></p>
@@ -2393,10 +2556,10 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
             </div>
         </div>
     </div>
-    <div class="modal-overlay" id="sourceModal" role="dialog" aria-modal="true" aria-labelledby="sourceTitle">
-        <div class="modal stats-modal" id="sourceModalContent">
+    <div class="modal-overlay" id="sourceModal">
+        <div class="modal stats-modal" id="sourceModalContent" role="dialog" aria-modal="true" aria-labelledby="sourceTitle">
             <div class="modal-header">
-                <span class="modal-title" id="sourceTitle">Load extra source</span>
+                <span class="modal-title" id="sourceTitle" role="heading" aria-level="2">Load extra source</span>
                 <div class="modal-actions"><button class="modal-btn" id="sourceModalClose" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button></div>
             </div>
             <div class="modal-body stats-body">
@@ -2420,8 +2583,27 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
             </div>
         </div>
     </div>
+    <div class="modal-overlay" id="askModal">
+        <div class="modal stats-modal" id="askModalContent" role="dialog" aria-modal="true" aria-labelledby="askTitle">
+            <div class="modal-header">
+                <span class="modal-title" id="askTitle" role="heading" aria-level="2">Please confirm</span>
+            </div>
+            <div class="modal-body stats-body">
+                <p class="local-msg ask-msg" id="askMsg"></p>
+                <div class="pv-actions">
+                    <button type="button" class="theme-reset-btn local-pick" id="askOk">OK</button>
+                    <button type="button" class="theme-reset-btn local-pick" id="askNo">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="srAnnouncer" class="sr-only" aria-live="polite" role="status"></div>
     <script>
+"use strict";
+// Failures that are expected and harmless (blocked storage, a play() that was refused, a node that is already gone) are swallowed on purpose.
+// Open the page with ?debug to see each one in the console.
+const DEBUG = /[?&]debug(?:[=&]|$)/.test(location.search);
+function swallow(err) { if (DEBUG) console.debug("[swallowed]", err); }
 // Storage can throw just by being touched (blocked site data, hardened Firefox, some private modes): `store` is localStorage when it works,
 // else an in-memory stand-in, so the page still opens.
 const store = (() => {
@@ -3257,6 +3439,46 @@ function visibleVariant(hex, bgHex, targetRatio, maxShift) {
     }
     return best;
 }
+// The button color for the Vivid look: at least 3:1 against the page, and one where black or white ink (also on the hover color) reaches 4.5:1.
+// A plain "3:1 against the page" lands on mid-tones where neither ink reads well, so the lightness is searched until both hold.
+function pickControlSurface(page) {
+    const { h, s, l } = hexToHsl(page);
+    const start = clampNum(l + (l < 55 ? 22 : -22), 6, 94);
+    const inkOk = (c) => {
+        const hov = visibleVariant(c, c, 1.3, 25), sur = [c, hov];
+        return Math.max(minContrast("#ffffff", sur), minContrast("#000000", sur)) >= 4.5;
+    };
+    for (let d = 0; d <= 100; d++) {
+        for (const dir of d ? [1, -1] : [1]) {
+            const nl = start + dir * d;
+            if (nl < 0 || nl > 100) continue;
+            const c = hslToHex(h, s, nl);
+            if (contrastRatio(c, page) >= 3 && inkOk(c)) return c;
+        }
+    }
+    return fitToSurfaces(hslToHex(h, s, start), [[page, 3]]);
+}
+function minContrast(hex, surfaces) {
+    return Math.min(...surfaces.map((x) => contrastRatio(hex, x)));
+}
+// Moves hex's lightness (hue and saturation kept) the shortest way until it reads on EVERY surface in the list, each with its own minimum:
+// surfaces is [[color, minRatio], ...]. When no lightness of that hue can do it, black or white is used, whichever reads better on the weakest surface.
+// This is what keeps a control, icon or label readable on both the page and the buttons that sit on it, whatever color is picked.
+function fitToSurfaces(hex, surfaces) {
+    const ok = (c) => surfaces.every(([bg, min]) => contrastRatio(c, bg) >= min);
+    if (ok(hex)) return hex;
+    const { h, s, l } = hexToHsl(hex);
+    for (let d = 1; d <= 100; d++) {
+        for (const dir of [1, -1]) {
+            const nl = l + dir * d;
+            if (nl < 0 || nl > 100) continue;
+            const c = hslToHex(h, s, nl);
+            if (ok(c)) return c;
+        }
+    }
+    const worst = (c) => Math.min(...surfaces.map(([bg, min]) => contrastRatio(c, bg) / min));
+    return worst("#ffffff") >= worst("#000000") ? "#ffffff" : "#000000";
+}
 // Blends the picked color toward a calm, desaturated target as intensity drops (hue never moves). intensityPct: 100/80/60/40/20; 100 = unchanged.
 function muteColorAtIntensity(hex, intensityPct) {
     const { h, s, l } = hexToHsl(hex);
@@ -3359,7 +3581,12 @@ function applyTintColor() {
         out["--accent-solid-hover"] = hslToHex(h, sat, solidL("--accent-solid-hover"));
         out["--on-accent"] = contrastRatio("#ffffff", out["--accent-solid"]) >= contrastRatio("#000000", out["--accent-solid"]) ? "#ffffff" : "#000000";
         const fillSurface = out["--control-surface"] || bg;
-        out["--stat-fill"] = visibleVariant(hslToHex(h, Math.min(85, activeS * 1.2), dark ? 62 : 40), fillSurface, 3, 80);
+        const hoverSurface = out["--control-surface-hover"] || fillSurface;
+        // Same rule as Vivid: whatever sits on buttons must read on the button and on its hover color, not only on the page.
+        if (out["--on-control"]) out["--on-control"] = fitToSurfaces(out["--on-control"], [[fillSurface, hc ? 7 : 4.5], [hoverSurface, hc ? 7 : 4.5]]);
+        out["--accent-text"] = fitToSurfaces(out["--accent-text"], [[bg, hc ? 7 : 4.5]]);
+        out["--accent-on-control"] = fitToSurfaces(out["--accent-text"], [[fillSurface, hc ? 7 : 4.5], [hoverSurface, hc ? 7 : 4.5]]);
+        out["--stat-fill"] = fitToSurfaces(hslToHex(h, Math.min(85, activeS * 1.2), dark ? 62 : 40), [[fillSurface, 3], [bg, 3]]);
         for (const [k, v] of Object.entries(out)) root.setProperty(k, v);
         const rgb = hexToRgb(out["--accent"]);
         root.setProperty("--accent-glow", `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3)`);
@@ -3381,7 +3608,7 @@ function applyVividColor() {
     newVals["--accent"] = activeColor;
     // Borders/hover need a lightness nudge or they'd be invisible
     // against an identical fill color.
-    newVals["--border-color"] = visibleVariant(activeColor, activeColor, 2.2, 50);
+    newVals["--border-color"] = visibleVariant(activeColor, activeColor, 3, 60);
     newVals["--accent-hover"] = visibleVariant(activeColor, activeColor, 1.6, 30);
     newVals["--accent-solid"] = activeColor;
     newVals["--accent-solid-hover"] = newVals["--accent-hover"];
@@ -3390,21 +3617,36 @@ function applyVividColor() {
     // button matching the flat panel color would otherwise vanish.
     const { h: ctrlH, s: ctrlS, l: ctrlL } = hexToHsl(activeColor);
     const shiftedL = clampNum(ctrlL + (ctrlL < 55 ? 22 : -22), 6, 94);
-    const controlSurface = visibleVariant(hslToHex(ctrlH, ctrlS, shiftedL), activeColor, 2.5, 70);
+    const controlSurface = pickControlSurface(activeColor);
     newVals["--control-surface"] = controlSurface;
     newVals["--control-surface-hover"] = visibleVariant(controlSurface, controlSurface, 1.3, 25);
-    newVals["--on-control"] = contrastRatio("#ffffff", controlSurface) >= contrastRatio("#000000", controlSurface) ? "#ffffff" : "#000000";
+    const onSurfaces = [controlSurface, newVals["--control-surface-hover"]];
+    newVals["--on-control"] = minContrast("#ffffff", onSurfaces) >= minContrast("#000000", onSurfaces) ? "#ffffff" : "#000000";
     // The skeleton shimmer normally runs between --bg-tertiary and --bg-hover, both flattened here, so it uses the control-surface pair to stay visible.
     newVals["--skeleton-base"] = controlSurface;
     newVals["--skeleton-shine"] = newVals["--control-surface-hover"];
     // Vivid, contrast-safe fill for proportional bars (e.g. Library Stats), where a subtle lightness variant of the flat color wouldn't read.
     const vividFill = hslToHex(ctrlH, 85, 55);
-    newVals["--stat-fill"] = visibleVariant(vividFill, controlSurface, 3, 80);
+    newVals["--stat-fill"] = fitToSurfaces(vividFill, [[controlSurface, 3], [activeColor, 3]]);
     // Accent-as-text variant (e.g. breadcrumb links), since the flat
     // --accent equals the panel background it would sit on.
-    newVals["--accent-text"] = visibleVariant(activeColor, activeColor, 4.5, 100);
+    // It is also the text of the Play button and the pressed star/details buttons, which sit on the control surface, so it must read on that too.
+    newVals["--accent-text"] = fitToSurfaces(activeColor, [[activeColor, 4.5]]);
+    newVals["--accent-on-control"] = fitToSurfaces(activeColor, [[controlSurface, 4.5], [newVals["--control-surface-hover"], 4.5]]);
     for (const key of Object.keys(base)) {
         if (!(key in newVals)) newVals[key] = base[key];
+    }
+    // Status colors (recording dot, warnings, success) keep their meaning but are moved until they show on the page and on the buttons.
+    const stockCs = getComputedStyle(document.documentElement);
+    for (const k of ["--success", "--warning", "--danger"]) {
+        const v = parseCssColor(stockCs.getPropertyValue(k)) || base[k];
+        if (v) newVals[k] = fitToSurfaces(v, [[activeColor, 3], [controlSurface, 3]]);
+    }
+    const dSolid = parseCssColor(stockCs.getPropertyValue("--danger-solid"));
+    if (dSolid) {
+        const ds = fitToSurfaces(dSolid, [[activeColor, 3]]);
+        newVals["--danger-solid"] = ds;
+        newVals["--on-danger"] = contrastRatio("#ffffff", ds) >= contrastRatio("#000000", ds) ? "#ffffff" : "#000000";
     }
     for (const [textKey, minRatio] of [["--text-primary", 4.5], ["--text-secondary", 4.5], ["--text-muted", 4.5]]) {
         if (!base[textKey]) continue;
@@ -3440,7 +3682,7 @@ function clearCustomVars() {
         "--text-primary", "--text-secondary", "--text-muted",
         "--accent", "--accent-hover", "--accent-text", "--accent-solid", "--accent-solid-hover", "--border-strong", "--on-accent", "--accent-glow",
         "--control-surface", "--control-surface-hover", "--on-control", "--stat-fill",
-        "--skeleton-base", "--skeleton-shine",
+        "--skeleton-base", "--skeleton-shine", "--success", "--warning", "--danger", "--danger-solid", "--on-danger", "--accent-on-control",
         "--cc-page", "--cc-panel", "--cc-line", "--cc-muted", "--cc-text", "--cc-accent",
         "--orange", "--pink", "--violet", "--green", "--blue", "--red",
     ];
@@ -3599,7 +3841,7 @@ function updateThemeButtons() {
 const FONT_SIZE_MIN = 10, FONT_SIZE_MAX = 26;
 function updateFontSizeLabel() {
     document.getElementById("fontSizeLabel").textContent = currentFontSize + "px";
-    try { applyPreviewFontSize(); } catch (e) {} // the preview size is shown in px too, so it follows the interface size
+    try { applyPreviewFontSize(); } catch (e) { swallow(e); } // the preview size is shown in px too, so it follows the interface size
     updateListColumns();
 }
 function changeFontSize(e) {
@@ -3626,13 +3868,15 @@ function thumbSizeCtl() {
 }
 function setThumbSize(v) {
     applyThumbSize(v);
-    try { store.setItem("thumbSize", thumbSize); } catch (e) {}
+    try { store.setItem("thumbSize", thumbSize); } catch (e) { swallow(e); }
 }
 function wireThumbSize() {
     document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest(".ts-ctl [data-ts]"); if (b) setThumbSize(b.dataset.ts); });
     // Ctrl + mouse wheel over a grid, as in a file manager (a pinch on a trackpad arrives the same way).
-    let last = 0;
-    document.addEventListener("wheel", (e) => {
+    // The handler that can cancel the page zoom is only attached while Ctrl is held (or a pinch is under way), so ordinary wheel
+    // scrolling is never held up waiting for it.
+    let last = 0, armed = false, ctrlDown = false, idle = 0;
+    const onWheel = (e) => {
         if (!e.ctrlKey || !e.target.closest || !e.target.closest(".file-grid")) return;
         e.preventDefault();
         const now = Date.now();
@@ -3640,7 +3884,18 @@ function wireThumbSize() {
         last = now;
         const i = THUMB_SIZES.indexOf(thumbSize) + (e.deltaY < 0 ? 1 : -1);
         if (i >= 0 && i < THUMB_SIZES.length) setThumbSize(THUMB_SIZES[i]);
-    }, { passive: false });
+    };
+    const arm = () => { clearTimeout(idle); if (!armed) { armed = true; document.addEventListener("wheel", onWheel, { passive: false }); } };
+    const disarm = () => { clearTimeout(idle); if (armed) { armed = false; document.removeEventListener("wheel", onWheel); } };
+    document.addEventListener("keydown", (e) => { if (e.key === "Control") { ctrlDown = true; arm(); } });
+    document.addEventListener("keyup", (e) => { if (e.key === "Control") { ctrlDown = false; disarm(); } });
+    window.addEventListener("blur", () => { ctrlDown = false; disarm(); });
+    // A trackpad pinch sends ctrl+wheel with no key held: the first event arms the handler, and it lets go again when the pinch stops.
+    document.addEventListener("wheel", (e) => {
+        if (!e.ctrlKey) return;
+        arm();
+        if (!ctrlDown) idle = setTimeout(disarm, 400);
+    }, { passive: true });
 }
 function clampPreviewFont(v) {
     return Math.max(PREVIEW_FONT_MIN, Math.min(PREVIEW_FONT_MAX, Math.round(v * 10) / 10));
@@ -3652,13 +3907,13 @@ function applyPreviewFontSize() {
 }
 function initPreviewFontSize() {
     let stored = NaN;
-    try { stored = parseFloat(store.getItem("previewFontSize")); } catch (e) {}
+    try { stored = parseFloat(store.getItem("previewFontSize")); } catch (e) { swallow(e); }
     previewFontSize = Number.isFinite(stored) ? clampPreviewFont(stored) : PREVIEW_FONT_DEFAULT;
     applyPreviewFontSize();
 }
 function changePreviewFontSize(dir) {
     previewFontSize = clampPreviewFont(previewFontSize + dir * PREVIEW_FONT_STEP);
-    try { store.setItem("previewFontSize", String(previewFontSize)); } catch (e) {}
+    try { store.setItem("previewFontSize", String(previewFontSize)); } catch (e) { swallow(e); }
     applyPreviewFontSize();
 }
 // "1536" -> "1.5 KB". Same format the index generator used to store.
@@ -3922,14 +4177,14 @@ let levelMode = null;
 function getLevelMode() {
     if (levelMode) return levelMode;
     let m = null;
-    try { m = store.getItem(LEVEL_KEY); } catch (e) {}
+    try { m = store.getItem(LEVEL_KEY); } catch (e) { swallow(e); }
     levelMode = LEVEL_MODES[m] ? m : "level";
     return levelMode;
 }
 function setLevelMode(m) {
     if (!LEVEL_MODES[m]) return;
     levelMode = m;
-    try { store.setItem(LEVEL_KEY, m); } catch (e) {}
+    try { store.setItem(LEVEL_KEY, m); } catch (e) { swallow(e); }
     applyLevelModeAll();
 }
 function applyLevelMode(lv) {
@@ -4033,7 +4288,7 @@ function stopLeveler(lv) {
     if (lv.timer) { clearInterval(lv.timer); lv.timer = null; }
     activeLevelers.delete(lv);
     if (lv.el && lv.listeners) lv.listeners.forEach(([ev, fn]) => lv.el.removeEventListener(ev, fn));
-    try { lv.source.disconnect(); } catch (e) {}
+    try { lv.source.disconnect(); } catch (e) { swallow(e); }
 }
 function buildLeveler(ctx, source, el) {
     const comp = ctx.createDynamicsCompressor();
@@ -4114,7 +4369,7 @@ function ensureAudioGraph() {
         eqNodes.output.connect(audioLimiter);
     } catch (eqErr) {
         eqNodes = null;
-        try { audioPost.disconnect(); } catch (e2) {}
+        try { audioPost.disconnect(); } catch (e2) { swallow(e2); }
         audioPost.connect(audioLimiter);
     }
     audioLimiter.connect(audioCtx.destination);
@@ -4138,7 +4393,7 @@ function setupAudioNormalization(mediaElement) {
             levelers.set(mediaElement, buildLeveler(audioCtx, source, mediaElement));
         } catch (levelErr) {
             console.warn("Loudness leveler setup failed:", levelErr);
-            try { source.disconnect(); } catch (e2) {}
+            try { source.disconnect(); } catch (e2) { swallow(e2); }
             source.connect(audioPost);
         }
     } catch (e) {
@@ -4258,7 +4513,7 @@ function buildEqChain(ctx) {
 function getEqState() {
     if (eqState) return eqState;
     let s = null;
-    try { s = JSON.parse(store.getItem(EQ_KEY) || "null"); } catch (e) {}
+    try { s = JSON.parse(store.getItem(EQ_KEY) || "null"); } catch (e) { swallow(e); }
     const gains = s && Array.isArray(s.gains) && s.gains.length === EQ_FREQS.length
         ? s.gains.map((v) => Math.max(EQ_MIN, Math.min(EQ_MAX, Math.round(Number(v)) || 0)))
         : EQ_FLAT.slice();
@@ -4271,7 +4526,7 @@ function getEqState() {
     return eqState;
 }
 function saveEqState() {
-    try { store.setItem(EQ_KEY, JSON.stringify(eqState)); } catch (e) {}
+    try { store.setItem(EQ_KEY, JSON.stringify(eqState)); } catch (e) { swallow(e); }
 }
 // While the Bypass button is held, the equalizer, mono, crossfeed, widener and balance are skipped so the original can be
 // heard. Leveling stays on: it matches the volume, so the comparison is not decided by one side simply being louder.
@@ -4438,7 +4693,7 @@ function openEqPanel(mediaEl, host) {
     const bypBtns = Array.from(panel.querySelectorAll(".eq-bypass"));
     const bypassSet = (on) => { if (eqBypass === on) return; eqBypass = on; bypBtns.forEach((b) => b.setAttribute("aria-pressed", String(on))); applyEq(); };
     bypBtns.forEach((byp) => {
-        byp.addEventListener("pointerdown", (e) => { e.preventDefault(); try { byp.setPointerCapture(e.pointerId); } catch (err) {} bypassSet(true); });
+        byp.addEventListener("pointerdown", (e) => { e.preventDefault(); try { byp.setPointerCapture(e.pointerId); } catch (err) { swallow(err); } bypassSet(true); });
         ["pointerup", "pointercancel", "lostpointercapture"].forEach((ev) => byp.addEventListener(ev, () => bypassSet(false)));
         byp.addEventListener("keydown", (e) => { if ((e.key === " " || e.key === "Enter") && !e.repeat) { e.preventDefault(); bypassSet(true); } });
         byp.addEventListener("keyup", (e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); bypassSet(false); } });
@@ -4451,7 +4706,7 @@ function openEqPanel(mediaEl, host) {
     const limLoop = () => {
         if (!document.getElementById("eqPanel")) return;
         let r = 0;
-        try { r = audioLimiter ? (typeof audioLimiter.reduction === "number" ? audioLimiter.reduction : audioLimiter.reduction.value) : 0; } catch (err) {}
+        try { r = audioLimiter ? (typeof audioLimiter.reduction === "number" ? audioLimiter.reduction : audioLimiter.reduction.value) : 0; } catch (err) { swallow(err); }
         const now = performance.now();
         if (r < -1) limUntil = now + 350;
         const on = now < limUntil;
@@ -4635,7 +4890,7 @@ function wireMediaControls(mediaEl) {
             for (let i = 0; i < b.length; i++) {
                 if (t >= b.start(i) - 0.3 && t <= b.end(i) + 0.05) return { start: b.start(i), end: b.end(i) };
             }
-        } catch (err) {}
+        } catch (err) { swallow(err); }
         return null;
     }
     function getSeekableRange() {
@@ -4646,7 +4901,7 @@ function wireMediaControls(mediaEl) {
                 const last = ranges.length - 1;
                 seekRange = { start: ranges.start(last), end: ranges.end(last) };
             }
-        } catch (err) {}
+        } catch (err) { swallow(err); }
         const cache = getCacheRange();
         const hls = !!(playSession && playSession.usesHls);
         // HLS keeps its own rewind window (some live streams report seekable.end() far ahead of the live edge,
@@ -4899,8 +5154,12 @@ function setupSkipLink() {
 // While a dialog is open the page behind it is inert (no Tab, screen-reader browsing or clicks). Called right after each dialog opens/closes
 // (not via an observer) so focus returns to the page the instant it closes.
 function syncBackgroundInert() {
-    const open = !!document.querySelector(".modal-overlay.active:not(.tw-embedded)");
-    document.querySelectorAll(".header, .app-container").forEach((el) => { el.inert = open; });
+    const open = Array.from(document.querySelectorAll(".modal-overlay.active:not(.tw-embedded)"));
+    document.querySelectorAll(".header, .app-container").forEach((el) => { el.inert = open.length > 0; });
+    // Dialogs stack (the playlist or the recordings list over the player): only the one on top can be reached.
+    let top = null, best = -1;
+    open.forEach((el, i) => { const rank = (parseInt(getComputedStyle(el).zIndex, 10) || 0) * 1000 + i; if (rank > best) { best = rank; top = el; } });
+    document.querySelectorAll(".modal-overlay:not(.tw-embedded)").forEach((el) => { el.inert = open.length > 1 && open.includes(el) && el !== top; });
 }
 // Chooses how many list columns fit in the file area: all, no time, ext + size, or size only.
 // Widths are in px at 16px text and scale with the interface text size.
@@ -4995,13 +5254,6 @@ function setupEventListeners() {
         document.getElementById(clearId).addEventListener("click", () => clearSearch(k));
     });
     document.getElementById("logoHome").addEventListener("click", () => { navigateTo([]); previewTap(); });
-    document.getElementById("logoHome").addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            navigateTo([]);
-            previewTap();
-        }
-    });
     document.querySelectorAll(".view-btn[data-view]").forEach((btn) => {
         btn.addEventListener("click", () => setView(btn.dataset.view));
     });
@@ -5040,10 +5292,8 @@ function setupEventListeners() {
     document.getElementById("statsModal").addEventListener("keydown", (e) => trapModalFocus(e, "statsModalContent"));
     window.addEventListener("hashchange", handleHashChange);
     document.getElementById("treePinned").addEventListener("click", handlePinnedFoldersClick);
-    document.getElementById("treePinned").addEventListener("keydown", handlePinnedFoldersKeydown);
-    document.getElementById("treeFavorites").addEventListener("click", handleFavoriteFilesClick);
-    document.getElementById("treeFavorites").addEventListener("keydown", handleFavoriteFilesKeydown);
-    document.addEventListener("keydown", (e) => {
+        document.getElementById("treeFavorites").addEventListener("click", handleFavoriteFilesClick);
+        document.addEventListener("keydown", (e) => {
         const shortcutsOpen = document.getElementById("shortcutsModal").classList.contains("active");
         const statsOpen = document.getElementById("statsModal").classList.contains("active");
         const songsOpen = windowOwnsKeys("songsModal");
@@ -5161,7 +5411,7 @@ function setupEventListeners() {
     });
     document.getElementById("btnStyleSel").addEventListener("change", (e) => {
         document.body.dataset.btnStyle = e.target.value;
-        try { store.setItem(BTNSTYLE_KEY, e.target.value); } catch (err) {}
+        try { store.setItem(BTNSTYLE_KEY, e.target.value); } catch (err) { swallow(err); }
     });
     document.getElementById("skipDeadToggle").addEventListener("change", (e) => {
         skipDeadStreams = e.target.checked;
@@ -5169,7 +5419,7 @@ function setupEventListeners() {
     });
     document.getElementById("closeOutsideToggle").addEventListener("change", (e) => {
         closeOnOutsideClick = e.target.checked;
-        try { store.setItem(CLOSE_OUTSIDE_KEY, closeOnOutsideClick ? "1" : "0"); } catch (err) {}
+        try { store.setItem(CLOSE_OUTSIDE_KEY, closeOnOutsideClick ? "1" : "0"); } catch (err) { swallow(err); }
     });
     wireThumbSize();
     document.getElementById("compactDensityToggle").addEventListener("change", (e) => {
@@ -5641,7 +5891,7 @@ function selInit() {
             timer = 0;
             SEL.suppress = true;
             selToggle(selEntryOf(card));
-            if (navigator.vibrate) { try { navigator.vibrate(15); } catch (err) {} }
+            if (navigator.vibrate) { try { navigator.vibrate(15); } catch (err) { swallow(err); } }
         }, 450);
     });
     main.addEventListener("pointermove", (e) => { if (timer && Math.hypot(e.clientX - sx, e.clientY - sy) > 8) cancel(); });
@@ -6027,9 +6277,8 @@ function renderPinnedFolders() {
         const folderLabel = pathArr.length > 1 ? pathArr[pathArr.length - 2] : "";
         const displayLabel = folderLabel ? `${folderLabel}/${name}` : name;
         return `
-            <div class="tree-pinned-item${isActive ? " active" : ""}" data-path="${pathAttr}" tabindex="0" role="button" aria-label="Go to pinned folder ${escapeHtml(label)}" title="${escapeHtml(label)}">
-              ${icons.folder}
-              <span class="tree-pinned-name-stack" data-full="${escapeHtml(displayLabel)}"></span>
+            <div class="tree-pinned-item${isActive ? " active" : ""}" data-path="${pathAttr}">
+              <button type="button" class="tree-pinned-open" aria-label="Go to pinned folder ${escapeHtml(label)}" title="${escapeHtml(label)}"${isActive ? ' aria-current="true"' : ""}>${icons.folder}<span class="tree-pinned-name-stack" data-full="${escapeHtml(displayLabel)}"></span></button>
               <button type="button" class="tree-pinned-unpin" data-unpin-path="${pathAttr}" title="Unpin" aria-label="Unpin ${escapeHtml(label)}">${icons.starFilled}</button>
             </div>
           `;
@@ -6095,9 +6344,8 @@ function renderFavoriteFiles() {
         const folderLabel = parentSegments.length ? parentSegments[parentSegments.length - 1] : "";
         const displayLabel = folderLabel ? `${folderLabel}/${name}` : name;
         return `
-            <div class="tree-pinned-item" data-file-path="${pathAttr}" tabindex="0" role="button" aria-label="Open favorite file ${escapeHtml(name)}${folderLabel ? ` in ${escapeHtml(folderLabel)}` : ""}" title="${escapeHtml(path)}">
-              ${icons[iconType] || icons.other}
-              <span class="tree-pinned-name-stack" data-full="${escapeHtml(displayLabel)}"></span>
+            <div class="tree-pinned-item" data-file-path="${pathAttr}">
+              <button type="button" class="tree-pinned-open" aria-label="Open favorite file ${escapeHtml(name)}${folderLabel ? ` in ${escapeHtml(folderLabel)}` : ""}" title="${escapeHtml(path)}">${icons[iconType] || icons.other}<span class="tree-pinned-name-stack" data-full="${escapeHtml(displayLabel)}"></span></button>
               <button type="button" class="tree-pinned-unpin" data-unfavorite-path="${pathAttr}" title="Remove from favorites" aria-label="Remove ${escapeHtml(name)} from favorites">${icons.starFilled}</button>
             </div>
           `;
@@ -6122,15 +6370,8 @@ function makePinnedListHandlers({ getPath, onOpen, getUnpinPath, onUnpin }) {
             if (path) onOpen(path);
         }
     }
-    function onKeydown(e) {
-        if (e.key !== "Enter" && e.key !== " ") return;
-        const item = e.target.closest(".tree-pinned-item");
-        if (!item) return;
-        e.preventDefault();
-        const path = getPath(item);
-        if (path) onOpen(path);
-    }
-    return { onClick, onKeydown };
+    // Each row's open control is a real <button>, so Enter and Space arrive as clicks.
+    return { onClick };
 }
 function openFavoriteFile(path) {
     const fileItem = filesByPath.get(path);
@@ -6143,7 +6384,6 @@ const favoriteFilesHandlers = makePinnedListHandlers({
     onUnpin: (path) => toggleFavoriteFile(path),
 });
 const handleFavoriteFilesClick = favoriteFilesHandlers.onClick;
-const handleFavoriteFilesKeydown = favoriteFilesHandlers.onKeydown;
 const pinnedFoldersHandlers = makePinnedListHandlers({
     getPath: (item) => safeJsonParse(item.dataset.path, null),
     onOpen: (path) => navigateTo(path),
@@ -6151,7 +6391,6 @@ const pinnedFoldersHandlers = makePinnedListHandlers({
     onUnpin: (path) => unpinFolder(path),
 });
 const handlePinnedFoldersClick = pinnedFoldersHandlers.onClick;
-const handlePinnedFoldersKeydown = pinnedFoldersHandlers.onKeydown;
 let lastBreadcrumbPathKey = null;
 function renderBreadcrumb() {
     const breadcrumbEl = document.getElementById("breadcrumb");
@@ -6475,6 +6714,7 @@ function render() {
     }
     syncSortUI();
     updateListHeaderStuck();
+    updateDocTitle();
 }
 // Shows more of a paged list: search results 100 at a time, a big folder twice as many (or all of it with `all`).
 function pagerGrow(all) {
@@ -6537,7 +6777,6 @@ function updatePlaylistUI() {
         gotoDownBtn = document.getElementById("gotoDownBtn");
     if (currentPlaylist.length > 0) {
         e.classList.add("active");
-        const item = currentPlaylist[currentPlaylistIndex];
         t.textContent = "";
         const plNum = document.createElement("span");
         plNum.className = "pl-num";
@@ -6602,7 +6841,7 @@ function recordShuffleJump(idx) {
 }
 function goToNextTrack() {
     if (currentPlaylist.length === 0) return;
-    if (!recLeaveOk()) return;
+    if (!recLeaveOk(goToNextTrack)) return;
     if (isShuffle) {
         const nextIdx = getNextShuffleIndex();
         shuffleHistory.push(nextIdx);
@@ -6614,7 +6853,7 @@ function goToNextTrack() {
 }
 function goToPrevTrack() {
     if (currentPlaylist.length === 0) return;
-    if (!recLeaveOk()) return;
+    if (!recLeaveOk(goToPrevTrack)) return;
     if (isShuffle) {
         if (shuffleHistory.length > 1) {
             shuffleHistory.pop();
@@ -6638,7 +6877,7 @@ function setupGotoStepper() {
         const idx = clamp(n) - 1;
         input.value = idx + 1;
         if (idx !== currentPlaylistIndex) {
-            if (!recLeaveOk()) { input.value = currentPlaylistIndex + 1; return; }
+            if (!recLeaveOk(() => jumpTo(n))) { input.value = currentPlaylistIndex + 1; return; }
             if (isShuffle) recordShuffleJump(idx);
             playPlaylistTrack(idx);
         }
@@ -6717,7 +6956,7 @@ async function startPlaylistMode() {
     `);
 }
 function stopPlaylist() {
-    if (!recLeaveOk()) return;
+    if (!recLeaveOk(stopPlaylist)) return;
     closePlaylistModal();
     endPlaySession();
     metaReset();
@@ -6944,7 +7183,7 @@ async function readTextLimited(res, max) {
         try {
             const c = reader.cancel();
             if (c && c.catch) c.catch(() => {});
-        } catch (e) {}
+        } catch (e) { swallow(e); }
     }
     const buf = new Uint8Array(n);
     let o = 0;
@@ -7054,7 +7293,7 @@ async function resolveStreamUrl(url, depth, keepMaster) {
             return resolveStreamUrl(best.url, depth + 1, keepMaster);
         }
         if (info.kind === "list" && info.urls.length) return resolveStreamUrl(info.urls[0], depth + 1, keepMaster);
-    } catch (e) {}
+    } catch (e) { swallow(e); }
     return url;
 }
 
@@ -7287,14 +7526,14 @@ const streamHealth = {
         try {
             const st = this.db.transaction("h", "readwrite").objectStore("h");
             recs.forEach((r) => st.put(r));
-        } catch (e) {}
+        } catch (e) { swallow(e); }
     },
     remove(urls) {
         if (!this.db) return;
         try {
             const st = this.db.transaction("h", "readwrite").objectStore("h");
             urls.forEach((u) => st.delete(u));
-        } catch (e) {}
+        } catch (e) { swallow(e); }
     },
 };
 window.addEventListener("pagehide", () => streamHealth.flush());
@@ -7364,7 +7603,7 @@ function probeAudioElement(u, signal) {
                 a.pause();
                 a.removeAttribute("src");
                 a.load();
-            } catch (e) {}
+            } catch (e) { swallow(e); }
             resolve(r);
         };
         const onAbort = () => finish({ aborted: true });
@@ -7490,7 +7729,7 @@ async function probeFetch(u, signal, depth) {
         const now = performance.now();
         try {
             ctl.abort();
-        } catch (e) {}
+        } catch (e) { swallow(e); }
         if (got === 0) return { s: "bad" };
         const info = sniffAudio(concatChunks(chunks, 32768));
         if (info.fmt === "HTML") return { s: "bad" };
@@ -7528,7 +7767,7 @@ async function probeStream(url, signal) {
     let target = url;
     try {
         target = await resolveStreamUrl(url, 0);
-    } catch (e) {}
+    } catch (e) { swallow(e); }
     const upgraded = location.protocol === "https:" && /^http:\/\//i.test(target);
     const u = upgraded ? target.replace(/^http:/i, "https:") : target;
     const r = await probeOne(u, signal, 0);
@@ -7751,8 +7990,7 @@ async function sniffLiveStream(session) {
         if (fmt) patch.fmt = fmt;
         if (kbps) patch.kbps = kbps;
         streamHealth.merge(session.item.url, patch);
-    } catch (e) {
-    } finally {
+    } catch (e) { swallow(e); } finally {
         clearTimeout(timer);
         ctl.abort();
         session.sniffing = false;
@@ -8034,7 +8272,7 @@ async function npFetchPayload(url, signal, timeout) {
         // Some legacy radio APIs wrap JSON in a JSONP callback.
         const jsonText = raw.replace(/^\s*[\w$.]+\s*\(/, "").replace(/\)\s*;?\s*$/, "");
         if (jsonText !== raw || /^[\[{]/.test(raw)) {
-            try { return JSON.parse(jsonText); } catch (e) {}
+            try { return JSON.parse(jsonText); } catch (e) { swallow(e); }
         }
         if (raw[0] === "<") {
             try {
@@ -8054,7 +8292,7 @@ async function npFetchPayload(url, signal, timeout) {
                     };
                     if (obj.songtitle || obj.artist || obj.title) return obj;
                 }
-            } catch (e) {}
+            } catch (e) { swallow(e); }
         }
         return raw;
     } finally {
@@ -8156,7 +8394,7 @@ function zenoMount(streamUrl) {
 }
 function stopZenoMetadata() {
     const z = zenoMetadata;
-    if (z.eventSource) { try { z.eventSource.close(); } catch (e) {} }
+    if (z.eventSource) { try { z.eventSource.close(); } catch (e) { swallow(e); } }
     z.session = null; z.mount = ""; z.eventSource = null; z.errors = 0;
 }
 function startZenoMetadata(session, streamUrl) {
@@ -8205,7 +8443,7 @@ async function radioMvNowPlaying(streamUrl, signal) {
 }
 function stopRadioMvMetadata() {
     const r = radioMvMetadata;
-    if (r.eventSource) { try { r.eventSource.close(); } catch (e) {} }
+    if (r.eventSource) { try { r.eventSource.close(); } catch (e) { swallow(e); } }
     r.session = null; r.station = ""; r.eventSource = null; r.errors = 0;
 }
 function startRadioMvMetadata(session, streamUrl) {
@@ -8277,7 +8515,7 @@ function radioCoStationId(streamUrl) {
         const i = parts.findIndex((x) => x.toLowerCase() === "listen");
         if (i > 0) return parts[i - 1];
         if (/(^|\.)radio\.co$/i.test(u.hostname) && parts.length) return parts[0];
-    } catch (e) {}
+    } catch (e) { swallow(e); }
     return "";
 }
 async function radioCoNowPlaying(streamUrl, signal) {
@@ -8306,7 +8544,7 @@ function centovaProxyBase(streamUrl) {
         const u = new URL(streamUrl), parts = u.pathname.split("/").filter(Boolean);
         const i = parts.findIndex((x) => x.toLowerCase() === "proxy");
         if (i >= 0 && parts[i + 1]) return u.origin + "/" + parts.slice(0, i + 2).map(encodeURIComponent).join("/");
-    } catch (e) {}
+    } catch (e) { swallow(e); }
     return "";
 }
 async function centovaNowPlaying(streamUrl, signal) {
@@ -8396,14 +8634,14 @@ async function icyNowPlaying(streamUrl, signal) {
     } finally {
         clearTimeout(timer);
         ctl.abort();
-        if (reader) try { await reader.cancel(); } catch (e) {}
+        if (reader) try { await reader.cancel(); } catch (e) { swallow(e); }
         if (signal) signal.removeEventListener("abort", onAbort);
     }
 }
 function npSourceList(url, usesHls) {
     const out = [];
     let host = "";
-    try { host = new URL(url).hostname; } catch (e) {}
+    try { host = new URL(url).hostname; } catch (e) { swallow(e); }
     if (/(^|\.)myradio24\.(com|org)$/i.test(host)) out.push(["myradio24", myRadio24NowPlaying]);
     if (/(^|\.)somafm\.com$/i.test(host)) out.push(["soma", somaNowPlaying]);
     if (/(^|\.)radio\.co$/i.test(host) || radioCoStationId(url)) out.push(["radio-co", radioCoNowPlaying]);
@@ -8604,7 +8842,7 @@ function updateMediaSessionSong(song, station) {
     const i = song.indexOf(" - ");
     const meta = i > 0 ? { artist: song.slice(0, i), title: song.slice(i + 3) } : { title: song, artist: station };
     meta.album = station;
-    try { navigator.mediaSession.metadata = new MediaMetadata(meta); } catch (e) {}
+    try { navigator.mediaSession.metadata = new MediaMetadata(meta); } catch (e) { swallow(e); }
 }
 
 function loadSongs() {
@@ -8618,7 +8856,7 @@ function loadSongs() {
 function saveSongs() {
     try {
         store.setItem(SONGS_KEY, JSON.stringify(songsHeard));
-    } catch (e) {}
+    } catch (e) { swallow(e); }
 }
 function recordSong(title, station) {
     const last = songsHeard[0];
@@ -8685,7 +8923,7 @@ function playlistRowClick(e) {
     if (!row) return;
     const idx = parseInt(row.dataset.idx, 10);
     if (!(idx >= 0 && idx < currentPlaylist.length) || idx === currentPlaylistIndex) return;
-    if (!recLeaveOk()) return;
+    if (!recLeaveOk(() => playlistRowClick(e))) return;
     if (isShuffle) recordShuffleJump(idx);
     playPlaylistTrack(idx);
 }
@@ -8753,7 +8991,7 @@ function closeSongsModal() {
     restoreModalFocus("songsModal");
 }
 function saveSongsList() {
-    if (!songsHeard.length) return alert("No songs yet. Titles show up here while a station sends them.");
+    if (!songsHeard.length) return notice("No songs yet. Titles show up here while a station sends them.", 3500);
     const txt = songsHeard.map((s) => s.t + "  [" + s.s + ", " + new Date(s.a).toLocaleString() + "]").join("\r\n");
     recSave(new Blob([txt], { type: "text/plain" }), "Songs heard " + new Date().toISOString().slice(0, 10) + ".txt");
 }
@@ -8924,7 +9162,7 @@ async function recSaveAll(b) {
     const items = REC.items.slice().reverse(), total = items.reduce((a, i) => a + i.blob.size, 0);
     if (!items.length || b.disabled) return false;
     if (items.length === 1) { recSave(items[0].blob, items[0].name); return true; }
-    if (total > 3.5 * 1024 ** 3) { alert("That's too much for one zip. Open the list and save the files one by one."); return false; }
+    if (total > 3.5 * 1024 ** 3) { notice("That's too much for one zip. Open the list and save the files one by one.", 7000); return false; }
     const t = b.innerHTML;
     b.textContent = "Zipping…";
     b.disabled = true;
@@ -9036,8 +9274,8 @@ function recPersistTick() {
 function recOwnerLock() {
     if (RECDB.owner || !navigator.locks || !navigator.locks.request) return;
     RECDB.owner = true;
-    try { navigator.locks.request(RECDB.lockName, () => new Promise(() => {})).catch(() => {}); } catch (e) {}
-    try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {}); } catch (e) {}
+    try { navigator.locks.request(RECDB.lockName, () => new Promise(() => {})).catch(() => {}); } catch (e) { swallow(e); }
+    try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {}); } catch (e) { swallow(e); }
 }
 async function recTabAlive(sg) {
     if (sg.tab === RECDB.tab) return true;
@@ -9046,7 +9284,7 @@ async function recTabAlive(sg) {
             const q = await navigator.locks.query();
             return (q.held || []).some((l) => l.name === sg.lock);
         }
-    } catch (e) {}
+    } catch (e) { swallow(e); }
     return Date.now() - (sg.beat || 0) < 30000; // no way to ask: a recording that wrote in the last 30 s is alive
 }
 // Opens the store, brings back finished files and rebuilds recordings an earlier tab never got to finish.
@@ -9057,7 +9295,7 @@ async function recRestore() {
         try { await recRestoreNow(); } finally { RECDB.restoring = false; }
     };
     if (navigator.locks && navigator.locks.request) {
-        try { await navigator.locks.request("m3u-rec-restore", { ifAvailable: true }, async (lock) => { if (lock) await run(); }); return; } catch (e) {}
+        try { await navigator.locks.request("m3u-rec-restore", { ifAvailable: true }, async (lock) => { if (lock) await run(); }); return; } catch (e) { swallow(e); }
     }
     await run();
 }
@@ -9107,7 +9345,7 @@ async function recDirWrite(dir, name, blob) {
         try { await dir.getFileHandle(out); out = base + " (" + n + ")" + tail; } catch (e) { break; }
     }
     const wr = await (await dir.getFileHandle(out, { create: true })).createWritable();
-    try { await wr.write(blob); await wr.close(); } catch (e) { try { await wr.abort(); } catch (x) {} throw e; }
+    try { await wr.write(blob); await wr.close(); } catch (e) { try { await wr.abort(); } catch (x) { swallow(x); } throw e; }
 }
 // Finishes a song and remembers the job, so "stopped" is only said once every file is in the list (and in the folder, when one was chosen).
 function recEnd(r, s) {
@@ -9139,7 +9377,7 @@ async function recFinish(r, s) {
     if (r.dir) {
         let wrote = false;
         for (let tryN = 0; tryN < 2 && !wrote; tryN++) {
-            try { await recDirWrite(r.dir, name, blob); wrote = true; } catch (e) {}
+            try { await recDirWrite(r.dir, name, blob); wrote = true; } catch (e) { swallow(e); }
         }
         if (!wrote) r.dirFails = (r.dirFails || 0) + 1;
     }
@@ -9303,8 +9541,8 @@ async function recProbeIcyTitle(response, metaInt, session, maxMs) {
                 }
             }
         }
-    } catch (e) {}
-    finally { try { await reader.cancel(); } catch (e) {} }
+    } catch (e) { swallow(e); }
+    finally { try { await reader.cancel(); } catch (e) { swallow(e); } }
     return false;
 }
 function npHasProviderMetadata(streamUrl) {
@@ -9328,7 +9566,7 @@ async function recProbe(ses) {
             let icyCheck = Promise.resolve(false);
             if (mi > 0) icyCheck = recProbeIcyTitle(op.res, mi, ses, 4000);
             else {
-                try { if (op.res.body) { const p = op.res.body.cancel(); if (p && p.catch) p.catch(() => {}); } } catch (e) {}
+                try { if (op.res.body) { const p = op.res.body.cancel(); if (p && p.catch) p.catch(() => {}); } } catch (e) { swallow(e); }
             }
             const apiCheck = (ses.songLive || ses.song) ? Promise.resolve(true) : npDiscoverTitle(ses, 4000);
             const exact = (await Promise.all([icyCheck, apiCheck]))[0];
@@ -9340,7 +9578,7 @@ async function recProbe(ses) {
                 why: /html/.test(ct) ? ["not audio"] : []
             };
         }
-    } catch (e) {} finally { clearTimeout(timer); ctl.abort(); }
+    } catch (e) { swallow(e); } finally { clearTimeout(timer); ctl.abort(); }
     return out;
 }
 async function recRecordClick() {
@@ -9584,7 +9822,7 @@ function recStop(msg) {
         r.captureStopMessage = msg || "";
         const mr = r.captureMr;
         if (mr && mr.state === "inactive") return;
-        try { if (mr) { mr.stop(); return; } } catch (e) {}
+        try { if (mr) { mr.stop(); return; } } catch (e) { swallow(e); }
         // No recorder to wait for (or it would not stop): wrap up by hand.
         if (r.mode === "songs") r.song.partial = true;
         recEnd(r, r.song);
@@ -9601,7 +9839,7 @@ function recStop(msg) {
 // Ends a tab-audio recording once its last file is in the list: lets go of the share and the screen lock, then says what happened.
 function recCaptureWrapUp(r, lead) {
     recSettled(r).finally(() => {
-        r.captureStream.getTracks().forEach((track) => { try { track.stop(); } catch (e) {} });
+        r.captureStream.getTracks().forEach((track) => { try { track.stop(); } catch (e) { swallow(e); } });
         if (r.wake) r.wake.release().catch(() => {});
         recAfterStop(r, lead);
     });
@@ -9621,7 +9859,7 @@ async function recConnect(u, tag, signal, why) {
     if (tag && !mi) {
         // The page can't see an interval. If the station inserts titles anyway they'd end up inside the saved file, so the stream is asked for again without them.
         // The first connection is closed first (some stations allow one listener per address); if the plain stream can't be had there is no recording rather than a damaged one.
-        try { const c = res.body && res.body.cancel(); if (c && c.catch) c.catch(() => {}); } catch (e) {}
+        try { const c = res.body && res.body.cancel(); if (c && c.catch) c.catch(() => {}); } catch (e) { swallow(e); }
         const plain = await recOpen(u, false, signal);
         if (!plain.res) { (plain.why || []).forEach((w) => why.push(w)); return null; }
         res = plain.res;
@@ -9635,8 +9873,8 @@ function recHoldLock(r) {
         if (navigator.locks && navigator.locks.request) {
             navigator.locks.request("rec-" + Math.random().toString(36).slice(2), () => (REC.st === r ? new Promise((done) => { release = done; }) : undefined)).catch(() => {});
         }
-    } catch (e) {}
-    return () => { if (release) { try { release(); } catch (e) {} release = null; } };
+    } catch (e) { swallow(e); }
+    return () => { if (release) { try { release(); } catch (e) { swallow(e); } release = null; } };
 }
 const REC_STALL_MS = 20000;
 // Waits between attempts to reopen a dropped stream: 1, 2, 4, 8 s, then every 10 s for as long as it takes (Stop ends it).
@@ -9726,8 +9964,8 @@ async function recReadLoop({ r, ses, ctl, tag, res, mi, cc }) {
                 if (done) break;
                 if (value && value.length) { got += value.length; if (mi) eat(value); else recPush(r, value); }
             }
-        } catch (e) {}
-        try { cc.abort(); } catch (e) {}
+        } catch (e) { swallow(e); }
+        try { cc.abort(); } catch (e) { swallow(e); }
         if (REC.st !== r) return;
         if (got > 0) fails = 0;
         // The stream dropped or went silent (a network blip, a server that cut the listener): open it again and carry on in the
@@ -9743,7 +9981,7 @@ async function recReadLoop({ r, ses, ctl, tag, res, mi, cc }) {
                 if (c && !/html/.test(c.ct)) next = { res: c.res, mi: c.mi, nc };
                 else {
                     nc.abort();
-                    try { if (c && c.res.body) c.res.body.cancel(); } catch (e) {}
+                    try { if (c && c.res.body) c.res.body.cancel(); } catch (e) { swallow(e); }
                 }
             } catch (e) { nc.abort(); }
         }
@@ -9790,7 +10028,7 @@ function closeRecModal() {
     restoreModalFocus("recModal");
 }
 function recInit() {
-    try { Object.assign(recOpt, JSON.parse(store.getItem(RECOPT_KEY) || "{}")); } catch (e) {}
+    try { Object.assign(recOpt, JSON.parse(store.getItem(RECOPT_KEY) || "{}")); } catch (e) { swallow(e); }
     if (![0, 1800, 3600, 7200].includes(+recOpt.split)) recOpt.split = 3600;
     if (![0, 15, 30, 60].includes(+recOpt.min)) recOpt.min = 30;
     recOpt.split = +recOpt.split; recOpt.min = +recOpt.min;
@@ -9821,7 +10059,7 @@ function recInit() {
         recOpt.keep = recEl("recKeepToggle").checked; recOpt.tags = recEl("recTagsToggle").checked; recOpt.dir = recEl("recDirToggle").checked;
         recOpt.stamp = recEl("recStampToggle").checked; recOpt.stampFmt = recEl("recStampFmtSel").value; recOpt.stampPos = recEl("recStampPosSel").value;
         stampUi();
-        try { store.setItem(RECOPT_KEY, JSON.stringify(recOpt)); } catch (e) {}
+        try { store.setItem(RECOPT_KEY, JSON.stringify(recOpt)); } catch (e) { swallow(e); }
     }));
     recEl("playlistRec").addEventListener("click", recRecordClick);
     recEl("recPanel").addEventListener("click", (e) => {
@@ -9849,8 +10087,8 @@ function recInit() {
         const it = b && REC.items.find((x) => x.id === b.dataset.id);
         if (it) recSave(it.blob, it.name);
     });
-    recEl("recClearBtn").addEventListener("click", () => {
-        if (!REC.items.length || !confirm("Delete all recordings from this browser? Anything you have not saved to your device will be gone.")) return;
+    recEl("recClearBtn").addEventListener("click", async () => {
+        if (!REC.items.length || !(await askInline("Delete all recordings from this browser? Anything you have not saved to your device will be gone.", "Delete all", "Keep them"))) return;
         REC.items = [];
         recDbClearItems();
         renderRecList();
@@ -9864,23 +10102,23 @@ function recInit() {
         if (document.visibilityState === "hidden") flushNow();
         else { if (REC.st) recWake(REC.st); recRestore(); } // the screen lock is released when the tab is hidden: take it again
     });
-    setInterval(recRestore, 60000);
+    setInterval(() => { if (!document.hidden) recRestore(); }, 60000); // coming back to the tab restores too (visibilitychange above)
     window.addEventListener("pagehide", flushNow);
-    setInterval(recPersistTick, 4000);
+    setInterval(() => { if (REC.st || REC.items.length) recPersistTick(); }, 4000);
     recRestore();
 }
 function loadNoCorsHosts() {
     try {
         const a = JSON.parse(store.getItem(NOCORS_KEY) || "[]");
         if (Array.isArray(a)) a.forEach((h) => noCorsHosts.add(h));
-    } catch (e) {}
+    } catch (e) { swallow(e); }
 }
 function rememberNoCors(host) {
     if (!host || noCorsHosts.has(host)) return;
     noCorsHosts.add(host);
     try {
         store.setItem(NOCORS_KEY, JSON.stringify(Array.from(noCorsHosts).slice(-500)));
-    } catch (e) {}
+    } catch (e) { swallow(e); }
 }
 loadSongs();
 loadNoCorsHosts();
@@ -9894,17 +10132,62 @@ function clearStreamTimeout() {
 }
 
 // Visible note (the shared toast) for when playback stops because nothing was playable.
+function notice(text, ms = 6000) {
+    opStart(text);
+    opDone(text, ms);
+}
+// A confirmation that does not freeze the page. Resolves true for the main button, false for the other one, Esc or a click outside.
+let askResolve = null;
+function askInline(message, okLabel = "OK", noLabel = "Cancel") {
+    return new Promise((resolve) => {
+        if (askResolve) askResolve(false);
+        askResolve = resolve;
+        rememberModalFocus("askModal");
+        document.getElementById("askMsg").textContent = message;
+        document.getElementById("askOk").textContent = okLabel;
+        document.getElementById("askNo").textContent = noLabel;
+        document.getElementById("askModal").classList.add("active");
+        syncBackgroundInert();
+        focusWhenReady("askNo", "askModal");
+    });
+}
+function askClose(result) {
+    const m = document.getElementById("askModal");
+    if (!m.classList.contains("active")) return;
+    m.classList.remove("active");
+    syncBackgroundInert();
+    restoreModalFocus("askModal");
+    const done = askResolve;
+    askResolve = null;
+    if (done) done(result);
+}
+(function wireAsk() {
+    document.getElementById("askOk").addEventListener("click", () => askClose(true));
+    document.getElementById("askNo").addEventListener("click", () => askClose(false));
+    document.getElementById("askModal").addEventListener("click", (e) => { if (e.target.id === "askModal") askClose(false); });
+    document.getElementById("askModal").addEventListener("keydown", (e) => {
+        if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); askClose(false); }
+        else trapModalFocus(e, "askModalContent");
+    });
+})();
 function streamNotice(text) {
     opStart(text);
     opDone(text, 5000);
 }
 // While a recording runs the player never leaves its station on its own: a dead connection is retried, again and again,
 // on the same stream. (The recorder has its own connection, so a player hiccup never touches the recording.)
-function recLeaveOk() {
+// Asked in place (a native confirm() would freeze the page, and with it the live stream and the recording). Returns true when it is fine to go on
+// at once; otherwise it returns false and, if the person agrees to stop the recording, runs `again` (the action that was interrupted).
+let recLeaveGrant = false;
+function recLeaveOk(again) {
+    if (recLeaveGrant) { recLeaveGrant = false; return true; }
     if (!REC.st) return true;
-    if (!confirm("A recording is running. Changing the station stops it.\n\nEverything recorded so far is kept. Stop recording and continue?")) return false;
-    recStop("Station changed.");
-    return true;
+    askInline("A recording is running. Changing the station stops it.\n\nEverything recorded so far is kept. Stop recording and continue?", "Stop recording", "Keep recording").then((yes) => {
+        if (!yes || !REC.st) return;
+        recStop("Station changed.");
+        if (again) { recLeaveGrant = true; try { again(); } finally { recLeaveGrant = false; } }
+    });
+    return false;
 }
 function holdSessionForRecording(session) {
     if (playSession !== session) return;
@@ -9995,7 +10278,7 @@ function releaseMediaElement(el) {
         el.pause();
         el.removeAttribute("src");
         el.load();
-    } catch (e) {}
+    } catch (e) { swallow(e); }
 }
 function isLiveStream(session) {
     const el = session.el;
@@ -10291,7 +10574,7 @@ function holdBufferLock(m) {
         if (!navigator.locks || !navigator.locks.request) return;
         const name = "own-buffer-" + Math.random().toString(36).slice(2);
         navigator.locks.request(name, () => (m.alive ? new Promise((release) => { m.releaseLock = release; }) : undefined)).catch(() => {});
-    } catch (e) {}
+    } catch (e) { swallow(e); }
 }
 function destroyMse() {
     const m = currentOwnBuffer;
@@ -10299,17 +10582,17 @@ function destroyMse() {
     currentOwnBuffer = null;
     m.alive = false;
     if (m.pumpTimer) { clearInterval(m.pumpTimer); m.pumpTimer = null; }
-    try { m.ctl.abort(); } catch (e) {}
+    try { m.ctl.abort(); } catch (e) { swallow(e); }
     if (m.releaseLock) {
-        try { m.releaseLock(); } catch (e) {}
+        try { m.releaseLock(); } catch (e) { swallow(e); }
         m.releaseLock = null;
     }
     // The element must not go on playing what this buffer already handed it: that audio belongs to a stream that is gone.
     if (m.el && m.objUrl && m.el.src === m.objUrl) {
-        try { m.el.removeAttribute("src"); m.el.load(); } catch (e) {}
+        try { m.el.removeAttribute("src"); m.el.load(); } catch (e) { swallow(e); }
     }
     if (m.objUrl) {
-        try { URL.revokeObjectURL(m.objUrl); } catch (e) {}
+        try { URL.revokeObjectURL(m.objUrl); } catch (e) { swallow(e); }
     }
 }
 // What kind of audio a stream is, so the page can cache it: from the content type, then the file extension, then (below) the first bytes.
@@ -10357,11 +10640,11 @@ async function startOwnBuffer(session, el, url, onBlocked, fallback) {
                 const candidate = parseInt(res.headers.get("icy-metaint"), 10) || 0;
                 if (candidate > 0 && candidate <= 1048576) metaInt = candidate;
                 else {
-                    try { const cancelled = res.body.cancel(); if (cancelled && cancelled.catch) cancelled.catch(() => {}); } catch (e) {}
+                    try { const cancelled = res.body.cancel(); if (cancelled && cancelled.catch) cancelled.catch(() => {}); } catch (e) { swallow(e); }
                     res = null;
                 }
             } else {
-                try { if (res && res.body) res.body.cancel(); } catch (e) {}
+                try { if (res && res.body) res.body.cancel(); } catch (e) { swallow(e); }
                 res = null;
             }
         } catch (e) { res = null; }
@@ -10409,7 +10692,7 @@ async function startOwnBuffer(session, el, url, onBlocked, fallback) {
     } catch (e) {
         return bail("codec");
     }
-    try { ms.duration = Infinity; } catch (e) {}
+    try { ms.duration = Infinity; } catch (e) { swallow(e); }
     const q = [];
     let qBytes = 0;
     let sbBudget = OWN_SB_BYTES;
@@ -10456,7 +10739,7 @@ async function startOwnBuffer(session, el, url, onBlocked, fallback) {
         if (!m.alive || sb.updating || ms.readyState !== "open") return;
         try {
             if (sb.buffered.length && el.currentTime - sb.buffered.start(0) > OWN_BUFFER_BEHIND_S + 30 && trimBehind(OWN_BUFFER_BEHIND_S)) return;
-        } catch (e) {}
+        } catch (e) { swallow(e); }
         if (!q.length) return;
         // The browser is only given what fits the page's own budget; the rest waits in the queue.
         const room = sbBudget - sbBytesEst();
@@ -10567,7 +10850,7 @@ async function startOwnBuffer(session, el, url, onBlocked, fallback) {
     });
     let rd = rd0, reopens = 0;
     resetIcy(conn.metaInt);
-    try { if (first) feedIcy(first); } catch (e) {}
+    try { if (first) feedIcy(first); } catch (e) { swallow(e); }
     for (;;) {
         let got = first ? first.length : 0;
         first = null;
@@ -10586,8 +10869,8 @@ async function startOwnBuffer(session, el, url, onBlocked, fallback) {
         } catch (e) {
             // the connection dropped, or sent nothing for OWN_STALL_MS: handled below
         }
-        try { m.ctl.abort(); } catch (e) {}
-        try { const c = rd.cancel(); if (c && c.catch) c.catch(() => {}); } catch (e) {}
+        try { m.ctl.abort(); } catch (e) { swallow(e); }
+        try { const c = rd.cancel(); if (c && c.catch) c.catch(() => {}); } catch (e) { swallow(e); }
         if (!m.alive) return;
         if (!session.mseLive) break;
         if (got > 0) reopens = 0;
@@ -10601,7 +10884,7 @@ async function startOwnBuffer(session, el, url, onBlocked, fallback) {
                 const c = await connect();
                 if (!m.alive) return;
                 if (c.res.ok && c.res.body) next = c;
-                else { try { if (c.res.body) c.res.body.cancel(); } catch (e) {} }
+                else { try { if (c.res.body) c.res.body.cancel(); } catch (e) { swallow(e); } }
             } catch (e) {
                 if (!m.alive) return;
             }
@@ -10622,7 +10905,7 @@ async function startOwnBuffer(session, el, url, onBlocked, fallback) {
     }
     // the stream is over: once the cached audio has played, 'ended' fires and the usual reconnect takes over
     if (m.alive && ms.readyState === "open") {
-        try { ms.endOfStream(); } catch (e) {}
+        try { ms.endOfStream(); } catch (e) { swallow(e); }
     }
 }
 function attachStream(session, el, url) {
@@ -10669,7 +10952,7 @@ function attachStream(session, el, url) {
                 session.mediaRecovered = true;
                 try {
                     hls.recoverMediaError();
-                } catch (e) {}
+                } catch (e) { swallow(e); }
                 return;
             }
             if (session.everPlayed) dropAndReconnect(session);
@@ -10705,16 +10988,31 @@ function attachStream(session, el, url) {
         return startOwnBuffer(session, el, url, onBlocked, startNative);
     }
     if (!lower.includes(".m3u8")) return startNative();
-    return Hls.isSupported() ? startHls() : startNative();
+    if (typeof Hls !== "undefined") return Hls.isSupported() ? startHls() : startNative();
+    // The HLS engine (a separate block at the end of the page) is only compiled the first time an .m3u8 stream is played.
+    loadHlsEngine().then(() => { if (playSession === session) return Hls.isSupported() ? startHls() : startNative(); }, () => { if (playSession === session) startNative(); });
+}
+let hlsLoading = null;
+function loadHlsEngine() {
+    if (typeof Hls !== "undefined") return Promise.resolve();
+    if (!hlsLoading) hlsLoading = new Promise((resolve, reject) => {
+        try {
+            const tag = document.createElement("script");
+            tag.textContent = document.getElementById("hlsSrc").textContent;
+            document.head.appendChild(tag);
+            if (typeof Hls !== "undefined") resolve(); else reject(new Error("HLS engine did not load"));
+        } catch (err) { reject(err); }
+    });
+    return hlsLoading;
 }
 async function playPlaylistTrack(e) {
     if (e < 0 || e >= currentPlaylist.length) return;
-    if (!recLeaveOk()) return;
+    if (!recLeaveOk(() => playPlaylistTrack(e))) return;
     endPlaySession();
     // Moving to another stream throws the old one away completely: without this the element goes on playing the old stream's
     // cached audio (up to half an hour of it) until the new stream has connected.
     const oldMedia = document.getElementById("audioPlayer") || document.getElementById("videoPlayer");
-    if (oldMedia) { try { oldMedia.removeAttribute("src"); oldMedia.load(); } catch (err) {} }
+    if (oldMedia) { try { oldMedia.removeAttribute("src"); oldMedia.load(); } catch (err) { swallow(err); } }
     const item = currentPlaylist[e];
     const session = {
         item,
@@ -10750,7 +11048,7 @@ async function playPlaylistTrack(e) {
     currentPlaylistIndex = e;
     updatePlaylistUI();
     syncPlaylistListCurrent(false);
-    document.getElementById("modalTitle").textContent = item.title;
+    document.getElementById("modalTitle").textContent = isPlaylistFile && currentFileName ? `${currentFileName} \u2013 ${item.title}` : item.title;
     announce(`Loading: ${item.title}`);
     // Show a buffering hint right away instead of a silent wait while the
     // stream URL resolves.
@@ -10826,7 +11124,7 @@ function syncGallery(filePath, kind) {
     const count = document.getElementById("galCount");
     if (count) count.textContent = `${idx + 1} / ${gallery.items.length}`;
     if (btns[idx]) btns[idx].scrollIntoView({ block: "nearest", inline: "nearest" });
-    try { Marquee.refresh(); } catch (e) { }
+    try { Marquee.refresh(); } catch (e) { swallow(e); }
     return true;
 }
 function galleryStep(delta) {
@@ -10859,7 +11157,7 @@ const META_ORDER = {
 const META_LABELS = { dims: "Dimensions", color: "Color", camera: "Camera", taken: "Taken", exposure: "Exposure", size: "Size", modified: "Modified", type: "Type", source: "Source", duration: "Duration", bitrate: "Bitrate", artist: "Artist", title: "Title", album: "Album", year: "Year", track: "Track", genre: "Genre", format: "Format", rate: "Sample rate", channels: "Channels", station: "Station", listpos: "Playlist", nowplaying: "Now playing", status: "Status", codec: "Codec", variants: "Variants", mode: "Stream", cached: "Cached", listening: "Listening", health: "Health", servername: "Server name", desc: "Description", web: "Website", server: "Server", ctype: "Content type", conn: "Connection", host: "Host", url: "URL", group: "Group", country: "Country", language: "Language", tvgid: "Channel ID", logo: "Logo" };
 const META_MIME = { jpg: "image/jpeg", jpeg: "image/jpeg", jfif: "image/jpeg", png: "image/png", gif: "image/gif", webp: "image/webp", avif: "image/avif", bmp: "image/bmp", svg: "image/svg+xml", ico: "image/x-icon", tif: "image/tiff", tiff: "image/tiff", heic: "image/heic", mp4: "video/mp4", m4v: "video/mp4", webm: "video/webm", mkv: "video/x-matroska", mov: "video/quicktime", avi: "video/x-msvideo", ogv: "video/ogg", mp3: "audio/mpeg", wav: "audio/wav", flac: "audio/flac", ogg: "audio/ogg", oga: "audio/ogg", opus: "audio/ogg", m4a: "audio/mp4", aac: "audio/aac", wma: "audio/x-ms-wma" };
 const META = { open: false, seq: 0, kind: "", path: "", name: "", vals: {}, tips: {}, size: 0, dur: 0, audio: null, ctl: null, started: false, session: null, base: {}, labels: {}, extra: [] };
-try { META.open = store.getItem(META_KEY) === "1"; } catch (e) {}
+try { META.open = store.getItem(META_KEY) === "1"; } catch (e) { swallow(e); }
 const metaBE32 = (b, o) => ((b[o] << 24) | (b[o + 1] << 16) | (b[o + 2] << 8) | b[o + 3]) >>> 0;
 const metaLE32 = (b, o) => (b[o] | (b[o + 1] << 8) | (b[o + 2] << 16) | (b[o + 3] << 24)) >>> 0;
 const metaAscii = (b, o, n) => String.fromCharCode(...b.subarray(o, o + n));
@@ -10885,7 +11183,7 @@ function metaId3Text(body) {
     if (!body.length) return "";
     const enc = body[0], d = body.subarray(1);
     let s = "";
-    try { s = new TextDecoder(enc === 0 ? "windows-1252" : enc === 1 ? (d[0] === 0xfe && d[1] === 0xff ? "utf-16be" : "utf-16le") : enc === 2 ? "utf-16be" : "utf-8").decode(d); } catch (e) {}
+    try { s = new TextDecoder(enc === 0 ? "windows-1252" : enc === 1 ? (d[0] === 0xfe && d[1] === 0xff ? "utf-16be" : "utf-16le") : enc === 2 ? "utf-16be" : "utf-8").decode(d); } catch (e) { swallow(e); }
     return s.replace(/^\uFEFF/, "").split("\0").map((x) => x.trim()).filter(Boolean).join(", ");
 }
 function metaId3(b) {
@@ -11058,7 +11356,7 @@ function metaTiff(b, t, end) {
             else if (tag === 0x920a) out.focal = rat();
         }
     };
-    try { ifd(u32(t + 4), 0); } catch (e) {}
+    try { ifd(u32(t + 4), 0); } catch (e) { swallow(e); }
     return out;
 }
 function metaExif(b) {
@@ -11085,7 +11383,7 @@ async function metaHead(path, signal) {
         if (done) break;
         chunks.push(value); n += value.length;
     }
-    try { await rd.cancel(); } catch (e) {}
+    try { await rd.cancel(); } catch (e) { swallow(e); }
     const bytes = new Uint8Array(Math.min(n, META_HEAD));
     for (let o = 0, i = 0; o < bytes.length; i++) { const c = chunks[i].subarray(0, bytes.length - o); bytes.set(c, o); o += c.length; }
     const cr = /\/(\d+)\s*$/.exec(res.headers.get("content-range") || "");
@@ -11141,8 +11439,8 @@ function metaPaint() {
 // Button and bar follow the one saved choice (open or closed), for every picture, video and song until it is changed.
 function metaSync() {
     const btn = document.getElementById("infoBtn"), bar = document.getElementById("metaBar"), on = !!META.kind && META.open;
-    btn.hidden = false;
-    btn.disabled = !META.kind;
+    btn.hidden = !META.kind;
+    btn.disabled = false;
     btn.setAttribute("aria-pressed", on ? "true" : "false");
     const what = META.kind === "stream" ? "station" : "file";
     btn.title = (on ? "Hide " : "Show ") + what + " details";
@@ -11233,7 +11531,7 @@ async function metaStart() {
                 if (kinds[b[25]]) v.color = b[24] + "-bit " + kinds[b[25]];
             }
         }
-    } catch (e) { }
+    } catch (e) { swallow(e); }
     if (my === META.seq) metaPaint();
 }
 const META_KNOWN_ATTR = { "tvg-id": "tvgid", "tvg-logo": "logo", "tvg-country": "country", country: "country", "tvg-language": "language", language: "language", "group-title": "group" };
@@ -11244,7 +11542,7 @@ function metaPickHeaders(h) {
     let any = false;
     for (const n of ["icy-name", "icy-genre", "icy-url", "icy-description", "icy-br", "icy-sr", "icy-metaint", "server", "content-type", "ice-audio-info", "icy-audio-info"]) {
         let x = null;
-        try { x = h.get(n); } catch (e) {}
+        try { x = h.get(n); } catch (e) { swallow(e); }
         if (x) { out[n] = x; any = true; }
     }
     return any ? out : null;
@@ -11347,7 +11645,7 @@ function metaStreamUpdate() {
     if (h["content-type"]) v.ctype = h["content-type"].split(";")[0].trim();
     const cur = (s.cands && s.cands[s.candIdx]) || item.url;
     let u = null;
-    try { u = new URL(cur); } catch (e) {}
+    try { u = new URL(cur); } catch (e) { swallow(e); }
     if (u) {
         v.host = u.host;
         const parts = [u.protocol.slice(0, -1).toUpperCase() + (s.cands && s.cands.length > 1 && s.candIdx === 0 ? " (upgraded from HTTP)" : "")];
@@ -11362,14 +11660,14 @@ function metaStreamUpdate() {
 function metaInit() {
     document.getElementById("infoBtn").addEventListener("click", () => {
         META.open = !META.open;
-        try { store.setItem(META_KEY, META.open ? "1" : "0"); } catch (e) {}
+        try { store.setItem(META_KEY, META.open ? "1" : "0"); } catch (e) { swallow(e); }
         metaSync();
     });
 }
 
 async function openFile(filePath, fileType, fileName) {
     if (TWIN.routeOpen(filePath, fileType, fileName)) return;
-    if (!recLeaveOk()) return;
+    if (!recLeaveOk(() => openFile(filePath, fileType, fileName))) return;
     endPlaySession();
     cancelHealthTest();
     // Stepping through the gallery re-opens the preview while it is already open: keep the focus where it is.
@@ -11386,6 +11684,7 @@ async function openFile(filePath, fileType, fileName) {
 
     currentFilePath = filePath;
     currentFileName = fileName;
+    updateDocTitle();
     isPlaylistFile = isPlaylistExtension(fileName);
 
     // The request URL: percent-encodes #, ? and % so such filenames resolve instead of being cut at a "fragment".
@@ -11484,13 +11783,14 @@ async function openFile(filePath, fileType, fileName) {
                 break;
             case "document":
                 if (fileName.toLowerCase().endsWith(".pdf")) {
-                    bodyEl.innerHTML = `<iframe class="preview-pdf" src="${o}"></iframe>`;
+                    bodyEl.innerHTML = `<iframe class="preview-pdf" title="PDF preview: ${escapeHtml(fileName)}" src="${o}"></iframe>`;
                 } else {
                     showUnavailable(bodyEl, fileName, fileUrl);
                 }
                 break;
             case "playlist":
                 // A playlist is also plain text: show the text first (like the hosted repo does) and let the Play button start it.
+                // falls through
             case "code":
             case "markup":
             case "style":
@@ -11506,9 +11806,9 @@ async function openFile(filePath, fileType, fileName) {
                 break;
             case "font": {
                 const fontFamily = "PreviewFont" + Date.now();
-                const fontFace = new FontFace(fontFamily, `url("${fileUrl}")`);
+                const fontFace = new FontFace(fontFamily, `url(${JSON.stringify(fileUrl)})`);
                 await fontFace.load();
-                document.fonts.add(fontFace);
+                swapPreviewFont(fontFace);
                 bodyEl.innerHTML = `
               <div style="padding: 1.5rem; text-align: center; font-family: '${fontFamily}', sans-serif;">
                 <p style="font-size: 2rem; margin-bottom: 0.75rem;">The quick brown fox jumps over the lazy dog</p>
@@ -11600,7 +11900,7 @@ function focusWhenReady(buttonId, dialogId) {
     requestAnimationFrame(attempt);
 }
 function closeModal() {
-    if (!recLeaveOk()) return;
+    if (!recLeaveOk(closeModal)) return;
     const modalEl = document.getElementById("modal");
     modalEl.classList.remove("active");
     syncBackgroundInert();
@@ -11622,6 +11922,7 @@ function closeModal() {
     shuffleHistory = [];
     currentFilePath = "";
     currentFileName = "";
+    updateDocTitle();
     isPlaylistFile = false;
     document.getElementById("playlistBar").classList.remove("active");
     document.getElementById("playPlaylistBtn").classList.add("hidden");
@@ -11770,6 +12071,13 @@ function hostedUrl(path) {
 // Escapes a string for HTML text and quoted attribute values (&, <, >, " and '). A plain string replace: building a DOM element per call
 // added up (one per line in a 10,000-line preview).
 const HTML_ESCAPES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+// Font previews add one FontFace each; the one before is dropped so a long browsing session does not pile them up.
+let previewFontFace = null;
+function swapPreviewFont(face) {
+    if (previewFontFace) { try { document.fonts.delete(previewFontFace); } catch (err) { swallow(err); } }
+    previewFontFace = face;
+    document.fonts.add(face);
+}
 function escapeHtml(e) {
     return (e == null ? "" : String(e)).replace(/[&<>"']/g, (c) => HTML_ESCAPES[c]);
 }
@@ -11847,7 +12155,7 @@ function rootLabel() { return LOCAL.active ? LOCAL.name || "Local folder" : "Hom
 // "a/b" + "../x/y.png?v=1#h" -> "a/x/y.png". Null when the path climbs out of the root.
 function joinResolve(baseDir, rel) {
     rel = String(rel).split("#")[0].split("?")[0];
-    try { rel = decodeURIComponent(rel); } catch (err) { }
+    try { rel = decodeURIComponent(rel); } catch (err) { swallow(err); }
     const out = rel.startsWith("/") || !baseDir ? [] : baseDir.split("/");
     for (const seg of rel.split("/")) {
         if (!seg || seg === ".") continue;
@@ -11915,7 +12223,7 @@ async function parsePlaylistForCurrent(url, path) {
         let p = null;
         try { p = joinResolve("", decodeURIComponent(it.url.slice(10))); } catch (err) { p = null; }
         if (p && LOCAL.files.has(p)) {
-            try { out.push({ ...it, url: await urlForPath(p) }); } catch (err) { }
+            try { out.push({ ...it, url: await urlForPath(p) }); } catch (err) { swallow(err); }
         }
     }
     return out;
@@ -11926,7 +12234,7 @@ const modalCleanups = [];
 let modalBackHook = null;
 function runModalCleanups() {
     modalBackHook = null;
-    while (modalCleanups.length) { try { modalCleanups.pop()(); } catch (err) { } }
+    while (modalCleanups.length) { try { modalCleanups.pop()(); } catch (err) { swallow(err); } }
 }
 function trackBlobUrl(blob) {
     const u = URL.createObjectURL(blob);
@@ -11940,14 +12248,14 @@ function loadTreeExpanded() {
     try {
         const saved = JSON.parse(store.getItem(LS_TREE_EXPANDED) || "[]");
         if (Array.isArray(saved)) for (const p of saved) if (typeof p === "string") expandedFolders.add(p);
-    } catch (err) { }
+    } catch (err) { swallow(err); }
 }
 function persistTreeExpanded() {
     if (LOCAL.active) return;
     clearTimeout(treeSaveTimer);
     treeSaveTimer = setTimeout(() => {
         const list = Array.from(expandedFolders).filter(Boolean).slice(0, 500);
-        try { store.setItem(LS_TREE_EXPANDED, JSON.stringify(list)); } catch (err) { }
+        try { store.setItem(LS_TREE_EXPANDED, JSON.stringify(list)); } catch (err) { swallow(err); }
     }, 200);
 }
 function collapseAllFolders() {
@@ -12285,7 +12593,7 @@ function mdFixLink(href, el, env) {
     href = href.trim();
     if (href.startsWith("#")) {
         let a = href.slice(1);
-        try { a = decodeURIComponent(a); } catch (err) { }
+        try { a = decodeURIComponent(a); } catch (err) { swallow(err); }
         el.setAttribute("data-md-anchor", a.toLowerCase());
         el.setAttribute("role", "link");
         el.tabIndex = 0;
@@ -12473,7 +12781,7 @@ async function arInflateRaw(bytes, max, expected) {
 
 const arDecUtf8 = new TextDecoder("utf-8", { fatal: true }), arDecLatin = new TextDecoder("windows-1252");
 function arName(bytes, utf8Flag) {
-    if (utf8Flag) { try { return arDecUtf8.decode(bytes); } catch (err) { } }
+    if (utf8Flag) { try { return arDecUtf8.decode(bytes); } catch (err) { swallow(err); } }
     try { return arDecUtf8.decode(bytes); } catch (err) { return arDecLatin.decode(bytes); }
 }
 function dosDate(d, t) { return new Date(((d >> 9) & 127) + 1980, ((d >> 5) & 15) - 1, d & 31, (t >> 11) & 31, (t >> 5) & 63, (t & 31) * 2); }
@@ -12834,10 +13142,10 @@ async function zipFilesFlow(files, folderName, topDir, noun) {
     const total = files.reduce((a, f) => a + (f.size || 0), 0);
     const lim = LOCAL.active ? { warn: 1024 * MB, max: 3.5 * 1024 * MB } : { warn: 100 * MB, max: 1024 * MB };
     if (files.length > ZIP_MAX_FILES || files.some((f) => f.size >= 0xffffffff) || total > lim.max) {
-        alert(`This ${noun} is too big to pack in the browser (${files.length.toLocaleString()} files, ${formatFileSize(total)}). The limit is ${formatFileSize(lim.max)} and ${ZIP_MAX_FILES.toLocaleString()} files. Open a smaller sub-folder instead.`);
+        notice(`This ${noun} is too big to pack in the browser (${files.length.toLocaleString()} files, ${formatFileSize(total)}). The limit is ${formatFileSize(lim.max)} and ${ZIP_MAX_FILES.toLocaleString()} files. Open a smaller sub-folder instead.`, 9000);
         return;
     }
-    if (total > lim.warn && !confirm(`This ${noun} has ${files.length.toLocaleString()} files (${formatFileSize(total)}). ${LOCAL.active ? "Packing it can take a while." : "It will be downloaded and held in memory first."} Continue?`)) return;
+    if (total > lim.warn && !(await askInline(`This ${noun} has ${files.length.toLocaleString()} files (${formatFileSize(total)}). ${LOCAL.active ? "Packing it can take a while." : "It will be downloaded and held in memory first."} Continue?`, "Continue", "Cancel"))) return;
     const ctl = new AbortController(), wCollect = LOCAL.active ? 0.05 : 0.8;
     zipBusy = true;
     opStart(`Collecting ${files.length.toLocaleString()} files\u2026`, () => ctl.abort());
@@ -12912,7 +13220,7 @@ async function buildFromDirHandle(dirHandle, onCount, signal) {
                     const f = await h.getFile(), path = prefix ? prefix + "/" + name : name;
                     files.set(path, { handle: h, file: f });
                     kids.push({ name, type: "file", size: f.size, mtime: f.lastModified, category: categoryForName(name) });
-                } catch (err) { }
+                } catch (err) { swallow(err); }
                 count++;
             }));
             onCount(count);
@@ -12948,6 +13256,13 @@ function revokeLocalUrls() {
     LOCAL.urls.clear();
     if (LOCAL.byUrl) LOCAL.byUrl.clear();
 }
+// The tab title follows what is on screen (open file, else current folder), so tabs, history and bookmarks tell pages apart.
+function updateDocTitle() {
+    const local = LOCAL.active, prev = PREVIEW.active && !local;
+    const base = local ? `File Viewer \u2013 ${LOCAL.name}` : prev ? `File Viewer \u2013 preview ${PREVIEW.label}` : "File Viewer";
+    const here = currentFileName || (currentPath.length ? currentPath[currentPath.length - 1] : "");
+    document.title = here ? `${here} \u2013 ${base}` : base;
+}
 function syncModeUi() {
     const local = LOCAL.active, prev = PREVIEW.active && !local;
     const text = document.getElementById("modeChipText"), close = document.getElementById("modeChipClose"), chip = document.getElementById("modeChip");
@@ -12959,7 +13274,7 @@ function syncModeUi() {
     chip.title = local ? "Browsing a folder on this device. Nothing is uploaded." : prev ? `Browsing the index at ${PREVIEW.url}` : "Browsing the files hosted with this page";
     close.hidden = !(local || prev);
     close.textContent = local ? "Close" : "Stop";
-    document.title = local ? `File Viewer \u2013 ${LOCAL.name}` : prev ? `File Viewer \u2013 preview ${PREVIEW.label}` : "File Viewer";
+    updateDocTitle();
     const sc = document.getElementById("localCloseBtn");
     if (sc) sc.hidden = !local;
     const so = document.getElementById("localOpenBtn");
@@ -13068,6 +13383,7 @@ function handleDirInput(e) {
     enterLocalMode(res.name, res.root, res.files);
 }
 function openLocalModal(message) {
+    document.getElementById("localUploadNote").hidden = !!window.showDirectoryPicker;
     document.getElementById("localMsg").textContent = message || "Choose a folder on this device to browse it here, offline.";
     rememberModalFocus("localModal");
     document.getElementById("localModal").classList.add("active");
@@ -13151,8 +13467,29 @@ function checkPreviewFull(data) {
     return data;
 }
 // The lean index (top level only) is requested first so the repo shows at once; the full one downloads alongside and replaces it (see previewFinishFull).
+// "user/repo" is enough: the repo's file_index.json is read from its GitHub Pages site (https://user.github.io/repo/file_index.json), else from its main or master branch.
+// "user/repo@branch" reads that branch of the repo directly. Anything longer (a raw link, a github.com page) is used exactly as written.
+function previewShortSpec(input) {
+    const m = /^\s*([A-Za-z0-9][A-Za-z0-9-]*)\/([\w.-]+?)(?:@(\S+))?\s*$/.exec(String(input || ""));
+    if (!m || /\.json$/i.test(m[2])) return null;
+    const user = m[1], name = m[2], rawOf = (b) => `https://raw.githubusercontent.com/${user}/${name}/${encodePathForUrl(b)}/file_index.json`;
+    if (m[3]) return { urls: [rawOf(m[3])] };
+    const site = name.toLowerCase() === (user + ".github.io").toLowerCase() ? `https://${user}.github.io/` : `https://${user}.github.io/${name}/`;
+    return { urls: [site + "file_index.json", rawOf("main"), rawOf("master")] };
+}
 async function loadPreviewIndex(jsonIn, filesIn) {
-    let url = previewJsonUrl(jsonIn);
+    const sh = previewShortSpec(jsonIn);
+    if (sh) {
+        let firstErr = null;
+        for (const u of sh.urls) {
+            try { return await loadPreviewIndexAt(u, filesIn); }
+            catch (err) { if (!firstErr) firstErr = err; }
+        }
+        throw firstErr || new Error("Could not load that repo's file_index.json.");
+    }
+    return loadPreviewIndexAt(previewJsonUrl(jsonIn), filesIn);
+}
+async function loadPreviewIndexAt(url, filesIn) {
     if (!url) throw new Error("Paste the link of a file_index.json on GitHub: its raw link, or the file's page on github.com.");
     url = url.replace(/_lean(\.json)(?=$|[?#])/i, "$1");
     const leanUrl = /file_index\.json(?=$|[?#])/i.test(url) ? url.replace(/file_index\.json(?=$|[?#])/i, "file_index_lean.json") : "";
@@ -13256,6 +13593,19 @@ function openPreviewModal() {
     const $ = (id) => document.getElementById(id);
     if (!$("previewJsonInput").value) $("previewJsonInput").value = store.getItem("previewJsonUrl") || "";
     if (!$("previewFilesInput").value) $("previewFilesInput").value = store.getItem("previewFilesFrom") || "";
+    // Developer shortcuts (an intentional easter egg for quick testing; visitors never open this dialog). Do NOT remove them in a cleanup or audit.
+    // Each fills the box with the short user/repo form, which loadPreviewIndex expands.
+    const presets = $("pvPresets");
+    presets.textContent = "";
+    for (const [label, spec] of [["placeholder", "junguler/placeholder"], ["m3u-repo", "junguler/m3u-radio-music-playlists"]]) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "theme-reset-btn local-pick";
+        b.dataset.pvPreset = spec;
+        b.textContent = label;
+        presets.append(b);
+    }
+    presets.hidden = false;
     $("previewLoadBtn").textContent = PREVIEW.active ? "Load another" : "Load";
     $("previewStopBtn").hidden = !PREVIEW.active;
     previewSetStatus(PREVIEW.active ? `Previewing ${PREVIEW.url}\nFiles are read from ${PREVIEW.base}` : "");
@@ -13565,7 +13915,7 @@ function setupExtraSource() {
     $("sourceRecent").addEventListener("click", (e) => {
         const it = e.target.closest(".src-item");
         if (!it) return;
-        if (it.dataset.forget) { try { store.removeItem(EXTRA_RECENT_KEY); } catch (err) {} renderSourceRecent(); return; }
+        if (it.dataset.forget) { try { store.removeItem(EXTRA_RECENT_KEY); } catch (err) { swallow(err); } renderSourceRecent(); return; }
         $("sourceInput").value = it.dataset.u;
         $("sourceRecent").hidden = true;
         $("sourceDrop").setAttribute("aria-expanded", "false");
@@ -13587,11 +13937,13 @@ function setupNewFeatureListeners() {
     $("previewModal").addEventListener("click", (e) => { if (e.target === e.currentTarget) closePreviewModal(); });
     $("previewModal").addEventListener("keydown", (e) => trapModalFocus(e, "previewModalContent"));
     $("previewLoadBtn").addEventListener("click", submitPreview);
-    document.querySelectorAll("[data-pv-preset]").forEach((b) => b.addEventListener("click", () => {
+    $("pvPresets").addEventListener("click", (e) => {
+        const b = e.target.closest("[data-pv-preset]");
+        if (!b) return;
         $("previewJsonInput").value = b.dataset.pvPreset;
         $("previewFilesInput").value = "";
         submitPreview();
-    }));
+    });
     $("previewStopBtn").addEventListener("click", () => { exitPreview(); closePreviewModal(); });
     ["previewJsonInput", "previewFilesInput"].forEach((id) => $(id).addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); submitPreview(); } }));
     $("localDirInput").addEventListener("change", handleDirInput);
@@ -13837,6 +14189,7 @@ const Marquee = (() => {
 // (Tab switches; clicking a panel makes it active). Files open in the normal preview window, which holds a single player, so two audio or video
 // players can never play together. Panel state is remembered; a local folder is not (nothing about it survives a reload).
 const TWIN_KEY = "twinState";
+// Keep 640px equal to the narrow-screen breakpoint in the style sheet.
 const TWIN_STACK_MQ = window.matchMedia ? window.matchMedia("(max-width: 640px)") : null;
 // A blob: URL for a file of the local folder, whichever source the page is currently showing.
 async function twinLocalUrl(path) {
@@ -13922,7 +14275,7 @@ const TWIN = (() => {
 
     const paneEl = (i) => $("twin").querySelector(`.tw-pane[data-i="${i}"]`);
     function save() {
-        try { store.setItem(TWIN_KEY, JSON.stringify({ on: T.on, r: T.r, flip: T.flip, vert: T.vert, active: T.active, panes: T.panes.map((p) => ({ source: p.source, path: p.path, view: p.view, sort: p.sort, hosted: p.memo.hosted })) })); } catch (err) { }
+        try { store.setItem(TWIN_KEY, JSON.stringify({ on: T.on, r: T.r, flip: T.flip, vert: T.vert, active: T.active, panes: T.panes.map((p) => ({ source: p.source, path: p.path, view: p.view, sort: p.sort, hosted: p.memo.hosted })) })); } catch (err) { swallow(err); }
     }
     function load() {
         let s = null;
@@ -14113,7 +14466,7 @@ const TWIN = (() => {
                 s.suppress = true;
                 setTimeout(() => { s.suppress = false; }, 900); // the click that ends the press normally comes first; if none comes, do not wait for one
                 twsSet(p, en);
-                if (navigator.vibrate) { try { navigator.vibrate(15); } catch (err) { } }
+                if (navigator.vibrate) { try { navigator.vibrate(15); } catch (err) { swallow(err); } }
             }, 450);
         });
         tw.addEventListener("pointermove", (e) => { if (timer && Math.hypot(e.clientX - sx, e.clientY - sy) > 8) cancel(); });
@@ -14360,6 +14713,23 @@ const TWIN = (() => {
         renderPane(p.id);
         if (!openPathIn(p, card.dataset.fpath || "")) announce("That file could not be found any more");
     }
+    // Only the star buttons of the other panel are flipped; its cards (and their thumbnails) are left alone.
+    function syncStarIn(q, folder, val, on) {
+        const pn = paneEl(q.id);
+        if (!pn) return;
+        const want = folder ? JSON.stringify(val) : val;
+        pn.querySelectorAll(".card-star-btn").forEach((b) => {
+            if ((b.dataset.starType === "folder") !== folder) return;
+            const have = folder ? JSON.stringify(safeJsonParse(b.dataset.starPath, null)) : b.dataset.starPath;
+            if (have !== want) return;
+            const label = folder ? (on ? "Unpin this folder" : "Pin this folder") : (on ? "Remove from favorites (F)" : "Add to favorites (F)");
+            b.classList.toggle("starred", on);
+            b.setAttribute("aria-pressed", String(on));
+            b.title = label;
+            b.setAttribute("aria-label", label);
+            b.innerHTML = on ? icons.starFilled : icons.starOutline;
+        });
+    }
     // The star on a card or favorites row: pins a folder or favorites a file of this panel's source, and refreshes everything that shows it.
     function starClick(p, btn) {
         if (T.media !== null && T.panes[T.media].source !== p.source) { announce("Close the player first, then use favorites"); return; }
@@ -14381,7 +14751,7 @@ const TWIN = (() => {
         T.panes.forEach((q) => {
             if (q.source !== p.source) return;
             if (q.tab === "fav") renderFavs(q, paneEl(q.id).querySelector(".tw-scroll").scrollTop);
-            else if (q.id !== p.id) renderList(q, true);
+            else if (q.id !== p.id) syncStarIn(q, folder, val, on);
             if (q.mode === "view") syncFav(q);
         });
         if (inFavs) { const sc = paneEl(p.id).querySelector(".tw-scroll"); if (sc) sc.focus(); }
@@ -14604,11 +14974,13 @@ const TWIN = (() => {
     }
 
     const MEDIA_KINDS = new Set(["audio", "video", "playlist"]);
+    // Only these start the shared player. A playlist file opens as a plain text preview (with a Play button) like any other file.
+    const PLAY_KINDS = new Set(["audio", "video"]);
     const kindOf = (item) => previewKindOverride(item.name) || (isPlaylistExtension(item.name) ? "playlist" : item.category);
     const fullOf = (p, name) => (p.path.length ? p.path.join("/") + "/" : "") + name;
     const findCard = (p, name) => { const pn = paneEl(p.id); return pn ? Array.from(pn.querySelectorAll(".file-card")).find((el) => el.dataset.n === name) : null; };
     function setMode(p, m) { p.mode = m; const pn = paneEl(p.id); if (pn) pn.dataset.mode = m; }
-    function runCleanups(p) { while (p.cleanups.length) { try { p.cleanups.pop()(); } catch (err) { } } }
+    function runCleanups(p) { while (p.cleanups.length) { try { p.cleanups.pop()(); } catch (err) { swallow(err); } } }
     function unmountModal() {
         const m = $("modal");
         if (T.ro) { T.ro.disconnect(); T.ro = null; }
@@ -14635,9 +15007,9 @@ const TWIN = (() => {
         if (el) { el.focus({ preventScroll: true }); el.scrollIntoView({ block: "nearest" }); } else focusCursor(p);
     }
     function openFileItem(p, item) {
-        if (MEDIA_KINDS.has(kindOf(item))) openMedia(p, item); else openInline(p, item);
+        if (PLAY_KINDS.has(kindOf(item))) openMedia(p, item); else openInline(p, item);
     }
-    function openMedia(p, item) {
+    function openMedia(p, item, autoPlay) {
         const modalEl = $("modal");
         if (T.media !== null && T.media !== p.id) {
             closePreview(T.panes[T.media], true);
@@ -14660,7 +15032,11 @@ const TWIN = (() => {
             T.opening = false;
             if (!modalEl.classList.contains("active") && T.media === p.id) { T.media = null; setMode(p, "list"); }
         };
-        Promise.resolve(openFile(fullOf(p, item.name), item.category, item.name)).then(done, done);
+        const after = () => {
+            done();
+            if (autoPlay && modalEl.classList.contains("active") && T.media === p.id && isPlaylistFile) startPlaylistMode();
+        };
+        Promise.resolve(openFile(fullOf(p, item.name), item.category, item.name)).then(after, done);
     }
     // Previous / next file only exist for a local folder's files; hosted repo files never get them. Media (audio, video, playlists) is always skipped, since it opens in the player.
     const canStep = (p) => p.source === "local";
@@ -14688,6 +15064,11 @@ const TWIN = (() => {
         if (it) openInline(p, it);
         return true;
     }
+    // Play on a playlist preview: this panel takes the player (stopping the other panel's one, if it has any) and starts the list.
+    function playFromInline(p) {
+        const vi = p.viewItem, item = vi && p.map.get(vi.name);
+        if (item) openMedia(p, item, true);
+    }
     function stepInline(p, dir) {
         const it = findStep(p, dir);
         if (it) openInline(p, it);
@@ -14709,6 +15090,7 @@ const TWIN = (() => {
         p.gal = null;
         body.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
         updateStepButtons(p);
+        view.querySelector(".vb-play").hidden = kindOf(item) !== "playlist";
         p.metaRows = metaRowsFor(p, item, full);
         paintMeta(p);
         syncFav(p);
@@ -14780,10 +15162,10 @@ const TWIN = (() => {
                     break;
                 }
                 case "document":
-                    if (item.name.toLowerCase().endsWith(".pdf")) body.innerHTML = `<iframe class="preview-pdf" src="${escapeHtml(url)}"></iframe>`;
+                    if (item.name.toLowerCase().endsWith(".pdf")) body.innerHTML = `<iframe class="preview-pdf" title="PDF preview: ${escapeHtml(item.name)}" src="${escapeHtml(url)}"></iframe>`;
                     else showUnavailable(body, item.name, url);
                     break;
-                case "code": case "markup": case "style": case "data": case "text": {
+                case "code": case "markup": case "style": case "data": case "text": case "playlist": {
                     const { text, truncated } = await fetchTextPreview(url);
                     if (stale()) return;
                     renderTextPreview(body, text, item.name, truncated);
@@ -14792,10 +15174,10 @@ const TWIN = (() => {
                 }
                 case "font": {
                     const fam = "PreviewFont" + Date.now();
-                    const face = new FontFace(fam, `url("${url}")`);
+                    const face = new FontFace(fam, `url(${JSON.stringify(url)})`);
                     await face.load();
                     if (stale()) return;
-                    document.fonts.add(face);
+                    swapPreviewFont(face);
                     body.innerHTML = `<div style="padding: 1.5rem; text-align: center; font-family: '${fam}', sans-serif;"><p style="font-size: 2rem; margin-bottom: 0.75rem;">The quick brown fox jumps over the lazy dog</p><p style="font-size: 1.5rem; margin-bottom: 0.5rem;">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p><p style="font-size: 1.5rem; margin-bottom: 0.5rem;">abcdefghijklmnopqrstuvwxyz</p><p style="font-size: 1.5rem;">0123456789!@#$%^&amp;*()</p></div>`;
                     break;
                 }
@@ -14828,6 +15210,7 @@ const TWIN = (() => {
     function paintMeta(p) {
         const view = paneEl(p.id).querySelector(".tw-view"), bar = view.querySelector(".tw-meta"), btn = view.querySelector(".vb-info");
         const on = META.open && !!p.metaRows;
+        btn.hidden = !p.metaRows;
         btn.setAttribute("aria-pressed", String(!!META.open));
         btn.title = (META.open ? "Hide" : "Show") + " file details";
         bar.hidden = !on;
@@ -14841,7 +15224,7 @@ const TWIN = (() => {
     }
     function toggleMeta() {
         META.open = !META.open;
-        try { store.setItem(META_KEY, META.open ? "1" : "0"); } catch (err) { }
+        try { store.setItem(META_KEY, META.open ? "1" : "0"); } catch (err) { swallow(err); }
         metaSync();
         T.panes.forEach((q) => { if (q.mode === "view") paintMeta(q); });
     }
@@ -14929,7 +15312,7 @@ const TWIN = (() => {
         if (sbtn) { twsAct(p, sbtn.dataset.sel); return; }
         if (t.closest(".tw-selbar")) return;
         const va = t.closest("[data-vact]");
-        if (va) { const k = va.dataset.vact; if (k === "close") closeInline(p); else if (k === "prev") stepInline(p, -1); else if (k === "next") stepInline(p, 1); else if (k === "info") toggleMeta(); else if (k === "fav") toggleFav(p); else if (k === "copy") copyLink(p, va); return; }
+        if (va) { const k = va.dataset.vact; if (k === "close") closeInline(p); else if (k === "prev") stepInline(p, -1); else if (k === "next") stepInline(p, 1); else if (k === "info") toggleMeta(); else if (k === "play") playFromInline(p); else if (k === "fav") toggleFav(p); else if (k === "copy") copyLink(p, va); return; }
         const gi = t.closest(".tw-rail .gal-item[data-rn]");
         if (gi) { const it = p.map.get(gi.dataset.rn); if (it && !(p.viewItem && p.viewItem.name === it.name)) openInline(p, it); return; }
         if (t.closest(".tw-view, .tw-media")) return;
@@ -15095,7 +15478,7 @@ const TWIN = (() => {
                     if (Math.abs(v - 50) <= (18 / size) * 100) v = 50;
                 }
                 const snapped = isSnap(v);
-                if (snapped && !wasSnapped && navigator.vibrate) { try { navigator.vibrate(8); } catch (err) { } }
+                if (snapped && !wasSnapped && navigator.vibrate) { try { navigator.vibrate(8); } catch (err) { swallow(err); } }
                 wasSnapped = snapped;
                 T.r = v;
                 applyLayout();
@@ -15149,7 +15532,7 @@ const TWIN = (() => {
         routeOpen(path, type, name) {
             if (!T.on || T.opening || EXTRA.has(path)) return false;
             const kind = previewKindOverride(name) || (isPlaylistExtension(name) ? "playlist" : type);
-            if (MEDIA_KINDS.has(kind) && T.media !== null) return false;
+            if (PLAY_KINDS.has(kind) && T.media !== null) return false;
             const source = LOCAL.active ? "local" : "hosted";
             let p = T.panes[T.active];
             if (p.source !== source) p = T.panes.find((q) => q.source === source) || p;
@@ -15221,6 +15604,7 @@ const TWIN = (() => {
                 <div class="tw-status" aria-hidden="true"></div>
                 <div class="tw-view" tabindex="-1" aria-label="Preview in panel ${i + 1}">
                     <div class="modal-header tw-vhead"><div class="modal-title tw-vtitle"></div><div class="modal-actions">
+                        <button type="button" class="modal-btn play-playlist-btn vb-play" data-vact="play" title="Play as playlist" aria-label="Play as playlist" hidden>${$("playPlaylistBtn").innerHTML}</button>
                         <button type="button" class="modal-btn" data-vact="prev" title="Previous file (\u2190)" aria-label="Previous file">${ICON.prev}</button>
                         <button type="button" class="modal-btn" data-vact="next" title="Next file (\u2192)" aria-label="Next file">${ICON.next}</button>
                         <button type="button" class="modal-btn favorite-btn vb-fav" data-vact="fav" aria-pressed="false" title="Add to favorites" aria-label="Add file to favorites">${icons.starOutline}</button>
@@ -15296,11 +15680,11 @@ const TWIN = (() => {
     const mark = () => { const w = panel.getBoundingClientRect().width; grip.classList.toggle("at-default", !panel.style.getPropertyValue("--tree-w") || Math.abs(w - defW()) < 1); grip.setAttribute("aria-valuenow", String(Math.round(w))); };
     function set(w, persist) {
         const d = defW();
-        if (w === null || Math.abs(w - d) <= SNAP) { panel.style.removeProperty("--tree-w"); if (persist) { try { store.removeItem(KEY); } catch (err) { } } }
-        else { panel.style.setProperty("--tree-w", clamp(w) + "px"); if (persist) { try { store.setItem(KEY, String(clamp(w))); } catch (err) { } } }
+        if (w === null || Math.abs(w - d) <= SNAP) { panel.style.removeProperty("--tree-w"); if (persist) { try { store.removeItem(KEY); } catch (err) { swallow(err); } } }
+        else { panel.style.setProperty("--tree-w", clamp(w) + "px"); if (persist) { try { store.setItem(KEY, String(clamp(w))); } catch (err) { swallow(err); } } }
         mark();
     }
-    try { const v = parseInt(store.getItem(KEY) || "", 10); if (v >= MIN) panel.style.setProperty("--tree-w", clamp(v) + "px"); } catch (err) { }
+    try { const v = parseInt(store.getItem(KEY) || "", 10); if (v >= MIN) panel.style.setProperty("--tree-w", clamp(v) + "px"); } catch (err) { swallow(err); }
     grip.setAttribute("aria-valuemin", String(MIN));
     grip.addEventListener("pointerdown", (e) => {
         if (e.button > 0) return;
@@ -15311,7 +15695,7 @@ const TWIN = (() => {
         let wasSnapped = !panel.style.getPropertyValue("--tree-w");
         const move = (ev) => {
             const w = ev.clientX - left, snapped = Math.abs(w - d) <= SNAP;
-            if (snapped && !wasSnapped && navigator.vibrate) { try { navigator.vibrate(8); } catch (err) { } }
+            if (snapped && !wasSnapped && navigator.vibrate) { try { navigator.vibrate(8); } catch (err) { swallow(err); } }
             wasSnapped = snapped;
             set(w, false);
         };
@@ -15332,7 +15716,7 @@ const TWIN = (() => {
 
 init();
     </script>
-    <script>
+    <script type="text/plain" id="hlsSrc">
     /* Lean HLS engine (RFC 8216). Written for this page: no dependencies, no license to carry.
        Plays HLS through Media Source Extensions:
          playlists    master + media, live (sliding window) and VOD, EXT-X-KEY AES-128, EXT-X-MAP, byte ranges
