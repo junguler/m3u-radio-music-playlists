@@ -131,7 +131,7 @@ jobs:
           NODE
 
       # The checks above only look at the document shell. This one compiles every inline
-      # script of the minified page (nothing is run), so a minifier problem fails the
+      # script of the minified page, plus the embedded HLS engine (nothing is run), so a minifier problem fails the
       # build here instead of shipping a page whose JavaScript does not load.
       - name: Check minified viewer scripts
         run: |
@@ -145,7 +145,10 @@ jobs:
             const attrs = m[1], code = m[2];
             if (/\bsrc\s*=/i.test(attrs) || !code.trim()) continue;
             const type = (attrs.match(/\btype\s*=\s*["']?([^"'\s>]+)/i) || [])[1];
-            if (type && !/^(text|application)\/(javascript|ecmascript)$/i.test(type)) continue;
+            // The embedded HLS engine (<script type="text/plain" id="hlsSrc">) is compiled too:
+            // the page runs it later, so a typo there would otherwise only show up in the browser.
+            const isHls = /\bid\s*=\s*["']?hlsSrc\b/i.test(attrs);
+            if (type && !isHls && !/^(text|application)\/(javascript|ecmascript)$/i.test(type)) continue;
             try { new vm.Script(code, { filename: `inline-script-${++n}.js` }); }
             catch (error) { console.error(`Inline script ${n} does not compile:`, error.message); process.exit(1); }
           }

@@ -564,8 +564,19 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 .modal { background: var(--bg-secondary); border-radius: var(--radius-lg); max-width: 95vw; max-height: 95vh; max-height: 95dvh; width: 100%; display: flex; flex-direction: column; transform: scale(0.95); transition: transform 0.2s; overflow: hidden; border: var(--bw) solid var(--border-color); }
 .modal.video-modal { height: 95vh; height: 95dvh; }
 /* Video "clean view": the button exists only while a video is open and hides the side panel, player buttons and details bar, leaving just the picture. */
-#focusBtn { display: none; }
-.modal.video-modal #focusBtn { display: flex; }
+#focusBtn, #fitBtn, #fullscreenBtn { display: none; }
+.modal.video-modal #focusBtn, .modal.video-modal #fitBtn { display: flex; }
+.modal.video-modal #fullscreenBtn.fs-ok { display: flex; }
+/* Video "fit to view": the picture grows to fill the whole preview area instead of stopping at the 900px player width. */
+.modal.video-modal.fit-view .preview-media-container { max-width: none; }
+.modal.video-modal.fit-view .preview-video { align-self: stretch; width: 100%; }
+/* Full screen: the preview body goes full screen (so the controls come along and a track change doesn't leave it), picture fills the screen. */
+#modalBody:fullscreen { background: #000; }
+#modalBody:-webkit-full-screen { background: #000; }
+#modalBody:fullscreen .preview-media-container { max-width: none; height: 100%; padding: 0.5rem; box-sizing: border-box; }
+#modalBody:-webkit-full-screen .preview-media-container { max-width: none; height: 100%; padding: 0.5rem; box-sizing: border-box; }
+#modalBody:fullscreen .preview-video { align-self: stretch; width: 100%; }
+#modalBody:-webkit-full-screen .preview-video { align-self: stretch; width: 100%; }
 .modal.video-modal.focus-view .gallery-rail, .modal.video-modal.focus-view .player-bar, .modal.video-modal.focus-view .player-info-btn,
 .modal.video-modal.focus-view .playlist-bar, .modal.video-modal.focus-view .meta-bar { display: none !important; }
 /* Audio preview content tops out at 500px (.preview-audio-container), but the modal defaults to 95vw, leaving wide empty gutters; cap the modal to match. */
@@ -824,7 +835,7 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 .modal-btn.copied { color: var(--success); border-color: var(--success); }
 .modal-btn.favorite-btn.favorited { color: var(--accent-on-control, var(--accent-text, var(--accent))); border-color: var(--accent-on-control, var(--accent-text, var(--accent))); }
 .shortcuts-modal { max-width: 440px; }
-.shortcuts-body { padding: 0.75rem 1rem 1rem; }
+.shortcuts-body { padding: 0.75rem 1rem 1rem; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; touch-action: pan-y; }
 .shortcuts-list { display: flex; flex-direction: column; gap: 0.6rem; }
 .shortcut-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .shortcut-row dt { display: flex; align-items: center; gap: 0.25rem; flex-shrink: 0; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-secondary); }
@@ -2387,7 +2398,9 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
                 <span class="modal-title" id="modalTitle" role="heading" aria-level="2">File Preview</span>
                 <div class="modal-actions">
                     <button class="modal-btn play-playlist-btn hidden" id="playPlaylistBtn" title="Play as playlist" aria-label="Play as playlist"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66.0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"/></svg><span class="btn-label">Play</span></button>
-                    <button class="modal-btn" id="focusBtn" aria-pressed="false" title="Hide the side panel and player buttons" aria-label="Hide the side panel and player buttons"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
+                    <button class="modal-btn" id="focusBtn" aria-pressed="false" title="Hide the side panel and player buttons" aria-label="Hide the side panel and player buttons"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16"/><path d="M9 4v16"/></svg></button>
+                    <button class="modal-btn" id="fitBtn" aria-pressed="false" title="Fit video to view" aria-label="Fit video to view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M17 4h3c1.1 0 2 .9 2 2v2h-2V6h-3V4zM4 8V6h3V4H4c-1.1 0-2 .9-2 2v2h2zm16 8v2h-3v2h3c1.1 0 2-.9 2-2v-2h-2zM7 18H4v-2H2v2c0 1.1.9 2 2 2h3v-2zM18 8H6v8h12V8z"/></svg></button>
+                    <button class="modal-btn" id="fullscreenBtn" aria-pressed="false" title="Full screen" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
                     <button class="modal-btn favorite-btn" id="favoriteBtn" title="Add to favorites" aria-label="Add file to favorites" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></button>
                     <button class="modal-btn" id="infoBtn" aria-pressed="false" title="Show file details" aria-label="File details"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16"/><path d="M3 14h18M7 17.2h4M14 17.2h3"/></svg></button>
                     <button class="modal-btn" id="copyLinkBtn" title="Copy link" aria-label="Copy raw file link"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"/></svg></button>
@@ -2414,8 +2427,8 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
                 <button class="playlist-btn" id="playlistTest" title="Test the streams in this playlist" aria-label="Test the streams in this playlist"><svg class="ico-c" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><span class="btn-txt">Test</span></button>
                 <button class="playlist-btn" id="playlistList" title="Show the playlist" aria-label="Show the playlist"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 5h2v2H3zm4 0h14v2H7zM3 11h2v2H3zm4 0h14v2H7zM3 17h2v2H3zm4 0h14v2H7z"/></svg><span class="btn-txt">Playlist</span></button>
                 <button class="playlist-btn" id="playlistSongs" hidden title="Songs you heard" aria-label="Songs you heard"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg><span class="btn-txt">Songs</span></button>
+                <button class="playlist-btn" id="playlistQuality" hidden aria-haspopup="menu" aria-expanded="false" title="Quality" aria-label="Choose the stream quality"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M6.5 9.5v5M6.5 12h4M10.5 9.5v5M13.5 9.5h1.8a2.5 2.5 0 0 1 0 5h-1.8z"/></svg><span class="btn-txt">Quality</span></button>
                 <button class="playlist-btn" id="playlistRec" hidden title="Record this station and save it as audio files" aria-label="Record this station"><svg class="ico-c" viewBox="0 0 24 24" fill="currentcolor"><circle cx="12" cy="12" r="9" fill="none" stroke="currentcolor" stroke-width="2"/><circle class="rec-core" cx="12" cy="12" r="5"/></svg><span class="btn-txt">Record</span></button>
-                <button class="playlist-btn" id="playlistQuality" hidden aria-haspopup="menu" aria-expanded="false" title="Quality" aria-label="Choose the stream quality"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z" /></svg><span class="btn-txt">Quality</span></button>
             </div>
             <div class="modal-main" id="modalMain">
                 <aside class="gallery-rail" id="galleryRail" aria-label="Files in this folder" hidden></aside>
@@ -5272,6 +5285,52 @@ function setupEventListeners() {
         setFocusView(!document.getElementById("modalContent").classList.contains("focus-view"), true);
         // After a mouse click, hand the spacebar back to play/pause (a focused button would take it); keyboard users keep focus here.
         if (e.detail > 0) focusBtn.blur();
+    });
+    // Video "fit to view": the picture fills the whole preview area. One saved choice for every video.
+    const fitBtn = document.getElementById("fitBtn");
+    const setFitView = (on, save) => {
+        document.getElementById("modalContent").classList.toggle("fit-view", on);
+        fitBtn.setAttribute("aria-pressed", on ? "true" : "false");
+        const label = on ? "Back to normal size" : "Fit video to view";
+        fitBtn.title = label;
+        fitBtn.setAttribute("aria-label", label);
+        if (save) store.setItem("videoFitView", on ? "1" : "0");
+    };
+    setFitView(store.getItem("videoFitView") === "1", false);
+    fitBtn.addEventListener("click", (e) => {
+        setFitView(!document.getElementById("modalContent").classList.contains("fit-view"), true);
+        if (e.detail > 0) fitBtn.blur();
+    });
+    // Video full screen: the preview body goes full screen (iPhone Safari only allows its own full-screen player, so the <video> is used there).
+    const fsBtn = document.getElementById("fullscreenBtn");
+    const fsBody = document.getElementById("modalBody");
+    const fsElement = () => document.fullscreenElement || document.webkitFullscreenElement || null;
+    const canFs = !!(fsBody.requestFullscreen || fsBody.webkitRequestFullscreen || (window.HTMLVideoElement && HTMLVideoElement.prototype.webkitEnterFullscreen));
+    if (canFs) fsBtn.classList.add("fs-ok");
+    const syncFsBtn = () => {
+        const on = fsElement() === fsBody;
+        fsBtn.setAttribute("aria-pressed", on ? "true" : "false");
+        const label = on ? "Exit full screen" : "Full screen";
+        fsBtn.title = label;
+        fsBtn.setAttribute("aria-label", label);
+        fsBtn.innerHTML = on
+            ? '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'
+            : '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>';
+    };
+    document.addEventListener("fullscreenchange", syncFsBtn);
+    document.addEventListener("webkitfullscreenchange", syncFsBtn);
+    fsBtn.addEventListener("click", (e) => {
+        if (fsElement()) {
+            (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+        } else if (fsBody.requestFullscreen) {
+            fsBody.requestFullscreen().catch(() => {});
+        } else if (fsBody.webkitRequestFullscreen) {
+            fsBody.webkitRequestFullscreen();
+        } else {
+            const v = fsBody.querySelector("video");
+            if (v && v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+        }
+        if (e.detail > 0) fsBtn.blur();
     });
     document.getElementById("modal").addEventListener("click", (e) => {
         if (e.target === e.currentTarget && closeOnOutsideClick) closeModal();
@@ -11901,6 +11960,7 @@ function focusWhenReady(buttonId, dialogId) {
 }
 function closeModal() {
     if (!recLeaveOk(closeModal)) return;
+    try { if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen(); else if (document.webkitFullscreenElement && document.webkitExitFullscreen) document.webkitExitFullscreen(); } catch (err) { swallow(err); }
     const modalEl = document.getElementById("modal");
     modalEl.classList.remove("active");
     syncBackgroundInert();
@@ -13657,7 +13717,32 @@ function closeQualityMenu() {
     const b = document.getElementById("playlistQuality");
     if (b) b.setAttribute("aria-expanded", "false");
 }
-// Shows the Quality button only while an HLS stream with more than one level is playing.
+// Standard picture heights. An odd size (1280x534, 1920x800, 1000x562...) is rounded UP to the next one.
+const QUALITY_STEPS = [
+    { h: 144, tag: "SD" }, { h: 240, tag: "SD" }, { h: 360, tag: "SD" }, { h: 480, tag: "SD" },
+    { h: 720, tag: "HD" }, { h: 1080, tag: "FHD" }, { h: 1440, tag: "QHD" }, { h: 2160, tag: "4K" }, { h: 4320, tag: "8K" },
+];
+function qualityStepFor(w, h) {
+    // The short side decides, so cinema crops (1920x800) and upright videos (1080x1920) land in the right class.
+    const side = w > 0 && h > 0 ? Math.min(w, h) : (h || w || 0);
+    if (!(side > 0)) return null;
+    return QUALITY_STEPS.find((q) => side <= q.h) || QUALITY_STEPS[QUALITY_STEPS.length - 1];
+}
+// The size on screen right now: what the <video> really decodes, else what the playing level says.
+function currentPictureSize() {
+    const v = document.getElementById("videoPlayer");
+    if (v && v.videoWidth && v.videoHeight) return { w: v.videoWidth, h: v.videoHeight };
+    const lv = currentHls && currentHls.levels && currentHls.levels[currentHls.currentLevel];
+    if (lv && lv.height) return { w: lv.width || 0, h: lv.height };
+    return null;
+}
+const QUALITY_ICON_DEFAULT = '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z" /></svg>';
+function qualityIconSvg(tag) {
+    // Bare text, no frame: the letters fill the whole icon box.
+    const fs = tag.length >= 3 ? 11.5 : 15;
+    return '<svg viewBox="0 0 24 24" fill="currentcolor"><text x="12" y="' + (12 + fs * 0.36).toFixed(1) + '" text-anchor="middle" font-size="' + fs + '" font-weight="800" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif">' + tag + '</text></svg>';
+}
+// Shows the Quality button only while an HLS stream with more than one level is playing. Its icon (SD, HD, FHD, 4K...) and label (480p, 720p...) follow the picture size.
 function syncQualityBtn() {
     const b = document.getElementById("playlistQuality");
     if (!b) return;
@@ -13667,7 +13752,18 @@ function syncQualityBtn() {
     if (!on) { closeQualityMenu(); return; }
     const cur = currentHls.currentLevel;
     b.dataset.manual = currentHls.autoLevelEnabled ? "" : "1";
-    b.title = `Quality: ${currentHls.autoLevelEnabled ? "Auto" : "fixed"}${lv[cur] ? " (" + qualityLabel(lv[cur], cur) + ")" : ""}`;
+    const size = currentPictureSize();
+    const step = size ? qualityStepFor(size.w, size.h) : null;
+    const svg = b.querySelector("svg"), txt = b.querySelector(".btn-txt");
+    const key = step ? step.tag + step.h : "";
+    if (b.dataset.qkey !== key) {
+        b.dataset.qkey = key;
+        const holder = document.createElement("span");
+        holder.innerHTML = step ? qualityIconSvg(step.tag) : QUALITY_ICON_DEFAULT;
+        if (svg) svg.replaceWith(holder.firstChild); else b.prepend(holder.firstChild);
+        if (txt) txt.textContent = step ? step.h + "p" : "Quality";
+    }
+    b.title = `Quality: ${currentHls.autoLevelEnabled ? "Auto" : "fixed"}${step ? " \u00b7 " + step.h + "p" : ""}${lv[cur] ? " (" + qualityLabel(lv[cur], cur) + ")" : ""}`;
 }
 function openQualityMenu() {
     const b = document.getElementById("playlistQuality");
@@ -13925,6 +14021,8 @@ function setupExtraSource() {
 function setupNewFeatureListeners() {
     setupExtraSource();
     document.getElementById("playlistQuality").addEventListener("click", () => { if (document.getElementById("qualityMenu")) closeQualityMenu(); else openQualityMenu(); });
+    // Media events don't bubble, so they are caught on the way down: the picture size is known (or changes) -> refresh the quality icon and label.
+    ["loadedmetadata", "resize"].forEach((ev) => document.addEventListener(ev, (e) => { if (e.target && e.target.id === "videoPlayer") syncQualityBtn(); }, true));
     const $ = (id) => document.getElementById(id);
     $("treeCollapseAll").addEventListener("click", collapseAllFolders);
     $("breadcrumb").addEventListener("click", (e) => { if (e.target.closest("#zipFolderBtn")) downloadFolderZip(); });
