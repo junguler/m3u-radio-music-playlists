@@ -501,7 +501,7 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 .file-list .file-icon { width: 24px; height: 24px; }
 .file-list .file-icon svg { width: 14px; height: 14px; }
 .file-list .file-info { flex: 1; min-width: 0; }
-.file-list .file-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-list .file-name { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .file-list .file-meta { font-size: var(--data-size); }
 .file-list .file-size { color: var(--text-muted); font-size: var(--data-size); flex-shrink: 0; }
 .file-list .file-thumbnail { display: none; }
@@ -2104,6 +2104,322 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
     #searchBox0 .search-icon { pointer-events: none; }
     #searchBox0:focus-within { flex: 1 1 100%; }
 }
+
+/* === STRUCTURAL THEMES: Phosphor, Dial-Up, Dither, Pivot, Neon Chalk (Settings > Theme). All are dark and square-cornered.
+   Each one is just a stock palette (the same tokens as dark / light, so the color engine tints them the same way as the built-in themes,
+   with the picked hue poured in and every lightness kept) plus a few scoped rules for the things a palette can't change. ===
+   Palettes are declared once per theme; nothing here touches other themes. getActivePaletteKey() lists them as dark for Vivid. */
+
+/* PHOSPHOR: green phosphor on black, mono type, "> " prompt marks on list rows, [bracketed] text buttons, blinking cursor after the logo */
+html[data-theme="phosphor"] {
+    --bg-primary:#030603; --bg-secondary:#07100a; --bg-tertiary:#0c1a10; --bg-hover:#12301a; --border-color:#1c5a2c; --border-strong:#2f9a48;
+    --text-primary:#9dffa8; --text-secondary:#5fd36e; --text-muted:#4cb85c;
+    --accent:#d4ff3a; --accent-hover:#e6ff7a; --accent-text:#d4ff3a; --accent-solid:#d4ff3a; --accent-solid-hover:#e6ff7a; --on-accent:#031003;
+    --success:#5fff7a; --warning:#ffcc33; --danger:#ff5a4d; --danger-solid:#c9382b; --on-danger:#ffffff;
+    --icon-keep:70%; --accent-glow:rgba(212,255,58,0.3); color-scheme:dark;
+    --font-ui:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace; --font-mono:var(--font-ui);
+    --zebra-up:0%; --zebra-down:0%;
+}
+html[data-theme="phosphor"] .file-list .file-card .file-name::before { content:"> "; color:var(--accent-text); }
+html[data-theme="phosphor"] .theme-reset-btn::before, html[data-theme="phosphor"] .load-more-btn::before, html[data-theme="phosphor"] .md-toggle::before { content:"["; }
+html[data-theme="phosphor"] .theme-reset-btn::after, html[data-theme="phosphor"] .load-more-btn::after, html[data-theme="phosphor"] .md-toggle::after { content:"]"; }
+html[data-theme="phosphor"] .logo::after { content:"_"; animation:phosphor-blink 1s steps(2) infinite; }
+@keyframes phosphor-blink { 50% { opacity:0; } }
+@media (prefers-reduced-motion: reduce) { html[data-theme="phosphor"] .logo::after { animation:none; } }
+html[data-theme="phosphor"] .header { border-bottom-style:dotted; }
+html[data-theme="phosphor"] .search-input,
+html[data-theme="phosphor"] .sort-select,
+html[data-theme="phosphor"] .goto-input,
+html[data-theme="phosphor"] .songs-search,
+html[data-theme="phosphor"] .ar-filter,
+html[data-theme="phosphor"] select,
+html[data-theme="phosphor"] textarea,
+html[data-theme="phosphor"] input[type="text"],
+html[data-theme="phosphor"] input[type="search"],
+html[data-theme="phosphor"] input[type="number"] { border-style:dotted; }
+html[data-theme="phosphor"] .file-card.selected{background:var(--accent) !important;color:var(--on-accent) !important;box-shadow:none !important;border-color:var(--accent)}
+html[data-theme="phosphor"] .file-card.selected .file-name,
+html[data-theme="phosphor"] .file-card.selected .file-meta,
+html[data-theme="phosphor"] .file-card.selected .file-size,
+html[data-theme="phosphor"] .file-card.selected .col-ext,
+html[data-theme="phosphor"] .file-card.selected .col-size,
+html[data-theme="phosphor"] .file-card.selected .col-date,
+html[data-theme="phosphor"] .file-card.selected .col-time{color:var(--on-accent) !important}
+html[data-theme="phosphor"] .file-card.selected .file-icon{color:var(--on-accent) !important;background:transparent !important}
+html[data-theme="phosphor"] .file-card.selected .file-name::before { color:var(--on-accent); }
+
+/* DIAL-UP: 90s desktop in charcoal. Raised / sunken bevels, a title-bar header that follows the accent, selection = solid accent bar */
+html[data-theme="dialup"] {
+    --bg-primary:#1b1b1b; --bg-secondary:#3a3a3a; --bg-tertiary:#3a3a3a; --bg-hover:#4a4a4a; --border-color:#101010; --border-strong:#8a8a8a;
+    --text-primary:#f0f0f0; --text-secondary:#d6d6d6; --text-muted:#bdbdbd;
+    --accent:#8fb8ff; --accent-hover:#b0cdff; --accent-text:#8fb8ff; --accent-solid:#1f4fb4; --accent-solid-hover:#2a60d0; --on-accent:#ffffff;
+    --control-surface:#3a3a3a; --control-surface-hover:#4a4a4a; --on-control:#f0f0f0;
+    --success:#6bd36b; --warning:#e0b050; --danger:#ff7a70; --danger-solid:#c9382b; --on-danger:#ffffff;
+    --icon-keep:100%; --accent-glow:rgba(143,184,255,0.3); color-scheme:dark;
+    --font-ui:Tahoma,"Segoe UI",Verdana,sans-serif;
+    --zebra-up:0%; --zebra-down:0%;
+    --bv:inset -1px -1px #0a0a0a,inset 1px 1px #6a6a6a,inset -2px -2px #1a1a1a,inset 2px 2px #505050;
+    --sk:inset 1px 1px #0a0a0a,inset -1px -1px #6a6a6a,inset 2px 2px #000;
+}
+html[data-theme="dialup"] .settings-btn,
+html[data-theme="dialup"] .modal-btn,
+html[data-theme="dialup"] .playlist-btn,
+html[data-theme="dialup"] .goto-step-btn,
+html[data-theme="dialup"] .settings-menu-close,
+html[data-theme="dialup"] .settings-control button,
+html[data-theme="dialup"] .theme-reset-btn,
+html[data-theme="dialup"] .md-toggle,
+html[data-theme="dialup"] .load-more-btn,
+html[data-theme="dialup"] .download-btn,
+html[data-theme="dialup"] .tree-hdr-btn,
+html[data-theme="dialup"] .op-toast button { border:0; box-shadow:var(--bv); }
+html[data-theme="dialup"] .settings-btn:active:not(:disabled),
+html[data-theme="dialup"] .modal-btn:active:not(:disabled),
+html[data-theme="dialup"] .playlist-btn:active:not(:disabled),
+html[data-theme="dialup"] .goto-step-btn:active:not(:disabled),
+html[data-theme="dialup"] .settings-menu-close:active:not(:disabled),
+html[data-theme="dialup"] .settings-control button:active:not(:disabled),
+html[data-theme="dialup"] .theme-reset-btn:active:not(:disabled),
+html[data-theme="dialup"] .md-toggle:active:not(:disabled),
+html[data-theme="dialup"] .load-more-btn:active:not(:disabled),
+html[data-theme="dialup"] .download-btn:active:not(:disabled),
+html[data-theme="dialup"] .tree-hdr-btn:active:not(:disabled),
+html[data-theme="dialup"] .op-toast button:active:not(:disabled) { box-shadow:var(--sk); }
+html[data-theme="dialup"] .view-btn.active { box-shadow:var(--sk); background:var(--bg-primary); }
+html[data-theme="dialup"] .search-input,
+html[data-theme="dialup"] .sort-select,
+html[data-theme="dialup"] .goto-input,
+html[data-theme="dialup"] .songs-search,
+html[data-theme="dialup"] .ar-filter,
+html[data-theme="dialup"] select,
+html[data-theme="dialup"] textarea,
+html[data-theme="dialup"] input[type="text"],
+html[data-theme="dialup"] input[type="search"],
+html[data-theme="dialup"] input[type="number"] { border:0; box-shadow:var(--sk); background-color:var(--bg-primary); }
+html[data-theme="dialup"] .header { background:linear-gradient(90deg,var(--accent-solid),color-mix(in srgb,var(--accent-solid),#fff 38%)); border-bottom:0; color:var(--on-accent); }
+html[data-theme="dialup"] .header .logo, html[data-theme="dialup"] .header .breadcrumb-item, html[data-theme="dialup"] .header .breadcrumb-item.current,
+html[data-theme="dialup"] .header .breadcrumb-separator, html[data-theme="dialup"] .header .breadcrumb-pin-btn { color:var(--on-accent); }
+html[data-theme="dialup"] .header .breadcrumb-item:hover:not(.current) { background:rgba(0,0,0,0.28); }
+html[data-theme="dialup"] .tree-panel,
+html[data-theme="dialup"] .modal,
+html[data-theme="dialup"] .settings-menu-card,
+html[data-theme="dialup"] .playlist-bar,
+html[data-theme="dialup"] .player-bar { border:0; box-shadow:var(--bv); }
+html[data-theme="dialup"] .file-list { background:var(--bg-primary); box-shadow:var(--sk); padding:2px; }
+html[data-theme="dialup"] .file-list .file-card { background:var(--bg-primary); border-color:transparent; }
+html[data-theme="dialup"] .file-grid .file-card { border:0; box-shadow:var(--bv); }
+html[data-theme="dialup"] .file-list-header { background:var(--bg-secondary); box-shadow:var(--bv); margin-bottom:4px; }
+html[data-theme="dialup"] .tree-item.active { background:var(--accent-solid); color:var(--on-accent); border-left-color:transparent; }
+html[data-theme="dialup"] .file-card.selected,
+html[data-theme="dialup"] .file-card:hover{background:var(--accent-solid) !important;color:var(--on-accent) !important;box-shadow:none !important;border-color:var(--accent-solid)}
+html[data-theme="dialup"] .file-card.selected .file-name,
+html[data-theme="dialup"] .file-card.selected .file-meta,
+html[data-theme="dialup"] .file-card.selected .file-size,
+html[data-theme="dialup"] .file-card.selected .col-ext,
+html[data-theme="dialup"] .file-card.selected .col-size,
+html[data-theme="dialup"] .file-card.selected .col-date,
+html[data-theme="dialup"] .file-card.selected .col-time,
+html[data-theme="dialup"] .file-card:hover .file-name,
+html[data-theme="dialup"] .file-card:hover .file-meta,
+html[data-theme="dialup"] .file-card:hover .file-size,
+html[data-theme="dialup"] .file-card:hover .col-ext,
+html[data-theme="dialup"] .file-card:hover .col-size,
+html[data-theme="dialup"] .file-card:hover .col-date,
+html[data-theme="dialup"] .file-card:hover .col-time{color:var(--on-accent) !important}
+html[data-theme="dialup"] .file-card.selected .file-icon,
+html[data-theme="dialup"] .file-card:hover .file-icon{color:var(--on-accent) !important;background:transparent !important}
+
+/* DITHER: 1-bit negative. White ink on black, striped title bar, hard offset shadows, hover inverts rows and buttons */
+html[data-theme="dither"] {
+    --bg-primary:#0a0a0a; --bg-secondary:#0a0a0a; --bg-tertiary:#1a1a1a; --bg-hover:#2a2a2a; --border-color:#f5f5f5; --border-strong:#f5f5f5;
+    --text-primary:#f5f5f5; --text-secondary:#d8d8d8; --text-muted:#b5b5b5;
+    --accent:#f5f5f5; --accent-hover:#cccccc; --accent-text:#f5f5f5; --accent-solid:#f5f5f5; --accent-solid-hover:#cccccc; --on-accent:#0a0a0a;
+    --success:#7ed992; --warning:#f0c060; --danger:#ff7a70; --danger-solid:#c9382b; --on-danger:#ffffff;
+    --icon-keep:100%; --accent-glow:rgba(245,245,245,0.25); color-scheme:dark;
+    --font-ui:"Geneva","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --zebra-up:0%; --zebra-down:0%;
+}
+html[data-theme="dither"] .header { background:repeating-linear-gradient(var(--text-primary) 0 1px,var(--bg-primary) 1px 3px); border-bottom:2px solid var(--text-primary); }
+html[data-theme="dither"] .header .logo, html[data-theme="dither"] .header .breadcrumb { background:var(--bg-primary); padding-inline:0.5rem; }
+html[data-theme="dither"] .header .breadcrumb { flex:0 1 auto; margin-inline-end:auto; }
+html[data-theme="dither"] .settings-btn,
+html[data-theme="dither"] .modal-btn,
+html[data-theme="dither"] .playlist-btn,
+html[data-theme="dither"] .goto-step-btn,
+html[data-theme="dither"] .settings-menu-close,
+html[data-theme="dither"] .settings-control button,
+html[data-theme="dither"] .theme-reset-btn,
+html[data-theme="dither"] .md-toggle,
+html[data-theme="dither"] .load-more-btn,
+html[data-theme="dither"] .download-btn,
+html[data-theme="dither"] .tree-hdr-btn,
+html[data-theme="dither"] .op-toast button { border:1px solid var(--text-primary); box-shadow:2px 2px 0 var(--text-primary); }
+html[data-theme="dither"] .settings-btn:hover:not(:disabled),
+html[data-theme="dither"] .modal-btn:hover:not(:disabled),
+html[data-theme="dither"] .playlist-btn:hover:not(:disabled),
+html[data-theme="dither"] .goto-step-btn:hover:not(:disabled),
+html[data-theme="dither"] .settings-menu-close:hover:not(:disabled),
+html[data-theme="dither"] .settings-control button:hover:not(:disabled),
+html[data-theme="dither"] .theme-reset-btn:hover:not(:disabled),
+html[data-theme="dither"] .md-toggle:hover:not(:disabled),
+html[data-theme="dither"] .load-more-btn:hover:not(:disabled),
+html[data-theme="dither"] .download-btn:hover:not(:disabled),
+html[data-theme="dither"] .tree-hdr-btn:hover:not(:disabled),
+html[data-theme="dither"] .op-toast button:hover:not(:disabled),
+html[data-theme="dither"] .settings-btn:active:not(:disabled),
+html[data-theme="dither"] .modal-btn:active:not(:disabled),
+html[data-theme="dither"] .playlist-btn:active:not(:disabled),
+html[data-theme="dither"] .goto-step-btn:active:not(:disabled),
+html[data-theme="dither"] .settings-menu-close:active:not(:disabled),
+html[data-theme="dither"] .settings-control button:active:not(:disabled),
+html[data-theme="dither"] .theme-reset-btn:active:not(:disabled),
+html[data-theme="dither"] .md-toggle:active:not(:disabled),
+html[data-theme="dither"] .load-more-btn:active:not(:disabled),
+html[data-theme="dither"] .download-btn:active:not(:disabled),
+html[data-theme="dither"] .tree-hdr-btn:active:not(:disabled),
+html[data-theme="dither"] .op-toast button:active:not(:disabled) { background:var(--text-primary); color:var(--bg-primary); box-shadow:none; }
+html[data-theme="dither"] .modal,
+html[data-theme="dither"] .settings-menu-card,
+html[data-theme="dither"] .playlist-bar,
+html[data-theme="dither"] .player-bar { border:2px solid var(--text-primary); box-shadow:4px 4px 0 var(--text-primary); }
+html[data-theme="dither"] .tree-panel { border-right:2px solid var(--text-primary); }
+html[data-theme="dither"] .search-input,
+html[data-theme="dither"] .sort-select,
+html[data-theme="dither"] .goto-input,
+html[data-theme="dither"] .songs-search,
+html[data-theme="dither"] .ar-filter,
+html[data-theme="dither"] select,
+html[data-theme="dither"] textarea,
+html[data-theme="dither"] input[type="text"],
+html[data-theme="dither"] input[type="search"],
+html[data-theme="dither"] input[type="number"] { border:1px solid var(--text-primary); }
+html[data-theme="dither"] .tree-item.active, html[data-theme="dither"] .tree-item:hover { background:var(--text-primary); color:var(--bg-primary); border-left-color:transparent; }
+html[data-theme="dither"] .view-btn.active { background:var(--text-primary); color:var(--bg-primary); }
+html[data-theme="dither"] .file-card.selected,
+html[data-theme="dither"] .file-card:hover{background:var(--text-primary) !important;color:var(--bg-primary) !important;box-shadow:none !important;border-color:var(--text-primary)}
+html[data-theme="dither"] .file-card.selected .file-name,
+html[data-theme="dither"] .file-card.selected .file-meta,
+html[data-theme="dither"] .file-card.selected .file-size,
+html[data-theme="dither"] .file-card.selected .col-ext,
+html[data-theme="dither"] .file-card.selected .col-size,
+html[data-theme="dither"] .file-card.selected .col-date,
+html[data-theme="dither"] .file-card.selected .col-time,
+html[data-theme="dither"] .file-card:hover .file-name,
+html[data-theme="dither"] .file-card:hover .file-meta,
+html[data-theme="dither"] .file-card:hover .file-size,
+html[data-theme="dither"] .file-card:hover .col-ext,
+html[data-theme="dither"] .file-card:hover .col-size,
+html[data-theme="dither"] .file-card:hover .col-date,
+html[data-theme="dither"] .file-card:hover .col-time{color:var(--bg-primary) !important}
+html[data-theme="dither"] .file-card.selected .file-icon,
+html[data-theme="dither"] .file-card:hover .file-icon{color:var(--bg-primary) !important;background:transparent !important}
+
+/* PIVOT: spreadsheet. Every column gridded, shaded header cells, the selected row gets a mint cell outline */
+html[data-theme="pivot"] {
+    --bg-primary:#16181b; --bg-secondary:#1e2125; --bg-tertiary:#262a30; --bg-hover:#2f3a35; --border-color:#363b42; --border-strong:#6b727b;
+    --text-primary:#e8eaed; --text-secondary:#bdc1c6; --text-muted:#9aa0a6;
+    --accent:#3ddc84; --accent-hover:#6ae8a2; --accent-text:#3ddc84; --accent-solid:#137333; --accent-solid-hover:#0f5f2a; --on-accent:#ffffff;
+    --success:#6bd68a; --warning:#e8c15a; --danger:#ff7a70; --danger-solid:#c9382b; --on-danger:#ffffff;
+    --icon-keep:100%; --accent-glow:rgba(61,220,132,0.3); color-scheme:dark;
+    --font-ui:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --zebra-up:0%; --zebra-down:0%;
+}
+html[data-theme="pivot"] .header { border-bottom:2px solid var(--accent); }
+html[data-theme="pivot"] .file-list { gap:0; }
+html[data-theme="pivot"] .file-list .file-card { border-color:var(--border-color) !important; padding-block:5px; }
+html[data-theme="pivot"] .file-list .file-card + .file-card { border-top-width:0 !important; }
+html[data-theme="pivot"] .file-list .file-card:hover { outline:1px solid var(--accent); outline-offset:-1px; }
+html[data-theme="pivot"] .file-list-header { background:var(--bg-tertiary); border:var(--bw) solid var(--border-color); margin-bottom:0; }
+html[data-theme="pivot"] .file-list.list-columns .file-card > .col-ext, html[data-theme="pivot"] .file-list.list-columns .file-card > .col-size,
+html[data-theme="pivot"] .file-list.list-columns .file-card > .col-date, html[data-theme="pivot"] .file-list.list-columns .file-card > .col-time {
+    border-left:1px solid var(--border-color); align-self:stretch; display:flex; align-items:center; justify-content:flex-end; padding-left:0.5rem; }
+html[data-theme="pivot"] .file-list-header .col-ext, html[data-theme="pivot"] .file-list-header .col-size,
+html[data-theme="pivot"] .file-list-header .col-date, html[data-theme="pivot"] .file-list-header .col-time { border-left:1px solid var(--border-color); padding-left:0.5rem; }
+html[data-theme="pivot"] .file-card.selected { outline:2px solid var(--accent); outline-offset:-2px; background:color-mix(in srgb,var(--accent) 12%,var(--bg-primary)) !important; box-shadow:none !important; }
+
+/* NEON CHALK: light ink on near-black, hot-pink highlighter swashes under the logo, hovered / selected names and active toggles */
+html[data-theme="neonchalk"] {
+    --bg-primary:#101113; --bg-secondary:#17181b; --bg-tertiary:#202226; --bg-hover:#2c2f35; --border-color:#34373d; --border-strong:#f2f2ec;
+    --text-primary:#f2f2ec; --text-secondary:#cfcfc6; --text-muted:#aeaea5;
+    --accent:#ff4fa8; --accent-hover:#ff7cc0; --accent-text:#ff7cc0; --accent-solid:#b5176f; --accent-solid-hover:#9c135f; --on-accent:#ffffff;
+    --success:#6bd68a; --warning:#f0c060; --danger:#ff7a70; --danger-solid:#c9382b; --on-danger:#ffffff;
+    --icon-keep:100%; --accent-glow:rgba(255,79,168,0.3); color-scheme:dark;
+    --zebra-up:0%; --zebra-down:0%;
+}
+html[data-theme="neonchalk"] .header { border-bottom:2px solid var(--text-primary); }
+html[data-theme="neonchalk"] .logo { background:linear-gradient(transparent 50%,var(--accent-solid) 50%); padding:0 0.3rem; }
+html[data-theme="neonchalk"] .settings-btn,
+html[data-theme="neonchalk"] .modal-btn,
+html[data-theme="neonchalk"] .playlist-btn,
+html[data-theme="neonchalk"] .goto-step-btn,
+html[data-theme="neonchalk"] .settings-menu-close,
+html[data-theme="neonchalk"] .settings-control button,
+html[data-theme="neonchalk"] .theme-reset-btn,
+html[data-theme="neonchalk"] .md-toggle,
+html[data-theme="neonchalk"] .load-more-btn,
+html[data-theme="neonchalk"] .download-btn,
+html[data-theme="neonchalk"] .tree-hdr-btn,
+html[data-theme="neonchalk"] .op-toast button,
+html[data-theme="neonchalk"] .search-input,
+html[data-theme="neonchalk"] .sort-select,
+html[data-theme="neonchalk"] .goto-input,
+html[data-theme="neonchalk"] .songs-search,
+html[data-theme="neonchalk"] .ar-filter,
+html[data-theme="neonchalk"] select,
+html[data-theme="neonchalk"] textarea,
+html[data-theme="neonchalk"] input[type="text"],
+html[data-theme="neonchalk"] input[type="search"],
+html[data-theme="neonchalk"] input[type="number"] { border-color:var(--text-primary); }
+html[data-theme="neonchalk"] .file-card:hover .file-name, html[data-theme="neonchalk"] .file-card.selected .file-name { background:linear-gradient(transparent 52%,var(--accent-solid) 52%); width:fit-content; max-width:100%; }
+html[data-theme="neonchalk"] .view-btn.active, html[data-theme="neonchalk"] .md-toggle[aria-pressed="true"], html[data-theme="neonchalk"] .ts-ctl [aria-pressed="true"] { background:linear-gradient(transparent 55%,var(--accent-solid) 55%); color:var(--text-primary); }
+
+/* Button and field outlines in Phosphor and Pivot use the stronger border token so controls stay visible against the page (also under a picked color) */
+html[data-theme="phosphor"] .settings-btn, html[data-theme="phosphor"] .modal-btn, html[data-theme="phosphor"] .playlist-btn, html[data-theme="phosphor"] .goto-step-btn,
+html[data-theme="phosphor"] .settings-menu-close, html[data-theme="phosphor"] .settings-control button, html[data-theme="phosphor"] .theme-reset-btn, html[data-theme="phosphor"] .md-toggle,
+html[data-theme="phosphor"] .load-more-btn, html[data-theme="phosphor"] .download-btn, html[data-theme="phosphor"] .tree-hdr-btn, html[data-theme="phosphor"] .op-toast button,
+html[data-theme="phosphor"] .search-input,
+html[data-theme="pivot"] .settings-btn, html[data-theme="pivot"] .modal-btn, html[data-theme="pivot"] .playlist-btn, html[data-theme="pivot"] .goto-step-btn,
+html[data-theme="pivot"] .settings-menu-close, html[data-theme="pivot"] .settings-control button, html[data-theme="pivot"] .theme-reset-btn, html[data-theme="pivot"] .md-toggle,
+html[data-theme="pivot"] .load-more-btn, html[data-theme="pivot"] .download-btn, html[data-theme="pivot"] .tree-hdr-btn, html[data-theme="pivot"] .op-toast button,
+html[data-theme="pivot"] .search-input { border-color:var(--border-strong); }
+/* Dither is strictly black and white: the Vivid button's icon follows the text color until a color is actually picked */
+html[data-theme="dither"] .theme-toggle:not(.custom-color-active) .theme-btn-custom svg { color:currentColor; }
+
+/* The five structural themes under Windows high contrast ("forced colors" in Brave/Edge/Chrome): like Concrete and Vivid, they keep their own contrast-checked palette
+   instead of having every surface replaced by the Windows palette (which flattened bevels, stripes, highlighter swashes and the grid into plain boxes).
+   All five are dark themes, so they stay readable in a dark high-contrast setup; no light theme gets this opt-out and light stays on the Windows palette. */
+html[data-theme="phosphor"],
+html[data-theme="dialup"],
+html[data-theme="dither"],
+html[data-theme="pivot"],
+html[data-theme="neonchalk"],
+html[data-theme="phosphor"] *,
+html[data-theme="dialup"] *,
+html[data-theme="dither"] *,
+html[data-theme="pivot"] *,
+html[data-theme="neonchalk"] *,
+html[data-theme="phosphor"] *::before,
+html[data-theme="dialup"] *::before,
+html[data-theme="dither"] *::before,
+html[data-theme="pivot"] *::before,
+html[data-theme="neonchalk"] *::before,
+html[data-theme="phosphor"] *::after,
+html[data-theme="dialup"] *::after,
+html[data-theme="dither"] *::after,
+html[data-theme="pivot"] *::after,
+html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
+@media (forced-colors: active) {
+    html[data-theme="phosphor"] { --bw: 2px; }
+    html[data-theme="dialup"] { --bw: 2px; }
+    html[data-theme="dither"] { --bw: 2px; }
+    html[data-theme="pivot"] { --bw: 2px; }
+    html[data-theme="neonchalk"] { --bw: 2px; }
+    html[data-theme="phosphor"] :focus-visible { outline: 2px solid var(--text-primary); outline-offset: -2px; }
+    html[data-theme="dialup"] :focus-visible { outline: 2px solid var(--text-primary); outline-offset: -2px; }
+    html[data-theme="dither"] :focus-visible { outline: 2px solid var(--text-primary); outline-offset: -2px; }
+    html[data-theme="pivot"] :focus-visible { outline: 2px solid var(--text-primary); outline-offset: -2px; }
+    html[data-theme="neonchalk"] :focus-visible { outline: 2px solid var(--text-primary); outline-offset: -2px; }
+}
 </style>
 </head>
 <body>
@@ -2312,6 +2628,11 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
                                             <button class="theme-btn" data-theme="hc-dark" title="High contrast dark theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 2a10 10 0 000 20 10 10 0 000-20zm0 2v16a8 8 0 010-16z"/></svg><span class="theme-btn-label">HC Dark</span></button>
                                             <button class="theme-btn" data-theme="hc-light" title="High contrast light theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 2a10 10 0 000 20 10 10 0 000-20zm0 18V4a8 8 0 010 16z"/></svg><span class="theme-btn-label">HC Light</span></button>
                                             <button class="theme-btn" data-theme="concrete" title="Concrete Signal theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 3h18v18H3V3zm4 4v10h10V7H7z"/></svg><span class="theme-btn-label">Concrete</span></button>
+                                            <button class="theme-btn" data-theme="phosphor" title="Phosphor theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path fill-rule="evenodd" d="M3 4h18a1 1 0 011 1v14a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1zm1 2v12h16V6H4zm2.5 2.5L10 12l-3.5 3.5-1.4-1.4L7.2 12 5.1 9.9l1.4-1.4zM11 15h6v2h-6v-2z"/></svg><span class="theme-btn-label">Phosphor</span></button>
+                                            <button class="theme-btn" data-theme="dialup" title="Dial-Up theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path fill-rule="evenodd" d="M3 4h18v16H3V4zm2 4v10h14V8H5z"/></svg><span class="theme-btn-label">Dial-Up</span></button>
+                                            <button class="theme-btn" data-theme="dither" title="Dither theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 3h6v6H3V3zm12 0h6v6h-6V3zM9 9h6v6H9V9zM3 15h6v6H3v-6zm12 0h6v6h-6v-6z"/></svg><span class="theme-btn-label">Dither</span></button>
+                                            <button class="theme-btn" data-theme="pivot" title="Pivot theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path fill-rule="evenodd" d="M3 3h18v18H3V3zm2 2v4h4V5H5zm6 0v4h8V5h-8zM5 11v3h4v-3H5zm6 0v3h8v-3h-8zM5 16v3h4v-3H5zm6 0v3h8v-3h-8z"/></svg><span class="theme-btn-label">Pivot</span></button>
+                                            <button class="theme-btn" data-theme="neonchalk" title="Neon Chalk theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg><span class="theme-btn-label">Chalk</span></button>
                                             <button class="theme-btn theme-btn-custom" data-theme="custom" title="Vivid theme — the flat, saturated single-color look built from your picked color (color panel + intensity bar). Other themes get a + version of your color."><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.1 0 2-.9 2-2 0-.52-.2-.99-.53-1.34-.32-.34-.52-.8-.52-1.32.0-1.1.9-2 2-2H17c2.76.0 5-2.24 5-5C22 6.13 17.5 2 12 2zm-5.5 9c-.83.0-1.5-.67-1.5-1.5S5.67 8 6.5 8 8 8.67 8 9.5 7.33 11 6.5 11zm3-4C8.67 7 8 6.33 8 5.5S8.67 4 9.5 4s1.5.67 1.5 1.5S10.33 7 9.5 7zm5 0c-.83.0-1.5-.67-1.5-1.5S13.67 4 14.5 4s1.5.67 1.5 1.5S15.33 7 14.5 7zm3 4c-.83.0-1.5-.67-1.5-1.5S16.67 8 17.5 8s1.5.67 1.5 1.5S18.33 11 17.5 11z"/></svg><span class="theme-btn-label">Vivid</span></button>
                                         </div>
                                     </div>
@@ -3110,7 +3431,72 @@ function applyPlayerIconDuo(svg) {
     });
 }
 
+// Keeps the two glyph tones readable and apart. The theme's own --glyph-1 / --glyph-2 are used as they are when they already differ enough
+// (at least GLYPH_MIN_PAIR between the tones and GLYPH_MIN_SURF for the second tone against the tile); otherwise a mid tone in the same hue is
+// found, and if the tile is too close to the main tone that one is pushed to pure white or black first. Set per tile, so no theme CSS changes.
+const GLYPH_MIN_PAIR = 2.3, GLYPH_MIN_SURF = 3;
+let glyphPxCtx = null;
+function glyphPx(c) {
+    if (!glyphPxCtx) glyphPxCtx = document.createElement("canvas").getContext("2d", { willReadFrequently: true });
+    glyphPxCtx.clearRect(0, 0, 1, 1);
+    glyphPxCtx.fillStyle = "#000"; glyphPxCtx.fillStyle = c; glyphPxCtx.fillRect(0, 0, 1, 1);
+    const d = glyphPxCtx.getImageData(0, 0, 1, 1).data;
+    return [d[0], d[1], d[2]];
+}
+function glyphLum(c) { const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); }
+function glyphRatio(a, b) { const x = glyphLum(a), y = glyphLum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+function glyphToHsl(c) {
+    const r = c[0] / 255, g = c[1] / 255, b = c[2] / 255, mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, d = mx - mn;
+    if (!d) return [0, 0, l];
+    const s = d / (1 - Math.abs(2 * l - 1));
+    const h = mx === r ? ((g - b) / d + (g < b ? 6 : 0)) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4;
+    return [h * 60, s, l];
+}
+function glyphFromHsl(h, s, l) {
+    const k = (n) => (n + h / 30) % 12, a = s * Math.min(l, 1 - l), f = (n) => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+    return [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
+}
+function glyphHex(c) { return "#" + c.map((v) => v.toString(16).padStart(2, "0")).join(""); }
+function fitGlyphDuo(root) {
+    const tiles = root && root.nodeType === 1 && root.classList.contains("audio-icon") ? [root] : [...(root || document).querySelectorAll(".audio-icon")];
+    for (const el of tiles) {
+        if (!el.isConnected) continue;
+        el.style.removeProperty("--glyph-1"); el.style.removeProperty("--glyph-2");
+        const cs = getComputedStyle(el);
+        const probe = document.createElement("i");
+        probe.style.cssText = "display:none;color:var(--glyph-2)";
+        el.appendChild(probe);
+        const c2css = getComputedStyle(probe).color;
+        probe.remove();
+        let g1 = glyphPx(cs.color); const g2 = glyphPx(c2css), surf = glyphPx(cs.backgroundColor);
+        if (glyphRatio(g1, g2) >= GLYPH_MIN_PAIR && glyphRatio(g2, surf) >= GLYPH_MIN_SURF) continue;
+        const hsl = glyphToHsl(g2), hue = hsl[0], sat = hsl[1] < 0.12 ? hsl[1] : Math.min(0.9, Math.max(0.5, hsl[1]));
+        const pick = (main, strict) => {
+            const target = Math.max(GLYPH_MIN_SURF, Math.min(6, Math.sqrt(glyphRatio(main, surf))));
+            let best = null, bestScore = Infinity;
+            for (let l = 2; l <= 98; l++) {
+                const c = glyphFromHsl(hue, sat, l / 100), rs = glyphRatio(c, surf), rp = glyphRatio(c, main);
+                if (strict && (rs < GLYPH_MIN_SURF || rp < GLYPH_MIN_PAIR)) continue;
+                const score = strict ? Math.abs(Math.log(rs / target)) : -Math.min(rs / GLYPH_MIN_SURF, rp / GLYPH_MIN_PAIR);
+                if (score < bestScore) { bestScore = score; best = c; }
+            }
+            return best;
+        };
+        let next = pick(g1, true);
+        if (!next) {
+            const white = [255, 255, 255], black = [0, 0, 0], ext = glyphRatio(white, surf) >= glyphRatio(black, surf) ? white : black;
+            next = pick(ext, true) || pick(ext, false);
+            g1 = ext;
+            el.style.setProperty("--glyph-1", glyphHex(ext));
+        }
+        el.style.setProperty("--glyph-2", glyphHex(next));
+    }
+}
+let glyphRefreshTimer = 0;
+new MutationObserver(() => { clearTimeout(glyphRefreshTimer); glyphRefreshTimer = setTimeout(() => fitGlyphDuo(document), 120); })
+    .observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme", "data-vivid", "class", "style"] });
 function centerAudioIconSvg(containerEl) {
+    fitGlyphDuo(containerEl);
     const svg = containerEl && containerEl.querySelector("svg");
     if (!svg) return;
     let bbox;
@@ -3505,7 +3891,7 @@ function muteColorAtIntensity(hex, intensityPct) {
 function getActivePaletteKey() {
     const attr = document.documentElement.getAttribute("data-theme");
     if (attr === "light" || attr === "hc-dark" || attr === "hc-light") return attr;
-    if (attr === "dark") return "dark";
+    if (attr === "dark" || attr === "phosphor" || attr === "dialup" || attr === "dither" || attr === "pivot" || attr === "neonchalk") return "dark"; // the structural themes are all dark
     const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
     return dark ? "dark" : "light";
 }
