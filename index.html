@@ -30,7 +30,7 @@
     --text-muted: #9e9e9e;
     --accent: #9b5de5;
     --accent-hover: #b280ea;
-    /* --accent is for rings, borders and bars; text in the accent uses --accent-text (lighter on dark), and filled buttons with --on-accent use --accent-solid (darker), so both clear WCAG AA. */
+    /* --accent is for rings, borders and bars; accent text uses --accent-text (lighter on dark), and filled buttons use --accent-solid (darker) with --on-accent, so both clear WCAG AA. */
     --accent-text: #bb8cef;
     --accent-on-control: var(--accent-text);
     --accent-solid: #8648d6;
@@ -179,7 +179,7 @@ html[data-theme="hc-light"] {
 }
 html[data-theme="light"], html[data-theme="hc-light"] { --zebra-up: 0%; --zebra-down: 3%; }
 @media (prefers-color-scheme: light) { :root:not([data-theme]) { --zebra-up: 0%; --zebra-down: 3%; } }
-/* Corner rounding: one axis from the flat default (level 1, "square", no attribute) to a comfortably rounded "round" (level 5); 2-4 are in-betweens.
+/* Corner rounding: one axis from the flat default (level 1, "square", no attribute) to "round" (level 5); 2-4 are in-betweens.
    Only the radius changes, so it is independent of light/dark/HC/custom. */
 html[data-depth="2"] {
     --radius: 4px; --radius-sm: 3px; --radius-lg: 7px; --radius-full: 10px;
@@ -230,7 +230,7 @@ body {
 .breadcrumb-pin-btn:hover { color: var(--accent-text, var(--accent)); background: var(--bg-hover); }
 }
 .breadcrumb-pin-btn.pinned { color: var(--accent-text, var(--accent)); }
-/* The search box takes most of the top bar (the path keeps about a quarter of the free room and scrolls when it is longer); in twin panels every panel gets a box of its own. */
+/* The search box takes most of the top bar (the path keeps about a quarter of the free room and scrolls when longer); in twin panels each panel gets its own box. */
 .header-actions { display: flex; gap: 0.375rem; align-items: center; flex: 3 1 22rem; min-width: 0; }
 .search-container { position: relative; flex: 1 1 8rem; min-width: 0; }
 .search-second { display: none; }
@@ -329,7 +329,7 @@ body {
 /* Icons stay neutral; the active theme's icon takes the accent. Only the Custom button shows its own swatch color. */
 .theme-btn.active svg { color: var(--accent-on-control, var(--accent-text, var(--accent))); }
 .theme-btn[data-theme="custom"] svg { color: var(--custom-theme-swatch, #8b5cf6); }
-/* While a custom color is active the light/dark/HC buttons all look the same (the custom color overrides them), so they dim to show only the hidden base changes.
+/* While a custom color is active the light/dark/HC buttons all look the same (the custom color overrides them), so they dim to show they only change the hidden base.
    The Custom button stays full strength since it drives what's on screen. */
 .theme-toggle.custom-color-active .theme-btn:not(.theme-btn-custom) { opacity: 1; }
 @media (hover: hover) {
@@ -409,7 +409,6 @@ html[data-theme="hc-dark"] .view-toggle, html[data-theme="hc-light"] .view-toggl
 }
 .tree-pinned-item.active { background: var(--bg-tertiary); color: var(--text-primary); border-left-color: var(--accent); }
 .tree-pinned-item svg { width: 14px; height: 14px; flex-shrink: 0; }
-.tree-pinned-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.3; flex: 1; }
 /* Single-line label for pinned/favorite entries, truncated from the start (keeping the tail, e.g. "…9/00.m3u") with the direction:rtl + text-align:left trick,
    since the end of a path is usually the more distinguishing part. */
 .tree-pinned-name-stack { display: block; overflow: hidden; flex: 1; min-width: 0; line-height: 1.3; white-space: nowrap; }
@@ -428,13 +427,13 @@ html[data-theme="hc-dark"] .view-toggle, html[data-theme="hc-light"] .view-toggl
 .stat svg { width: 12px; height: 12px; color: var(--accent-text, var(--accent)); }
 .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.5rem; contain: layout style; }
 .file-list { display: flex; flex-direction: column; gap: 1px; contain: layout style; }
-/* content-visibility lets the browser skip layout/paint/style for off-screen cards (like list virtualization, without changing the render pipeline).
-   contain-intrinsic-size is only a first-layout placeholder ("auto" remembers the real size afterwards), keeping scroll position stable; a big win on mobile with hundreds of entries. */
+/* content-visibility lets the browser skip layout/paint/style for off-screen cards (like list virtualization). contain-intrinsic-size is only a first-layout placeholder
+   ("auto" remembers the real size afterwards) that keeps scroll position stable; a big win on mobile with hundreds of entries. */
 .file-card { position: relative; background: var(--bg-secondary); border: var(--bw) solid var(--border-color); border-radius: var(--radius); padding: 0.625rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.375rem; content-visibility: auto; contain-intrinsic-size: auto 160px; }
 .file-list .file-card { content-visibility: auto; contain-intrinsic-size: auto 46px; }
 body.compact-density .file-list .file-card { contain-intrinsic-size: auto 34px; }
 .card-star-btn { position: absolute; top: 4px; right: 4px; width: 24px; height: 24px; padding: 0; display: flex; align-items: center; justify-content: center; background: var(--bg-secondary); border: var(--bw) solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-muted); cursor: pointer; opacity: 0.6; transition: opacity var(--transition), color var(--transition), border-color var(--transition); z-index: 2; flex-shrink: 0; }
-/* Calmer resting state: unstarred cards only hint at the star until hovered/focused (low base opacity, not 0, so it stays discoverable on touch). Starred cards stay fully visible (see .starred below). */
+/* Calmer resting state: unstarred cards only hint at the star until hovered/focused (low base opacity, not 0, so it stays discoverable on touch). Starred cards stay fully visible (see .starred). */
 .file-card:focus-within .card-star-btn { opacity: 0.85; }
 @media (hover: hover) {
 .file-card:hover .card-star-btn { opacity: 0.85; }
@@ -451,11 +450,11 @@ body.compact-density .file-list .file-card { contain-intrinsic-size: auto 34px; 
 }
 .file-card.directory { background: var(--bg-secondary); }
 .file-card.parent-dir .file-name { color: var(--text-secondary); }
-/* Zebra striping: alternating cards/rows are nudged lighter or darker than --bg-secondary via color-mix(), so it adapts to every theme without overrides.
-   --card-bg keeps the base so hover and other states blend from the right tone. In grid view the odd/even alternation reads as a diagonal zig-zag. */
+/* Zebra striping: alternating cards/rows are nudged lighter or darker than --bg-secondary via color-mix(), so it adapts to every theme.
+   --card-bg keeps the base so hover and other states blend from the right tone. In grid view the alternation reads as a diagonal zig-zag. */
 .file-card:nth-child(odd) { --card-bg: color-mix(in srgb, var(--bg-secondary) 100%, white var(--zebra-up)); background: var(--card-bg); }
 .file-card:nth-child(even) { --card-bg: color-mix(in srgb, var(--bg-secondary) 100%, black var(--zebra-down)); background: var(--card-bg); }
-/* Zebra striping is optional (default on): disabling it flattens cards to the panel color. --card-bg is still set so hover states blend from the flat tone, not the last zig-zag. */
+/* Zebra striping is optional (default on): disabling it flattens cards to the panel color. --card-bg is still set so hover states blend from the flat tone. */
 html.no-zebra .file-card:nth-child(odd),
 html.no-zebra .file-card:nth-child(even) { --card-bg: var(--bg-secondary); background: var(--bg-secondary); }
 .file-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--bg-tertiary); }
@@ -474,17 +473,16 @@ html.no-zebra .file-card:nth-child(even) { --card-bg: var(--bg-secondary); backg
 .file-icon.font { color: color-mix(in srgb, #e0a85f var(--icon-keep, 100%), #000); background: rgba(224, 168, 95, 0.16); }
 .file-icon.playlist { color: color-mix(in srgb, #e08fb0 var(--icon-keep, 100%), #000); background: rgba(224, 143, 176, 0.2); }
 .file-icon.other { color: color-mix(in srgb, #9a9a9a var(--icon-keep, 100%), #000); background: rgba(154, 154, 154, 0.14); }
-/* Per-extension icon colors: each distinct extension in the folder gets a slot from this twelve-color palette (alphabetical, so colors stay put when the sort order changes). */
+/* Per-extension icon colors: each distinct extension in the folder gets a slot from this twelve-color palette (alphabetical, so colors stay put when the sort changes). */
 :root { --x0:#e2765c; --x1:#6fa8dc; --x2:#e08fb0; --x3:#8fc25a; --x4:#e0994f; --x5:#c58ce0; --x6:#4fc3a1; --x7:#e5675b; --x8:#dcae4e; --x9:#7c8cf0; --x10:#5dd0d8; --x11:#b8cfe0; }
 html:not(.no-xc) .file-icon.xc { color: color-mix(in srgb, var(--xcv, var(--xc)) var(--icon-keep, 100%), #000); background: color-mix(in srgb, var(--xcv, var(--xc)) 18%, transparent); }
-/* Same-extension variation: consecutive files of one extension cycle through four hue shifts of its color (zig-zag) so neighbors are easy to tell apart. */
+/* Same-extension variation: consecutive files of one extension cycle through four hue shifts (zig-zag) so neighbors are easy to tell apart. */
 @supports (color: hsl(from red h s l)) {
     .file-icon.xv1 { --xcv: hsl(from var(--xc) calc(h + 32) s l); }
     .file-icon.xv2 { --xcv: hsl(from var(--xc) calc(h - 32) s l); }
     .file-icon.xv3 { --xcv: hsl(from var(--xc) calc(h + 64) s l); }
 }
-/* Player glyphs use --glyph-1 for their main form and --glyph-2 for
-   separately drawn details or restrained accent linework. */
+/* Player glyphs use --glyph-1 for their main form and --glyph-2 for separately drawn details or restrained accent linework. */
 :root { --glyph-1: var(--on-control); --glyph-2: var(--stat-fill, var(--accent)); }
 .file-name { font-weight: 500; word-break: break-word; font-size: 0.8rem; max-width: 100%; line-height: 1.2; }
 .file-meta { font-size: var(--data-size); color: var(--text-muted); }
@@ -496,7 +494,7 @@ html:not(.no-xc) .file-icon.xc { color: color-mix(in srgb, var(--xcv, var(--xc))
 @media (hover: hover) {
 .file-list .file-card:hover { box-shadow: var(--shadow-sm); border-color: var(--accent); }
 }
-/* Rows in the plain themes rely on the zebra stripe and the gap alone; a border on every row as well was a third signal that made the folder rows look heavier. Hover and focus still draw the accent border. */
+/* Rows in the plain themes rely on the zebra stripe and the gap alone; a border on every row too made folder rows look heavier. Hover and focus still draw the accent border. */
 html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="hc-light"]):not([data-vivid]) .file-list .file-card:not(:hover):not(:focus):not(:focus-visible):not(.selected) { border-color: transparent; }
 .file-list .file-icon { width: 24px; height: 24px; }
 .file-list .file-icon svg { width: 14px; height: 14px; }
@@ -518,12 +516,11 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 .file-list-header .col.active .sort-arrow { color: var(--accent-text, var(--accent)); }
 .file-list-header .sort-arrow { font-size: 0.75rem; width: 0.7em; display: inline-block; }
 .file-list-header .col-ext, .file-list-header .col-size, .file-list-header .col-date, .file-list-header .col-time { justify-content: flex-end; position: relative; }
-/* Right-aligned columns: the sort arrow hangs off the label's left side instead of reserving room on the right, so each label ends exactly where its values end. */
+/* Right-aligned columns: the sort arrow hangs off the label's left side instead of reserving room on the right, so each label ends where its values end. */
 .file-list-header .col-ext .sort-arrow, .file-list-header .col-size .sort-arrow, .file-list-header .col-date .sort-arrow, .file-list-header .col-time .sort-arrow { position: absolute; right: 100%; margin-right: 0.2rem; width: auto; }
 .file-list.list-columns .file-card { display: grid; grid-template-columns: var(--list-cols); align-items: center; }
 .file-list.list-columns .col-ext, .file-list.list-columns .col-size, .file-list.list-columns .col-date, .file-list.list-columns .col-time { text-align: right; font-size: var(--data-size); line-height: 1.4; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-/* In list/tree mode the star sits inline as its own grid column
-   rather than floating over the card content. */
+/* In list/tree mode the star sits inline as its own grid column rather than floating over the card content. */
 .file-list.list-columns .card-star-btn { position: relative; top: 0; right: auto; opacity: 0.55; background: none; border: none; width: 24px; height: 24px; }
 .file-list.list-columns .file-card:focus-within .card-star-btn { opacity: 0.8; }
 @media (hover: hover) {
@@ -536,8 +533,7 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 /* Progressive column thinning as the window narrows. Each band is bounded on both ends so bands can't conflict regardless of source order. */
 @media (max-width: 1024px) and (min-width: 769px) {
     .tree-panel { --tree-def: 200px; }
-    /* Which list columns show is decided by the width of the file area itself, see the
-       #main[data-cols] rules below. */
+    /* Which list columns show is decided by the width of the file area itself, see the #main[data-cols] rules below. */
 }
 @media (max-width: 768px) and (min-width: 641px) {
     .breadcrumb { flex-basis: 6rem; }
@@ -771,14 +767,13 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
         flex-shrink: 0;
     }
     .tree-panel .tree-header, .tree-panel .tree-content, .tree-resize { display: none; }
-    /* header-content's gap applies to both axes; once the search + icons wrap to their own row the gap is too much dead space, so only the row gap is tightened. */
+    /* header-content's gap applies to both axes; once the search + icons wrap to their own row it is too much dead space, so only the row gap is tightened. */
     .header-content { row-gap: 0.375rem; }
     /* Pinned/favorites entries show filename and parent folder on a single truncated line, with the header and row chrome tightened to match. */
     .tree-pinned { padding-bottom: 0.15rem; }
     .tree-pinned-header { padding: 0.3rem 0.5rem 0.1rem; }
     .tree-pinned-item { padding: 0.2rem 0.5rem; font-size: 0.8rem; }
-    /* Keyboard shortcuts don't apply on a touchscreen, so the button
-       that surfaces them is dead weight in mobile view. */
+    /* Keyboard shortcuts don't apply on a touchscreen, so the button that surfaces them is dead weight in mobile view. */
     #shortcutsBtn { display: none; }
 }
 @media (max-width: 640px) {
@@ -866,7 +861,8 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
     .playlist-bar { gap: 0.4rem; }
     .playlist-bar #playlistTest, .playlist-bar #playlistList, .playlist-bar #playlistSongs, .playlist-bar #playlistQuality, .playlist-bar #playlistRec { padding-left: 0.35rem; padding-right: 0.35rem; }
 }
-/* Mobile: the station + song under the glyph are the one place the station is named, so the header title and the bar's title line are hidden, leaving the track controls and Test / Songs / Record on one row. */
+/* Mobile: the station + song under the glyph are the one place the station is named, so the header title and the bar's title line are hidden,
+   leaving the track controls and Test / Songs / Record on one row. */
 @container (max-width: 400px) {
     .playlist-bar #playlistTest:not(.active) .btn-txt, .playlist-bar #playlistList .btn-txt, .playlist-bar #playlistSongs .btn-txt, .playlist-bar #playlistQuality .btn-txt, .playlist-bar #playlistRec:not(.rec-on) .btn-txt { display: none; }
 }
@@ -884,11 +880,10 @@ body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-bt
 }
 /* Recording panel: same bar language as the playlist bar above it. Left = what is happening, right = what you can press. */
 .rec-panel { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem 0.75rem; padding: 0.45rem 0.75rem; min-height: var(--rec-h, 2.55rem); box-sizing: border-box; background: var(--bg-tertiary); border-top: var(--bw) solid var(--border-color); flex-shrink: 0; }
-/* Player window (station list): the details bar and the recording row take space only while they are open. The window stays centred in the page (and in a twin panel),
-   so opening or closing a bar grows or shrinks it evenly around the middle and the player section moves just enough to stay centred. On phones the recording row
-   overlays the empty space under the controls instead (see the max-width: 640px rules). */
+/* Player window (station list): the details bar and the recording row take space only while open. The window stays centred in the page (and in a twin panel),
+   so opening or closing a bar grows or shrinks it evenly around the middle. On phones the recording row overlays the empty space under the controls instead (see the max-width: 640px rules). */
 .rec-panel.rec-on { box-shadow: inset 3px 0 0 var(--danger); }
-/* File details bar: two lines at a fixed height on every screen, so opening it or stepping to the next file never moves the window. The facts fill it two to a column
+/* File details bar: two lines at a fixed height on every screen, so opening it or stepping to the next file never moves the window. Facts fill it two to a column
    and the rest scrolls sideways (wheel, swipe, arrow keys; dragging still selects text); a soft shadow on an edge shows there is more that way. */
 .meta-bar { display: flex; flex-flow: row nowrap; align-items: center; gap: 0.1rem 1.1rem; height: calc(var(--ml, 2) * 1.45 * var(--data-size) + 0.8rem + var(--bw)); box-sizing: border-box; padding: 0.4rem 0.75rem; overflow: hidden; scrollbar-width: none; flex-shrink: 0; border-top: var(--bw) solid var(--border-color); font-size: var(--data-size); line-height: 1.45;
     background:
@@ -975,8 +970,7 @@ body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-bt
 .stats-row-bar-track { flex: 1; height: 8px; background: var(--control-surface); border: var(--bw) solid var(--border-color); border-radius: var(--radius-sm); overflow: hidden; }
 .stats-row-bar-fill { display: block; height: 100%; min-width: 2px; background: var(--stat-fill, var(--accent)); }
 .stats-row-count { width: 44px; flex-shrink: 0; text-align: right; font-size: 0.75rem; line-height: 1.4; color: var(--text-muted); }
-/* Compact density: tightens grid/list/tree spacing for people who'd
-   rather see more rows at once than have larger touch targets. */
+/* Compact density: tightens grid/list/tree spacing for people who'd rather see more rows at once than have larger touch targets. */
 body.compact-density .file-grid { gap: 0.3rem; }
 body.compact-density .file-card { padding: 0.4rem; gap: 0.2rem; }
 body.compact-density .file-icon { width: 26px; height: 26px; }
@@ -998,8 +992,8 @@ mark.search-highlight { background: color-mix(in srgb, var(--accent) 30%, transp
 .file-list .file-thumbnail:not(.file-thumbnail-inline) { display: none; }
 .file-thumbnail-inline { width: 24px; height: 24px; border-radius: var(--radius-sm); object-fit: cover; flex-shrink: 0; }
 .file-list .file-card:has(.file-thumbnail-inline.loaded) .file-icon { display: none; }
-/* Grid view, like a desktop file manager: every tile has the same 4:3 picture box. An image fills it with its thumbnail (the icon shows until the
-   thumbnail has loaded); everything else gets a big icon centered in it. The name and size always start at the same height, so neighbors stay even. */
+/* Grid view, like a desktop file manager: every tile has the same 4:3 picture box. An image fills it with its thumbnail (the icon shows until it loads);
+   everything else gets a big icon centered in it. The name and size always start at the same height, so neighbors stay even. */
 .file-grid { --gi: 4.5rem; }
 .file-grid .file-card, body.compact-density .file-grid .file-card { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto 1fr; justify-items: center; align-content: start; gap: 0; }
 .file-grid .file-card::before { content: ""; grid-area: 1 / 1; width: 100%; aspect-ratio: 4 / 3; }
@@ -1008,7 +1002,7 @@ mark.search-highlight { background: color-mix(in srgb, var(--accent) 30%, transp
 .file-grid .file-card > .file-thumbnail { grid-area: 1 / 1; width: 100%; height: 0; min-height: 100%; aspect-ratio: auto; }
 .file-grid .file-card:has(> .file-thumbnail.loaded) > .file-icon { display: none; }
 .file-grid .file-card > .file-info { grid-area: 3 / 1; align-self: start; justify-self: stretch; min-width: 0; margin-top: 0.3rem; }
-/* The size / item count is a caption directly under the icon or preview (never on top of it, so badges and artwork stay visible), in the same place on every card whatever the name's length.
+/* The size / item count is a caption directly under the icon or preview (never on top, so badges and artwork stay visible), in the same place on every card whatever the name's length.
    Grid cards also stay one flat shade: stripes mean nothing without rows. (Search results keep the size in the text, because they also show the folder path there.) */
 .file-grid { --zebra-up: 0%; --zebra-down: 0%; }
 .file-grid .file-card > .file-info:not(:has(.file-path)) { display: contents; }
@@ -1258,7 +1252,7 @@ html[data-theme="concrete"] .tw-selbar { background: var(--yellow); color: var(-
 @media (pointer: coarse) { :root { --ctl: 2.25rem; } }
 .player-controls-row .playlist-btn:not(.player-play-btn), .playlist-bar .playlist-controls .playlist-btn, #modalContent .modal-actions .modal-btn:not(.play-playlist-btn):not(.text-btn) { width: var(--ctl); height: var(--ctl); min-width: 0; min-height: 0; padding: 0; flex-shrink: 0; }
 .playlist-bar .playlist-btn .btn-txt { padding-right: 0.2rem; }
-/* Header action buttons (star, info, link, download, open) are a little larger than the playlist-bar ones; Play and Close shrank by 25%, so the header ends up no taller than before. */
+/* Header action buttons (star, info, link, download, open) are a little larger than the playlist-bar ones; Play and Close shrank by 25%, so the header is no taller than before. */
 #modalContent .modal-actions .modal-btn:not(.play-playlist-btn):not(.text-btn) { width: max(var(--ctl), 2rem); height: max(var(--ctl), 2rem); }
 #modalContent .modal-actions .modal-btn:not(.play-playlist-btn):not(.text-btn) svg { width: 17px; height: 17px; }
 @media (pointer: coarse) { #modalContent .modal-actions .modal-btn#closeBtn::after, .modal-btn.play-playlist-btn::after, .playlist-btn.player-play-btn::after { content: ""; position: absolute; inset: -6px; } #modalContent .modal-actions .modal-btn#closeBtn, .modal-btn.play-playlist-btn, .playlist-btn.player-play-btn { position: relative; } }
@@ -1366,7 +1360,7 @@ body:not([data-source]) .mode-chip { display: none; }
 
 .md-bar, .ar-bar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 0.75rem; padding: 0.375rem 0.75rem; background: var(--bg-secondary); border-bottom: var(--bw) solid var(--border-color); min-height: 2.25rem; }
 .md-note { color: var(--text-muted); font-size: 0.8rem; }
-.md-view { width: 100%; padding: 1rem 1.25rem 2.5rem; max-width: 60rem; margin: 0 auto; color: var(--text-primary); font-size: 0.95rem; line-height: 1.6; overflow-wrap: anywhere; }
+.md-view { width: 100%; padding: 1rem 1.25rem 2.5rem; max-width: none; margin: 0; color: var(--text-primary); font-size: 0.95rem; line-height: 1.6; overflow-wrap: anywhere; }
 .md-view > :first-child { margin-top: 0; }
 .md-view h1, .md-view h2, .md-view h3, .md-view h4, .md-view h5, .md-view h6 { margin: 1.4em 0 0.5em; line-height: 1.25; font-weight: 700; }
 .md-view h1 { font-size: 1.7em; padding-bottom: 0.3em; border-bottom: var(--bw) solid var(--border-color); }
@@ -1678,7 +1672,9 @@ html[data-theme="concrete"] .switch input:checked + .switch-slider::before { bac
 html[data-theme="concrete"] .switch input:focus-visible + .switch-slider { outline: 2px solid var(--yellow); outline-offset: 1px; }
 html[data-theme="concrete"] .settings-menu-card { background: var(--panel); border: var(--bw) solid var(--line); box-shadow: 6px 6px 0 var(--ink); }
 html[data-theme="concrete"] .settings-menu-header { background: var(--ink); border-bottom: var(--bw) solid var(--line); }
-html[data-theme="concrete"] .settings-menu-title { font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; }
+html[data-theme="concrete"] .settings-menu-title { color: var(--text); font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; }
+html[data-theme="concrete"] .settings-menu-card { color: var(--text); }
+html[data-theme="concrete"] .theme-btn { white-space: nowrap; letter-spacing: 0; }
 html[data-theme="concrete"] .settings-section-title { color: var(--text); font-weight: 900; }
 html[data-theme="concrete"] details.settings-collapsible { background: var(--ink); border: var(--bw) solid var(--line); margin: 8px; padding: 0; }
 html[data-theme="concrete"] .settings-collapsible > summary { padding: 8px 10px; color: var(--text); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0; }
@@ -1692,7 +1688,7 @@ html[data-theme="concrete"] .modal-title { font-weight: 900; text-transform: upp
 html[data-theme="concrete"] .modal-body { background: var(--ink); }
 #modal .modal:has(#playlistBar.active):not(.video-modal) .meta-bar.meta-empty { background: var(--bg-primary) !important; border-top-color: transparent; }
 html[data-theme="concrete"] #modal .modal:has(#playlistBar.active):not(.video-modal) .meta-bar.meta-empty { background: var(--ink) !important; }
-/* Whatever is not covered by a bar inside the station player window (if anything) shows the window's own colour, so make that the colour of the player body */
+/* Whatever is not covered by a bar inside the station player window shows the window's own colour, so make that the colour of the player body. */
 #modal .modal:has(#playlistBar.active):not(.video-modal) { background: var(--bg-primary); }
 html[data-theme="concrete"] #modal .modal:has(#playlistBar.active):not(.video-modal) { background: var(--ink); } /* the player body is black */
 @media (min-width: 641px) {
@@ -1902,7 +1898,7 @@ body.twin-on .header-actions { margin-left: auto; }
 
 /* Vivid under Windows high contrast ("forced colors" in Brave/Edge/Chrome): like Concrete, Vivid keeps its own picked-color palette instead of having every surface
    replaced by the Windows palette (which turned the flat color into plain black and hid the controls). Its colors are already contrast-checked (text, icon controls,
-   accent text), and in forced-colors mode the edges get a stronger 2px width and the focus ring switches to the text color, since the flat accent equals the background. */
+   accent text); in forced-colors mode the edges get a stronger 2px width and the focus ring uses the text color, since the flat accent equals the background. */
 html[data-vivid],
 html[data-vivid] *,
 html[data-vivid] *::before,
@@ -1945,12 +1941,12 @@ html[data-vivid] *::after { forced-color-adjust: none !important; }
     .tw-rail .gal-list { flex-direction: row; overflow-x: auto; overflow-y: hidden; }
     .tw-rail[data-kind="image"] .gal-item { width: 4.25rem; }
 }
-/* The windows opened from the player (playlist, songs heard, recordings) follow it: inside a panel they open inside that panel, over the player, with the same normal-window look. */
+/* Windows opened from the player (playlist, songs heard, recordings) follow it: inside a panel they open inside that panel, over the player, with the same normal-window look. */
 .modal-overlay.tw-embedded:not(#modal) { position: absolute; inset: 0; z-index: 6; transition: none; touch-action: auto; }
 .modal-overlay.tw-embedded:not(#modal) .modal { max-width: min(560px, 100%); max-height: 100%; transform: none; transition: none; }
 .modal-overlay.tw-embedded.tw-narrow:not(#modal) { padding: 0; }
 .modal-overlay.tw-embedded.tw-narrow:not(#modal) .modal { width: 100%; max-width: none; height: 100%; max-height: none; border: 0; border-radius: 0; }
-/* The player keeps its normal-window look inside a panel (backdrop, centered card, the same size limits, the playlist window anchored near the top like the page does),
+/* The player keeps its normal-window look inside a panel (backdrop, centered card, the same size limits, the playlist window anchored near the top as on the page),
    with the panel taking the place of the browser window. A panel up to 640px wide gets the phone layout (class tw-narrow, set by the page from the panel width). */
 #modal.tw-embedded { position: absolute; inset: 0; z-index: 5; transition: none; touch-action: auto; }
 #modal.tw-embedded .modal { max-width: 100%; max-height: 100%; transform: none; transition: none; }
@@ -2048,7 +2044,7 @@ body.tw-boxes-in-heads .header-actions { flex: 0 0 auto; margin-left: auto; }
 .tw-head .search-input { padding-top: 0.25rem; padding-bottom: 0.25rem; }
 
 /* --- Buttons that move when hovered or pressed keep a hit area that does not move ---
-   Concrete lifts a button 1px on hover and sinks it 2px on press. At the edge of a button that move slid the button out from under the pointer: the hover ended, the button
+   Concrete lifts a button 1px on hover and sinks it 2px on press. At a button's edge that move slid it out from under the pointer: the hover ended, the button
    moved back, the hover began again (the shadow flashed), and a press near the top or left edge could lose its click. An invisible 3px margin around the button, which moves
    with it, keeps the pointer inside for the whole move. Touch screens already have a larger hit area (see "Touch: bigger hit areas"). */
 @media (hover: hover) and (pointer: fine) {
@@ -2106,8 +2102,8 @@ html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]
 }
 
 /* === STRUCTURAL THEMES: Phosphor, Dial-Up, Dither, Pivot, Neon Chalk (Settings > Theme). All are dark and square-cornered.
-   Each one is just a stock palette (the same tokens as dark / light, so the color engine tints them the same way as the built-in themes,
-   with the picked hue poured in and every lightness kept) plus a few scoped rules for the things a palette can't change. ===
+   Each is a stock palette (the same tokens as dark / light, so the color engine tints them like the built-in themes, with the picked hue poured in and every lightness kept)
+   plus a few scoped rules for what a palette can't change. ===
    Palettes are declared once per theme; nothing here touches other themes. getActivePaletteKey() lists them as dark for Vivid. */
 
 /* PHOSPHOR: green phosphor on black, mono type, "> " prompt marks on list rows, [bracketed] text buttons, blinking cursor after the logo */
@@ -2373,7 +2369,7 @@ html[data-theme="neonchalk"] input[type="number"] { border-color:var(--text-prim
 html[data-theme="neonchalk"] .file-card:hover .file-name, html[data-theme="neonchalk"] .file-card.selected .file-name { background:linear-gradient(transparent 52%,var(--accent-solid) 52%); width:fit-content; max-width:100%; }
 html[data-theme="neonchalk"] .view-btn.active, html[data-theme="neonchalk"] .md-toggle[aria-pressed="true"], html[data-theme="neonchalk"] .ts-ctl [aria-pressed="true"] { background:linear-gradient(transparent 55%,var(--accent-solid) 55%); color:var(--text-primary); }
 
-/* Button and field outlines in Phosphor and Pivot use the stronger border token so controls stay visible against the page (also under a picked color) */
+/* Button and field outlines in Phosphor and Pivot use the stronger border token so controls stay visible against the page (also under a picked color). */
 html[data-theme="phosphor"] .settings-btn, html[data-theme="phosphor"] .modal-btn, html[data-theme="phosphor"] .playlist-btn, html[data-theme="phosphor"] .goto-step-btn,
 html[data-theme="phosphor"] .settings-menu-close, html[data-theme="phosphor"] .settings-control button, html[data-theme="phosphor"] .theme-reset-btn, html[data-theme="phosphor"] .md-toggle,
 html[data-theme="phosphor"] .load-more-btn, html[data-theme="phosphor"] .download-btn, html[data-theme="phosphor"] .tree-hdr-btn, html[data-theme="phosphor"] .op-toast button,
@@ -2387,7 +2383,7 @@ html[data-theme="dither"] .theme-toggle:not(.custom-color-active) .theme-btn-cus
 
 /* The five structural themes under Windows high contrast ("forced colors" in Brave/Edge/Chrome): like Concrete and Vivid, they keep their own contrast-checked palette
    instead of having every surface replaced by the Windows palette (which flattened bevels, stripes, highlighter swashes and the grid into plain boxes).
-   All five are dark themes, so they stay readable in a dark high-contrast setup; no light theme gets this opt-out and light stays on the Windows palette. */
+   All five are dark themes, so they stay readable in a dark high-contrast setup; no light theme gets this opt-out, and light stays on the Windows palette. */
 html[data-theme="phosphor"],
 html[data-theme="dialup"],
 html[data-theme="dither"],
@@ -2419,6 +2415,18 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
     html[data-theme="dither"] :focus-visible { outline: 2px solid var(--text-primary); outline-offset: -2px; }
     html[data-theme="pivot"] :focus-visible { outline: 2px solid var(--text-primary); outline-offset: -2px; }
     html[data-theme="neonchalk"] :focus-visible { outline: 2px solid var(--text-primary); outline-offset: -2px; }
+}
+
+/* Touch-sized hit areas on phones. Dialog controls grow for real; the tight header controls keep their look and only get a taller invisible tap area. */
+@media (max-width: 640px) {
+    .settings-menu-close { min-width: 40px; min-height: 40px; }
+    .settings-menu-close svg { width: 16px; height: 16px; }
+    .settings-control button { min-width: 40px; min-height: 36px; }
+    .theme-btn { min-height: 36px; }
+    .theme-reset-btn { min-height: 36px; }
+    .intensity-bar, .intensity-seg { min-height: 36px; }
+    .logo, .view-btn { position: relative; }
+    .logo::after, .view-btn::after { content: ""; position: absolute; left: 0; right: 0; top: -8px; bottom: -8px; }
 }
 </style>
 </head>
@@ -2469,7 +2477,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                         <div class="settings-menu-card">
                             <div class="settings-menu-header">
                                 <span class="settings-menu-title">Settings</span>
-                                <button class="settings-menu-close" id="settingsMenuCloseBtn" title="Close" aria-label="Close settings"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button>
+                                <button class="settings-menu-close" title="Close" aria-label="Close settings"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button>
                             </div>
                             <div class="settings-menu-body">
                                 <div class="settings-section">
@@ -2615,7 +2623,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                         <div class="settings-menu-card">
                             <div class="settings-menu-header">
                                 <span class="settings-menu-title">Theme &amp; Color</span>
-                                <button class="settings-menu-close" id="themeMenuCloseBtn" title="Close" aria-label="Close theme settings"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button>
+                                <button class="settings-menu-close" title="Close" aria-label="Close theme settings"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button>
                             </div>
                             <div class="settings-menu-body">
                                 <div class="settings-section">
@@ -2735,7 +2743,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                     <button class="playlist-btn prev-btn top-native-btn" id="topPrevBtn" title="Previous track" aria-label="Previous track" disabled><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z" /></svg></button>
                     <button class="playlist-btn next-btn top-native-btn" id="topNextBtn" title="Next track" aria-label="Next track" disabled><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" /></svg></button>
                     <button class="playlist-btn shuffle-btn top-native-btn" id="topShuffleBtn" title="Shuffle" aria-label="Toggle shuffle" aria-pressed="false" disabled><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M10.59 9.17 5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z" /></svg></button>
-                    <div class="goto-quick" id="gotoQuick" title="Go to track">
+                    <div class="goto-quick" title="Go to track">
                         <input type="number" class="goto-input" id="gotoInput" min="1" step="1" inputmode="numeric" aria-label="Go to track number" />
                         <div class="goto-stepper">
                             <button type="button" class="goto-step-btn" id="gotoDownBtn" aria-label="Previous track number" title="Hold to skip faster"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 10l5 5 5-5z" /></svg></button>
@@ -2751,7 +2759,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                 <button class="playlist-btn" id="playlistQuality" hidden aria-haspopup="menu" aria-expanded="false" title="Quality" aria-label="Choose the stream quality"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M6.5 9.5v5M6.5 12h4M10.5 9.5v5M13.5 9.5h1.8a2.5 2.5 0 0 1 0 5h-1.8z"/></svg><span class="btn-txt">Quality</span></button>
                 <button class="playlist-btn" id="playlistRec" hidden title="Record this station and save it as audio files" aria-label="Record this station"><svg class="ico-c" viewBox="0 0 24 24" fill="currentcolor"><circle cx="12" cy="12" r="9" fill="none" stroke="currentcolor" stroke-width="2"/><circle class="rec-core" cx="12" cy="12" r="5"/></svg><span class="btn-txt">Record</span></button>
             </div>
-            <div class="modal-main" id="modalMain">
+            <div class="modal-main">
                 <aside class="gallery-rail" id="galleryRail" aria-label="Files in this folder" hidden></aside>
                 <div class="modal-body" id="modalBody"></div>
             </div>
@@ -2934,12 +2942,10 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
     <div id="srAnnouncer" class="sr-only" aria-live="polite" role="status"></div>
     <script>
 "use strict";
-// Failures that are expected and harmless (blocked storage, a play() that was refused, a node that is already gone) are swallowed on purpose.
-// Open the page with ?debug to see each one in the console.
+// Expected, harmless failures (blocked storage, refused play(), detached nodes) are swallowed; open with ?debug to log them.
 const DEBUG = /[?&]debug(?:[=&]|$)/.test(location.search);
 function swallow(err) { if (DEBUG) console.debug("[swallowed]", err); }
-// Storage can throw just by being touched (blocked site data, hardened Firefox, some private modes): `store` is localStorage when it works,
-// else an in-memory stand-in, so the page still opens.
+// Storage can throw just by being touched (blocked site data, some private modes): `store` is localStorage, or an in-memory stand-in.
 const store = (() => {
     try {
         const ls = window.localStorage;
@@ -2968,9 +2974,8 @@ let fileIndex = null,
     suppressHashSync = false;
 
 let searchQuery = "",
-    // Search results are paged (the whole repo can match thousands of
-    // files). Folders show everything in them; the one exception is a huge local folder (over FOLDER_PAGE_AT items), which grows as you scroll
-    // (and by "Show more", End or Down at the last item) so a folder of thousands of files does not build thousands of rows at once.
+    // Search results are paged (thousands can match). Folders show everything, except a huge local folder (over FOLDER_PAGE_AT items),
+    // which grows on scroll, "Show more", or End/Down at the last item.
     searchResultLimit = 100,
     folderLimit = 500;
 const FOLDER_PAGE_AT = 2500; // far above the ~1k a hosted folder can hold, so only a huge local folder ever pages
@@ -2997,8 +3002,7 @@ let currentVolume = 0.25, // Default volume 25% (on the player's own scale, see 
     activeLevelers = new Set(),
     eqNodes = null,
     eqState = null;
-// The volume shown to the user is not the raw element volume: it is squared on the way in, so the low
-// end is much quieter and fine-grained, and Web Audio adds make-up gain so the top end is louder.
+// The displayed volume is squared on the way in (finer, quieter low end); Web Audio adds make-up gain for the top end.
 const volToEl = (u) => Math.pow(Math.max(0, Math.min(1, u)), 2);
 const elToVol = (v) => Math.round(Math.sqrt(Math.max(0, Math.min(1, v))) * 100) / 100;
 const VOL_KEY = "playerVolumeUi";
@@ -3121,8 +3125,7 @@ const emptyStateIllustrations = {
             </svg>`,
 };
 
-// Music-gear glyphs for the icon above the audio player (cassettes, boomboxes, vinyl, mics, speakers...).
-// One is picked at random on first appearance and swapped on each station/track change.
+// Music-gear glyphs for the audio player icon; one is picked at random on first appearance and swapped on each station/track change.
 const playerNoteIcons = [
     `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.90"/><circle cx="17" cy="12" r="0.90"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/></svg>`,
     `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1.5" y="4" width="21" height="16" rx="1.8"/><circle cx="7" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="17" cy="12" r="2.8" fill="var(--bg-tertiary)"/><circle cx="7" cy="12" r="0.9"/><circle cx="17" cy="12" r="0.9"/><rect x="9" y="16.6" width="6" height="1.9" rx="0.5" fill="var(--bg-tertiary)"/><path d="M4 8.5h16" stroke="var(--bg-tertiary)" stroke-width="0.7" stroke-dasharray="1 1.2"/></svg>`,
@@ -3365,9 +3368,8 @@ function pickPlayerNoteIcon() {
     currentPlayerNoteIndex = idx;
     return playerNoteIcons[idx];
 }
-// Recenters each glyph on its real bounding box (some aren't symmetric in their viewBox), then gives it a two-tone treatment:
-// filled icons keep the silhouette in glyph-1 and use glyph-2 for details; single-piece silhouettes get an accent keyline;
-// stroke drawings get an accent under-stroke.
+// Recenters each glyph on its real bounding box, then applies two tones: filled icons use glyph-1 for the silhouette and glyph-2 for details;
+// single-piece silhouettes get an accent keyline; stroke drawings get an accent under-stroke.
 function applyPlayerIconDuo(svg) {
     if (!svg || svg.querySelector('[fill="var(--bg-tertiary)"], [stroke="var(--bg-tertiary)"]')) return;
 
@@ -3431,9 +3433,9 @@ function applyPlayerIconDuo(svg) {
     });
 }
 
-// Keeps the two glyph tones readable and apart. The theme's own --glyph-1 / --glyph-2 are used as they are when they already differ enough
-// (at least GLYPH_MIN_PAIR between the tones and GLYPH_MIN_SURF for the second tone against the tile); otherwise a mid tone in the same hue is
-// found, and if the tile is too close to the main tone that one is pushed to pure white or black first. Set per tile, so no theme CSS changes.
+// Keeps the two glyph tones readable and distinct. The theme's --glyph-1/--glyph-2 are used as-is when they differ enough
+// (GLYPH_MIN_PAIR between tones, GLYPH_MIN_SURF for the second tone against the tile); otherwise a mid tone of the same hue is found,
+// after pushing the main tone to white or black if the tile is too close to it. Set per tile, so no theme CSS changes.
 const GLYPH_MIN_PAIR = 2.3, GLYPH_MIN_SURF = 3;
 let glyphPxCtx = null;
 function glyphPx(c) {
@@ -3574,8 +3576,8 @@ function wirePlayerIconTap(scope) {
         audioEl.addEventListener("pause", () => stopAutoSwap(audioEl));
         audioEl.addEventListener("ended", () => stopAutoSwap(audioEl));
         audioEl.addEventListener("emptied", () => {
-            // `emptied` fires on every track-change load(), not just teardown. Drop the registry entry only once the audio
-            // element has left the DOM, or the follow-up "play" event races it and the timer never restarts.
+            // `emptied` fires on every track-change load(), not just teardown. Drop the registry entry only once the audio element has left the DOM,
+            // or the follow-up "play" event races it and the timer never restarts.
             stopAutoSwap(audioEl);
             if (!audioEl.isConnected) {
                 autoSwapRegistry.delete(audioEl);
@@ -3658,8 +3660,7 @@ function syncThemeColorMeta() {
     const v = getComputedStyle(document.documentElement).getPropertyValue("--header-bg").trim() || getComputedStyle(document.documentElement).getPropertyValue("--bg-secondary").trim();
     if (v) meta.setAttribute("content", v);
 }
-// Announces a message through the hidden aria-live region. Clearing first forces a re-announcement of repeated text
-// (e.g. "Buffering..." on rapid track skips).
+// Announces via the hidden aria-live region; clearing first forces re-announcement of repeated text (e.g. "Buffering...").
 function announce(text) {
     const el = document.getElementById("srAnnouncer");
     if (!el) return;
@@ -3838,8 +3839,8 @@ function visibleVariant(hex, bgHex, targetRatio, maxShift) {
     }
     return best;
 }
-// The button color for the Vivid look: at least 3:1 against the page, and one where black or white ink (also on the hover color) reaches 4.5:1.
-// A plain "3:1 against the page" lands on mid-tones where neither ink reads well, so the lightness is searched until both hold.
+// Vivid button color: at least 3:1 against the page, with black or white ink (also on hover) reaching 4.5:1.
+// Lightness is searched until both hold, since plain 3:1 lands on mid-tones where neither ink reads.
 function pickControlSurface(page) {
     const { h, s, l } = hexToHsl(page);
     const start = clampNum(l + (l < 55 ? 22 : -22), 6, 94);
@@ -3860,9 +3861,8 @@ function pickControlSurface(page) {
 function minContrast(hex, surfaces) {
     return Math.min(...surfaces.map((x) => contrastRatio(hex, x)));
 }
-// Moves hex's lightness (hue and saturation kept) the shortest way until it reads on EVERY surface in the list, each with its own minimum:
-// surfaces is [[color, minRatio], ...]. When no lightness of that hue can do it, black or white is used, whichever reads better on the weakest surface.
-// This is what keeps a control, icon or label readable on both the page and the buttons that sit on it, whatever color is picked.
+// Shifts lightness (hue and saturation kept) the shortest way until hex reads on every surface, surfaces being [[color, minRatio], ...].
+// If no lightness of that hue works, uses black or white, whichever reads better on the weakest surface.
 function fitToSurfaces(hex, surfaces) {
     const ok = (c) => surfaces.every(([bg, min]) => contrastRatio(c, bg) >= min);
     if (ok(hex)) return hex;
@@ -3908,9 +3908,8 @@ function parseCssColor(str) {
     if (m) return "#" + [1, 2, 3].map((i) => clampNum(Math.round(+m[i]), 0, 255).toString(16).padStart(2, "0")).join("");
     return null;
 }
-// Identity-preserving custom color: the active theme's stock palette is read back from CSS and the picked hue is poured into it
-// with every lightness unchanged, so light stays light, dark stays dark and high-contrast keeps pure black/white with re-checked contrast.
-// Concrete re-tints its own palette.
+// Identity-preserving custom color: the active theme's stock palette is read back from CSS and the picked hue is applied with every lightness
+// unchanged, so light stays light, dark stays dark, and high-contrast keeps pure black/white with contrast re-checked. Concrete re-tints its own palette.
 function applyTintColor() {
     const rootEl = document.documentElement, root = rootEl.style;
     const activeColor = muteColorAtIntensity(vividColor, colorIntensity);
@@ -3922,8 +3921,7 @@ function applyTintColor() {
         root.setProperty("--cc-line", hslToHex(h, clampNum(activeS * 0.5, 0, 45), 90));
         root.setProperty("--cc-muted", hslToHex(h, clampNum(activeS * 0.3, 0, 30), 75));
         root.setProperty("--cc-text", "#ffffff");
-        // Black ink sits on every role-colored button, so each fill is lightened (hue and saturation kept) until black reads on it at 7:1 (WCAG AAA);
-        // dark hues like blue and violet used to land at 3:1 and the icons vanished.
+        // Black ink sits on every role-colored button, so each fill is lightened (hue and saturation kept) until black reads on it at 7:1 (WCAG AAA).
         const lift = (hh, ss, ll, min) => {
             let c = hslToHex(hh, ss, ll);
             for (let L = ll; L <= 97 && contrastRatio(c, "#000000") < min; L++) c = hslToHex(hh, ss, L);
@@ -4014,8 +4012,7 @@ function applyVividColor() {
     newVals["--border-strong"] = visibleVariant(activeColor, activeColor, 3, 60);
     // Guaranteed-visible surface for icon-only controls, since a
     // button matching the flat panel color would otherwise vanish.
-    const { h: ctrlH, s: ctrlS, l: ctrlL } = hexToHsl(activeColor);
-    const shiftedL = clampNum(ctrlL + (ctrlL < 55 ? 22 : -22), 6, 94);
+    const { h: ctrlH } = hexToHsl(activeColor);
     const controlSurface = pickControlSurface(activeColor);
     newVals["--control-surface"] = controlSurface;
     newVals["--control-surface-hover"] = visibleVariant(controlSurface, controlSurface, 1.3, 25);
@@ -4027,9 +4024,8 @@ function applyVividColor() {
     // Vivid, contrast-safe fill for proportional bars (e.g. Library Stats), where a subtle lightness variant of the flat color wouldn't read.
     const vividFill = hslToHex(ctrlH, 85, 55);
     newVals["--stat-fill"] = fitToSurfaces(vividFill, [[controlSurface, 3], [activeColor, 3]]);
-    // Accent-as-text variant (e.g. breadcrumb links), since the flat
-    // --accent equals the panel background it would sit on.
-    // It is also the text of the Play button and the pressed star/details buttons, which sit on the control surface, so it must read on that too.
+    // Accent-as-text variant (breadcrumb links, Play button, pressed star/details buttons): the flat --accent equals the panel background,
+    // so this must also read on the control surface.
     newVals["--accent-text"] = fitToSurfaces(activeColor, [[activeColor, 4.5]]);
     newVals["--accent-on-control"] = fitToSurfaces(activeColor, [[controlSurface, 4.5], [newVals["--control-surface-hover"], 4.5]]);
     for (const key of Object.keys(base)) {
@@ -4249,8 +4245,7 @@ function changeFontSize(e) {
         store.setItem("fontSize", currentFontSize),
         updateFontSizeLabel();
 }
-// Preview text (code / text file previews) has its own size, in rem, so it can sit
-// smaller than the interface text. Default 0.8rem; stored as "previewFontSize".
+// Preview text (code/text previews) has its own rem size, default 0.8rem, stored as "previewFontSize".
 const PREVIEW_FONT_DEFAULT = 0.8, PREVIEW_FONT_MIN = 0.5, PREVIEW_FONT_MAX = 2.4, PREVIEW_FONT_STEP = 0.1;
 let previewFontSize = PREVIEW_FONT_DEFAULT;
 // Thumbnail size (small / medium / big) for the grid view, in the main view and in both twin panels: medium is the original size.
@@ -4271,9 +4266,8 @@ function setThumbSize(v) {
 }
 function wireThumbSize() {
     document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest(".ts-ctl [data-ts]"); if (b) setThumbSize(b.dataset.ts); });
-    // Ctrl + mouse wheel over a grid, as in a file manager (a pinch on a trackpad arrives the same way).
-    // The handler that can cancel the page zoom is only attached while Ctrl is held (or a pinch is under way), so ordinary wheel
-    // scrolling is never held up waiting for it.
+    // Ctrl + mouse wheel over a grid, as in a file manager (a trackpad pinch arrives the same way).
+    // The handler that can cancel page zoom is attached only while Ctrl is held or a pinch is under way, so normal scrolling is never delayed.
     let last = 0, armed = false, ctrlDown = false, idle = 0;
     const onWheel = (e) => {
         if (!e.ctrlKey || !e.target.closest || !e.target.closest(".file-grid")) return;
@@ -4337,7 +4331,7 @@ function preprocessFiles(nodes, pathPrefix = "", prefixArr = []) {
         const searchKey = pathPrefix ? parentLower + "/" + nameLower : nameLower;
         const navPath = prefixArr.length ? [...prefixArr, node.name] : [node.name];
 
-        // Search keys are built once per file: normalizedKey is the path lowercased with punctuation collapsed to single spaces.
+        // Search keys are built once per file: normalizedKey is the lowercased path with punctuation collapsed to single spaces.
         // The fuzzy keys (compactKey, boundarySet) are built on first use (see fuzzyKeys) to keep start-up and memory small.
         const nameNorm = nameLower.replace(/[^a-z0-9]+/g, " ").trim();
         const normalizedKey = parentNorm ? (nameNorm ? parentNorm + " " + nameNorm : parentNorm) : nameNorm;
@@ -4361,7 +4355,7 @@ function preprocessFiles(nodes, pathPrefix = "", prefixArr = []) {
         }
     }
 }
-// Fuzzy-match keys, built on first use and kept on the item: compactKey (normalizedKey without spaces, for subsequence matching)
+// Fuzzy keys, built on first use and kept on the item: compactKey (normalizedKey without spaces, for subsequence matching)
 // and boundarySet (word-start indices in compactKey, for the word-boundary bonus).
 function fuzzyKeys(item) {
     if (item.compactKey !== undefined) return item;
@@ -4377,8 +4371,7 @@ function fuzzyKeys(item) {
     return item;
 }
 
-// Cheap yes/no version of the fuzzy test, with nothing allocated. `query` is letters and digits only,
-// so the spaces in `norm` can never match: this is the same test as on compactKey.
+// Allocation-free yes/no version of the fuzzy test. `query` is letters and digits only, so spaces in `norm` never match.
 function isSubsequence(query, norm) {
     let qi = 0;
     const qn = query.length;
@@ -4387,7 +4380,7 @@ function isSubsequence(query, norm) {
     }
     return qi === qn;
 }
-// Scores one fuzzy-subsequence match of `query` in `str`; null if its characters don't all appear in order.
+// Scores a fuzzy-subsequence match of `query` in `str`; null if its characters don't all appear in order.
 // Rewards consecutive runs, word-boundary hits (`boundarySet`) and earlier positions.
 function fuzzySubsequenceScore(query, str, boundarySet) {
     let qi = 0, score = 0, prevIndex = -2, consecutiveRun = 0, firstIndex = -1;
@@ -4411,8 +4404,8 @@ function fuzzySubsequenceScore(query, str, boundarySet) {
     return score;
 }
 
-// Scores how well an item matches the query (null = no match). Tiers, so a precise match always outranks a loose one:
-// 4 (~2000+) whole query is a substring of the path; 3 (~1400-1900) every token is a substring;
+// Scores an item against the query (null = no match). Tiers, so a precise match always outranks a loose one:
+// 4 (~2000+) whole query is a path substring; 3 (~1400-1900) every token is a substring;
 // 2 (~1000-1300) single-token substring, punctuation ignored; 1 (~300-800) fuzzy subsequence only.
 function scoreSearchItem(query, tokens, compactQuery, item) {
     const rawKey = item.searchKey;
@@ -4462,10 +4455,10 @@ function scoreSearchItem(query, tokens, compactQuery, item) {
 }
 
 // ---- Search filters ----
-// Words of the form key:value narrow the results and combine with ordinary (fuzzy) words:
+// key:value words narrow results and combine with ordinary (fuzzy) words:
 //   ext:m3u,m3u8   type:folder | file | a category (audio, image, video, playlist, code, ...)   size:>1mb  size:<500kb  size:10kb..2mb
-//   newer:7d  older:3m  (d days, w weeks, m months, y years)   after:2026-01-01  before:2026-06-30   in:folder (path contains)
-//   A leading minus turns a filter around (-ext:json) or excludes a word (-backup).
+//   newer:7d  older:3m  (d, w, m, y)   after:2026-01-01  before:2026-06-30   in:folder (path contains)
+//   A leading minus inverts a filter (-ext:json) or excludes a word (-backup).
 const SEARCH_UNITS = { b: 1, kb: 1024, mb: 1048576, gb: 1073741824, tb: 1099511627776 };
 function parseSize(v) {
     const m = /^(\d+(?:\.\d+)?)\s*(b|kb|mb|gb|tb|k|m|g)?$/.exec(v);
@@ -4524,8 +4517,8 @@ function parseSearch(q) {
 }
 function searchTextOf(q) { return q ? parseSearch(q).text : q; }
 
-// Ranks `items` for query `q`: filters first, then the fuzzy score, with a bonus for items in the folder being viewed.
-// A query of filters only (no words) lists every match, folders first, by name.
+// Ranks `items` for query `q`: filters first, then fuzzy score, with a bonus for items in the viewed folder.
+// A filters-only query lists every match, folders first, by name.
 const SEARCH_COLLATOR = new Intl.Collator(undefined, { numeric: true });
 function rankSearch(items, q, here) {
     const { text, tests } = parseSearch(q);
@@ -4555,14 +4548,14 @@ function searchFiles(query) {
 
 // ---- Loudness leveler (on by default) ----
 // Chain: source -> [compressor] -> level gain -> make-up gain -> equalizer -> limiter -> speakers.
-// The level gain normalizes loudness measured as in EBU R128 / BS.1770 (K-weighting, mean square, 3 s window, silence ignored)
-// and moves slowly toward the target. Only the limiter catches peaks, so music keeps its dynamics unless Smooth or Night is chosen.
+// The level gain normalizes loudness measured per EBU R128 / BS.1770 (K-weighting, mean square, 3 s window, silence ignored) and moves slowly
+// toward the target. Only the limiter catches peaks, so dynamics are kept unless Smooth or Night is chosen.
 // The element's own volume is applied before Web Audio, so the meter divides it back out; otherwise the slider would be "corrected".
 const LEVEL_TARGET_LUFS = 16;   // stream loudness at the level gain's output, as -LUFS (-16 LUFS)
 const LEVEL_POST_DB = 14;       // make-up gain after it, tuned so the 25% slider sounds as loud as the old chain did (about -26 LUFS); above ~50% the limiter starts catching peaks
 const LEVEL_GAIN_MIN = -18, LEVEL_GAIN_MAX = 12;
-// Where the level gain sits before the first measurement of a stream. Loud stations need about -7 to -11 dB, so starting this low
-// means nothing comes in louder than it will end up; quiet ones swell up within a second or two.
+// Starting level gain before the first measurement of a stream. Loud stations need about -7 to -11 dB, so starting low
+// means nothing arrives louder than it ends up; quiet ones swell up within a second or two.
 const LEVEL_START_DB = -14;
 const LEVEL_KEY = "levelMode2"; // 2nd key: the leveler is on (Level) by default for everyone, whatever an older build saved
 const LEVEL_MODES = {
@@ -4603,7 +4596,7 @@ function applyLevelModeAll() {
     activeLevelers.forEach((lv) => applyLevelMode(lv));
     updateDeess();
 }
-// Pure control law (no Web Audio, so it can be tested). `e` is the block energy summed over channels, divided by volume squared; `now` is in ms.
+// Pure control law (no Web Audio, so testable). `e` is block energy summed over channels, divided by volume squared; `now` is in ms.
 // Returns the dB the level gain should move toward, or null to hold (silence, paused, not enough data).
 function levelUpdate(lv, e, now) {
     const blocks = lv.blocks;
@@ -4638,8 +4631,8 @@ function levelUpdate(lv, e, now) {
 function newLevelState(now) {
     return { blocks: [], gainDb: LEVEL_START_DB, lufs: null, lastUpdate: now, fastUntil: now + 6000 };
 }
-// Fades: each element has a fade gain at the end of its chain. It is silent while loading, buffering or paused and ramps up on (re)start,
-// so starts and resumes never click. A pause from the player's controls (softPause) fades out first; a station change cuts the old audio at once and the new one fades in.
+// Fades: each element ends its chain with a fade gain, silent while loading, buffering or paused and ramping up on (re)start, so nothing clicks.
+// A pause from the player's controls (softPause) fades out first; a station change cuts the old audio at once and fades the new one in.
 const FADE_IN_S = 0.2, FADE_OUT_S = 0.08;
 function fadeTo(lv, target, secs) {
     if (!lv.fade || !audioCtx) return;
@@ -4671,8 +4664,7 @@ function softPause(el) {
         if (lv.gen === gen) el.pause(); // the stream was swapped meanwhile: leave the new one alone
     }, FADE_OUT_S * 1000 + 15);
 }
-// A new stream on a reused element: forget the previous station's measurement and gain, so the new one
-// starts quietly instead of inheriting a gain that was right for another station.
+// A new stream on a reused element: forget the previous station's measurement and gain so the new one starts quietly.
 function resetLeveler(lv) {
     Object.assign(lv, newLevelState(performance.now()));
     lv.gen = (lv.gen || 0) + 1;
@@ -4802,8 +4794,8 @@ function setupAudioNormalization(mediaElement) {
 }
 
 // ---- Equalizer ----
-// 10 bands (low shelf, 8 peaking, high shelf), presets and a mono switch, on the same Web Audio chain as the leveler,
-// so it only applies to streams and files routed through it (CORS-enabled ones). The preamp drops by the largest boost so boosting never clips.
+// 10 bands (low shelf, 8 peaking, high shelf), presets and a mono switch on the leveler's Web Audio chain, so it applies only to streams and files
+// routed through it (CORS-enabled ones). The preamp drops by the largest boost so boosting never clips.
 const EQ_FREQS = [32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
 const EQ_LABELS = ["32", "64", "125", "250", "500", "1k", "2k", "4k", "8k", "16k"];
 const EQ_MIN = -12, EQ_MAX = 12, EQ_KEY = "eqState";
@@ -4837,16 +4829,16 @@ const EQ_GROUPS = [
 ];
 // De-esser: split at DEESS_HZ with a Linkwitz-Riley crossover (two cascaded 2nd-order Butterworth filters per side, summing flat).
 // Only the top band is compressed, taming harsh "s"/"sh" and hissy cymbals. The threshold follows the volume slider and leveling mode
-// (volume is applied before Web Audio, so the signal here is that much quieter). The compressor's own make-up gain is taken back out with a trim gain.
+// (volume is applied before Web Audio, so the signal is that much quieter); the compressor's make-up gain is trimmed back out.
 const DEESS_HZ = 5500, DEESS_RATIO = 4, DEESS_KNEE = 0;
 const DEESS_THRESH_REL = -28;
 const DEESS_PROG_LEVELED = -2;  // program level at this stage with leveling on (-16 LUFS leveled, +14 dB make-up), at full volume
 const DEESS_PROG_RAW = -12;
-// Crossfeed: each ear also hears a quieter, low-passed copy of the other channel delayed about 0.3 ms (roughly what the head adds with speakers),
+// Crossfeed: each ear also hears a quieter, low-passed copy of the other channel delayed ~0.3 ms (what the head adds with speakers),
 // so hard-panned stereo doesn't sit inside the head. The direct path only loses bass (low shelf), so a centered bass note keeps its level (0.7 + 0.33).
 const XFEED_HZ = 700, XFEED_DELAY = 0.0003, XFEED_SHELF_DB = -3.1, XFEED_CROSS = 0.33;
-// Widener: mid/side with the side signal turned up by WIDE_K. L' = (1+k)/2 L + (1-k)/2 R, R' the mirror image, so
-// anything identical in both channels (voices, bass) is left exactly as it was and only what differs is widened.
+// Widener: mid/side with the side signal raised by WIDE_K. L' = (1+k)/2 L + (1-k)/2 R, R' mirrored,
+// so anything identical in both channels (voices, bass) is untouched and only what differs is widened.
 const WIDE_K = 1.7;
 const BUTTER_Q = -3.0103; // Web Audio's Q for low/high-pass is in dB: 0.7071 linear
 function buildEqChain(ctx) {
@@ -4879,8 +4871,7 @@ function buildEqChain(ctx) {
     node.connect(hp1); hp1.connect(hp2); hp2.connect(dsComp); dsComp.connect(dsTrim); dsTrim.connect(dsWet);
     dsWet.connect(dsOut);
     node = dsOut;
-    // A splitter only reads the left channel of a mono signal, so every splitter gets a stage in front that
-    // always hands it 2 channels (a mono source is copied to both sides).
+    // A splitter reads only the left channel of a mono signal, so each gets a stage in front that always hands it 2 channels (mono is copied to both).
     const upmix = () => { const g = ctx.createGain(); g.channelCount = 2; g.channelCountMode = "explicit"; g.channelInterpretation = "speakers"; return g; };
     // Crossfeed: direct paths plus low-passed, delayed cross paths; with the cross gains at 0 it is a plain pass-through.
     const xs = ctx.createChannelSplitter(2), xm = ctx.createChannelMerger(2), xup = upmix();
@@ -4927,8 +4918,8 @@ function getEqState() {
 function saveEqState() {
     try { store.setItem(EQ_KEY, JSON.stringify(eqState)); } catch (e) { swallow(e); }
 }
-// While the Bypass button is held, the equalizer, mono, crossfeed, widener and balance are skipped so the original can be
-// heard. Leveling stays on: it matches the volume, so the comparison is not decided by one side simply being louder.
+// While Bypass is held, the equalizer, mono, crossfeed, widener and balance are skipped so the original can be heard.
+// Leveling stays on so the comparison isn't decided by one side being louder.
 let eqBypass = false;
 function applyEq() {
     const btn = document.getElementById("eqBtn");
@@ -5043,8 +5034,7 @@ function openEqPanel(mediaEl, host) {
     // Two windows in one panel: the equalizer (main) and the Effects window. Only one is shown at a time.
     const viewMain = q("eqMain"), viewFx = q("eqFx");
     let fxOpen = false;
-    // The bands start at their normal height and are shortened only as far as needed so the panel
-    // never needs its own scrollbar (the window it sits in can be short).
+    // Bands start at their normal height and are shortened only as far as needed so the panel never needs its own scrollbar (its window can be short).
     const fitSliders = () => {
         if (!panel.isConnected || !sliders.length || viewMain.hidden) return;
         panel.style.removeProperty("--eq-slider-h");
@@ -5280,9 +5270,9 @@ function wireMediaControls(mediaEl) {
     shuffleBtn.addEventListener("click", toggleShuffle);
 
     let seeking = false;
-    // For live/unknown-length streams, seekable is the rewindable window. Some HLS live streams report seekable.end() far past the real live edge,
+    // For live/unknown-length streams, seekable is the rewindable window. Some HLS live streams report seekable.end() far past the live edge,
     // so currentTime is treated as the live edge and only seekable.start() is trusted, as the furthest rewind point.
-    // The cached window is the buffered range the playhead is in: for streams the part you can move around in (oldest left, newest right); for files the lighter part of the bar.
+    // The cached window is the buffered range the playhead is in: for streams, the part you can move around in (oldest left, newest right); for files, the lighter part of the bar.
     function getCacheRange() {
         try {
             const b = mediaEl.buffered, t = mediaEl.currentTime;
@@ -5303,8 +5293,8 @@ function wireMediaControls(mediaEl) {
         } catch (err) { swallow(err); }
         const cache = getCacheRange();
         const hls = !!(playSession && playSession.usesHls);
-        // HLS keeps its own rewind window (some live streams report seekable.end() far ahead of the live edge,
-        // so the cached end or the playhead + 5 s is used instead). Everything else moves inside the cached window.
+        // HLS keeps its own rewind window (some live streams report seekable.end() far ahead of the live edge, so the cached end or playhead + 5 s is used).
+        // Everything else moves inside the cached window.
         if (hls && seekRange) {
             const end = Math.min(seekRange.end, Math.max(mediaEl.currentTime + 5, cache ? cache.end : 0));
             if (end - seekRange.start > 1) return { start: seekRange.start, end };
@@ -5434,8 +5424,7 @@ function wireUiOnce() {
 // (every folder's contents, sizes, dates) is requested as soon as the lean one arrives and replaces it. Until then an opened folder shows a placeholder.
 const LEAN_INDEX_URL = "./file_index_lean.json";
 const FULL_INDEX_URL = "./file_index.json";
-// The head script has already started both downloads, so the first request for each file just
-// collects that one (later requests, such as a retry, fetch again).
+// The head script already started both downloads, so the first request for each file just collects that one (later requests, such as a retry, fetch again).
 function fetchJson(url) {
     const early = window.__idx && window.__idx[url];
     if (early) { delete window.__idx[url]; return early; }
@@ -5444,7 +5433,7 @@ function fetchJson(url) {
         return r.json();
     });
 }
-// Lean rows -> the same node shapes as the full index (folder: [name]; file: [name, categoryNumber, external?]). Folders come out empty until the full index arrives.
+// Lean rows -> the same node shapes as the full index (folder: [name]; file: [name, categoryNumber, external?]); folders are empty until the full index arrives.
 function expandLeanIndex(lean) {
     const cats = lean.cats || [];
     const expand = (rows) => rows.map((r) => {
@@ -5531,8 +5520,8 @@ async function init() {
         renderNoLibrary();
     }
 }
-// The router rewrites the URL hash on load, which makes Chrome move the "where does Tab start" position past the header.
-// Briefly focusing <body> puts it back at the top so the first Tab stop is the skip link. Nothing visible changes.
+// The router rewrites the URL hash on load, which makes Chrome move the Tab start position past the header.
+// Briefly focusing <body> resets it so the first Tab stop is the skip link; nothing visible changes.
 function resetTabStart() {
     if (document.activeElement && document.activeElement !== document.body) return;
     document.body.tabIndex = -1;
@@ -5560,8 +5549,7 @@ function syncBackgroundInert() {
     open.forEach((el, i) => { const rank = (parseInt(getComputedStyle(el).zIndex, 10) || 0) * 1000 + i; if (rank > best) { best = rank; top = el; } });
     document.querySelectorAll(".modal-overlay:not(.tw-embedded)").forEach((el) => { el.inert = open.length > 1 && open.includes(el) && el !== top; });
 }
-// Chooses how many list columns fit in the file area: all, no time, ext + size, or size only.
-// Widths are in px at 16px text and scale with the interface text size.
+// Chooses how many list columns fit: all, no time, ext + size, or size only. Widths are px at 16px text and scale with the interface text size.
 function updateListColumns() {
     const mainEl = document.getElementById("main");
     if (!mainEl) return;
@@ -6083,9 +6071,9 @@ function safeJsonParse(str, fallback) {
         return fallback;
     }
 }
-// ---- Selecting several items (main list and grid; twin panels have their own copy of this inside TWIN, one selection per panel) ----
-// Ctrl/Cmd + click toggles one item, Shift + click selects a range, long press does the same on a touch screen, X toggles the focused item,
-// Shift + Up/Down extends, Ctrl/Cmd + A selects everything in view, Ctrl/Cmd + I inverts it, Esc clears. While something is selected a plain click toggles instead of opening.
+// ---- Multi-select (main list and grid; twin panels keep their own copy inside TWIN, one selection per panel) ----
+// Ctrl/Cmd+click toggles one item, Shift+click selects a range, long press does the same on touch, X toggles the focused item,
+// Shift+Up/Down extends, Ctrl/Cmd+A selects all in view, Ctrl/Cmd+I inverts, Esc clears. While anything is selected, a plain click toggles instead of opening.
 // The actions (star, copy, share, download, play) take a plain list of entries, so the main view and every panel share them.
 const SEL = { map: new Map(), anchor: null, folder: "", suppress: false, bar: null };
 function selKeyOf(card) {
@@ -6252,8 +6240,8 @@ async function selDownloadList(list) {
     }
     await zipFilesFlow(files, "selection", "", "selection");
 }
-// Play: the selected sounds, videos and playlists become one playlist (in the order they were picked) and open in the player.
-// Playlists are read and their stations added; a video from a local folder is left out (the station player cannot tell what a bare blob link holds).
+// Play: selected sounds, videos and playlists become one playlist (in pick order) and open in the player.
+// Playlists are read and their stations added; a local-folder video is left out (the station player can't tell what a bare blob link holds).
 const selIsPlayable = (e) => e.type === "f" && ["audio", "video", "playlist"].includes(categoryForName(e.name));
 async function selPlayList(list) {
     const files = list.filter(selIsPlayable);
@@ -6500,8 +6488,7 @@ function itemDate(item) {
 function itemDateMs(item) {
     return itemDate(item)?.getTime() ?? 0;
 }
-// One shared formatter / collator: building one per call (what toLocaleTimeString and
-// localeCompare do behind the scenes) is the slow part of drawing and sorting a big folder.
+// One shared formatter/collator: building one per call (as toLocaleTimeString and localeCompare do internally) is the slow part of drawing and sorting a big folder.
 const TIME_FORMAT = new Intl.DateTimeFormat([], { hour: "2-digit", minute: "2-digit" });
 const NAME_COLLATOR = new Intl.Collator();
 const MONTH_ABBR = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
@@ -6659,7 +6646,7 @@ function unpinFolder(pathArr) {
     renderPinnedFolders();
     renderBreadcrumb();
 }
-// Truncates long pinned/favorite labels from the start, keeping the tail (e.g. "…9/00s.m3u"), using real text measurement
+// Truncates long pinned/favorite labels from the start, keeping the tail (e.g. "…9/00s.m3u"), by measuring real text
 // (a CSS direction:rtl trick corrupts symmetric punctuation at the edges and can shuffle a trailing extension).
 function measurePinnedTextWidth(text, font) {
     const ctx = measurePinnedTextWidth._ctx || (measurePinnedTextWidth._ctx = document.createElement("canvas").getContext("2d"));
@@ -6771,8 +6758,8 @@ function syncFavoriteBtn(path) {
     btn.setAttribute("aria-label", favorited ? "Remove file from favorites" : "Add file to favorites");
     btn.innerHTML = favorited ? icons.starFilled : icons.starOutline;
 }
-// Renders the Favorites list under Pinned folders. Only the path is stored, so allFiles supplies the name/icon;
-// a favorite that can no longer be found still shows by its stored path instead of vanishing.
+// Renders Favorites under Pinned folders. Only the path is stored, so allFiles supplies the name/icon;
+// a favorite that can no longer be found still shows by its stored path.
 function renderFavoriteFiles() {
     const container = document.getElementById("treeFavorites");
     if (!container) return;
@@ -6799,7 +6786,7 @@ function renderFavoriteFiles() {
     truncatePinnedLabels(container);
 }
 // Pinned folders and favorite files render as identical "tree-pinned" strips with the same open/unpin interaction;
-// callers only supply how the path is read from the row and what "open"/"unpin" do.
+// callers supply only how the path is read from the row and what "open"/"unpin" do.
 function makePinnedListHandlers({ getPath, onOpen, getUnpinPath, onUnpin }) {
     function onClick(e) {
         const unpinBtn = e.target.closest(".tree-pinned-unpin");
@@ -7455,13 +7442,12 @@ async function fetchTextCached(url) {
     fetchCacheSet(url, text);
     return text;
 }
-// For on-screen previews only (playlists use fetchTextCached above and need every byte): a huge file is cut off after
-// MAX_PREVIEW_BYTES instead of being downloaded whole. Resolves to { text, truncated }.
+// For on-screen previews only (playlists use fetchTextCached and need every byte): a huge file is cut off after MAX_PREVIEW_BYTES
+// instead of downloaded whole. Resolves to { text, truncated }.
 const MAX_PREVIEW_BYTES = 2 * 1024 * 1024;
 async function fetchTextPreview(url) {
     if (fetchCache.has(url)) return { text: await fetchTextCached(url), truncated: false };
-    // A file from a local folder is read straight from the File: no network request, so a page that
-    // restricts fetch() (an embedded or sandboxed preview) can still show it.
+    // A local-folder file is read straight from the File: no network request, so a page that restricts fetch() (embedded or sandboxed preview) can still show it.
     const localFile = LOCAL.active && LOCAL.byUrl && LOCAL.byUrl.get(url);
     const response = localFile ? { ok: true, status: 200, body: localFile.stream(), text: () => localFile.text() } : await fetch(url);
     if (!response.ok) {
@@ -7497,8 +7483,8 @@ async function fetchTextPreview(url) {
     }
     return { text, truncated };
 }
-// Plain-text preview with line numbers. Each line is a block <span> that carries its own trailing newline: a bare "\n" text node
-// between block spans lays out as an extra empty line box (it doubled the spacing), and this keeps textContent (copy/paste) equal to the original.
+// Plain-text preview with line numbers. Each line is a block <span> carrying its own trailing newline: a bare "\n" text node
+// between block spans adds an empty line box (doubled spacing), and this keeps textContent (copy/paste) equal to the original.
 const MAX_PREVIEW_LINES = 1e4;
 function renderTextPreview(container, text, fileName, byteTruncated) {
     let allLines = text.split("\n");
@@ -7569,8 +7555,8 @@ let healthTest = null;
 let testUiAt = 0;
 let songsHeard = [];
 const noCorsHosts = new Set();
-// An HLS stream the page cannot read (its server sends no CORS permission, or it is http on an https page) is handed to the browser's own HLS player when it has one
-// (Safari, iOS): that plays it without asking for permission. No page can read such a stream itself, with any HLS library. Returns true when it restarted the stream.
+// An HLS stream the page can't read (no CORS permission, or http on an https page) is handed to the browser's own HLS player when it has one
+// (Safari, iOS), which plays it without needing permission; no HLS library can read such a stream. Returns true when it restarted the stream.
 function corsRescue(session, el) {
     if (playSession !== session || session.nativeTried || !(el.canPlayType && el.canPlayType("application/vnd.apple.mpegurl"))) return false;
     session.nativeTried = true;
@@ -7742,8 +7728,8 @@ async function resolveStreamUrl(url, depth, keepMaster) {
     return url;
 }
 
-// Does this HLS playlist carry pictures? A master playlist says so (a resolution or a video codec on its levels).
-// A plain media playlist says nothing: for those the HLS engine reports VIDEO_FOUND once it has read the first segment.
+// Does this HLS playlist carry pictures? A master playlist says so (a resolution or video codec on its levels).
+// A plain media playlist doesn't: the HLS engine reports VIDEO_FOUND once it has read the first segment.
 async function hlsLooksVideo(url) {
     try {
         const res = await fetchWithTimeout(url, {}, 8000);
@@ -7796,9 +7782,8 @@ function readAdtsHeader(b, p) {
 function syncsafe(b, p) {
     return ((b[p] & 0x7f) << 21) | ((b[p + 1] & 0x7f) << 14) | ((b[p + 2] & 0x7f) << 7) | (b[p + 3] & 0x7f);
 }
-// b: the first few KB of a stream. Returns { fmt, kbps?, rate? }.
-// fmt is "" when nothing is recognised, "HTML" for an error page.
-// An Ogg stream says what it carries in its first page: Opus (no bitrate stored) or Vorbis (with a nominal bitrate).
+// b: the first few KB of a stream. Returns { fmt, kbps?, rate? }; fmt is "" when nothing is recognised, "HTML" for an error page.
+// An Ogg stream names its codec in the first page: Opus (no bitrate stored) or Vorbis (nominal bitrate).
 function sniffOgg(b) {
     const n = Math.min(b.length, 512);
     let t = "";
@@ -8334,8 +8319,8 @@ function syncTestUI(force) {
         btn.querySelector(".btn-txt").textContent = healthTest ? `Stop ${healthTest.done}/${healthTest.total}` : "Test";
         btn.classList.toggle("active", !!healthTest);
         btn.title = healthTest ? "Stop testing" : "Test the streams in this playlist";
-        // Hide the button once there is nothing left to test (test finished, or every stream already checked recently).
-        // While a test runs it stays visible as "Stop n/total"; a stopped test brings "Test" back to resume.
+        // Hide the button once there is nothing left to test (finished, or every stream checked recently).
+        // While a test runs it shows "Stop n/total"; a stopped test brings "Test" back to resume.
         const needsTest = currentPlaylist.some((it) => !streamHealth.fresh(it.url));
         btn.hidden = !healthTest && currentPlaylist.length > 0 && !needsTest;
     }
@@ -8351,7 +8336,7 @@ function hlsCodecName(codec) {
     if (c.startsWith("flac")) return "FLAC";
     return "";
 }
-// Best known format / bitrate for the stream being played: live HLS level, then what this play sniffed,
+// Best known format/bitrate for the playing stream: live HLS level, then what this play sniffed,
 // then what an earlier test or play stored, then a guess from the file extension.
 function liveStreamInfo(session) {
     let fmt = "";
@@ -8442,7 +8427,7 @@ async function sniffLiveStream(session) {
         if (playSession === session) renderNpStatus();
     }
 }
-// The one look can fail (a busy server, a dropped connection, a slow station): while nothing is known, ask again a few times, and look again after the stream moved to another address.
+// The one look can fail (busy server, dropped connection, slow station): while nothing is known, retry a few times, and look again after the stream moves to another address.
 function sniffRetry(s) {
     if (!s || !s.everPlayed || s.usesHls || s.sniffing) return;
     const cur = s.cands && s.cands[s.candIdx];
@@ -8523,7 +8508,7 @@ setInterval(() => {
     updateStreamTag();
 }, 1000);
 // The checking status at the top of the player carries this stream's format and start time.
-// Connecting / Reconnecting show as a tag on the glyph (no layout space); the song line stays collapsed until a title arrives.
+// Connecting/Reconnecting show as a tag on the glyph (no layout space); the song line stays collapsed until a title arrives.
 function renderNpStatus() {
     const out = document.getElementById("playlistHealth");
     const song = document.querySelector(".preview-audio-container .audio-icon");
@@ -9133,7 +9118,7 @@ function startNowPlaying(session) {
     startZenoMetadata(session, url);
     startRadioMvMetadata(session, url);
 
-    // Discovery asks every adapter once; after one yields a title only that adapter is polled (one request per round), and the sweep returns after three quiet rounds.
+    // Discovery asks every adapter once; after one yields a title only that adapter is polled (one request per round), and the sweep ends after three quiet rounds.
     let good = null, emptyRounds = 0;
     const tick = async () => {
         if (job.stopped || playSession !== session) return;
@@ -9372,7 +9357,7 @@ function playlistRowClick(e) {
     if (isShuffle) recordShuffleJump(idx);
     playPlaylistTrack(idx);
 }
-// Windows opened from the player (playlist, songs heard, recordings). While the player sits inside a twin panel they are mounted in that same panel, so each side stays independent of the other.
+// Windows opened from the player (playlist, songs heard, recordings) are mounted in the player's own twin panel when it sits in one, so each side stays independent.
 const PLAYER_WINDOWS = ["playlistModal", "songsModal", "recModal"];
 function seatPlayerWindow(id) {
     const el = document.getElementById(id), m = document.getElementById("modal");
@@ -9482,8 +9467,8 @@ function recSafe(s) {
     if (/^(con|prn|aux|nul|com\d|lpt\d)(\..*)?$/i.test(t)) t = "_" + t; // Windows will not create a file with one of these names
     return t || "recording";
 }
-// The time a song started, written so the files sort in the order they were recorded (and so a player that
-// plays a folder by name goes from one song to the next the way the station did, not title by title).
+// The time a song started, written so files sort in recording order (and a player that plays a folder by name
+// goes from song to song the way the station did, not title by title).
 function recStampText(fmt, w, n) {
     const d = w.getFullYear() + "-" + recP2(w.getMonth() + 1) + "-" + recP2(w.getDate());
     const t = recP2(w.getHours()) + "-" + recP2(w.getMinutes()) + "-" + recP2(w.getSeconds());
@@ -9502,8 +9487,8 @@ function recNew(title, partial) {
     return {
         title, partial, t0: Date.now(), parts: [], bytes: 0,
         id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8), pend: [], k: 0, done: false,
-        // Every chunk joins a song here: in order for the file (parts) and numbered for the copy kept in browser storage (pend).
-        // The number, not the moment of writing, decides the order the chunks come back in.
+        // Every chunk joins a song here: in order for the file (parts), numbered for the copy kept in browser storage (pend).
+        // The number, not the moment of writing, decides the order chunks come back in.
         push(c) {
             this.parts.push(c);
             this.pend.push({ k: this.k++, b: c });
@@ -9525,7 +9510,7 @@ function recMp3Len(v, i) {
     return layer === 1 ? (Math.floor((12 * br) / rate) + pad) * 4 : Math.floor(((layer === 3 && !v1 ? 72 : 144) * br) / rate) + pad;
 }
 // First byte offset that starts an MP3 / ADTS-AAC / Ogg frame, or -1. For MP3 and AAC a candidate counts only when the frames after it follow where its length says
-// (two frames, three when present), so a stray 0xFF in audio is never a cut point. If the data is too short to check, the answer is -1 and the cut waits for the next piece.
+// (two frames, three when present), so a stray 0xFF in audio is never a cut point. If the data is too short to check, returns -1 and the cut waits for the next piece.
 function recFrame(v, ext) {
     if (ext === "ogg") {
         // the first page of a (new) Ogg stream: "OggS", version 0, "beginning of stream" flag
@@ -9897,8 +9882,8 @@ function recTitle(raw, meta) {
     }
     r.cut = { title: t, source: meta.source || "metadata", playedAt: meta.playedAt || 0, exact: false };
 }
-// Once a second: the clock and the progress text are updated in place, and only when their text really changed
-// (so a tooltip or a text selection on the line is not disturbed, and nothing is rebuilt).
+// Once a second: the clock and progress text are updated in place, and only when their text changed
+// (so a tooltip or text selection on the line isn't disturbed, and nothing is rebuilt).
 function recTick(r) {
     const st = recStat(r), t = document.querySelector("#recPanel .rec-time"), m = document.querySelector("#recPanel .rec-meta"), bt = document.querySelector("#playlistRec .btn-txt");
     if (t && t.textContent !== st.time) t.textContent = st.time;
@@ -10088,8 +10073,8 @@ function recCapBtn() {
         : "";
     return whole + songs;
 }
-// One MediaRecorder per song, each bound to its own song. At a song change the next recorder is started BEFORE the old one is
-// stopped, so no audio falls between two files (the few milliseconds both run just appear at the end of one and start of the next).
+// One MediaRecorder per song, each bound to its own song. At a song change the next recorder starts BEFORE the old one stops,
+// so no audio falls between two files (the few ms both run appear at the end of one and the start of the next).
 function recCaptureStartChunk(r, song) {
     if (!r || r.captureStopRequested || REC.st !== r) return null;
     let mr;
@@ -10126,7 +10111,7 @@ function recCaptureStartChunk(r, song) {
         recEnd(r, song); // adds the finished segment to the save list before its optional disk write awaits
         if (stopping) { recCaptureWrapUp(r, r.captureStopMessage); return; }
         if (r.mode === "songs") {
-            // A defensive recovery for a browser that stops a segment without a metadata change: continue under the same title.
+            // Defensive recovery for a browser that stops a segment without a metadata change: continue under the same title.
             // A recorder that keeps stopping straight away ends the recording instead of looping.
             const now = Date.now();
             r.restarts = (r.restarts || []).filter((t) => now - t < 10000).concat(now);
@@ -10191,8 +10176,8 @@ async function recStartCapture(mode) {
     recCaptureStartChunk(r, r.song);
 }
 function recMsg(t) { REC.msg = t; recRender(); announce(t); }
-// Replaces the panel's content, but not when it is the same, and a focused button is found again afterwards
-// (a keyboard user is not thrown out of the panel when a song finishes or the message changes).
+// Replaces the panel's content unless it is unchanged, and refinds a focused button afterwards
+// (a keyboard user isn't thrown out of the panel when a song finishes or the message changes).
 function recSetPanel(p, html) {
     if (p._html === html) return;
     const a = document.activeElement, had = a && a !== p && p.contains(a);
@@ -10302,7 +10287,7 @@ async function recConnect(u, tag, signal, why) {
     if (!res) { (op.why || []).forEach((w) => why.push(w)); return null; }
     let mi = tag ? parseInt(res.headers.get("icy-metaint"), 10) || 0 : 0;
     if (tag && !mi) {
-        // The page can't see an interval. If the station inserts titles anyway they'd end up inside the saved file, so the stream is asked for again without them.
+        // The page can't see an interval. If the station inserts titles anyway they'd end up inside the saved file, so the stream is requested again without them.
         // The first connection is closed first (some stations allow one listener per address); if the plain stream can't be had there is no recording rather than a damaged one.
         try { const c = res.body && res.body.cancel(); if (c && c.catch) c.catch(() => {}); } catch (e) { swallow(e); }
         const plain = await recOpen(u, false, signal);
@@ -10413,8 +10398,8 @@ async function recReadLoop({ r, ses, ctl, tag, res, mi, cc }) {
         try { cc.abort(); } catch (e) { swallow(e); }
         if (REC.st !== r) return;
         if (got > 0) fails = 0;
-        // The stream dropped or went silent (a network blip, a server that cut the listener): open it again and carry on in the
-        // same recording instead of ending it. It is tried again for as long as it takes; Stop ends it.
+        // The stream dropped or went silent (network blip, a server that cut the listener): reopen it and carry on in the same recording.
+        // It retries for as long as it takes; Stop ends it.
         let next = null;
         r.wait = true;
         while (REC.st === r && !next) {
@@ -10619,10 +10604,10 @@ function streamNotice(text) {
     opStart(text);
     opDone(text, 5000);
 }
-// While a recording runs the player never leaves its station on its own: a dead connection is retried, again and again,
-// on the same stream. (The recorder has its own connection, so a player hiccup never touches the recording.)
-// Asked in place (a native confirm() would freeze the page, and with it the live stream and the recording). Returns true when it is fine to go on
-// at once; otherwise it returns false and, if the person agrees to stop the recording, runs `again` (the action that was interrupted).
+// While a recording runs the player never leaves its station on its own: a dead connection is retried on the same stream, repeatedly.
+// (The recorder has its own connection, so a player hiccup never touches the recording.)
+// Asked in place (a native confirm() would freeze the page, and with it the live stream and recording). Returns true when it is fine to go on at once;
+// otherwise returns false and, if the person agrees to stop the recording, runs `again` (the interrupted action).
 let recLeaveGrant = false;
 function recLeaveOk(again) {
     if (recLeaveGrant) { recLeaveGrant = false; return true; }
@@ -10827,7 +10812,7 @@ function startAttempt(session, reconnect) {
     renderNpStatus();
 }
 // The real live point is past what the player holds (the newest part of the cache still waits in the page's queue):
-// restart the connection quietly, the way a drop is recovered, without counting it as a drop.
+// restart the connection quietly, as a drop is recovered, without counting it as a drop.
 function jumpToLive(session) {
     if (playSession !== session || session.reloadTimer) return;
     session.reloading = true;
@@ -10962,8 +10947,8 @@ function bindSessionEvents(session, el) {
             setPlaylistBuffering(false);
         }
     };
-    // Pausing is a pause: resuming carries on from the paused spot with whatever was kept. A stream whose connection really died
-    // during the pause plays out what it holds, then the stall / ended handlers reopen it. Nothing jumps to the live point by itself.
+    // Pausing is a pause: resuming continues from the paused spot with whatever was kept. A stream whose connection died
+    // during the pause plays out what it holds, then the stall/ended handlers reopen it. Nothing jumps to the live point by itself.
     el.onpause = () => {
         if (!alive()) return;
         clearStall(session);
@@ -10984,17 +10969,17 @@ function bindSessionEvents(session, el) {
         goToNextTrack();
     };
 }
-// ---- own buffer: the page downloads the stream itself and feeds it to the player through MediaSource ----
-// Browsers stop reading a paused stream, so the cache never grew while paused. Here the download never waits for playback:
-// pausing only stops the playhead and the cache keeps growing (up to OWN_BUFFER_AHEAD_S ahead; the last OWN_BUFFER_BEHIND_S of played audio stay rewindable).
+// ---- Own buffer: the page downloads the stream itself and feeds the player through MediaSource ----
+// Browsers stop reading a paused stream, so the cache never grew while paused. Here the download never waits for playback: pausing only stops the playhead
+// and the cache keeps growing (up to OWN_BUFFER_AHEAD_S ahead; the last OWN_BUFFER_BEHIND_S of played audio stay rewindable).
 const OWN_BUFFER_AHEAD_S = 1800;
 const OWN_BUFFER_BEHIND_S = 600;
 // A MediaSource holds about 12 MB of audio (less on some phones), and near that Chromium evicts things the page wouldn't choose. So the page hands it at most OWN_SB_BYTES
-// and keeps the rest of the download in its own queue (up to OWN_QUEUE_MAX_BYTES), feeding it in as room opens up behind the playhead.
+// and keeps the rest in its own queue (up to OWN_QUEUE_MAX_BYTES), feeding it as room opens up behind the playhead.
 const OWN_SB_BYTES = (navigator.deviceMemory && navigator.deviceMemory <= 2 ? 6 : 10) * 1048576;
 const OWN_QUEUE_MAX_BYTES = (navigator.deviceMemory && navigator.deviceMemory <= 2 ? 24 : 48) * 1048576;
-// No bytes at all for this long on a live stream means the connection is dead (or the server dropped a slow reader while paused).
-// It is then opened again in place: the cache and the playhead stay, new audio is appended after what is cached.
+// No bytes for this long on a live stream means the connection is dead (or the server dropped a slow reader while paused).
+// It is reopened in place: the cache and playhead stay, and new audio is appended after what is cached.
 const OWN_STALL_MS = 20000;
 const OWN_REOPEN_DELAYS_MS = [400, 1200, 2500, 5000, 8000, 8000];
 let currentOwnBuffer = null;
@@ -11007,13 +10992,13 @@ function canUseOwnBuffer(session, el, url) {
     if (typeof MediaSource === "undefined") return noOwnBuffer(session, "no MSE");
     if (session.mseFailed) return false;
     if (!el || el.tagName !== "AUDIO") return noOwnBuffer(session, "video");
-    // Only this session's own failure blocks it; the remembered no-CORS host list isn't consulted. One failed request (flaky mobile connection, a blocker)
-    // must not turn the cache off for a station for good, and a server that really refuses CORS is found out by the fetch below within one round trip.
+    // Only this session's own failure blocks it; the remembered no-CORS host list isn't consulted. One failed request (flaky connection, a blocker)
+    // mustn't turn the cache off for a station for good, and a server that really refuses CORS is found out by the fetch below within one round trip.
     if (session.corsFailed) return noOwnBuffer(session, "cors");
     return true;
 }
-// Keeps the tab from being frozen in the background while a stream is being cached (Chromium freezes idle hidden tabs,
-// which would stop the download). A lock is only held for the life of this buffer.
+// Keeps the tab from being frozen in the background while caching (Chromium freezes idle hidden tabs, which would stop the download).
+// The lock is held only for the life of this buffer.
 function holdBufferLock(m) {
     try {
         if (!navigator.locks || !navigator.locks.request) return;
@@ -11074,7 +11059,7 @@ async function startOwnBuffer(session, el, url, onBlocked, fallback) {
         if (playSession === session) fallback();
     };
     // One connection to the station. Asks for ICY titles on the same connection when the server and CORS policy let the page read icy-metaint; a response with a hidden interval
-    // is dropped and the stream asked for again without ICY framing, or metadata bytes would end up in the audio. Throws on a network / CORS error.
+    // is dropped and requested again without ICY framing, or metadata bytes would end up in the audio. Throws on a network/CORS error.
     const connect = async () => {
         m.ctl = new AbortController();
         const signal = m.ctl.signal;
@@ -11319,8 +11304,8 @@ async function startOwnBuffer(session, el, url, onBlocked, fallback) {
         if (!m.alive) return;
         if (!session.mseLive) break;
         if (got > 0) reopens = 0;
-        // A live stream hung up (a server dropping a reader that sat paused, a network blip): open it again in place.
-        // What is cached and where the person is stay as they are; the new audio is added after the cached part.
+        // A live stream hung up (a server dropping a paused reader, a network blip): reopen it in place.
+        // The cached audio and the person's position stay; new audio is added after the cached part.
         let next = null;
         while (m.alive && !next && reopens < OWN_REOPEN_DELAYS_MS.length) {
             await sleep(OWN_REOPEN_DELAYS_MS[reopens++]);
@@ -11424,7 +11409,7 @@ function attachStream(session, el, url) {
         if (p && p.catch) p.catch(onBlocked);
     };
     // Plain audio streams are pulled by the page itself (fetch -> MediaSource) so the cache keeps filling while paused.
-    // Anything the browser refuses (no CORS, unsupported format) plays through the ordinary element as before.
+    // Anything the browser refuses (no CORS, unsupported format) plays through the ordinary element.
     if (session.nativeHls && lower.includes(".m3u8")) return startNative();
     if (lower.includes(".m3u8")) noOwnBuffer(session, "hls");
     if (!lower.includes(".m3u8") && canUseOwnBuffer(session, el, url)) {
@@ -11454,8 +11439,8 @@ async function playPlaylistTrack(e) {
     if (e < 0 || e >= currentPlaylist.length) return;
     if (!recLeaveOk(() => playPlaylistTrack(e))) return;
     endPlaySession();
-    // Moving to another stream throws the old one away completely: without this the element goes on playing the old stream's
-    // cached audio (up to half an hour of it) until the new stream has connected.
+    // Moving to another stream discards the old one completely: otherwise the element keeps playing the old stream's
+    // cached audio (up to half an hour) until the new stream connects.
     const oldMedia = document.getElementById("audioPlayer") || document.getElementById("videoPlayer");
     if (oldMedia) { try { oldMedia.removeAttribute("src"); oldMedia.load(); } catch (err) { swallow(err); } }
     const item = currentPlaylist[e];
@@ -11541,8 +11526,8 @@ function hideGallery() {
     modal.classList.remove("has-gallery");
     delete modal.dataset.gallery;
 }
-// Shows (or updates) the rail for the file being opened. Returns true when a rail is showing.
-// The rail is only rebuilt when the folder or kind changes, so its scroll position survives stepping through files.
+// Shows (or updates) the rail for the file being opened; returns true when a rail is showing.
+// It is rebuilt only when the folder or kind changes, so its scroll position survives stepping through files.
 function syncGallery(filePath, kind) {
     if (!GALLERY_LABELS[kind] || !fileIndex) { hideGallery(); return false; }
     const rail = document.getElementById("galleryRail"), modal = document.getElementById("modalContent");
@@ -11589,7 +11574,7 @@ function wireGalleryStep() {
 }
 
 // ---- File details bar ----
-// Size, dates, picture/video/audio facts and tags in a bar at the bottom of the preview (pictures, videos, music, playlist stations), same for hosted and local files.
+// Size, dates, picture/video/audio facts and tags in a bar at the bottom of the preview (pictures, videos, music, playlist stations), for hosted and local files alike.
 // Only the first 256 KB is read, and only once the bar is opened; its fixed height means stepping through files never moves the window.
 // While a station plays, the button shows that station instead: playlist tags, what the server says about itself, live format and bitrate, the song and the connection (no extra requests).
 const META_KEY = "metaBar", META_HEAD = 262144;
@@ -11992,8 +11977,7 @@ function metaPickHeaders(h) {
     }
     return any ? out : null;
 }
-// The station's own lines from the playlist (#EXTINF attributes, #EXTGRP, #EXTVLCOPT ...): the known ones get a fixed place,
-// anything else is shown under its own name.
+// The station's own playlist lines (#EXTINF attributes, #EXTGRP, #EXTVLCOPT ...): known ones get a fixed place, anything else is shown under its own name.
 function metaParseStationHeader(header) {
     const vals = {}, labels = {}, extra = [];
     const put = (key, label, value) => {
@@ -12029,8 +12013,8 @@ function metaAttachStream(session) {
     META.base = st.vals; META.labels = st.labels; META.extra = st.extra;
     metaSync();
 }
-// Rebuilds every fact from the live state of the session. Nothing is fetched here; the server headers and audio facts come
-// from the one look at the stream that the player already takes (sniffLiveStream).
+// Rebuilds every fact from the live session state. Nothing is fetched here; server headers and audio facts come
+// from the one look at the stream the player already takes (sniffLiveStream).
 function metaStreamUpdate() {
     const s = META.session;
     if (!s) return;
@@ -12624,8 +12608,8 @@ function findNode(path) {
 async function getLocalFile(path) {
     const ent = LOCAL.files.get(path);
     if (!ent) { const err = new Error("Not found"); err.status = 404; throw err; }
-    // A picked folder keeps live handles, so ask for the file again each time: a File taken when the
-    // folder was opened stops being readable once the file is saved again, which made previews fail.
+    // A picked folder keeps live handles, so ask for the file each time: a File taken when the folder was opened
+    // stops being readable once the file is saved again, which made previews fail.
     if (ent.handle) {
         let f;
         try { f = await ent.handle.getFile(); }
@@ -12657,7 +12641,7 @@ async function blobForPath(path, signal) {
     if (!res.ok) { const err = new Error(`HTTP ${res.status}`); err.status = res.status; throw err; }
     return res.blob();
 }
-// Playlist entries next to a local playlist file are resolved to local files;
+// Playlist entries next to a local playlist file resolve to local files;
 // http(s) stream URLs are left alone (playing them is the network use the person asked for).
 async function parsePlaylistForCurrent(url, path) {
     if (!LOCAL.active) return parsePlaylist(url, url);
@@ -13201,7 +13185,7 @@ async function sourceForLibraryFile(path, url) {
     return httpSource(url, f.size);
 }
 
-// Counts the bytes that really come out of the decompressor rather than trusting the zip header: stops once the output passes `max` or the declared size,
+// Counts the bytes that really come out of the decompressor instead of trusting the zip header: stops once the output passes `max` or the declared size,
 // and rejects an entry whose real size differs from the declared one.
 async function arInflateRaw(bytes, max, expected) {
     if (typeof DecompressionStream === "undefined") throw new Error("This browser cannot decompress archive entries (no DecompressionStream).");
@@ -13856,7 +13840,7 @@ function previewUrl(path, f) {
     // f.repo: the file's real path when the index shows it somewhere else (a "checked" file listed in its parent folder)
     return PREVIEW.base + encodePathForUrl((f && f.repo) || path);
 }
-// Accepts a raw link, a github.com file page (blob / raw) or a gist; anything else (jsDelivr, GitHack...) passes through. Returns "" when it is not a file link.
+// Accepts a raw link, a github.com file page (blob/raw) or a gist; anything else (jsDelivr, GitHack...) passes through. Returns "" when it isn't a file link.
 function previewJsonUrl(input) {
     let s = String(input || "").trim();
     if (!s) return "";
@@ -13871,8 +13855,8 @@ function previewJsonUrl(input) {
     if (h === "gist.github.com" && p.length >= 2) return `https://gist.githubusercontent.com/${p[0]}/${p[1]}/raw`;
     return u.href;
 }
-// Where the files are read from: the "Load files from" box (user/repo, user/repo@branch, a github.com tree link or a raw link), else the repo named in the JSON,
-// else the folder the JSON itself sits in. Always ends with "/".
+// Where files are read from: the "Load files from" box (user/repo, user/repo@branch, a github.com tree link or a raw link), else the repo named in the JSON,
+// else the folder the JSON sits in. Always ends with "/".
 function previewFilesBase(spec, data, jsonUrl) {
     const raw = (repo, branch) => `https://raw.githubusercontent.com/${repo}/${encodePathForUrl(branch)}/`;
     const src = data && data.source, defBranch = (src && src.branch) || "main";
@@ -13913,8 +13897,8 @@ function checkPreviewFull(data) {
     return data;
 }
 // The lean index (top level only) is requested first so the repo shows at once; the full one downloads alongside and replaces it (see previewFinishFull).
-// "user/repo" is enough: the repo's file_index.json is read from its GitHub Pages site (https://user.github.io/repo/file_index.json), else from its main or master branch.
-// "user/repo@branch" reads that branch of the repo directly. Anything longer (a raw link, a github.com page) is used exactly as written.
+// "user/repo" is enough: file_index.json is read from the repo's GitHub Pages site (https://user.github.io/repo/file_index.json), else its main or master branch.
+// "user/repo@branch" reads that branch directly. Anything longer (a raw link, a github.com page) is used exactly as written.
 function previewShortSpec(input) {
     const m = /^\s*([A-Za-z0-9][A-Za-z0-9-]*)\/([\w.-]+?)(?:@(\S+))?\s*$/.exec(String(input || ""));
     if (!m || /\.json$/i.test(m[2])) return null;
@@ -13970,7 +13954,7 @@ async function previewFinishFull(res) {
     TWIN.refresh();
     if (document.getElementById("statsModal").classList.contains("active")) renderLibraryStats();
 }
-// Swaps the hosted library for the preview index. If a local folder is on screen the hosted library is the parked one, so that is what gets swapped. Returns true in that case.
+// Swaps the hosted library for the preview index. If a local folder is on screen, the hosted library is the parked one, so that is what gets swapped (returns true then).
 function installPreviewIndex(index) {
     const parked = LOCAL.active && LOCAL.hosted ? LOCAL.hosted : null;
     const saved = { fileIndex, allFiles, filesByPath };
@@ -14128,7 +14112,7 @@ function qualityIconSvg(tag) {
     const fs = tag.length >= 3 ? 11.5 : 15;
     return '<svg viewBox="0 0 24 24" fill="currentcolor"><text x="12" y="' + (12 + fs * 0.36).toFixed(1) + '" text-anchor="middle" font-size="' + fs + '" font-weight="800" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif">' + tag + '</text></svg>';
 }
-// Shows the Quality button only while an HLS stream with more than one level is playing. Its icon (SD, HD, FHD, 4K...) and label (480p, 720p...) follow the picture size.
+// Shows the Quality button only while an HLS stream with more than one level is playing; its icon (SD, HD, FHD, 4K...) and label (480p, 720p...) follow the picture size.
 function syncQualityBtn() {
     const b = document.getElementById("playlistQuality");
     if (!b) return;
@@ -14536,8 +14520,8 @@ const Marquee = (() => {
         for (const p of plan) {
             const { el, s, text } = p;
             if (!text || p.cw <= 0) { if (s.track) release(el, s, text); continue; } // empty, or not on screen yet: the resize observer calls again
-            // Two thresholds: plain text starts to scroll when it is wider than its line, a scrolling title only stops when it is clearly narrower. Without the gap a title
-            // whose width sat right at the edge flipped between the two states on every measuring and flashed.
+            // Two thresholds: plain text starts to scroll when wider than its line, and a scrolling title stops only when clearly narrower.
+            // Without the gap, a title right at the edge flipped between the two states on every measurement and flashed.
             const slack = s.track ? -(s.sticky === text ? 12 : STOP_SLACK) : START_SLACK;
             const need = !still && p.w > p.cw + slack;
             if (!need) { if (s.track) release(el, s, text); continue; }
@@ -14545,7 +14529,7 @@ const Marquee = (() => {
             if (s.track && s.text === text && s.rtl === rtl && Math.abs(s.w - p.w) < 0.5 && Math.abs(s.cw - p.cw) < 0.5) continue;
             start(el, s, text, rtl, p);
         }
-        // What the loop above wrote to the page (tracks coming and going) is not news to the observer below: dropping those records stops it from queueing every title again.
+        // What the loop above wrote (tracks coming and going) is not news to the observer below; dropping those records stops it from queueing every title again.
         if (mo) mo.takeRecords();
     }
     function release(el, s, text) {
@@ -14556,8 +14540,8 @@ const Marquee = (() => {
         s.relAt = performance.now(); s.relText = text;
         if (text && el.firstElementChild) el.textContent = text;
     }
-    // A title that is a flex item sized by its text (the station title and the status next to it) would, with its two-copy track inside, ask for twice the room and change the width
-    // it is measured against. While it scrolls its basis is therefore pinned to the width of the plain text, so the row divides its room exactly as it did before.
+    // A title that is a flex item sized by its text (the station title and the status beside it) would, with its two-copy track inside, ask for twice the room and change the width
+    // it is measured against. While it scrolls, its basis is pinned to the plain text width, so the row divides its room exactly as before.
     function canPin(el) {
         const par = el.parentElement;
         if (!par) return false;
@@ -14620,8 +14604,8 @@ const Marquee = (() => {
         mo.observe(document.getElementById("modal"), { childList: true, subtree: true, characterData: true });
         queueAll();
     }
-    // The file-details bar of a twin panel is one line. Facts wider than the bar scroll like a title (same speed, rest and soft edges), as two copies so the lap loops seamlessly;
-    // hovering or holding a finger on the bar stops it. The once-a-second refresh keeps the lap going; only a change of width retunes it.
+    // A twin panel's file-details bar is one line. Facts wider than the bar scroll like a title (same speed, rest and soft edges), as two copies so the lap loops seamlessly;
+    // hovering or holding a finger on the bar stops it. The once-a-second refresh keeps the lap going; only a width change retunes it.
     function fitBar(bar) {
         const run = bar.firstElementChild;
         if (!run || !run.classList.contains("mb-run")) return;
@@ -14668,10 +14652,10 @@ const Marquee = (() => {
     return { refresh: queueAll, fitBar };
 })();
 // ---- Twin panels ----------------------------------------------------
-// Two independent file panels side by side (stacked on phones), in the spirit of orthodox file managers (Altap Salamander, Total Commander).
-// Each panel has its own source (the hosted repo or the local folder), folder, view type (list / grid) and sort. One panel is active at a time
-// (Tab switches; clicking a panel makes it active). Files open in the normal preview window, which holds a single player, so two audio or video
-// players can never play together. Panel state is remembered; a local folder is not (nothing about it survives a reload).
+// Two independent file panels side by side (stacked on phones), like orthodox file managers (Altap Salamander, Total Commander).
+// Each has its own source (hosted repo or local folder), folder, view type (list/grid) and sort. One panel is active at a time
+// (Tab switches; clicking a panel activates it). Files open in the normal preview window, which holds a single player, so two audio or video
+// players never play together. Panel state is remembered; a local folder is not (nothing about it survives a reload).
 const TWIN_KEY = "twinState";
 // Keep 640px equal to the narrow-screen breakpoint in the style sheet.
 const TWIN_STACK_MQ = window.matchMedia ? window.matchMedia("(max-width: 640px)") : null;
@@ -14822,9 +14806,9 @@ const TWIN = (() => {
         placeBoxes();
     }
     function emptyHtml(msg, extra) { return `<div class="tw-empty">${msg}${extra || ""}</div>`; }
-    // ---- Selecting several items in a panel: every panel keeps its own selection (and its own bar), the other side never notices ----
-    // Same gestures as the main view: Ctrl/Cmd + click, Shift + click, long press, X, Shift + Up/Down, Ctrl/Cmd + A (all), Ctrl/Cmd + I (invert), Esc.
-    // It lives in a panel's folder view only: a new folder, the favorites tab or a search drops it. Names start with tws so they never clash with the page-wide sel* ones.
+    // ---- Multi-select in a panel: each panel keeps its own selection and bar; the other side never notices ----
+    // Same gestures as the main view: Ctrl/Cmd+click, Shift+click, long press, X, Shift+Up/Down, Ctrl/Cmd+A (all), Ctrl/Cmd+I (invert), Esc.
+    // It lives only in a panel's folder view: a new folder, the favorites tab or a search drops it. Names start with tws so they never clash with the page-wide sel* ones.
     const twsOf = (p) => p.sel || (p.sel = { map: new Map(), anchor: null, folder: "", suppress: false });
     const twsSize = (p) => (p.sel ? p.sel.map.size : 0);
     const twsFolder = (p) => p.source + ":" + p.path.join("/");
@@ -15072,7 +15056,7 @@ const TWIN = (() => {
         setStatus(p, null);
         p.reveal = null; p.focusIt = false;
     }
-    // A click on a result brings it up in the panel it was searched in: a folder is opened, a file is opened in its own folder (so the panel's list, rail and prev/next belong to it).
+    // A click on a result opens it in the panel it was searched in: a folder is opened, a file is opened in its own folder (so the panel's list, rail and prev/next belong to it).
     function openResult(p, idx) {
         const item = p.results[idx];
         if (!item) return;
@@ -15085,9 +15069,9 @@ const TWIN = (() => {
         const it = p.map.get(item.name);
         if (it) openFileItem(p, it); else openPathIn(p, item.fullPath);
     }
-    // Side by side on a wide screen the first box ends where the left panel ends and the second begins where the right one begins, so each box sits over its panel
-    // and both grow and shrink with the divider. Their outer edges are held by the logo and the tool buttons.
-    // Panels stacked top and bottom have no room for two boxes in the top bar's row, so each box moves into the head of its panel (between the path and the tools);
+    // Side by side on a wide screen, the first box ends where the left panel ends and the second begins where the right one begins, so each box sits over its panel
+    // and both follow the divider. Their outer edges are held by the logo and the tool buttons.
+    // Stacked top and bottom, there is no room for two boxes in the top bar's row, so each moves into its panel's head (between the path and the tools);
     // everywhere else they sit in the top bar.
     function placeBoxes() {
         const boxes = T.boxes, actions = document.querySelector(".header-actions"), tools = document.querySelector(".header-tools");
@@ -15522,7 +15506,7 @@ const TWIN = (() => {
         };
         Promise.resolve(openFile(fullOf(p, item.name), item.category, item.name)).then(after, done);
     }
-    // Previous / next file only exist for a local folder's files; hosted repo files never get them. Media (audio, video, playlists) is always skipped, since it opens in the player.
+    // Previous/next file exist only for a local folder's files; hosted repo files never get them. Media (audio, video, playlists) is always skipped, since it opens in the player.
     const canStep = (p) => p.source === "local";
     function findStep(p, dir) {
         if (!canStep(p) || !p.viewItem) return null;
