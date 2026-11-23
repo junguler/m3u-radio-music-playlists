@@ -402,6 +402,9 @@ html[data-theme="hc-dark"] .view-toggle, html[data-theme="hc-light"] .view-toggl
 .tree-toggle.empty { visibility: hidden; }
 .tree-pinned:empty { display: none; }
 .tree-pinned { border-bottom: var(--bw) solid var(--border-color); padding-bottom: 0.25rem; flex-shrink: 0; }
+.tree-fav-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.fav-export { background: none; border: none; padding: 0; font: inherit; font-size: 0.9em; text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--accent-text, var(--accent)); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.fav-export:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .tree-pinned-header { padding: 0.5rem 0.75rem 0.25rem; font-size: var(--label-size); font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: var(--label-track); }
 .tree-pinned-item { display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.5rem; cursor: pointer; font-size: 0.85rem; color: var(--text-secondary); border-left: 2px solid transparent; }
 @media (hover: hover) {
@@ -425,6 +428,9 @@ html[data-theme="hc-dark"] .view-toggle, html[data-theme="hc-light"] .view-toggl
 .stats-bar { display: flex; gap: 1rem; margin-bottom: 0.5rem; font-size: var(--data-size); line-height: 1.4; color: var(--text-muted); }
 .stat { display: flex; align-items: center; gap: 0.25rem; }
 .stat svg { width: 12px; height: 12px; color: var(--accent-text, var(--accent)); }
+.stat-link { background: none; border: none; padding: 0; font: inherit; color: var(--text-muted); cursor: pointer; }
+@media (hover: hover) { .stat-link:hover { color: var(--text-primary); text-decoration: underline; text-underline-offset: 2px; } }
+.stat-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.5rem; contain: layout style; }
 .file-list { display: flex; flex-direction: column; gap: 1px; contain: layout style; }
 /* content-visibility lets the browser skip layout/paint/style for off-screen cards (like list virtualization). contain-intrinsic-size is only a first-layout placeholder
@@ -514,10 +520,12 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 }
 .file-list-header .col.active { color: var(--text-primary); }
 .file-list-header .col.active .sort-arrow { color: var(--accent-text, var(--accent)); }
-.file-list-header .sort-arrow { font-size: 0.75rem; width: 0.7em; display: inline-block; }
+.file-list-header .col:not(.active) .sort-arrow { opacity: 0.6; text-align: center; }
+@media (hover: hover) { .file-list-header .col:not(.active):hover .sort-arrow { opacity: 1; } }
+.file-list-header .sort-arrow { font-family: system-ui, "Segoe UI Symbol", "Apple Symbols", sans-serif; font-weight: 400; -webkit-text-stroke: 0; font-size: 1rem; line-height: 1; width: 0.8em; display: inline-block; text-align: center; }
 .file-list-header .col-ext, .file-list-header .col-size, .file-list-header .col-date, .file-list-header .col-time { justify-content: flex-end; position: relative; }
-/* Right-aligned columns: the sort arrow hangs off the label's left side instead of reserving room on the right, so each label ends where its values end. */
-.file-list-header .col-ext .sort-arrow, .file-list-header .col-size .sort-arrow, .file-list-header .col-date .sort-arrow, .file-list-header .col-time .sort-arrow { position: absolute; right: 100%; margin-right: 0.2rem; width: auto; }
+/* Right-aligned columns: the arrow sits inside the column, left of the label, so each label still ends where its values end (the column clips anything drawn outside it). */
+.file-list-header .col-ext .sort-arrow, .file-list-header .col-size .sort-arrow, .file-list-header .col-date .sort-arrow, .file-list-header .col-time .sort-arrow { order: -1; flex: none; }
 .file-list.list-columns .file-card { display: grid; grid-template-columns: var(--list-cols); align-items: center; }
 .file-list.list-columns .col-ext, .file-list.list-columns .col-size, .file-list.list-columns .col-date, .file-list.list-columns .col-time { text-align: right; font-size: var(--data-size); line-height: 1.4; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* In list/tree mode the star sits inline as its own grid column rather than floating over the card content. */
@@ -655,7 +663,12 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 .preview-audio { width: 100%; height: 40px; display: none; }
 .preview-audio[controls] { display: block; }
 .player-bar { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; width: 100%; max-width: 480px; margin: 0.1rem auto 0; background: var(--bg-tertiary); border: var(--bw) solid var(--border-color); border-radius: var(--radius-lg); padding: 0.4rem 0.75rem; }
-.player-seek-row { display: flex; align-items: center; gap: 0.5rem; width: 100%; }
+.player-seek-row { display: flex; align-items: center; gap: 0.5rem; width: 100%; position: relative; }
+.ab-mark { position: absolute; top: 50%; width: 2px; height: 16px; margin-top: -8px; background: var(--accent); border-radius: 1px; pointer-events: none; z-index: 1; }
+.ab-mark[hidden], .player-file-tools[hidden] { display: none; }
+.player-file-tools { position: absolute; top: 0.5rem; right: 2.9rem; z-index: 2; display: flex; gap: 0.35rem; }
+.player-file-tools .player-info-btn { position: static; padding: 0.375rem 0.5rem; font: inherit; font-size: 0.72rem; font-weight: 700; line-height: 16px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.player-ab-btn[aria-pressed="true"] { border-color: var(--accent); color: var(--accent-text, var(--accent)); }
 .player-seek { -webkit-appearance: none; appearance: none; flex: 1; min-width: 0; height: 10px; margin: 0; cursor: pointer; border: var(--bw) solid var(--border-color); border-radius: var(--radius-full);
     background: linear-gradient(to right, var(--seek-fill, var(--stat-fill, var(--accent))) var(--seek-pct, 0%), color-mix(in srgb, var(--seek-fill, var(--stat-fill, var(--accent))) 38%, var(--control-surface)) var(--seek-pct, 0%), color-mix(in srgb, var(--seek-fill, var(--stat-fill, var(--accent))) 38%, var(--control-surface)) var(--seek-cache, 0%), var(--control-surface) var(--seek-cache, 0%)); }
 .player-seek::-webkit-slider-runnable-track { background: transparent; height: 100%; }
@@ -752,9 +765,6 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 .playlist-track.buffering::after { content: " \00b7 Buffering\2026"; color: var(--text-muted); font-weight: 400; animation: pulse 1s ease-in-out infinite; }
 .preview-audio.buffering, .preview-video.buffering { opacity: 0.6; transition: opacity 0.15s ease; }
 @media (max-width: 480px) {
-    /* On a phone the folder tree is only a strip, so Tree and List look the same: one button is enough (List stands in while Tree is the saved view). */
-    .view-btn[data-view="tree"] { display: none; }
-    .view-toggle:has(.view-btn[data-view="tree"].active) .view-btn[data-view="list"], .view-btn[data-view="list"]:has(~ .view-btn[data-view="tree"].active) { background: var(--bg-primary); color: var(--text-primary); }
     .app-container { flex-direction: column; }
     /* Pinned folders and Favorites stay visible on mobile in all 3 views as a compact strip above the listing; only the redundant nested folder tree is hidden. */
     .tree-panel {
@@ -1350,7 +1360,7 @@ body:not([data-source]) .mode-chip { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .gal-thumb.loaded { transition: none; } }
 
-.md-toggle { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border: var(--bw) solid var(--border-strong); border-radius: var(--radius-sm); background: var(--bg-tertiary); color: var(--text-secondary); font-size: 0.75rem; cursor: pointer; text-decoration: none; flex-shrink: 0; }
+.md-toggle { display: inline-flex; align-items: center; min-height: 2rem; padding: 0.3rem 0.85rem; border: var(--bw) solid var(--border-strong); border-radius: var(--radius-sm); background: var(--bg-tertiary); color: var(--text-secondary); font-size: 0.8125rem; cursor: pointer; text-decoration: none; flex-shrink: 0; }
 @media (hover: hover) {
 .md-toggle:hover { color: var(--text-primary); border-color: var(--accent); }
 }
@@ -1360,6 +1370,21 @@ body:not([data-source]) .mode-chip { display: none; }
 
 .md-bar, .ar-bar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 0.75rem; padding: 0.375rem 0.75rem; background: var(--bg-secondary); border-bottom: var(--bw) solid var(--border-color); min-height: 2.25rem; }
 .md-note { color: var(--text-muted); font-size: 0.8rem; }
+.csv-view { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.csv-view > .md-bar { position: static; flex: none; flex-wrap: wrap; }
+.csv-content { flex: 1 1 auto; min-height: 0; overflow: auto; max-height: calc(100dvh - 11rem); overscroll-behavior: contain; }
+.csv-table { border-collapse: separate; border-spacing: 0; width: max-content; min-width: 100%; font-family: var(--font-mono); font-size: var(--preview-font-size, 0.8rem); line-height: 1.35; }
+.csv-table th, .csv-table td { padding: 0.3rem 0.7rem; border-bottom: var(--bw) solid var(--border-color); border-right: var(--bw) solid var(--border-color); text-align: left; white-space: nowrap; max-width: 26rem; overflow: hidden; text-overflow: ellipsis; }
+.csv-table thead th { position: sticky; top: 0; z-index: 1; background: var(--bg-secondary); color: var(--text-primary); font-weight: 700; }
+.csv-table th.csv-h { cursor: pointer; user-select: none; -webkit-user-select: none; }
+.csv-table th.csv-h:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.csv-table th.num, .csv-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.csv-table .csv-n { position: sticky; left: 0; z-index: 1; width: 1%; text-align: right; color: var(--text-muted); background: var(--bg-secondary); }
+.csv-table thead .csv-n { z-index: 2; }
+.csv-table tbody tr:nth-child(even) td:not(.csv-n) { background: color-mix(in srgb, var(--bg-secondary) 55%, transparent); }
+.csv-sort { margin-left: 0.4em; font-size: 0.75em; opacity: 0.4; }
+.csv-table th[aria-sort] .csv-sort { opacity: 1; color: var(--accent-text, var(--accent)); }
+@media (hover: hover) { .csv-table th.csv-h:hover .csv-sort { opacity: 0.9; } }
 .md-view { width: 100%; padding: 1rem 1.25rem 2.5rem; max-width: none; margin: 0; color: var(--text-primary); font-size: 0.95rem; line-height: 1.6; overflow-wrap: anywhere; }
 .md-view > :first-child { margin-top: 0; }
 .md-view h1, .md-view h2, .md-view h3, .md-view h4, .md-view h5, .md-view h6 { margin: 1.4em 0 0.5em; line-height: 1.25; font-weight: 700; }
@@ -1783,7 +1808,7 @@ html[data-theme="concrete"] {
     --x6: color-mix(in srgb, var(--blue) 50%, var(--green)); --x7: var(--red);
     --x8: color-mix(in srgb, var(--green) 55%, var(--yellow)); --x9: color-mix(in srgb, var(--blue) 55%, var(--violet));
     --x10: color-mix(in srgb, var(--orange) 55%, var(--yellow)); --x11: color-mix(in srgb, var(--violet) 50%, var(--pink));
-    --glyph-1: #ffffff; --glyph-2: var(--yellow);
+    --glyph-1: #ffffff; --glyph-2: var(--yellow); --glyph-tone-ratio: 2.35;
 }
 html:not(.no-xc)[data-theme="concrete"] .file-icon.xc { background: var(--xcv, var(--xc)); color: var(--ink); }
 /* Concrete: the controls row used to clip the play button's hard shadow (and grew a scrollbar when pressed) */
@@ -1809,7 +1834,6 @@ html[data-theme="concrete"] #playlistRec:hover:not(:disabled) { background: var(
 .twin { display: none; flex: 1; min-width: 0; min-height: 0; --tw-a: 50fr; --tw-b: 50fr; --tw-gut: 2rem; grid-template-columns: minmax(0, var(--tw-a)) var(--tw-gut) minmax(0, var(--tw-b)); grid-template-rows: minmax(0, 1fr); }
 body.twin-on .twin { display: grid; }
 body.twin-on #main, body.twin-on .tree-panel, body.twin-on .breadcrumb, body.twin-on .mode-chip { display: none !important; }
-body.twin-on .view-toggle .view-btn[data-view] { display: none; }
 body.twin-on .header-actions { margin-left: auto; }
 .twin[data-max] { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
 .twin[data-max="0"] .tw-pane[data-i="1"], .twin[data-max="1"] .tw-pane[data-i="0"], .twin[data-max] .tw-split { display: none; }
@@ -2064,12 +2088,6 @@ html[data-theme="light"] .view-btn.active { box-shadow: inset 0 0 0 1px var(--bo
 /* Active view button in the high-contrast themes (background and surface were identical, so nothing showed) */
 html[data-theme="hc-dark"] .view-btn.active, html[data-theme="hc-light"] .view-btn.active { background: var(--accent); color: var(--on-accent, #fff); }
 html[data-theme="hc-light"] .view-btn.active { color: #fff; }
-@media (max-width: 480px) {
-    /* tree view is hidden here, so the list button stands in for it (same as the base rule) */
-    html[data-theme="hc-dark"] .view-toggle:has(.view-btn[data-view="tree"].active) .view-btn[data-view="list"],
-    html[data-theme="hc-light"] .view-toggle:has(.view-btn[data-view="tree"].active) .view-btn[data-view="list"] { background: var(--accent); color: var(--on-accent, #fff); }
-    html[data-theme="hc-light"] .view-toggle:has(.view-btn[data-view="tree"].active) .view-btn[data-view="list"] { color: #fff; }
-}
 
 /* Selects: same flat look as the rest, with a themed chevron instead of the OS one (concrete keeps its own look) */
 html:not([data-theme="concrete"]) .sort-select, html:not([data-theme="concrete"]) .eq-preset {
@@ -2692,10 +2710,9 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                     </div>
                 </div>
                 <div class="view-toggle" role="group" aria-label="View mode">
-                    <button class="view-btn" data-view="grid" title="Grid" aria-label="Grid view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg></button>
-                    <button class="view-btn" data-view="list" title="List" aria-label="List view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"/></svg></button>
-                    <button class="view-btn active" data-view="tree" title="Tree" aria-label="Tree view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3h7zM7 9H4V5h3v4zm10 6h3v4h-3v-4zm0-10h3v4h-3V5z"/></svg></button>
-                    <button class="view-btn twin-btn" id="twinBtn" type="button" aria-pressed="false" title="Twin panels (T): two folders side by side" aria-label="Twin panels"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 4h8v16H3V4zm10 0h8v16h-8V4z"/></svg></button>
+                    <button class="view-btn" data-view="grid" title="Thumbnails (click again to change their size)" aria-label="Thumbnail view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg></button>
+                    <button class="view-btn active" data-view="tree" title="List with folder tree (click again to reset the tree width)" aria-label="Tree view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3h7zM7 9H4V5h3v4zm10 6h3v4h-3v-4zm0-10h3v4h-3V5z"/></svg></button>
+                    <button class="view-btn twin-btn" id="twinBtn" type="button" aria-pressed="false" title="Twin panels (T): two folders side by side. Click again to put the split back in the middle; Thumbnails or Tree leaves twin mode" aria-label="Twin panels"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 4h8v16H3V4zm10 0h8v16h-8V4z"/></svg></button>
                 </div>
                 </div>
             </div>
@@ -2782,6 +2799,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                     <div class="shortcut-row"><dt><kbd>/</kbd></dt><dd>Focus search</dd></div>
                     <div class="shortcut-row"><dt><code>ext:m3u</code> <code>type:audio</code> <code>size:&gt;1mb</code></dt><dd>Search filters</dd></div>
                     <div class="shortcut-row"><dt><code>newer:7d</code> <code>in:folder</code> <code>-word</code></dt><dd>Recent, inside a folder, exclude</dd></div>
+                    <div class="shortcut-row"><dt><code>sort:new</code> <code>sort:old</code> <code>sort:big</code> <code>sort:small</code></dt><dd>Order the results (<code>type:file sort:new</code> = recently changed)</dd></div>
                     <div class="shortcut-row"><dt><kbd>?</kbd></dt><dd>Show this help</dd></div>
                     <div class="shortcut-row"><dt><kbd>Esc</kbd></dt><dd>Close dialog</dd></div>
                     <div class="shortcut-row"><dt><kbd>&uarr;</kbd><kbd>&darr;</kbd><kbd>&larr;</kbd><kbd>&rarr;</kbd></dt><dd>Navigate files &amp; folders</dd></div>
@@ -3471,6 +3489,7 @@ function fitGlyphDuo(root) {
         const c2css = getComputedStyle(probe).color;
         probe.remove();
         let g1 = glyphPx(cs.color); const g2 = glyphPx(c2css), surf = glyphPx(cs.backgroundColor);
+        const toneRatio = parseFloat(cs.getPropertyValue("--glyph-tone-ratio")) || 0;
         if (glyphRatio(g1, g2) >= GLYPH_MIN_PAIR && glyphRatio(g2, surf) >= GLYPH_MIN_SURF) continue;
         const hsl = glyphToHsl(g2), hue = hsl[0], sat = hsl[1] < 0.12 ? hsl[1] : Math.min(0.9, Math.max(0.5, hsl[1]));
         const pick = (main, strict) => {
@@ -3479,7 +3498,7 @@ function fitGlyphDuo(root) {
             for (let l = 2; l <= 98; l++) {
                 const c = glyphFromHsl(hue, sat, l / 100), rs = glyphRatio(c, surf), rp = glyphRatio(c, main);
                 if (strict && (rs < GLYPH_MIN_SURF || rp < GLYPH_MIN_PAIR)) continue;
-                const score = strict ? Math.abs(Math.log(rs / target)) : -Math.min(rs / GLYPH_MIN_SURF, rp / GLYPH_MIN_PAIR);
+                const score = strict ? (toneRatio ? Math.abs(Math.log(rp / toneRatio)) : Math.abs(Math.log(rs / target))) : -Math.min(rs / GLYPH_MIN_SURF, rp / GLYPH_MIN_PAIR);
                 if (score < bestScore) { bestScore = score; best = c; }
             }
             return best;
@@ -3603,12 +3622,11 @@ function loadSettings() {
         updateThemeButtons(),
         updateFontSizeLabel();
     initPreviewFontSize();
-    const v = store.getItem("viewMode");
-    if (v === "grid" || v === "list" || v === "tree") {
+    let v = store.getItem("viewMode");
+    if (v === "list") v = "tree"; // the separate list view is gone: the tree view is the same list with the folder tree beside it
+    if (v === "grid" || v === "tree") {
         currentView = v;
-        document.querySelectorAll(".view-btn[data-view]").forEach((btn) => {
-            btn.classList.toggle("active", btn.dataset.view === v);
-        });
+        syncViewBtns();
         document.getElementById("treePanel").classList.toggle("visible", v === "tree");
     }
     const so = store.getItem("sortBy");
@@ -4458,6 +4476,7 @@ function scoreSearchItem(query, tokens, compactQuery, item) {
 // key:value words narrow results and combine with ordinary (fuzzy) words:
 //   ext:m3u,m3u8   type:folder | file | a category (audio, image, video, playlist, code, ...)   size:>1mb  size:<500kb  size:10kb..2mb
 //   newer:7d  older:3m  (d, w, m, y)   after:2026-01-01  before:2026-06-30   in:folder (path contains)
+//   sort:new  sort:old  sort:big  sort:small  sort:name   put the matches in that order instead of by relevance (type:file sort:new = recently changed)
 //   A leading minus inverts a filter (-ext:json) or excludes a word (-backup).
 const SEARCH_UNITS = { b: 1, kb: 1024, mb: 1048576, gb: 1073741824, tb: 1099511627776 };
 function parseSize(v) {
@@ -4471,18 +4490,27 @@ function parseAge(v) {
     if (!m) return null;
     return Date.now() - parseInt(m[1], 10) * ({ d: 1, w: 7, m: 30, y: 365 }[m[2]]) * 86400000;
 }
+const searchDateOld = (x) => itemDateMs(x) || Number.MAX_SAFE_INTEGER; // files without a date go last
+const SEARCH_SORTS = (() => {
+    const newest = (a, b) => itemDateMs(b) - itemDateMs(a), oldest = (a, b) => searchDateOld(a) - searchDateOld(b);
+    const big = (a, b) => getItemSize(b) - getItemSize(a), small = (a, b) => getItemSize(a) - getItemSize(b);
+    return { new: newest, newest, date: newest, old: oldest, oldest, big, size: big, large: big, small, name: (a, b) => NAME_COLLATOR.compare(a.name, b.name) };
+})();
+const SEARCH_DATE_SORTS = new Set(["new", "newest", "date", "old", "oldest"]);
 const searchParseCache = new Map();
 function parseSearch(q) {
     const hit = searchParseCache.get(q);
     if (hit) return hit;
     const words = [], tests = [];
-    for (let tok of q.split(/\s+/).filter(Boolean)) {
+    let sort = "";
+    for (let tok of q.toLowerCase().split(/\s+/).filter(Boolean)) {
         let neg = false;
         if (tok.length > 1 && tok[0] === "-") { neg = true; tok = tok.slice(1); }
-        const m = /^(ext|type|size|newer|older|after|before|in):(.+)$/.exec(tok);
+        const m = /^(ext|type|size|newer|older|after|before|in|sort):(.+)$/.exec(tok);
         let test = null;
         if (m) {
             const key = m[1], val = m[2];
+            if (key === "sort") { if (SEARCH_SORTS[val]) sort = val; continue; }
             if (key === "ext") {
                 const set = new Set(val.split(",").map((x) => x.replace(/^\./, "")).filter(Boolean));
                 test = (it) => { if (it.type === "directory") return false; const i = it.name.lastIndexOf("."); return i >= 0 && set.has(it.name.slice(i + 1).toLowerCase()); };
@@ -4510,18 +4538,34 @@ function parseSearch(q) {
         else if (neg) tests.push((it) => !it.searchKey.includes(tok));
         else words.push(tok);
     }
-    const out = { text: words.join(" "), tests };
+    const out = { text: words.join(" "), tests, sort };
     if (searchParseCache.size > 50) searchParseCache.clear();
     searchParseCache.set(q, out);
     return out;
 }
 function searchTextOf(q) { return q ? parseSearch(q).text : q; }
+// With sort:new / sort:old the date is shown beside each result's size, so the order can be read.
+function resultMetaDate(q, item) {
+    if (!q || item.type === "directory") return "";
+    const so = parseSearch(q).sort;
+    return so && SEARCH_DATE_SORTS.has(so) ? " \u00b7 " + formatItemDate(item) : "";
+}
+// The "Recently changed" view is a search: every file of the library, newest first (the same as typing  type:file sort:new).
+function showRecentlyChanged() {
+    const box = document.getElementById("search");
+    box.value = "type:file sort:new";
+    searchQuery = box.value;
+    searchResultLimit = 100;
+    updateSearchClearVisibility();
+    render();
+    document.getElementById("main").scrollTop = 0;
+}
 
 // Ranks `items` for query `q`: filters first, then fuzzy score, with a bonus for items in the viewed folder.
 // A filters-only query lists every match, folders first, by name.
 const SEARCH_COLLATOR = new Intl.Collator(undefined, { numeric: true });
 function rankSearch(items, q, here) {
-    const { text, tests } = parseSearch(q);
+    const { text, tests, sort } = parseSearch(q);
     const tokens = text.split(/[\s/]+/).filter(Boolean);
     const compact = text.replace(/[^a-z0-9]/g, "");
     const SAME_FOLDER_BONUS = 400;
@@ -4535,7 +4579,8 @@ function rankSearch(items, q, here) {
         if (score === null) continue;
         scored.push({ item, score: score + (item.parentPath === here ? SAME_FOLDER_BONUS : 0) });
     }
-    if (text) scored.sort((a, b) => b.score - a.score);
+    if (sort) { const cmp = SEARCH_SORTS[sort]; scored.sort((a, b) => cmp(a.item, b.item) || SEARCH_COLLATOR.compare(a.item.fullPath, b.item.fullPath)); }
+    else if (text) scored.sort((a, b) => b.score - a.score);
     else scored.sort((a, b) => b.score - a.score || SEARCH_COLLATOR.compare(a.item.fullPath, b.item.fullPath));
     return scored.map((x) => x.item);
 }
@@ -5157,9 +5202,9 @@ function openEqPanel(mediaEl, host) {
         ro.observe(host);
     }
 }
-// Adds the Equalizer button next to the stream-info button (top left of the audio player).
+// Adds the Sound (leveling + equalizer) button next to the stream-info button (top left of the audio and video players).
 function attachEqButton(mediaEl) {
-    if (!mediaEl || mediaEl.tagName !== "AUDIO") return;
+    if (!mediaEl || (mediaEl.tagName !== "AUDIO" && mediaEl.tagName !== "VIDEO")) return;
     const info = document.getElementById("streamInfoBtn");
     const host = info && info.parentElement;
     if (!host || host.querySelector("#eqBtn")) return;
@@ -5407,9 +5452,97 @@ function wireMediaControls(mediaEl) {
     mediaEl.addEventListener("volumechange", updateVolLabel);
     updateVolLabel();
 
+    wireFileTools(mediaEl);
+
     // Now that the buttons actually exist in the DOM, sync their
     // enabled/disabled and shuffle-active state.
     updatePlaylistUI();
+}
+// ---- Playback speed and A-B repeat ----
+// Two small buttons at the top right of the player, shown for files with a known length and for files read through the page's own buffer
+// (a link or file opened with "Load extra source"), never for live streams. Speed steps through 1x, 1.25x, 1.5x, 2x, 0.5x, 0.75x and is remembered.
+// A-B repeat: press at the start (A), press again at the end (B) and that part loops; a third press clears it.
+const SPEED_STEPS = [1, 1.25, 1.5, 2, 0.5, 0.75], SPEED_KEY = "playSpeed";
+function wireFileTools(mediaEl) {
+    const host = mediaEl.parentElement;
+    if (!host || host.querySelector(".player-file-tools")) return;
+    const tools = document.createElement("div");
+    tools.className = "player-file-tools";
+    tools.hidden = true;
+    tools.innerHTML = '<button type="button" class="player-info-btn player-ab-btn" aria-pressed="false"></button><button type="button" class="player-info-btn player-speed-btn" aria-label="Playback speed"></button>';
+    host.appendChild(tools);
+    const abBtn = tools.querySelector(".player-ab-btn"), spBtn = tools.querySelector(".player-speed-btn");
+    const seek = document.getElementById("playerSeek"), row = seek && seek.parentElement;
+    const marks = [0, 1].map(() => { const m = document.createElement("span"); m.className = "ab-mark"; m.hidden = true; if (row) row.appendChild(m); return m; });
+    let a = null, b = null, timer = 0;
+    const known = () => isFinite(mediaEl.duration) && mediaEl.duration > 0;
+    const fileLike = () => {
+        if (known()) return true;
+        const ps = playSession;
+        return !!(ps && ps.el === mediaEl && ps.usesMse && !ps.mseLive && !ps.usesHls);
+    };
+    const savedRate = () => { let v = NaN; try { v = parseFloat(store.getItem(SPEED_KEY)); } catch (e) { swallow(e); } return SPEED_STEPS.includes(v) ? v : 1; };
+    const setRate = (r) => {
+        mediaEl.defaultPlaybackRate = r;
+        mediaEl.playbackRate = r;
+        spBtn.textContent = r + "\u00d7";
+        spBtn.title = `Playback speed ${r}\u00d7 (click to change)`;
+    };
+    const placeMarks = () => {
+        const dur = known() ? mediaEl.duration : 0;
+        [a, b].forEach((t, i) => {
+            const m = marks[i];
+            if (t === null || !dur || !seek) { m.hidden = true; return; }
+            m.hidden = false;
+            const thumb = 14;
+            m.style.left = seek.offsetLeft + thumb / 2 + (t / dur) * Math.max(0, seek.offsetWidth - thumb) - 1 + "px";
+        });
+    };
+    const paintAb = () => {
+        abBtn.textContent = a === null ? "A\u2013B" : b === null ? "A " + formatTime(a) : formatTime(a) + "\u2013" + formatTime(b);
+        abBtn.title = a === null ? "Repeat a part: press at its start (A), press again at its end (B), a third time to clear"
+            : b === null ? "Start set. Press again at the end of the part (B)" : "Repeating this part. Press to clear";
+        abBtn.setAttribute("aria-pressed", String(b !== null));
+        placeMarks();
+    };
+    const loopOff = () => { clearInterval(timer); timer = 0; };
+    const loopOn = () => {
+        if (timer) return;
+        timer = setInterval(() => {
+            if (!mediaEl.isConnected || b === null) { loopOff(); return; }
+            if (!mediaEl.paused && !mediaEl.seeking && mediaEl.currentTime >= b) mediaEl.currentTime = a;
+        }, 50);
+    };
+    const clearAb = () => { a = b = null; loopOff(); paintAb(); };
+    const sync = () => {
+        const ok = fileLike();
+        tools.hidden = !ok;
+        if (ok) setRate(savedRate());
+        else { setRate(1); if (a !== null) clearAb(); }
+        placeMarks();
+    };
+    abBtn.addEventListener("click", () => {
+        const t = mediaEl.currentTime;
+        if (a === null) { a = t; announce("Start of the repeat set"); }
+        else if (b === null) {
+            if (t - a < 0.3) a = t; // too close to be a part: move the start instead
+            else { b = t; mediaEl.currentTime = a; loopOn(); announce("Repeating from A to B"); }
+        } else { a = b = null; loopOff(); announce("Repeat cleared"); }
+        paintAb();
+    });
+    spBtn.addEventListener("click", () => {
+        const next = SPEED_STEPS[(SPEED_STEPS.indexOf(mediaEl.playbackRate || 1) + 1) % SPEED_STEPS.length];
+        try { store.setItem(SPEED_KEY, String(next)); } catch (e) { swallow(e); }
+        setRate(next);
+        announce(`Speed ${next}\u00d7`);
+    });
+    ["loadedmetadata", "durationchange", "playing"].forEach((ev) => mediaEl.addEventListener(ev, sync));
+    // A new track starts at normal speed with no repeat; the saved speed comes back once its length is known.
+    ["loadstart", "emptied"].forEach((ev) => mediaEl.addEventListener(ev, () => { if (a !== null) clearAb(); mediaEl.defaultPlaybackRate = 1; mediaEl.playbackRate = 1; }));
+    if (typeof ResizeObserver === "function" && row) new ResizeObserver(placeMarks).observe(row);
+    setRate(1);
+    paintAb();
+    sync();
 }
 function wireUiOnce() {
     if (uiWired) return;
@@ -5642,7 +5775,7 @@ function setupEventListeners() {
     });
     document.getElementById("logoHome").addEventListener("click", () => { navigateTo([]); previewTap(); });
     document.querySelectorAll(".view-btn[data-view]").forEach((btn) => {
-        btn.addEventListener("click", () => setView(btn.dataset.view));
+        btn.addEventListener("click", () => viewBtnClick(btn.dataset.view));
     });
     document.getElementById("closeBtn").addEventListener("click", closeModal);
     const focusBtn = document.getElementById("focusBtn");
@@ -5725,7 +5858,10 @@ function setupEventListeners() {
     document.getElementById("statsModal").addEventListener("keydown", (e) => trapModalFocus(e, "statsModalContent"));
     window.addEventListener("hashchange", handleHashChange);
     document.getElementById("treePinned").addEventListener("click", handlePinnedFoldersClick);
-        document.getElementById("treeFavorites").addEventListener("click", handleFavoriteFilesClick);
+        document.getElementById("treeFavorites").addEventListener("click", (e) => {
+            if (e.target.closest("[data-export-favs]")) { exportM3u(favoriteFiles.slice(), "favorites.m3u"); return; }
+            handleFavoriteFilesClick(e);
+        });
         document.addEventListener("keydown", (e) => {
         const shortcutsOpen = document.getElementById("shortcutsModal").classList.contains("active");
         const statsOpen = document.getElementById("statsModal").classList.contains("active");
@@ -6130,6 +6266,7 @@ function selSync(say) {
         bar.querySelector(".sel-count").textContent = parts.join(", ") + " selected";
         bar.querySelector('[data-sel="copy"]').disabled = f === 0;
         bar.querySelector('[data-sel="play"]').hidden = !play;
+        bar.querySelector('[data-sel="m3u"]').hidden = !play;
         const sh = bar.querySelector('[data-sel="share"]');
         sh.hidden = !canNativeShare() || f === 0;
     }
@@ -6277,6 +6414,51 @@ async function selPlayList(list) {
         extraBusy = false;
     }
 }
+// ---- Export as .m3u ----
+// One playlist file from what is picked: playlists are read and their stations merged (a station that appears twice is kept once, logos and
+// other tags stay), sounds and videos become one entry each. Entries that only exist inside a local folder (blob: links) cannot be saved.
+let m3uExportBusy = false;
+async function exportM3u(paths, name) {
+    if (m3uExportBusy) return;
+    const files = paths.filter((pth) => ["audio", "video", "playlist"].includes(categoryForName(pth.split("/").pop())));
+    if (!files.length) { selNote("Nothing playable to export.", 2500); return; }
+    m3uExportBusy = true;
+    opStart("Building the playlist file\u2026");
+    try {
+        const seen = new Set(), out = ["#EXTM3U"];
+        let skipped = 0;
+        for (const path of files) {
+            const base = path.split("/").pop(), cat = categoryForName(base);
+            if (cat === "playlist") {
+                const url = await urlForPath(path);
+                const found = await parsePlaylistForCurrent(LOCAL.active ? url : new URL(url, window.location.href).href, path);
+                if (!found.length) { skipped++; continue; }
+                for (const it of found) {
+                    if (/^blob:/i.test(it.url)) { skipped++; continue; }
+                    if (seen.has(it.url)) continue;
+                    seen.add(it.url);
+                    const tags = (it.header || "").split("\n").filter((l) => l && !/^#EXTM3U/i.test(l));
+                    if (!tags.some((l) => /^#EXTINF:/i.test(l))) tags.unshift(`#EXTINF:-1,${String(it.title).replace(/[\r\n]+/g, " ")}`);
+                    out.push(...tags, it.url);
+                }
+            } else if (!LOCAL.active) {
+                const url = new URL(hostedUrl(path), window.location.href).href;
+                if (seen.has(url)) continue;
+                seen.add(url);
+                out.push(`#EXTINF:-1,${base.replace(/\.[^.]+$/, "") || base}`, url);
+            } else skipped++;
+        }
+        if (!seen.size) { opDone("Nothing could be exported.", 3000); return; }
+        recSave(new Blob([out.join("\n") + "\n"], { type: "audio/x-mpegurl" }), name);
+        opDone(`Saved ${name} with ${seen.size} entr${seen.size === 1 ? "y" : "ies"}.${skipped ? ` ${skipped} could not be added.` : ""}`, 3500);
+    } catch (err) {
+        console.error(err);
+        opDone("Could not build the playlist file.", 3500);
+    } finally {
+        m3uExportBusy = false;
+    }
+}
+const selExportM3u = (list) => exportM3u(list.filter(selIsPlayable).map((e) => e.path), `selection-${list.filter(selIsPlayable).length}.m3u`);
 function selInit() {
     const main = document.getElementById("main");
     const bar = document.createElement("div");
@@ -6289,6 +6471,7 @@ function selInit() {
         <button type="button" class="sel-btn" data-sel="all">Select all</button>
         <button type="button" class="sel-btn" data-sel="invert" title="Select what is not selected (Ctrl+I)">Invert</button>
         <button type="button" class="sel-btn" data-sel="play" title="Play the selected sounds, videos and playlists as one list" hidden>Play</button>
+        <button type="button" class="sel-btn" data-sel="m3u" title="Save the selected sounds, videos and playlists as one .m3u file" hidden>Export m3u</button>
         <button type="button" class="sel-btn" data-sel="zip">Download</button>
         <button type="button" class="sel-btn" data-sel="star">Star</button>
         <button type="button" class="sel-btn" data-sel="copy">Copy links</button>
@@ -6299,7 +6482,7 @@ function selInit() {
     bar.addEventListener("click", (e) => {
         const b = e.target.closest("[data-sel]");
         if (!b) return;
-        ({ all: selSelectAll, invert: selInvert, play: () => selPlayList(selList()), zip: () => selDownloadList(selList()), star: selStar, copy: () => selCopyList(selList()), share: () => selShareList(selList()), clear: selClear })[b.dataset.sel]();
+        ({ all: selSelectAll, invert: selInvert, play: () => selPlayList(selList()), m3u: () => selExportM3u(selList()), zip: () => selDownloadList(selList()), star: selStar, copy: () => selCopyList(selList()), share: () => selShareList(selList()), clear: selClear })[b.dataset.sel]();
     });
     // Cards are rebuilt on every render and on "show more": mark the selected ones again, and drop the selection when the folder changes.
     let raf = 0;
@@ -6444,16 +6627,41 @@ function getCurrentItems() {
 }
 
 function setView(e) {
-    (currentView = e),
-        store.setItem("viewMode", e),
-        document.querySelectorAll(".view-btn[data-view]").forEach((t) => {
-            t.classList.toggle("active", t.dataset.view === e);
-        }),
-        document.getElementById("treePanel").classList.toggle("visible", e === "tree"),
-        e === "tree" &&
-            (truncatePinnedLabels(document.getElementById("treePinned")),
-            truncatePinnedLabels(document.getElementById("treeFavorites"))),
-        render();
+    currentView = e;
+    store.setItem("viewMode", e);
+    syncViewBtns();
+    document.getElementById("treePanel").classList.toggle("visible", e === "tree");
+    if (e === "tree") {
+        truncatePinnedLabels(document.getElementById("treePinned"));
+        truncatePinnedLabels(document.getElementById("treeFavorites"));
+    }
+    render();
+}
+// Thumbnails, Tree and Twin are one choice: only one of the three buttons is lit (Twin wins while the panels are open).
+function syncViewBtns() {
+    const twin = document.body.classList.contains("twin-on");
+    document.querySelectorAll(".view-btn[data-view]").forEach((b) => {
+        const on = !twin && b.dataset.view === currentView;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", String(on));
+    });
+}
+// Set by the folder-tree resizer below: puts the tree back to its default width.
+let treeResetWidth = () => {};
+// Choosing a view while the twin panels are open leaves twin mode. Choosing the view that is already shown does that view's
+// "again" action: Thumbnails step through small / medium / big, Tree puts the folder tree back to its default width.
+function viewBtnClick(v) {
+    if (document.body.classList.contains("twin-on")) {
+        TWIN.toggle();
+        if (document.body.classList.contains("twin-on")) return; // the player is still open, so the panels stay
+    } else if (v === currentView) {
+        if (v === "grid") {
+            setThumbSize(THUMB_SIZES[(THUMB_SIZES.indexOf(thumbSize) + 1) % THUMB_SIZES.length]);
+            announce(`${THUMB_NAMES[thumbSize]} thumbnails`);
+        } else treeResetWidth();
+        return;
+    }
+    setView(v);
 }
 function setSortBy(e) {
     (sortBy = e), store.setItem("sortBy", e), syncSortUI(), render();
@@ -6538,6 +6746,11 @@ function sortItems(items, mode = sortBy) {
 }
 // Keeps the column headers (list view) and the settings dropdown (all
 // views) showing the same active sort column/direction.
+// Every sortable column carries an arrow: the active one points the way it sorts, the others show a faint up-down mark.
+function sortArrow(key, sortStr) {
+    const [k, d] = sortStr.includes("-") ? sortStr.split("-") : [sortStr, "asc"];
+    return k === key ? (d === "desc" ? "\u25bc" : "\u25b2") : "\u2195";
+}
 function syncSortUI() {
     const sel = document.getElementById("sortSelect");
     if (sel && sel.value !== sortBy) sel.value = sortBy;
@@ -6546,7 +6759,7 @@ function syncSortUI() {
         const isActive = col.dataset.sort === activeKey;
         col.classList.toggle("active", isActive);
         const arrow = col.querySelector(".sort-arrow");
-        if (arrow) arrow.textContent = isActive ? (activeDir === "desc" ? "▼" : "▲") : "";
+        if (arrow) arrow.textContent = sortArrow(col.dataset.sort, sortBy);
     });
 }
 function handleSortHeaderClick(e) {
@@ -6782,7 +6995,8 @@ function renderFavoriteFiles() {
             </div>
           `;
     }).join("");
-    container.innerHTML = `<div class="tree-pinned-header">Favorites</div>${rows}`;
+    const canExport = favoriteFiles.some((pth) => ["audio", "video", "playlist"].includes(categoryForName(pth.split("/").pop())));
+    container.innerHTML = `<div class="tree-pinned-header tree-fav-head"><span>Favorites</span>${canExport ? '<button type="button" class="fav-export" data-export-favs title="Save the favorite playlists, sounds and videos as one .m3u file" aria-label="Export favorites as one m3u file">Export m3u</button>' : ""}</div>${rows}`;
     truncatePinnedLabels(container);
 }
 // Pinned folders and favorite files render as identical "tree-pinned" strips with the same open/unpin interaction;
@@ -7005,7 +7219,7 @@ function render() {
         `;
         return;
     }
-    const isColumnView = currentView === "list" || currentView === "tree";
+    const isColumnView = currentView !== "grid";
     const listClass = isColumnView ? "file-list list-columns" : "file-grid";
 
     const fileCount = all.filter((i) => i.type === "file").length;
@@ -7021,6 +7235,7 @@ function render() {
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
             ${folderCount} ${folderCount === 1 ? "folder" : "folders"}
           </span>
+          ${searchQuery && parseSearch(searchQuery).sort === "new" ? "" : `<button type="button" class="stat stat-link" data-act="recent" title="The newest files of the whole library (the same as searching: type:file sort:new)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6a7 7 0 1 1 2.05 4.95l-1.42 1.42A9 9 0 1 0 13 3zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>Recently changed</button>`}
           ${currentView === "grid" ? thumbSizeCtl() : ""}
         </div>
         <div class="main-content">
@@ -7031,11 +7246,11 @@ function render() {
             <div class="file-list-header">
               <span class="col-star-spacer" aria-hidden="true"></span>
               <span class="col-icon-spacer" aria-hidden="true"></span>
-              <span class="col col-name" data-sort="name">Name<span class="sort-arrow"></span></span>
-              <span class="col col-ext" data-sort="ext">Ext<span class="sort-arrow"></span></span>
-              <span class="col col-size" data-sort="size">Size<span class="sort-arrow"></span></span>
-              <span class="col col-date" data-sort="date">Date<span class="sort-arrow"></span></span>
-              <span class="col col-time" data-sort="date">Time<span class="sort-arrow"></span></span>
+              <span class="col col-name" data-sort="name">Name<span class="sort-arrow">${sortArrow("name", sortBy)}</span></span>
+              <span class="col col-ext" data-sort="ext">Ext<span class="sort-arrow">${sortArrow("ext", sortBy)}</span></span>
+              <span class="col col-size" data-sort="size">Size<span class="sort-arrow">${sortArrow("size", sortBy)}</span></span>
+              <span class="col col-date" data-sort="date">Date<span class="sort-arrow">${sortArrow("date", sortBy)}</span></span>
+              <span class="col col-time" data-sort="date">Time<span class="sort-arrow">${sortArrow("date", sortBy)}</span></span>
             </div>
           `
           : ""
@@ -7113,7 +7328,7 @@ function render() {
               <div class="file-icon ${iconType}${xcAttr}">${iconSvg}</div>
               <div class="file-info">
                 <span class="file-name">${searchQuery ? highlightMatch(item.name, searchTextOf(searchQuery)) : escapeHtml(item.name)}</span>
-                <span class="file-meta">${isColumnView && !searchQuery ? "" : item.sizeFormatted}${searchQuery && parentDisplayPath ? `<span class="file-path">${escapeHtml(parentDisplayPath)}</span>` : ""}</span>
+                <span class="file-meta">${isColumnView && !searchQuery ? "" : item.sizeFormatted + resultMetaDate(searchQuery, item)}${searchQuery && parentDisplayPath ? `<span class="file-path">${escapeHtml(parentDisplayPath)}</span>` : ""}</span>
               </div>
               ${
           isColumnView && !searchQuery
@@ -12156,6 +12371,10 @@ async function openFile(filePath, fileType, fileName) {
                 await showArchivePreview(bodyEl, filePath, fileName, fileUrl);
                 bodyEl.classList.add("scrollable");
                 break;
+            case "table-view":
+                await showTablePreview(bodyEl, filePath, fileName, fileUrl);
+                bodyEl.classList.add("scrollable");
+                break;
             case "image":
                 bodyEl.innerHTML = `<img class="preview-image" src="${o}" alt="${escapeHtml(fileName)}">`;
                 break;
@@ -12176,6 +12395,7 @@ async function openFile(filePath, fileType, fileName) {
                     singleVideo.volume = volToEl(currentVolume);
                     singleVideo.onvolumechange = (e) => { currentVolume = elToVol(e.target.volume); store.setItem(VOL_KEY, currentVolume); };
                     setupAudioNormalization(singleVideo);
+                    attachEqButton(singleVideo);
                     setupMediaSession(singleVideo, fileName);
                     maybeWireMediaControls(singleVideo);
                     if (!useNativePlayer) wireGalleryStep();
@@ -12723,9 +12943,11 @@ function opDone(msg, ms) {
 const MD_NAME_RE = /\.(md|markdown|mdown|mkd|rst)$/i;
 function isMarkdownName(name) { return MD_NAME_RE.test(name) || /^readme$/i.test(name); }
 const ARCHIVE_NAME_RE = /\.(zip|tar|tgz|tar\.gz)$/i;
+const CSV_NAME_RE = /\.(csv|tsv)$/i;
 function previewKindOverride(name) {
     if (isMarkdownName(name)) return "md-view";
     if (ARCHIVE_NAME_RE.test(name)) return "archive-view";
+    if (CSV_NAME_RE.test(name)) return "table-view";
     return null;
 }
 
@@ -13133,6 +13355,124 @@ function mountMarkdown(bodyEl, text, truncated, fileName, env) {
     content.addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.matches("[data-md-open],[data-md-anchor]")) mdActivate(e, env, content); });
     paint();
 }
+// ---- CSV / TSV preview ----
+// A table with a sticky header row, click-to-sort columns, a header-row switch and "View source". Values are shown as text, nothing is calculated.
+const CSV_ROW_STEP = 1000;
+const CSV_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity: "base" });
+const CSV_NUM_RE = /^[-+]?(?:\d+\.?\d*|\.\d+)(?:e[-+]?\d+)?$/i;
+function csvDelimiter(text, name) {
+    if (/\.tsv$/i.test(name)) return "\t";
+    const head = text.slice(0, 4096).split(/\r?\n/).find((l) => l.trim()) || "";
+    let best = ",", most = 0;
+    for (const d of [",", ";", "\t", "|"]) {
+        let n = 0, q = false;
+        for (const ch of head) { if (ch === '"') q = !q; else if (!q && ch === d) n++; }
+        if (n > most) { most = n; best = d; }
+    }
+    return best;
+}
+// RFC 4180: quoted cells may hold the delimiter, line breaks and doubled quotes. A byte-order mark is skipped, blank lines are dropped.
+function csvParse(text, delim) {
+    const rows = [];
+    let row = [], cell = "", q = false, i = text.charCodeAt(0) === 0xfeff ? 1 : 0;
+    const endRow = () => { row.push(cell); cell = ""; if (!(row.length === 1 && row[0] === "")) rows.push(row); row = []; };
+    for (const n = text.length; i < n; i++) {
+        const ch = text[i];
+        if (q) {
+            if (ch === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; }
+            else cell += ch;
+        } else if (ch === '"' && cell === "") q = true;
+        else if (ch === delim) { row.push(cell); cell = ""; }
+        else if (ch === "\n" || ch === "\r") { if (ch === "\r" && text[i + 1] === "\n") i++; endRow(); }
+        else cell += ch;
+    }
+    if (cell !== "" || row.length) endRow();
+    return rows;
+}
+function mountTable(bodyEl, text, truncated, fileName) {
+    const delim = csvDelimiter(text, fileName), delimName = { ",": "comma", ";": "semicolon", "\t": "tab", "|": "bar" }[delim];
+    const rows = csvParse(text, delim);
+    if (truncated && rows.length > 1) rows.pop(); // the last line was cut off
+    const cols = rows.reduce((m, r) => Math.max(m, r.length), 0);
+    bodyEl.innerHTML = `<div class="csv-view"><div class="md-bar"><button type="button" class="md-toggle" data-act="src" aria-pressed="false">View source</button><button type="button" class="md-toggle" data-act="hdr" aria-pressed="true" title="Use the first row as the column names">Header row</button><span class="md-note"></span></div><div class="csv-content"></div></div>`;
+    const content = bodyEl.querySelector(".csv-content"), note = bodyEl.querySelector(".md-note");
+    const srcBtn = bodyEl.querySelector('[data-act="src"]'), hdrBtn = bodyEl.querySelector('[data-act="hdr"]');
+    const st = { source: false, header: true, col: -1, dir: 1, limit: CSV_ROW_STEP };
+    const paintNote = () => {
+        const n = rows.length - (st.header && rows.length ? 1 : 0);
+        note.textContent = `${n.toLocaleString()} row${n === 1 ? "" : "s"} \u00b7 ${cols} column${cols === 1 ? "" : "s"} \u00b7 ${delimName}-separated${truncated ? " \u00b7 first part of the file only" : ""}`;
+    };
+    const draw = () => {
+        if (st.source) { renderTextPreview(content, text, fileName, truncated); return; }
+        if (!rows.length) { content.innerHTML = '<div class="empty-state"><h2>Empty file</h2></div>'; return; }
+        const head = st.header ? rows[0] : null, data = st.header ? rows.slice(1) : rows;
+        const num = [];
+        for (let c = 0; c < cols; c++) {
+            let seen = 0, ok = true;
+            for (let r = 0; r < data.length && r < 500 && ok; r++) { const v = (data[r][c] || "").trim(); if (v) { seen++; if (!CSV_NUM_RE.test(v)) ok = false; } }
+            num[c] = ok && seen > 0;
+        }
+        const order = data.map((_, i) => i);
+        if (st.col >= 0) {
+            const c = st.col;
+            order.sort((a, b) => {
+                const x = (data[a][c] || "").trim(), y = (data[b][c] || "").trim();
+                if (x === "" || y === "") return x === y ? 0 : x === "" ? 1 : -1; // empty cells stay at the bottom either way
+                return st.dir * (num[c] ? parseFloat(x) - parseFloat(y) : CSV_COLLATOR.compare(x, y));
+            });
+        }
+        let h = '<table class="csv-table"><thead><tr><th class="csv-n" scope="col">#</th>';
+        for (let c = 0; c < cols; c++) {
+            const label = head ? head[c] || "" : "Column " + (c + 1), on = st.col === c;
+            h += `<th scope="col" class="csv-h${num[c] ? " num" : ""}" data-col="${c}" tabindex="0" title="Sort by this column"${on ? ` aria-sort="${st.dir > 0 ? "ascending" : "descending"}"` : ""}>${escapeHtml(label)}<span class="csv-sort" aria-hidden="true">${on ? (st.dir > 0 ? "\u25b2" : "\u25bc") : "\u2195"}</span></th>`;
+        }
+        h += "</tr></thead><tbody>";
+        const shown = Math.min(order.length, st.limit);
+        for (let k = 0; k < shown; k++) {
+            const r = data[order[k]];
+            h += `<tr><td class="csv-n">${order[k] + 1}</td>`;
+            for (let c = 0; c < cols; c++) { const v = r[c] || ""; h += `<td${num[c] ? ' class="num"' : ""}${v.length > 40 ? ` title="${escapeHtml(v.slice(0, 500))}"` : ""}>${escapeHtml(v)}</td>`; }
+            h += "</tr>";
+        }
+        h += "</tbody></table>";
+        if (order.length > shown) h += `<button type="button" class="load-more-btn" data-act="more">Show more (${(order.length - shown).toLocaleString()} remaining)</button>`;
+        const keep = content.scrollTop;
+        content.innerHTML = h;
+        content.scrollTop = keep;
+    };
+    srcBtn.addEventListener("click", () => {
+        st.source = !st.source;
+        srcBtn.textContent = st.source ? "View table" : "View source";
+        srcBtn.setAttribute("aria-pressed", String(st.source));
+        hdrBtn.hidden = st.source;
+        content.scrollTop = 0;
+        draw();
+    });
+    hdrBtn.addEventListener("click", () => {
+        st.header = !st.header; st.col = -1; st.dir = 1;
+        hdrBtn.setAttribute("aria-pressed", String(st.header));
+        paintNote(); draw();
+    });
+    const sortBy = (th) => {
+        const c = Number(th.dataset.col);
+        if (st.col !== c) { st.col = c; st.dir = 1; } else if (st.dir === 1) st.dir = -1; else st.col = -1; // ascending, descending, original order
+        draw();
+    };
+    content.addEventListener("click", (e) => {
+        const th = e.target.closest("th.csv-h");
+        if (th) { sortBy(th); return; }
+        if (e.target.closest('[data-act="more"]')) { st.limit += CSV_ROW_STEP; draw(); }
+    });
+    content.addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches("th.csv-h")) { e.preventDefault(); sortBy(e.target); } });
+    paintNote();
+    draw();
+}
+async function showTablePreview(bodyEl, filePath, fileName, fileUrl) {
+    let res;
+    try { res = await fetchTextPreview(fileUrl); } catch (err) { showUnavailable(bodyEl, fileName, fileUrl, err); return; }
+    try { mountTable(bodyEl, res.text, res.truncated, fileName); }
+    catch (err) { console.error(err); renderTextPreview(bodyEl, res.text, fileName, res.truncated); }
+}
 async function showMarkdownPreview(bodyEl, filePath, fileName, fileUrl) {
     let res;
     try { res = await fetchTextPreview(fileUrl); } catch (err) { showUnavailable(bodyEl, fileName, fileUrl, err); return; }
@@ -13527,6 +13867,7 @@ function runArchiveViewer(bodyEl, rootName, firstArchive) {
             if (head.includes(0) && !AR_TEXT_EXT.has(ext)) { content.innerHTML = `<div class="preview-unavailable"><h3>Binary file</h3><p>${escapeHtml(title)} \u00b7 ${formatFileSize(blob.size)}. Use Download to save it.</p></div>`; return; }
             const cut = blob.size > MAX_PREVIEW_BYTES, text = await (cut ? blob.slice(0, MAX_PREVIEW_BYTES) : blob).text();
             if (isMarkdownName(title)) mountMarkdown(content, text, cut, title, env0(lv.ar, entry.name));
+            else if (CSV_NAME_RE.test(title)) mountTable(content, text, cut, title);
             else renderTextPreview(content, text, title, cut);
         } catch (err) {
             console.error(err);
@@ -14396,7 +14737,7 @@ function setupNewFeatureListeners() {
     const $ = (id) => document.getElementById(id);
     $("treeCollapseAll").addEventListener("click", collapseAllFolders);
     $("breadcrumb").addEventListener("click", (e) => { if (e.target.closest("#zipFolderBtn")) downloadFolderZip(); });
-    $("main").addEventListener("click", (e) => { if (e.target.closest('[data-act="open-local"]')) openLocalFolder(); else if (e.target.closest('[data-act="go-home"]')) navigateTo([]); });
+    $("main").addEventListener("click", (e) => { if (e.target.closest('[data-act="open-local"]')) openLocalFolder(); else if (e.target.closest('[data-act="go-home"]')) navigateTo([]); else if (e.target.closest('[data-act="recent"]')) showRecentlyChanged(); });
     $("localBtn").addEventListener("click", openLocalFolder);
     $("localOpenBtn").addEventListener("click", () => { $("settingsMenu").classList.remove("active"); $("settingsBtn").setAttribute("aria-expanded", "false"); openLocalFolder(); });
     $("localCloseBtn").addEventListener("click", closeLocalFolder);
@@ -14843,6 +15184,7 @@ const TWIN = (() => {
         bar.querySelector(".sel-count").textContent = parts.join(", ") + " selected";
         bar.querySelector('[data-sel="copy"]').disabled = f === 0;
         bar.querySelector('[data-sel="play"]').hidden = !play;
+        bar.querySelector('[data-sel="m3u"]').hidden = !play;
         bar.querySelector('[data-sel="share"]').hidden = !canNativeShare() || f === 0;
     }
     function twsSet(p, en, force) {
@@ -14905,6 +15247,7 @@ const TWIN = (() => {
         else if (act === "copy") selCopyList(list);
         else if (act === "share") selShareList(list);
         else if (act === "play") selPlayList(list);
+        else if (act === "m3u") selExportM3u(list);
         else if (act === "star") {
             const allOn = selStarList(list);
             T.panes.forEach((q) => {
@@ -14981,7 +15324,7 @@ const TWIN = (() => {
         const bytes = all.reduce((a, i) => a + (i.type === "file" ? getItemSize(i) : 0), 0);
         p.summary = `${nf} ${nf === 1 ? "file" : "files"}, ${nd} ${nd === 1 ? "folder" : "folders"}${nf ? " \u00b7 " + formatFileSize(bytes) : ""}`;
         const [sk, sd] = p.sort.includes("-") ? p.sort.split("-") : [p.sort, "asc"];
-        const hcol = (key, label, cls) => `<span class="col ${cls}" data-sort="${key}">${label}<span class="sort-arrow">${sk === key ? (sd === "desc" ? "\u25bc" : "\u25b2") : ""}</span></span>`;
+        const hcol = (key, label, cls) => `<span class="col ${cls}" data-sort="${key}">${label}<span class="sort-arrow">${sortArrow(key, p.sort)}</span></span>`;
         let html = `<div class="${grid ? "file-grid" : "file-list list-columns"}">`;
         if (!grid) html += `<div class="file-list-header"><span class="col-star-spacer" aria-hidden="true"></span><span class="col-icon-spacer" aria-hidden="true"></span>${hcol("name", "Name", "col-name")}${hcol("ext", "Ext", "col-ext")}${hcol("size", "Size", "col-size")}${hcol("date", "Date", "col-date")}${hcol("date", "Time", "col-time")}</div>`;
         if (p.path.length) {
@@ -15044,7 +15387,7 @@ const TWIN = (() => {
             const where = escapeHtml(item.navPath.slice(0, -1).join("/"));
             const thumb = grid && !dir && item.category === "image"
                 ? `<img class="file-thumbnail lazy" ${p.source === "local" ? `data-tlocal="${escapeHtml(item.fullPath)}"` : `data-src="${escapeHtml(hostedUrlIn(c, item.fullPath))}"`} alt="" decoding="async">` : "";
-            const meta = dir ? (grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : "") : item.sizeFormatted;
+            const meta = dir ? (grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : "") : item.sizeFormatted + resultMetaDate(q, item);
             html += `<div class="file-card${dir ? " directory" : ""}" role="link" tabindex="-1" data-r="${idx}" aria-label="${dir ? "Open folder " : "Open file "}${name}">${starHtml(c, dir ? "folder" : "file", dir ? item.navPath : item.fullPath)}${thumb}<div class="file-icon ${iconType}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${highlightMatch(item.name, searchTextOf(q))}</span><span class="file-meta">${meta}${where ? `<span class="file-path">${where}</span>` : ""}</span></div></div>`;
         });
         html += "</div>";
@@ -15384,6 +15727,8 @@ const TWIN = (() => {
         syncInputs();
         save();
     }
+    // Clicking Twin while it is on: the divider goes back to the middle and a maximized panel is restored (the layout button keeps its own say on side by side / stacked).
+    function resetLayout() { T.r = 50; T.max = -1; applyLayout(); save(); announce("Panels back to the default position"); }
     function toggleMax() { T.max = T.max === -1 ? T.active : -1; applyLayout(); }
     function setFilter(v, k) {
         const p = T.panes[boxPane(k || 0)];
@@ -15425,6 +15770,7 @@ const TWIN = (() => {
         const btn = $("twinBtn");
         btn.classList.toggle("active", on);
         btn.setAttribute("aria-pressed", String(on));
+        syncViewBtns();
         if (!on) { $("search").placeholder = "Search..."; $("search").setAttribute("aria-label", "Search files"); $("search2").value = ""; }
         if (on) {
             applyLayout();
@@ -15612,6 +15958,13 @@ const TWIN = (() => {
                     const res = await fetchTextPreview(url);
                     if (stale()) return;
                     mountMarkdown(body, res.text, res.truncated, item.name, mdEnv(p, c, full));
+                    body.classList.add("scrollable");
+                    break;
+                }
+                case "table-view": {
+                    const res = await fetchTextPreview(url);
+                    if (stale()) return;
+                    mountTable(body, res.text, res.truncated, item.name);
                     body.classList.add("scrollable");
                     break;
                 }
@@ -16064,6 +16417,7 @@ const TWIN = (() => {
                     <button type="button" class="sel-btn" data-sel="all">All</button>
                     <button type="button" class="sel-btn" data-sel="invert" title="Select what is not selected (Ctrl+I)">Invert</button>
                     <button type="button" class="sel-btn" data-sel="play" title="Play the selected sounds, videos and playlists as one list" hidden>Play</button>
+                    <button type="button" class="sel-btn" data-sel="m3u" title="Save the selected sounds, videos and playlists as one .m3u file" hidden>m3u</button>
                     <button type="button" class="sel-btn" data-sel="zip">Download</button>
                     <button type="button" class="sel-btn" data-sel="star">Star</button>
                     <button type="button" class="sel-btn" data-sel="copy">Copy links</button>
@@ -16130,7 +16484,7 @@ const TWIN = (() => {
             wireSplit();
             if (typeof ResizeObserver === "function") { const ro = new ResizeObserver(() => alignBoxes()); ro.observe($("twin")); ro.observe(document.querySelector(".header-actions")); }
             if (TWIN_STACK_MQ && TWIN_STACK_MQ.addEventListener) TWIN_STACK_MQ.addEventListener("change", applyLayout);
-            $("twinBtn").addEventListener("click", () => setOn(!T.on));
+            $("twinBtn").addEventListener("click", () => { if (T.on) resetLayout(); else setOn(true); });
             applyLayout();
             if (s && s.on) setOn(true, true);
         },
@@ -16173,6 +16527,7 @@ const TWIN = (() => {
         grip.addEventListener("pointercancel", end);
     });
     grip.addEventListener("dblclick", () => set(null, true));
+    treeResetWidth = () => { set(null, true); announce("Folder tree width reset"); };
     grip.addEventListener("keydown", (e) => {
         const w = panel.getBoundingClientRect().width;
         if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); const n = w + (e.key === "ArrowRight" ? 16 : -16); const d = defW(); set(Math.abs(n - d) < 16 ? d : n, true); }
