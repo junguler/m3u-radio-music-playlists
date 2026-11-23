@@ -568,7 +568,18 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 .modal { background: var(--bg-secondary); border-radius: var(--radius-lg); max-width: 95vw; max-height: 95vh; max-height: 95dvh; width: 100%; display: flex; flex-direction: column; transform: scale(0.95); transition: transform 0.2s; overflow: hidden; border: var(--bw) solid var(--border-color); }
 .modal.video-modal { height: 95vh; height: 95dvh; }
 /* Video "clean view": the button exists only while a video is open and hides the side panel, player buttons and details bar, leaving just the picture. */
-#focusBtn, #fitBtn, #fullscreenBtn { display: none; }
+#focusBtn, #fitBtn, #fullscreenBtn, #listViewBtn, #imgFitBtn { display: none; }
+/* The list-view button exists only while a playlist is playing, whatever the "Open playlists in the player" setting says. */
+.modal:has(.playlist-bar.active) #listViewBtn { display: flex; }
+/* Image "fit to view": a lone picture grows to fill the preview (pictures with a rail already do). */
+.modal.image-modal #imgFitBtn { display: flex; }
+/* With a picture rail the picture already fills the area; the button then switches to normal size (img-actual). */
+.modal.has-gallery.img-actual .preview-image { flex: 0 0 auto; width: auto; height: auto; max-width: 100%; max-height: 100%; margin: auto; }
+/* Twin panels: a lone picture in a panel's preview fills the panel when fit is on. */
+body.tw-img-fit .tw-vbody:not(.tw-has-rail) .preview-image { flex: 1 1 0; min-height: 0; width: 100%; height: 100%; max-width: 100%; max-height: 100%; margin: 0; object-fit: contain; }
+.modal.image-modal.img-fit:not(.has-gallery) { height: 95vh; height: 95dvh; }
+.modal.image-modal.img-fit:not(.has-gallery) .preview-image { flex: 1 1 0; min-height: 0; width: 100%; max-width: 100%; max-height: none; height: auto; margin: 0; object-fit: contain; }
+#modal.tw-embedded .modal.image-modal.img-fit:not(.has-gallery) { height: 100%; }
 .modal.video-modal #focusBtn, .modal.video-modal #fitBtn { display: flex; }
 .modal.video-modal #fullscreenBtn.fs-ok { display: flex; }
 /* Video "fit to view": the picture grows to fill the whole preview area instead of stopping at the 900px player width. */
@@ -1265,6 +1276,8 @@ html[data-theme="concrete"] .tw-selbar { background: var(--yellow); color: var(-
 /* Header action buttons (star, info, link, download, open) are a little larger than the playlist-bar ones; Play and Close shrank by 25%, so the header is no taller than before. */
 #modalContent .modal-actions .modal-btn:not(.play-playlist-btn):not(.text-btn) { width: max(var(--ctl), 2rem); height: max(var(--ctl), 2rem); }
 #modalContent .modal-actions .modal-btn:not(.play-playlist-btn):not(.text-btn) svg { width: 17px; height: 17px; }
+/* Desktop: the preview header hugs its buttons (the 0.6rem top and bottom padding was dead space). */
+@media (min-width: 641px) { #modalContent > .modal-header { padding-top: 0.25rem; padding-bottom: 0.25rem; } }
 @media (pointer: coarse) { #modalContent .modal-actions .modal-btn#closeBtn::after, .modal-btn.play-playlist-btn::after, .playlist-btn.player-play-btn::after { content: ""; position: absolute; inset: -6px; } #modalContent .modal-actions .modal-btn#closeBtn, .modal-btn.play-playlist-btn, .playlist-btn.player-play-btn { position: relative; } }
 
 /* --- Mobile: previews are full-screen pages; the player keeps desktop sizes and a fixed layout ---
@@ -1453,7 +1466,7 @@ html[data-theme="concrete"] {
     --concrete: var(--cc-page); --panel: var(--cc-panel); --line: var(--cc-line); --ink: #000000;
     --text: var(--cc-text); --muted: var(--cc-muted);
     --orange: #ff6a1a; --pink: #ff4fa3; --violet: #a77bff; --green: #3ddc84;
-    --yellow: var(--cc-accent); --red: #ff3b30; --blue: #3d8bff;
+    --yellow: var(--cc-accent); --red: #ff3b30; --blue: #3d8bff; --cyan: #1fd1ee; --lime: #b6f23a;
     --bw: 2px;
 }
 /* These tokens are !important on purpose: the color engine writes the same variables inline on <html> (root.setProperty), and an inline value
@@ -1687,6 +1700,38 @@ html[data-theme="concrete"] .empty-action { --c: var(--orange); }
 html[data-theme="concrete"] .md-toggle[aria-pressed="true"] { --c: var(--orange); }
 html[data-theme="concrete"] .load-more-btn { --c: var(--orange); }
 html[data-theme="concrete"] .card-star-btn.starred { --c: var(--yellow); }
+/* More button colors: the controls that used to stay concrete-gray each get a color of their own (cyan and lime join the palette). Pressed toggles turn orange. */
+html[data-theme="concrete"] #extraBtn { --c: var(--blue); }
+html[data-theme="concrete"] #shortcutsBtn { --c: var(--lime); }
+html[data-theme="concrete"] #settingsBtn { --c: var(--cyan); }
+html[data-theme="concrete"] #themeColorBtn { --c: var(--pink); }
+html[data-theme="concrete"] #twinBtn:not(.active) { --c: var(--violet); }
+html[data-theme="concrete"] .view-btn[data-view="list"]:not(.active) { --c: var(--blue); }
+html[data-theme="concrete"] .view-btn[data-view="grid"]:not(.active) { --c: var(--cyan); }
+html[data-theme="concrete"] .view-btn[data-view="tree"]:not(.active) { --c: var(--lime); }
+html[data-theme="concrete"] .tree-hdr-btn { --c: var(--cyan); }
+html[data-theme="concrete"] #listViewBtn,
+html[data-theme="concrete"] #infoBtn,
+html[data-theme="concrete"] #topPrevBtn, html[data-theme="concrete"] #topNextBtn,
+html[data-theme="concrete"] #playlistPrev, html[data-theme="concrete"] #playlistNext,
+html[data-theme="concrete"] .vb-info,
+html[data-theme="concrete"] .tw-vhead [data-vact="prev"], html[data-theme="concrete"] .tw-vhead [data-vact="next"] { --c: var(--cyan); }
+html[data-theme="concrete"] #focusBtn,
+html[data-theme="concrete"] #rawBtn,
+html[data-theme="concrete"] .tw-vhead [data-vlink="raw"] { --c: var(--violet); }
+html[data-theme="concrete"] #fitBtn,
+html[data-theme="concrete"] #imgFitBtn,
+html[data-theme="concrete"] .vb-imgfit,
+html[data-theme="concrete"] #topShuffleBtn:not([aria-pressed="true"]),
+html[data-theme="concrete"] #playlistShuffle:not([aria-pressed="true"]) { --c: var(--lime); }
+html[data-theme="concrete"] #fullscreenBtn { --c: var(--blue); }
+html[data-theme="concrete"] .vb-play { --c: var(--orange); }
+html[data-theme="concrete"] #infoBtn[aria-pressed="true"],
+html[data-theme="concrete"] #fitBtn[aria-pressed="true"],
+html[data-theme="concrete"] #imgFitBtn[aria-pressed="true"],
+html[data-theme="concrete"] #focusBtn[aria-pressed="true"],
+html[data-theme="concrete"] .vb-info[aria-pressed="true"],
+html[data-theme="concrete"] .vb-imgfit[aria-pressed="true"] { --c: var(--orange); }
 html[data-theme="concrete"] .card-star-btn:not(.starred):not(:hover):not(:focus-visible):not(:active) { background: transparent !important; border-color: transparent !important; box-shadow: none !important; }
 html[data-theme="concrete"] .card-star-btn:not(.starred):not(:hover):not(:focus-visible):not(:active) svg { color: var(--text); }
 html[data-theme="concrete"] input[type="file"]::file-selector-button { background: var(--orange); color: var(--ink); border: 2px solid var(--ink); font: inherit; font-weight: 900; text-transform: uppercase; padding: 4px 10px; margin-right: 10px; cursor: pointer; }
@@ -2585,6 +2630,13 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                                             <span class="switch-slider"></span>
                                         </label>
                                     </div>
+                                    <div class="settings-row">
+                                        <span class="settings-label">Open playlists in the player</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="playlistToPlayerToggle" aria-label="Skip the list view and start the player when you open an m3u or m3u8 playlist" />
+                                            <span class="switch-slider"></span>
+                                        </label>
+                                    </div>
                                 </details>
                                 <details class="settings-section settings-collapsible">
                                     <summary class="settings-section-title">Recording</summary>
@@ -2712,7 +2764,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                 <div class="view-toggle" role="group" aria-label="View mode">
                     <button class="view-btn" data-view="grid" title="Thumbnails (click again to change their size)" aria-label="Thumbnail view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg></button>
                     <button class="view-btn active" data-view="tree" title="List with folder tree (click again to reset the tree width)" aria-label="Tree view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3h7zM7 9H4V5h3v4zm10 6h3v4h-3v-4zm0-10h3v4h-3V5z"/></svg></button>
-                    <button class="view-btn twin-btn" id="twinBtn" type="button" aria-pressed="false" title="Twin panels (T): two folders side by side. Click again to put the split back in the middle; Thumbnails or Tree leaves twin mode" aria-label="Twin panels"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 4h8v16H3V4zm10 0h8v16h-8V4z"/></svg></button>
+                    <button class="view-btn twin-btn" id="twinBtn" type="button" aria-pressed="false" title="Twin panels (T): two folders side by side. Click again to put the panels side by side with the split in the middle; Thumbnails or Tree leaves twin mode" aria-label="Twin panels"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 4h8v16H3V4zm10 0h8v16h-8V4z"/></svg></button>
                 </div>
                 </div>
             </div>
@@ -2744,8 +2796,10 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                 <span class="modal-title" id="modalTitle" role="heading" aria-level="2">File Preview</span>
                 <div class="modal-actions">
                     <button class="modal-btn play-playlist-btn hidden" id="playPlaylistBtn" title="Play as playlist" aria-label="Play as playlist"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66.0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"/></svg><span class="btn-label">Play</span></button>
+                    <button class="modal-btn" id="listViewBtn" title="Back to the list view (stops the player)" aria-label="Back to the list view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM8 13h8v1.6H8V13zm0 3.4h8V18H8v-1.6z"/></svg></button>
                     <button class="modal-btn" id="focusBtn" aria-pressed="false" title="Hide the side panel and player buttons" aria-label="Hide the side panel and player buttons"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16"/><path d="M9 4v16"/></svg></button>
                     <button class="modal-btn" id="fitBtn" aria-pressed="false" title="Fit video to view" aria-label="Fit video to view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M17 4h3c1.1 0 2 .9 2 2v2h-2V6h-3V4zM4 8V6h3V4H4c-1.1 0-2 .9-2 2v2h2zm16 8v2h-3v2h3c1.1 0 2-.9 2-2v-2h-2zM7 18H4v-2H2v2c0 1.1.9 2 2 2h3v-2zM18 8H6v8h12V8z"/></svg></button>
+                    <button class="modal-btn" id="imgFitBtn" aria-pressed="false" title="Fit image to view" aria-label="Fit image to view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M17 4h3c1.1 0 2 .9 2 2v2h-2V6h-3V4zM4 8V6h3V4H4c-1.1 0-2 .9-2 2v2h2zm16 8v2h-3v2h3c1.1 0 2-.9 2-2v-2h-2zM7 18H4v-2H2v2c0 1.1.9 2 2 2h3v-2zM18 8H6v8h12V8z"/></svg></button>
                     <button class="modal-btn" id="fullscreenBtn" aria-pressed="false" title="Full screen" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
                     <button class="modal-btn favorite-btn" id="favoriteBtn" title="Add to favorites" aria-label="Add file to favorites" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></button>
                     <button class="modal-btn" id="infoBtn" aria-pressed="false" title="Show file details" aria-label="File details"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16"/><path d="M3 14h18M7 17.2h4M14 17.2h3"/></svg></button>
@@ -3648,6 +3702,9 @@ function loadSettings() {
     closeOnOutsideClick = store.getItem(CLOSE_OUTSIDE_KEY) === "1";
     const closeOutsideToggle = document.getElementById("closeOutsideToggle");
     if (closeOutsideToggle) closeOutsideToggle.checked = closeOnOutsideClick;
+    playlistToPlayer = store.getItem(PL_TO_PLAYER_KEY) === "1";
+    const plToPlayerToggle = document.getElementById("playlistToPlayerToggle");
+    if (plToPlayerToggle) plToPlayerToggle.checked = playlistToPlayer;
     document.body.classList.toggle("native-player-mode", useNativePlayer);
     const compactDensity = store.getItem("compactDensity") === "1";
     document.body.classList.toggle("compact-density", compactDensity);
@@ -3717,11 +3774,10 @@ function setupDropdown(btnId, menuId, dropdownId) {
     });
     const closeBtn = menu.querySelector(".settings-menu-close");
     if (closeBtn) closeBtn.addEventListener("click", (e) => { e.stopPropagation(); closeMenu(); });
-    document.addEventListener("click", (e) => {
-        if (!e.target.closest("#" + dropdownId)) {
-            closeMenu();
-        }
-    });
+    // Capture phase on pointerdown: a press anywhere outside the menu closes it, even where the page stops the click from bubbling (player, stars, tree).
+    document.addEventListener("pointerdown", (e) => {
+        if (menu.classList.contains("active") && !e.target.closest("#" + dropdownId)) closeMenu();
+    }, true);
 }
 
 const CUSTOM_COLOR_KEY = "themeCustomColor";
@@ -5808,6 +5864,12 @@ function setupEventListeners() {
         setFitView(!document.getElementById("modalContent").classList.contains("fit-view"), true);
         if (e.detail > 0) fitBtn.blur();
     });
+    // Image "fit to view" (see applyImgFitPref): one saved choice for every image.
+    applyImgFitPref();
+    document.getElementById("imgFitBtn").addEventListener("click", (e) => {
+        toggleImgFit();
+        if (e.detail > 0) e.currentTarget.blur();
+    });
     // Video full screen: the preview body goes full screen (iPhone Safari only allows its own full-screen player, so the <video> is used there).
     const fsBtn = document.getElementById("fullscreenBtn");
     const fsBody = document.getElementById("modalBody");
@@ -5985,6 +6047,14 @@ function setupEventListeners() {
     document.getElementById("skipDeadToggle").addEventListener("change", (e) => {
         skipDeadStreams = e.target.checked;
         store.setItem(SKIPDEAD_KEY, skipDeadStreams ? "1" : "0");
+    });
+    document.getElementById("playlistToPlayerToggle").addEventListener("change", (e) => {
+        playlistToPlayer = e.target.checked;
+        try { store.setItem(PL_TO_PLAYER_KEY, playlistToPlayer ? "1" : "0"); } catch (err) { swallow(err); }
+    });
+    document.getElementById("listViewBtn").addEventListener("click", (e) => {
+        stopPlaylist(); // back to the playlist's list (text) view with its Play button
+        if (e.detail > 0) e.currentTarget.blur();
     });
     document.getElementById("closeOutsideToggle").addEventListener("change", (e) => {
         closeOnOutsideClick = e.target.checked;
@@ -6405,7 +6475,7 @@ async function selPlayList(list) {
         const old = new Map(EXTRA);
         const path = extraAdd(name, extraBlobUrl(extraM3u(items)), true);
         opDone(skipped ? `${skipped} item${skipped === 1 ? "" : "s"} could not be added.` : "", 3000);
-        await openFile(path, "playlist", name);
+        await openFile(path, "playlist", name, true);
         await startPlaylistMode();
         for (const [k, v] of old) { extraRelease(v); EXTRA.delete(k); } // the earlier made-up playlists are not needed any more
     } catch (err) {
@@ -7756,6 +7826,8 @@ const BTNSTYLE_KEY = "playerBtnStyle";
 let skipDeadStreams = true;
 let closeOnOutsideClick = false; // off by default: a stray click outside the player no longer closes it
 const CLOSE_OUTSIDE_KEY = "closeOnOutsideClick";
+let playlistToPlayer = false; // off by default: opening an m3u/m3u8 shows its list (text) first, and Play starts it
+const PL_TO_PLAYER_KEY = "playlistToPlayer";
 let playSession = null;
 let failStreak = 0;
 let npJob = null;
@@ -11743,6 +11815,39 @@ function hideGallery() {
 }
 // Shows (or updates) the rail for the file being opened; returns true when a rail is showing.
 // It is rebuilt only when the folder or kind changes, so its scroll position survives stepping through files.
+// Image "fit to view": the picture fills the preview area. A lone picture normally keeps its size (fit on = img-fit); with a picture rail it normally fills
+// (fit off = img-actual, normal size). The saved choice is "1" (fit), "0" (normal size) or unset (each case's default). Twin panels' previews share it.
+const IMG_FIT_KEY = "imageFitView";
+function imgFitOn() {
+    const m = document.getElementById("modalContent");
+    return m.classList.contains("has-gallery") ? !m.classList.contains("img-actual") : m.classList.contains("img-fit");
+}
+function syncImgFitBtn() {
+    const m = document.getElementById("modalContent");
+    if (!m) return;
+    const set = (b, on) => {
+        const label = on ? "Back to normal size" : "Fit image to view";
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+        b.title = label;
+        b.setAttribute("aria-label", label);
+    };
+    const b = document.getElementById("imgFitBtn");
+    if (b) set(b, imgFitOn());
+    const tw = document.body.classList.contains("tw-img-fit");
+    document.querySelectorAll(".vb-imgfit").forEach((x) => set(x, tw));
+}
+function applyImgFitPref() {
+    const v = store.getItem(IMG_FIT_KEY), m = document.getElementById("modalContent");
+    m.classList.toggle("img-fit", v === "1");
+    m.classList.toggle("img-actual", v === "0");
+    document.body.classList.toggle("tw-img-fit", v === "1");
+    syncImgFitBtn();
+}
+function toggleImgFit(twin) {
+    const on = twin ? document.body.classList.contains("tw-img-fit") : imgFitOn();
+    try { store.setItem(IMG_FIT_KEY, on ? "0" : "1"); } catch (e) { swallow(e); }
+    applyImgFitPref();
+}
 function syncGallery(filePath, kind) {
     if (!GALLERY_LABELS[kind] || !fileIndex) { hideGallery(); return false; }
     const rail = document.getElementById("galleryRail"), modal = document.getElementById("modalContent");
@@ -12309,9 +12414,9 @@ function metaInit() {
     });
 }
 
-async function openFile(filePath, fileType, fileName) {
+async function openFile(filePath, fileType, fileName, plain) {
     if (TWIN.routeOpen(filePath, fileType, fileName)) return;
-    if (!recLeaveOk(() => openFile(filePath, fileType, fileName))) return;
+    if (!recLeaveOk(() => openFile(filePath, fileType, fileName, plain))) return;
     endPlaySession();
     cancelHealthTest();
     // Stepping through the gallery re-opens the preview while it is already open: keep the focus where it is.
@@ -12354,7 +12459,7 @@ async function openFile(filePath, fileType, fileName) {
     playlistBarEl.classList.remove("active");
     if (isPlaylistFile) playPlaylistBtn.classList.remove("hidden");
     else playPlaylistBtn.classList.add("hidden");
-    document.getElementById("modalContent").classList.remove("video-modal", "compact-modal");
+    document.getElementById("modalContent").classList.remove("video-modal", "compact-modal", "image-modal");
     const galleryOn = syncGallery(filePath, previewKindOverride(fileName) || fileType);
     modalEl.classList.add("active");
     syncBackgroundInert();
@@ -12376,6 +12481,8 @@ async function openFile(filePath, fileType, fileName) {
                 bodyEl.classList.add("scrollable");
                 break;
             case "image":
+                document.getElementById("modalContent").classList.add("image-modal");
+                syncImgFitBtn();
                 bodyEl.innerHTML = `<img class="preview-image" src="${o}" alt="${escapeHtml(fileName)}">`;
                 break;
             case "video":
@@ -12438,6 +12545,8 @@ async function openFile(filePath, fileType, fileName) {
                 }
                 break;
             case "playlist":
+                // With "Open playlists in the player" on, skip the list view and start playing (callers that start the list themselves pass plain).
+                if (playlistToPlayer && !plain && isPlaylistFile) { await startPlaylistMode(); break; }
                 // A playlist is also plain text: show the text first (like the hosted repo does) and let the Play button start it.
                 // falls through
             case "code":
@@ -14692,7 +14801,7 @@ async function submitSource(picked) {
         const r = await loadExtraSource(picked ? { file: picked } : { url });
         if (!picked) { extraRemember(url); $("sourceInput").value = url; }
         closeSourceModal();
-        await openFile(r.path, r.type, r.name);
+        await openFile(r.path, r.type, r.name, !!r.play);
         if (r.play) await startPlaylistMode();
         for (const [p, e] of old) { extraRelease(e); EXTRA.delete(p); } // the earlier sources are not needed any more
         announce(`Opened ${r.name}`);
@@ -15414,12 +15523,12 @@ const TWIN = (() => {
     }
     // Side by side on a wide screen, the first box ends where the left panel ends and the second begins where the right one begins, so each box sits over its panel
     // and both follow the divider. Their outer edges are held by the logo and the tool buttons.
-    // Stacked top and bottom, there is no room for two boxes in the top bar's row, so each moves into its panel's head (between the path and the tools);
-    // everywhere else they sit in the top bar.
+    // Whenever two boxes show (side by side or stacked), each lives in its own panel's head (between the path and the tools);
+    // on a narrow screen the one box stays in the top bar.
     function placeBoxes() {
         const boxes = T.boxes, actions = document.querySelector(".header-actions"), tools = document.querySelector(".header-tools");
         if (!boxes || !actions || !T.panes.length) return;
-        const inHeads = T.on && T.vert && twoBoxes();
+        const inHeads = T.on && twoBoxes();
         boxes.forEach((bx, k) => {
             if (inHeads) {
                 const pn = paneEl(T.panes[boxPane(k)].id), head = pn && pn.querySelector(".tw-head");
@@ -15728,7 +15837,7 @@ const TWIN = (() => {
         save();
     }
     // Clicking Twin while it is on: the divider goes back to the middle and a maximized panel is restored (the layout button keeps its own say on side by side / stacked).
-    function resetLayout() { T.r = 50; T.max = -1; applyLayout(); save(); announce("Panels back to the default position"); }
+    function resetLayout() { T.r = 50; T.max = -1; T.vert = false; applyLayout(); save(); announce("Panels side by side, split in the middle"); }
     function toggleMax() { T.max = T.max === -1 ? T.active : -1; applyLayout(); }
     function setFilter(v, k) {
         const p = T.panes[boxPane(k || 0)];
@@ -15821,7 +15930,8 @@ const TWIN = (() => {
         if (el) { el.focus({ preventScroll: true }); el.scrollIntoView({ block: "nearest" }); } else focusCursor(p);
     }
     function openFileItem(p, item) {
-        if (PLAY_KINDS.has(kindOf(item))) openMedia(p, item); else openInline(p, item);
+        const k = kindOf(item);
+        if (PLAY_KINDS.has(k)) openMedia(p, item); else if (k === "playlist" && playlistToPlayer) openMedia(p, item, true); else openInline(p, item);
     }
     function openMedia(p, item, autoPlay) {
         const modalEl = $("modal");
@@ -15850,7 +15960,7 @@ const TWIN = (() => {
             done();
             if (autoPlay && modalEl.classList.contains("active") && T.media === p.id && isPlaylistFile) startPlaylistMode();
         };
-        Promise.resolve(openFile(fullOf(p, item.name), item.category, item.name)).then(after, done);
+        Promise.resolve(openFile(fullOf(p, item.name), item.category, item.name, !!autoPlay)).then(after, done);
     }
     // Previous/next file exist only for a local folder's files; hosted repo files never get them. Media (audio, video, playlists) is always skipped, since it opens in the player.
     const canStep = (p) => p.source === "local";
@@ -15905,6 +16015,8 @@ const TWIN = (() => {
         body.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
         updateStepButtons(p);
         view.querySelector(".vb-play").hidden = kindOf(item) !== "playlist";
+        view.querySelector(".vb-imgfit").hidden = kindOf(item) !== "image";
+        syncImgFitBtn();
         p.metaRows = metaRowsFor(p, item, full);
         paintMeta(p);
         syncFav(p);
@@ -15945,6 +16057,7 @@ const TWIN = (() => {
                     const names = p.order.filter((n) => { const it = p.map.get(n); return it && it.type === "file" && kindOf(it) === "image"; });
                     if (names.length < 2 || !names.includes(item.name)) { body.innerHTML = img; break; }
                     p.gal = names;
+                    view.querySelector(".vb-imgfit").hidden = true; // a picture with a rail already fills the panel
                     const idx = names.indexOf(item.name);
                     const thumb = (n) => `<img class="gal-thumb lazy" ${p.source === "local" ? `data-tlocal="${escapeHtml(fullOf(p, n))}"` : `data-src="${escapeHtml(hostedUrlIn(c, fullOf(p, n)))}"`} alt="" decoding="async">`;
                     body.classList.add("tw-has-rail");
@@ -16133,7 +16246,7 @@ const TWIN = (() => {
         if (sbtn) { twsAct(p, sbtn.dataset.sel); return; }
         if (t.closest(".tw-selbar")) return;
         const va = t.closest("[data-vact]");
-        if (va) { const k = va.dataset.vact; if (k === "close") closeInline(p); else if (k === "prev") stepInline(p, -1); else if (k === "next") stepInline(p, 1); else if (k === "info") toggleMeta(); else if (k === "play") playFromInline(p); else if (k === "fav") toggleFav(p); else if (k === "copy") copyLink(p, va); return; }
+        if (va) { const k = va.dataset.vact; if (k === "close") closeInline(p); else if (k === "prev") stepInline(p, -1); else if (k === "next") stepInline(p, 1); else if (k === "info") toggleMeta(); else if (k === "play") playFromInline(p); else if (k === "imgfit") toggleImgFit(true); else if (k === "fav") toggleFav(p); else if (k === "copy") copyLink(p, va); return; }
         const gi = t.closest(".tw-rail .gal-item[data-rn]");
         if (gi) { const it = p.map.get(gi.dataset.rn); if (it && !(p.viewItem && p.viewItem.name === it.name)) openInline(p, it); return; }
         if (t.closest(".tw-view, .tw-media")) return;
@@ -16427,6 +16540,7 @@ const TWIN = (() => {
                 <div class="tw-view" tabindex="-1" aria-label="Preview in panel ${i + 1}">
                     <div class="modal-header tw-vhead"><div class="modal-title tw-vtitle"></div><div class="modal-actions">
                         <button type="button" class="modal-btn play-playlist-btn vb-play" data-vact="play" title="Play as playlist" aria-label="Play as playlist" hidden>${$("playPlaylistBtn").innerHTML}</button>
+                        <button type="button" class="modal-btn vb-imgfit" data-vact="imgfit" aria-pressed="false" title="Fit image to view" aria-label="Fit image to view" hidden>${$("imgFitBtn").innerHTML}</button>
                         <button type="button" class="modal-btn" data-vact="prev" title="Previous file (\u2190)" aria-label="Previous file">${ICON.prev}</button>
                         <button type="button" class="modal-btn" data-vact="next" title="Next file (\u2192)" aria-label="Next file">${ICON.next}</button>
                         <button type="button" class="modal-btn favorite-btn vb-fav" data-vact="fav" aria-pressed="false" title="Add to favorites" aria-label="Add file to favorites">${icons.starOutline}</button>
