@@ -640,11 +640,13 @@ body.native-player-mode .playlist-btn.top-native-btn { display: inline-flex; }
 }
 .lbl-short { display: none; }
 .bico-x { display: none; }
-/* Player buttons option (Settings > Media Player): default = icons and labels as designed, labels = text only, icons = glyphs only */
-body[data-btn-style="labels"] .playlist-bar .playlist-btn svg, body[data-btn-style="labels"] .rec-panel .playlist-btn svg { display: none !important; }
-body[data-btn-style="icons"] .playlist-bar .playlist-btn .btn-txt, body[data-btn-style="icons"] .rec-panel .playlist-btn .blabel,
+/* Button style option (Settings > Appearance): icons (default) | mixed = icon + label | labels = text instead of icons | full = icon + label everywhere.
+   Only the playlist bar's Test / Playlist / Songs / Quality / Record buttons and the recording panel follow it here; the playback controls never carry labels. */
+body[data-btn-style="labels"] .playlist-bar :is(#playlistTest, #playlistList, #playlistSongs, #playlistQuality, #playlistRec) svg, body[data-btn-style="labels"] .rec-panel .playlist-btn svg { display: none !important; }
+body[data-btn-style="full"] .rec-panel .playlist-btn svg { display: block !important; }
+body[data-btn-style="icons"] .playlist-bar :is(#playlistTest, #playlistList, #playlistSongs, #playlistQuality, #playlistRec) .btn-txt, body[data-btn-style="icons"] .rec-panel .playlist-btn .blabel,
 body[data-btn-style="icons"] .rec-panel .playlist-btn .lbl-long, body[data-btn-style="icons"] .rec-panel .playlist-btn .lbl-short { display: none !important; }
-body[data-btn-style="icons"] .playlist-bar .playlist-btn svg, body[data-btn-style="icons"] .rec-panel .playlist-btn svg { display: block !important; }
+body[data-btn-style="icons"] .playlist-bar :is(#playlistTest, #playlistList, #playlistSongs, #playlistQuality, #playlistRec) svg, body[data-btn-style="icons"] .rec-panel .playlist-btn svg { display: block !important; }
 body[data-btn-style="icons"] .playlist-bar #playlistTest, body[data-btn-style="icons"] .playlist-bar #playlistList, body[data-btn-style="icons"] .playlist-bar #playlistSongs, body[data-btn-style="icons"] .playlist-bar #playlistQuality, body[data-btn-style="icons"] .playlist-bar #playlistRec { min-width: var(--bar-btn-w); padding-left: 0.35rem; padding-right: 0.35rem; }
 body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding: 0 0.5rem; }
 .playlist-bar .bar-break { display: none; flex: 0 0 100%; height: 0; }
@@ -894,7 +896,7 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 @container (max-width: 400px) {
     .playlist-bar #playlistTest:not(.active) .btn-txt, .playlist-bar #playlistList .btn-txt, .playlist-bar #playlistSongs .btn-txt, .playlist-bar #playlistQuality .btn-txt, .playlist-bar #playlistRec:not(.rec-on) .btn-txt { display: none; }
 }
-body[data-btn-style="labels"] .playlist-bar #playlistTest .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistList .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistSongs .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistQuality .btn-txt, body[data-btn-style="labels"] .playlist-bar #playlistRec .btn-txt { display: inline; }
+body:is([data-btn-style="labels"], [data-btn-style="full"]) .playlist-bar :is(#playlistTest, #playlistList, #playlistSongs, #playlistQuality, #playlistRec) .btn-txt { display: inline; }
 @media (max-width: 640px) {
     .modal:has(.playlist-bar.active) .modal-title { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; flex: none; }
     .modal:has(.playlist-bar.active) .modal-actions { margin-left: auto; }
@@ -1287,20 +1289,29 @@ html[data-theme="concrete"] .tw-selbar { background: var(--yellow); color: var(-
 @media (min-width: 641px) { #modalContent > .modal-header { padding-top: 0.25rem; padding-bottom: 0.25rem; } }
 @media (pointer: coarse) { #modalContent .modal-actions .modal-btn#closeBtn::after, .modal-btn.play-playlist-btn::after, .playlist-btn.player-play-btn::after { content: ""; position: absolute; inset: -6px; } #modalContent .modal-actions .modal-btn#closeBtn, .modal-btn.play-playlist-btn, .playlist-btn.player-play-btn { position: relative; } }
 
-/* --- Player buttons: one rule for every button of the player (header actions, transport row, playlist bar, recording row).
-   Default = glyph + label on all of them while there is horizontal room (JS adds .has-lbl, see fitBtnLabels), otherwise glyphs only; "All labels" = text only; "All icons" = glyphs only.
-   Labels of the header and the transport row are CSS (data-lbl), so swapping a button's glyph never loses its label. --- */
-.player-controls-row .playlist-btn[data-lbl]::before, #modalContent > .modal-header .modal-actions .modal-btn[data-lbl]::before { content: attr(data-lbl); display: none; font-size: 0.75rem; font-weight: 600; line-height: 1; white-space: nowrap; }
-.player-controls-row.has-lbl .playlist-btn[data-lbl]::before, #modalContent > .modal-header .modal-actions.has-lbl .modal-btn[data-lbl]::before { display: inline; }
-.player-controls-row.has-lbl .playlist-btn[data-lbl] { width: auto; min-width: var(--ctl); padding: 0 0.6rem; gap: 0.35rem; }
-.player-controls-row.has-lbl .playlist-btn.player-play-btn[data-lbl] { height: 2.4rem; padding: 0 1rem; }
-.player-controls-row .player-ab-btn, .player-controls-row .player-speed-btn { width: auto; min-width: var(--ctl); padding: 0 0.5rem; gap: 0.3rem; }
+/* --- Button style (Settings > Appearance). Labels of the preview header and of the page toolbars are CSS (data-lbl), so swapping a button's glyph never loses its label.
+   icons = glyphs only (default); mixed = glyph + label only on buttons marked data-need (their icon alone is unclear); labels = text instead of glyphs;
+   full = glyph + label on every page button. The player's own controls (transport row, Sound panel, bar controls) are always glyphs only. --- */
+#modalContent > .modal-header .modal-actions .modal-btn[data-lbl]::before { content: attr(data-lbl); display: none; font-size: 0.75rem; font-weight: 600; line-height: 1; white-space: nowrap; }
+#modalContent > .modal-header .modal-actions.has-lbl .modal-btn[data-lbl]::before { display: inline; }
 #modalContent > .modal-header .modal-actions.has-lbl .modal-btn[data-lbl] { width: auto; padding: 0 0.55rem; gap: 0.35rem; }
-body[data-btn-style="labels"] .player-controls-row .playlist-btn[data-lbl] > svg, body[data-btn-style="labels"] #modalContent > .modal-header .modal-actions .modal-btn[data-lbl] > svg,
-body[data-btn-style="labels"] .modal-btn.play-playlist-btn > svg { display: none; }
-body[data-btn-style="labels"] .modal-btn.play-playlist-btn .btn-label { display: inline; }
+body[data-btn-style="mixed"] #modalContent > .modal-header .modal-actions.has-lbl .modal-btn[data-lbl]:not([data-need])::before { display: none; }
+body[data-btn-style="mixed"] #modalContent > .modal-header .modal-actions.has-lbl .modal-btn[data-lbl]:not([data-need]) { width: max(var(--ctl), 2rem); padding: 0; gap: 0; }
+.player-controls-row .player-ab-btn, .player-controls-row .player-speed-btn { width: auto; min-width: var(--ctl); padding: 0 0.5rem; gap: 0.3rem; }
+body[data-btn-style="labels"] #modalContent > .modal-header .modal-actions .modal-btn[data-lbl] > svg, body[data-btn-style="labels"] .modal-btn.play-playlist-btn > svg { display: none; }
+body:is([data-btn-style="labels"], [data-btn-style="full"]) .modal-btn.play-playlist-btn .btn-label { display: inline; }
 body[data-btn-style="icons"] .modal-btn.play-playlist-btn .btn-label { display: none; }
-body[data-btn-style="labels"] #modalContent > .modal-header .modal-actions { flex-wrap: wrap; justify-content: flex-end; row-gap: 0.25rem; }
+body:is([data-btn-style="labels"], [data-btn-style="full"]) #modalContent > .modal-header .modal-actions { flex-wrap: wrap; justify-content: flex-end; row-gap: 0.25rem; }
+/* Page toolbars (header tools, view buttons): ::before keeps ::after free for the touch hit area; wide screens only, narrow ones keep glyphs. */
+.settings-btn[data-lbl]::before, .view-btn[data-lbl]::before { content: attr(data-lbl); order: 2; display: none; font-size: 0.75rem; font-weight: 600; line-height: 1; white-space: nowrap; }
+body[data-btn-style="mixed"] :is(.settings-btn, .view-btn)[data-lbl][data-need]::before, body:is([data-btn-style="labels"], [data-btn-style="full"]) :is(.settings-btn, .view-btn)[data-lbl]::before { display: inline; }
+body[data-btn-style="mixed"] :is(.settings-btn, .view-btn)[data-lbl][data-need], body:is([data-btn-style="labels"], [data-btn-style="full"]) :is(.settings-btn, .view-btn)[data-lbl] { gap: 0.35rem; padding-left: 0.55rem; padding-right: 0.55rem; }
+body[data-btn-style="labels"] :is(.settings-btn, .view-btn)[data-lbl] > svg { display: none; }
+@media (max-width: 760px) {
+    :is(.settings-btn, .view-btn)[data-lbl]::before { display: none !important; }
+    body[data-btn-style] :is(.settings-btn, .view-btn)[data-lbl] > svg { display: block !important; }
+    body[data-btn-style] :is(.settings-btn, .view-btn)[data-lbl] { gap: 0 !important; padding-left: 0.375rem !important; padding-right: 0.375rem !important; }
+}
 
 /* --- Mobile: previews are full-screen pages; the player keeps desktop sizes and a fixed layout ---
    Station name in the header (as on desktop); the song replaces it in one fixed slot, the status line is one fixed line, and spare room is simply empty. */
@@ -2557,16 +2568,16 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                     </button>
                 </div>
                 <div class="header-tools">
-                <button class="settings-btn" id="localBtn" title="Open a local folder (works offline)" aria-label="Open a local folder"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg></button>
-                <button class="settings-btn" id="extraBtn" title="Load an extra source: a link or a file" aria-label="Load an extra source"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z" /></svg></button>
-                <button class="settings-btn" id="shortcutsBtn" title="Keyboard shortcuts" aria-label="Show keyboard shortcuts">
+                <button class="settings-btn" id="localBtn" data-lbl="Folder" data-need title="Open a local folder (works offline)" aria-label="Open a local folder"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg></button>
+                <button class="settings-btn" id="extraBtn" data-lbl="Load" data-need title="Load an extra source: a link or a file" aria-label="Load an extra source"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z" /></svg></button>
+                <button class="settings-btn" id="shortcutsBtn" data-lbl="Keys" title="Keyboard shortcuts" aria-label="Show keyboard shortcuts">
                     <svg viewBox="0 0 24 24" fill="currentcolor"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41.0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21.0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
                 </button>
-                <button class="settings-btn" id="statsBtn" title="Library stats" aria-label="Show library stats">
+                <button class="settings-btn" id="statsBtn" data-lbl="Stats" data-need title="Library stats" aria-label="Show library stats">
                     <svg viewBox="0 0 24 24" fill="currentcolor"><path d="M5 9.2h3.2V19H5V9.2zm5.4-4.4h3.2V19h-3.2V4.8zm5.4 8h3.2V19h-3.2v-6.2z"/></svg>
                 </button>
                 <div class="settings-dropdown" id="settingsDropdown">
-                    <button class="settings-btn" id="settingsBtn" title="Settings" aria-label="Settings" aria-haspopup="true" aria-expanded="false">
+                    <button class="settings-btn" id="settingsBtn" data-lbl="Settings" title="Settings" aria-label="Settings" aria-haspopup="true" aria-expanded="false">
                         <svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19.14 12.94c.04-.31.06-.63.06-.94.0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24.0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47.0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24.0.44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47.0.59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98.0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
                     </button>
                     <div class="settings-menu" id="settingsMenu">
@@ -2635,6 +2646,10 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                                             <span class="switch-slider"></span>
                                         </label>
                                     </div>
+                                    <div class="settings-row">
+                                        <span class="settings-label">Button labels</span>
+                                        <select class="sort-select" id="btnStyleSel" aria-label="Choose whether the page's buttons show icons only, icons with labels where an icon alone is unclear, labels only, or icons with labels on every button"><option value="icons">Icons</option><option value="mixed">Icons + labels</option><option value="labels">Labels</option><option value="full">Informative</option></select>
+                                    </div>
                                 </div>
                                 <details class="settings-section settings-collapsible" open>
                                     <summary class="settings-section-title">Media Player</summary>
@@ -2651,10 +2666,6 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                                             <input type="checkbox" id="skipDeadToggle" checked aria-label="Skip streams that tested or played as off air when moving between playlist tracks" />
                                             <span class="switch-slider"></span>
                                         </label>
-                                    </div>
-                                    <div class="settings-row">
-                                        <span class="settings-label">Player buttons</span>
-                                        <select class="sort-select" id="btnStyleSel" aria-label="Show the playlist and recording buttons with their usual icons and labels, with labels only, or with icons only"><option value="default">Default</option><option value="labels">All labels</option><option value="icons">All icons</option></select>
                                     </div>
                                     <div class="settings-row">
                                         <span class="settings-label">Close player on outside click</span>
@@ -2719,7 +2730,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                     </div>
                 </div>
                 <div class="settings-dropdown" id="themeColorDropdown">
-                    <button class="settings-btn" id="themeColorBtn" title="Theme &amp; color" aria-label="Theme and color settings" aria-haspopup="true" aria-expanded="false">
+                    <button class="settings-btn" id="themeColorBtn" data-lbl="Theme" title="Theme &amp; color" aria-label="Theme and color settings" aria-haspopup="true" aria-expanded="false">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h1.5A4.5 4.5 0 0 0 21 10c0-4-4-7-9-7z"/><circle cx="7.5" cy="10.5" r="1.4" fill="currentcolor" stroke="none"/><circle cx="10.5" cy="7" r="1.4" fill="currentcolor" stroke="none"/><circle cx="14.5" cy="7" r="1.4" fill="currentcolor" stroke="none"/><circle cx="17" cy="10.5" r="1.4" fill="currentcolor" stroke="none"/></svg>
                     </button>
                     <div class="settings-menu" id="themeColorMenu">
@@ -2751,9 +2762,9 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                                 <div class="settings-section">
                                     <div class="settings-section-title">Base Color</div>
                                     <div class="settings-row">
-                                        <span class="settings-label">Change color on every visit<span id="randomColorNote"></span></span>
+                                        <span class="settings-label">Change color on every visit</span>
                                         <label class="switch">
-                                            <input type="checkbox" id="randomColorToggle" aria-label="Step through the default look, yellow, green, cyan, blue, magenta and red in order, one for each time the page loads, for whichever theme is selected" />
+                                            <input type="checkbox" id="randomColorToggle" aria-label="Change the color a step at a time on every visit. Without a picked color: the default look, yellow, green, cyan, blue, magenta, red. With a picked color: the default look, then the picked color turned by 45 degrees more each time until it is back to the picked color" />
                                             <span class="switch-slider"></span>
                                         </label>
                                     </div>
@@ -2802,9 +2813,9 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                     </div>
                 </div>
                 <div class="view-toggle" role="group" aria-label="View mode">
-                    <button class="view-btn" data-view="grid" title="Thumbnails (click again to change their size)" aria-label="Thumbnail view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg></button>
-                    <button class="view-btn active" data-view="tree" title="List with folder tree (click again to reset the tree width)" aria-label="Tree view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3h7zM7 9H4V5h3v4zm10 6h3v4h-3v-4zm0-10h3v4h-3V5z"/></svg></button>
-                    <button class="view-btn twin-btn" id="twinBtn" type="button" aria-pressed="false" title="Twin panels (T): two folders side by side. Click again to put the panels side by side with the split in the middle; Thumbnails or Tree leaves twin mode" aria-label="Twin panels"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 4h8v16H3V4zm10 0h8v16h-8V4z"/></svg></button>
+                    <button class="view-btn" data-view="grid" data-lbl="Thumbs" title="Thumbnails (click again to change their size)" aria-label="Thumbnail view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg></button>
+                    <button class="view-btn active" data-view="tree" data-lbl="Tree" title="List with folder tree (click again to reset the tree width)" aria-label="Tree view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3h7zM7 9H4V5h3v4zm10 6h3v4h-3v-4zm0-10h3v4h-3V5z"/></svg></button>
+                    <button class="view-btn twin-btn" id="twinBtn" data-lbl="Twin" data-need type="button" aria-pressed="false" title="Twin panels (T): two folders side by side. Click again to put the panels side by side with the split in the middle; Thumbnails or Tree leaves twin mode" aria-label="Twin panels"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 4h8v16H3V4zm10 0h8v16h-8V4z"/></svg></button>
                 </div>
                 </div>
             </div>
@@ -2836,17 +2847,17 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                 <span class="modal-title" id="modalTitle" role="heading" aria-level="2">File Preview</span>
                 <div class="modal-actions">
                     <button class="modal-btn play-playlist-btn hidden" id="playPlaylistBtn" title="Play as playlist" aria-label="Play as playlist"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66.0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"/></svg><span class="btn-label">Play</span></button>
-                    <button class="modal-btn" id="listViewBtn" data-lbl="List" title="Back to the list view (stops the player)" aria-label="Back to the list view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM8 13h8v1.6H8V13zm0 3.4h8V18H8v-1.6z"/></svg></button>
-                    <button class="modal-btn" id="focusBtn" data-lbl="Clean" aria-pressed="false" title="Hide the side panel and player buttons" aria-label="Hide the side panel and player buttons"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16"/><path d="M9 4v16"/></svg></button>
-                    <button class="modal-btn" id="fitBtn" data-lbl="Fit" aria-pressed="false" title="Fit video to view" aria-label="Fit video to view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M17 4h3c1.1 0 2 .9 2 2v2h-2V6h-3V4zM4 8V6h3V4H4c-1.1 0-2 .9-2 2v2h2zm16 8v2h-3v2h3c1.1 0 2-.9 2-2v-2h-2zM7 18H4v-2H2v2c0 1.1.9 2 2 2h3v-2zM18 8H6v8h12V8z"/></svg></button>
-                    <button class="modal-btn" id="imgFitBtn" data-lbl="Fit" aria-pressed="false" title="Fit image to view" aria-label="Fit image to view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M17 4h3c1.1 0 2 .9 2 2v2h-2V6h-3V4zM4 8V6h3V4H4c-1.1 0-2 .9-2 2v2h2zm16 8v2h-3v2h3c1.1 0 2-.9 2-2v-2h-2zM7 18H4v-2H2v2c0 1.1.9 2 2 2h3v-2zM18 8H6v8h12V8z"/></svg></button>
-                    <button class="modal-btn" id="imgActualBtn" data-lbl="1:1" aria-pressed="false" title="Show actual size (100%)" aria-label="Show actual size"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15"/><path d="M6.5 10.5 8.5 9v6.5M14.5 10.5 16.5 9v6.5"/><circle cx="11.5" cy="11" r="0.7" fill="currentcolor"/><circle cx="11.5" cy="14" r="0.7" fill="currentcolor"/></svg></button>
+                    <button class="modal-btn" id="listViewBtn" data-lbl="List" data-need title="Back to the list view (stops the player)" aria-label="Back to the list view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM8 13h8v1.6H8V13zm0 3.4h8V18H8v-1.6z"/></svg></button>
+                    <button class="modal-btn" id="focusBtn" data-lbl="Clean" data-need aria-pressed="false" title="Hide the side panel and player buttons" aria-label="Hide the side panel and player buttons"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16"/><path d="M9 4v16"/></svg></button>
+                    <button class="modal-btn" id="fitBtn" data-lbl="Fit" data-need aria-pressed="false" title="Fit video to view" aria-label="Fit video to view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M17 4h3c1.1 0 2 .9 2 2v2h-2V6h-3V4zM4 8V6h3V4H4c-1.1 0-2 .9-2 2v2h2zm16 8v2h-3v2h3c1.1 0 2-.9 2-2v-2h-2zM7 18H4v-2H2v2c0 1.1.9 2 2 2h3v-2zM18 8H6v8h12V8z"/></svg></button>
+                    <button class="modal-btn" id="imgFitBtn" data-lbl="Fit" data-need aria-pressed="false" title="Fit image to view" aria-label="Fit image to view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M17 4h3c1.1 0 2 .9 2 2v2h-2V6h-3V4zM4 8V6h3V4H4c-1.1 0-2 .9-2 2v2h2zm16 8v2h-3v2h3c1.1 0 2-.9 2-2v-2h-2zM7 18H4v-2H2v2c0 1.1.9 2 2 2h3v-2zM18 8H6v8h12V8z"/></svg></button>
+                    <button class="modal-btn" id="imgActualBtn" data-lbl="1:1" data-need aria-pressed="false" title="Show actual size (100%)" aria-label="Show actual size"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15"/><path d="M6.5 10.5 8.5 9v6.5M14.5 10.5 16.5 9v6.5"/><circle cx="11.5" cy="11" r="0.7" fill="currentcolor"/><circle cx="11.5" cy="14" r="0.7" fill="currentcolor"/></svg></button>
                     <button class="modal-btn" id="fullscreenBtn" data-lbl="Full" aria-pressed="false" title="Full screen" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
                     <button class="modal-btn favorite-btn" id="favoriteBtn" data-lbl="Star" title="Add to favorites" aria-label="Add file to favorites" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></button>
-                    <button class="modal-btn" id="infoBtn" data-lbl="Info" aria-pressed="false" title="Show file details" aria-label="File details"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16"/><path d="M3 14h18M7 17.2h4M14 17.2h3"/></svg></button>
+                    <button class="modal-btn" id="infoBtn" data-lbl="Info" data-need aria-pressed="false" title="Show file details" aria-label="File details"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16"/><path d="M3 14h18M7 17.2h4M14 17.2h3"/></svg></button>
                     <button class="modal-btn" id="copyLinkBtn" data-lbl="Link" title="Copy link" aria-label="Copy raw file link"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"/></svg></button>
                     <a class="modal-btn" id="downloadBtn" data-lbl="Save" title="Download" aria-label="Download file" download><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" /></svg></a>
-                    <a class="modal-btn" id="rawBtn" data-lbl="Raw" title="Open raw" aria-label="Open raw file in new tab" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 19H5V5h7V3H5c-1.11.0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1.0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></a>
+                    <a class="modal-btn" id="rawBtn" data-lbl="Raw" data-need title="Open raw" aria-label="Open raw file in new tab" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 19H5V5h7V3H5c-1.11.0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1.0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></a>
                     <button class="modal-btn" id="closeBtn" data-lbl="Close" title="Close" aria-label="Close preview"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button>
                 </div>
             </div>
@@ -3122,7 +3133,7 @@ const VOL_KEY = "playerVolumeUi";
 
 let currentFontSize = 16,
     vividColor = null,
-    bootColor = null, // the random color of this visit (never saved); used only while no custom color is picked
+    bootColor, // this visit's color step (never saved): undefined = none, null = the default look, otherwise a color
     randomColorOn = false,
     colorIntensity = 60,
     uiDepth = 1;
@@ -3739,7 +3750,7 @@ function loadSettings() {
     const nativeToggle = document.getElementById("nativePlayerToggle");
     if (nativeToggle) nativeToggle.checked = useNativePlayer;
     skipDeadStreams = store.getItem(SKIPDEAD_KEY) !== "0";
-    const btnStyle = ["labels", "icons"].includes(store.getItem(BTNSTYLE_KEY)) ? store.getItem(BTNSTYLE_KEY) : "default";
+    const btnStyle = BTN_STYLES.includes(store.getItem(BTNSTYLE_KEY)) ? store.getItem(BTNSTYLE_KEY) : "icons";
     document.body.dataset.btnStyle = btnStyle;
     const btnStyleSel = document.getElementById("btnStyleSel");
     if (btnStyleSel) btnStyleSel.value = btnStyle;
@@ -3831,35 +3842,52 @@ const MUTED_COLORS_KEY = "themeMutedColors";
 const COLOR_INTENSITY_KEY = "themeColorIntensity";
 const DEFAULT_COLOR_INTENSITY = 60;
 const DEPTH_KEY = "uiDepth";
-// Color per visit (Theme & Color menu, off by default): seven steps taken in order, one per page load: the theme's own default look, then yellow, green, cyan, blue,
-// magenta, red, and back to the start. The color is applied to whichever theme is selected through the same tinting as a picked color.
-// A picked custom color (or Vivid) always wins and pauses it.
+// Color per visit (Theme & Color menu, off by default), one step per page load, always in the same order:
+//  - no color picked: the theme's default look, then yellow, green, cyan, blue, magenta, red, and back to the start;
+//  - a color picked: the default look, then the picked color turned 45, 90 ... 315 degrees, and finally 360 = the picked color itself, then back to the default look.
+// The picked color is never overwritten; it is only the starting point of the turns.
 const RANDOM_COLOR_KEY = "themeRandomColor", RANDOM_LAST_KEY = "themeRandomLast";
 const RANDOM_COLORS = [null, "#ffd500", "#22c55e", "#06d6e0", "#2f6bff", "#e61fd0", "#ff2d2d"]; // null = default (no tint)
-const customColor = () => vividColor || bootColor;
+const HUE_STEP = 45, HUE_LAST = 360 / HUE_STEP; // steps 1..8 turn the picked color by 45..360 degrees; step 0 is the default look
+const randomSteps = () => (vividColor ? HUE_LAST + 1 : RANDOM_COLORS.length);
+const customColor = () => {
+    if (bootColor === undefined) return vividColor;
+    return bootColor || (vividColor && store.getItem("theme") === "vivid" ? vividColor : null); // Vivid has no default look: it shows the picked color
+};
 let bootIdx = -1; // this visit's step, chosen once
+const saveRandomStep = (i) => { try { store.setItem(RANDOM_LAST_KEY, String(i)); } catch (e) { swallow(e); } };
 function pickBootColor() {
     if (bootIdx < 0) {
         let last = -1;
         try { last = parseInt(store.getItem(RANDOM_LAST_KEY), 10); } catch (e) { swallow(e); }
-        bootIdx = isNaN(last) ? 0 : (last + 1) % RANDOM_COLORS.length;
-        try { store.setItem(RANDOM_LAST_KEY, String(bootIdx)); } catch (e) { swallow(e); }
+        bootIdx = isNaN(last) ? 0 : (last + 1) % randomSteps();
+        saveRandomStep(bootIdx);
     }
-    return RANDOM_COLORS[bootIdx];
+    const i = bootIdx % randomSteps();
+    if (!vividColor) return RANDOM_COLORS[i];
+    if (i === 0) return null;
+    if (i >= HUE_LAST) return vividColor;
+    const { h, s: sat, l } = hexToHsl(vividColor);
+    return hslToHex((h + i * HUE_STEP) % 360, sat, l);
 }
 function updateRandomColorUI() {
-    const t = document.getElementById("randomColorToggle"), n = document.getElementById("randomColorNote");
+    const t = document.getElementById("randomColorToggle");
     if (t) t.checked = randomColorOn;
-    if (n) n.textContent = randomColorOn && vividColor ? " (paused: custom color)" : "";
 }
 function setRandomColor(on) {
     randomColorOn = on;
     try { store.setItem(RANDOM_COLOR_KEY, on ? "1" : "0"); } catch (e) { swallow(e); }
-    if (!vividColor) {
-        if (on) { bootColor = pickBootColor(); applyCustomColor(); }
-        else { bootColor = null; clearCustomVars(); syncThemeColorMeta(); }
+    if (vividColor) {
+        // The picked color stays for the rest of this visit; the first step (the default look) comes with the next visit.
+        bootColor = undefined;
+        if (on && bootIdx < 0) { bootIdx = HUE_LAST; saveRandomStep(HUE_LAST); }
+    } else {
+        bootColor = on ? pickBootColor() : undefined;
+        clearCustomVars();
+        if (customColor()) applyCustomColor(); else syncThemeColorMeta();
     }
     renderIntensityBar();
+    updateThemeButtons();
     updateRandomColorUI();
 }
 const THEME_BASE = {
@@ -4215,7 +4243,8 @@ function applyCustomColor() {
 }
 function setCustomColor(hex) {
     vividColor = hex;
-    bootColor = null;
+    bootColor = undefined; // a fresh pick shows as picked; the turning starts at the next visit
+    bootIdx = HUE_LAST; saveRandomStep(HUE_LAST);
     store.setItem(CUSTOM_COLOR_KEY, hex);
     document.documentElement.style.setProperty("--custom-theme-swatch", hex);
     applyCustomColor();
@@ -4242,7 +4271,8 @@ function resetCustomColor() {
     store.removeItem(CUSTOM_COLOR_KEY);
     clearCustomVars();
     document.documentElement.style.removeProperty("--custom-theme-swatch");
-    if (randomColorOn) { bootColor = pickBootColor(); applyCustomColor(); } // back to the random color of this visit
+    bootIdx = 0; saveRandomStep(0); // back to the fixed list, starting with the default look
+    bootColor = randomColorOn ? null : undefined;
     syncThemeColorMeta();
     markActiveSwatch(null);
     renderIntensityBar();
@@ -4369,12 +4399,13 @@ function initThemeColor() {
     const storedColor = store.getItem(CUSTOM_COLOR_KEY);
     if (storedColor) {
         vividColor = storedColor;
-        applyCustomColor();
+        if (randomColorOn) bootColor = pickBootColor();
+        if (customColor()) applyCustomColor();
         if (input) input.value = storedColor;
         updateRandomColorUI();
         return;
     }
-    if (randomColorOn) { bootColor = pickBootColor(); applyCustomColor(); renderIntensityBar(); }
+    if (randomColorOn) { bootColor = pickBootColor(); if (customColor()) applyCustomColor(); renderIntensityBar(); }
     updateRandomColorUI();
     markActiveSwatch(null);
 }
@@ -5415,19 +5446,19 @@ function playerControlsHTML() {
             <span class="player-time" id="playerDurTime">--:--</span>
           </div>
           <div class="player-controls-row">
-            <button class="playlist-btn prev-btn" id="playlistPrev" data-lbl="Prev" title="Previous track" aria-label="Previous track" disabled>${icons.prevCtl}</button>
-            <button class="playlist-btn player-play-btn" id="playPauseBtn" data-lbl="Play" title="Play" aria-label="Play">${icons.playCtl}</button>
-            <button class="playlist-btn" id="playerStopBtn" data-lbl="Stop" title="Stop (a file goes back to the start, a live stream disconnects)" aria-label="Stop">${icons.stopCtl}</button>
-            <button class="playlist-btn next-btn" id="playlistNext" data-lbl="Next" title="Next track" aria-label="Next track" disabled>${icons.nextCtl}</button>
-            <button class="playlist-btn shuffle-btn" id="playlistShuffle" data-lbl="Shuffle" title="Shuffle" aria-label="Toggle shuffle" aria-pressed="false" disabled>${icons.shuffleCtl}</button>
+            <button class="playlist-btn prev-btn" id="playlistPrev" title="Previous track" aria-label="Previous track" disabled>${icons.prevCtl}</button>
+            <button class="playlist-btn player-play-btn" id="playPauseBtn" title="Play" aria-label="Play">${icons.playCtl}</button>
+            <button class="playlist-btn" id="playerStopBtn" title="Stop (a file goes back to the start, a live stream disconnects)" aria-label="Stop">${icons.stopCtl}</button>
+            <button class="playlist-btn next-btn" id="playlistNext" title="Next track" aria-label="Next track" disabled>${icons.nextCtl}</button>
+            <button class="playlist-btn shuffle-btn" id="playlistShuffle" title="Shuffle" aria-label="Toggle shuffle" aria-pressed="false" disabled>${icons.shuffleCtl}</button>
             <span class="player-divider"></span>
-            <button class="playlist-btn" id="volDownBtn" data-lbl="Vol \u2212" title="Volume down" aria-label="Decrease volume">${icons.volDownCtl}</button>
+            <button class="playlist-btn" id="volDownBtn" title="Volume down" aria-label="Decrease volume">${icons.volDownCtl}</button>
             <span class="player-vol" id="playerVolLabel" aria-live="polite">25%</span>
-            <button class="playlist-btn" id="volUpBtn" data-lbl="Vol +" title="Volume up" aria-label="Increase volume">${icons.volUpCtl}</button>
+            <button class="playlist-btn" id="volUpBtn" title="Volume up" aria-label="Increase volume">${icons.volUpCtl}</button>
             <span class="player-file-tools" hidden>
               <span class="player-divider"></span>
-              <button type="button" class="playlist-btn player-ab-btn" id="playerAbBtn" data-lbl="A\u2013B" aria-pressed="false">${icons.abCtl}<span class="btn-val"></span></button>
-              <button type="button" class="playlist-btn player-speed-btn" id="playerSpeedBtn" data-lbl="Speed" aria-label="Playback speed">${icons.speedCtl}<span class="btn-val">1\u00d7</span></button>
+              <button type="button" class="playlist-btn player-ab-btn" id="playerAbBtn" aria-pressed="false">${icons.abCtl}<span class="btn-val"></span></button>
+              <button type="button" class="playlist-btn player-speed-btn" id="playerSpeedBtn" aria-label="Playback speed">${icons.speedCtl}<span class="btn-val">1\u00d7</span></button>
             </span>
           </div>
         </div>
@@ -5448,8 +5479,9 @@ function wireMediaControls(mediaEl) {
     if (!playBtn || !mediaEl) return;
 
     function updatePlayIcon() {
-        playBtn.innerHTML = mediaEl.paused ? icons.playCtl : icons.pauseCtl;
-        const label = mediaEl.paused ? "Play" : "Pause";
+        const showPlay = mediaEl.paused || streamStopped; // after Stop the button always offers Play (it reconnects)
+        playBtn.innerHTML = showPlay ? icons.playCtl : icons.pauseCtl;
+        const label = showPlay ? "Play" : "Pause";
         playBtn.dataset.lbl = label;
         (playBtn.title = label), playBtn.setAttribute("aria-label", label);
     }
@@ -5459,7 +5491,8 @@ function wireMediaControls(mediaEl) {
         mediaEl.paused ? mediaEl.play().catch(() => {}) : softPause(mediaEl);
     });
     const stopBtn = document.getElementById("playerStopBtn");
-    if (stopBtn) stopBtn.addEventListener("click", () => stopTransport(mediaEl));
+    if (stopBtn) stopBtn.addEventListener("click", () => { stopTransport(mediaEl); updatePlayIcon(); });
+    mediaEl.addEventListener("emptied", updatePlayIcon);
     mediaEl.addEventListener("play", updatePlayIcon);
     mediaEl.addEventListener("pause", updatePlayIcon);
     updatePlayIcon();
@@ -5719,38 +5752,19 @@ function wireFileTools(mediaEl) {
     paintAb();
     sync();
 }
-// ---- Player buttons: glyph + label everywhere when there is room ----
-// Default mode: the header actions and the transport row get .has-lbl (a label on every button) while that still fits (header: the title keeps some room;
-// transport row: at most two lines); otherwise every one of them is glyph only. "All labels" and "All icons" force one or the other.
-function btnLines(row) {
-    const ys = [];
-    row.querySelectorAll(":scope > *, :scope > .player-file-tools > *").forEach((c) => {
-        const r = c.getBoundingClientRect();
-        if (r.width > 0 && r.height > 0) ys.push(r.top + r.height / 2);
-    });
-    ys.sort((x, y) => x - y);
-    let lines = ys.length ? 1 : 0;
-    for (let i = 1; i < ys.length; i++) if (ys[i] - ys[i - 1] > 12) lines++;
-    return lines;
-}
+// ---- Button style: the preview header's labels ----
+// "Icons": no labels. "Labels" / "Informative": always on. "Icons + labels": on while the title keeps some room (the CSS shows only the data-need buttons' labels).
 function fitBtnLabels() {
-    const mode = document.body.dataset.btnStyle || "default";
-    const row = document.querySelector("#modalContent .player-controls-row");
-    if (row && row.offsetParent !== null) {
-        if (mode === "labels") row.classList.add("has-lbl");
-        else if (mode === "icons") row.classList.remove("has-lbl");
-        else { row.classList.add("has-lbl"); if (btnLines(row) > 2) row.classList.remove("has-lbl"); }
-    }
+    const mode = document.body.dataset.btnStyle || "icons";
     const acts = document.querySelector("#modalContent > .modal-header .modal-actions"), head = acts && acts.parentElement;
-    if (acts && head.offsetParent !== null) {
-        if (mode === "labels") acts.classList.add("has-lbl");
-        else if (mode === "icons") acts.classList.remove("has-lbl");
-        else {
-            acts.classList.add("has-lbl");
-            const cs = getComputedStyle(head), pad = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0), gap = parseFloat(cs.columnGap) || 0;
-            const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-            if (head.clientWidth - pad - gap - Math.max(acts.offsetWidth, acts.scrollWidth) < 7 * rem) acts.classList.remove("has-lbl");
-        }
+    if (!acts || head.offsetParent === null) return;
+    if (mode === "icons") acts.classList.remove("has-lbl");
+    else if (mode === "labels" || mode === "full") acts.classList.add("has-lbl");
+    else {
+        acts.classList.add("has-lbl");
+        const cs = getComputedStyle(head), pad = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0), gap = parseFloat(cs.columnGap) || 0;
+        const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+        if (head.clientWidth - pad - gap - Math.max(acts.offsetWidth, acts.scrollWidth) < 7 * rem) acts.classList.remove("has-lbl");
     }
 }
 let btnFitRaf = 0;
@@ -7999,6 +8013,7 @@ const SONGS_MAX = 500;
 const NOCORS_KEY = "noCorsHosts";
 const SKIPDEAD_KEY = "skipDeadStreams";
 const BTNSTYLE_KEY = "playerBtnStyle";
+const BTN_STYLES = ["icons", "mixed", "labels", "full"];
 
 let skipDeadStreams = true;
 let closeOnOutsideClick = false; // off by default: a stray click outside the player no longer closes it
