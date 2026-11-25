@@ -568,11 +568,11 @@ html:not([data-theme="concrete"]):not([data-theme="hc-dark"]):not([data-theme="h
 .modal { background: var(--bg-secondary); border-radius: var(--radius-lg); max-width: 95vw; max-height: 95vh; max-height: 95dvh; width: 100%; display: flex; flex-direction: column; transform: scale(0.95); transition: transform 0.2s; overflow: hidden; border: var(--bw) solid var(--border-color); }
 .modal.video-modal { height: 95vh; height: 95dvh; }
 /* Video "clean view": the button exists only while a video is open and hides the side panel, player buttons and details bar, leaving just the picture. */
-#focusBtn, #fitBtn, #fullscreenBtn, #listViewBtn, #imgFitBtn { display: none; }
+#focusBtn, #fitBtn, #fullscreenBtn, #listViewBtn, #imgFitBtn, #imgActualBtn { display: none; }
 /* The list-view button exists only while a playlist is playing, whatever the "Open playlists in the player" setting says. */
 .modal:has(.playlist-bar.active) #listViewBtn { display: flex; }
 /* Image "fit to view": a lone picture grows to fill the preview (pictures with a rail already do). */
-.modal.image-modal #imgFitBtn { display: flex; }
+.modal.image-modal #imgFitBtn, .modal.image-modal #imgActualBtn { display: flex; }
 /* With a picture rail the picture already fills the area; the button then switches to normal size (img-actual). */
 .modal.has-gallery.img-actual .preview-image { flex: 0 0 auto; width: auto; height: auto; max-width: 100%; max-height: 100%; margin: auto; }
 /* Twin panels: a lone picture in a panel's preview fills the panel when fit is on. */
@@ -580,6 +580,10 @@ body.tw-img-fit .tw-vbody:not(.tw-has-rail) .preview-image { flex: 1 1 0; min-he
 .modal.image-modal.img-fit:not(.has-gallery) { height: 95vh; height: 95dvh; }
 .modal.image-modal.img-fit:not(.has-gallery) .preview-image { flex: 1 1 0; min-height: 0; width: 100%; max-width: 100%; max-height: none; height: auto; margin: 0; object-fit: contain; }
 #modal.tw-embedded .modal.image-modal.img-fit:not(.has-gallery) { height: 100%; }
+/* Image "actual size" (1:1): every pixel of the picture at its own size; a bigger picture scrolls (drag it with the mouse). */
+.modal.image-modal.img-1x .modal-body { overflow: auto; }
+.modal.image-modal.img-1x .modal-body .preview-image { flex: 0 0 auto; width: auto; height: auto; max-width: none; max-height: none; margin: auto; object-fit: none; cursor: grab; }
+.img-panning, .img-panning * { cursor: grabbing !important; user-select: none; }
 .modal.video-modal #focusBtn, .modal.video-modal #fitBtn { display: flex; }
 .modal.video-modal #fullscreenBtn.fs-ok { display: flex; }
 /* Video "fit to view": the picture grows to fill the whole preview area instead of stopping at the 900px player width. */
@@ -677,9 +681,12 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 .player-seek-row { display: flex; align-items: center; gap: 0.5rem; width: 100%; position: relative; }
 .ab-mark { position: absolute; top: 50%; width: 2px; height: 16px; margin-top: -8px; background: var(--accent); border-radius: 1px; pointer-events: none; z-index: 1; }
 .ab-mark[hidden], .player-file-tools[hidden] { display: none; }
-.player-file-tools { position: absolute; top: 0.5rem; right: 2.9rem; z-index: 2; display: flex; gap: 0.35rem; }
-.player-file-tools .player-info-btn { position: static; padding: 0.375rem 0.5rem; font: inherit; font-size: 0.72rem; font-weight: 700; line-height: 16px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+/* A-B repeat and speed sit in the controls row (files only); the group adds no box of its own, so its buttons wrap with the rest. */
+.player-file-tools:not([hidden]) { display: contents; }
 .player-ab-btn[aria-pressed="true"] { border-color: var(--accent); color: var(--accent-text, var(--accent)); }
+.player-ab-btn, .player-speed-btn { font-variant-numeric: tabular-nums; }
+.player-controls-row .btn-val { font-size: 0.72rem; font-weight: 700; line-height: 1; white-space: nowrap; }
+.player-controls-row .btn-val:empty { display: none; }
 .player-seek { -webkit-appearance: none; appearance: none; flex: 1; min-width: 0; height: 10px; margin: 0; cursor: pointer; border: var(--bw) solid var(--border-color); border-radius: var(--radius-full);
     background: linear-gradient(to right, var(--seek-fill, var(--stat-fill, var(--accent))) var(--seek-pct, 0%), color-mix(in srgb, var(--seek-fill, var(--stat-fill, var(--accent))) 38%, var(--control-surface)) var(--seek-pct, 0%), color-mix(in srgb, var(--seek-fill, var(--stat-fill, var(--accent))) 38%, var(--control-surface)) var(--seek-cache, 0%), var(--control-surface) var(--seek-cache, 0%)); }
 .player-seek::-webkit-slider-runnable-track { background: transparent; height: 100%; }
@@ -688,7 +695,7 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 .player-seek::-moz-range-thumb { width: 12px; height: 12px; border-radius: var(--radius-full); background: var(--on-control); border: var(--bw) solid var(--border-color); }
 .player-seek:focus-visible { outline: 2px solid var(--on-control); outline-offset: 2px; }
 .player-seek:disabled { opacity: 0.4; cursor: not-allowed; }
-.player-controls-row { display: flex; align-items: center; justify-content: center; gap: 0.4rem; width: 100%; flex-wrap: nowrap; overflow-x: auto; }
+.player-controls-row { display: flex; align-items: center; justify-content: center; gap: 0.35rem 0.4rem; width: 100%; flex-wrap: wrap; }
 .player-controls-row .playlist-btn { padding: 0.35rem; flex-shrink: 0; border-radius: var(--radius-full); }
 .player-divider { width: var(--bw); height: 1.25rem; background: var(--border-color); flex-shrink: 0; }
 .playlist-btn.player-play-btn { background: var(--accent-solid, var(--accent)); border-color: var(--accent-solid, var(--accent)); color: var(--on-accent); border-radius: var(--radius-full); width: 2.4rem; height: 2.4rem; padding: 0; transition: background-color var(--transition), border-color var(--transition); }
@@ -1280,6 +1287,21 @@ html[data-theme="concrete"] .tw-selbar { background: var(--yellow); color: var(-
 @media (min-width: 641px) { #modalContent > .modal-header { padding-top: 0.25rem; padding-bottom: 0.25rem; } }
 @media (pointer: coarse) { #modalContent .modal-actions .modal-btn#closeBtn::after, .modal-btn.play-playlist-btn::after, .playlist-btn.player-play-btn::after { content: ""; position: absolute; inset: -6px; } #modalContent .modal-actions .modal-btn#closeBtn, .modal-btn.play-playlist-btn, .playlist-btn.player-play-btn { position: relative; } }
 
+/* --- Player buttons: one rule for every button of the player (header actions, transport row, playlist bar, recording row).
+   Default = glyph + label on all of them while there is horizontal room (JS adds .has-lbl, see fitBtnLabels), otherwise glyphs only; "All labels" = text only; "All icons" = glyphs only.
+   Labels of the header and the transport row are CSS (data-lbl), so swapping a button's glyph never loses its label. --- */
+.player-controls-row .playlist-btn[data-lbl]::before, #modalContent > .modal-header .modal-actions .modal-btn[data-lbl]::before { content: attr(data-lbl); display: none; font-size: 0.75rem; font-weight: 600; line-height: 1; white-space: nowrap; }
+.player-controls-row.has-lbl .playlist-btn[data-lbl]::before, #modalContent > .modal-header .modal-actions.has-lbl .modal-btn[data-lbl]::before { display: inline; }
+.player-controls-row.has-lbl .playlist-btn[data-lbl] { width: auto; min-width: var(--ctl); padding: 0 0.6rem; gap: 0.35rem; }
+.player-controls-row.has-lbl .playlist-btn.player-play-btn[data-lbl] { height: 2.4rem; padding: 0 1rem; }
+.player-controls-row .player-ab-btn, .player-controls-row .player-speed-btn { width: auto; min-width: var(--ctl); padding: 0 0.5rem; gap: 0.3rem; }
+#modalContent > .modal-header .modal-actions.has-lbl .modal-btn[data-lbl] { width: auto; padding: 0 0.55rem; gap: 0.35rem; }
+body[data-btn-style="labels"] .player-controls-row .playlist-btn[data-lbl] > svg, body[data-btn-style="labels"] #modalContent > .modal-header .modal-actions .modal-btn[data-lbl] > svg,
+body[data-btn-style="labels"] .modal-btn.play-playlist-btn > svg { display: none; }
+body[data-btn-style="labels"] .modal-btn.play-playlist-btn .btn-label { display: inline; }
+body[data-btn-style="icons"] .modal-btn.play-playlist-btn .btn-label { display: none; }
+body[data-btn-style="labels"] #modalContent > .modal-header .modal-actions { flex-wrap: wrap; justify-content: flex-end; row-gap: 0.25rem; }
+
 /* --- Mobile: previews are full-screen pages; the player keeps desktop sizes and a fixed layout ---
    Station name in the header (as on desktop); the song replaces it in one fixed slot, the status line is one fixed line, and spare room is simply empty. */
 @media (max-width: 640px) {
@@ -1721,17 +1743,24 @@ html[data-theme="concrete"] #rawBtn,
 html[data-theme="concrete"] .tw-vhead [data-vlink="raw"] { --c: var(--violet); }
 html[data-theme="concrete"] #fitBtn,
 html[data-theme="concrete"] #imgFitBtn,
+html[data-theme="concrete"] #imgActualBtn,
+html[data-theme="concrete"] .vb-imgactual,
 html[data-theme="concrete"] .vb-imgfit,
 html[data-theme="concrete"] #topShuffleBtn:not([aria-pressed="true"]),
 html[data-theme="concrete"] #playlistShuffle:not([aria-pressed="true"]) { --c: var(--lime); }
 html[data-theme="concrete"] #fullscreenBtn { --c: var(--blue); }
-html[data-theme="concrete"] .vb-play { --c: var(--orange); }
+html[data-theme="concrete"] .vb-play, html[data-theme="concrete"] .vb-playother { --c: var(--orange); }
 html[data-theme="concrete"] #infoBtn[aria-pressed="true"],
 html[data-theme="concrete"] #fitBtn[aria-pressed="true"],
 html[data-theme="concrete"] #imgFitBtn[aria-pressed="true"],
 html[data-theme="concrete"] #focusBtn[aria-pressed="true"],
 html[data-theme="concrete"] .vb-info[aria-pressed="true"],
+html[data-theme="concrete"] #imgActualBtn[aria-pressed="true"],
+html[data-theme="concrete"] .vb-imgactual[aria-pressed="true"],
 html[data-theme="concrete"] .vb-imgfit[aria-pressed="true"] { --c: var(--orange); }
+html[data-theme="concrete"] #playerStopBtn { --c: var(--red); }
+html[data-theme="concrete"] .player-ab-btn { --c: var(--pink); }
+html[data-theme="concrete"] .player-speed-btn { --c: var(--violet); }
 html[data-theme="concrete"] .card-star-btn:not(.starred):not(:hover):not(:focus-visible):not(:active) { background: transparent !important; border-color: transparent !important; box-shadow: none !important; }
 html[data-theme="concrete"] .card-star-btn:not(.starred):not(:hover):not(:focus-visible):not(:active) svg { color: var(--text); }
 html[data-theme="concrete"] input[type="file"]::file-selector-button { background: var(--orange); color: var(--ink); border: 2px solid var(--ink); font: inherit; font-weight: 900; text-transform: uppercase; padding: 4px 10px; margin-right: 10px; cursor: pointer; }
@@ -2003,6 +2032,10 @@ html[data-vivid] *::after { forced-color-adjust: none !important; }
 .tw-vbody.tw-has-rail > .tw-rail { height: auto; }
 .tw-gal-main { flex: 1 1 0; min-width: 0; min-height: 0; display: flex; padding: 0.5rem; box-sizing: border-box; }
 .tw-gal-main .preview-image { flex: 1 1 0; min-width: 0; min-height: 0; width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; margin: 0; }
+/* Twin panels, image actual size (1:1). */
+body.tw-img-1x .tw-vbody:not(.tw-has-rail) { overflow: auto; }
+body.tw-img-1x .tw-gal-main { overflow: auto; }
+body.tw-img-1x .tw-vbody .preview-image, body.tw-img-1x .tw-gal-main .preview-image { flex: 0 0 auto; width: auto; height: auto; max-width: none; max-height: none; margin: auto; object-fit: none; cursor: grab; }
 @container twp (max-width: 32em) {
     .tw-vbody.tw-has-rail { flex-direction: column-reverse; }
     .tw-rail { width: auto; border-right: 0; border-top: var(--bw) solid var(--border-color); }
@@ -2718,6 +2751,13 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                                 <div class="settings-section">
                                     <div class="settings-section-title">Base Color</div>
                                     <div class="settings-row">
+                                        <span class="settings-label">Change color on every visit<span id="randomColorNote"></span></span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="randomColorToggle" aria-label="Step through the default look, yellow, green, cyan, blue, magenta and red in order, one for each time the page loads, for whichever theme is selected" />
+                                            <span class="switch-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="settings-row">
                                         <span class="settings-label">Color intensity</span>
                                     </div>
                                     <div class="settings-row">
@@ -2796,17 +2836,18 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                 <span class="modal-title" id="modalTitle" role="heading" aria-level="2">File Preview</span>
                 <div class="modal-actions">
                     <button class="modal-btn play-playlist-btn hidden" id="playPlaylistBtn" title="Play as playlist" aria-label="Play as playlist"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66.0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"/></svg><span class="btn-label">Play</span></button>
-                    <button class="modal-btn" id="listViewBtn" title="Back to the list view (stops the player)" aria-label="Back to the list view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM8 13h8v1.6H8V13zm0 3.4h8V18H8v-1.6z"/></svg></button>
-                    <button class="modal-btn" id="focusBtn" aria-pressed="false" title="Hide the side panel and player buttons" aria-label="Hide the side panel and player buttons"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16"/><path d="M9 4v16"/></svg></button>
-                    <button class="modal-btn" id="fitBtn" aria-pressed="false" title="Fit video to view" aria-label="Fit video to view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M17 4h3c1.1 0 2 .9 2 2v2h-2V6h-3V4zM4 8V6h3V4H4c-1.1 0-2 .9-2 2v2h2zm16 8v2h-3v2h3c1.1 0 2-.9 2-2v-2h-2zM7 18H4v-2H2v2c0 1.1.9 2 2 2h3v-2zM18 8H6v8h12V8z"/></svg></button>
-                    <button class="modal-btn" id="imgFitBtn" aria-pressed="false" title="Fit image to view" aria-label="Fit image to view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M17 4h3c1.1 0 2 .9 2 2v2h-2V6h-3V4zM4 8V6h3V4H4c-1.1 0-2 .9-2 2v2h2zm16 8v2h-3v2h3c1.1 0 2-.9 2-2v-2h-2zM7 18H4v-2H2v2c0 1.1.9 2 2 2h3v-2zM18 8H6v8h12V8z"/></svg></button>
-                    <button class="modal-btn" id="fullscreenBtn" aria-pressed="false" title="Full screen" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
-                    <button class="modal-btn favorite-btn" id="favoriteBtn" title="Add to favorites" aria-label="Add file to favorites" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></button>
-                    <button class="modal-btn" id="infoBtn" aria-pressed="false" title="Show file details" aria-label="File details"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16"/><path d="M3 14h18M7 17.2h4M14 17.2h3"/></svg></button>
-                    <button class="modal-btn" id="copyLinkBtn" title="Copy link" aria-label="Copy raw file link"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"/></svg></button>
-                    <a class="modal-btn" id="downloadBtn" title="Download" aria-label="Download file" download><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" /></svg></a>
-                    <a class="modal-btn" id="rawBtn" title="Open raw" aria-label="Open raw file in new tab" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 19H5V5h7V3H5c-1.11.0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1.0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></a>
-                    <button class="modal-btn" id="closeBtn" title="Close" aria-label="Close preview"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button>
+                    <button class="modal-btn" id="listViewBtn" data-lbl="List" title="Back to the list view (stops the player)" aria-label="Back to the list view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM8 13h8v1.6H8V13zm0 3.4h8V18H8v-1.6z"/></svg></button>
+                    <button class="modal-btn" id="focusBtn" data-lbl="Clean" aria-pressed="false" title="Hide the side panel and player buttons" aria-label="Hide the side panel and player buttons"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16"/><path d="M9 4v16"/></svg></button>
+                    <button class="modal-btn" id="fitBtn" data-lbl="Fit" aria-pressed="false" title="Fit video to view" aria-label="Fit video to view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M17 4h3c1.1 0 2 .9 2 2v2h-2V6h-3V4zM4 8V6h3V4H4c-1.1 0-2 .9-2 2v2h2zm16 8v2h-3v2h3c1.1 0 2-.9 2-2v-2h-2zM7 18H4v-2H2v2c0 1.1.9 2 2 2h3v-2zM18 8H6v8h12V8z"/></svg></button>
+                    <button class="modal-btn" id="imgFitBtn" data-lbl="Fit" aria-pressed="false" title="Fit image to view" aria-label="Fit image to view"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M17 4h3c1.1 0 2 .9 2 2v2h-2V6h-3V4zM4 8V6h3V4H4c-1.1 0-2 .9-2 2v2h2zm16 8v2h-3v2h3c1.1 0 2-.9 2-2v-2h-2zM7 18H4v-2H2v2c0 1.1.9 2 2 2h3v-2zM18 8H6v8h12V8z"/></svg></button>
+                    <button class="modal-btn" id="imgActualBtn" data-lbl="1:1" aria-pressed="false" title="Show actual size (100%)" aria-label="Show actual size"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15"/><path d="M6.5 10.5 8.5 9v6.5M14.5 10.5 16.5 9v6.5"/><circle cx="11.5" cy="11" r="0.7" fill="currentcolor"/><circle cx="11.5" cy="14" r="0.7" fill="currentcolor"/></svg></button>
+                    <button class="modal-btn" id="fullscreenBtn" data-lbl="Full" aria-pressed="false" title="Full screen" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
+                    <button class="modal-btn favorite-btn" id="favoriteBtn" data-lbl="Star" title="Add to favorites" aria-label="Add file to favorites" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></button>
+                    <button class="modal-btn" id="infoBtn" data-lbl="Info" aria-pressed="false" title="Show file details" aria-label="File details"><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16"/><path d="M3 14h18M7 17.2h4M14 17.2h3"/></svg></button>
+                    <button class="modal-btn" id="copyLinkBtn" data-lbl="Link" title="Copy link" aria-label="Copy raw file link"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"/></svg></button>
+                    <a class="modal-btn" id="downloadBtn" data-lbl="Save" title="Download" aria-label="Download file" download><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" /></svg></a>
+                    <a class="modal-btn" id="rawBtn" data-lbl="Raw" title="Open raw" aria-label="Open raw file in new tab" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 19H5V5h7V3H5c-1.11.0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1.0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></a>
+                    <button class="modal-btn" id="closeBtn" data-lbl="Close" title="Close" aria-label="Close preview"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button>
                 </div>
             </div>
             <div class="playlist-bar" id="playlistBar">
@@ -3081,6 +3122,8 @@ const VOL_KEY = "playerVolumeUi";
 
 let currentFontSize = 16,
     vividColor = null,
+    bootColor = null, // the random color of this visit (never saved); used only while no custom color is picked
+    randomColorOn = false,
     colorIntensity = 60,
     uiDepth = 1;
 
@@ -3120,6 +3163,9 @@ const icons = {
     volDownCtl: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13H5v-2h14v2z"/></svg>`,
     eq: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 20h4V4h-4v16zm-6 0h4v-8H4v8zM16 9v11h4V9h-4z"/></svg>`,
     volUpCtl: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>`,
+    stopCtl: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h12v12H6z"/></svg>`,
+    abCtl: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>`,
+    speedCtl: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.38 8.57l-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44zm-9.79 6.84a2 2 0 0 0 2.83 0l5.66-8.49-8.49 5.66a2 2 0 0 0 0 2.83z"/></svg>`,
     other: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/></svg>`,
     chevron: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>`,
     info: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 7h2v2h-2V7zm0 4h2v6h-2v-6zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>`,
@@ -3750,7 +3796,7 @@ function saveTheme(e) {
     else if (e === "vivid") { store.setItem("theme", "vivid"); de.removeAttribute("data-theme"); de.setAttribute("data-vivid", "1"); }
     else { store.setItem("theme", e); de.setAttribute("data-theme", e); de.removeAttribute("data-vivid"); }
     updateThemeButtons();
-    if (vividColor) applyCustomColor();
+    if (customColor()) applyCustomColor();
     syncThemeColorMeta();
 }
 function setupDropdown(btnId, menuId, dropdownId) {
@@ -3785,6 +3831,37 @@ const MUTED_COLORS_KEY = "themeMutedColors";
 const COLOR_INTENSITY_KEY = "themeColorIntensity";
 const DEFAULT_COLOR_INTENSITY = 60;
 const DEPTH_KEY = "uiDepth";
+// Color per visit (Theme & Color menu, off by default): seven steps taken in order, one per page load: the theme's own default look, then yellow, green, cyan, blue,
+// magenta, red, and back to the start. The color is applied to whichever theme is selected through the same tinting as a picked color.
+// A picked custom color (or Vivid) always wins and pauses it.
+const RANDOM_COLOR_KEY = "themeRandomColor", RANDOM_LAST_KEY = "themeRandomLast";
+const RANDOM_COLORS = [null, "#ffd500", "#22c55e", "#06d6e0", "#2f6bff", "#e61fd0", "#ff2d2d"]; // null = default (no tint)
+const customColor = () => vividColor || bootColor;
+let bootIdx = -1; // this visit's step, chosen once
+function pickBootColor() {
+    if (bootIdx < 0) {
+        let last = -1;
+        try { last = parseInt(store.getItem(RANDOM_LAST_KEY), 10); } catch (e) { swallow(e); }
+        bootIdx = isNaN(last) ? 0 : (last + 1) % RANDOM_COLORS.length;
+        try { store.setItem(RANDOM_LAST_KEY, String(bootIdx)); } catch (e) { swallow(e); }
+    }
+    return RANDOM_COLORS[bootIdx];
+}
+function updateRandomColorUI() {
+    const t = document.getElementById("randomColorToggle"), n = document.getElementById("randomColorNote");
+    if (t) t.checked = randomColorOn;
+    if (n) n.textContent = randomColorOn && vividColor ? " (paused: custom color)" : "";
+}
+function setRandomColor(on) {
+    randomColorOn = on;
+    try { store.setItem(RANDOM_COLOR_KEY, on ? "1" : "0"); } catch (e) { swallow(e); }
+    if (!vividColor) {
+        if (on) { bootColor = pickBootColor(); applyCustomColor(); }
+        else { bootColor = null; clearCustomVars(); syncThemeColorMeta(); }
+    }
+    renderIntensityBar();
+    updateRandomColorUI();
+}
 const THEME_BASE = {
     dark: {
         "--bg-primary": "#0d1117", "--bg-secondary": "#161b22", "--bg-tertiary": "#21262d",
@@ -3986,7 +4063,7 @@ function parseCssColor(str) {
 // unchanged, so light stays light, dark stays dark, and high-contrast keeps pure black/white with contrast re-checked. Concrete re-tints its own palette.
 function applyTintColor() {
     const rootEl = document.documentElement, root = rootEl.style;
-    const activeColor = muteColorAtIntensity(vividColor, colorIntensity);
+    const activeColor = muteColorAtIntensity(customColor(), colorIntensity);
     const { h, s: activeS } = hexToHsl(activeColor);
     const attr = rootEl.getAttribute("data-theme");
     if (attr === "concrete") {
@@ -4066,12 +4143,12 @@ function applyTintColor() {
     syncThemeColorMeta();
 }
 function applyVividColor() {
-    if (!vividColor) return;
+    if (!customColor()) return;
     const root = document.documentElement.style;
     const base = THEME_BASE[getActivePaletteKey()];
     const newVals = {};
     // Below 100% intensity the picked color is first muted; every surface below then uses that same hex (background, hover fill, accent).
-    const activeColor = muteColorAtIntensity(vividColor, colorIntensity);
+    const activeColor = muteColorAtIntensity(customColor(), colorIntensity);
     newVals["--bg-primary"] = activeColor;
     newVals["--bg-secondary"] = activeColor;
     newVals["--bg-tertiary"] = activeColor;
@@ -4131,18 +4208,20 @@ function applyVividColor() {
 }
 // Vivid = the original flat, saturated custom look. Every other theme gets its identity-preserving "+" tint.
 function applyCustomColor() {
-    if (!vividColor) return;
+    if (!customColor()) return;
     clearCustomVars();
     if (store.getItem("theme") === "vivid") applyVividColor();
     else applyTintColor();
 }
 function setCustomColor(hex) {
     vividColor = hex;
+    bootColor = null;
     store.setItem(CUSTOM_COLOR_KEY, hex);
     document.documentElement.style.setProperty("--custom-theme-swatch", hex);
     applyCustomColor();
     renderIntensityBar();
     updateThemeButtons();
+    updateRandomColorUI();
 }
 function clearCustomVars() {
     const root = document.documentElement.style;
@@ -4163,10 +4242,12 @@ function resetCustomColor() {
     store.removeItem(CUSTOM_COLOR_KEY);
     clearCustomVars();
     document.documentElement.style.removeProperty("--custom-theme-swatch");
+    if (randomColorOn) { bootColor = pickBootColor(); applyCustomColor(); } // back to the random color of this visit
     syncThemeColorMeta();
     markActiveSwatch(null);
     renderIntensityBar();
     updateThemeButtons();
+    updateRandomColorUI();
 }
 // Paints each segment with what that intensity step actually looks
 // like for the picked color, instead of a plain slider.
@@ -4174,8 +4255,8 @@ function renderIntensityBar() {
     const wrap = document.getElementById("colorIntensityControl");
     if (!wrap) return;
     // With no color picked yet the bar shows quiet grays (and is dimmed), so it doesn't look like a color is already applied.
-    const baseHex = vividColor || "#8a8a8a";
-    wrap.classList.toggle("idle", !vividColor);
+    const baseHex = customColor() || "#8a8a8a";
+    wrap.classList.toggle("idle", !customColor());
     wrap.querySelectorAll(".intensity-seg").forEach((seg) => {
         const pct = parseInt(seg.dataset.intensity, 10);
         seg.style.background = muteColorAtIntensity(baseHex, pct);
@@ -4185,7 +4266,7 @@ function setColorIntensity(pct) {
     colorIntensity = pct;
     store.setItem(COLOR_INTENSITY_KEY, String(pct));
     updateColorIntensityUI();
-    if (vividColor) applyCustomColor();
+    if (customColor()) applyCustomColor();
 }
 function updateColorIntensityUI() {
     const wrap = document.getElementById("colorIntensityControl");
@@ -4250,6 +4331,8 @@ function wireThemeColorPicker() {
         intensityControl = document.getElementById("colorIntensityControl");
     if (input) input.addEventListener("input", (e) => setCustomColor(e.target.value));
     if (resetBtn) resetBtn.addEventListener("click", () => resetCustomColor());
+    const rnd = document.getElementById("randomColorToggle");
+    if (rnd) rnd.addEventListener("change", (e) => setRandomColor(e.target.checked));
     if (swatches) swatches.addEventListener("click", (e) => {
         const sw = e.target.closest(".theme-swatch");
         if (!sw) return;
@@ -4264,7 +4347,7 @@ function wireThemeColorPicker() {
     });
     if (window.matchMedia) {
         window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-            if (vividColor) applyCustomColor();
+            if (customColor()) applyCustomColor();
             syncThemeColorMeta();
         });
     }
@@ -4282,13 +4365,17 @@ function initThemeColor() {
     colorIntensity = [20, 40, 60, 80, 100].includes(parsedIntensity) ? parsedIntensity : DEFAULT_COLOR_INTENSITY;
     updateColorIntensityUI();
     renderIntensityBar();
+    randomColorOn = store.getItem(RANDOM_COLOR_KEY) === "1"; // off by default
     const storedColor = store.getItem(CUSTOM_COLOR_KEY);
     if (storedColor) {
         vividColor = storedColor;
         applyCustomColor();
         if (input) input.value = storedColor;
+        updateRandomColorUI();
         return;
     }
+    if (randomColorOn) { bootColor = pickBootColor(); applyCustomColor(); renderIntensityBar(); }
+    updateRandomColorUI();
     markActiveSwatch(null);
 }
 function updateThemeButtons() {
@@ -4312,6 +4399,7 @@ function updateFontSizeLabel() {
     document.getElementById("fontSizeLabel").textContent = currentFontSize + "px";
     try { applyPreviewFontSize(); } catch (e) { swallow(e); } // the preview size is shown in px too, so it follows the interface size
     updateListColumns();
+    scheduleBtnFit();
 }
 function changeFontSize(e) {
     (currentFontSize = Math.max(FONT_SIZE_MIN, Math.min(FONT_SIZE_MAX, currentFontSize + e))),
@@ -5327,14 +5415,20 @@ function playerControlsHTML() {
             <span class="player-time" id="playerDurTime">--:--</span>
           </div>
           <div class="player-controls-row">
-            <button class="playlist-btn prev-btn" id="playlistPrev" title="Previous track" aria-label="Previous track" disabled>${icons.prevCtl}</button>
-            <button class="playlist-btn player-play-btn" id="playPauseBtn" title="Play" aria-label="Play">${icons.playCtl}</button>
-            <button class="playlist-btn next-btn" id="playlistNext" title="Next track" aria-label="Next track" disabled>${icons.nextCtl}</button>
-            <button class="playlist-btn shuffle-btn" id="playlistShuffle" title="Shuffle" aria-label="Toggle shuffle" aria-pressed="false" disabled>${icons.shuffleCtl}</button>
+            <button class="playlist-btn prev-btn" id="playlistPrev" data-lbl="Prev" title="Previous track" aria-label="Previous track" disabled>${icons.prevCtl}</button>
+            <button class="playlist-btn player-play-btn" id="playPauseBtn" data-lbl="Play" title="Play" aria-label="Play">${icons.playCtl}</button>
+            <button class="playlist-btn" id="playerStopBtn" data-lbl="Stop" title="Stop (a file goes back to the start, a live stream disconnects)" aria-label="Stop">${icons.stopCtl}</button>
+            <button class="playlist-btn next-btn" id="playlistNext" data-lbl="Next" title="Next track" aria-label="Next track" disabled>${icons.nextCtl}</button>
+            <button class="playlist-btn shuffle-btn" id="playlistShuffle" data-lbl="Shuffle" title="Shuffle" aria-label="Toggle shuffle" aria-pressed="false" disabled>${icons.shuffleCtl}</button>
             <span class="player-divider"></span>
-            <button class="playlist-btn" id="volDownBtn" title="Volume down" aria-label="Decrease volume">${icons.volDownCtl}</button>
+            <button class="playlist-btn" id="volDownBtn" data-lbl="Vol \u2212" title="Volume down" aria-label="Decrease volume">${icons.volDownCtl}</button>
             <span class="player-vol" id="playerVolLabel" aria-live="polite">25%</span>
-            <button class="playlist-btn" id="volUpBtn" title="Volume up" aria-label="Increase volume">${icons.volUpCtl}</button>
+            <button class="playlist-btn" id="volUpBtn" data-lbl="Vol +" title="Volume up" aria-label="Increase volume">${icons.volUpCtl}</button>
+            <span class="player-file-tools" hidden>
+              <span class="player-divider"></span>
+              <button type="button" class="playlist-btn player-ab-btn" id="playerAbBtn" data-lbl="A\u2013B" aria-pressed="false">${icons.abCtl}<span class="btn-val"></span></button>
+              <button type="button" class="playlist-btn player-speed-btn" id="playerSpeedBtn" data-lbl="Speed" aria-label="Playback speed">${icons.speedCtl}<span class="btn-val">1\u00d7</span></button>
+            </span>
           </div>
         </div>
       `;
@@ -5356,12 +5450,16 @@ function wireMediaControls(mediaEl) {
     function updatePlayIcon() {
         playBtn.innerHTML = mediaEl.paused ? icons.playCtl : icons.pauseCtl;
         const label = mediaEl.paused ? "Play" : "Pause";
+        playBtn.dataset.lbl = label;
         (playBtn.title = label), playBtn.setAttribute("aria-label", label);
     }
     playBtn.addEventListener("click", () => {
         mediaEl.muted = false;
+        if (streamStopped && currentPlaylist.length) { playPlaylistTrack(currentPlaylistIndex); return; } // after Stop: reconnect to the same station
         mediaEl.paused ? mediaEl.play().catch(() => {}) : softPause(mediaEl);
     });
+    const stopBtn = document.getElementById("playerStopBtn");
+    if (stopBtn) stopBtn.addEventListener("click", () => stopTransport(mediaEl));
     mediaEl.addEventListener("play", updatePlayIcon);
     mediaEl.addEventListener("pause", updatePlayIcon);
     updatePlayIcon();
@@ -5461,10 +5559,10 @@ function wireMediaControls(mediaEl) {
         } else {
             cachePctNow = 0;
             seek.disabled = true;
-            seek.value = 1000;
-            durTimeEl.textContent = "LIVE";
-            durTimeEl.classList.add("is-live");
-            seek.setAttribute("aria-valuetext", "live");
+            seek.value = streamStopped ? 0 : 1000;
+            durTimeEl.textContent = streamStopped ? "--:--" : "LIVE";
+            if (!streamStopped) durTimeEl.classList.add("is-live");
+            seek.setAttribute("aria-valuetext", streamStopped ? "stopped" : "live");
         }
     }
     mediaEl.addEventListener("loadedmetadata", syncSeekBar);
@@ -5513,6 +5611,28 @@ function wireMediaControls(mediaEl) {
     // Now that the buttons actually exist in the DOM, sync their
     // enabled/disabled and shuffle-active state.
     updatePlaylistUI();
+    fitBtnLabels();
+    scheduleBtnFit();
+}
+// Stop: a file goes back to its start and waits; a live stream is disconnected (its cache is dropped) and Play reconnects to the same station.
+function stopTransport(mediaEl) {
+    if (!mediaEl) return;
+    const known = isFinite(mediaEl.duration) && mediaEl.duration > 0;
+    if (!known && playSession && currentPlaylist.length) {
+        if (!recLeaveOk(() => stopTransport(mediaEl))) return;
+        streamStopped = true;
+        endPlaySession();
+        metaReset();
+        setPlaylistBuffering(false);
+        try { mediaEl.pause(); mediaEl.removeAttribute("src"); mediaEl.load(); } catch (err) { swallow(err); }
+        const cur = document.getElementById("playerCurTime");
+        if (cur) cur.textContent = "0:00";
+        announce("Stopped");
+        return;
+    }
+    mediaEl.pause();
+    try { mediaEl.currentTime = 0; } catch (err) { swallow(err); }
+    announce("Stopped");
 }
 // ---- Playback speed and A-B repeat ----
 // Two small buttons at the top right of the player, shown for files with a known length and for files read through the page's own buffer
@@ -5520,14 +5640,11 @@ function wireMediaControls(mediaEl) {
 // A-B repeat: press at the start (A), press again at the end (B) and that part loops; a third press clears it.
 const SPEED_STEPS = [1, 1.25, 1.5, 2, 0.5, 0.75], SPEED_KEY = "playSpeed";
 function wireFileTools(mediaEl) {
-    const host = mediaEl.parentElement;
-    if (!host || host.querySelector(".player-file-tools")) return;
-    const tools = document.createElement("div");
-    tools.className = "player-file-tools";
-    tools.hidden = true;
-    tools.innerHTML = '<button type="button" class="player-info-btn player-ab-btn" aria-pressed="false"></button><button type="button" class="player-info-btn player-speed-btn" aria-label="Playback speed"></button>';
-    host.appendChild(tools);
-    const abBtn = tools.querySelector(".player-ab-btn"), spBtn = tools.querySelector(".player-speed-btn");
+    const tools = document.querySelector("#modalContent .player-controls-row .player-file-tools");
+    if (!tools || tools._wiredFor === mediaEl) return;
+    tools._wiredFor = mediaEl;
+    const abBtn = document.getElementById("playerAbBtn"), spBtn = document.getElementById("playerSpeedBtn");
+    const abVal = abBtn.querySelector(".btn-val"), spVal = spBtn.querySelector(".btn-val");
     const seek = document.getElementById("playerSeek"), row = seek && seek.parentElement;
     const marks = [0, 1].map(() => { const m = document.createElement("span"); m.className = "ab-mark"; m.hidden = true; if (row) row.appendChild(m); return m; });
     let a = null, b = null, timer = 0;
@@ -5541,7 +5658,7 @@ function wireFileTools(mediaEl) {
     const setRate = (r) => {
         mediaEl.defaultPlaybackRate = r;
         mediaEl.playbackRate = r;
-        spBtn.textContent = r + "\u00d7";
+        spVal.textContent = r + "\u00d7";
         spBtn.title = `Playback speed ${r}\u00d7 (click to change)`;
     };
     const placeMarks = () => {
@@ -5555,11 +5672,13 @@ function wireFileTools(mediaEl) {
         });
     };
     const paintAb = () => {
-        abBtn.textContent = a === null ? "A\u2013B" : b === null ? "A " + formatTime(a) : formatTime(a) + "\u2013" + formatTime(b);
+        abVal.textContent = a === null ? "" : b === null ? "A " + formatTime(a) : formatTime(a) + "\u2013" + formatTime(b);
         abBtn.title = a === null ? "Repeat a part: press at its start (A), press again at its end (B), a third time to clear"
             : b === null ? "Start set. Press again at the end of the part (B)" : "Repeating this part. Press to clear";
+        abBtn.setAttribute("aria-label", abBtn.title);
         abBtn.setAttribute("aria-pressed", String(b !== null));
         placeMarks();
+        scheduleBtnFit();
     };
     const loopOff = () => { clearInterval(timer); timer = 0; };
     const loopOn = () => {
@@ -5572,7 +5691,7 @@ function wireFileTools(mediaEl) {
     const clearAb = () => { a = b = null; loopOff(); paintAb(); };
     const sync = () => {
         const ok = fileLike();
-        tools.hidden = !ok;
+        if (tools.hidden === ok) { tools.hidden = !ok; scheduleBtnFit(); }
         if (ok) setRate(savedRate());
         else { setRate(1); if (a !== null) clearAb(); }
         placeMarks();
@@ -5599,6 +5718,56 @@ function wireFileTools(mediaEl) {
     setRate(1);
     paintAb();
     sync();
+}
+// ---- Player buttons: glyph + label everywhere when there is room ----
+// Default mode: the header actions and the transport row get .has-lbl (a label on every button) while that still fits (header: the title keeps some room;
+// transport row: at most two lines); otherwise every one of them is glyph only. "All labels" and "All icons" force one or the other.
+function btnLines(row) {
+    const ys = [];
+    row.querySelectorAll(":scope > *, :scope > .player-file-tools > *").forEach((c) => {
+        const r = c.getBoundingClientRect();
+        if (r.width > 0 && r.height > 0) ys.push(r.top + r.height / 2);
+    });
+    ys.sort((x, y) => x - y);
+    let lines = ys.length ? 1 : 0;
+    for (let i = 1; i < ys.length; i++) if (ys[i] - ys[i - 1] > 12) lines++;
+    return lines;
+}
+function fitBtnLabels() {
+    const mode = document.body.dataset.btnStyle || "default";
+    const row = document.querySelector("#modalContent .player-controls-row");
+    if (row && row.offsetParent !== null) {
+        if (mode === "labels") row.classList.add("has-lbl");
+        else if (mode === "icons") row.classList.remove("has-lbl");
+        else { row.classList.add("has-lbl"); if (btnLines(row) > 2) row.classList.remove("has-lbl"); }
+    }
+    const acts = document.querySelector("#modalContent > .modal-header .modal-actions"), head = acts && acts.parentElement;
+    if (acts && head.offsetParent !== null) {
+        if (mode === "labels") acts.classList.add("has-lbl");
+        else if (mode === "icons") acts.classList.remove("has-lbl");
+        else {
+            acts.classList.add("has-lbl");
+            const cs = getComputedStyle(head), pad = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0), gap = parseFloat(cs.columnGap) || 0;
+            const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+            if (head.clientWidth - pad - gap - Math.max(acts.offsetWidth, acts.scrollWidth) < 7 * rem) acts.classList.remove("has-lbl");
+        }
+    }
+}
+let btnFitRaf = 0;
+function scheduleBtnFit() {
+    if (btnFitRaf) return;
+    btnFitRaf = requestAnimationFrame(() => { btnFitRaf = 0; fitBtnLabels(); });
+}
+function initBtnLabelFit() {
+    window.addEventListener("resize", scheduleBtnFit);
+    const mc = document.getElementById("modalContent");
+    if (!mc) return;
+    if (typeof ResizeObserver === "function") new ResizeObserver(scheduleBtnFit).observe(mc);
+    if (typeof MutationObserver === "function") {
+        const skip = (m) => m.attributeName === "class" && m.target.classList && m.target.classList.contains("modal-actions");
+        new MutationObserver((ms) => { if (ms.some((m) => !skip(m))) scheduleBtnFit(); }).observe(mc.querySelector(".modal-header"), { subtree: true, attributes: true, attributeFilter: ["class", "hidden"] });
+        new MutationObserver(scheduleBtnFit).observe(mc, { attributes: true, attributeFilter: ["class"] });
+    }
 }
 function wireUiOnce() {
     if (uiWired) return;
@@ -5870,6 +6039,10 @@ function setupEventListeners() {
         toggleImgFit();
         if (e.detail > 0) e.currentTarget.blur();
     });
+    document.getElementById("imgActualBtn").addEventListener("click", (e) => {
+        toggleImgActual();
+        if (e.detail > 0) e.currentTarget.blur();
+    });
     // Video full screen: the preview body goes full screen (iPhone Safari only allows its own full-screen player, so the <video> is used there).
     const fsBtn = document.getElementById("fullscreenBtn");
     const fsBody = document.getElementById("modalBody");
@@ -5881,6 +6054,7 @@ function setupEventListeners() {
         fsBtn.setAttribute("aria-pressed", on ? "true" : "false");
         const label = on ? "Exit full screen" : "Full screen";
         fsBtn.title = label;
+        fsBtn.dataset.lbl = on ? "Exit" : "Full";
         fsBtn.setAttribute("aria-label", label);
         fsBtn.innerHTML = on
             ? '<svg viewBox="0 0 24 24" fill="currentcolor"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'
@@ -6043,7 +6217,9 @@ function setupEventListeners() {
     document.getElementById("btnStyleSel").addEventListener("change", (e) => {
         document.body.dataset.btnStyle = e.target.value;
         try { store.setItem(BTNSTYLE_KEY, e.target.value); } catch (err) { swallow(err); }
+        fitBtnLabels();
     });
+    initBtnLabelFit();
     document.getElementById("skipDeadToggle").addEventListener("change", (e) => {
         skipDeadStreams = e.target.checked;
         store.setItem(SKIPDEAD_KEY, skipDeadStreams ? "1" : "0");
@@ -7674,6 +7850,7 @@ async function startPlaylistMode() {
 }
 function stopPlaylist() {
     if (!recLeaveOk(stopPlaylist)) return;
+    streamStopped = false;
     closePlaylistModal();
     endPlaySession();
     metaReset();
@@ -7829,6 +8006,7 @@ const CLOSE_OUTSIDE_KEY = "closeOnOutsideClick";
 let playlistToPlayer = false; // off by default: opening an m3u/m3u8 shows its list (text) first, and Play starts it
 const PL_TO_PLAYER_KEY = "playlistToPlayer";
 let playSession = null;
+let streamStopped = false; // the Stop button disconnected the current station; Play reconnects
 let failStreak = 0;
 let npJob = null;
 const zenoMetadata = { session: null, mount: "", eventSource: null, errors: 0 };
@@ -11725,6 +11903,7 @@ function loadHlsEngine() {
 async function playPlaylistTrack(e) {
     if (e < 0 || e >= currentPlaylist.length) return;
     if (!recLeaveOk(() => playPlaylistTrack(e))) return;
+    streamStopped = false;
     endPlaySession();
     // Moving to another stream discards the old one completely: otherwise the element keeps playing the old stream's
     // cached audio (up to half an hour) until the new stream connects.
@@ -11817,37 +11996,65 @@ function hideGallery() {
 // It is rebuilt only when the folder or kind changes, so its scroll position survives stepping through files.
 // Image "fit to view": the picture fills the preview area. A lone picture normally keeps its size (fit on = img-fit); with a picture rail it normally fills
 // (fit off = img-actual, normal size). The saved choice is "1" (fit), "0" (normal size) or unset (each case's default). Twin panels' previews share it.
-const IMG_FIT_KEY = "imageFitView";
+const IMG_FIT_KEY = "imageFitView", IMG_ACTUAL_KEY = "imageActualSize";
 function imgFitOn() {
     const m = document.getElementById("modalContent");
+    if (m.classList.contains("img-1x")) return false;
     return m.classList.contains("has-gallery") ? !m.classList.contains("img-actual") : m.classList.contains("img-fit");
 }
 function syncImgFitBtn() {
     const m = document.getElementById("modalContent");
     if (!m) return;
-    const set = (b, on) => {
-        const label = on ? "Back to normal size" : "Fit image to view";
+    const set = (b, on, yes, no) => {
+        const label = on ? yes : no;
         b.setAttribute("aria-pressed", on ? "true" : "false");
         b.title = label;
         b.setAttribute("aria-label", label);
     };
-    const b = document.getElementById("imgFitBtn");
-    if (b) set(b, imgFitOn());
-    const tw = document.body.classList.contains("tw-img-fit");
-    document.querySelectorAll(".vb-imgfit").forEach((x) => set(x, tw));
+    const b = document.getElementById("imgFitBtn"), ab = document.getElementById("imgActualBtn");
+    if (b) set(b, imgFitOn(), "Back to normal size", "Fit image to view");
+    const x1 = m.classList.contains("img-1x");
+    if (ab) set(ab, x1, "Back to fitted size", "Show actual size (100%)");
+    const tw = document.body.classList.contains("tw-img-fit"), twx = document.body.classList.contains("tw-img-1x");
+    document.querySelectorAll(".vb-imgfit").forEach((x) => set(x, tw, "Back to normal size", "Fit image to view"));
+    document.querySelectorAll(".vb-imgactual").forEach((x) => set(x, twx, "Back to fitted size", "Show actual size (100%)"));
 }
+// Actual size (1:1) is its own saved choice and, while on, overrides fit; turning it off brings the fit choice back.
 function applyImgFitPref() {
-    const v = store.getItem(IMG_FIT_KEY), m = document.getElementById("modalContent");
-    m.classList.toggle("img-fit", v === "1");
+    const v = store.getItem(IMG_FIT_KEY), x1 = store.getItem(IMG_ACTUAL_KEY) === "1", m = document.getElementById("modalContent");
+    m.classList.toggle("img-fit", v === "1" && !x1);
     m.classList.toggle("img-actual", v === "0");
-    document.body.classList.toggle("tw-img-fit", v === "1");
+    m.classList.toggle("img-1x", x1);
+    document.body.classList.toggle("tw-img-fit", v === "1" && !x1);
+    document.body.classList.toggle("tw-img-1x", x1);
     syncImgFitBtn();
 }
 function toggleImgFit(twin) {
     const on = twin ? document.body.classList.contains("tw-img-fit") : imgFitOn();
-    try { store.setItem(IMG_FIT_KEY, on ? "0" : "1"); } catch (e) { swallow(e); }
+    try { store.setItem(IMG_FIT_KEY, on ? "0" : "1"); store.setItem(IMG_ACTUAL_KEY, "0"); } catch (e) { swallow(e); }
     applyImgFitPref();
 }
+function toggleImgActual() {
+    try { store.setItem(IMG_ACTUAL_KEY, store.getItem(IMG_ACTUAL_KEY) === "1" ? "0" : "1"); } catch (e) { swallow(e); }
+    applyImgFitPref();
+}
+// With a mouse, a picture shown at actual size is dragged to look around (touch screens scroll it natively).
+document.addEventListener("pointerdown", (e) => {
+    const img = e.target.closest && e.target.closest("img.preview-image");
+    if (!img || e.pointerType !== "mouse" || e.button !== 0) return;
+    const m = document.getElementById("modalContent");
+    if (!(document.body.classList.contains("tw-img-1x") || (m && m.classList.contains("img-1x") && m.contains(img)))) return;
+    const box = img.closest(".tw-gal-main, .modal-body");
+    if (!box || (box.scrollWidth <= box.clientWidth && box.scrollHeight <= box.clientHeight)) return;
+    e.preventDefault();
+    const x = e.clientX, y = e.clientY, l = box.scrollLeft, t = box.scrollTop;
+    document.documentElement.classList.add("img-panning");
+    const move = (ev) => { box.scrollLeft = l - (ev.clientX - x); box.scrollTop = t - (ev.clientY - y); };
+    const up = () => { document.documentElement.classList.remove("img-panning"); window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up); };
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+    window.addEventListener("pointercancel", up);
+});
 function syncGallery(filePath, kind) {
     if (!GALLERY_LABELS[kind] || !fileIndex) { hideGallery(); return false; }
     const rail = document.getElementById("galleryRail"), modal = document.getElementById("modalContent");
@@ -15933,14 +16140,15 @@ const TWIN = (() => {
         const k = kindOf(item);
         if (PLAY_KINDS.has(k)) openMedia(p, item); else if (k === "playlist" && playlistToPlayer) openMedia(p, item, true); else openInline(p, item);
     }
-    function openMedia(p, item, autoPlay) {
+    function openMedia(p, item, autoPlay, from) {
+        const src = from || p; // "from" = the panel the file belongs to, when it plays in the other one
         const modalEl = $("modal");
         if (T.media !== null && T.media !== p.id) {
             closePreview(T.panes[T.media], true);
             if (modalEl.classList.contains("active")) return;
         }
         if (p.mode === "view") closeInline(p, true);
-        if (!useSource(p.source)) return;
+        if (!useSource(src.source)) return;
         const slot = paneEl(p.id).querySelector(".tw-media");
         if (modalEl.parentNode !== slot) slot.appendChild(modalEl);
         modalEl.classList.add("tw-embedded");
@@ -15960,7 +16168,7 @@ const TWIN = (() => {
             done();
             if (autoPlay && modalEl.classList.contains("active") && T.media === p.id && isPlaylistFile) startPlaylistMode();
         };
-        Promise.resolve(openFile(fullOf(p, item.name), item.category, item.name, !!autoPlay)).then(after, done);
+        Promise.resolve(openFile(fullOf(src, item.name), item.category, item.name, !!autoPlay)).then(after, done);
     }
     // Previous/next file exist only for a local folder's files; hosted repo files never get them. Media (audio, video, playlists) is always skipped, since it opens in the player.
     const canStep = (p) => p.source === "local";
@@ -15989,6 +16197,11 @@ const TWIN = (() => {
         return true;
     }
     // Play on a playlist preview: this panel takes the player (stopping the other panel's one, if it has any) and starts the list.
+    // A playlist previewed in this panel starts in the other panel, so the list stays here to read while the player runs there.
+    function playInOther(p) {
+        const vi = p.viewItem, item = vi && p.map.get(vi.name), o = T.panes[1 - p.id];
+        if (item && o) openMedia(o, item, true, p);
+    }
     function playFromInline(p) {
         const vi = p.viewItem, item = vi && p.map.get(vi.name);
         if (item) openMedia(p, item, true);
@@ -16015,7 +16228,9 @@ const TWIN = (() => {
         body.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
         updateStepButtons(p);
         view.querySelector(".vb-play").hidden = kindOf(item) !== "playlist";
+        view.querySelector(".vb-playother").hidden = kindOf(item) !== "playlist";
         view.querySelector(".vb-imgfit").hidden = kindOf(item) !== "image";
+        view.querySelector(".vb-imgactual").hidden = kindOf(item) !== "image";
         syncImgFitBtn();
         p.metaRows = metaRowsFor(p, item, full);
         paintMeta(p);
@@ -16246,7 +16461,7 @@ const TWIN = (() => {
         if (sbtn) { twsAct(p, sbtn.dataset.sel); return; }
         if (t.closest(".tw-selbar")) return;
         const va = t.closest("[data-vact]");
-        if (va) { const k = va.dataset.vact; if (k === "close") closeInline(p); else if (k === "prev") stepInline(p, -1); else if (k === "next") stepInline(p, 1); else if (k === "info") toggleMeta(); else if (k === "play") playFromInline(p); else if (k === "imgfit") toggleImgFit(true); else if (k === "fav") toggleFav(p); else if (k === "copy") copyLink(p, va); return; }
+        if (va) { const k = va.dataset.vact; if (k === "close") closeInline(p); else if (k === "prev") stepInline(p, -1); else if (k === "next") stepInline(p, 1); else if (k === "info") toggleMeta(); else if (k === "play") playFromInline(p); else if (k === "playother") playInOther(p); else if (k === "imgfit") toggleImgFit(true); else if (k === "imgactual") toggleImgActual(); else if (k === "fav") toggleFav(p); else if (k === "copy") copyLink(p, va); return; }
         const gi = t.closest(".tw-rail .gal-item[data-rn]");
         if (gi) { const it = p.map.get(gi.dataset.rn); if (it && !(p.viewItem && p.viewItem.name === it.name)) openInline(p, it); return; }
         if (t.closest(".tw-view, .tw-media")) return;
@@ -16540,7 +16755,9 @@ const TWIN = (() => {
                 <div class="tw-view" tabindex="-1" aria-label="Preview in panel ${i + 1}">
                     <div class="modal-header tw-vhead"><div class="modal-title tw-vtitle"></div><div class="modal-actions">
                         <button type="button" class="modal-btn play-playlist-btn vb-play" data-vact="play" title="Play as playlist" aria-label="Play as playlist" hidden>${$("playPlaylistBtn").innerHTML}</button>
+                        <button type="button" class="modal-btn vb-playother" data-vact="playother" title="Play in the other panel" aria-label="Play in the other panel" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="8" height="16"/><rect x="13" y="4" width="8" height="16"/><path d="M15.5 9v6l4-3z" fill="currentcolor" stroke="none"/></svg></button>
                         <button type="button" class="modal-btn vb-imgfit" data-vact="imgfit" aria-pressed="false" title="Fit image to view" aria-label="Fit image to view" hidden>${$("imgFitBtn").innerHTML}</button>
+                        <button type="button" class="modal-btn vb-imgactual" data-vact="imgactual" aria-pressed="false" title="Show actual size (100%)" aria-label="Show actual size" hidden>${$("imgActualBtn").innerHTML}</button>
                         <button type="button" class="modal-btn" data-vact="prev" title="Previous file (\u2190)" aria-label="Previous file">${ICON.prev}</button>
                         <button type="button" class="modal-btn" data-vact="next" title="Next file (\u2192)" aria-label="Next file">${ICON.next}</button>
                         <button type="button" class="modal-btn favorite-btn vb-fav" data-vact="fav" aria-pressed="false" title="Add to favorites" aria-label="Add file to favorites">${icons.starOutline}</button>
