@@ -1297,7 +1297,24 @@ html[data-theme="concrete"] .tw-selbar { background: var(--yellow); color: var(-
 #modalContent > .modal-header .modal-actions.has-lbl .modal-btn[data-lbl] { width: auto; padding: 0 0.55rem; gap: 0.35rem; }
 body[data-btn-style="mixed"] #modalContent > .modal-header .modal-actions.has-lbl .modal-btn[data-lbl]:not([data-need])::before { display: none; }
 body[data-btn-style="mixed"] #modalContent > .modal-header .modal-actions.has-lbl .modal-btn[data-lbl]:not([data-need]) { width: max(var(--ctl), 2rem); padding: 0; gap: 0; }
-.player-controls-row .player-ab-btn, .player-controls-row .player-speed-btn { width: auto; min-width: var(--ctl); padding: 0 0.5rem; gap: 0.3rem; }
+/* A-B repeat and speed: the shared "round control" size rule above is more specific, so these buttons stayed one control wide and squeezed their glyph and text. They grow with their text (the A-B button stays round while it shows nothing). */
+.player-controls-row .playlist-btn:is(.player-ab-btn, .player-speed-btn):not(.player-play-btn) { width: auto; min-width: var(--ctl); padding: 0; gap: 0.3rem; }
+.player-controls-row .playlist-btn:is(.player-ab-btn, .player-speed-btn):not(.player-play-btn):has(.btn-val:not(:empty)) { padding: 0 0.65rem; }
+.player-controls-row .player-speed-btn .btn-val { min-width: 3.1em; text-align: center; }
+.player-controls-row .playlist-btn.player-speed-btn:not(.player-play-btn) { min-width: calc(var(--ctl) * 2.1); }
+/* One line: the speed button no longer drops to a second row. The row tightens its gaps and dividers instead, and scrolls sideways only as a last resort. */
+.player-controls-row { flex-wrap: nowrap; gap: 0.3rem; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+.player-controls-row::-webkit-scrollbar { display: none; }
+.player-controls-row .player-divider { margin: 0 0.1rem; flex-shrink: 0; }
+.player-controls-row .player-vol { flex-shrink: 0; min-width: 2.4em; text-align: center; }
+/* Fit steps, set by fitControlsRow only while the row is wider than the player: first the speed glyph goes (its text says enough) and the gaps close up, then the buttons shrink a little. */
+.player-controls-row.tight1 { gap: 0.2rem; }
+.player-controls-row.tight1 .player-speed-btn > svg { display: none; }
+.player-controls-row.tight1 .playlist-btn.player-speed-btn:not(.player-play-btn) { min-width: calc(var(--ctl) * 1.5); padding: 0 0.45rem; }
+.player-controls-row.tight1 .playlist-btn.player-ab-btn:not(.player-play-btn):has(.btn-val:not(:empty)) { padding: 0 0.45rem; }
+.player-controls-row.tight1 .player-divider { margin: 0; }
+.player-controls-row.tight2 { --ctl: 1.45rem; gap: 0.15rem; }
+.player-controls-row.tight2 .player-vol { min-width: 0; font-size: 0.7rem; }
 body[data-btn-style="labels"] #modalContent > .modal-header .modal-actions .modal-btn[data-lbl] > svg, body[data-btn-style="labels"] .modal-btn.play-playlist-btn > svg { display: none; }
 body:is([data-btn-style="labels"], [data-btn-style="full"]) .modal-btn.play-playlist-btn .btn-label { display: inline; }
 body[data-btn-style="icons"] .modal-btn.play-playlist-btn .btn-label { display: none; }
@@ -1311,6 +1328,61 @@ body[data-btn-style="labels"] :is(.settings-btn, .view-btn)[data-lbl] > svg { di
     :is(.settings-btn, .view-btn)[data-lbl]::before { display: none !important; }
     body[data-btn-style] :is(.settings-btn, .view-btn)[data-lbl] > svg { display: block !important; }
     body[data-btn-style] :is(.settings-btn, .view-btn)[data-lbl] { gap: 0 !important; padding-left: 0.375rem !important; padding-right: 0.375rem !important; }
+}
+
+/* --- Button style for the rest of the page: every button outside the player follows the same four choices (icons / icons + labels where an icon alone is unclear /
+   labels / icons + labels on all). The player's own controls keep their own rules. --- */
+/* Twin viewer header: a copy of the preview header, so it works the same way (the fit script puts has-lbl on its .modal-actions). */
+.tw-vhead .modal-actions .modal-btn[data-lbl]::before { content: attr(data-lbl); display: none; font-size: 0.75rem; font-weight: 600; line-height: 1; white-space: nowrap; }
+.tw-vhead .modal-actions.has-lbl .modal-btn[data-lbl]::before { display: inline; }
+.tw-vhead .modal-actions.has-lbl .modal-btn[data-lbl] { width: auto; padding: 0.375rem 0.55rem; gap: 0.35rem; }
+body[data-btn-style="mixed"] .tw-vhead .modal-actions.has-lbl .modal-btn[data-lbl]:not([data-need])::before { display: none; }
+body[data-btn-style="mixed"] .tw-vhead .modal-actions.has-lbl .modal-btn[data-lbl]:not([data-need]) { width: auto; padding: 0.375rem; gap: 0; }
+body[data-btn-style="mixed"] .tw-vhead .modal-actions.has-lbl .modal-btn.vb-close[data-lbl]:not([data-need]) { width: max(var(--ctl), 2rem); padding: 0; }
+body[data-btn-style="labels"] .tw-vhead .modal-actions .modal-btn[data-lbl] > svg { display: none; }
+body:is([data-btn-style="labels"], [data-btn-style="full"]) .tw-vhead .modal-actions { flex-wrap: wrap; justify-content: flex-end; row-gap: 0.25rem; }
+/* Windows (shortcuts, stats, recordings, playlist, songs heard, folder, preview, load source): the close button. */
+.modal-overlay:not(#modal) .modal-btn[data-lbl]::before { content: attr(data-lbl); display: none; font-size: 0.75rem; font-weight: 600; line-height: 1; white-space: nowrap; }
+body:is([data-btn-style="labels"], [data-btn-style="full"]) .modal-overlay:not(#modal) .modal-btn[data-lbl]::before { display: inline; }
+body:is([data-btn-style="labels"], [data-btn-style="full"]) .modal-overlay:not(#modal) .modal-btn[data-lbl] { padding: 0.375rem 0.6rem; gap: 0.35rem; }
+body[data-btn-style="labels"] .modal-overlay:not(#modal) .modal-btn[data-lbl] > svg { display: none; }
+/* Small buttons of the page: breadcrumb pin / zip, the tree's collapse, the Settings / Theme menu close. */
+:is(.breadcrumb-pin-btn, .tree-hdr-btn, .settings-menu-close)[data-lbl]::before { content: attr(data-lbl); order: 2; display: none; font-size: 0.75rem; font-weight: 600; line-height: 1; white-space: nowrap; }
+body[data-btn-style="mixed"] :is(.breadcrumb-pin-btn, .tree-hdr-btn, .settings-menu-close)[data-lbl][data-need]::before,
+body:is([data-btn-style="labels"], [data-btn-style="full"]) :is(.breadcrumb-pin-btn, .tree-hdr-btn, .settings-menu-close)[data-lbl]::before { display: inline; }
+body[data-btn-style="mixed"] :is(.breadcrumb-pin-btn, .tree-hdr-btn)[data-lbl][data-need],
+body:is([data-btn-style="labels"], [data-btn-style="full"]) :is(.breadcrumb-pin-btn, .tree-hdr-btn)[data-lbl] { width: auto; padding: 0 0.45rem; gap: 0.3rem; }
+body:is([data-btn-style="labels"], [data-btn-style="full"]) .settings-menu-close[data-lbl] { gap: 0.3rem; padding: 0.3rem 0.55rem; }
+body[data-btn-style="labels"] :is(.breadcrumb-pin-btn, .tree-hdr-btn, .settings-menu-close)[data-lbl] > svg { display: none; }
+@media (max-width: 760px) {
+    :is(.breadcrumb-pin-btn, .tree-hdr-btn)[data-lbl]::before { display: none !important; }
+    body[data-btn-style] :is(.breadcrumb-pin-btn, .tree-hdr-btn)[data-lbl] > svg { display: block !important; }
+    body[data-btn-style] :is(.breadcrumb-pin-btn, .tree-hdr-btn)[data-lbl] { width: 24px !important; padding: 0 !important; gap: 0 !important; }
+}
+/* Twin panel head (data-tl): labels appear only while the panel is wide enough to hold them, so the path and search box never get squeezed. */
+.tw-head [data-tl]::before { content: attr(data-tl); order: 2; display: none; font-size: 0.75rem; font-weight: 600; line-height: 1; white-space: nowrap; }
+@container twp (min-width: 54em) {
+    body[data-btn-style="mixed"] .tw-head [data-tl][data-need]::before,
+    body:is([data-btn-style="labels"], [data-btn-style="full"]) .tw-head [data-tl]::before { display: inline; }
+    body[data-btn-style="mixed"] .tw-head [data-tl][data-need],
+    body:is([data-btn-style="labels"], [data-btn-style="full"]) .tw-head [data-tl] { gap: 0.35rem; padding-left: 0.55rem; padding-right: 0.55rem; }
+    body[data-btn-style="labels"] .tw-head [data-tl] > svg { display: none; }
+}
+/* The tools on the divider: beside each other when the panels are stacked; side by side panels have a slim divider, so the text runs sideways. */
+.tw-split-tools button[data-tl]::before { content: attr(data-tl); order: 2; display: none; font-size: 0.75rem; font-weight: 600; line-height: 1; white-space: nowrap; }
+body[data-btn-style="mixed"] .tw-split-tools button[data-tl][data-need]::before,
+body:is([data-btn-style="labels"], [data-btn-style="full"]) .tw-split-tools button[data-tl]::before { display: inline; }
+body[data-btn-style="labels"] .tw-split-tools button[data-tl] > svg { display: none; }
+body[data-btn-style="mixed"] .twin:not([data-stack]) .tw-split-tools button[data-tl][data-need]::before,
+body:is([data-btn-style="labels"], [data-btn-style="full"]) .twin:not([data-stack]) .tw-split-tools button[data-tl]::before { writing-mode: vertical-rl; transform: rotate(180deg); }
+body[data-btn-style="mixed"] .twin:not([data-stack]) .tw-split-tools button[data-tl][data-need],
+body:is([data-btn-style="labels"], [data-btn-style="full"]) .twin:not([data-stack]) .tw-split-tools button[data-tl] { flex-direction: column; height: auto; padding: 0.35rem 0; gap: 0.3rem; }
+body[data-btn-style="mixed"] .twin[data-stack] .tw-split-tools button[data-tl][data-need],
+body:is([data-btn-style="labels"], [data-btn-style="full"]) .twin[data-stack] .tw-split-tools button[data-tl] { width: auto; padding: 0 0.5rem; gap: 0.35rem; }
+@media (max-height: 560px) {
+    .twin:not([data-stack]) .tw-split-tools button[data-tl]::before { display: none !important; }
+    .twin:not([data-stack]) .tw-split-tools button[data-tl] > svg { display: block !important; }
+    .twin:not([data-stack]) .tw-split-tools button[data-tl] { height: 1.6rem !important; padding: 0 !important; }
 }
 
 /* --- Mobile: previews are full-screen pages; the player keeps desktop sizes and a fixed layout ---
@@ -2584,7 +2656,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                         <div class="settings-menu-card">
                             <div class="settings-menu-header">
                                 <span class="settings-menu-title">Settings</span>
-                                <button class="settings-menu-close" title="Close" aria-label="Close settings"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button>
+                                <button class="settings-menu-close" data-lbl="Close" title="Close" aria-label="Close settings"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button>
                             </div>
                             <div class="settings-menu-body">
                                 <div class="settings-section">
@@ -2737,7 +2809,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                         <div class="settings-menu-card">
                             <div class="settings-menu-header">
                                 <span class="settings-menu-title">Theme &amp; Color</span>
-                                <button class="settings-menu-close" title="Close" aria-label="Close theme settings"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button>
+                                <button class="settings-menu-close" data-lbl="Close" title="Close" aria-label="Close theme settings"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button>
                             </div>
                             <div class="settings-menu-body">
                                 <div class="settings-section">
@@ -2825,7 +2897,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
         <aside class="tree-panel visible" id="treePanel">
             <div class="tree-pinned" id="treePinned"></div>
             <div class="tree-pinned" id="treeFavorites"></div>
-            <div class="tree-header"><h2 class="tree-title">Folders</h2><span class="tree-header-actions"><button type="button" class="tree-hdr-btn" id="treeCollapseAll" title="Collapse all folders" aria-label="Collapse all folders"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 13H5v-2h14v2z"/></svg></button></span></div>
+            <div class="tree-header"><h2 class="tree-title">Folders</h2><span class="tree-header-actions"><button type="button" class="tree-hdr-btn" id="treeCollapseAll" data-lbl="Collapse" data-need title="Collapse all folders" aria-label="Collapse all folders"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 13H5v-2h14v2z"/></svg></button></span></div>
             <div class="tree-content" id="treeContent" role="tree" aria-label="Folders"></div>
             <div class="tree-resize" id="treeResize" role="separator" aria-orientation="vertical" aria-label="Resize the folder tree" tabindex="0" title="Drag to resize, double-click to reset"></div>
         </aside>
@@ -2895,7 +2967,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
             <div class="modal-header">
                 <span class="modal-title" id="shortcutsTitle" role="heading" aria-level="2">Keyboard Shortcuts</span>
                 <div class="modal-actions">
-                    <button class="modal-btn" id="shortcutsCloseBtn" title="Close" aria-label="Close keyboard shortcuts">
+                    <button class="modal-btn" id="shortcutsCloseBtn" data-lbl="Close" title="Close" aria-label="Close keyboard shortcuts">
                         <svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg>
                     </button>
                 </div>
@@ -2931,7 +3003,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
             <div class="modal-header">
                 <span class="modal-title" id="statsTitle" role="heading" aria-level="2">Library Stats</span>
                 <div class="modal-actions">
-                    <button class="modal-btn" id="statsCloseBtn" title="Close" aria-label="Close library stats">
+                    <button class="modal-btn" id="statsCloseBtn" data-lbl="Close" title="Close" aria-label="Close library stats">
                         <svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg>
                     </button>
                 </div>
@@ -2946,7 +3018,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                 <div class="modal-actions">
                     <button class="modal-btn text-btn" id="recZipBtn" title="Save everything to your device (one zip file)" aria-label="Save all recordings as a zip">Save all</button>
                     <button class="modal-btn text-btn" id="recClearBtn" title="Discard all recordings" aria-label="Clear recordings">Clear</button>
-                    <button class="modal-btn" id="recCloseBtn" title="Close" aria-label="Close recordings"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button>
+                    <button class="modal-btn" id="recCloseBtn" data-lbl="Close" title="Close" aria-label="Close recordings"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button>
                 </div>
             </div>
             <div class="modal-body songs-body"><div id="recList"></div></div>
@@ -2957,7 +3029,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
             <div class="modal-header">
                 <span class="modal-title" id="playlistModalTitle" role="heading" aria-level="2">Playlist</span>
                 <div class="modal-actions">
-                    <button class="modal-btn" id="playlistModalClose" title="Close" aria-label="Close playlist">
+                    <button class="modal-btn" id="playlistModalClose" data-lbl="Close" title="Close" aria-label="Close playlist">
                         <svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg>
                     </button>
                 </div>
@@ -2975,7 +3047,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                 <div class="modal-actions">
                     <button class="modal-btn text-btn" id="songsSaveBtn" title="Save this list as a text file" aria-label="Save the songs list as a text file">Save list</button>
                     <button class="modal-btn text-btn" id="songsClearBtn" title="Clear the list" aria-label="Clear the songs list">Clear</button>
-                    <button class="modal-btn" id="songsCloseBtn" title="Close" aria-label="Close songs heard">
+                    <button class="modal-btn" id="songsCloseBtn" data-lbl="Close" title="Close" aria-label="Close songs heard">
                         <svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg>
                     </button>
                 </div>
@@ -2992,7 +3064,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
         <div class="modal stats-modal" id="localModalContent" role="dialog" aria-modal="true" aria-labelledby="localTitle">
             <div class="modal-header">
                 <span class="modal-title" id="localTitle" role="heading" aria-level="2">Open a local folder</span>
-                <div class="modal-actions"><button class="modal-btn" id="localModalClose" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button></div>
+                <div class="modal-actions"><button class="modal-btn" id="localModalClose" data-lbl="Close" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button></div>
             </div>
             <div class="modal-body stats-body">
                 <p class="local-msg" id="localMsg"></p>
@@ -3006,7 +3078,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
         <div class="modal stats-modal" id="previewModalContent" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
             <div class="modal-header">
                 <span class="modal-title" id="previewTitle" role="heading" aria-level="2">Preview an index</span>
-                <div class="modal-actions"><button class="modal-btn" id="previewModalClose" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button></div>
+                <div class="modal-actions"><button class="modal-btn" id="previewModalClose" data-lbl="Close" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button></div>
             </div>
             <div class="modal-body stats-body">
                 <div class="pv-actions pv-presets" id="pvPresets" hidden></div>
@@ -3026,7 +3098,7 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
         <div class="modal stats-modal" id="sourceModalContent" role="dialog" aria-modal="true" aria-labelledby="sourceTitle">
             <div class="modal-header">
                 <span class="modal-title" id="sourceTitle" role="heading" aria-level="2">Load extra source</span>
-                <div class="modal-actions"><button class="modal-btn" id="sourceModalClose" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button></div>
+                <div class="modal-actions"><button class="modal-btn" id="sourceModalClose" data-lbl="Close" title="Close" aria-label="Close"><svg viewBox="0 0 24 24" fill="currentcolor"><use href="#icon-x"/></svg></button></div>
             </div>
             <div class="modal-body stats-body">
                 <ul class="src-help">
@@ -3810,6 +3882,17 @@ function saveTheme(e) {
     if (customColor()) applyCustomColor();
     syncThemeColorMeta();
 }
+// A press outside an open Settings / Theme menu only closes it: the click that follows is swallowed, so it never lands on a file or button underneath
+// (the same way the first click on an unfocused twin panel only gives it the focus). A click on the other menu's own button still goes through.
+let menuSwallow = false;
+document.addEventListener("pointerdown", () => { menuSwallow = false; }, true);
+document.addEventListener("click", (e) => {
+    if (!menuSwallow) return;
+    menuSwallow = false;
+    if (e.target.closest && e.target.closest(".settings-dropdown")) return;
+    e.stopPropagation();
+    e.preventDefault();
+}, true);
 function setupDropdown(btnId, menuId, dropdownId) {
     const btn = document.getElementById(btnId),
         menu = document.getElementById(menuId);
@@ -3833,7 +3916,7 @@ function setupDropdown(btnId, menuId, dropdownId) {
     if (closeBtn) closeBtn.addEventListener("click", (e) => { e.stopPropagation(); closeMenu(); });
     // Capture phase on pointerdown: a press anywhere outside the menu closes it, even where the page stops the click from bubbling (player, stars, tree).
     document.addEventListener("pointerdown", (e) => {
-        if (menu.classList.contains("active") && !e.target.closest("#" + dropdownId)) closeMenu();
+        if (menu.classList.contains("active") && !e.target.closest("#" + dropdownId)) { closeMenu(); menuSwallow = true; }
     }, true);
 }
 
@@ -5755,9 +5838,12 @@ function wireFileTools(mediaEl) {
 // ---- Button style: the preview header's labels ----
 // "Icons": no labels. "Labels" / "Informative": always on. "Icons + labels": on while the title keeps some room (the CSS shows only the data-need buttons' labels).
 function fitBtnLabels() {
+    document.querySelectorAll("#modalContent > .modal-header .modal-actions, .tw-vhead .modal-actions").forEach(fitActionLabels);
+}
+function fitActionLabels(acts) {
     const mode = document.body.dataset.btnStyle || "icons";
-    const acts = document.querySelector("#modalContent > .modal-header .modal-actions"), head = acts && acts.parentElement;
-    if (!acts || head.offsetParent === null) return;
+    const head = acts.parentElement;
+    if (!head || head.offsetParent === null) return;
     if (mode === "icons") acts.classList.remove("has-lbl");
     else if (mode === "labels" || mode === "full") acts.classList.add("has-lbl");
     else {
@@ -5768,6 +5854,8 @@ function fitBtnLabels() {
     }
 }
 let btnFitRaf = 0;
+// The twin viewer headers are built once the twin mode first opens; they are watched from then on (size changes, buttons shown or hidden).
+const twinFitRO = typeof ResizeObserver === "function" ? new ResizeObserver(() => scheduleBtnFit()) : null;
 function scheduleBtnFit() {
     if (btnFitRaf) return;
     btnFitRaf = requestAnimationFrame(() => { btnFitRaf = 0; fitBtnLabels(); });
@@ -5783,6 +5871,28 @@ function initBtnLabelFit() {
         new MutationObserver(scheduleBtnFit).observe(mc, { attributes: true, attributeFilter: ["class"] });
     }
 }
+// Keeps the player's control row on one line (see .tight1 / .tight2): measured again whenever the player resizes or the row's buttons change.
+let ctlFitRaf = 0;
+function scheduleControlsFit() { if (!ctlFitRaf) ctlFitRaf = requestAnimationFrame(() => { ctlFitRaf = 0; fitControlsRows(); }); }
+function fitControlsRows() {
+    document.querySelectorAll(".player-controls-row").forEach((row) => {
+        if (row.offsetParent === null) return;
+        row.classList.remove("tight1", "tight2");
+        if (row.scrollWidth <= row.clientWidth + 1) return;
+        row.classList.add("tight1");
+        if (row.scrollWidth <= row.clientWidth + 1) return;
+        row.classList.add("tight2");
+    });
+}
+function initControlsFit() {
+    window.addEventListener("resize", scheduleControlsFit);
+    if (typeof ResizeObserver === "function") { const ro = new ResizeObserver(scheduleControlsFit); ro.observe(document.body); }
+    if (typeof MutationObserver === "function") {
+        new MutationObserver((ms) => {
+            if (ms.some((m) => { const el = m.target.nodeType === 1 ? m.target : m.target.parentElement; return el && (el.closest(".player-controls-row") || (m.addedNodes && [...m.addedNodes].some((n) => n.nodeType === 1 && (n.matches(".player-controls-row") || n.querySelector(".player-controls-row"))))); })) scheduleControlsFit();
+        }).observe(document.body, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ["hidden"] });
+    }
+}
 function wireUiOnce() {
     if (uiWired) return;
     uiWired = true;
@@ -5790,6 +5900,7 @@ function wireUiOnce() {
     setupSkipLink();
     setupIntersectionObserver();
     setupNewFeatureListeners();
+    initControlsFit();
     TWIN.init();
 }
 // The index comes in two files: the lean one (root names only) is tiny, so the top level shows from it at once; the full one
@@ -7308,7 +7419,7 @@ function renderBreadcrumb() {
         html += `<span class="breadcrumb-item${isCurrent ? " current" : ""}" data-path="${pathAttr}">${escapeHtml(segment)}</span>`;
     });
     const pinned = isPinned(currentPath);
-    html += `<button type="button" class="breadcrumb-pin-btn${pinned ? " pinned" : ""}" id="pinFolderBtn" title="${pinned ? "Unpin this folder" : "Pin this folder"}" aria-label="${pinned ? "Unpin this folder" : "Pin this folder"}" aria-pressed="${pinned}">${pinned ? icons.starFilled : icons.starOutline}</button>`;
+    html += `<button type="button" class="breadcrumb-pin-btn${pinned ? " pinned" : ""}" id="pinFolderBtn" data-lbl="${pinned ? "Unpin" : "Pin"}" data-need title="${pinned ? "Unpin this folder" : "Pin this folder"}" aria-label="${pinned ? "Unpin this folder" : "Pin this folder"}" aria-pressed="${pinned}">${pinned ? icons.starFilled : icons.starOutline}</button>`;
     html += folderZipButtonHtml();
     breadcrumbEl.innerHTML = html;
     breadcrumbEl.querySelectorAll(".breadcrumb-item:not(.current)").forEach((el) => {
@@ -14218,7 +14329,7 @@ const MB = 1024 * 1024;
 const ZIP_MAX_FILES = 60000; // the writer is plain zip (no zip64): 65,535 entries and 4 GB at most
 let zipBusy = false;
 function folderZipButtonHtml() {
-    return `<button type="button" class="breadcrumb-pin-btn" id="zipFolderBtn" title="Download this folder as a zip" aria-label="Download this folder as a zip"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></button>`;
+    return `<button type="button" class="breadcrumb-pin-btn" id="zipFolderBtn" data-lbl="Zip" data-need title="Download this folder as a zip" aria-label="Download this folder as a zip"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg></button>`;
 }
 function collectFolderFiles(children, pathPrefix, relPrefix, out) {
     for (const n of children) {
@@ -15023,9 +15134,13 @@ async function submitSource(picked) {
         const r = await loadExtraSource(picked ? { file: picked } : { url });
         if (!picked) { extraRemember(url); $("sourceInput").value = url; }
         closeSourceModal();
-        await openFile(r.path, r.type, r.name, !!r.play);
-        if (r.play) await startPlaylistMode();
-        for (const [p, e] of old) { extraRelease(e); EXTRA.delete(p); } // the earlier sources are not needed any more
+        const inPanel = TWIN.on ? await TWIN.openExtra(r) : false; // twin mode: it opens in a panel
+        if (!inPanel) {
+            await openFile(r.path, r.type, r.name, !!r.play);
+            if (r.play) await startPlaylistMode();
+        }
+        const keep = new Set(TWIN.on ? TWIN.usedExtras() : []);
+        for (const [p, e] of old) { if (keep.has(p)) continue; extraRelease(e); EXTRA.delete(p); } // the earlier sources are not needed any more
         announce(`Opened ${r.name}`);
     } catch (err) {
         const status = err && err.status;
@@ -15461,13 +15576,13 @@ const TWIN = (() => {
             <button type="button" class="tw-src" aria-haspopup="menu" aria-expanded="${T.menu === p.id}" title="Choose what this panel shows">${p.source === "local" ? icons.folder : ICON.repo}<span class="tw-src-text">${p.source === "local" ? "Local" : "Repo"}</span>${ICON.caret}</button>
             <nav class="tw-path" aria-label="Folder path of panel ${p.id + 1}">${crumbsHtml(p)}</nav>
             <span class="tw-tools">
-                <button type="button" class="settings-btn tw-favtab" aria-pressed="${p.tab === "fav"}" title="${p.tab === "fav" ? "Back to the files" : "Favorites and pinned folders"}" aria-label="${p.tab === "fav" ? "Back to the files of panel " : "Favorites of panel "}${p.id + 1}">${p.tab === "fav" ? icons.starFilled : icons.starOutline}</button>
+                <button type="button" class="settings-btn tw-favtab" data-tl="Stars" data-need aria-pressed="${p.tab === "fav"}" title="${p.tab === "fav" ? "Back to the files" : "Favorites and pinned folders"}" aria-label="${p.tab === "fav" ? "Back to the files of panel " : "Favorites of panel "}${p.id + 1}">${p.tab === "fav" ? icons.starFilled : icons.starOutline}</button>
                 ${grid ? thumbSizeCtl() : ""}
                 ${grid ? `<select class="sort-select tw-sort" aria-label="Sort panel ${p.id + 1} by">${sorts.map(([v, l]) => `<option value="${v}"${v === p.sort ? " selected" : ""}>${l}</option>`).join("")}</select>` : ""}
-                <button type="button" class="settings-btn tw-zip" title="Download this folder as a zip" aria-label="Download this folder as a zip">${ICON.zip}</button>
+                <button type="button" class="settings-btn tw-zip" data-tl="Zip" data-need title="Download this folder as a zip" aria-label="Download this folder as a zip">${ICON.zip}</button>
                 <span class="view-toggle" role="group" aria-label="View of panel ${p.id + 1}">
-                    <button type="button" class="view-btn tw-vbtn${grid ? "" : " active"}" data-v="list" title="List" aria-label="List view" aria-pressed="${!grid}">${ICON.list}</button>
-                    <button type="button" class="view-btn tw-vbtn${grid ? " active" : ""}" data-v="grid" title="Grid" aria-label="Grid view" aria-pressed="${grid}">${ICON.grid}</button>
+                    <button type="button" class="view-btn tw-vbtn${grid ? "" : " active"}" data-v="list" data-tl="List" title="List" aria-label="List view" aria-pressed="${!grid}">${ICON.list}</button>
+                    <button type="button" class="view-btn tw-vbtn${grid ? " active" : ""}" data-v="grid" data-tl="Thumbs" title="Grid" aria-label="Grid view" aria-pressed="${grid}">${ICON.grid}</button>
                 </span>
             </span>
             ${T.menu === p.id ? menuHtml(p) : ""}`;
@@ -15934,7 +16049,7 @@ const TWIN = (() => {
         if (lb) {
             const t = T.vert ? "Put the panels side by side" : "Stack the panels top and bottom";
             lb.innerHTML = T.vert ? ICON.cols : ICON.rows;
-            lb.title = t; lb.setAttribute("aria-label", t);
+            lb.title = t; lb.setAttribute("aria-label", t); lb.dataset.tl = T.vert ? "Side" : "Stack";
         }
         sp.classList.toggle("centered", Math.abs(T.r - 50) < 0.05);
         sp.setAttribute("aria-valuenow", String(Math.round(T.r)));
@@ -15960,7 +16075,7 @@ const TWIN = (() => {
         sp.setAttribute("aria-orientation", isStacked() ? "horizontal" : "vertical");
         if (T.ready && T.panes.length) syncInputs();
         const mx = sp.querySelector('[data-act="max"]');
-        if (mx) { const on = T.max !== -1; mx.setAttribute("aria-pressed", String(on)); mx.title = on ? "Show both panels" : "Fill the window with this panel"; mx.setAttribute("aria-label", mx.title); }
+        if (mx) { const on = T.max !== -1; mx.setAttribute("aria-pressed", String(on)); mx.title = on ? "Show both panels" : "Fill the window with this panel"; mx.setAttribute("aria-label", mx.title); mx.dataset.tl = on ? "Both" : "Fill"; }
     }
 
     function syncHash() {
@@ -16183,7 +16298,7 @@ const TWIN = (() => {
             done();
             if (autoPlay && modalEl.classList.contains("active") && T.media === p.id && isPlaylistFile) startPlaylistMode();
         };
-        Promise.resolve(openFile(fullOf(src, item.name), item.category, item.name, !!autoPlay)).then(after, done);
+        return Promise.resolve(openFile(item.xpath || fullOf(src, item.name), item.category, item.name, !!autoPlay)).then(after, done);
     }
     // Previous/next file exist only for a local folder's files; hosted repo files never get them. Media (audio, video, playlists) is always skipped, since it opens in the player.
     const canStep = (p) => p.source === "local";
@@ -16214,11 +16329,11 @@ const TWIN = (() => {
     // Play on a playlist preview: this panel takes the player (stopping the other panel's one, if it has any) and starts the list.
     // A playlist previewed in this panel starts in the other panel, so the list stays here to read while the player runs there.
     function playInOther(p) {
-        const vi = p.viewItem, item = vi && p.map.get(vi.name), o = T.panes[1 - p.id];
+        const vi = p.viewItem, item = vi && (vi.item || p.map.get(vi.name)), o = T.panes[1 - p.id];
         if (item && o) openMedia(o, item, true, p);
     }
     function playFromInline(p) {
-        const vi = p.viewItem, item = vi && p.map.get(vi.name);
+        const vi = p.viewItem, item = vi && (vi.item || p.map.get(vi.name));
         if (item) openMedia(p, item, true);
     }
     function stepInline(p, dir) {
@@ -16230,8 +16345,8 @@ const TWIN = (() => {
         const pn = paneEl(p.id), view = pn.querySelector(".tw-view"), body = pn.querySelector(".tw-vbody");
         runCleanups(p);
         p.backHook = null;
-        const mySeq = ++p.seq, full = fullOf(p, item.name);
-        p.viewItem = { name: item.name, path: full };
+        const mySeq = ++p.seq, full = item.xpath || fullOf(p, item.name);
+        p.viewItem = { name: item.name, path: full, item };
         setMode(p, "view");
         T.menu = null;
         const title = view.querySelector(".tw-vtitle");
@@ -16269,8 +16384,11 @@ const TWIN = (() => {
         const c = ctxOf(p.source);
         let url = "";
         try {
-            if (!c) throw new Error("source unavailable");
-            url = p.source === "local" ? await twinLocalUrl(full) : hostedUrlIn(c, full);
+            if (item.xpath) url = await urlForPath(item.xpath); // a link or file loaded with "Load extra source"
+            else {
+                if (!c) throw new Error("source unavailable");
+                url = p.source === "local" ? await twinLocalUrl(full) : hostedUrlIn(c, full);
+            }
         } catch (err) { if (!stale()) showUnavailable(body, item.name, "", err); return; }
         if (stale()) return;
         const view = paneEl(p.id).querySelector(".tw-view");
@@ -16692,6 +16810,19 @@ const TWIN = (() => {
             const p = T.panes[Number(pn.dataset.i)];
             return p.mode === "view" ? p.cleanups : null;
         },
+        // "Load extra source": the result opens inside a panel (the one last clicked, else the first), never over the whole page.
+        // r = { path, type, name, play } from loadExtraSource. Returns false when the twin mode is off, so the caller opens it as usual.
+        async openExtra(r) {
+            if (!T.on || !T.panes.length) return false;
+            const p = T.panes[T.active] || T.panes[0];
+            const item = { name: r.name, type: "file", category: r.type, xpath: r.path };
+            const kind = kindOf(item);
+            if (PLAY_KINDS.has(kind) || (kind === "playlist" && r.play)) { await openMedia(p, item, !!r.play); return p.mode === "media"; }
+            openInline(p, item);
+            return true;
+        },
+        // Paths of loaded sources that a panel is still showing (they must not be released yet).
+        usedExtras() { return T.panes.map((q) => q.viewItem && q.viewItem.path).filter(Boolean); },
         // Something outside the panels asked to open a file (a markdown link, an address with a file in it): show it in a panel.
         routeOpen(path, type, name) {
             if (!T.on || T.opening || EXTRA.has(path)) return false;
@@ -16770,17 +16901,17 @@ const TWIN = (() => {
                 <div class="tw-view" tabindex="-1" aria-label="Preview in panel ${i + 1}">
                     <div class="modal-header tw-vhead"><div class="modal-title tw-vtitle"></div><div class="modal-actions">
                         <button type="button" class="modal-btn play-playlist-btn vb-play" data-vact="play" title="Play as playlist" aria-label="Play as playlist" hidden>${$("playPlaylistBtn").innerHTML}</button>
-                        <button type="button" class="modal-btn vb-playother" data-vact="playother" title="Play in the other panel" aria-label="Play in the other panel" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="8" height="16"/><rect x="13" y="4" width="8" height="16"/><path d="M15.5 9v6l4-3z" fill="currentcolor" stroke="none"/></svg></button>
-                        <button type="button" class="modal-btn vb-imgfit" data-vact="imgfit" aria-pressed="false" title="Fit image to view" aria-label="Fit image to view" hidden>${$("imgFitBtn").innerHTML}</button>
-                        <button type="button" class="modal-btn vb-imgactual" data-vact="imgactual" aria-pressed="false" title="Show actual size (100%)" aria-label="Show actual size" hidden>${$("imgActualBtn").innerHTML}</button>
-                        <button type="button" class="modal-btn" data-vact="prev" title="Previous file (\u2190)" aria-label="Previous file">${ICON.prev}</button>
-                        <button type="button" class="modal-btn" data-vact="next" title="Next file (\u2192)" aria-label="Next file">${ICON.next}</button>
-                        <button type="button" class="modal-btn favorite-btn vb-fav" data-vact="fav" aria-pressed="false" title="Add to favorites" aria-label="Add file to favorites">${icons.starOutline}</button>
-                        <button type="button" class="modal-btn vb-info" data-vact="info" aria-pressed="false" title="Show file details" aria-label="File details">${$("infoBtn").innerHTML}</button>
-                        <button type="button" class="modal-btn vb-copy" data-vact="copy" title="Copy link" aria-label="Copy raw file link">${$("copyLinkBtn").innerHTML}</button>
-                        <a class="modal-btn vb-dl" data-vlink="download" title="Download" aria-label="Download file">${$("downloadBtn").innerHTML}</a>
-                        <a class="modal-btn vb-raw" data-vlink="raw" target="_blank" rel="noopener" title="Open raw" aria-label="Open raw file in new tab">${$("rawBtn").innerHTML}</a>
-                        <button type="button" class="modal-btn vb-close" data-vact="close" title="Close the preview (Esc)" aria-label="Close the preview">${$("closeBtn").innerHTML}</button>
+                        <button type="button" class="modal-btn vb-playother" data-vact="playother" data-lbl="Other" data-need title="Play in the other panel" aria-label="Play in the other panel" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="8" height="16"/><rect x="13" y="4" width="8" height="16"/><path d="M15.5 9v6l4-3z" fill="currentcolor" stroke="none"/></svg></button>
+                        <button type="button" class="modal-btn vb-imgfit" data-vact="imgfit" data-lbl="Fit" data-need aria-pressed="false" title="Fit image to view" aria-label="Fit image to view" hidden>${$("imgFitBtn").innerHTML}</button>
+                        <button type="button" class="modal-btn vb-imgactual" data-vact="imgactual" data-lbl="1:1" data-need aria-pressed="false" title="Show actual size (100%)" aria-label="Show actual size" hidden>${$("imgActualBtn").innerHTML}</button>
+                        <button type="button" class="modal-btn" data-vact="prev" data-lbl="Prev" title="Previous file (\u2190)" aria-label="Previous file">${ICON.prev}</button>
+                        <button type="button" class="modal-btn" data-vact="next" data-lbl="Next" title="Next file (\u2192)" aria-label="Next file">${ICON.next}</button>
+                        <button type="button" class="modal-btn favorite-btn vb-fav" data-vact="fav" data-lbl="Star" aria-pressed="false" title="Add to favorites" aria-label="Add file to favorites">${icons.starOutline}</button>
+                        <button type="button" class="modal-btn vb-info" data-vact="info" data-lbl="Info" data-need aria-pressed="false" title="Show file details" aria-label="File details">${$("infoBtn").innerHTML}</button>
+                        <button type="button" class="modal-btn vb-copy" data-vact="copy" data-lbl="Link" title="Copy link" aria-label="Copy raw file link">${$("copyLinkBtn").innerHTML}</button>
+                        <a class="modal-btn vb-dl" data-vlink="download" data-lbl="Save" title="Download" aria-label="Download file">${$("downloadBtn").innerHTML}</a>
+                        <a class="modal-btn vb-raw" data-vlink="raw" data-lbl="Raw" data-need target="_blank" rel="noopener" title="Open raw" aria-label="Open raw file in new tab">${$("rawBtn").innerHTML}</a>
+                        <button type="button" class="modal-btn vb-close" data-vact="close" data-lbl="Close" title="Close the preview (Esc)" aria-label="Close the preview">${$("closeBtn").innerHTML}</button>
                     </div></div>
                     <div class="modal-body tw-vbody"></div>
                     <div class="meta-bar tw-meta" tabindex="0" role="region" aria-label="File details" hidden></div>
@@ -16788,11 +16919,13 @@ const TWIN = (() => {
                 <div class="tw-media"></div></section>`;
             tw.innerHTML = shell(0) + `<div class="tw-split" role="separator" tabindex="0" aria-label="Resize the panels" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" title="Drag to resize. It snaps to 50/50 in the middle and tucks a panel away at either edge (it keeps playing). Double-click to reset.">
                 <span class="tw-split-tools">
-                    <button type="button" data-act="swap" title="Swap the two panels" aria-label="Swap the two panels">${ICON.swap}</button>
-                    <button type="button" data-act="layout" title="Stack the panels top and bottom" aria-label="Stack the panels top and bottom">${ICON.rows}</button>
-                    <button type="button" data-act="same" title="Show this panel\u2019s folder in the other panel" aria-label="Show this panel\u2019s folder in the other panel">${ICON.same}</button>
-                    <button type="button" data-act="max" aria-pressed="false" title="Fill the window with this panel" aria-label="Fill the window with this panel">${ICON.max}</button>
+                    <button type="button" data-act="swap" data-tl="Swap" data-need title="Swap the two panels" aria-label="Swap the two panels">${ICON.swap}</button>
+                    <button type="button" data-act="layout" data-tl="Stack" data-need title="Stack the panels top and bottom" aria-label="Stack the panels top and bottom">${ICON.rows}</button>
+                    <button type="button" data-act="same" data-tl="Same" data-need title="Show this panel\u2019s folder in the other panel" aria-label="Show this panel\u2019s folder in the other panel">${ICON.same}</button>
+                    <button type="button" data-act="max" data-tl="Fill" data-need aria-pressed="false" title="Fill the window with this panel" aria-label="Fill the window with this panel">${ICON.max}</button>
                 </span></div>` + shell(1);
+            if (twinFitRO) tw.querySelectorAll(".tw-vhead").forEach((h) => twinFitRO.observe(h));
+            if (typeof MutationObserver === "function") new MutationObserver(scheduleBtnFit).observe(tw, { subtree: true, attributes: true, attributeFilter: ["hidden"] });
             const s = load();
             T.panes = [paneFromSaved(0, s && s.panes && s.panes[0]), paneFromSaved(1, s && s.panes && s.panes[1])];
             if (s) {
