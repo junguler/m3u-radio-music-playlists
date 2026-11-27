@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <script>(function(){try{window.__idx={};var L="./file_index_lean.json",F="./file_index.json";function get(u){return fetch(u).then(function(r){if(!r.ok)throw new Error("Failed to load "+u);return r.json();});}var lp=get(L);lp.catch(function(){});window.__idx[L]=lp;var fp=lp.then(function(){},function(){}).then(function(){return get(F);});fp.catch(function(){});window.__idx[F]=fp;}catch(e){}})();</script>
-    <script>(function(){try{var t=localStorage.getItem("theme");if(t==="concrete-custom"){t="concrete";localStorage.setItem("theme",t);}if(t==="vivid")document.documentElement.setAttribute("data-vivid","1");else if(t&&t!=="auto")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <script>(function(){try{var t=localStorage.getItem("theme"),de=document.documentElement;if(t==="concrete-custom"){t="concrete";localStorage.setItem("theme",t);}if(t==="vivid")de.setAttribute("data-vivid","1");else if(t&&t!=="auto"){var m=/^(.+)-light$/.exec(t);if(m&&/^(concrete|phosphor|dialup|dither|pivot|neonchalk)$/.test(m[1])){de.setAttribute("data-theme",m[1]);de.setAttribute("data-variant","light");}else de.setAttribute("data-theme",t);}}catch(e){}})();</script>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="referrer" content="no-referrer" />
     <meta name="theme-color" content="#1a1a1a" />
-    <script>(function(){try{var d=document.documentElement.getAttribute("data-theme"),l=d?d==="light"||d==="hc-light":!!(window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches);document.querySelector('meta[name="theme-color"]').setAttribute("content",d==="hc-dark"?"#000000":d==="hc-light"?"#ffffff":l?"#f5f5f5":"#1a1a1a");}catch(e){}})();</script>
+    <script>(function(){try{var d=document.documentElement.getAttribute("data-theme"),o=!!(window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches),l=d?d==="light"||d==="hc-light"||document.documentElement.getAttribute("data-variant")==="light":o;document.querySelector('meta[name="theme-color"]').setAttribute("content",d==="hc-dark"?"#000000":d==="hc-light"?"#ffffff":l?"#f5f5f5":"#1a1a1a");}catch(e){}})();</script>
     <title>File Viewer</title>
     <meta name="description" content="Browse and preview files from this repository directly in your browser — code, images, audio, video, and playlists." />
     <meta property="og:title" content="File Viewer" />
@@ -328,6 +328,21 @@ body {
 .theme-btn .theme-btn-label { color: var(--text-secondary) !important; }
 /* Icons stay neutral; the active theme's icon takes the accent. Only the Custom button shows its own swatch color. */
 .theme-btn.active svg { color: var(--accent-on-control, var(--accent-text, var(--accent))); }
+.variant-btn { padding: 0.25rem 0.5rem; background: 0 0; border: none; color: var(--text-secondary); cursor: pointer; border-radius: var(--radius-sm); font-size: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.25rem; white-space: nowrap; }
+.variant-btn:hover:not(:disabled) { background: var(--bg-hover); }
+.variant-btn.active { background: var(--bg-primary); }
+.variant-btn svg { width: 12px; height: 12px; }
+.variant-btn.active svg { color: var(--accent-on-control, var(--accent-text, var(--accent))); }
+.variant-btn .theme-btn-label { color: var(--text-secondary) !important; }
+.variant-btn:disabled { opacity: 0.45; cursor: default; }
+#themeToggle[data-tmode="dark"] .ic-l, #themeToggle[data-tmode="dark"] .lb-l, #themeToggle[data-tmode="light"] .ic-d, #themeToggle[data-tmode="light"] .lb-d { display: none; }
+#variantToggle { width: 100%; }
+/* one line per button, equal columns, so long names (HC Dark+, Dial-Up+) never wrap and make the rows uneven */
+#themeToggle, #variantToggle { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#variantToggle { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+#themeToggle .theme-btn, #variantToggle .variant-btn { white-space: nowrap; min-width: 0; padding-inline: 0.25rem; }
+#themeToggle .theme-btn-label, #variantToggle .theme-btn-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+#variantToggle .variant-btn.active, #themeToggle .theme-btn.active { box-shadow: inset 0 0 0 1px var(--border-strong); }
 .theme-btn[data-theme="custom"] svg { color: var(--custom-theme-swatch, #8b5cf6); }
 /* While a custom color is active the light/dark/HC buttons all look the same (the custom color overrides them), so they dim to show they only change the hidden base.
    The Custom button stays full strength since it drives what's on screen. */
@@ -1569,6 +1584,8 @@ body:not([data-source]) .mode-chip { display: none; }
 html[data-theme="concrete"] {
     --cc-page: #2b2b2b; --cc-panel: #1a1a1a; --cc-line: #e6e6e6; --cc-accent: #ffd100; --cc-text: #ffffff; --cc-muted: #bdbdbd;
     --concrete: var(--cc-page); --panel: var(--cc-panel); --line: var(--cc-line); --ink: #000000;
+    /* --ink is the black ink on colored fills; --ink-bg is the "ink" SURFACE (headers, player, even rows: black here, white in the light variant); --fill is the neutral button / icon fill. */
+    --ink-bg: var(--ink); --fill: var(--cc-fill, var(--cc-line));
     --text: var(--cc-text); --muted: var(--cc-muted);
     --orange: #ff6a1a; --pink: #ff4fa3; --violet: #a77bff; --green: #3ddc84;
     --yellow: var(--cc-accent); --red: #ff3b30; --blue: #3d8bff; --cyan: #1fd1ee; --lime: #b6f23a;
@@ -1658,7 +1675,7 @@ html[data-theme="concrete"] textarea,
 html[data-theme="concrete"] input[type="text"],
 html[data-theme="concrete"] input[type="search"],
 html[data-theme="concrete"] input[type="number"] {
-    background: var(--ink); color: var(--text); border: var(--bw) solid var(--line); font-family: inherit;
+    background: var(--ink-bg); color: var(--text); border: var(--bw) solid var(--line); font-family: inherit;
 }
 html[data-theme="concrete"] .search-input::placeholder,
 html[data-theme="concrete"] .songs-search::placeholder,
@@ -1694,7 +1711,7 @@ html[data-theme="concrete"] .download-btn,
 html[data-theme="concrete"] .tree-hdr-btn,
 html[data-theme="concrete"] .card-star-btn,
 html[data-theme="concrete"] .op-toast button {
-    --c: var(--line);
+    --c: var(--fill);
     background: var(--c) !important; color: var(--ink) !important;
     border: var(--bw) solid var(--ink) !important;
     box-shadow: 2px 2px 0 var(--text) !important;
@@ -1847,32 +1864,32 @@ html[data-theme="concrete"] .player-speed-btn { --c: var(--violet); }
 html[data-theme="concrete"] .card-star-btn:not(.starred):not(:hover):not(:focus-visible):not(:active) { background: transparent !important; border-color: transparent !important; box-shadow: none !important; }
 html[data-theme="concrete"] .card-star-btn:not(.starred):not(:hover):not(:focus-visible):not(:active) svg { color: var(--text); }
 html[data-theme="concrete"] input[type="file"]::file-selector-button { background: var(--orange); color: var(--ink); border: 2px solid var(--ink); font: inherit; font-weight: 900; text-transform: uppercase; padding: 4px 10px; margin-right: 10px; cursor: pointer; }
-html[data-theme="concrete"] .switch-slider { background: var(--ink); border: var(--bw) solid var(--line); transition: none; }
+html[data-theme="concrete"] .switch-slider { background: var(--ink-bg); border: var(--bw) solid var(--line); transition: none; }
 html[data-theme="concrete"] .switch-slider::before { background: var(--muted); transition: none; }
 html[data-theme="concrete"] .switch input:checked + .switch-slider { background: var(--green); border-color: var(--line); }
 html[data-theme="concrete"] .switch input:checked + .switch-slider::before { background: var(--ink); }
 html[data-theme="concrete"] .switch input:focus-visible + .switch-slider { outline: 2px solid var(--yellow); outline-offset: 1px; }
 html[data-theme="concrete"] .settings-menu-card { background: var(--panel); border: var(--bw) solid var(--line); box-shadow: 6px 6px 0 var(--ink); }
-html[data-theme="concrete"] .settings-menu-header { background: var(--ink); border-bottom: var(--bw) solid var(--line); }
+html[data-theme="concrete"] .settings-menu-header { background: var(--ink-bg); border-bottom: var(--bw) solid var(--line); }
 html[data-theme="concrete"] .settings-menu-title { color: var(--text); font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; }
 html[data-theme="concrete"] .settings-menu-card { color: var(--text); }
 html[data-theme="concrete"] .theme-btn { white-space: nowrap; letter-spacing: 0; }
 html[data-theme="concrete"] .settings-section-title { color: var(--text); font-weight: 900; }
-html[data-theme="concrete"] details.settings-collapsible { background: var(--ink); border: var(--bw) solid var(--line); margin: 8px; padding: 0; }
+html[data-theme="concrete"] details.settings-collapsible { background: var(--ink-bg); border: var(--bw) solid var(--line); margin: 8px; padding: 0; }
 html[data-theme="concrete"] .settings-collapsible > summary { padding: 8px 10px; color: var(--text); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0; }
 html[data-theme="concrete"] .settings-collapsible[open] > summary { border-bottom: var(--bw) solid var(--line); }
 html[data-theme="concrete"] .settings-collapsible > :not(summary) { background: var(--panel); padding-left: 10px; padding-right: 10px; }
 html[data-theme="concrete"] .settings-label { color: var(--muted); }
 html[data-theme="concrete"] .modal-overlay { background: var(--concrete); }
 html[data-theme="concrete"] .modal { background: var(--panel); border: var(--bw) solid var(--line); box-shadow: 6px 6px 0 var(--ink); }
-html[data-theme="concrete"] .modal-header { background: var(--ink); border-bottom: var(--bw) solid var(--line); }
+html[data-theme="concrete"] .modal-header { background: var(--ink-bg); border-bottom: var(--bw) solid var(--line); }
 html[data-theme="concrete"] .modal-title { font-weight: 900; text-transform: uppercase; letter-spacing: 0.02em; }
-html[data-theme="concrete"] .modal-body { background: var(--ink); }
+html[data-theme="concrete"] .modal-body { background: var(--ink-bg); }
 #modal .modal:has(#playlistBar.active):not(.video-modal) .meta-bar.meta-empty { background: var(--bg-primary) !important; border-top-color: transparent; }
-html[data-theme="concrete"] #modal .modal:has(#playlistBar.active):not(.video-modal) .meta-bar.meta-empty { background: var(--ink) !important; }
+html[data-theme="concrete"] #modal .modal:has(#playlistBar.active):not(.video-modal) .meta-bar.meta-empty { background: var(--ink-bg) !important; }
 /* Whatever is not covered by a bar inside the station player window shows the window's own colour, so make that the colour of the player body. */
 #modal .modal:has(#playlistBar.active):not(.video-modal) { background: var(--bg-primary); }
-html[data-theme="concrete"] #modal .modal:has(#playlistBar.active):not(.video-modal) { background: var(--ink); } /* the player body is black */
+html[data-theme="concrete"] #modal .modal:has(#playlistBar.active):not(.video-modal) { background: var(--ink-bg); } /* the player body is the ink surface: black in the dark look, white in the light variant */
 @media (min-width: 641px) {
 html[data-theme="concrete"] .modal-overlay,
 html[data-theme="concrete"] .modal-overlay .modal,
@@ -1886,7 +1903,7 @@ html[data-theme="concrete"] .empty-state h2,
 html[data-theme="concrete"] .preview-unavailable h3,
 html[data-theme="concrete"] .stats-breakdown-title { text-transform: uppercase; font-weight: 900; letter-spacing: 0.04em; }
 html[data-theme="concrete"] .tree-panel { background: var(--panel); border-right: var(--bw) solid var(--line); }
-html[data-theme="concrete"] .tree-header { background: var(--ink); color: var(--text); font-weight: 900; border-bottom: var(--bw) solid var(--line); }
+html[data-theme="concrete"] .tree-header { background: var(--ink-bg); color: var(--text); font-weight: 900; border-bottom: var(--bw) solid var(--line); }
 html[data-theme="concrete"] .tree-pinned-header { color: var(--text); font-weight: 900; }
 html[data-theme="concrete"] .tree-item,
 html[data-theme="concrete"] .tree-pinned-item { border-left: var(--bw) solid transparent; }
@@ -1899,7 +1916,7 @@ html[data-theme="concrete"] .tree-pinned-item.active:hover { background: var(--y
 html[data-theme="concrete"] .tree-pinned-item.active .tree-pinned-unpin { color: var(--ink); }
 html[data-theme="concrete"] .file-card { background: var(--panel); border: var(--bw) solid var(--line); }
 html[data-theme="concrete"] .file-card:nth-child(odd) { --card-bg: var(--panel); background: var(--panel); }
-html[data-theme="concrete"] .file-card:nth-child(even) { --card-bg: var(--ink); background: var(--ink); }
+html[data-theme="concrete"] .file-card:nth-child(even) { --card-bg: var(--ink-bg); background: var(--ink-bg); }
 html.no-zebra[data-theme="concrete"] .file-card:nth-child(odd),
 html.no-zebra[data-theme="concrete"] .file-card:nth-child(even) { --card-bg: var(--panel); background: var(--panel); }
 @media (hover: hover) {
@@ -1910,28 +1927,28 @@ html[data-theme="concrete"] .file-list { gap: 0; }
 html[data-theme="concrete"] .file-list > .file-card { margin-top: calc(var(--bw) * -1); }
 html[data-theme="concrete"] .file-list > .file-card:first-child { margin-top: 0; }
 html[data-theme="concrete"] .gal-item.active { box-shadow: none; }
-html[data-theme="concrete"] .file-list-header { background: var(--ink); color: var(--text); font-weight: 900; border-bottom: var(--bw) solid var(--line); margin-bottom: 0; }
+html[data-theme="concrete"] .file-list-header { background: var(--ink-bg); color: var(--text); font-weight: 900; border-bottom: var(--bw) solid var(--line); margin-bottom: 0; }
 html[data-theme="concrete"] .file-list-header .col.active { color: var(--yellow); }
 @media (hover: hover) {
 html[data-theme="concrete"] .file-list-header .col:hover { color: var(--yellow); }
 }
 html[data-theme="concrete"] .file-name { font-weight: 700; }
-html[data-theme="concrete"] .file-icon { border: 2px solid var(--ink); background: var(--c, var(--line)); color: var(--ink); }
-html[data-theme="concrete"] .file-icon svg { color: var(--ink); --bg-tertiary: var(--c, var(--line)); }
+html[data-theme="concrete"] .file-icon { border: 2px solid var(--ink); background: var(--c, var(--fill)); color: var(--ink); }
+html[data-theme="concrete"] .file-icon svg { color: var(--ink); --bg-tertiary: var(--c, var(--fill)); }
 html[data-theme="concrete"] .file-icon.folder { --c: var(--yellow); }
 html[data-theme="concrete"] .file-icon.image { --c: var(--pink); }
 html[data-theme="concrete"] .file-icon.video { --c: var(--red); }
 html[data-theme="concrete"] .file-icon.audio { --c: var(--green); }
 html[data-theme="concrete"] .file-icon.code { --c: var(--blue); }
 html[data-theme="concrete"] .file-icon.document { --c: var(--orange); }
-html[data-theme="concrete"] .file-icon.text { --c: var(--line); }
+html[data-theme="concrete"] .file-icon.text { --c: var(--fill); }
 html[data-theme="concrete"] .file-icon.data { --c: var(--violet); }
 html[data-theme="concrete"] .file-icon.archive { --c: var(--orange); }
 html[data-theme="concrete"] .file-icon.markup { --c: var(--blue); }
 html[data-theme="concrete"] .file-icon.style { --c: var(--pink); }
 html[data-theme="concrete"] .file-icon.font { --c: var(--violet); }
 html[data-theme="concrete"] .file-icon.playlist { --c: var(--green); }
-html[data-theme="concrete"] .file-icon.other { --c: var(--line); }
+html[data-theme="concrete"] .file-icon.other { --c: var(--fill); }
 html[data-theme="concrete"] .file-icon.folder,
 html[data-theme="concrete"] .file-icon.image,
 html[data-theme="concrete"] .file-icon.video,
@@ -1947,15 +1964,15 @@ html[data-theme="concrete"] .file-icon.font,
 html[data-theme="concrete"] .file-icon.playlist,
 html[data-theme="concrete"] .file-icon.other { background: var(--c); color: var(--ink); }
 html[data-theme="concrete"] mark.search-highlight { background: var(--yellow); color: var(--ink); font-weight: 900; }
-html[data-theme="concrete"] kbd { border-width: 2px; background: var(--ink); color: var(--text); }
+html[data-theme="concrete"] kbd { border-width: 2px; background: var(--ink-bg); color: var(--text); }
 html[data-theme="concrete"] .skeleton-block { background: var(--skeleton-base) !important; animation: none !important; }
 html[data-theme="concrete"] .spinner { border: var(--bw) solid var(--line); border-top-color: var(--yellow); }
-html[data-theme="concrete"] .stats-row-bar-track { border-width: 2px; background: var(--ink); }
+html[data-theme="concrete"] .stats-row-bar-track { border-width: 2px; background: var(--ink-bg); }
 html[data-theme="concrete"] .stats-row-bar-fill { background: var(--stat-fill, var(--yellow)); }
 html[data-theme="concrete"] .audio-icon { background: var(--ink); }
 html[data-theme="concrete"] .audio-icon .stream-tag,
 html[data-theme="concrete"] .audio-icon .cache-tag { border-width: 2px; background: var(--concrete); color: var(--text); }
-html[data-theme="concrete"] .player-bar { background: var(--ink); }
+html[data-theme="concrete"] .player-bar { background: var(--ink-bg); }
 html[data-theme="concrete"] .player-seek { height: 14px; background: linear-gradient(to right, var(--yellow) var(--seek-pct, 0%), color-mix(in srgb, var(--yellow) 38%, var(--ink)) var(--seek-pct, 0%), color-mix(in srgb, var(--yellow) 38%, var(--ink)) var(--seek-cache, 0%), var(--ink) var(--seek-cache, 0%)); }
 html[data-theme="concrete"] .player-seek::-webkit-slider-thumb { width: 12px; height: 12px; margin-top: -1px; background: var(--yellow); border: 2px solid var(--ink); }
 html[data-theme="concrete"] .player-seek::-moz-range-thumb { width: 8px; height: 8px; background: var(--yellow); border: 2px solid var(--ink); }
@@ -2596,8 +2613,86 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
     html[data-theme="neonchalk"] :focus-visible { outline: 2px solid var(--text-primary); outline-offset: -2px; }
 }
 
+/* === LIGHT VARIANTS of the dark-only themes: Concrete, Phosphor, Dial-Up, Dither, Pivot, Neon Chalk ===
+   Picked in the theme menu ("Concrete Lt" etc., stored as "concrete-light") and applied as html[data-theme="concrete"][data-variant="light"]: the same structure with an inverted palette,
+   available to everyone whatever the system setting. Every pair keeps the dark look's contrast: text 4.5:1 or better on every surface, accent text 4.5:1, white-on-accent buttons 4.5:1.
+   Under Windows high contrast the light twins follow the Windows palette (only the dark themes keep their own). */
+    /* PHOSPHOR, light: dark green ink on pale green-bar paper */
+    html[data-theme="phosphor"][data-variant="light"] {
+        --bg-primary:#f4faf0; --bg-secondary:#e9f3e3; --bg-tertiary:#dcebd4; --bg-hover:#cfe3c4; --border-color:#9cc08e; --border-strong:#3e7a35;
+        --text-primary:#08260c; --text-secondary:#1c5424; --text-muted:#2f6a37;
+        --accent:#2a7a12; --accent-hover:#1f6a0b; --accent-text:#1f6a0b; --accent-solid:#2a7a12; --accent-solid-hover:#1f6a0b; --on-accent:#ffffff;
+        --success:#1b6b1f; --warning:#8a5a00; --danger:#b3261e; --danger-solid:#b3261e; --on-danger:#ffffff;
+        --icon-keep:64%; --accent-glow:rgba(42,122,18,0.25); color-scheme:light;
+    }
+    /* DIAL-UP, light: classic silver desktop, white sunken fields, navy title bar */
+    html[data-theme="dialup"][data-variant="light"] {
+        --bg-primary:#ffffff; --bg-secondary:#c6c6c6; --bg-tertiary:#c6c6c6; --bg-hover:#d9d9d9; --border-color:#404040; --border-strong:#6a6a6a;
+        --text-primary:#000000; --text-secondary:#1f1f1f; --text-muted:#3d3d3d;
+        --accent:#0a2a8a; --accent-hover:#143fb5; --accent-text:#0a2a8a; --accent-solid:#0a2a8a; --accent-solid-hover:#143fb5; --on-accent:#ffffff;
+        --control-surface:#c6c6c6; --control-surface-hover:#d9d9d9; --on-control:#000000;
+        --success:#1b6b1f; --warning:#8a5a00; --danger:#b3261e; --danger-solid:#b3261e; --on-danger:#ffffff;
+        --icon-keep:64%; --accent-glow:rgba(10,42,138,0.25); color-scheme:light;
+        --bv:inset -1px -1px #404040,inset 1px 1px #ffffff,inset -2px -2px #808080,inset 2px 2px #dfdfdf;
+        --sk:inset 1px 1px #808080,inset -1px -1px #ffffff,inset 2px 2px #404040;
+    }
+    /* DITHER, light: 1-bit positive, black ink on white */
+    html[data-theme="dither"][data-variant="light"] {
+        --bg-primary:#f5f5f5; --bg-secondary:#f5f5f5; --bg-tertiary:#e4e4e4; --bg-hover:#d2d2d2; --border-color:#0a0a0a; --border-strong:#0a0a0a;
+        --text-primary:#0a0a0a; --text-secondary:#262626; --text-muted:#454545;
+        --accent:#0a0a0a; --accent-hover:#333333; --accent-text:#0a0a0a; --accent-solid:#0a0a0a; --accent-solid-hover:#333333; --on-accent:#f5f5f5;
+        --success:#1b6b2a; --warning:#8a5a00; --danger:#b3261e; --danger-solid:#b3261e; --on-danger:#ffffff;
+        --icon-keep:64%; --accent-glow:rgba(10,10,10,0.2); color-scheme:light;
+    }
+    /* PIVOT, light: white sheet, pale gridlines, green cell outline */
+    html[data-theme="pivot"][data-variant="light"] {
+        --bg-primary:#ffffff; --bg-secondary:#f6f8f7; --bg-tertiary:#eaf0ed; --bg-hover:#dcebe2; --border-color:#c9d3cd; --border-strong:#6f7b74;
+        --text-primary:#1b1f1d; --text-secondary:#38403c; --text-muted:#55605a;
+        --accent:#137333; --accent-hover:#0f5f2a; --accent-text:#137333; --accent-solid:#137333; --accent-solid-hover:#0f5f2a; --on-accent:#ffffff;
+        --success:#137333; --warning:#8a5a00; --danger:#b3261e; --danger-solid:#b3261e; --on-danger:#ffffff;
+        --icon-keep:64%; --accent-glow:rgba(19,115,51,0.25); color-scheme:light;
+    }
+    /* NEON CHALK, light: dark ink on warm paper, the highlighter swashes become pale pink so the ink stays readable on them */
+    html[data-theme="neonchalk"][data-variant="light"] {
+        --bg-primary:#f8f7f2; --bg-secondary:#f0efe8; --bg-tertiary:#e7e6dd; --bg-hover:#dddcd0; --border-color:#cbcabd; --border-strong:#17181b;
+        --text-primary:#17181b; --text-secondary:#34353a; --text-muted:#55565b;
+        --accent:#c4107a; --accent-hover:#a30d65; --accent-text:#a50f66; --accent-solid:#b5176f; --accent-solid-hover:#9c135f; --on-accent:#ffffff;
+        --success:#1b6b2a; --warning:#8a5a00; --danger:#b3261e; --danger-solid:#b3261e; --on-danger:#ffffff;
+        --icon-keep:64%; --accent-glow:rgba(196,16,122,0.25); color-scheme:light;
+    }
+    html[data-theme="neonchalk"][data-variant="light"] .logo { background:linear-gradient(transparent 50%,color-mix(in srgb,var(--accent-solid) 28%,#ffffff) 50%); }
+    html[data-theme="neonchalk"][data-variant="light"] .file-card:hover .file-name, html[data-theme="neonchalk"][data-variant="light"] .file-card.selected .file-name { background:linear-gradient(transparent 52%,color-mix(in srgb,var(--accent-solid) 28%,#ffffff) 52%); }
+    html[data-theme="neonchalk"][data-variant="light"] .view-btn.active, html[data-theme="neonchalk"][data-variant="light"] .md-toggle[aria-pressed="true"], html[data-theme="neonchalk"][data-variant="light"] .ts-ctl [aria-pressed="true"] { background:linear-gradient(transparent 55%,color-mix(in srgb,var(--accent-solid) 28%,#ffffff) 55%); }
+    /* CONCRETE, light: pale concrete page, white panels, black lines and hard shadows; the yellow banner and the black-on-color buttons stay as they are */
+    html[data-theme="concrete"][data-variant="light"] {
+        --cc-page:#d9d7d0; --cc-panel:#f4f3ee; --cc-line:#111111; --cc-text:#111111; --cc-muted:#4a4a46; --cc-fill:#e3e1da;
+        --ink-bg:#ffffff;
+    }
+    html[data-theme="concrete"][data-variant="light"] {
+        --bg-tertiary:#ffffff !important;
+        --control-surface:#ffffff !important;
+        --on-control:#000000 !important;
+        --accent-text:color-mix(in srgb, var(--cc-accent) 35%, #000000) !important;
+        --success:#1b7a3d !important;
+        --warning:#8a5a00 !important;
+        --danger:#b3261e !important;
+        --danger-solid:#b3261e !important;
+        --on-danger:#ffffff !important;
+        --icon-keep:100% !important;
+        color-scheme:light !important;
+    }
+    /* the sorted / hovered column header is yellow text on the black header in the dark look; on the white header it uses the dark golden accent text instead */
+    html[data-theme="concrete"][data-variant="light"] .file-list-header .col.active,
+    html[data-theme="concrete"][data-variant="light"] .file-list-header .col:hover { color: var(--accent-text); }
+/* light twins give the forced-colors opt-out of the dark themes back, so a light high-contrast setup still gets the Windows palette */
+html[data-variant="light"][data-theme],
+html[data-variant="light"][data-theme] *,
+html[data-variant="light"][data-theme] *::before,
+html[data-variant="light"][data-theme] *::after { forced-color-adjust: auto !important; }
+
 /* Touch-sized hit areas on phones. Dialog controls grow for real; the tight header controls keep their look and only get a taller invisible tap area. */
 @media (max-width: 640px) {
+    .variant-btn { min-height: 36px; }
     .settings-menu-close { min-width: 40px; min-height: 40px; }
     .settings-menu-close svg { width: 16px; height: 16px; }
     .settings-control button { min-width: 40px; min-height: 36px; }
@@ -2797,6 +2892,12 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                                         <span class="settings-control"><button type="button" class="theme-reset-btn" id="localOpenBtn">Open&hellip;</button><button type="button" class="theme-reset-btn" id="localCloseBtn" hidden>Close</button></span>
                                     </div>
                                 </details>
+                                <div class="settings-section">
+                                    <div class="settings-row">
+                                        <span class="settings-label">Reset all settings<span id="resetAllNote"> (favorites, pinned folders and history are kept)</span></span>
+                                        <span class="settings-control"><button type="button" class="theme-reset-btn" id="resetAllBtn">Reset&hellip;</button></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2815,18 +2916,21 @@ html[data-theme="neonchalk"] *::after { forced-color-adjust: none !important; }
                                 <div class="settings-section">
                                     <div class="settings-section-title">Theme</div>
                                     <div class="settings-row">
-                                        <div class="theme-toggle" id="themeToggle">
-                                            <button class="theme-btn" data-theme="light" title="Light theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 7c-2.76.0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55.0 1-.45 1-1s-.45-1-1-1H2c-.55.0-1 .45-1 1s.45 1 1 1zm18 0h2c.55.0 1-.45 1-1s-.45-1-1-1h-2c-.55.0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41.0-.39.39-.39 1.03.0 1.41l1.06 1.06c.39.39 1.03.39 1.41.0s.39-1.03.0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41.0-.39.39-.39 1.03.0 1.41l1.06 1.06c.39.39 1.03.39 1.41.0.39-.39.39-1.03.0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03.0-1.41-.39-.39-1.03-.39-1.41.0l-1.06 1.06c-.39.39-.39 1.03.0 1.41s1.03.39 1.41.0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03.0-1.41-.39-.39-1.03-.39-1.41.0l-1.06 1.06c-.39.39-.39 1.03.0 1.41s1.03.39 1.41.0l1.06-1.06z"/></svg><span class="theme-btn-label">Light</span></button>
-                                            <button class="theme-btn" data-theme="dark" title="Dark theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 3c-4.97.0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98.0-5.4-2.42-5.4-5.4.0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg><span class="theme-btn-label">Dark</span></button>
-                                            <button class="theme-btn" data-theme="auto" title="System theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3.31-2.69 6-6 6h-1.77c-.28.0-.5.22-.5.5.0.12.05.23.13.33.41.47.64 1.06.64 1.67A2.5 2.5.0 0112 22zm0-18c-4.41.0-8 3.59-8 8s3.59 8 8 8c.28.0.5-.22.5-.5a.54.54.0 00-.14-.35c-.41-.46-.63-1.05-.63-1.65a2.5 2.5.0 012.5-2.5H16c2.21.0 4-1.79 4-4 0-3.86-3.59-7-8-7z"/><circle cx="6.5" cy="11.5" r="1.5"/><circle cx="9.5" cy="7.5" r="1.5"/><circle cx="14.5" cy="7.5" r="1.5"/><circle cx="17.5" cy="11.5" r="1.5"/></svg><span class="theme-btn-label">Auto</span></button>
-                                            <button class="theme-btn" data-theme="hc-dark" title="High contrast dark theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 2a10 10 0 000 20 10 10 0 000-20zm0 2v16a8 8 0 010-16z"/></svg><span class="theme-btn-label">HC Dark</span></button>
-                                            <button class="theme-btn" data-theme="hc-light" title="High contrast light theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 2a10 10 0 000 20 10 10 0 000-20zm0 18V4a8 8 0 010 16z"/></svg><span class="theme-btn-label">HC Light</span></button>
-                                            <button class="theme-btn" data-theme="concrete" title="Concrete Signal theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 3h18v18H3V3zm4 4v10h10V7H7z"/></svg><span class="theme-btn-label">Concrete</span></button>
-                                            <button class="theme-btn" data-theme="phosphor" title="Phosphor theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path fill-rule="evenodd" d="M3 4h18a1 1 0 011 1v14a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1zm1 2v12h16V6H4zm2.5 2.5L10 12l-3.5 3.5-1.4-1.4L7.2 12 5.1 9.9l1.4-1.4zM11 15h6v2h-6v-2z"/></svg><span class="theme-btn-label">Phosphor</span></button>
-                                            <button class="theme-btn" data-theme="dialup" title="Dial-Up theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path fill-rule="evenodd" d="M3 4h18v16H3V4zm2 4v10h14V8H5z"/></svg><span class="theme-btn-label">Dial-Up</span></button>
-                                            <button class="theme-btn" data-theme="dither" title="Dither theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 3h6v6H3V3zm12 0h6v6h-6V3zM9 9h6v6H9V9zM3 15h6v6H3v-6zm12 0h6v6h-6v-6z"/></svg><span class="theme-btn-label">Dither</span></button>
-                                            <button class="theme-btn" data-theme="pivot" title="Pivot theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path fill-rule="evenodd" d="M3 3h18v18H3V3zm2 2v4h4V5H5zm6 0v4h8V5h-8zM5 11v3h4v-3H5zm6 0v3h8v-3h-8zM5 16v3h4v-3H5zm6 0v3h8v-3h-8z"/></svg><span class="theme-btn-label">Pivot</span></button>
-                                            <button class="theme-btn" data-theme="neonchalk" title="Neon Chalk theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg><span class="theme-btn-label">Chalk</span></button>
+                                        <div class="theme-toggle" id="variantToggle" role="group" aria-label="Dark or light themes">
+                                            <button type="button" class="variant-btn" data-variant="dark" title="Show the dark themes"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 3c-4.97.0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98.0-5.4-2.42-5.4-5.4.0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg><span class="theme-btn-label">Dark</span></button>
+                                            <button type="button" class="variant-btn" data-variant="light" title="Show the light themes"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 7c-2.76.0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55.0 1-.45 1-1s-.45-1-1-1H2c-.55.0-1 .45-1 1s.45 1 1 1zm18 0h2c.55.0 1-.45 1-1s-.45-1-1-1h-2c-.55.0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41.0-.39.39-.39 1.03.0 1.41l1.06 1.06c.39.39 1.03.39 1.41.0s.39-1.03.0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41.0-.39.39-.39 1.03.0 1.41l1.06 1.06c.39.39 1.03.39 1.41.0.39-.39.39-1.03.0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03.0-1.41-.39-.39-1.03-.39-1.41.0l-1.06 1.06c-.39.39-.39 1.03.0 1.41s1.03.39 1.41.0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03.0-1.41-.39-.39-1.03-.39-1.41.0l-1.06 1.06c-.39.39-.39 1.03.0 1.41s1.03.39 1.41.0l1.06-1.06z"/></svg><span class="theme-btn-label">Light</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="settings-row">
+                                        <div class="theme-toggle" id="themeToggle" data-tmode="dark">
+                                            <button class="theme-btn" data-dark="dark" data-light="light" data-theme="dark" title="Dark / Light theme"><svg class="ic-d" viewBox="0 0 24 24" fill="currentcolor"><path d="M12 3c-4.97.0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98.0-5.4-2.42-5.4-5.4.0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg><svg class="ic-l" viewBox="0 0 24 24" fill="currentcolor"><path d="M12 7c-2.76.0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55.0 1-.45 1-1s-.45-1-1-1H2c-.55.0-1 .45-1 1s.45 1 1 1zm18 0h2c.55.0 1-.45 1-1s-.45-1-1-1h-2c-.55.0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41.0-.39.39-.39 1.03.0 1.41l1.06 1.06c.39.39 1.03.39 1.41.0s.39-1.03.0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41.0-.39.39-.39 1.03.0 1.41l1.06 1.06c.39.39 1.03.39 1.41.0.39-.39.39-1.03.0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03.0-1.41-.39-.39-1.03-.39-1.41.0l-1.06 1.06c-.39.39-.39 1.03.0 1.41s1.03.39 1.41.0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03.0-1.41-.39-.39-1.03-.39-1.41.0l-1.06 1.06c-.39.39-.39 1.03.0 1.41s1.03.39 1.41.0l1.06-1.06z"/></svg><span class="theme-btn-label lb-d">Dark</span><span class="theme-btn-label lb-l">Light</span></button>
+                                            <button class="theme-btn" data-dark="hc-dark" data-light="hc-light" data-theme="hc-dark" title="High contrast theme"><svg class="ic-d" viewBox="0 0 24 24" fill="currentcolor"><path d="M12 2a10 10 0 000 20 10 10 0 000-20zm0 2v16a8 8 0 010-16z"/></svg><svg class="ic-l" viewBox="0 0 24 24" fill="currentcolor"><path d="M12 2a10 10 0 000 20 10 10 0 000-20zm0 18V4a8 8 0 010 16z"/></svg><span class="theme-btn-label lb-d">HC Dark</span><span class="theme-btn-label lb-l">HC Light</span></button>
+                                            <button class="theme-btn" data-dark="concrete" data-light="concrete-light" data-theme="concrete" title="Concrete Signal theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 3h18v18H3V3zm4 4v10h10V7H7z"/></svg><span class="theme-btn-label">Concrete</span></button>
+                                            <button class="theme-btn" data-dark="phosphor" data-light="phosphor-light" data-theme="phosphor" title="Phosphor theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path fill-rule="evenodd" d="M3 4h18a1 1 0 011 1v14a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1zm1 2v12h16V6H4zm2.5 2.5L10 12l-3.5 3.5-1.4-1.4L7.2 12 5.1 9.9l1.4-1.4zM11 15h6v2h-6v-2z"/></svg><span class="theme-btn-label">Phosphor</span></button>
+                                            <button class="theme-btn" data-dark="dialup" data-light="dialup-light" data-theme="dialup" title="Dial-Up theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path fill-rule="evenodd" d="M3 4h18v16H3V4zm2 4v10h14V8H5z"/></svg><span class="theme-btn-label">Dial-Up</span></button>
+                                            <button class="theme-btn" data-dark="dither" data-light="dither-light" data-theme="dither" title="Dither theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 3h6v6H3V3zm12 0h6v6h-6V3zM9 9h6v6H9V9zM3 15h6v6H3v-6zm12 0h6v6h-6v-6z"/></svg><span class="theme-btn-label">Dither</span></button>
+                                            <button class="theme-btn" data-dark="pivot" data-light="pivot-light" data-theme="pivot" title="Pivot theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path fill-rule="evenodd" d="M3 3h18v18H3V3zm2 2v4h4V5H5zm6 0v4h8V5h-8zM5 11v3h4v-3H5zm6 0v3h8v-3h-8zM5 16v3h4v-3H5zm6 0v3h8v-3h-8z"/></svg><span class="theme-btn-label">Pivot</span></button>
+                                            <button class="theme-btn" data-dark="neonchalk" data-light="neonchalk-light" data-theme="neonchalk" title="Neon Chalk theme"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg><span class="theme-btn-label">Chalk</span></button>
                                             <button class="theme-btn theme-btn-custom" data-theme="custom" title="Vivid theme — the flat, saturated single-color look built from your picked color (color panel + intensity bar). Other themes get a + version of your color."><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.1 0 2-.9 2-2 0-.52-.2-.99-.53-1.34-.32-.34-.52-.8-.52-1.32.0-1.1.9-2 2-2H17c2.76.0 5-2.24 5-5C22 6.13 17.5 2 12 2zm-5.5 9c-.83.0-1.5-.67-1.5-1.5S5.67 8 6.5 8 8 8.67 8 9.5 7.33 11 6.5 11zm3-4C8.67 7 8 6.33 8 5.5S8.67 4 9.5 4s1.5.67 1.5 1.5S10.33 7 9.5 7zm5 0c-.83.0-1.5-.67-1.5-1.5S13.67 4 14.5 4s1.5.67 1.5 1.5S15.33 7 14.5 7zm3 4c-.83.0-1.5-.67-1.5-1.5S16.67 8 17.5 8s1.5.67 1.5 1.5S18.33 11 17.5 11z"/></svg><span class="theme-btn-label">Vivid</span></button>
                                         </div>
                                     </div>
@@ -3795,9 +3899,8 @@ function wirePlayerIconTap(scope) {
 function loadSettings() {
     const e = store.getItem("theme");
     e === "vivid" ? document.documentElement.setAttribute("data-vivid", "1") : document.documentElement.removeAttribute("data-vivid");
-    e && e !== "auto" && e !== "vivid"
-        ? document.documentElement.setAttribute("data-theme", e)
-        : document.documentElement.removeAttribute("data-theme");
+    if (e && e !== "auto" && e !== "vivid") applyThemeAttrs(e);
+    else { document.documentElement.removeAttribute("data-theme"); document.documentElement.removeAttribute("data-variant"); }
     const t = store.getItem("fontSize");
     t &&
         ((currentFontSize = Math.max(FONT_SIZE_MIN, Math.min(FONT_SIZE_MAX, parseInt(t) || 16))),
@@ -3875,9 +3978,9 @@ function announce(text) {
 }
 function saveTheme(e) {
     const de = document.documentElement;
-    if (e === "auto") { store.removeItem("theme"); de.removeAttribute("data-theme"); de.removeAttribute("data-vivid"); }
-    else if (e === "vivid") { store.setItem("theme", "vivid"); de.removeAttribute("data-theme"); de.setAttribute("data-vivid", "1"); }
-    else { store.setItem("theme", e); de.setAttribute("data-theme", e); de.removeAttribute("data-vivid"); }
+    if (e === "auto") { store.removeItem("theme"); de.removeAttribute("data-theme"); de.removeAttribute("data-variant"); de.removeAttribute("data-vivid"); }
+    else if (e === "vivid") { store.setItem("theme", "vivid"); de.removeAttribute("data-theme"); de.removeAttribute("data-variant"); de.setAttribute("data-vivid", "1"); }
+    else { store.setItem("theme", e); applyThemeAttrs(e); de.removeAttribute("data-vivid"); }
     updateThemeButtons();
     if (customColor()) applyCustomColor();
     syncThemeColorMeta();
@@ -4150,10 +4253,20 @@ function muteColorAtIntensity(hex, intensityPct) {
     const newL = l + (mutedL - l) * blend;
     return hslToHex(h, newS, newL);
 }
+// The dark-only themes (Concrete, Phosphor, Dial-Up, Dither, Pivot, Neon Chalk) each have a light twin, picked in the theme menu and stored as "<theme>-light".
+const LIGHT_TWINS = ["concrete", "phosphor", "dialup", "dither", "pivot", "neonchalk"];
+function lightVariantOn() { return document.documentElement.getAttribute("data-variant") === "light"; }
+// Sets data-theme / data-variant from a stored theme value ("phosphor-light" = Phosphor + light variant).
+function applyThemeAttrs(value) {
+    const de = document.documentElement, m = /^(.+)-light$/.exec(value || "");
+    if (m && LIGHT_TWINS.includes(m[1])) { de.setAttribute("data-theme", m[1]); de.setAttribute("data-variant", "light"); }
+    else { de.setAttribute("data-theme", value); de.removeAttribute("data-variant"); }
+}
 function getActivePaletteKey() {
     const attr = document.documentElement.getAttribute("data-theme");
     if (attr === "light" || attr === "hc-dark" || attr === "hc-light") return attr;
-    if (attr === "dark" || attr === "phosphor" || attr === "dialup" || attr === "dither" || attr === "pivot" || attr === "neonchalk") return "dark"; // the structural themes are all dark
+    if (attr === "dark") return "dark";
+    if (attr === "phosphor" || attr === "dialup" || attr === "dither" || attr === "pivot" || attr === "neonchalk" || attr === "concrete") return lightVariantOn() ? "light" : "dark"; // the structural themes are dark, with a light twin when picked
     const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
     return dark ? "dark" : "light";
 }
@@ -4178,11 +4291,20 @@ function applyTintColor() {
     const { h, s: activeS } = hexToHsl(activeColor);
     const attr = rootEl.getAttribute("data-theme");
     if (attr === "concrete") {
-        root.setProperty("--cc-page", hslToHex(h, clampNum(activeS * 0.45, 0, 45), 17));
-        root.setProperty("--cc-panel", hslToHex(h, clampNum(activeS * 0.45, 0, 45), 10));
-        root.setProperty("--cc-line", hslToHex(h, clampNum(activeS * 0.5, 0, 45), 90));
-        root.setProperty("--cc-muted", hslToHex(h, clampNum(activeS * 0.3, 0, 30), 75));
-        root.setProperty("--cc-text", "#ffffff");
+        if (lightVariantOn()) { // light twin: pale tinted concrete, near-black lines and text
+            root.setProperty("--cc-page", hslToHex(h, clampNum(activeS * 0.35, 0, 35), 83));
+            root.setProperty("--cc-panel", hslToHex(h, clampNum(activeS * 0.3, 0, 30), 95));
+            root.setProperty("--cc-line", hslToHex(h, clampNum(activeS * 0.4, 0, 40), 7));
+            root.setProperty("--cc-muted", hslToHex(h, clampNum(activeS * 0.3, 0, 30), 28));
+            root.setProperty("--cc-text", hslToHex(h, clampNum(activeS * 0.3, 0, 30), 7));
+            root.setProperty("--cc-fill", hslToHex(h, clampNum(activeS * 0.35, 0, 35), 88));
+        } else {
+            root.setProperty("--cc-page", hslToHex(h, clampNum(activeS * 0.45, 0, 45), 17));
+            root.setProperty("--cc-panel", hslToHex(h, clampNum(activeS * 0.45, 0, 45), 10));
+            root.setProperty("--cc-line", hslToHex(h, clampNum(activeS * 0.5, 0, 45), 90));
+            root.setProperty("--cc-muted", hslToHex(h, clampNum(activeS * 0.3, 0, 30), 75));
+            root.setProperty("--cc-text", "#ffffff");
+        }
         // Black ink sits on every role-colored button, so each fill is lightened (hue and saturation kept) until black reads on it at 7:1 (WCAG AAA).
         const lift = (hh, ss, ll, min) => {
             let c = hslToHex(hh, ss, ll);
@@ -4343,7 +4465,7 @@ function clearCustomVars() {
         "--accent", "--accent-hover", "--accent-text", "--accent-solid", "--accent-solid-hover", "--border-strong", "--on-accent", "--accent-glow",
         "--control-surface", "--control-surface-hover", "--on-control", "--stat-fill",
         "--skeleton-base", "--skeleton-shine", "--success", "--warning", "--danger", "--danger-solid", "--on-danger", "--accent-on-control",
-        "--cc-page", "--cc-panel", "--cc-line", "--cc-muted", "--cc-text", "--cc-accent",
+        "--cc-page", "--cc-panel", "--cc-line", "--cc-muted", "--cc-text", "--cc-accent", "--cc-fill",
         "--orange", "--pink", "--violet", "--green", "--blue", "--red",
     ];
     for (const key of keys) root.removeProperty(key);
@@ -4437,11 +4559,45 @@ function renderThemeSwatches() {
         return `<button type="button" class="theme-swatch" data-color="${p.color}" aria-label="${p.name} preset" title="${p.name} — ${p.color}" style="background:${p.color}"></button>`;
     }).join("");
 }
+// Reset all settings: every stored preference goes back to its default (theme, colors, sizes, player and recording options, view, twin panels...), then the page reloads clean.
+// Personal data stays: favorites, pinned folders, songs heard, recent extra sources, the remembered preview-index link and the learned no-CORS hosts.
+const KEEP_ON_RESET = ["favoriteFiles", "pinnedFolders", "songsHeard", "extraRecent", "previewJsonUrl", "noCorsHosts"];
+function wireResetAll() {
+    const btn = document.getElementById("resetAllBtn");
+    if (!btn) return;
+    let armed = null;
+    const disarm = () => { clearTimeout(armed); armed = null; btn.textContent = "Reset\u2026"; btn.classList.remove("armed"); };
+    btn.addEventListener("click", () => {
+        if (!armed) { // first press arms it, a second press within 4 seconds does it (the page's own confirm, no browser dialog)
+            btn.textContent = "Press again to reset";
+            btn.classList.add("armed");
+            armed = setTimeout(disarm, 4000);
+            return;
+        }
+        disarm();
+        const keys = [];
+        try { for (let i = 0; i < store.length; i++) keys.push(store.key(i)); } catch (e) { swallow(e); }
+        if (!keys.length) { try { Object.keys(store).forEach((k) => keys.push(k)); } catch (e) { swallow(e); } }
+        for (const k of keys) { if (k && !KEEP_ON_RESET.includes(k)) { try { store.removeItem(k); } catch (e) { swallow(e); } } }
+        const de = document.documentElement;
+        clearCustomVars();
+        ["data-theme", "data-variant", "data-vivid", "data-depth"].forEach((a) => de.removeAttribute(a));
+        de.style.removeProperty("--font-size-base");
+        location.reload();
+    });
+}
 function wireThemeColorPicker() {
+    wireResetAll();
     const input = document.getElementById("themeColorInput"),
         resetBtn = document.getElementById("themeResetBtn"),
         swatches = document.getElementById("themeSwatches"),
         intensityControl = document.getElementById("colorIntensityControl");
+    document.querySelectorAll(".variant-btn").forEach((b) => b.addEventListener("click", () => {
+        const mode = b.dataset.variant, cur = store.getItem("theme") || "auto";
+        try { store.setItem(THEME_MODE_KEY, mode); } catch (x) { swallow(x); }
+        if (themeModeOf(cur)) saveTheme(themeCounterpart(cur, mode)); // the active theme flips to its twin
+        else updateThemeButtons(); // Auto / Vivid: only the list changes
+    }));
     if (input) input.addEventListener("input", (e) => setCustomColor(e.target.value));
     if (resetBtn) resetBtn.addEventListener("click", () => resetCustomColor());
     const rnd = document.getElementById("randomColorToggle");
@@ -4492,19 +4648,43 @@ function initThemeColor() {
     updateRandomColorUI();
     markActiveSwatch(null);
 }
+const THEME_MODE_KEY = "themeMode";
+// Dark / Light switch at the top of the theme menu: it decides which themes the grid shows (Auto and Vivid are in both). Each slot in the grid holds a dark and a light theme.
+function themeModeOf(e) {
+    if (!e || e === "auto" || e === "vivid") return null;
+    return e === "light" || e === "hc-light" || /-light$/.test(e) ? "light" : "dark";
+}
+function themeCounterpart(e, mode) {
+    if (themeModeOf(e) === mode) return e;
+    if (mode === "light") return e === "dark" ? "light" : e === "hc-dark" ? "hc-light" : e + "-light";
+    return e === "light" ? "dark" : e === "hc-light" ? "hc-dark" : e.replace(/-light$/, "");
+}
 function updateThemeButtons() {
     const e = store.getItem("theme") || "auto";
     const customActive = !!vividColor;
+    let mode = themeModeOf(e);
+    if (mode) { try { store.setItem(THEME_MODE_KEY, mode); } catch (x) { swallow(x); } }
+    else {
+        mode = store.getItem(THEME_MODE_KEY);
+        if (mode !== "light" && mode !== "dark") mode = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    }
+    const toggle = document.getElementById("themeToggle");
+    if (toggle) toggle.dataset.tmode = mode;
+    document.querySelectorAll("#themeToggle .theme-btn[data-dark]").forEach((t) => { t.dataset.theme = mode === "light" ? t.dataset.light : t.dataset.dark; });
+    document.querySelectorAll(".variant-btn").forEach((b) => {
+        const on = b.dataset.variant === mode;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", String(on));
+    });
     document.querySelectorAll(".theme-btn").forEach((t) => {
         const isCustomBtn = t.dataset.theme === "custom";
         t.classList.toggle("active", isCustomBtn ? e === "vivid" : t.dataset.theme === e);
-        const lbl = t.querySelector(".theme-btn-label");
-        if (lbl && !isCustomBtn) {
+        t.querySelectorAll(".theme-btn-label").forEach((lbl) => {
+            if (isCustomBtn) return;
             if (!lbl.dataset.base) lbl.dataset.base = lbl.textContent;
             lbl.textContent = lbl.dataset.base + (customActive ? "+" : "");
-        }
+        });
     });
-    const toggle = document.getElementById("themeToggle");
     if (toggle) toggle.classList.toggle("custom-color-active", customActive);
 }
 // Interface text size range in px (the A- / A+ buttons in Settings).
