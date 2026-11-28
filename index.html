@@ -15939,7 +15939,7 @@ const TWIN = (() => {
             const thumb = grid && !dir && item.category === "image"
                 ? `<img class="file-thumbnail lazy" ${p.source === "local" ? `data-tlocal="${escapeHtml(item.fullPath)}"` : `data-src="${escapeHtml(hostedUrlIn(c, item.fullPath))}"`} alt="" decoding="async">` : "";
             const meta = dir ? (grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : "") : sizeText(item) + resultMetaDate(q, item);
-            html += `<div class="file-card${dir ? " directory" : ""}" role="link" tabindex="-1" data-r="${idx}" aria-label="${dir ? "Open folder " : "Open file "}${name}">${starHtml(c, dir ? "folder" : "file", dir ? item.navPath : item.fullPath)}${thumb}<div class="file-icon ${iconType}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${highlightMatch(item.name, searchTextOf(q))}</span><span class="file-meta">${meta}${where ? `<span class="file-path">${where}</span>` : ""}</span></div></div>`;
+            html += `<div class="file-card${dir ? " directory" : ""}" role="link" tabindex="-1" data-r="${idx}" aria-label="${dir ? "Open folder " : "Open file "}${name}">${starHtml(c, dir ? "folder" : "file", dir ? navPathOf(item) : item.fullPath)}${thumb}<div class="file-icon ${iconType}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${highlightMatch(item.name, searchTextOf(q))}</span><span class="file-meta">${meta}${where ? `<span class="file-path">${where}</span>` : ""}</span></div></div>`;
         });
         html += "</div>";
         if (!all.length) html += emptyHtml(`No results for \u201c${escapeHtml(raw)}\u201d.`);
