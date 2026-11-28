@@ -834,7 +834,7 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
     .modal-btn.play-playlist-btn { padding: 0.5rem; min-width: 44px; min-height: 44px; }
     .modal-btn.play-playlist-btn svg { width: 24px; height: 24px; }
     .playlist-bar { padding: 0.5rem; flex-wrap: wrap; }
-    .playlist-btn span:not(.btn-txt):not(.blabel):not(.lbl-long):not(.lbl-short) { display: none; }
+    .playlist-btn span:not(.btn-txt):not(.blabel):not(.lbl-long):not(.lbl-short):not(.btn-val) { display: none; }
     .preview-image { max-height: 80vh; max-height: 80dvh; }
     .preview-pdf { height: 80vh; height: 80dvh; }
     .preview-media-container { padding: 0.5rem; }
@@ -868,12 +868,12 @@ body[data-btn-style="icons"] .rec-panel .playlist-btn { min-width: 2rem; padding
 .truncation-notice { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; background: var(--bg-tertiary); border-bottom: var(--bw) solid var(--border-color); color: var(--text-muted); font-size: 0.75rem; }
 .modal-btn.copied { color: var(--success); border-color: var(--success); }
 .modal-btn.favorite-btn.favorited { color: var(--accent-on-control, var(--accent-text, var(--accent))); border-color: var(--accent-on-control, var(--accent-text, var(--accent))); }
-.shortcuts-modal { max-width: 440px; }
+.shortcuts-modal { max-width: 600px; }
 .shortcuts-body { padding: 0.75rem 1rem 1rem; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; touch-action: pan-y; }
 .shortcuts-list { display: flex; flex-direction: column; gap: 0.6rem; }
 .shortcut-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .shortcut-row dt { display: flex; align-items: center; gap: 0.25rem; flex-shrink: 0; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-secondary); }
-.shortcut-row dd { color: var(--text-secondary); font-size: 0.85rem; text-align: right; }
+.shortcut-row dd { color: var(--text-secondary); font-size: 0.85rem; text-align: right; flex: 1 1 12rem; min-width: 0; }
 .stats-modal { max-width: 420px; }
 .stats-body { padding: 0.85rem 1rem 1rem; overflow-y: auto; }
 .playlist-health { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; padding-left: 0.35em; color: var(--text-muted); font-weight: 400; }
@@ -4740,11 +4740,21 @@ function formatFileSize(bytes) {
     while (v >= 1024 && i < 4) { v /= 1024; i++; }
     return parseFloat(v.toFixed(2)) + " " + SIZE_UNITS[i];
 }
+// "1.2 MB" text of a file, made on first use and kept ("—" while only the lean index has loaded). Folders have none.
+function sizeText(item) {
+    let t = item.sizeFormatted;
+    if (t === undefined && item.type === "file") t = item.sizeFormatted = typeof item.size === "number" ? formatFileSize(item.size) : "—";
+    return t;
+}
+// A search result's folder trail, from its full path.
+function navPathOf(item) {
+    return item.fullPath.split("/");
+}
 function isPlaylistExtension(e) {
     const t = e.toLowerCase();
     return t.endsWith(".m3u") || t.endsWith(".m3u8");
 }
-function preprocessFiles(nodes, pathPrefix = "", prefixArr = []) {
+function preprocessFiles(nodes, pathPrefix = "") {
     // The folder's lowercase/normalized forms are made once; each item adds only its short name.
     const parentLower = pathPrefix.toLowerCase();
     const parentNorm = parentLower.replace(/[^a-z0-9]+/g, " ").trim();
@@ -4752,29 +4762,23 @@ function preprocessFiles(nodes, pathPrefix = "", prefixArr = []) {
         const currentPathStr = pathPrefix ? `${pathPrefix}/${node.name}` : node.name;
         const nameLower = node.name.toLowerCase();
         const searchKey = pathPrefix ? parentLower + "/" + nameLower : nameLower;
-        const navPath = prefixArr.length ? [...prefixArr, node.name] : [node.name];
 
         // Search keys are built once per file: normalizedKey = lowercased path, punctuation collapsed to spaces.
         // Fuzzy keys (compactKey, boundarySet) are built on first use (fuzzyKeys) to save start-up time and memory.
         const nameNorm = nameLower.replace(/[^a-z0-9]+/g, " ").trim();
         const normalizedKey = parentNorm ? (nameNorm ? parentNorm + " " + nameNorm : parentNorm) : nameNorm;
 
-        // The modified date is parsed on first use (itemDate). The index stores no "1.2 MB" string, so it is built here from the byte size.
-        if (node.type === "file" && node.sizeFormatted === undefined) {
-            // No size yet while only the lean index has loaded.
-            node.sizeFormatted = typeof node.size === "number" ? formatFileSize(node.size) : "—";
-        }
+        // The modified date is parsed on first use (itemDate), and so is the "1.2 MB" text (sizeText): the index stores only byte sizes.
         allFiles.push({
             ...node,
             fullPath: currentPathStr,
-            navPath: navPath,
             searchKey: searchKey,
             normalizedKey: normalizedKey,
             parentPath: parentLower
         });
         if (node.type === "file") filesByPath.set(currentPathStr, allFiles[allFiles.length - 1]);
         if (node.type === "directory" && node.children) {
-            preprocessFiles(node.children, currentPathStr, navPath);
+            preprocessFiles(node.children, currentPathStr);
         }
     }
 }
@@ -6747,7 +6751,7 @@ function selAllEntries() {
     const items = searchQuery ? searchFiles(searchQuery) : sortItems(getCurrentItems());
     return items.map((it) => {
         if (it.type === "directory") {
-            const arr = searchQuery ? it.navPath : [...currentPath, it.name];
+            const arr = searchQuery ? navPathOf(it) : [...currentPath, it.name];
             return { key: "d:" + JSON.stringify(arr), type: "d", arr, path: arr.join("/"), name: it.name };
         }
         const path = searchQuery ? it.fullPath : (currentPath.length ? currentPath.join("/") + "/" : "") + it.name;
@@ -7805,7 +7809,7 @@ function render() {
         if (searchQuery) {
             clickPath = item.fullPath;
             fullDisplayPath = item.fullPath;
-            parentPathArr = item.navPath;
+            parentPathArr = navPathOf(item);
             // Show only the containing folder as a location hint; the full path would duplicate the filename above it.
             parentDisplayPath = parentPathArr.slice(0, -1).join("/");
         } else {
@@ -7844,13 +7848,13 @@ function render() {
               <div class="file-icon ${iconType}${xcAttr}">${iconSvg}</div>
               <div class="file-info">
                 <span class="file-name">${searchQuery ? highlightMatch(item.name, searchTextOf(searchQuery)) : escapeHtml(item.name)}</span>
-                <span class="file-meta">${isColumnView && !searchQuery ? "" : item.sizeFormatted + resultMetaDate(searchQuery, item)}${searchQuery && parentDisplayPath ? `<span class="file-path">${escapeHtml(parentDisplayPath)}</span>` : ""}</span>
+                <span class="file-meta">${isColumnView && !searchQuery ? "" : sizeText(item) + resultMetaDate(searchQuery, item)}${searchQuery && parentDisplayPath ? `<span class="file-path">${escapeHtml(parentDisplayPath)}</span>` : ""}</span>
               </div>
               ${
           isColumnView && !searchQuery
-              ? renderColumnCells(escapeHtml(getFileExtension(item.name)), item.sizeFormatted, escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))
+              ? renderColumnCells(escapeHtml(getFileExtension(item.name)), sizeText(item), escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))
               : currentView !== "grid" && !searchQuery
-                ? `<span class="file-size">${item.sizeFormatted}</span>`
+                ? `<span class="file-size">${sizeText(item)}</span>`
                 : ""
       }
             </div>
@@ -15894,7 +15898,7 @@ const TWIN = (() => {
             const full = base + item.name;
             const thumb = grid && item.category === "image"
                 ? `<img class="file-thumbnail lazy" ${p.source === "local" ? `data-tlocal="${escapeHtml(full)}"` : `data-src="${escapeHtml(hostedUrlIn(c, full))}"`} alt="" decoding="async">` : "";
-            html += `<div class="file-card" role="link" tabindex="-1" data-n="${name}" data-t="f" aria-label="Open file ${name}">${starHtml(c, "file", full)}${thumb}<div class="file-icon ${iconType}${xc}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid ? item.sizeFormatted : ""}</span></div>${grid ? "" : renderColumnCells(escapeHtml(getFileExtension(item.name)), item.sizeFormatted, escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
+            html += `<div class="file-card" role="link" tabindex="-1" data-n="${name}" data-t="f" aria-label="Open file ${name}">${starHtml(c, "file", full)}${thumb}<div class="file-icon ${iconType}${xc}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${name}</span><span class="file-meta">${grid ? sizeText(item) : ""}</span></div>${grid ? "" : renderColumnCells(escapeHtml(getFileExtension(item.name)), sizeText(item), escapeHtml(formatItemDate(item)), escapeHtml(formatItemTime(item)))}</div>`;
         }
         html += "</div>";
         if (!all.length) html += emptyHtml("Empty folder.");
@@ -15931,10 +15935,10 @@ const TWIN = (() => {
         shown.forEach((item, idx) => {
             const dir = item.type === "directory", name = escapeHtml(item.name);
             const iconType = dir ? "folder" : getFileIconType(item.name) || item.category || "other";
-            const where = escapeHtml(item.navPath.slice(0, -1).join("/"));
+            const where = escapeHtml(navPathOf(item).slice(0, -1).join("/"));
             const thumb = grid && !dir && item.category === "image"
                 ? `<img class="file-thumbnail lazy" ${p.source === "local" ? `data-tlocal="${escapeHtml(item.fullPath)}"` : `data-src="${escapeHtml(hostedUrlIn(c, item.fullPath))}"`} alt="" decoding="async">` : "";
-            const meta = dir ? (grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : "") : item.sizeFormatted + resultMetaDate(q, item);
+            const meta = dir ? (grid && !c.fileIndex.partial ? (item.children ? item.children.length : 0) + " items" : "") : sizeText(item) + resultMetaDate(q, item);
             html += `<div class="file-card${dir ? " directory" : ""}" role="link" tabindex="-1" data-r="${idx}" aria-label="${dir ? "Open folder " : "Open file "}${name}">${starHtml(c, dir ? "folder" : "file", dir ? item.navPath : item.fullPath)}${thumb}<div class="file-icon ${iconType}">${grid ? ibIcon(iconType, item.name) : icons[iconType] || icons.other}</div><div class="file-info"><span class="file-name">${highlightMatch(item.name, searchTextOf(q))}</span><span class="file-meta">${meta}${where ? `<span class="file-path">${where}</span>` : ""}</span></div></div>`;
         });
         html += "</div>";
@@ -15953,7 +15957,7 @@ const TWIN = (() => {
         p.filter = "";
         p.rkey = "";
         const dir = item.type === "directory";
-        go(p, dir ? item.navPath.slice() : item.navPath.slice(0, -1), dir ? undefined : { reveal: item.name });
+        go(p, dir ? navPathOf(item) : navPathOf(item).slice(0, -1), dir ? undefined : { reveal: item.name });
         if (dir || p.mode !== "list") return;
         p.cur = item.name;
         const it = p.map.get(item.name);
@@ -16117,7 +16121,7 @@ const TWIN = (() => {
     function setStatus(p, item) {
         const pn = paneEl(p.id), st = pn && pn.querySelector(".tw-status");
         if (!st) return;
-        st.textContent = item ? `${item.fullPath || item.name}: ${item.type === "directory" ? "DIR" : item.sizeFormatted}, ${formatItemDate(item)} ${formatItemTime(item)}` : p.summary;
+        st.textContent = item ? `${item.fullPath || item.name}: ${item.type === "directory" ? "DIR" : sizeText(item)}, ${formatItemDate(item)} ${formatItemTime(item)}` : p.summary;
     }
     function renderPane(i, keepScroll) {
         const p = T.panes[i];
